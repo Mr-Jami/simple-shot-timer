@@ -250,9 +250,30 @@ class TimerNotifier extends Notifier<TimerState> {
     final durMs = _snapshot.parDurationMs;
     if (durMs <= 0) return;
     final count = _snapshot.parRepeatCount.clamp(1, AppSettings.parRepeatMax);
+    final intervalMs = math.max(0, _snapshot.parIntervalMs);
     for (var i = 1; i <= count; i++) {
-      final fireAtMs = durMs * i;
-      _parTimers.add(Timer(Duration(milliseconds: fireAtMs), () {
+      // Cycle i = par window [cycleStartMs, endAtMs] followed by an optional
+      // rest of intervalMs. Par 1's start coincides with the master start
+      // beep, so we only inject an explicit start beep from cycle 2 onward —
+      // and only when interval > 0; otherwise it would collide with the
+      // previous cycle's end beep (legacy back-to-back behavior).
+      final cycleStartMs = (i - 1) * (durMs + intervalMs);
+      final endAtMs = cycleStartMs + durMs;
+
+      if (i > 1 && intervalMs > 0) {
+        _parTimers.add(Timer(Duration(milliseconds: cycleStartMs), () {
+          ref.read(shotDetectorProvider).extendBlankingForMs(
+                AudioService.startBeepDurationMs + _beepEchoMs,
+              );
+          state = state.copyWith(
+            currentParIndex: i,
+            flashTick: state.flashTick + 1,
+          );
+          _playStartBeep();
+        }));
+      }
+
+      _parTimers.add(Timer(Duration(milliseconds: endAtMs), () {
         // Blank detection BEFORE the beep starts playing so neither the
         // beep itself nor its echo registers as a shot.
         ref.read(shotDetectorProvider).extendBlankingForMs(

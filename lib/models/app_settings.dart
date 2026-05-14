@@ -11,6 +11,7 @@ class AppSettings {
     this.randomDelayMaxMs = 4000,
     this.parDurationMs = 2000,
     this.parRepeatCount = 1,
+    this.parIntervalMs = 5000,
     this.drillMode = DrillMode.standard,
     this.keepScreenAwake = true,
     this.visualFlash = true,
@@ -36,6 +37,11 @@ class AppSettings {
   /// [DrillMode.par]). 1 = a single par beep, 2..N = beep at every multiple of
   /// [parDurationMs] up to N beeps.
   final int parRepeatCount;
+
+  /// Rest delay inserted between consecutive par beeps. 0 = back-to-back
+  /// (legacy behavior). With par=2s, repeat=4, interval=4s the beeps fire at
+  /// 2s, 8s, 14s, 20s.
+  final int parIntervalMs;
   final DrillMode drillMode;
   final bool keepScreenAwake;
   final bool visualFlash;
@@ -66,6 +72,7 @@ class AppSettings {
     int? randomDelayMaxMs,
     int? parDurationMs,
     int? parRepeatCount,
+    int? parIntervalMs,
     DrillMode? drillMode,
     bool? keepScreenAwake,
     bool? visualFlash,
@@ -86,6 +93,7 @@ class AppSettings {
         randomDelayMaxMs: randomDelayMaxMs ?? this.randomDelayMaxMs,
         parDurationMs: parDurationMs ?? this.parDurationMs,
         parRepeatCount: parRepeatCount ?? this.parRepeatCount,
+        parIntervalMs: parIntervalMs ?? this.parIntervalMs,
         drillMode: drillMode ?? this.drillMode,
         keepScreenAwake: keepScreenAwake ?? this.keepScreenAwake,
         visualFlash: visualFlash ?? this.visualFlash,

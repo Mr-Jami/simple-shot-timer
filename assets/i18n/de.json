@@ -93,6 +93,7 @@
   "settings.parHint": "Modus auf „Par“ stellen, um den Par-Ton zu aktivieren.",
   "settings.parDuration": "Dauer",
   "settings.parRepeatCount": "Wiederholungen",
+  "settings.parInterval": "Abstand zwischen Tönen",
   "settings.parBeepSingle": "1 Ton",
   "settings.parBeepMany": "{count} Töne",
   "settings.volume": "Lautstärke",

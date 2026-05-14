@@ -136,6 +136,16 @@ class SettingsScreen extends ConsumerWidget {
             onChanged: (v) =>
                 notifier.update((c) => c.copyWith(parRepeatCount: v)),
           ),
+          if (s.parRepeatCount > 1)
+            _SecondsSlider(
+              label: context.tr('settings.parInterval'),
+              valueMs: s.parIntervalMs,
+              minMs: 0,
+              maxMs: 30000,
+              stepMs: 100,
+              onChanged: (v) =>
+                  notifier.update((c) => c.copyWith(parIntervalMs: v)),
+            ),
 
           _Section(context.tr('settings.section.beep')),
           _DoubleSlider(

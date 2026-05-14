@@ -93,6 +93,7 @@
   "settings.parHint": "Set drill mode to Par to enable the par beep.",
   "settings.parDuration": "Duration",
   "settings.parRepeatCount": "Repeat count",
+  "settings.parInterval": "Interval between beeps",
   "settings.parBeepSingle": "1 beep",
   "settings.parBeepMany": "{count} beeps",
   "settings.volume": "Volume",
