@@ -260,7 +260,29 @@ class SettingsScreen extends ConsumerWidget {
               style: const TextStyle(fontSize: 12),
             ),
           ),
+          const _Credits(),
         ],
+      ),
+    );
+  }
+}
+
+class _Credits extends StatelessWidget {
+  const _Credits();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
+      child: Center(
+        child: Text(
+          '© ${DateTime.now().year} Jami IT',
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+            letterSpacing: 1,
+          ),
+        ),
       ),
     );
   }
