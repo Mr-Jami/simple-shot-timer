@@ -45,9 +45,8 @@ class HomeScreen extends ConsumerWidget {
         appBar: AppBar(
           leading: Padding(
             padding: const EdgeInsets.all(8),
-            child: Image.asset(
-              'assets/branding/icon.png',
-              filterQuality: FilterQuality.medium,
+            child: _AppBarLogo(
+              brightness: Theme.of(context).brightness,
             ),
           ),
           title: Text(context.tr('app.title')),
@@ -81,6 +80,35 @@ class HomeScreen extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// The launcher PNG is monochrome with a solid black background. In dark
+/// mode it blends into the AppBar; in light mode we invert RGB so it
+/// becomes a white square with a black glyph, blending the same way
+/// without needing a second asset.
+class _AppBarLogo extends StatelessWidget {
+  const _AppBarLogo({required this.brightness});
+  final Brightness brightness;
+
+  static const _invertMatrix = <double>[
+    -1, 0, 0, 0, 255,
+    0, -1, 0, 0, 255,
+    0, 0, -1, 0, 255,
+    0, 0, 0, 1, 0,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final image = Image.asset(
+      'assets/branding/icon.png',
+      filterQuality: FilterQuality.medium,
+    );
+    if (brightness == Brightness.dark) return image;
+    return ColorFiltered(
+      colorFilter: const ColorFilter.matrix(_invertMatrix),
+      child: image,
     );
   }
 }
