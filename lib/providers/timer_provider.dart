@@ -8,6 +8,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import '../models/app_settings.dart';
 import '../models/enums.dart';
 import '../models/par_config.dart';
+import '../models/par_schedule.dart';
 import '../models/shot.dart';
 import '../services/audio_service.dart';
 import '../models/timer_state.dart';
@@ -247,59 +248,23 @@ class TimerNotifier extends Notifier<TimerState> {
   }
 
   void _schedulePars() {
-    if (_runMode == DrillMode.stage) {
-      final durMs = _snapshot.stageDurationMs;
-      if (durMs <= 0) return;
-      _parTimers.add(Timer(Duration(milliseconds: durMs), () {
-        ref.read(shotDetectorProvider).extendBlankingForMs(
-              AudioService.parBeepDurationMs + _beepEchoMs,
-            );
-        state = state.copyWith(
-          currentParIndex: 1,
-          flashTick: state.flashTick + 1,
-        );
-        _playParBeep();
-      }));
-      return;
-    }
-    if (_runMode != DrillMode.par) return;
-    final durMs = _snapshot.parDurationMs;
-    if (durMs <= 0) return;
-    final count = _snapshot.parRepeatCount.clamp(1, AppSettings.parRepeatMax);
-    final intervalMs = math.max(0, _snapshot.parIntervalMs);
-    for (var i = 1; i <= count; i++) {
-      // Cycle i = par window [cycleStartMs, endAtMs] followed by an optional
-      // rest of intervalMs. Par 1's start coincides with the master start
-      // beep, so we only inject an explicit start beep from cycle 2 onward —
-      // and only when interval > 0; otherwise it would collide with the
-      // previous cycle's end beep (legacy back-to-back behavior).
-      final cycleStartMs = (i - 1) * (durMs + intervalMs);
-      final endAtMs = cycleStartMs + durMs;
-
-      if (i > 1 && intervalMs > 0) {
-        _parTimers.add(Timer(Duration(milliseconds: cycleStartMs), () {
-          ref.read(shotDetectorProvider).extendBlankingForMs(
-                AudioService.startBeepDurationMs + _beepEchoMs,
-              );
-          state = state.copyWith(
-            currentParIndex: i,
-            flashTick: state.flashTick + 1,
-          );
-          _playStartBeep();
-        }));
-      }
-
-      _parTimers.add(Timer(Duration(milliseconds: endAtMs), () {
+    for (final event in computeParSchedule(_snapshot, _runMode)) {
+      _parTimers.add(Timer(Duration(milliseconds: event.timeMs), () {
+        final blankMs = event.kind == ParBeepKind.start
+            ? AudioService.startBeepDurationMs + _beepEchoMs
+            : AudioService.parBeepDurationMs + _beepEchoMs;
         // Blank detection BEFORE the beep starts playing so neither the
         // beep itself nor its echo registers as a shot.
-        ref.read(shotDetectorProvider).extendBlankingForMs(
-              AudioService.parBeepDurationMs + _beepEchoMs,
-            );
+        ref.read(shotDetectorProvider).extendBlankingForMs(blankMs);
         state = state.copyWith(
-          currentParIndex: i,
+          currentParIndex: event.cycle,
           flashTick: state.flashTick + 1,
         );
-        _playParBeep();
+        if (event.kind == ParBeepKind.start) {
+          _playStartBeep();
+        } else {
+          _playParBeep();
+        }
       }));
     }
   }
