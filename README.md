@@ -6,8 +6,10 @@ local SQLite, and exports to CSV.
 
 ## Features
 
-- **Drill modes** — Standard (open string) and Par (single par beep with
-  configurable repeat count).
+- **Drill modes** — Standard (open string), Par (configurable repeat
+  count with optional rest interval between cycles, each cycle bounded
+  by distinct start/end beeps), and Stage (long single-window timer up
+  to 200s for scenario practice).
 - **Start delay** — Instant, fixed, or random within a min/max range.
 - **Shot detection** — Live PCM mic stream, amplitude-based peak detection
   with echo filter and beep blanking so the start/par beep never registers
