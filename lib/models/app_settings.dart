@@ -12,6 +12,7 @@ class AppSettings {
     this.parDurationMs = 2000,
     this.parRepeatCount = 1,
     this.parIntervalMs = 5000,
+    this.stageDurationMs = 60000,
     this.drillMode = DrillMode.standard,
     this.keepScreenAwake = true,
     this.visualFlash = true,
@@ -42,6 +43,10 @@ class AppSettings {
   /// (legacy behavior). With par=2s, repeat=4, interval=4s the beeps fire at
   /// 2s, 8s, 14s, 20s.
   final int parIntervalMs;
+
+  /// Duration of a single Stage drill window. Stage = "long par" — one beep
+  /// fires at this point. Slider goes in integer seconds.
+  final int stageDurationMs;
   final DrillMode drillMode;
   final bool keepScreenAwake;
   final bool visualFlash;
@@ -57,6 +62,8 @@ class AppSettings {
   static const int historyCapMax = 5000;
   static const int parRepeatMin = 1;
   static const int parRepeatMax = 20;
+  static const int stageDurationMinMs = 1000;
+  static const int stageDurationMaxMs = 200000;
 
   /// Amplitude threshold (0..1) derived from [sensitivityPercent].
   double get detectionThreshold =>
@@ -73,6 +80,7 @@ class AppSettings {
     int? parDurationMs,
     int? parRepeatCount,
     int? parIntervalMs,
+    int? stageDurationMs,
     DrillMode? drillMode,
     bool? keepScreenAwake,
     bool? visualFlash,
@@ -94,6 +102,7 @@ class AppSettings {
         parDurationMs: parDurationMs ?? this.parDurationMs,
         parRepeatCount: parRepeatCount ?? this.parRepeatCount,
         parIntervalMs: parIntervalMs ?? this.parIntervalMs,
+        stageDurationMs: stageDurationMs ?? this.stageDurationMs,
         drillMode: drillMode ?? this.drillMode,
         keepScreenAwake: keepScreenAwake ?? this.keepScreenAwake,
         visualFlash: visualFlash ?? this.visualFlash,

@@ -186,6 +186,8 @@ class _SettingsSummary extends StatelessWidget {
           args: {'mode': settings.drillMode.labelFor(context)}),
       _delayLabel(context, settings),
       if (settings.drillMode == DrillMode.par) _parLabel(context, settings),
+      if (settings.drillMode == DrillMode.stage)
+        _stageLabel(context, settings),
     ];
     return Wrap(
       alignment: WrapAlignment.center,
@@ -229,6 +231,11 @@ class _SettingsSummary extends StatelessWidget {
         ? context.tr('home.parSingle', args: {'duration': dur})
         : context
             .tr('home.parRepeated', args: {'duration': dur, 'count': count});
+  }
+
+  static String _stageLabel(BuildContext context, AppSettings s) {
+    return context.tr('home.stage',
+        args: {'duration': (s.stageDurationMs / 1000).round()});
   }
 }
 

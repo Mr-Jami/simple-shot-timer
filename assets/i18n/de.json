@@ -15,6 +15,7 @@
 
   "enums.drillMode.standard": "Standard",
   "enums.drillMode.par": "Par",
+  "enums.drillMode.stage": "Stage",
 
   "enums.theme.system": "System",
   "enums.theme.light": "Hell",
@@ -44,6 +45,7 @@
   "home.delayRandom": "Zufällige Verzögerung",
   "home.parSingle": "Par {duration}s",
   "home.parRepeated": "Par {duration}s × {count}",
+  "home.stage": "Stage {duration}s",
 
   "history.title": "Verlauf",
   "history.exportAll": "Alles als CSV exportieren",
@@ -82,6 +84,7 @@
   "settings.section.drillMode": "Modus",
   "settings.section.startDelay": "Startverzögerung",
   "settings.section.parTime": "Par-Zeit",
+  "settings.section.stage": "Stage-Zeit",
   "settings.section.beep": "Signalton",
   "settings.section.shotDetection": "Schusserkennung",
   "settings.section.display": "Anzeige",
@@ -90,10 +93,10 @@
   "settings.fixedDelay": "Feste Verzögerung",
   "settings.randomMin": "Zufall min",
   "settings.randomMax": "Zufall max",
-  "settings.parHint": "Modus auf „Par“ stellen, um den Par-Ton zu aktivieren.",
   "settings.parDuration": "Dauer",
   "settings.parRepeatCount": "Wiederholungen",
   "settings.parInterval": "Abstand zwischen Tönen",
+  "settings.stageDuration": "Dauer",
   "settings.parBeepSingle": "1 Ton",
   "settings.parBeepMany": "{count} Töne",
   "settings.volume": "Lautstärke",

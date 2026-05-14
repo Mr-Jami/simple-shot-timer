@@ -106,46 +106,54 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ],
 
-          _Section(context.tr('settings.section.parTime')),
-          if (s.drillMode != DrillMode.par)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Text(
-                context.tr('settings.parHint'),
-                style: const TextStyle(fontSize: 12),
-              ),
-            ),
-          _SecondsSlider(
-            label: context.tr('settings.parDuration'),
-            valueMs: s.parDurationMs,
-            minMs: 100,
-            maxMs: 30000,
-            stepMs: 100,
-            onChanged: (v) =>
-                notifier.update((c) => c.copyWith(parDurationMs: v)),
-          ),
-          _IntSlider(
-            label: context.tr('settings.parRepeatCount'),
-            value: s.parRepeatCount,
-            min: AppSettings.parRepeatMin,
-            max: AppSettings.parRepeatMax,
-            step: 1,
-            display: (v) => v == 1
-                ? context.tr('settings.parBeepSingle')
-                : context.tr('settings.parBeepMany', args: {'count': v}),
-            onChanged: (v) =>
-                notifier.update((c) => c.copyWith(parRepeatCount: v)),
-          ),
-          if (s.parRepeatCount > 1)
+          if (s.drillMode == DrillMode.par) ...[
+            _Section(context.tr('settings.section.parTime')),
             _SecondsSlider(
-              label: context.tr('settings.parInterval'),
-              valueMs: s.parIntervalMs,
-              minMs: 0,
+              label: context.tr('settings.parDuration'),
+              valueMs: s.parDurationMs,
+              minMs: 100,
               maxMs: 30000,
               stepMs: 100,
               onChanged: (v) =>
-                  notifier.update((c) => c.copyWith(parIntervalMs: v)),
+                  notifier.update((c) => c.copyWith(parDurationMs: v)),
             ),
+            _IntSlider(
+              label: context.tr('settings.parRepeatCount'),
+              value: s.parRepeatCount,
+              min: AppSettings.parRepeatMin,
+              max: AppSettings.parRepeatMax,
+              step: 1,
+              display: (v) => v == 1
+                  ? context.tr('settings.parBeepSingle')
+                  : context.tr('settings.parBeepMany', args: {'count': v}),
+              onChanged: (v) =>
+                  notifier.update((c) => c.copyWith(parRepeatCount: v)),
+            ),
+            if (s.parRepeatCount > 1)
+              _SecondsSlider(
+                label: context.tr('settings.parInterval'),
+                valueMs: s.parIntervalMs,
+                minMs: 0,
+                maxMs: 30000,
+                stepMs: 100,
+                onChanged: (v) =>
+                    notifier.update((c) => c.copyWith(parIntervalMs: v)),
+              ),
+          ],
+
+          if (s.drillMode == DrillMode.stage) ...[
+            _Section(context.tr('settings.section.stage')),
+            _IntSlider(
+              label: context.tr('settings.stageDuration'),
+              value: s.stageDurationMs,
+              min: AppSettings.stageDurationMinMs,
+              max: AppSettings.stageDurationMaxMs,
+              step: 1000,
+              display: (v) => '${(v / 1000).round()}s',
+              onChanged: (v) =>
+                  notifier.update((c) => c.copyWith(stageDurationMs: v)),
+            ),
+          ],
 
           _Section(context.tr('settings.section.beep')),
           _DoubleSlider(

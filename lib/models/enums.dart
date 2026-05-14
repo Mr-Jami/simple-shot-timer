@@ -11,6 +11,7 @@ enum DelayMode {
 enum DrillMode {
   standard,
   par,
+  stage,
 }
 
 enum AppThemeMode {
@@ -49,6 +50,8 @@ extension DrillModeX on DrillMode {
         return t.t('enums.drillMode.standard');
       case DrillMode.par:
         return t.t('enums.drillMode.par');
+      case DrillMode.stage:
+        return t.t('enums.drillMode.stage');
     }
   }
 }

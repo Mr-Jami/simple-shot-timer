@@ -119,14 +119,15 @@ class TimerNotifier extends Notifier<TimerState> {
     }
 
     final settings = _snapshot;
-    final pars = _runMode == DrillMode.par && settings.parDurationMs > 0
-        ? [
-            ParConfig(
-              enabled: true,
-              durationMs: settings.parDurationMs,
-            ),
-          ]
-        : const <ParConfig>[];
+    final pars = switch (_runMode) {
+      DrillMode.par when settings.parDurationMs > 0 => [
+          ParConfig(enabled: true, durationMs: settings.parDurationMs),
+        ],
+      DrillMode.stage when settings.stageDurationMs > 0 => [
+          ParConfig(enabled: true, durationMs: settings.stageDurationMs),
+        ],
+      _ => const <ParConfig>[],
+    };
     final draft = TimerString(
       createdAt: DateTime.now(),
       drillMode: _runMode,
@@ -246,6 +247,21 @@ class TimerNotifier extends Notifier<TimerState> {
   }
 
   void _schedulePars() {
+    if (_runMode == DrillMode.stage) {
+      final durMs = _snapshot.stageDurationMs;
+      if (durMs <= 0) return;
+      _parTimers.add(Timer(Duration(milliseconds: durMs), () {
+        ref.read(shotDetectorProvider).extendBlankingForMs(
+              AudioService.parBeepDurationMs + _beepEchoMs,
+            );
+        state = state.copyWith(
+          currentParIndex: 1,
+          flashTick: state.flashTick + 1,
+        );
+        _playParBeep();
+      }));
+      return;
+    }
     if (_runMode != DrillMode.par) return;
     final durMs = _snapshot.parDurationMs;
     if (durMs <= 0) return;

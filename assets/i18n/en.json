@@ -15,6 +15,7 @@
 
   "enums.drillMode.standard": "Standard",
   "enums.drillMode.par": "Par",
+  "enums.drillMode.stage": "Stage",
 
   "enums.theme.system": "System",
   "enums.theme.light": "Light",
@@ -44,6 +45,7 @@
   "home.delayRandom": "Random delay",
   "home.parSingle": "Par {duration}s",
   "home.parRepeated": "Par {duration}s × {count}",
+  "home.stage": "Stage {duration}s",
 
   "history.title": "History",
   "history.exportAll": "Export all to CSV",
@@ -82,6 +84,7 @@
   "settings.section.drillMode": "Drill mode",
   "settings.section.startDelay": "Start delay",
   "settings.section.parTime": "Par time",
+  "settings.section.stage": "Stage time",
   "settings.section.beep": "Beep",
   "settings.section.shotDetection": "Shot detection",
   "settings.section.display": "Display",
@@ -90,10 +93,10 @@
   "settings.fixedDelay": "Fixed delay",
   "settings.randomMin": "Random min",
   "settings.randomMax": "Random max",
-  "settings.parHint": "Set drill mode to Par to enable the par beep.",
   "settings.parDuration": "Duration",
   "settings.parRepeatCount": "Repeat count",
   "settings.parInterval": "Interval between beeps",
+  "settings.stageDuration": "Duration",
   "settings.parBeepSingle": "1 beep",
   "settings.parBeepMany": "{count} beeps",
   "settings.volume": "Volume",

@@ -18,6 +18,7 @@ class SettingsService {
   static const _kParDuration = 'par_duration_ms';
   static const _kParRepeatCount = 'par_repeat_count';
   static const _kParInterval = 'par_interval_ms';
+  static const _kStageDuration = 'stage_duration_ms';
   static const _kDrillMode = 'drill_mode';
   static const _kKeepAwake = 'keep_screen_awake';
   static const _kVisualFlash = 'visual_flash';
@@ -44,6 +45,8 @@ class SettingsService {
       parRepeatCount:
           _prefs.getInt(_kParRepeatCount) ?? defaults.parRepeatCount,
       parIntervalMs: _prefs.getInt(_kParInterval) ?? defaults.parIntervalMs,
+      stageDurationMs:
+          _prefs.getInt(_kStageDuration) ?? defaults.stageDurationMs,
       drillMode: _readEnum(_kDrillMode, DrillMode.values, defaults.drillMode),
       keepScreenAwake: _prefs.getBool(_kKeepAwake) ?? defaults.keepScreenAwake,
       visualFlash: _prefs.getBool(_kVisualFlash) ?? defaults.visualFlash,
@@ -68,6 +71,7 @@ class SettingsService {
       _prefs.setInt(_kParDuration, s.parDurationMs),
       _prefs.setInt(_kParRepeatCount, s.parRepeatCount),
       _prefs.setInt(_kParInterval, s.parIntervalMs),
+      _prefs.setInt(_kStageDuration, s.stageDurationMs),
       _prefs.setString(_kDrillMode, s.drillMode.name),
       _prefs.setBool(_kKeepAwake, s.keepScreenAwake),
       _prefs.setBool(_kVisualFlash, s.visualFlash),
