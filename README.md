@@ -123,6 +123,48 @@ flutter create . --platforms=android,ios,web
 
 The Settings → Language dropdown picks the new option up automatically.
 
+## Versioning
+
+The project uses **semantic versioning** (`MAJOR.MINOR.PATCH`) driven by
+**conventional commit** messages. Versions are bumped automatically by
+[release-please](https://github.com/googleapis/release-please) — you never
+edit `pubspec.yaml`'s version manually.
+
+### Commit format
+
+Each commit on `main` should start with a type:
+
+| Commit prefix | Effect on next version | Example |
+| --- | --- | --- |
+| `feat:` | minor bump (`1.0.0` → `1.1.0`) | `feat: add German translation` |
+| `fix:` | patch bump (`1.0.0` → `1.0.1`) | `fix: correct random delay countdown` |
+| `feat!:` / `fix!:` / `BREAKING CHANGE:` footer | major bump (`1.0.0` → `2.0.0`) | `feat!: drop sqlite history schema v1` |
+| `perf:` | patch bump | `perf: faster shot detection chunk loop` |
+| `chore:`, `docs:`, `refactor:`, `test:`, `style:`, `ci:`, `build:` | no bump | `chore: update lints` |
+
+A scope is optional: `feat(settings): add language picker`.
+
+### Release flow
+
+1. Land conventional commits on `main` via PR or direct push.
+2. `.github/workflows/release-please.yml` opens (or updates) a single
+   *Release PR* titled e.g. `chore(main): release 1.1.0`. The PR contains
+   the version bump in `pubspec.yaml` and an updated `CHANGELOG.md`.
+3. When you merge that PR, release-please creates a Git tag (`v1.1.0`) and
+   a matching GitHub Release.
+4. The tag push triggers `.github/workflows/deploy-play-store.yml`, which
+   builds the signed AAB and uploads it to the Play Store `internal` track.
+
+> The Android `versionCode` is set from `github.run_number` at build time,
+> so it always increases monotonically (Play Store requires this even when
+> the `versionName` doesn't change).
+
+> If you want the release-please-created tag to also trigger the deploy
+> workflow automatically, give release-please a Personal Access Token with
+> `workflow` scope and pass it via the `token:` input — the default
+> `GITHUB_TOKEN` cannot trigger other workflows. Otherwise you can kick
+> the deploy off manually via *Run workflow* in the Actions tab.
+
 ## Continuous Integration
 
 `.github/workflows/ci.yml` runs on every push and PR against `main`:

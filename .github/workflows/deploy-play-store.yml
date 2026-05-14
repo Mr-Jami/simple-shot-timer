@@ -67,7 +67,12 @@ jobs:
           EOF
 
       - name: Build signed App Bundle
-        run: flutter build appbundle --release
+        # --build-number overrides the Android versionCode. Using
+        # github.run_number gives us a monotonically increasing integer per
+        # workflow run, which Play Store requires for every upload. The
+        # versionName (e.g. 1.2.3) still comes from pubspec.yaml, which
+        # release-please manages on its release PR.
+        run: flutter build appbundle --release --build-number=${{ github.run_number }}
 
       - name: Publish to Google Play
         uses: r0adkll/upload-google-play@v1
