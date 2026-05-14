@@ -1,0 +1,33 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/audio_service.dart';
+import '../services/database_service.dart';
+import '../services/settings_service.dart';
+import '../services/shot_detector.dart';
+
+/// Overridden in `main()` after `SharedPreferences.getInstance()` resolves.
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError('SharedPreferences must be overridden in main()');
+});
+
+/// Overridden in `main()` after the SQLite database is opened.
+final databaseProvider = Provider<DatabaseService>((ref) {
+  throw UnimplementedError('DatabaseService must be overridden in main()');
+});
+
+final settingsServiceProvider = Provider<SettingsService>(
+  (ref) => SettingsService(ref.watch(sharedPreferencesProvider)),
+);
+
+final audioServiceProvider = Provider<AudioService>((ref) {
+  final service = AudioService();
+  ref.onDispose(service.dispose);
+  return service;
+});
+
+final shotDetectorProvider = Provider<ShotDetector>((ref) {
+  final detector = ShotDetector();
+  ref.onDispose(detector.dispose);
+  return detector;
+});
