@@ -28,6 +28,9 @@ class AppLocale {
 const List<AppLocale> kSupportedAppLocales = <AppLocale>[
   AppLocale(code: 'en', displayName: 'English'),
   AppLocale(code: 'de', displayName: 'Deutsch'),
+  AppLocale(code: 'es', displayName: 'Español'),
+  AppLocale(code: 'fr', displayName: 'Français'),
+  AppLocale(code: 'ru', displayName: 'Русский'),
 ];
 
 class AppLocalizations {
