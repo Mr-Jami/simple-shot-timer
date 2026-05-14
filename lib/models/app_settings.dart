@@ -17,7 +17,6 @@ class AppSettings {
     this.keepScreenAwake = true,
     this.visualFlash = true,
     this.hapticOnBeep = false,
-    this.volumeButtonStart = false,
     this.themeMode = AppThemeMode.system,
     this.historyCap = 500,
     this.localeCode,
@@ -51,7 +50,6 @@ class AppSettings {
   final bool keepScreenAwake;
   final bool visualFlash;
   final bool hapticOnBeep;
-  final bool volumeButtonStart;
   final AppThemeMode themeMode;
   final int historyCap;
 
@@ -85,7 +83,6 @@ class AppSettings {
     bool? keepScreenAwake,
     bool? visualFlash,
     bool? hapticOnBeep,
-    bool? volumeButtonStart,
     AppThemeMode? themeMode,
     int? historyCap,
     String? localeCode,
@@ -107,7 +104,6 @@ class AppSettings {
         keepScreenAwake: keepScreenAwake ?? this.keepScreenAwake,
         visualFlash: visualFlash ?? this.visualFlash,
         hapticOnBeep: hapticOnBeep ?? this.hapticOnBeep,
-        volumeButtonStart: volumeButtonStart ?? this.volumeButtonStart,
         themeMode: themeMode ?? this.themeMode,
         historyCap: historyCap ?? this.historyCap,
         localeCode:

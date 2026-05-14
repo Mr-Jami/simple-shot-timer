@@ -23,7 +23,6 @@ class SettingsService {
   static const _kKeepAwake = 'keep_screen_awake';
   static const _kVisualFlash = 'visual_flash';
   static const _kHaptic = 'haptic_on_beep';
-  static const _kVolumeStart = 'volume_button_start';
   static const _kTheme = 'theme_mode';
   static const _kHistoryCap = 'history_cap';
   static const _kLocale = 'locale_code';
@@ -51,8 +50,6 @@ class SettingsService {
       keepScreenAwake: _prefs.getBool(_kKeepAwake) ?? defaults.keepScreenAwake,
       visualFlash: _prefs.getBool(_kVisualFlash) ?? defaults.visualFlash,
       hapticOnBeep: _prefs.getBool(_kHaptic) ?? defaults.hapticOnBeep,
-      volumeButtonStart:
-          _prefs.getBool(_kVolumeStart) ?? defaults.volumeButtonStart,
       themeMode: _readEnum(_kTheme, AppThemeMode.values, defaults.themeMode),
       historyCap: _prefs.getInt(_kHistoryCap) ?? defaults.historyCap,
       localeCode: _prefs.getString(_kLocale),
@@ -76,7 +73,6 @@ class SettingsService {
       _prefs.setBool(_kKeepAwake, s.keepScreenAwake),
       _prefs.setBool(_kVisualFlash, s.visualFlash),
       _prefs.setBool(_kHaptic, s.hapticOnBeep),
-      _prefs.setBool(_kVolumeStart, s.volumeButtonStart),
       _prefs.setString(_kTheme, s.themeMode.name),
       _prefs.setInt(_kHistoryCap, s.historyCap),
       if (s.localeCode == null)
