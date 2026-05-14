@@ -29,8 +29,8 @@ class ReviewScreen extends ConsumerWidget {
             onPressed: () async {
               final s = stringAsync.value;
               if (s == null) return;
-              final subject = context
-                  .tr('review.exportSubject', args: {'id': s.id ?? ''});
+              final subject =
+                  context.tr('review.exportSubject', args: {'id': s.id ?? ''});
               final exporter = ExportService();
               final file = await exporter.writeStringCsv(s);
               await exporter.share(file, subject: subject);
@@ -95,7 +95,8 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
         if (i != index) widget.string.shots[i],
     ];
     final reindexed = [
-      for (var i = 0; i < remaining.length; i++) remaining[i].copyWith(index: i),
+      for (var i = 0; i < remaining.length; i++)
+        remaining[i].copyWith(index: i),
     ];
     await ref.read(databaseProvider).replaceShots(widget.string.id!, reindexed);
     ref.invalidate(stringByIdProvider(widget.string.id!));
@@ -103,9 +104,8 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
   }
 
   Future<void> _addShot() async {
-    final lastMs = widget.string.shots.isEmpty
-        ? 0
-        : widget.string.shots.last.timeMs;
+    final lastMs =
+        widget.string.shots.isEmpty ? 0 : widget.string.shots.last.timeMs;
     final controller = TextEditingController(
       text: ((lastMs + 200) / 1000).toStringAsFixed(2),
     );
@@ -116,10 +116,9 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
         content: TextField(
           controller: controller,
           autofocus: true,
-          keyboardType:
-              const TextInputType.numberWithOptions(decimal: true),
-          decoration: InputDecoration(
-              labelText: context.tr('review.timeSecondsLabel')),
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          decoration:
+              InputDecoration(labelText: context.tr('review.timeSecondsLabel')),
         ),
         actions: [
           TextButton(
@@ -136,12 +135,15 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
     );
     if (result == null) return;
     final newMs = (result * 1000).round();
-    final shots = [...widget.string.shots, Shot(
-      stringId: widget.string.id,
-      index: widget.string.shots.length,
-      timeMs: newMs,
-      manual: true,
-    )]..sort((a, b) => a.timeMs.compareTo(b.timeMs));
+    final shots = [
+      ...widget.string.shots,
+      Shot(
+        stringId: widget.string.id,
+        index: widget.string.shots.length,
+        timeMs: newMs,
+        manual: true,
+      )
+    ]..sort((a, b) => a.timeMs.compareTo(b.timeMs));
     final reindexed = [
       for (var i = 0; i < shots.length; i++) shots[i].copyWith(index: i),
     ];
@@ -155,142 +157,145 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
     final s = widget.string;
     final theme = Theme.of(context);
     final dateFmt = DateFormat.yMMMd().add_jm();
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        Text(
-          dateFmt.format(s.createdAt.toLocal()),
-          style: theme.textTheme.bodyMedium,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          context.tr('review.headerLine', args: {
-            'drill': s.drillMode.labelFor(context),
-            'delay': s.delayMode.labelFor(context),
-            'seconds': (s.delayUsedMs / 1000).toStringAsFixed(2),
-          }),
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
+    return SafeArea(
+      top: false,
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Text(
+            dateFmt.format(s.createdAt.toLocal()),
+            style: theme.textTheme.bodyMedium,
           ),
-        ),
-        const SizedBox(height: 16),
-        _SummaryGrid(string: s),
-        const SizedBox(height: 16),
-        TextField(
-          controller: _labelCtrl,
-          decoration: InputDecoration(
-            labelText: context.tr('review.label'),
-            border: const OutlineInputBorder(),
+          const SizedBox(height: 4),
+          Text(
+            context.tr('review.headerLine', args: {
+              'drill': s.drillMode.labelFor(context),
+              'delay': s.delayMode.labelFor(context),
+              'seconds': (s.delayUsedMs / 1000).toStringAsFixed(2),
+            }),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
-          onEditingComplete: _persistMeta,
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          controller: _notesCtrl,
-          minLines: 2,
-          maxLines: 4,
-          decoration: InputDecoration(
-            labelText: context.tr('review.notes'),
-            border: const OutlineInputBorder(),
+          const SizedBox(height: 16),
+          _SummaryGrid(string: s),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _labelCtrl,
+            decoration: InputDecoration(
+              labelText: context.tr('review.label'),
+              border: const OutlineInputBorder(),
+            ),
+            onEditingComplete: _persistMeta,
           ),
-          onEditingComplete: _persistMeta,
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                context.tr('review.penalty', args: {
-                  'seconds': (_penaltyMs / 1000).toStringAsFixed(2),
-                }),
+          const SizedBox(height: 12),
+          TextField(
+            controller: _notesCtrl,
+            minLines: 2,
+            maxLines: 4,
+            decoration: InputDecoration(
+              labelText: context.tr('review.notes'),
+              border: const OutlineInputBorder(),
+            ),
+            onEditingComplete: _persistMeta,
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  context.tr('review.penalty', args: {
+                    'seconds': (_penaltyMs / 1000).toStringAsFixed(2),
+                  }),
+                ),
               ),
-            ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  _penaltyMs = (_penaltyMs - 1000).clamp(0, 1 << 30);
-                });
-                _persistMeta();
-              },
-              icon: const Icon(Icons.remove),
-            ),
-            IconButton(
-              onPressed: () {
-                setState(() => _penaltyMs += 1000);
-                _persistMeta();
-              },
-              icon: const Icon(Icons.add),
-            ),
-          ],
-        ),
-        const Divider(height: 32),
-        Row(
-          children: [
-            Text(
-              context.tr('review.shotsHeader',
-                  args: {'count': s.shots.length}),
-              style: theme.textTheme.titleMedium,
-            ),
-            const Spacer(),
-            TextButton.icon(
-              onPressed: _addShot,
-              icon: const Icon(Icons.add),
-              label: Text(context.tr('common.add')),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        if (s.shots.isEmpty)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
-            child: Center(child: Text(context.tr('review.noShots'))),
-          )
-        else
-          ...List.generate(s.shots.length, (i) {
-            final shot = s.shots[i];
-            final split = i == 0 ? null : shot.timeMs - s.shots[i - 1].timeMs;
-            return Dismissible(
-              key: ValueKey('shot-${shot.id ?? i}-$i'),
-              direction: DismissDirection.endToStart,
-              background: Container(
-                color: theme.colorScheme.errorContainer,
-                alignment: Alignment.centerRight,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: const Icon(Icons.delete),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    _penaltyMs = (_penaltyMs - 1000).clamp(0, 1 << 30);
+                  });
+                  _persistMeta();
+                },
+                icon: const Icon(Icons.remove),
               ),
-              onDismissed: (_) => _deleteShot(i),
-              child: ListTile(
-                dense: true,
-                leading: CircleAvatar(
-                  radius: 14,
-                  backgroundColor: shot.manual
-                      ? theme.colorScheme.tertiaryContainer
-                      : theme.colorScheme.primaryContainer,
-                  child: Text(
-                    '${i + 1}',
-                    style: const TextStyle(fontSize: 12),
+              IconButton(
+                onPressed: () {
+                  setState(() => _penaltyMs += 1000);
+                  _persistMeta();
+                },
+                icon: const Icon(Icons.add),
+              ),
+            ],
+          ),
+          const Divider(height: 32),
+          Row(
+            children: [
+              Text(
+                context
+                    .tr('review.shotsHeader', args: {'count': s.shots.length}),
+                style: theme.textTheme.titleMedium,
+              ),
+              const Spacer(),
+              TextButton.icon(
+                onPressed: _addShot,
+                icon: const Icon(Icons.add),
+                label: Text(context.tr('common.add')),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          if (s.shots.isEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24),
+              child: Center(child: Text(context.tr('review.noShots'))),
+            )
+          else
+            ...List.generate(s.shots.length, (i) {
+              final shot = s.shots[i];
+              final split = i == 0 ? null : shot.timeMs - s.shots[i - 1].timeMs;
+              return Dismissible(
+                key: ValueKey('shot-${shot.id ?? i}-$i'),
+                direction: DismissDirection.endToStart,
+                background: Container(
+                  color: theme.colorScheme.errorContainer,
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: const Icon(Icons.delete),
+                ),
+                onDismissed: (_) => _deleteShot(i),
+                child: ListTile(
+                  dense: true,
+                  leading: CircleAvatar(
+                    radius: 14,
+                    backgroundColor: shot.manual
+                        ? theme.colorScheme.tertiaryContainer
+                        : theme.colorScheme.primaryContainer,
+                    child: Text(
+                      '${i + 1}',
+                      style: const TextStyle(fontSize: 12),
+                    ),
                   ),
-                ),
-                title: Text(
-                  '${formatSeconds(shot.timeMs)}s',
-                  style: const TextStyle(
-                    fontFeatures: [FontFeature.tabularFigures()],
-                    fontWeight: FontWeight.w600,
+                  title: Text(
+                    '${formatSeconds(shot.timeMs)}s',
+                    style: const TextStyle(
+                      fontFeatures: [FontFeature.tabularFigures()],
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
+                  subtitle: Text(
+                    split == null
+                        ? context.tr('review.splitFirst')
+                        : context.tr('review.splitOther', args: {
+                            'seconds': (split / 1000).toStringAsFixed(2),
+                          }),
+                  ),
+                  trailing:
+                      shot.manual ? const Icon(Icons.edit, size: 16) : null,
                 ),
-                subtitle: Text(
-                  split == null
-                      ? context.tr('review.splitFirst')
-                      : context.tr('review.splitOther', args: {
-                          'seconds': (split / 1000).toStringAsFixed(2),
-                        }),
-                ),
-                trailing:
-                    shot.manual ? const Icon(Icons.edit, size: 16) : null,
-              ),
-            );
-          }),
-      ],
+              );
+            }),
+        ],
+      ),
     );
   }
 }

@@ -64,65 +64,68 @@ class HistoryScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: history.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(
-          child: Text(
-            context.tr('common.failedToLoad', args: {'error': e.toString()}),
+      body: SafeArea(
+        top: false,
+        child: history.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (e, _) => Center(
+            child: Text(
+              context.tr('common.failedToLoad', args: {'error': e.toString()}),
+            ),
           ),
+          data: (items) {
+            if (items.isEmpty) {
+              return Center(child: Text(context.tr('history.empty')));
+            }
+            final dateFmt = DateFormat.yMMMd().add_jm();
+            return ListView.separated(
+              itemCount: items.length,
+              separatorBuilder: (_, __) => const Divider(height: 1),
+              itemBuilder: (context, index) {
+                final s = items[index];
+                return Dismissible(
+                  key: ValueKey('string-${s.id}'),
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    color: Theme.of(context).colorScheme.errorContainer,
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const Icon(Icons.delete),
+                  ),
+                  onDismissed: (_) =>
+                      ref.read(historyProvider.notifier).delete(s.id!),
+                  child: ListTile(
+                    title: Text(
+                      s.label?.isNotEmpty == true
+                          ? s.label!
+                          : context.tr('history.itemFallback', args: {
+                              'seconds': formatSeconds(s.totalTimeMs),
+                              'count': s.shotCount,
+                            }),
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      '${dateFmt.format(s.createdAt.toLocal())} · '
+                      '${s.drillMode.labelFor(context)}',
+                    ),
+                    trailing: Text(
+                      '${formatSeconds(s.totalTimeMs)}s',
+                      style: const TextStyle(
+                        fontFeatures: [FontFeature.tabularFigures()],
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => ReviewScreen(stringId: s.id!),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          },
         ),
-        data: (items) {
-          if (items.isEmpty) {
-            return Center(child: Text(context.tr('history.empty')));
-          }
-          final dateFmt = DateFormat.yMMMd().add_jm();
-          return ListView.separated(
-            itemCount: items.length,
-            separatorBuilder: (_, __) => const Divider(height: 1),
-            itemBuilder: (context, index) {
-              final s = items[index];
-              return Dismissible(
-                key: ValueKey('string-${s.id}'),
-                direction: DismissDirection.endToStart,
-                background: Container(
-                  color: Theme.of(context).colorScheme.errorContainer,
-                  alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: const Icon(Icons.delete),
-                ),
-                onDismissed: (_) =>
-                    ref.read(historyProvider.notifier).delete(s.id!),
-                child: ListTile(
-                  title: Text(
-                    s.label?.isNotEmpty == true
-                        ? s.label!
-                        : context.tr('history.itemFallback', args: {
-                            'seconds': formatSeconds(s.totalTimeMs),
-                            'count': s.shotCount,
-                          }),
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  subtitle: Text(
-                    '${dateFmt.format(s.createdAt.toLocal())} · '
-                    '${s.drillMode.labelFor(context)}',
-                  ),
-                  trailing: Text(
-                    '${formatSeconds(s.totalTimeMs)}s',
-                    style: const TextStyle(
-                      fontFeatures: [FontFeature.tabularFigures()],
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => ReviewScreen(stringId: s.id!),
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
-        },
       ),
     );
   }
