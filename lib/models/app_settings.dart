@@ -16,7 +16,7 @@ class AppSettings {
     this.visualFlash = true,
     this.hapticOnBeep = false,
     this.volumeButtonStart = false,
-    this.themeMode = AppThemeMode.dark,
+    this.themeMode = AppThemeMode.system,
     this.historyCap = 500,
     this.localeCode,
   });
