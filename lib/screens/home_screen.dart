@@ -43,6 +43,13 @@ class HomeScreen extends ConsumerWidget {
       enabled: visualFlash,
       child: Scaffold(
         appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(
+              'assets/branding/icon.png',
+              filterQuality: FilterQuality.medium,
+            ),
+          ),
           title: Text(context.tr('app.title')),
           actions: [
             IconButton(

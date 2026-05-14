@@ -54,7 +54,7 @@ class SimpleShotTimerApp extends ConsumerWidget {
       // Kill the M3 surface-tint bloom globally so elevated surfaces (dialogs,
       // bottom sheets, menus) stay neutral grey instead of picking up a hue.
       appBarTheme: AppBarTheme(
-        backgroundColor: scheme.surface,
+        backgroundColor: scheme.surfaceContainer,
         foregroundColor: scheme.onSurface,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
