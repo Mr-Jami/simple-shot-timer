@@ -71,6 +71,11 @@ class ShotDetector {
         encoder: AudioEncoder.pcm16bits,
         sampleRate: sampleRate,
         numChannels: 1,
+        // Bypass OEM voice DSP (AGC, noise suppression). Default audio source
+        // ducks loud transients like gunshots well below threshold.
+        androidConfig: AndroidRecordConfig(
+          audioSource: AndroidAudioSource.unprocessed,
+        ),
       ));
       _sub = stream.listen(
         _onChunk,
