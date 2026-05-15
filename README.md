@@ -202,7 +202,7 @@ Configure these under *Settings → Secrets and variables → Actions*:
 ### One-time setup checklist
 
 1. Confirm the Android `applicationId` (currently
-   `com.simpleshottimer.simple_shot_timer` in
+   `cc.jami.simpleshottimer` in
    `android/app/build.gradle.kts`) matches what you'll register in Play
    Console. Update `PACKAGE_NAME` in `.github/workflows/deploy-play-store.yml`
    if you change it.

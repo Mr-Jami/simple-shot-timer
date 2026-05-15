@@ -1,4 +1,4 @@
-package com.simpleshottimer.simple_shot_timer
+package cc.jami.simpleshottimer
 
 import io.flutter.embedding.android.FlutterActivity
 

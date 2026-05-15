@@ -19,7 +19,7 @@ jobs:
     env:
       FLUTTER_VERSION: '3.41.9'
       JAVA_VERSION: '17'
-      PACKAGE_NAME: com.simpleshottimer.simple_shot_timer
+      PACKAGE_NAME: cc.jami.simpleshottimer
 
     steps:
       - name: Checkout repository
