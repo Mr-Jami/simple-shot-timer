@@ -11,6 +11,7 @@ import '../models/par_config.dart';
 import '../models/par_schedule.dart';
 import '../models/shot.dart';
 import '../models/timer_state.dart';
+import '../services/background_service.dart';
 import '../models/timer_string.dart';
 import 'providers.dart';
 import 'settings_provider.dart';
@@ -54,6 +55,12 @@ class TimerNotifier extends Notifier<TimerState> {
     if (settings.keepScreenAwake) {
       await WakelockPlus.enable();
     }
+
+    // Promote to a foreground service so Android won't suspend the mic
+    // stream or kill the beep timers when the user locks the screen or
+    // switches apps. On iOS this is a no-op (the audio background mode in
+    // Info.plist handles it via the active AVAudioSession).
+    await BackgroundService.start();
 
     // Reset clock but leave it stopped. We delay starting it until after the
     // native mic stream is ready, so the Timer(delayMs) below and the on-screen
@@ -321,6 +328,7 @@ class TimerNotifier extends Notifier<TimerState> {
     if (await WakelockPlus.enabled) {
       await WakelockPlus.disable();
     }
+    await BackgroundService.stop();
   }
 
   void _cleanup() {
@@ -337,6 +345,7 @@ class TimerNotifier extends Notifier<TimerState> {
       ..reset();
     // Best-effort wakelock release; ignore failure.
     WakelockPlus.disable().catchError((_) {});
+    BackgroundService.stop().catchError((_) {});
     final detector = ref.read(shotDetectorProvider);
     detector.stop().catchError((_) {});
   }

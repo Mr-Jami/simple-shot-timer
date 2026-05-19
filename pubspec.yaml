@@ -40,6 +40,10 @@ dependencies:
   # App metadata (version number for the credits line)
   package_info_plus: ^9.0.0
 
+  # Keeps the app alive while the timer is running, so users can lock the
+  # screen or switch apps mid-string without losing detection or beeps.
+  flutter_foreground_task: ^9.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

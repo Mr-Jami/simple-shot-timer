@@ -5,6 +5,13 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <!-- Haptic feedback on beep -->
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- Foreground service so detection + beeps keep running while the user
+         leaves the app. Android 14+ requires a typed permission per service
+         type; we use MICROPHONE since the mic is the resource we're holding. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE"/>
+    <!-- Required to show the persistent run notification on Android 13+. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- Declare microphone hardware feature, non-required so app still installs on devices without one -->
     <uses-feature android:name="android.hardware.microphone" android:required="false"/>
 
@@ -39,6 +46,14 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- flutter_foreground_task service. The MICROPHONE type matches the
+             permission above and is what Android requires when the service is
+             holding the mic stream open in the background. -->
+        <service
+            android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
+            android:foregroundServiceType="microphone"
+            android:exported="false"
+            android:stopWithTask="true" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
