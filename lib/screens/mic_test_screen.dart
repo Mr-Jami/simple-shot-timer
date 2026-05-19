@@ -36,8 +36,13 @@ class _MicTestScreenState extends ConsumerState<MicTestScreen> {
 
   Future<void> _start() async {
     final detector = ref.read(shotDetectorProvider);
+    final settings = ref.read(settingsProvider);
     try {
-      await detector.startMonitoring();
+      await detector.startMonitoring(
+        bandFilterEnabled: settings.bandFilterEnabled,
+        bandLowHz: settings.bandLowHz,
+        bandHighHz: settings.bandHighHz,
+      );
     } catch (e) {
       setState(() => _error = '$e');
       return;

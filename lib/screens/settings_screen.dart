@@ -8,6 +8,9 @@ import '../models/enums.dart';
 import '../providers/settings_provider.dart';
 import 'mic_test_screen.dart';
 
+String _formatHz(int hz) =>
+    hz >= 1000 ? '${(hz / 1000).toStringAsFixed(1)} kHz' : '$hz Hz';
+
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -196,6 +199,53 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: (v) =>
                   notifier.update((c) => c.copyWith(echoFilterMs: v)),
             ),
+            SwitchListTile(
+              title: Text(context.tr('settings.bandFilter')),
+              subtitle: Text(context.tr('settings.bandFilterHint')),
+              value: s.bandFilterEnabled,
+              onChanged: (v) =>
+                  notifier.update((c) => c.copyWith(bandFilterEnabled: v)),
+            ),
+            if (s.bandFilterEnabled) ...[
+              _IntSlider(
+                label: context.tr('settings.bandLow'),
+                value: s.bandLowHz,
+                min: AppSettings.bandLowMinHz,
+                max: AppSettings.bandLowMaxHz,
+                step: 50,
+                display: _formatHz,
+                onChanged: (v) {
+                  // Keep low strictly below high, with at least 500 Hz of
+                  // separation so the bandpass actually has a passband.
+                  final high = v + 500 > s.bandHighHz ? v + 500 : s.bandHighHz;
+                  notifier.update((c) => c.copyWith(
+                        bandLowHz: v,
+                        bandHighHz: high.clamp(
+                          AppSettings.bandHighMinHz,
+                          AppSettings.bandHighMaxHz,
+                        ),
+                      ));
+                },
+              ),
+              _IntSlider(
+                label: context.tr('settings.bandHigh'),
+                value: s.bandHighHz,
+                min: AppSettings.bandHighMinHz,
+                max: AppSettings.bandHighMaxHz,
+                step: 100,
+                display: _formatHz,
+                onChanged: (v) {
+                  final low = v - 500 < s.bandLowHz ? v - 500 : s.bandLowHz;
+                  notifier.update((c) => c.copyWith(
+                        bandHighHz: v,
+                        bandLowHz: low.clamp(
+                          AppSettings.bandLowMinHz,
+                          AppSettings.bandLowMaxHz,
+                        ),
+                      ));
+                },
+              ),
+            ],
             ListTile(
               leading: const Icon(Icons.mic),
               title: Text(context.tr('settings.testMicTitle')),

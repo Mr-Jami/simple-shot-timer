@@ -10,6 +10,9 @@ class SettingsService {
 
   static const _kSensitivity = 'sensitivity_percent';
   static const _kEchoFilter = 'echo_filter_ms';
+  static const _kBandEnabled = 'band_filter_enabled';
+  static const _kBandLow = 'band_low_hz';
+  static const _kBandHigh = 'band_high_hz';
   static const _kBeepVolume = 'beep_volume';
   static const _kDelayMode = 'delay_mode';
   static const _kFixedDelay = 'fixed_delay_ms';
@@ -33,6 +36,10 @@ class SettingsService {
       sensitivityPercent:
           _prefs.getInt(_kSensitivity) ?? defaults.sensitivityPercent,
       echoFilterMs: _prefs.getInt(_kEchoFilter) ?? defaults.echoFilterMs,
+      bandFilterEnabled:
+          _prefs.getBool(_kBandEnabled) ?? defaults.bandFilterEnabled,
+      bandLowHz: _prefs.getInt(_kBandLow) ?? defaults.bandLowHz,
+      bandHighHz: _prefs.getInt(_kBandHigh) ?? defaults.bandHighHz,
       beepVolume: _prefs.getDouble(_kBeepVolume) ?? defaults.beepVolume,
       delayMode: _readEnum(_kDelayMode, DelayMode.values, defaults.delayMode),
       fixedDelayMs: _prefs.getInt(_kFixedDelay) ?? defaults.fixedDelayMs,
@@ -60,6 +67,9 @@ class SettingsService {
     await Future.wait([
       _prefs.setInt(_kSensitivity, s.sensitivityPercent),
       _prefs.setInt(_kEchoFilter, s.echoFilterMs),
+      _prefs.setBool(_kBandEnabled, s.bandFilterEnabled),
+      _prefs.setInt(_kBandLow, s.bandLowHz),
+      _prefs.setInt(_kBandHigh, s.bandHighHz),
       _prefs.setDouble(_kBeepVolume, s.beepVolume),
       _prefs.setString(_kDelayMode, s.delayMode.name),
       _prefs.setInt(_kFixedDelay, s.fixedDelayMs),

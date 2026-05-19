@@ -4,6 +4,9 @@ class AppSettings {
   const AppSettings({
     this.sensitivityPercent = 15,
     this.echoFilterMs = 80,
+    this.bandFilterEnabled = true,
+    this.bandLowHz = 300,
+    this.bandHighHz = 6000,
     this.beepVolume = 0.9,
     this.delayMode = DelayMode.random,
     this.fixedDelayMs = 2000,
@@ -26,6 +29,17 @@ class AppSettings {
   /// Threshold passed to the detector is `1 - sensitivityPercent / 100`.
   final int sensitivityPercent;
   final int echoFilterMs;
+
+  /// Whether to band-pass the mic signal before peak detection. Rejects loud
+  /// non-shot sounds that sit mostly outside the gunshot energy band.
+  final bool bandFilterEnabled;
+
+  /// Low-cut (high-pass) frequency in Hz. Anything below is attenuated.
+  final int bandLowHz;
+
+  /// High-cut (low-pass) frequency in Hz. Anything above is attenuated.
+  final int bandHighHz;
+
   final double beepVolume;
   final DelayMode delayMode;
   final int fixedDelayMs;
@@ -62,6 +76,10 @@ class AppSettings {
   static const int parRepeatMax = 20;
   static const int stageDurationMinMs = 1000;
   static const int stageDurationMaxMs = 200000;
+  static const int bandLowMinHz = 50;
+  static const int bandLowMaxHz = 2000;
+  static const int bandHighMinHz = 1000;
+  static const int bandHighMaxHz = 12000;
 
   /// Amplitude threshold (0..1) derived from [sensitivityPercent].
   double get detectionThreshold =>
@@ -70,6 +88,9 @@ class AppSettings {
   AppSettings copyWith({
     int? sensitivityPercent,
     int? echoFilterMs,
+    bool? bandFilterEnabled,
+    int? bandLowHz,
+    int? bandHighHz,
     double? beepVolume,
     DelayMode? delayMode,
     int? fixedDelayMs,
@@ -91,6 +112,9 @@ class AppSettings {
       AppSettings(
         sensitivityPercent: sensitivityPercent ?? this.sensitivityPercent,
         echoFilterMs: echoFilterMs ?? this.echoFilterMs,
+        bandFilterEnabled: bandFilterEnabled ?? this.bandFilterEnabled,
+        bandLowHz: bandLowHz ?? this.bandLowHz,
+        bandHighHz: bandHighHz ?? this.bandHighHz,
         beepVolume: beepVolume ?? this.beepVolume,
         delayMode: delayMode ?? this.delayMode,
         fixedDelayMs: fixedDelayMs ?? this.fixedDelayMs,

@@ -82,6 +82,9 @@ class TimerNotifier extends Notifier<TimerState> {
       // the beep itself, so shots fired during/right after the beep still
       // register.
       blankingMs: delayMs,
+      bandFilterEnabled: settings.bandFilterEnabled,
+      bandLowHz: settings.bandLowHz,
+      bandHighHz: settings.bandHighHz,
     );
 
     // Async setup complete. Start the clock and schedule the beep so the user

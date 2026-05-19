@@ -5,7 +5,7 @@ import 'package:record/record.dart';
 
 import '../utils/fft.dart';
 import 'audio_service.dart';
-import 'biquad_notch.dart';
+import 'biquad.dart';
 
 /// Streams PCM samples from the microphone and emits detection events
 /// (timestamps in ms, read from the supplied [Stopwatch]) whenever a peak
@@ -36,14 +36,19 @@ class ShotDetector {
   // Q≈8 gives each notch ~290 Hz bandwidth — wide enough to absorb the
   // beep's envelope sidelobes and a few-Hz speaker drift, narrow enough that
   // a broadband gunshot loses only ~2% of its band-summed energy.
-  final List<BiquadNotch> _beepNotches = List<BiquadNotch>.unmodifiable([
+  final List<Biquad> _beepNotches = List<Biquad>.unmodifiable([
     for (final mult in const [1, 2, 3])
-      BiquadNotch(
+      Biquad.notch(
         sampleRate: sampleRate.toDouble(),
         frequencyHz: (AudioService.beepFrequencyHz * mult).toDouble(),
         q: 8,
       ),
   ]);
+
+  // Bandpass cascade (HPF + LPF) configured per-run from settings. Null
+  // when the user disables the frequency-band filter.
+  Biquad? _highpass;
+  Biquad? _lowpass;
 
   Stopwatch? _clock;
   int _blankingUntilMs = 0;
@@ -92,9 +97,33 @@ class ShotDetector {
 
   Future<bool> hasPermission() => _recorder.hasPermission();
 
+  void _configureBandpass({
+    required bool enabled,
+    required int lowHz,
+    required int highHz,
+  }) {
+    if (!enabled || highHz <= lowHz) {
+      _highpass = null;
+      _lowpass = null;
+      return;
+    }
+    _highpass = Biquad.highpass(
+      sampleRate: sampleRate.toDouble(),
+      cutoffHz: lowHz.toDouble(),
+    );
+    _lowpass = Biquad.lowpass(
+      sampleRate: sampleRate.toDouble(),
+      cutoffHz: highHz.toDouble(),
+    );
+  }
+
   /// Starts the mic stream in "monitor only" mode: peaks are tracked into
   /// [lastPeak] but no events are emitted. Used by the mic test in Settings.
-  Future<void> startMonitoring() async {
+  Future<void> startMonitoring({
+    bool bandFilterEnabled = false,
+    int bandLowHz = 0,
+    int bandHighHz = 0,
+  }) async {
     if (!await _recorder.hasPermission()) {
       _lastError = 'permission denied';
       throw StateError('Microphone permission denied');
@@ -109,6 +138,11 @@ class ShotDetector {
     for (final n in _beepNotches) {
       n.reset();
     }
+    _configureBandpass(
+      enabled: bandFilterEnabled,
+      lowHz: bandLowHz,
+      highHz: bandHighHz,
+    );
     _measureFrequency = true;
     _fftWritePos = 0;
     _fftBufferFull = false;
@@ -146,6 +180,9 @@ class ShotDetector {
     required double threshold,
     required int echoFilterMs,
     int blankingMs = 0,
+    bool bandFilterEnabled = false,
+    int bandLowHz = 0,
+    int bandHighHz = 0,
   }) async {
     if (!await _recorder.hasPermission()) {
       throw StateError('Microphone permission denied');
@@ -163,6 +200,11 @@ class ShotDetector {
     for (final n in _beepNotches) {
       n.reset();
     }
+    _configureBandpass(
+      enabled: bandFilterEnabled,
+      lowHz: bandLowHz,
+      highHz: bandHighHz,
+    );
     _measureFrequency = false;
 
     final stream = await _recorder.startStream(const RecordConfig(
@@ -198,6 +240,8 @@ class ShotDetector {
     for (final n in _beepNotches) {
       n.processInt16InPlace(samples);
     }
+    _highpass?.processInt16InPlace(samples);
+    _lowpass?.processInt16InPlace(samples);
 
     var peak = 0;
     var peakIdx = 0;
