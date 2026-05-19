@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
@@ -285,15 +286,23 @@ class _Credits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final style = theme.textTheme.bodySmall?.copyWith(
+      color: theme.colorScheme.onSurfaceVariant,
+      letterSpacing: 1,
+    );
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
       child: Center(
-        child: Text(
-          '© ${DateTime.now().year} Jami IT',
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onSurfaceVariant,
-            letterSpacing: 1,
-          ),
+        child: FutureBuilder<PackageInfo>(
+          future: PackageInfo.fromPlatform(),
+          builder: (context, snapshot) {
+            final version = snapshot.data?.version;
+            final suffix = version == null ? '' : '  •  v$version';
+            return Text(
+              '© ${DateTime.now().year} Jami IT$suffix',
+              style: style,
+            );
+          },
         ),
       ),
     );
