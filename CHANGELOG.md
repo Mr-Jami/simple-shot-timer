@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.1.0...v1.2.0) (2026-05-19)
+
+
+### Features
+
+* **detector:** auto-configure sensitivity and frequency band ([8a290aa](https://github.com/Mr-Jami/simple-shot-timer/commit/8a290aafd4d53ade81d1951b2dc848740cf42d26))
+* **detector:** configurable frequency-band filter ([dbb1c4c](https://github.com/Mr-Jami/simple-shot-timer/commit/dbb1c4cbc659e1b3b64c1ce1c02a8bc4c94fb707))
+* **settings:** show app version in credits line ([710e98d](https://github.com/Mr-Jami/simple-shot-timer/commit/710e98d090e497c61051c4a3a9f8f7b344f0e52f))
+
+
+### Bug Fixes
+
+* **detector:** notch out beep tone so shots register during it ([b0d8ae6](https://github.com/Mr-Jami/simple-shot-timer/commit/b0d8ae6bb807addae05c26c9a02f55f6d8ff87a9))
+
 ## [1.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.0.0...v1.1.0) (2026-05-15)
 
 
