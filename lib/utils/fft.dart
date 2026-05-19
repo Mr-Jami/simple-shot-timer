@@ -52,6 +52,90 @@ void fftRadix2(Float64List real, Float64List imag) {
   }
 }
 
+/// Result of a spectral analysis on a single captured impulse: where the
+/// energy actually lives. Returned by [spectralBand]; consumed by the
+/// auto-configure flow to suggest a frequency-band filter.
+class SpectralBand {
+  const SpectralBand({
+    required this.lowEdgeHz,
+    required this.highEdgeHz,
+    required this.dominantHz,
+  });
+  final double lowEdgeHz;
+  final double highEdgeHz;
+  final double dominantHz;
+}
+
+/// Cumulative-energy band of [samples]. [lowPercentile] / [highPercentile]
+/// (defaults 0.10 / 0.90) define the edges: the frequencies below/above which
+/// only that fraction of the spectral energy sits. Returns null when the
+/// signal is silent.
+SpectralBand? spectralBand({
+  required Float64List samples,
+  required double sampleRate,
+  double minHz = 50,
+  double maxHz = 12000,
+  double lowPercentile = 0.10,
+  double highPercentile = 0.90,
+}) {
+  final n = samples.length;
+  assert((n & (n - 1)) == 0 && n > 1, 'samples length must be a power of two');
+
+  final real = Float64List(n);
+  final imag = Float64List(n);
+  for (var i = 0; i < n; i++) {
+    final w = 0.5 - 0.5 * math.cos(2 * math.pi * i / (n - 1));
+    real[i] = samples[i] * w;
+  }
+  fftRadix2(real, imag);
+
+  final binHz = sampleRate / n;
+  final minBin = math.max(1, (minHz / binHz).floor());
+  final maxBin = math.min(n ~/ 2 - 1, (maxHz / binHz).ceil());
+  if (maxBin <= minBin) return null;
+
+  // Power spectrum within [minBin, maxBin]. Linear power, not log — we want
+  // the percentiles to reflect actual energy, not perceived loudness.
+  final mags = Float64List(maxBin - minBin + 1);
+  var total = 0.0;
+  var peakMag = 0.0;
+  var peakBin = minBin;
+  for (var k = minBin; k <= maxBin; k++) {
+    final p = real[k] * real[k] + imag[k] * imag[k];
+    mags[k - minBin] = p;
+    total += p;
+    if (p > peakMag) {
+      peakMag = p;
+      peakBin = k;
+    }
+  }
+  if (total <= 0) return null;
+
+  // Walk the cumulative distribution to locate the percentile edges.
+  final lowTarget = total * lowPercentile;
+  final highTarget = total * highPercentile;
+  var cum = 0.0;
+  var lowBin = minBin;
+  var highBin = maxBin;
+  var lowFound = false;
+  for (var k = minBin; k <= maxBin; k++) {
+    cum += mags[k - minBin];
+    if (!lowFound && cum >= lowTarget) {
+      lowBin = k;
+      lowFound = true;
+    }
+    if (cum >= highTarget) {
+      highBin = k;
+      break;
+    }
+  }
+  return SpectralBand(
+    lowEdgeHz: lowBin * binHz,
+    highEdgeHz: highBin * binHz,
+    dominantHz: peakBin * binHz,
+  );
+}
+
 /// Finds the strongest non-DC frequency bin in the magnitude spectrum and
 /// returns its frequency in Hz, refined by quadratic interpolation of the
 /// three bins around the peak (so resolution beats the raw bin spacing).

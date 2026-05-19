@@ -6,6 +6,7 @@ import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../models/enums.dart';
 import '../providers/settings_provider.dart';
+import 'auto_configure_screen.dart';
 import 'mic_test_screen.dart';
 
 String _formatHz(int hz) =>
@@ -253,6 +254,15 @@ class SettingsScreen extends ConsumerWidget {
               trailing: const Icon(Icons.chevron_right),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const MicTestScreen()),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.auto_fix_high),
+              title: Text(context.tr('settings.autoConfigTitle')),
+              subtitle: Text(context.tr('settings.autoConfigSubtitle')),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const AutoConfigureScreen()),
               ),
             ),
             _Section(context.tr('settings.section.display')),

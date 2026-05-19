@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:record/record.dart';
 
+import '../models/calibration_shot.dart';
 import '../utils/fft.dart';
 import 'audio_service.dart';
 import 'biquad.dart';
@@ -29,7 +30,19 @@ class ShotDetector {
 
   final AudioRecorder _recorder = AudioRecorder();
   final StreamController<int> _events = StreamController<int>.broadcast();
+  final StreamController<CalibrationShot> _calibrationEvents =
+      StreamController<CalibrationShot>.broadcast();
   StreamSubscription<Uint8List>? _sub;
+
+  /// Stream of shots captured while in calibration mode. Empty during live
+  /// runs and mic monitoring.
+  Stream<CalibrationShot> get calibrationEvents => _calibrationEvents.stream;
+
+  bool _calibrationMode = false;
+  double _calibrationThreshold = 0.10;
+  int _lastCalibrationShotMs = -1 << 30;
+  static const int _calibrationEchoMs = 300;
+  static const int _calibrationFftWindow = 2048;
   // Cascade a notch at the fundamental + 2nd/3rd harmonics. Phone speakers
   // distort loud tones into harmonic content (4.65 kHz, 6.97 kHz) that would
   // otherwise sail past a single notch at 2.3 kHz and register as shots.
@@ -97,6 +110,53 @@ class ShotDetector {
 
   Future<bool> hasPermission() => _recorder.hasPermission();
 
+  /// Starts the mic stream in calibration mode: bypass the notch + bandpass,
+  /// use a permissive [minPeak] threshold, and emit one [CalibrationShot] per
+  /// captured impulse on [calibrationEvents]. Each event carries the impulse's
+  /// peak amplitude and its 10–90% spectral band, computed via FFT on a
+  /// window centred on the peak.
+  Future<void> startCalibration({double minPeak = 0.10}) async {
+    if (!await _recorder.hasPermission()) {
+      _lastError = 'permission denied';
+      throw StateError('Microphone permission denied');
+    }
+    _calibrationMode = true;
+    _calibrationThreshold = minPeak.clamp(0.0, 1.0);
+    _lastCalibrationShotMs = -1 << 30;
+    _blankingUntilMs = 1 << 30; // calibration never emits live shot events
+    _lastPeak = 0;
+    _chunksReceived = 0;
+    _lastChunkBytes = 0;
+    _maxPeakEver = 0;
+    _lastError = null;
+    _fftWritePos = 0;
+    _fftBufferFull = false;
+    _lastDominantFreqHz = null;
+    _lastDominantFreqStrength = 0;
+    _measureFrequency = false;
+    _configureBandpass(enabled: false, lowHz: 0, highHz: 0);
+    _clock = Stopwatch()..start();
+    try {
+      final stream = await _recorder.startStream(const RecordConfig(
+        encoder: AudioEncoder.pcm16bits,
+        sampleRate: sampleRate,
+        numChannels: 1,
+        androidConfig: AndroidRecordConfig(
+          audioSource: AndroidAudioSource.unprocessed,
+        ),
+      ));
+      _sub = stream.listen(
+        _onChunk,
+        onError: (Object e, StackTrace st) {
+          _lastError = 'stream error: $e';
+        },
+      );
+    } catch (e) {
+      _lastError = 'startStream threw: $e';
+      rethrow;
+    }
+  }
+
   void _configureBandpass({
     required bool enabled,
     required int lowHz,
@@ -144,6 +204,7 @@ class ShotDetector {
       highHz: bandHighHz,
     );
     _measureFrequency = true;
+    _calibrationMode = false;
     _fftWritePos = 0;
     _fftBufferFull = false;
     _lastDominantFreqHz = null;
@@ -206,6 +267,7 @@ class ShotDetector {
       highHz: bandHighHz,
     );
     _measureFrequency = false;
+    _calibrationMode = false;
 
     final stream = await _recorder.startStream(const RecordConfig(
       encoder: AudioEncoder.pcm16bits,
@@ -235,6 +297,10 @@ class ShotDetector {
     final bd = ByteData.sublistView(bytes);
     for (var i = 0; i < sampleCount; i++) {
       samples[i] = bd.getInt16(i * 2, Endian.little);
+    }
+    if (_calibrationMode) {
+      _processCalibrationChunk(samples, chunkArrivalMs);
+      return;
     }
     if (_measureFrequency) _updateDominantFrequency(samples);
     for (final n in _beepNotches) {
@@ -311,6 +377,72 @@ class ShotDetector {
     );
   }
 
+  void _processCalibrationChunk(Int16List samples, int chunkArrivalMs) {
+    // Always fill the ring buffer first so the spectral window has up-to-date
+    // context regardless of whether this chunk crosses the threshold.
+    for (var i = 0; i < samples.length; i++) {
+      _fftBuffer[_fftWritePos] = samples[i] / 32768.0;
+      _fftWritePos++;
+      if (_fftWritePos >= _fftSize) {
+        _fftWritePos = 0;
+        _fftBufferFull = true;
+      }
+    }
+
+    // Find this chunk's peak.
+    var peak = 0;
+    var peakIdx = 0;
+    for (var i = 0; i < samples.length; i++) {
+      final v = samples[i];
+      final abs = v < 0 ? -v : v;
+      if (abs > peak) {
+        peak = abs;
+        peakIdx = i;
+      }
+    }
+    final normalized = peak / 32767.0;
+    _lastPeak = normalized;
+    if (normalized > _maxPeakEver) _maxPeakEver = normalized;
+
+    if (normalized < _calibrationThreshold) return;
+    if (!_fftBufferFull) return;
+
+    // Calibration-specific echo filter, in chunk-arrival time (the absolute
+    // timestamps don't matter for the user-facing flow).
+    if (chunkArrivalMs - _lastCalibrationShotMs < _calibrationEchoMs) return;
+    _lastCalibrationShotMs = chunkArrivalMs;
+
+    // Linearise the ring buffer into chronological order.
+    final linear = Float64List(_fftSize);
+    final tail = _fftSize - _fftWritePos;
+    linear.setRange(0, tail, _fftBuffer, _fftWritePos);
+    linear.setRange(tail, _fftSize, _fftBuffer, 0);
+
+    // Position the peak in the linearised buffer: the chunk we just wrote
+    // occupies the last `samples.length` slots, so the peak lives at offset
+    // (_fftSize - samples.length + peakIdx).
+    final peakLogical = _fftSize - samples.length + peakIdx;
+    final windowStart = peakLogical - _calibrationFftWindow ~/ 2;
+
+    final window = Float64List(_calibrationFftWindow);
+    for (var i = 0; i < _calibrationFftWindow; i++) {
+      final src = windowStart + i;
+      window[i] = (src < 0 || src >= _fftSize) ? 0.0 : linear[src];
+    }
+
+    final band = spectralBand(
+      samples: window,
+      sampleRate: sampleRate.toDouble(),
+    );
+    if (band == null) return;
+    _calibrationEvents.add(CalibrationShot(
+      peakAmplitude: normalized,
+      lowEdgeHz: band.lowEdgeHz,
+      highEdgeHz: band.highEdgeHz,
+      dominantHz: band.dominantHz,
+    ));
+  }
+
   /// Suppresses shot events until the clock reaches `now + additionalMs`.
   /// Call right before playing a beep so the beep itself (and a short echo
   /// tail) does not register as a detected shot.
@@ -328,11 +460,13 @@ class ShotDetector {
       await _recorder.stop();
     }
     _clock = null;
+    _calibrationMode = false;
   }
 
   Future<void> dispose() async {
     await stop();
     await _events.close();
+    await _calibrationEvents.close();
     await _recorder.dispose();
   }
 }
