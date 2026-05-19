@@ -41,15 +41,16 @@ class AudioService {
   // Fixed beep specs — a piezo-style tone in the ~2.3 kHz range used by most
   // club shot timers. Start beep is short; the par (end) beep is longer so
   // shooters can clearly distinguish it without watching the screen.
-  static const int _beepFrequencyHz = 2325;
+  // Public so ShotDetector can centre its notch filter on the same frequency.
+  static const int beepFrequencyHz = 2325;
   static const int startBeepDurationMs = 300;
   static const int parBeepDurationMs = 700;
 
   Future<void> playStartBeep({required double volume}) =>
-      _play(_beepFrequencyHz, startBeepDurationMs, volume);
+      _play(beepFrequencyHz, startBeepDurationMs, volume);
 
   Future<void> playParBeep({required double volume}) =>
-      _play(_beepFrequencyHz, parBeepDurationMs, volume);
+      _play(beepFrequencyHz, parBeepDurationMs, volume);
 
   Future<void> _play(int frequencyHz, int durationMs, double volume) async {
     final key = '$frequencyHz:$durationMs';
@@ -100,9 +101,13 @@ class AudioService {
     writeStr('data');
     writeU32(dataSize);
 
-    // Sine wave with short attack/release ramps to avoid clicks.
-    const attackMs = 5;
-    const releaseMs = 15;
+    // Raised-cosine (half-Hann) attack/release. A linear ramp has a
+    // discontinuity in its derivative at both ends, which the ear (and our
+    // shot detector) reads as a broadband click. The cosine taper is C1
+    // smooth, so the onset/offset add only narrow-band energy near the
+    // carrier — which the detector's notch filter already removes.
+    const attackMs = 8;
+    const releaseMs = 20;
     const attackSamples = sampleRate * attackMs ~/ 1000;
     const releaseSamples = sampleRate * releaseMs ~/ 1000;
     final samples = ByteData(dataSize);
@@ -110,9 +115,11 @@ class AudioService {
       final t = i / sampleRate;
       double envelope = 1.0;
       if (i < attackSamples) {
-        envelope = i / attackSamples;
+        final x = i / attackSamples;
+        envelope = 0.5 - 0.5 * math.cos(math.pi * x);
       } else if (i > totalSamples - releaseSamples) {
-        envelope = (totalSamples - i) / releaseSamples;
+        final x = (totalSamples - i) / releaseSamples;
+        envelope = 0.5 - 0.5 * math.cos(math.pi * x);
       }
       final value = math.sin(2 * math.pi * frequencyHz * t) * envelope;
       final scaled = (value * 32767 * 0.9).round();

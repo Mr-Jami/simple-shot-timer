@@ -10,19 +10,12 @@ import '../models/enums.dart';
 import '../models/par_config.dart';
 import '../models/par_schedule.dart';
 import '../models/shot.dart';
-import '../services/audio_service.dart';
 import '../models/timer_state.dart';
 import '../models/timer_string.dart';
 import 'providers.dart';
 import 'settings_provider.dart';
 
 class TimerNotifier extends Notifier<TimerState> {
-  /// Extra ms of detection blanking after a beep ends. Has to cover:
-  ///   • `audioplayers` playback start-up latency (~100–200 ms on Android),
-  ///   • speaker → mic acoustic echo decay,
-  ///   • Android `AudioRecord` chunk delivery buffering (~50–150 ms).
-  static const int _beepEchoMs = 600;
-
   final Stopwatch _clock = Stopwatch();
   Timer? _beepTimer;
   Timer? _tickTimer;
@@ -85,9 +78,10 @@ class TimerNotifier extends Notifier<TimerState> {
       clock: _clock,
       threshold: settings.detectionThreshold,
       echoFilterMs: settings.echoFilterMs,
-      // Clock is at 0 here, so blanking becomes the absolute clock interval
-      // [0, delayMs + beep + echo] — exactly the window we need to suppress.
-      blankingMs: delayMs + AudioService.startBeepDurationMs + _beepEchoMs,
+      // Only blank during the countdown; the detector's notch filter handles
+      // the beep itself, so shots fired during/right after the beep still
+      // register.
+      blankingMs: delayMs,
     );
 
     // Async setup complete. Start the clock and schedule the beep so the user
@@ -250,12 +244,6 @@ class TimerNotifier extends Notifier<TimerState> {
   void _schedulePars() {
     for (final event in computeParSchedule(_snapshot, _runMode)) {
       _parTimers.add(Timer(Duration(milliseconds: event.timeMs), () {
-        final blankMs = event.kind == ParBeepKind.start
-            ? AudioService.startBeepDurationMs + _beepEchoMs
-            : AudioService.parBeepDurationMs + _beepEchoMs;
-        // Blank detection BEFORE the beep starts playing so neither the
-        // beep itself nor its echo registers as a shot.
-        ref.read(shotDetectorProvider).extendBlankingForMs(blankMs);
         state = state.copyWith(
           currentParIndex: event.cycle,
           flashTick: state.flashTick + 1,

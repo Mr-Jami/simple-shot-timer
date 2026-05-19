@@ -119,6 +119,9 @@
   "micTest.peakHold": "Peak hold: {percent}%",
   "micTest.threshold": "Threshold: {percent}%",
   "micTest.sensitivity": "Sensitivity",
+  "micTest.freqReading": "Dominant: {hz} Hz",
+  "micTest.freqIdle": "Dominant: — Hz",
+  "micTest.playTestBeep": "Play test beep",
   "micTest.tip": "Tip: gunshots typically saturate the mic (~95–100%). Indoor claps usually land 5–30%. Pick a sensitivity that puts the red line just below the lowest peak you want to capture, well above the loudest sound you want to ignore.",
 
   "errors.micPermissionDenied": "Microphone permission denied"

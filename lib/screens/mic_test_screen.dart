@@ -24,6 +24,8 @@ class _MicTestScreenState extends ConsumerState<MicTestScreen> {
   double _level = 0;
   double _peakHold = 0;
   DateTime _peakAt = DateTime.fromMillisecondsSinceEpoch(0);
+  double? _dominantFreqHz;
+  double _dominantFreqStrength = 0;
   String? _error;
 
   @override
@@ -44,6 +46,8 @@ class _MicTestScreenState extends ConsumerState<MicTestScreen> {
       final lvl = detector.lastPeak;
       setState(() {
         _level = lvl;
+        _dominantFreqHz = detector.lastDominantFreqHz;
+        _dominantFreqStrength = detector.lastDominantFreqStrength;
         if (lvl > _peakHold ||
             DateTime.now().difference(_peakAt) >
                 const Duration(milliseconds: 1500)) {
@@ -104,6 +108,24 @@ class _MicTestScreenState extends ConsumerState<MicTestScreen> {
                 ),
               ],
             ),
+            const SizedBox(height: 16),
+            _FrequencyReadout(
+              freqHz: _dominantFreqHz,
+              strength: _dominantFreqStrength,
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  final audio = ref.read(audioServiceProvider);
+                  final volume = ref.read(settingsProvider).beepVolume;
+                  audio.playStartBeep(volume: volume);
+                },
+                icon: const Icon(Icons.graphic_eq),
+                label: Text(context.tr('micTest.playTestBeep')),
+              ),
+            ),
             const SizedBox(height: 32),
             Row(
               children: [
@@ -131,6 +153,35 @@ class _MicTestScreenState extends ConsumerState<MicTestScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _FrequencyReadout extends StatelessWidget {
+  const _FrequencyReadout({required this.freqHz, required this.strength});
+
+  final double? freqHz;
+  final double strength;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final faded = strength < 0.001 || freqHz == null;
+    final color = faded
+        ? theme.colorScheme.onSurface.withValues(alpha: 0.4)
+        : theme.colorScheme.onSurface;
+    final text = freqHz == null
+        ? context.tr('micTest.freqIdle')
+        : context.tr(
+            'micTest.freqReading',
+            args: {'hz': freqHz!.toStringAsFixed(0)},
+          );
+    return Row(
+      children: [
+        Icon(Icons.equalizer, size: 18, color: color),
+        const SizedBox(width: 8),
+        Text(text, style: theme.textTheme.bodyMedium?.copyWith(color: color)),
+      ],
     );
   }
 }

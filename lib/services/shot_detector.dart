@@ -3,10 +3,19 @@ import 'dart:typed_data';
 
 import 'package:record/record.dart';
 
+import '../utils/fft.dart';
+import 'audio_service.dart';
+import 'biquad_notch.dart';
+
 /// Streams PCM samples from the microphone and emits detection events
 /// (timestamps in ms, read from the supplied [Stopwatch]) whenever a peak
 /// exceeding the configured threshold is observed, subject to a minimum
 /// inter-shot interval (echo filter) and an initial blanking window.
+///
+/// A narrow notch filter at [AudioService.beepFrequencyHz] is applied to the
+/// PCM stream before peak detection, so the start/par beep itself does not
+/// register as a shot and — more importantly — a shot fired during the beep
+/// still does.
 class ShotDetector {
   ShotDetector();
 
@@ -21,6 +30,20 @@ class ShotDetector {
   final AudioRecorder _recorder = AudioRecorder();
   final StreamController<int> _events = StreamController<int>.broadcast();
   StreamSubscription<Uint8List>? _sub;
+  // Cascade a notch at the fundamental + 2nd/3rd harmonics. Phone speakers
+  // distort loud tones into harmonic content (4.65 kHz, 6.97 kHz) that would
+  // otherwise sail past a single notch at 2.3 kHz and register as shots.
+  // Q≈8 gives each notch ~290 Hz bandwidth — wide enough to absorb the
+  // beep's envelope sidelobes and a few-Hz speaker drift, narrow enough that
+  // a broadband gunshot loses only ~2% of its band-summed energy.
+  final List<BiquadNotch> _beepNotches = List<BiquadNotch>.unmodifiable([
+    for (final mult in const [1, 2, 3])
+      BiquadNotch(
+        sampleRate: sampleRate.toDouble(),
+        frequencyHz: (AudioService.beepFrequencyHz * mult).toDouble(),
+        q: 8,
+      ),
+  ]);
 
   Stopwatch? _clock;
   int _blankingUntilMs = 0;
@@ -35,6 +58,16 @@ class ShotDetector {
   double _maxPeakEver = 0;
   String? _lastError;
 
+  // Rolling buffer + FFT scratch for dominant-frequency analysis. Only filled
+  // in monitoring mode; the live detection path skips this work.
+  static const int _fftSize = 4096;
+  final Float64List _fftBuffer = Float64List(_fftSize);
+  int _fftWritePos = 0;
+  bool _fftBufferFull = false;
+  bool _measureFrequency = false;
+  double? _lastDominantFreqHz;
+  double _lastDominantFreqStrength = 0;
+
   Stream<int> get events => _events.stream;
 
   /// Most recent normalized peak amplitude observed (0..1).
@@ -46,6 +79,14 @@ class ShotDetector {
   int get lastChunkBytes => _lastChunkBytes;
   double get maxPeakEver => _maxPeakEver;
   String? get lastError => _lastError;
+
+  /// Dominant mic frequency in Hz observed during monitoring, or null if the
+  /// signal is currently too quiet to estimate. Always null during a live run.
+  double? get lastDominantFreqHz => _lastDominantFreqHz;
+
+  /// Normalized strength of the FFT peak (0..1). Useful for the UI to grey
+  /// out the frequency readout when the mic is quiet.
+  double get lastDominantFreqStrength => _lastDominantFreqStrength;
 
   bool get isRunning => _sub != null;
 
@@ -65,6 +106,14 @@ class ShotDetector {
     _lastChunkBytes = 0;
     _maxPeakEver = 0;
     _lastError = null;
+    for (final n in _beepNotches) {
+      n.reset();
+    }
+    _measureFrequency = true;
+    _fftWritePos = 0;
+    _fftBufferFull = false;
+    _lastDominantFreqHz = null;
+    _lastDominantFreqStrength = 0;
     _clock = Stopwatch()..start();
     try {
       final stream = await _recorder.startStream(const RecordConfig(
@@ -111,11 +160,20 @@ class ShotDetector {
     _lastChunkBytes = 0;
     _maxPeakEver = 0;
     _lastError = null;
+    for (final n in _beepNotches) {
+      n.reset();
+    }
+    _measureFrequency = false;
 
     final stream = await _recorder.startStream(const RecordConfig(
       encoder: AudioEncoder.pcm16bits,
       sampleRate: sampleRate,
       numChannels: 1,
+      // Bypass OEM voice DSP for the same reason as monitoring above: AGC
+      // and noise suppression destroy impulsive gunshot transients.
+      androidConfig: AndroidRecordConfig(
+        audioSource: AndroidAudioSource.unprocessed,
+      ),
     ));
     _sub = stream.listen(_onChunk, onError: _events.addError);
   }
@@ -135,6 +193,10 @@ class ShotDetector {
     final bd = ByteData.sublistView(bytes);
     for (var i = 0; i < sampleCount; i++) {
       samples[i] = bd.getInt16(i * 2, Endian.little);
+    }
+    if (_measureFrequency) _updateDominantFrequency(samples);
+    for (final n in _beepNotches) {
+      n.processInt16InPlace(samples);
     }
 
     var peak = 0;
@@ -165,6 +227,44 @@ class ShotDetector {
 
     _lastShotMs = shotMs;
     _events.add(shotMs);
+  }
+
+  void _updateDominantFrequency(Int16List samples) {
+    // Append into the rolling buffer; when it wraps once we have enough data
+    // for an FFT and can start emitting readings.
+    for (var i = 0; i < samples.length; i++) {
+      _fftBuffer[_fftWritePos] = samples[i] / 32768.0;
+      _fftWritePos++;
+      if (_fftWritePos >= _fftSize) {
+        _fftWritePos = 0;
+        _fftBufferFull = true;
+      }
+    }
+    if (!_fftBufferFull) return;
+
+    // Linearize the ring buffer into a fresh chronologically-ordered view —
+    // the FFT windowing in peakFrequencyHz assumes samples[0] is the oldest.
+    final linear = Float64List(_fftSize);
+    final tail = _fftSize - _fftWritePos;
+    linear.setRange(0, tail, _fftBuffer, _fftWritePos);
+    linear.setRange(tail, _fftSize, _fftBuffer, 0);
+
+    // Don't bother running the FFT when the room is silent — protects the
+    // peak picker from latching onto noise floor fluctuations.
+    var sumSq = 0.0;
+    for (var i = 0; i < _fftSize; i++) {
+      sumSq += linear[i] * linear[i];
+    }
+    final rms = sumSq > 0 ? (sumSq / _fftSize) : 0.0;
+    if (rms < 1e-5) {
+      _lastDominantFreqStrength = 0;
+      return;
+    }
+    _lastDominantFreqStrength = rms.clamp(0.0, 1.0);
+    _lastDominantFreqHz = peakFrequencyHz(
+      samples: linear,
+      sampleRate: sampleRate.toDouble(),
+    );
   }
 
   /// Suppresses shot events until the clock reaches `now + additionalMs`.
