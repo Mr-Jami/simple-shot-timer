@@ -26,11 +26,16 @@ class _AutoConfigureScreenState extends ConsumerState<AutoConfigureScreen> {
   String? _error;
   CalibrationSuggestion? _suggestion;
 
+  /// Captures that survived clustering (treated as shots). Identity-based so
+  /// the list view can dim the captures that were discarded as noise.
+  Set<CalibrationShot> _usedShots = {};
+
   Future<void> _start() async {
     final detector = ref.read(shotDetectorProvider);
     setState(() {
       _shots.clear();
       _suggestion = null;
+      _usedShots = {};
       _error = null;
     });
     try {
@@ -51,8 +56,27 @@ class _AutoConfigureScreenState extends ConsumerState<AutoConfigureScreen> {
     await ref.read(shotDetectorProvider).stop();
     setState(() {
       _running = false;
-      _suggestion = suggestFromShots(_shots);
+      _usedShots = isolateShotCluster(_shots).toSet();
+      _recomputeSuggestion();
     });
+  }
+
+  /// Toggles whether a capture is treated as a shot, then recomputes the
+  /// suggestion from the current manual selection.
+  void _toggleShot(CalibrationShot shot) {
+    setState(() {
+      if (_usedShots.contains(shot)) {
+        _usedShots.remove(shot);
+      } else {
+        _usedShots.add(shot);
+      }
+      _recomputeSuggestion();
+    });
+  }
+
+  void _recomputeSuggestion() {
+    final selected = [for (final s in _shots) if (_usedShots.contains(s)) s];
+    _suggestion = suggestFromSelected(selected, totalCaptured: _shots.length);
   }
 
   Future<void> _apply() async {
@@ -129,13 +153,30 @@ class _AutoConfigureScreenState extends ConsumerState<AutoConfigureScreen> {
                         ),
                       ),
                     )
-                  : _ShotList(shots: _shots),
+                  : _ShotList(
+                      shots: _shots,
+                      // Before Stop nothing is marked; after Stop, dim the
+                      // captures clustering treated as noise and let the user
+                      // tap to override the include/exclude decision.
+                      usedShots: _running ? null : _usedShots,
+                      onToggle: _running ? null : _toggleShot,
+                    ),
             ),
             if (_suggestion != null)
               _SuggestionCard(
                 suggestion: _suggestion!,
                 onApply: _apply,
                 onDiscard: () => setState(() => _suggestion = null),
+              )
+            else if (!_running && _shots.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Text(
+                  context.tr('autoConfig.noneSelected'),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
               ),
           ],
         ),
@@ -145,27 +186,55 @@ class _AutoConfigureScreenState extends ConsumerState<AutoConfigureScreen> {
 }
 
 class _ShotList extends StatelessWidget {
-  const _ShotList({required this.shots});
+  const _ShotList({required this.shots, this.usedShots, this.onToggle});
 
   final List<CalibrationShot> shots;
+
+  /// Captures retained as actual shots. Null while calibration is running
+  /// (nothing classified yet); once set, captures absent from it are dimmed
+  /// and tagged as ignored background noise.
+  final Set<CalibrationShot>? usedShots;
+
+  /// Called when the user taps a row to include/exclude it. Null while
+  /// running (the classification only exists after Stop).
+  final void Function(CalibrationShot)? onToggle;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final interactive = usedShots != null && onToggle != null;
     return ListView.builder(
       itemCount: shots.length,
       itemBuilder: (context, i) {
         final s = shots[i];
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
+        final included = usedShots == null || usedShots!.contains(s);
+        final ignored = !included;
+        final baseColor = ignored
+            ? theme.colorScheme.onSurface.withValues(alpha: 0.38)
+            : null;
+        final row = Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
           child: Row(
             children: [
+              if (interactive)
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Icon(
+                    included
+                        ? Icons.check_circle
+                        : Icons.radio_button_unchecked,
+                    size: 20,
+                    color: included
+                        ? theme.colorScheme.primary
+                        : theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
               SizedBox(
                 width: 32,
                 child: Text(
                   '#${i + 1}',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
+                    color: baseColor ?? theme.colorScheme.onSurfaceVariant,
                   ),
                 ),
               ),
@@ -174,21 +243,29 @@ class _ShotList extends StatelessWidget {
                 child: Text(
                   context.tr('autoConfig.shotPeak',
                       args: {'percent': (s.peakAmplitude * 100).round()}),
+                  style: TextStyle(
+                    color: baseColor,
+                    decoration: ignored ? TextDecoration.lineThrough : null,
+                  ),
                 ),
               ),
               Expanded(
                 flex: 3,
                 child: Text(
-                  context.tr('autoConfig.shotBand', args: {
-                    'low': s.lowEdgeHz.round(),
-                    'high': s.highEdgeHz.round(),
-                  }),
-                  style: theme.textTheme.bodySmall,
+                  ignored
+                      ? context.tr('autoConfig.shotIgnored')
+                      : context.tr('autoConfig.shotBand', args: {
+                          'low': s.lowEdgeHz.round(),
+                          'high': s.highEdgeHz.round(),
+                        }),
+                  style: theme.textTheme.bodySmall?.copyWith(color: baseColor),
                 ),
               ),
             ],
           ),
         );
+        if (!interactive) return row;
+        return InkWell(onTap: () => onToggle!(s), child: row);
       },
     );
   }
@@ -221,6 +298,24 @@ class _SuggestionCard extends StatelessWidget {
             Text(
               context.tr('autoConfig.suggestionTitle'),
               style: theme.textTheme.titleMedium,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              context.tr('autoConfig.basedOn', args: {
+                'used': suggestion.consideredCount,
+                'total': suggestion.shotCount,
+              }),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              context.tr('autoConfig.tapToAdjust'),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+                fontStyle: FontStyle.italic,
+              ),
             ),
             const SizedBox(height: 12),
             _SuggestionRow(

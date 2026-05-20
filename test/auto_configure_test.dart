@@ -20,6 +20,76 @@ CalibrationShot shot({
     );
 
 void main() {
+  group('isolateShotCluster', () {
+    test('returns input unchanged when fewer than 4 captures', () {
+      final list = [
+        shot(peak: 0.2, lowHz: 500, highHz: 4000),
+        shot(peak: 0.9, lowHz: 500, highHz: 4000),
+      ];
+      expect(isolateShotCluster(list), list);
+    });
+
+    test('drops quiet background noise below the loudness gap', () {
+      final noise1 = shot(peak: 0.15, lowHz: 300, highHz: 1200);
+      final noise2 = shot(peak: 0.22, lowHz: 300, highHz: 1200);
+      final s1 = shot(peak: 0.88, lowHz: 500, highHz: 5000);
+      final s2 = shot(peak: 0.93, lowHz: 500, highHz: 5000);
+      final s3 = shot(peak: 0.99, lowHz: 500, highHz: 5000);
+      final cluster = isolateShotCluster([noise1, s1, noise2, s3, s2]);
+      expect(cluster.length, 3);
+      expect(cluster, containsAll([s1, s2, s3]));
+      expect(cluster, isNot(contains(noise1)));
+      expect(cluster, isNot(contains(noise2)));
+    });
+
+    test('keeps all captures when they are uniformly loud', () {
+      final list = [
+        shot(peak: 0.90, lowHz: 500, highHz: 5000),
+        shot(peak: 0.93, lowHz: 500, highHz: 5000),
+        shot(peak: 0.96, lowHz: 500, highHz: 5000),
+        shot(peak: 1.00, lowHz: 500, highHz: 5000),
+      ];
+      expect(isolateShotCluster(list).length, 4);
+    });
+
+    test('drops a loud-but-spectrally-alien event', () {
+      // All similarly loud (no loudness gap), but one sits at 200 Hz while the
+      // rest cluster around 1500 Hz — a door slam among muzzle cracks.
+      final thump = shot(peak: 0.95, lowHz: 80, highHz: 300, dominantHz: 200);
+      final list = [
+        thump,
+        shot(peak: 0.92, lowHz: 800, highHz: 5000, dominantHz: 1500),
+        shot(peak: 0.96, lowHz: 800, highHz: 5000, dominantHz: 1500),
+        shot(peak: 1.00, lowHz: 800, highHz: 5000, dominantHz: 1500),
+      ];
+      final cluster = isolateShotCluster(list);
+      expect(cluster, isNot(contains(thump)));
+      expect(cluster.length, 3);
+    });
+  });
+
+  group('suggestFromSelected', () {
+    test('returns null on empty selection', () {
+      expect(suggestFromSelected(const [], totalCaptured: 5), isNull);
+    });
+
+    test('uses the explicit selection without re-clustering', () {
+      // A quiet capture is included by the user deliberately — it must drive
+      // the sensitivity even though clustering would normally drop it.
+      final s = suggestFromSelected(
+        [
+          shot(peak: 0.30, lowHz: 500, highHz: 4000),
+          shot(peak: 0.90, lowHz: 500, highHz: 4000),
+        ],
+        totalCaptured: 6,
+      )!;
+      // min 0.30 → threshold 0.225 → sensitivity ≈ 78
+      expect(s.sensitivityPercent, closeTo(78, 2));
+      expect(s.consideredCount, 2);
+      expect(s.shotCount, 6);
+    });
+  });
+
   group('suggestFromShots', () {
     test('returns null when no shots were captured', () {
       expect(suggestFromShots(const []), isNull);
@@ -60,6 +130,37 @@ void main() {
         shot(peak: 0.7, lowHz: 1800, highHz: 1850),
       ])!;
       expect(s.bandHighHz - s.bandLowHz, greaterThanOrEqualTo(500));
+    });
+
+    test('sensitivity ignores quiet background noise', () {
+      // Two quiet non-shots + three loud shots. Without clustering the
+      // quietest (0.18) would set threshold = 0.135 → sensitivity ≈ 87.
+      // After clustering, only the loud shots count: min 0.88 → threshold
+      // 0.66 → sensitivity ≈ 34.
+      final s = suggestFromShots([
+        shot(peak: 0.18, lowHz: 300, highHz: 1200),
+        shot(peak: 0.24, lowHz: 300, highHz: 1200),
+        shot(peak: 0.88, lowHz: 500, highHz: 5000),
+        shot(peak: 0.94, lowHz: 500, highHz: 5000),
+        shot(peak: 0.99, lowHz: 500, highHz: 5000),
+      ])!;
+      expect(s.consideredCount, 3);
+      expect(s.shotCount, 5);
+      expect(s.sensitivityPercent, closeTo(34, 2));
+    });
+
+    test('band ignores noise sitting outside the shot band', () {
+      // Low-frequency noise (80–400 Hz) should not widen the band downward
+      // once it's clustered out.
+      final s = suggestFromShots([
+        shot(peak: 0.15, lowHz: 80, highHz: 400),
+        shot(peak: 0.20, lowHz: 80, highHz: 400),
+        shot(peak: 0.90, lowHz: 600, highHz: 5000),
+        shot(peak: 0.95, lowHz: 600, highHz: 5000),
+        shot(peak: 1.00, lowHz: 600, highHz: 5000),
+      ])!;
+      // 600 * 0.8 = 480 → snapped to 500, well above the noise floor of 80.
+      expect(s.bandLowHz, greaterThanOrEqualTo(450));
     });
   });
 

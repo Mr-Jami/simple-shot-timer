@@ -12,39 +12,112 @@ class CalibrationSuggestion {
     required this.bandLowHz,
     required this.bandHighHz,
     required this.shotCount,
+    required this.consideredCount,
   });
 
   final int sensitivityPercent;
   final int bandLowHz;
   final int bandHighHz;
+
+  /// Total impulses captured during calibration.
   final int shotCount;
+
+  /// How many of those were treated as actual shots and fed into the
+  /// recommendation (after discarding quiet/odd background noise).
+  final int consideredCount;
+}
+
+/// Isolates the impulses that most likely correspond to actual shots,
+/// discarding ambient noise (talking, wind, distant range activity).
+///
+/// Two signals separate shots from noise:
+///   1. **Loudness** — gunshots saturate the mic far above ambient sound. We
+///      sort by peak and split on the largest gap; everything above that
+///      natural break is kept. If no pronounced gap exists (all captures are
+///      similarly loud) we keep them all.
+///   2. **Spectral similarity** — within the loud group, a capture whose
+///      dominant frequency sits more than 2× away from the group median is a
+///      loud-but-alien event (e.g. a door slam among muzzle cracks) and is
+///      dropped. The 2× tolerance is wide enough not to reject normal
+///      shot-to-shot variation.
+///
+/// With fewer than 4 captures there isn't enough data to cluster, so the
+/// input is returned unchanged.
+List<CalibrationShot> isolateShotCluster(List<CalibrationShot> shots) {
+  if (shots.length < 4) return shots;
+
+  final byPeak = [...shots]
+    ..sort((a, b) => a.peakAmplitude.compareTo(b.peakAmplitude));
+  var splitIdx = 0;
+  var maxGap = 0.0;
+  for (var i = 1; i < byPeak.length; i++) {
+    final gap = byPeak[i].peakAmplitude - byPeak[i - 1].peakAmplitude;
+    if (gap > maxGap) {
+      maxGap = gap;
+      splitIdx = i;
+    }
+  }
+  // Only treat the gap as a noise/shot boundary when it's pronounced (peaks
+  // are normalized 0..1, so 0.15 is a clear step). Otherwise keep everything.
+  final loud = maxGap >= 0.15 ? byPeak.sublist(splitIdx) : byPeak;
+  if (loud.length < 3) return loud;
+
+  final freqs = [for (final s in loud) s.dominantHz]..sort();
+  final medianFreq = freqs[freqs.length ~/ 2];
+  if (medianFreq <= 0) return loud;
+  final similar = [
+    for (final s in loud)
+      if (s.dominantHz >= medianFreq / 2 && s.dominantHz <= medianFreq * 2) s,
+  ];
+  return similar.length >= 2 ? similar : loud;
 }
 
 /// Computes a [CalibrationSuggestion] from captured impulses.
 ///
-/// Sensitivity: targets the *quietest* shot — threshold = 75% of its peak,
-/// converted back into the user-facing sensitivity percent. This lets every
-/// captured shot cross the threshold with a 25% safety margin.
+/// First isolates the actual-shot cluster via [isolateShotCluster] so the
+/// recommendation ignores background noise (talking, wind). Then:
 ///
-/// Band: spans the union of the 10–90% energy bands across all shots, padded
+/// Sensitivity: targets the *quietest* shot in the cluster — threshold = 75%
+/// of its peak, converted into the user-facing sensitivity percent. Lets
+/// every real shot cross the threshold with a 25% safety margin without being
+/// dragged ultra-sensitive by a quiet non-shot.
+///
+/// Band: spans the union of the 10–90% energy bands across the cluster, padded
 /// 20% outward to avoid clipping the actual shot energy of marginal shots.
 ///
 /// Returns null if [shots] is empty.
 CalibrationSuggestion? suggestFromShots(List<CalibrationShot> shots) {
   if (shots.isEmpty) return null;
+  return suggestFromSelected(
+    isolateShotCluster(shots),
+    totalCaptured: shots.length,
+  );
+}
 
-  // Sensitivity from the quietest captured shot.
+/// Computes a suggestion from an explicit [selected] set of captures —
+/// **without** re-clustering. Used when the user has manually overridden which
+/// captures count as shots in the auto-configure UI. [totalCaptured] is the
+/// full number of captures so the suggestion can report "N of M".
+///
+/// Returns null if [selected] is empty.
+CalibrationSuggestion? suggestFromSelected(
+  List<CalibrationShot> selected, {
+  required int totalCaptured,
+}) {
+  if (selected.isEmpty) return null;
+
+  // Sensitivity from the quietest selected shot.
   var minPeak = double.infinity;
-  for (final s in shots) {
+  for (final s in selected) {
     if (s.peakAmplitude < minPeak) minPeak = s.peakAmplitude;
   }
   final threshold = (minPeak * 0.75).clamp(0.0, 1.0);
   final sensitivity = ((1 - threshold) * 100).round().clamp(0, 100);
 
-  // Band from the widest energy spread observed across shots.
+  // Band from the widest energy spread across the selected shots.
   var minLow = double.infinity;
   var maxHigh = 0.0;
-  for (final s in shots) {
+  for (final s in selected) {
     if (s.lowEdgeHz < minLow) minLow = s.lowEdgeHz;
     if (s.highEdgeHz > maxHigh) maxHigh = s.highEdgeHz;
   }
@@ -69,7 +142,8 @@ CalibrationSuggestion? suggestFromShots(List<CalibrationShot> shots) {
     sensitivityPercent: sensitivity,
     bandLowHz: bandLowHz,
     bandHighHz: bandHighHz,
-    shotCount: shots.length,
+    shotCount: totalCaptured,
+    consideredCount: selected.length,
   );
 }
 
