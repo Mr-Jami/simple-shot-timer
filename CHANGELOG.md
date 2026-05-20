@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)
+
+
+### Features
+
+* **history:** persist + display full drill configuration ([90ef8e8](https://github.com/Mr-Jami/simple-shot-timer/commit/90ef8e83c8af15c23f2a0d465e5a26aa46235374))
+* **timer:** keep tracking while in background ([22c596e](https://github.com/Mr-Jami/simple-shot-timer/commit/22c596e51847de8997ac1b4b7aca35f8423ba661))
+* **timer:** reset clock per cycle in par-repeat mode ([b6957df](https://github.com/Mr-Jami/simple-shot-timer/commit/b6957df812a8fc499457d0d5d00b2d0579978133))
+
 ## [1.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.1.0...v1.2.0) (2026-05-19)
 
 
