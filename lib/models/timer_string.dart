@@ -14,6 +14,8 @@ class TimerString {
     this.label,
     this.notes,
     this.penaltyMs = 0,
+    this.parRepeatCount,
+    this.parIntervalMs,
   });
 
   final int? id;
@@ -26,6 +28,14 @@ class TimerString {
   final String? label;
   final String? notes;
   final int penaltyMs;
+
+  /// Number of par cycles configured for this run. Only meaningful when
+  /// [drillMode] is [DrillMode.par]; null for older saved strings and for
+  /// other drill modes.
+  final int? parRepeatCount;
+
+  /// Rest interval (ms) between par cycles. Null for non-par or pre-v3 rows.
+  final int? parIntervalMs;
 
   int get shotCount => shots.length;
 
@@ -118,6 +128,8 @@ class TimerString {
     String? label,
     String? notes,
     int? penaltyMs,
+    int? parRepeatCount,
+    int? parIntervalMs,
   }) =>
       TimerString(
         id: id ?? this.id,
@@ -130,6 +142,8 @@ class TimerString {
         label: label ?? this.label,
         notes: notes ?? this.notes,
         penaltyMs: penaltyMs ?? this.penaltyMs,
+        parRepeatCount: parRepeatCount ?? this.parRepeatCount,
+        parIntervalMs: parIntervalMs ?? this.parIntervalMs,
       );
 
   Map<String, Object?> toMap() => {
@@ -142,6 +156,8 @@ class TimerString {
         'label': label,
         'notes': notes,
         'penalty_ms': penaltyMs,
+        'par_repeat_count': parRepeatCount,
+        'par_interval_ms': parIntervalMs,
       };
 
   factory TimerString.fromMap(
@@ -164,6 +180,8 @@ class TimerString {
         label: map['label'] as String?,
         notes: map['notes'] as String?,
         penaltyMs: map['penalty_ms'] as int? ?? 0,
+        parRepeatCount: map['par_repeat_count'] as int?,
+        parIntervalMs: map['par_interval_ms'] as int?,
         shots: shots,
       );
 }

@@ -269,6 +269,8 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
+          const SizedBox(height: 12),
+          _DrillConfigChips(string: s),
           const SizedBox(height: 16),
           if (s.cyclesWithShots.length > 1)
             _PerCycleSummary(string: s)
@@ -433,6 +435,89 @@ class _SummaryItem {
   const _SummaryItem(this.label, this.value);
   final String label;
   final String value;
+}
+
+/// Drill configuration recap shown under the date header. Renders one chip
+/// per relevant config field for the drill mode the string was recorded
+/// with — so reviewing a string makes the original setup unambiguous even
+/// if the live settings have since changed.
+class _DrillConfigChips extends StatelessWidget {
+  const _DrillConfigChips({required this.string});
+  final TimerString string;
+
+  String _formatMs(int ms) => '${(ms / 1000).toStringAsFixed(1)}s';
+
+  List<_ChipSpec> _specsFor(BuildContext context) {
+    final s = string;
+    switch (s.drillMode) {
+      case DrillMode.standard:
+        return const [];
+      case DrillMode.stage:
+        // pars[0].durationMs is the stage length (TimerNotifier writes a
+        // single ParConfig for stage runs).
+        final stageMs = s.pars.isNotEmpty ? s.pars.first.durationMs : null;
+        return [
+          if (stageMs != null)
+            _ChipSpec(
+              icon: Icons.timer,
+              label: context.tr('review.config.stageDuration',
+                  args: {'value': _formatMs(stageMs)}),
+            ),
+        ];
+      case DrillMode.par:
+        final parMs = s.pars.isNotEmpty ? s.pars.first.durationMs : null;
+        return [
+          if (parMs != null)
+            _ChipSpec(
+              icon: Icons.timer,
+              label: context.tr('review.config.parDuration',
+                  args: {'value': _formatMs(parMs)}),
+            ),
+          if ((s.parRepeatCount ?? 1) > 1)
+            _ChipSpec(
+              icon: Icons.repeat,
+              label: context.tr('review.config.repeats',
+                  args: {'count': s.parRepeatCount}),
+            ),
+          if ((s.parRepeatCount ?? 1) > 1 && (s.parIntervalMs ?? 0) > 0)
+            _ChipSpec(
+              icon: Icons.pause_circle_outline,
+              label: context.tr('review.config.interval',
+                  args: {'value': _formatMs(s.parIntervalMs!)}),
+            ),
+        ];
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final specs = _specsFor(context);
+    if (specs.isEmpty) return const SizedBox.shrink();
+    final theme = Theme.of(context);
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final spec in specs)
+          Chip(
+            avatar: Icon(
+              spec.icon,
+              size: 16,
+              color: theme.colorScheme.onSecondaryContainer,
+            ),
+            label: Text(spec.label),
+            visualDensity: VisualDensity.compact,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+      ],
+    );
+  }
+}
+
+class _ChipSpec {
+  const _ChipSpec({required this.icon, required this.label});
+  final IconData icon;
+  final String label;
 }
 
 /// Per-cycle aggregate panel shown for par-repeat strings, replacing the flat

@@ -15,7 +15,7 @@ class DatabaseService {
     final path = p.join(dir.path, 'simple_shot_timer.db');
     final db = await openDatabase(
       path,
-      version: 2,
+      version: 3,
       onConfigure: (db) async {
         await db.execute('PRAGMA foreign_keys = ON');
       },
@@ -36,7 +36,9 @@ class DatabaseService {
         pars_json TEXT,
         label TEXT,
         notes TEXT,
-        penalty_ms INTEGER NOT NULL DEFAULT 0
+        penalty_ms INTEGER NOT NULL DEFAULT 0,
+        par_repeat_count INTEGER,
+        par_interval_ms INTEGER
       )
     ''');
     await db.execute('''
@@ -65,6 +67,12 @@ class DatabaseService {
       await db.execute(
         'ALTER TABLE shots ADD COLUMN cycle_index INTEGER NOT NULL DEFAULT 1',
       );
+    }
+    if (oldVersion < 3) {
+      // Capture the full par config per run (issue #6). Existing rows stay
+      // NULL — they're rendered without the new chips in the review header.
+      await db.execute('ALTER TABLE strings ADD COLUMN par_repeat_count INTEGER');
+      await db.execute('ALTER TABLE strings ADD COLUMN par_interval_ms INTEGER');
     }
   }
 

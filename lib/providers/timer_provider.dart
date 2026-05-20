@@ -148,6 +148,10 @@ class TimerNotifier extends Notifier<TimerState> {
       delayUsedMs: state.delayUsedMs ?? 0,
       pars: pars,
       shots: shots,
+      // Capture par-mode structure so the review screen can reconstruct the
+      // exact drill the user ran (par duration, repeats, interval).
+      parRepeatCount: _runMode == DrillMode.par ? settings.parRepeatCount : null,
+      parIntervalMs: _runMode == DrillMode.par ? settings.parIntervalMs : null,
     );
 
     final db = ref.read(databaseProvider);
