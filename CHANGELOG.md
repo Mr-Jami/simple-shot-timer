@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)
+
+
+### Features
+
+* **auto-config:** focus recommendation on shots, allow manual override ([f9fb461](https://github.com/Mr-Jami/simple-shot-timer/commit/f9fb4613d0619ac446d2ba808d08865a7a9b65f4))
+
+
+### Bug Fixes
+
+* **i18n:** backfill missing translations for de/es/fr/ru ([8437d8c](https://github.com/Mr-Jami/simple-shot-timer/commit/8437d8c21087fcb2d7c1015c8a0d1b463c4f1fba))
+
 ## [1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)
 
 
