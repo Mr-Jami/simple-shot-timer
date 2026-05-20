@@ -12,7 +12,7 @@ class ExportService {
     final filename = 'string_${s.id ?? 'draft'}_${s.createdAt.millisecondsSinceEpoch}.csv';
     final file = File(p.join(dir.path, filename));
     final buffer = StringBuffer()
-      ..writeln('shot,time_s,split_s,manual')
+      ..writeln('shot,cycle,time_s,split_s,manual')
       ..writeln(
         '# created_at=${s.createdAt.toIso8601String()} '
         'mode=${s.drillMode.name} '
@@ -21,9 +21,13 @@ class ExportService {
       );
     for (var i = 0; i < s.shots.length; i++) {
       final shot = s.shots[i];
-      final split = i == 0 ? 0 : shot.timeMs - s.shots[i - 1].timeMs;
+      // Splits only make sense within a cycle — across cycles the times reset.
+      final prev = i == 0 ? null : s.shots[i - 1];
+      final sameCycle = prev != null && prev.cycleIndex == shot.cycleIndex;
+      final split = sameCycle ? shot.timeMs - prev.timeMs : 0;
       buffer.writeln(
         '${i + 1},'
+        '${shot.cycleIndex},'
         '${(shot.timeMs / 1000).toStringAsFixed(3)},'
         '${(split / 1000).toStringAsFixed(3)},'
         '${shot.manual ? 1 : 0}',
@@ -41,16 +45,18 @@ class ExportService {
     final buffer = StringBuffer()
       ..writeln(
         'string_id,created_at,drill_mode,delay_mode,delay_used_ms,'
-        'shot_index,time_s,split_s,manual,penalty_ms,label,notes',
+        'shot_index,cycle,time_s,split_s,manual,penalty_ms,label,notes',
       );
     for (final s in strings) {
       for (var i = 0; i < s.shots.length; i++) {
         final shot = s.shots[i];
-        final split = i == 0 ? 0 : shot.timeMs - s.shots[i - 1].timeMs;
+        final prev = i == 0 ? null : s.shots[i - 1];
+        final sameCycle = prev != null && prev.cycleIndex == shot.cycleIndex;
+        final split = sameCycle ? shot.timeMs - prev.timeMs : 0;
         buffer.writeln(
           '${s.id},${s.createdAt.toIso8601String()},'
           '${s.drillMode.name},${s.delayMode.name},${s.delayUsedMs},'
-          '${i + 1},'
+          '${i + 1},${shot.cycleIndex},'
           '${(shot.timeMs / 1000).toStringAsFixed(3)},'
           '${(split / 1000).toStringAsFixed(3)},'
           '${shot.manual ? 1 : 0},${s.penaltyMs},'

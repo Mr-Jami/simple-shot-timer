@@ -23,7 +23,15 @@ class TimerNotifier extends Notifier<TimerState> {
   final List<Timer> _parTimers = [];
   StreamSubscription<int>? _detectionSub;
 
-  int _beepStartMs = 0;
+  /// Master-clock timestamp when the *current* cycle's beep fired. Shot
+  /// timestamps and the on-screen elapsed counter are both measured from
+  /// here, so each par cycle reads from 0.
+  int _cycleStartClockMs = 0;
+
+  /// Currently-active par cycle (1..N). For non-par/single-cycle runs this
+  /// stays at 1 throughout.
+  int _currentCycle = 1;
+
   AppSettings _snapshot = const AppSettings();
   DrillMode _runMode = DrillMode.standard;
   DelayMode _runDelayMode = DelayMode.instant;
@@ -163,16 +171,23 @@ class TimerNotifier extends Notifier<TimerState> {
       return;
     }
     final elapsed = state.phase == TimerPhase.running
-        ? _clock.elapsedMilliseconds - _beepStartMs
+        ? _clock.elapsedMilliseconds - _cycleStartClockMs
         : (state.shots.isEmpty
             ? 0
             : state.shots.last.timeMs +
                 _snapshot.echoFilterMs.clamp(20, 1000));
+    // Inherit the last shot's cycle for post-run additions (so a manual
+    // add after the run still groups under the same cycle); use the live
+    // cycle counter during a run.
+    final cycle = state.phase == TimerPhase.running
+        ? _currentCycle
+        : (state.shots.isEmpty ? 1 : state.shots.last.cycleIndex);
     final shot = Shot(
       stringId: state.savedStringId,
       index: state.shots.length,
       timeMs: math.max(0, elapsed),
       manual: true,
+      cycleIndex: cycle,
     );
     final updated = [...state.shots, shot];
     state = state.copyWith(shots: updated);
@@ -239,7 +254,7 @@ class TimerNotifier extends Notifier<TimerState> {
   }
 
   Future<void> _fireStartBeep({required bool silent}) async {
-    _beepStartMs = _clock.elapsedMilliseconds;
+    _beginCycle(1);
     state = state.copyWith(
       phase: TimerPhase.running,
       flashTick: state.flashTick + 1,
@@ -251,9 +266,34 @@ class TimerNotifier extends Notifier<TimerState> {
     _startTick();
   }
 
+  /// Marks the start of a new par cycle: resets the per-cycle clock + state
+  /// so shot timestamps and the on-screen elapsed counter both read from 0.
+  void _beginCycle(int cycle) {
+    _currentCycle = cycle;
+    _cycleStartClockMs = _clock.elapsedMilliseconds;
+    state = state.copyWith(
+      elapsedMs: 0,
+      currentParIndex: cycle,
+    );
+  }
+
   void _schedulePars() {
+    final totalCycles = _runMode == DrillMode.par
+        ? _snapshot.parRepeatCount.clamp(1, AppSettings.parRepeatMax)
+        : 1;
+    final intervalMs = _snapshot.parIntervalMs;
     for (final event in computeParSchedule(_snapshot, _runMode)) {
       _parTimers.add(Timer(Duration(milliseconds: event.timeMs), () {
+        // Reset the cycle clock at every cycle boundary. With interval > 0
+        // that's the explicit START beep; with interval == 0 the END beep
+        // of cycle K doubles as the start of cycle K+1.
+        if (event.kind == ParBeepKind.start) {
+          _beginCycle(event.cycle);
+        } else if (event.kind == ParBeepKind.end &&
+            intervalMs == 0 &&
+            event.cycle < totalCycles) {
+          _beginCycle(event.cycle + 1);
+        }
         state = state.copyWith(
           currentParIndex: event.cycle,
           flashTick: state.flashTick + 1,
@@ -295,7 +335,7 @@ class TimerNotifier extends Notifier<TimerState> {
         return;
       }
       state = state.copyWith(
-        elapsedMs: _clock.elapsedMilliseconds - _beepStartMs,
+        elapsedMs: _clock.elapsedMilliseconds - _cycleStartClockMs,
         micLevel: detector.lastPeak,
       );
     });
@@ -303,11 +343,12 @@ class TimerNotifier extends Notifier<TimerState> {
 
   void _onDetection(int clockMs) {
     if (state.phase != TimerPhase.running) return;
-    final shotMs = clockMs - _beepStartMs;
+    final shotMs = clockMs - _cycleStartClockMs;
     if (shotMs < 0) return;
     final shot = Shot(
       index: state.shots.length,
       timeMs: shotMs,
+      cycleIndex: _currentCycle,
     );
     state = state.copyWith(shots: [...state.shots, shot]);
   }

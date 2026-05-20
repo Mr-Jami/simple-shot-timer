@@ -36,11 +36,15 @@ class TimerString {
 
   int? get firstShotMs => shots.isEmpty ? null : shots.first.timeMs;
 
+  /// Within-cycle splits only — never crosses a cycle boundary because shot
+  /// times restart from zero at each par cycle, so a naive subtraction across
+  /// cycles would produce a negative split.
   List<int> get splitsMs {
     if (shots.length < 2) return const [];
     return [
       for (var i = 1; i < shots.length; i++)
-        shots[i].timeMs - shots[i - 1].timeMs,
+        if (shots[i].cycleIndex == shots[i - 1].cycleIndex)
+          shots[i].timeMs - shots[i - 1].timeMs,
     ];
   }
 
@@ -60,6 +64,47 @@ class TimerString {
     final s = splitsMs;
     if (s.isEmpty) return null;
     return s.reduce((a, b) => a + b) ~/ s.length;
+  }
+
+  /// Distinct cycle indices that have at least one shot, ordered ascending.
+  /// Always returns at least `[1]` for a non-par run with shots; empty if no
+  /// shots were captured.
+  List<int> get cyclesWithShots {
+    final seen = <int>{};
+    for (final s in shots) {
+      seen.add(s.cycleIndex);
+    }
+    final list = seen.toList()..sort();
+    return list;
+  }
+
+  /// Shots that belong to [cycle], in order.
+  List<Shot> shotsForCycle(int cycle) =>
+      [for (final s in shots) if (s.cycleIndex == cycle) s];
+
+  /// Splits within [cycle]. Uses cycle-relative timeMs which is what shots
+  /// already carry, so no extra arithmetic needed.
+  List<int> splitsForCycle(int cycle) {
+    final cs = shotsForCycle(cycle);
+    if (cs.length < 2) return const [];
+    return [
+      for (var i = 1; i < cs.length; i++) cs[i].timeMs - cs[i - 1].timeMs,
+    ];
+  }
+
+  /// Time of the last shot in [cycle] (i.e. how long the cycle took).
+  /// Returns null when the cycle has no shots.
+  int? totalForCycle(int cycle) {
+    final cs = shotsForCycle(cycle);
+    if (cs.isEmpty) return null;
+    return cs.last.timeMs;
+  }
+
+  /// Time of the first shot in [cycle]. Returns null when empty.
+  int? firstShotForCycle(int cycle) {
+    final cs = shotsForCycle(cycle);
+    if (cs.isEmpty) return null;
+    return cs.first.timeMs;
   }
 
   TimerString copyWith({

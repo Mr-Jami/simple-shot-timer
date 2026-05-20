@@ -44,6 +44,30 @@ class TimerState {
     return shots.last.timeMs - shots[shots.length - 2].timeMs;
   }
 
+  /// Shots fired in the cycle the timer is currently displaying. For non-par
+  /// runs (currentParIndex always 1) this returns every shot. The home
+  /// screen uses this for the running view so the time/splits restart from
+  /// zero each par cycle instead of trailing the previous cycle's tail.
+  List<Shot> get currentCycleShots =>
+      [for (final s in shots) if (s.cycleIndex == currentParIndex) s];
+
+  int get currentCycleShotCount => currentCycleShots.length;
+  Shot? get currentCycleLastShot {
+    final cs = currentCycleShots;
+    return cs.isEmpty ? null : cs.last;
+  }
+
+  int? get currentCycleFirstShotMs {
+    final cs = currentCycleShots;
+    return cs.isEmpty ? null : cs.first.timeMs;
+  }
+
+  int? get currentCycleLastSplitMs {
+    final cs = currentCycleShots;
+    if (cs.length < 2) return null;
+    return cs.last.timeMs - cs[cs.length - 2].timeMs;
+  }
+
   TimerState copyWith({
     TimerPhase? phase,
     int? elapsedMs,

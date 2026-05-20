@@ -77,6 +77,87 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
     super.dispose();
   }
 
+  List<Widget> _buildShotRows(
+    BuildContext context,
+    ThemeData theme,
+    TimerString s,
+  ) {
+    final multiCycle = s.cyclesWithShots.length > 1;
+    final rows = <Widget>[];
+    int? currentCycle;
+    for (var i = 0; i < s.shots.length; i++) {
+      final shot = s.shots[i];
+      if (multiCycle && shot.cycleIndex != currentCycle) {
+        currentCycle = shot.cycleIndex;
+        rows.add(Padding(
+          padding: const EdgeInsets.only(top: 16, bottom: 4),
+          child: Text(
+            context.tr('review.cycleHeader',
+                args: {'cycle': shot.cycleIndex}),
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: theme.colorScheme.primary,
+              letterSpacing: 1,
+            ),
+          ),
+        ));
+      }
+      // Position within the same cycle for the leading badge + split calc.
+      final prev = i == 0 ? null : s.shots[i - 1];
+      final sameCycle = prev != null && prev.cycleIndex == shot.cycleIndex;
+      final split = sameCycle ? shot.timeMs - prev.timeMs : null;
+      final cycleOrdinal = sameCycle ? _cycleOrdinal(s, i) : 1;
+      rows.add(Dismissible(
+        key: ValueKey('shot-${shot.id ?? i}-$i'),
+        direction: DismissDirection.endToStart,
+        background: Container(
+          color: theme.colorScheme.errorContainer,
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: const Icon(Icons.delete),
+        ),
+        onDismissed: (_) => _deleteShot(i),
+        child: ListTile(
+          dense: true,
+          leading: CircleAvatar(
+            radius: 14,
+            backgroundColor: shot.manual
+                ? theme.colorScheme.tertiaryContainer
+                : theme.colorScheme.primaryContainer,
+            child: Text(
+              '$cycleOrdinal',
+              style: const TextStyle(fontSize: 12),
+            ),
+          ),
+          title: Text(
+            '${formatSeconds(shot.timeMs)}s',
+            style: const TextStyle(
+              fontFeatures: [FontFeature.tabularFigures()],
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          subtitle: Text(
+            split == null
+                ? context.tr('review.splitFirst')
+                : context.tr('review.splitOther', args: {
+                    'seconds': (split / 1000).toStringAsFixed(2),
+                  }),
+          ),
+          trailing: shot.manual ? const Icon(Icons.edit, size: 16) : null,
+        ),
+      ));
+    }
+    return rows;
+  }
+
+  int _cycleOrdinal(TimerString s, int globalIdx) {
+    final cycle = s.shots[globalIdx].cycleIndex;
+    var n = 0;
+    for (var j = 0; j <= globalIdx; j++) {
+      if (s.shots[j].cycleIndex == cycle) n++;
+    }
+    return n;
+  }
+
   Future<void> _persistMeta() async {
     final db = ref.read(databaseProvider);
     await db.updateStringMeta(
@@ -135,6 +216,11 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
     );
     if (result == null) return;
     final newMs = (result * 1000).round();
+    // Inherit the cycle of the existing tail so an "add shot" extends the
+    // last captured cycle instead of silently dropping into a new one.
+    final inheritedCycle = widget.string.shots.isEmpty
+        ? 1
+        : widget.string.shots.last.cycleIndex;
     final shots = [
       ...widget.string.shots,
       Shot(
@@ -142,8 +228,14 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
         index: widget.string.shots.length,
         timeMs: newMs,
         manual: true,
+        cycleIndex: inheritedCycle,
       )
-    ]..sort((a, b) => a.timeMs.compareTo(b.timeMs));
+    ]..sort((a, b) {
+        if (a.cycleIndex != b.cycleIndex) {
+          return a.cycleIndex.compareTo(b.cycleIndex);
+        }
+        return a.timeMs.compareTo(b.timeMs);
+      });
     final reindexed = [
       for (var i = 0; i < shots.length; i++) shots[i].copyWith(index: i),
     ];
@@ -178,7 +270,10 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
             ),
           ),
           const SizedBox(height: 16),
-          _SummaryGrid(string: s),
+          if (s.cyclesWithShots.length > 1)
+            _PerCycleSummary(string: s)
+          else
+            _SummaryGrid(string: s),
           const SizedBox(height: 16),
           TextField(
             controller: _labelCtrl,
@@ -250,50 +345,7 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
               child: Center(child: Text(context.tr('review.noShots'))),
             )
           else
-            ...List.generate(s.shots.length, (i) {
-              final shot = s.shots[i];
-              final split = i == 0 ? null : shot.timeMs - s.shots[i - 1].timeMs;
-              return Dismissible(
-                key: ValueKey('shot-${shot.id ?? i}-$i'),
-                direction: DismissDirection.endToStart,
-                background: Container(
-                  color: theme.colorScheme.errorContainer,
-                  alignment: Alignment.centerRight,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: const Icon(Icons.delete),
-                ),
-                onDismissed: (_) => _deleteShot(i),
-                child: ListTile(
-                  dense: true,
-                  leading: CircleAvatar(
-                    radius: 14,
-                    backgroundColor: shot.manual
-                        ? theme.colorScheme.tertiaryContainer
-                        : theme.colorScheme.primaryContainer,
-                    child: Text(
-                      '${i + 1}',
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                  ),
-                  title: Text(
-                    '${formatSeconds(shot.timeMs)}s',
-                    style: const TextStyle(
-                      fontFeatures: [FontFeature.tabularFigures()],
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  subtitle: Text(
-                    split == null
-                        ? context.tr('review.splitFirst')
-                        : context.tr('review.splitOther', args: {
-                            'seconds': (split / 1000).toStringAsFixed(2),
-                          }),
-                  ),
-                  trailing:
-                      shot.manual ? const Icon(Icons.edit, size: 16) : null,
-                ),
-              );
-            }),
+            ..._buildShotRows(context, theme, s),
         ],
       ),
     );
@@ -381,4 +433,117 @@ class _SummaryItem {
   const _SummaryItem(this.label, this.value);
   final String label;
   final String value;
+}
+
+/// Per-cycle aggregate panel shown for par-repeat strings, replacing the flat
+/// summary grid. Each row is one cycle: total time, first-shot time, average
+/// split, and shot count, all relative to that cycle's beep.
+class _PerCycleSummary extends StatelessWidget {
+  const _PerCycleSummary({required this.string});
+  final TimerString string;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final cycle in string.cyclesWithShots)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Container(
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              padding: const EdgeInsets.all(12),
+              child: _CycleSummaryRow(string: string, cycle: cycle),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _CycleSummaryRow extends StatelessWidget {
+  const _CycleSummaryRow({required this.string, required this.cycle});
+  final TimerString string;
+  final int cycle;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final splits = string.splitsForCycle(cycle);
+    final avgSplit = splits.isEmpty
+        ? null
+        : splits.reduce((a, b) => a + b) ~/ splits.length;
+    String fmt(int? ms) => ms == null ? '--' : '${formatSeconds(ms)}s';
+    return Row(
+      children: [
+        SizedBox(
+          width: 56,
+          child: Text(
+            context.tr('review.cycleHeader', args: {'cycle': cycle}),
+            style: theme.textTheme.titleSmall?.copyWith(
+              color: theme.colorScheme.primary,
+            ),
+          ),
+        ),
+        Expanded(
+          child: _CycleStat(
+            label: context.tr('review.summary.total'),
+            value: fmt(string.totalForCycle(cycle)),
+          ),
+        ),
+        Expanded(
+          child: _CycleStat(
+            label: context.tr('review.summary.first'),
+            value: fmt(string.firstShotForCycle(cycle)),
+          ),
+        ),
+        Expanded(
+          child: _CycleStat(
+            label: context.tr('review.summary.average'),
+            value: fmt(avgSplit),
+          ),
+        ),
+        Expanded(
+          child: _CycleStat(
+            label: context.tr('review.summary.shots'),
+            value: '${string.shotsForCycle(cycle).length}',
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _CycleStat extends StatelessWidget {
+  const _CycleStat({required this.label, required this.value});
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      children: [
+        Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(
+            letterSpacing: 1.5,
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Text(
+          value,
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontFeatures: const [FontFeature.tabularFigures()],
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  }
 }

@@ -15,11 +15,12 @@ class DatabaseService {
     final path = p.join(dir.path, 'simple_shot_timer.db');
     final db = await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onConfigure: (db) async {
         await db.execute('PRAGMA foreign_keys = ON');
       },
       onCreate: _createSchema,
+      onUpgrade: _onUpgrade,
     );
     return DatabaseService._(db);
   }
@@ -45,6 +46,7 @@ class DatabaseService {
         idx INTEGER NOT NULL,
         time_ms INTEGER NOT NULL,
         manual INTEGER NOT NULL DEFAULT 0,
+        cycle_index INTEGER NOT NULL DEFAULT 1,
         FOREIGN KEY(string_id) REFERENCES strings(id) ON DELETE CASCADE
       )
     ''');
@@ -54,6 +56,16 @@ class DatabaseService {
     await db.execute(
       'CREATE INDEX idx_strings_created ON strings(created_at DESC)',
     );
+  }
+
+  static Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // Per-cycle shot tagging for par-repeat runs (issue #5). Existing rows
+      // default to cycle 1 since the old schema couldn't differentiate.
+      await db.execute(
+        'ALTER TABLE shots ADD COLUMN cycle_index INTEGER NOT NULL DEFAULT 1',
+      );
+    }
   }
 
   Future<TimerString> insertString(TimerString s, {required int historyCap}) async {

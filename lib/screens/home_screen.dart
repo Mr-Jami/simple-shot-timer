@@ -267,17 +267,37 @@ class _SettingsSummary extends StatelessWidget {
   }
 }
 
-class _RunningView extends StatelessWidget {
+class _RunningView extends ConsumerWidget {
   const _RunningView({required this.state});
   final TimerState state;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final last = state.lastShot;
+    final settings = ref.watch(settingsProvider);
+    // Show per-cycle data so the time + stats restart from zero at each par
+    // beep — the user wants to see "this cycle's results", not a running
+    // tally across cycles.
+    final last = state.currentCycleLastShot;
     final displayMs = last?.timeMs ?? state.elapsedMs;
+    final showCycleBanner = settings.drillMode == DrillMode.par &&
+        settings.parRepeatCount > 1;
     return Column(
       children: [
+        if (showCycleBanner)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Text(
+              context.tr('home.cycleOf', args: {
+                'current': state.currentParIndex,
+                'total': settings.parRepeatCount,
+              }),
+              style: theme.textTheme.titleMedium?.copyWith(
+                letterSpacing: 2,
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ),
         Expanded(
           child: Center(
             child: BigTimeDisplay(
@@ -289,9 +309,9 @@ class _RunningView extends StatelessWidget {
           ),
         ),
         _StatsRow(
-          shotCount: state.shotCount,
-          firstShotMs: state.firstShotMs,
-          splitMs: state.lastSplitMs,
+          shotCount: state.currentCycleShotCount,
+          firstShotMs: state.currentCycleFirstShotMs,
+          splitMs: state.currentCycleLastSplitMs,
         ),
         const SizedBox(height: 12),
         Text(

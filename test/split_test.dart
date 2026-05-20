@@ -51,4 +51,51 @@ void main() {
       expect(s.totalTimeMs, 2500);
     });
   });
+
+  group('TimerString per-cycle aggregates', () {
+    // Two-cycle string: cycle 1 has shots at 500/1000ms, cycle 2 at 400/900ms.
+    // Both cycles start their clock from 0, so timeMs values look small even
+    // for the second cycle.
+    TimerString multi() => TimerString(
+          createdAt: DateTime(2026, 1, 1),
+          drillMode: DrillMode.par,
+          delayMode: DelayMode.instant,
+          delayUsedMs: 0,
+          pars: const [],
+          shots: [
+            Shot(index: 0, timeMs: 500, cycleIndex: 1),
+            Shot(index: 1, timeMs: 1000, cycleIndex: 1),
+            Shot(index: 2, timeMs: 400, cycleIndex: 2),
+            Shot(index: 3, timeMs: 900, cycleIndex: 2),
+          ],
+        );
+
+    test('cyclesWithShots returns each populated cycle in order', () {
+      expect(multi().cyclesWithShots, [1, 2]);
+    });
+
+    test('shotsForCycle filters by cycle index', () {
+      final s = multi();
+      expect(s.shotsForCycle(1).map((x) => x.timeMs), [500, 1000]);
+      expect(s.shotsForCycle(2).map((x) => x.timeMs), [400, 900]);
+    });
+
+    test('splitsForCycle stays within the cycle', () {
+      final s = multi();
+      expect(s.splitsForCycle(1), [500]);
+      expect(s.splitsForCycle(2), [500]);
+    });
+
+    test('totalForCycle returns the last shot time in that cycle', () {
+      final s = multi();
+      expect(s.totalForCycle(1), 1000);
+      expect(s.totalForCycle(2), 900);
+    });
+
+    test('flat splitsMs never crosses cycles', () {
+      // Without per-cycle filtering this would emit -600 between cycle 1's
+      // last shot (1000ms) and cycle 2's first (400ms), which is meaningless.
+      expect(multi().splitsMs, [500, 500]);
+    });
+  });
 }
