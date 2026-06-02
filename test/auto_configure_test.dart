@@ -74,8 +74,8 @@ void main() {
     });
 
     test('uses the explicit selection without re-clustering', () {
-      // A quiet capture is included by the user deliberately — it must drive
-      // the sensitivity even though clustering would normally drop it.
+      // A quiet capture is included by the user deliberately — it widens the
+      // selection but the median still dominates.
       final s = suggestFromSelected(
         [
           shot(peak: 0.30, lowHz: 500, highHz: 4000),
@@ -83,8 +83,8 @@ void main() {
         ],
         totalCaptured: 6,
       )!;
-      // min 0.30 → threshold 0.225 → sensitivity ≈ 78
-      expect(s.sensitivityPercent, closeTo(78, 2));
+      // sorted peaks [0.30, 0.90] → median 0.90 → threshold 0.855 → sensitivity ≈ 14
+      expect(s.sensitivityPercent, closeTo(14, 2));
       expect(s.consideredCount, 2);
       expect(s.shotCount, 6);
     });
@@ -95,14 +95,14 @@ void main() {
       expect(suggestFromShots(const []), isNull);
     });
 
-    test('sensitivity is set so the quietest shot crosses with margin', () {
+    test('sensitivity is set so the median shot crosses with a tight margin', () {
       final s = suggestFromShots([
         shot(peak: 0.40, lowHz: 500, highHz: 4000),
         shot(peak: 0.80, lowHz: 500, highHz: 4000),
         shot(peak: 0.60, lowHz: 500, highHz: 4000),
       ])!;
-      // Threshold = 0.40 * 0.75 = 0.30 → sensitivity = 70
-      expect(s.sensitivityPercent, 70);
+      // sorted [0.40, 0.60, 0.80] → median 0.60 → threshold 0.57 → sensitivity = 43
+      expect(s.sensitivityPercent, 43);
     });
 
     test('band spans the widest observed range with 20% padding', () {
@@ -134,9 +134,10 @@ void main() {
 
     test('sensitivity ignores quiet background noise', () {
       // Two quiet non-shots + three loud shots. Without clustering the
-      // quietest (0.18) would set threshold = 0.135 → sensitivity ≈ 87.
-      // After clustering, only the loud shots count: min 0.88 → threshold
-      // 0.66 → sensitivity ≈ 34.
+      // median (0.88) would still be the loudest-shot cluster median anyway,
+      // but the clustering keeps quiet captures from dragging it down. After
+      // clustering, only the loud shots count: median 0.94 → threshold
+      // 0.893 → sensitivity ≈ 11.
       final s = suggestFromShots([
         shot(peak: 0.18, lowHz: 300, highHz: 1200),
         shot(peak: 0.24, lowHz: 300, highHz: 1200),
@@ -146,7 +147,7 @@ void main() {
       ])!;
       expect(s.consideredCount, 3);
       expect(s.shotCount, 5);
-      expect(s.sensitivityPercent, closeTo(34, 2));
+      expect(s.sensitivityPercent, closeTo(11, 2));
     });
 
     test('band ignores noise sitting outside the shot band', () {

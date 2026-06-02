@@ -77,10 +77,12 @@ List<CalibrationShot> isolateShotCluster(List<CalibrationShot> shots) {
 /// First isolates the actual-shot cluster via [isolateShotCluster] so the
 /// recommendation ignores background noise (talking, wind). Then:
 ///
-/// Sensitivity: targets the *quietest* shot in the cluster — threshold = 75%
-/// of its peak, converted into the user-facing sensitivity percent. Lets
-/// every real shot cross the threshold with a 25% safety margin without being
-/// dragged ultra-sensitive by a quiet non-shot.
+/// Sensitivity: targets the *median* shot in the cluster — threshold = 95%
+/// of its peak, converted into the user-facing sensitivity percent. Gunshots
+/// are reliably very loud, so a tight 5% margin under the typical shot keeps
+/// the detector aggressive at rejecting non-shot noise. Using the median
+/// instead of the min keeps one quiet outlier in the cluster from dragging
+/// the threshold down.
 ///
 /// Band: spans the union of the 10–90% energy bands across the cluster, padded
 /// 20% outward to avoid clipping the actual shot energy of marginal shots.
@@ -106,12 +108,10 @@ CalibrationSuggestion? suggestFromSelected(
 }) {
   if (selected.isEmpty) return null;
 
-  // Sensitivity from the quietest selected shot.
-  var minPeak = double.infinity;
-  for (final s in selected) {
-    if (s.peakAmplitude < minPeak) minPeak = s.peakAmplitude;
-  }
-  final threshold = (minPeak * 0.75).clamp(0.0, 1.0);
+  // Sensitivity from the median selected shot, with a tight 5% margin.
+  final peaks = [for (final s in selected) s.peakAmplitude]..sort();
+  final medianPeak = peaks[peaks.length ~/ 2];
+  final threshold = (medianPeak * 0.95).clamp(0.0, 1.0);
   final sensitivity = ((1 - threshold) * 100).round().clamp(0, 100);
 
   // Band from the widest energy spread across the selected shots.
