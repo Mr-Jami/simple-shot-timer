@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02)
+
+
+### Bug Fixes
+
+* **auto-config:** lower suggested sensitivity for loud shots ([2331299](https://github.com/Mr-Jami/simple-shot-timer/commit/233129972fdc46fdb44699892a0f2b93f0a60176))
+
 ## [1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)
 
 
