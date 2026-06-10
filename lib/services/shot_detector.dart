@@ -7,6 +7,7 @@ import '../models/calibration_shot.dart';
 import '../utils/fft.dart';
 import 'audio_service.dart';
 import 'biquad.dart';
+import 'ios_audio_session.dart';
 
 /// Streams PCM samples from the microphone and emits detection events
 /// (timestamps in ms, read from the supplied [Stopwatch]) whenever a peak
@@ -27,6 +28,24 @@ class ShotDetector {
   /// our handler this many ms after their last sample was actually captured,
   /// so we subtract it when computing a shot's clock-relative timestamp.
   static const int _assumedDeliveryDelayMs = 100;
+
+  /// Stream config shared by all three start paths: raw, unprocessed mic
+  /// samples on both platforms.
+  static const RecordConfig _micStreamConfig = RecordConfig(
+    encoder: AudioEncoder.pcm16bits,
+    sampleRate: sampleRate,
+    numChannels: 1,
+    // Bypass OEM voice DSP (AGC, noise suppression). The default audio
+    // source ducks impulsive transients like gunshots well below threshold.
+    androidConfig: AndroidRecordConfig(
+      audioSource: AndroidAudioSource.unprocessed,
+    ),
+    // We manage the AVAudioSession ourselves (see IosAudioSession);
+    // otherwise the plugin's setCategory would reset the mode to .default
+    // on every start.
+    // ignore: deprecated_member_use
+    iosConfig: IosRecordConfig(manageAudioSession: false),
+  );
 
   final AudioRecorder _recorder = AudioRecorder();
   final StreamController<int> _events = StreamController<int>.broadcast();
@@ -136,15 +155,10 @@ class ShotDetector {
     _measureFrequency = false;
     _configureBandpass(enabled: false, lowHz: 0, highHz: 0);
     _clock = Stopwatch()..start();
+    await IosAudioSession.useMeasurementMode();
+    _lastError = IosAudioSession.lastError;
     try {
-      final stream = await _recorder.startStream(const RecordConfig(
-        encoder: AudioEncoder.pcm16bits,
-        sampleRate: sampleRate,
-        numChannels: 1,
-        androidConfig: AndroidRecordConfig(
-          audioSource: AndroidAudioSource.unprocessed,
-        ),
-      ));
+      final stream = await _recorder.startStream(_micStreamConfig);
       _sub = stream.listen(
         _onChunk,
         onError: (Object e, StackTrace st) {
@@ -153,6 +167,8 @@ class ShotDetector {
       );
     } catch (e) {
       _lastError = 'startStream threw: $e';
+      // Don't leave the session in measurement mode when no stream started.
+      await IosAudioSession.useDefaultMode();
       rethrow;
     }
   }
@@ -210,17 +226,10 @@ class ShotDetector {
     _lastDominantFreqHz = null;
     _lastDominantFreqStrength = 0;
     _clock = Stopwatch()..start();
+    await IosAudioSession.useMeasurementMode();
+    _lastError = IosAudioSession.lastError;
     try {
-      final stream = await _recorder.startStream(const RecordConfig(
-        encoder: AudioEncoder.pcm16bits,
-        sampleRate: sampleRate,
-        numChannels: 1,
-        // Bypass OEM voice DSP (AGC, noise suppression). Default audio source
-        // ducks loud transients like gunshots well below threshold.
-        androidConfig: AndroidRecordConfig(
-          audioSource: AndroidAudioSource.unprocessed,
-        ),
-      ));
+      final stream = await _recorder.startStream(_micStreamConfig);
       _sub = stream.listen(
         _onChunk,
         onError: (Object e, StackTrace st) {
@@ -232,6 +241,8 @@ class ShotDetector {
       );
     } catch (e) {
       _lastError = 'startStream threw: $e';
+      // Don't leave the session in measurement mode when no stream started.
+      await IosAudioSession.useDefaultMode();
       rethrow;
     }
   }
@@ -269,17 +280,17 @@ class ShotDetector {
     _measureFrequency = false;
     _calibrationMode = false;
 
-    final stream = await _recorder.startStream(const RecordConfig(
-      encoder: AudioEncoder.pcm16bits,
-      sampleRate: sampleRate,
-      numChannels: 1,
-      // Bypass OEM voice DSP for the same reason as monitoring above: AGC
-      // and noise suppression destroy impulsive gunshot transients.
-      androidConfig: AndroidRecordConfig(
-        audioSource: AndroidAudioSource.unprocessed,
-      ),
-    ));
-    _sub = stream.listen(_onChunk, onError: _events.addError);
+    await IosAudioSession.useMeasurementMode();
+    _lastError = IosAudioSession.lastError;
+    try {
+      final stream = await _recorder.startStream(_micStreamConfig);
+      _sub = stream.listen(_onChunk, onError: _events.addError);
+    } catch (e) {
+      _lastError = 'startStream threw: $e';
+      // Don't leave the session in measurement mode when no stream started.
+      await IosAudioSession.useDefaultMode();
+      rethrow;
+    }
   }
 
   void _onChunk(Uint8List bytes) {
@@ -459,6 +470,7 @@ class ShotDetector {
     if (await _recorder.isRecording()) {
       await _recorder.stop();
     }
+    await IosAudioSession.useDefaultMode();
     _clock = null;
     _calibrationMode = false;
   }
