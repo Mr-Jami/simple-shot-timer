@@ -109,6 +109,8 @@
   "settings.volume": "Volume",
   "settings.visualFlash": "Flash visuel au bip",
   "settings.hapticOnBeep": "Vibration au bip",
+  "settings.beepLatencyOffset": "Compensation de latence du bip",
+  "settings.beepLatencyOffsetHint": "Délai supplémentaire soustrait des temps de tir pour les sorties que le micro n'entend pas, par ex. une enceinte Bluetooth. Laissez à 0 pour utiliser l'étalonnage automatique du bip.",
   "settings.sensitivity": "Sensibilité",
   "settings.echoFilter": "Filtre d'écho",
   "settings.testMicTitle": "Tester le microphone",

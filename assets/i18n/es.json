@@ -109,6 +109,8 @@
   "settings.volume": "Volumen",
   "settings.visualFlash": "Flash visual al pitido",
   "settings.hapticOnBeep": "Vibración al pitido",
+  "settings.beepLatencyOffset": "Compensación de latencia del pitido",
+  "settings.beepLatencyOffsetHint": "Retardo adicional que se resta de los tiempos de disparo para salidas que el micrófono no oye, p. ej. un altavoz Bluetooth. Déjalo en 0 para usar la calibración automática del pitido.",
   "settings.sensitivity": "Sensibilidad",
   "settings.echoFilter": "Filtro de eco",
   "settings.testMicTitle": "Probar micrófono",

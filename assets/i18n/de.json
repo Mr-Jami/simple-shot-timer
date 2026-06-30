@@ -109,6 +109,8 @@
   "settings.volume": "Lautstärke",
   "settings.visualFlash": "Bildschirm-Blitz beim Ton",
   "settings.hapticOnBeep": "Vibration beim Ton",
+  "settings.beepLatencyOffset": "Latenzausgleich Signalton",
+  "settings.beepLatencyOffsetHint": "Zusätzliche Verzögerung, die von den Schusszeiten abgezogen wird – für Ausgabewege, die das Mikrofon nicht selbst hört, z. B. einen Bluetooth-Lautsprecher. Für die automatische Signalton-Kalibrierung auf 0 lassen.",
   "settings.sensitivity": "Empfindlichkeit",
   "settings.echoFilter": "Echo-Filter",
   "settings.testMicTitle": "Mikrofon testen",

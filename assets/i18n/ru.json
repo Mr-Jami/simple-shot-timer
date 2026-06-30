@@ -109,6 +109,8 @@
   "settings.volume": "Громкость",
   "settings.visualFlash": "Вспышка экрана при сигнале",
   "settings.hapticOnBeep": "Вибрация при сигнале",
+  "settings.beepLatencyOffset": "Коррекция задержки сигнала",
+  "settings.beepLatencyOffsetHint": "Дополнительная задержка, вычитаемая из времени выстрелов для вывода, который микрофон не слышит сам, например Bluetooth-динамика. Оставьте 0, чтобы использовать автоматическую калибровку сигнала.",
   "settings.sensitivity": "Чувствительность",
   "settings.echoFilter": "Фильтр эха",
   "settings.testMicTitle": "Проверить микрофон",

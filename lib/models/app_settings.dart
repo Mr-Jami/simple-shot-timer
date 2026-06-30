@@ -8,6 +8,7 @@ class AppSettings {
     this.bandLowHz = 300,
     this.bandHighHz = 6000,
     this.beepVolume = 0.9,
+    this.audioLatencyOffsetMs = 0,
     this.delayMode = DelayMode.random,
     this.fixedDelayMs = 2000,
     this.randomDelayMinMs = 1000,
@@ -41,6 +42,13 @@ class AppSettings {
   final int bandHighHz;
 
   final double beepVolume;
+
+  /// Extra latency (ms) to subtract from shot times on top of the acoustic
+  /// auto-calibration — for output delay the mic can't measure itself, e.g. a
+  /// Bluetooth speaker the phone mic doesn't pick up. 0 = rely purely on the
+  /// measured beep onset. See issue #18.
+  final int audioLatencyOffsetMs;
+
   final DelayMode delayMode;
   final int fixedDelayMs;
   final int randomDelayMinMs;
@@ -80,6 +88,8 @@ class AppSettings {
   static const int bandLowMaxHz = 2000;
   static const int bandHighMinHz = 1000;
   static const int bandHighMaxHz = 12000;
+  static const int audioLatencyOffsetMinMs = 0;
+  static const int audioLatencyOffsetMaxMs = 500;
 
   /// Amplitude threshold (0..1) derived from [sensitivityPercent].
   double get detectionThreshold =>
@@ -92,6 +102,7 @@ class AppSettings {
     int? bandLowHz,
     int? bandHighHz,
     double? beepVolume,
+    int? audioLatencyOffsetMs,
     DelayMode? delayMode,
     int? fixedDelayMs,
     int? randomDelayMinMs,
@@ -116,6 +127,8 @@ class AppSettings {
         bandLowHz: bandLowHz ?? this.bandLowHz,
         bandHighHz: bandHighHz ?? this.bandHighHz,
         beepVolume: beepVolume ?? this.beepVolume,
+        audioLatencyOffsetMs:
+            audioLatencyOffsetMs ?? this.audioLatencyOffsetMs,
         delayMode: delayMode ?? this.delayMode,
         fixedDelayMs: fixedDelayMs ?? this.fixedDelayMs,
         randomDelayMinMs: randomDelayMinMs ?? this.randomDelayMinMs,
