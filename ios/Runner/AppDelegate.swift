@@ -26,9 +26,12 @@ import UIKit
     channel.setMethodCallHandler { call, result in
       switch call.method {
       case "useMeasurementMode":
-        AppDelegate.configureAudioSession(mode: .measurement, result: result)
+        AppDelegate.configureAudioSession(mode: .measurement, activate: true, result: result)
       case "useDefaultMode":
-        AppDelegate.configureAudioSession(mode: .default, result: result)
+        // Restore path (detection stopped): only put the mode back. Leaving
+        // activation untouched avoids re-asserting a session the app is done
+        // with — audioplayers manages activation around beep playback itself.
+        AppDelegate.configureAudioSession(mode: .default, activate: false, result: result)
       default:
         result(FlutterMethodNotImplemented)
       }
@@ -40,6 +43,7 @@ import UIKit
   /// side), with the requested mode applied on top.
   private static func configureAudioSession(
     mode: AVAudioSession.Mode,
+    activate: Bool,
     result: FlutterResult
   ) {
     let session = AVAudioSession.sharedInstance()
@@ -53,7 +57,9 @@ import UIKit
       if #available(iOS 14.5, *) {
         try session.setPrefersNoInterruptionsFromSystemAlerts(true)
       }
-      try session.setActive(true)
+      if activate {
+        try session.setActive(true)
+      }
       result(nil)
     } catch {
       result(FlutterError(

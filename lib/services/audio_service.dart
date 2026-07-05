@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 import 'dart:typed_data';
 
@@ -6,6 +7,16 @@ import 'package:audioplayers/audioplayers.dart';
 /// Generates and plays a sine-wave start/par beep entirely from memory.
 class AudioService {
   AudioService() {
+    // Keep the most recent global platform error around for diagnostics
+    // (mirrors ShotDetector.lastError). Expected noise on iOS: when a beep
+    // finishes while the mic stream is running, audioplayers tries
+    // setActive(false) on the shared session and iOS refuses because the
+    // session has running I/O. audioplayers already logs these; recording
+    // the last one lets on-device testing spot session problems in-app.
+    _globalEventsSub = AudioPlayer.global.eventStream.listen(
+      (_) {},
+      onError: (Object e) => lastGlobalError = e.toString(),
+    );
     _player.setReleaseMode(ReleaseMode.stop);
     // Important: play the beep WITHOUT requesting audio focus so the active
     // mic stream (AudioRecord) is not paused/muted while we beep. We also
@@ -37,6 +48,11 @@ class AudioService {
 
   final AudioPlayer _player = AudioPlayer();
   final Map<String, Uint8List> _cache = {};
+  StreamSubscription<GlobalAudioEvent>? _globalEventsSub;
+
+  /// Most recent error from the audioplayers global event channel, or null.
+  /// Diagnostic only — see the constructor comment.
+  String? lastGlobalError;
 
   // Fixed beep specs — a piezo-style tone in the ~2.3 kHz range used by most
   // club shot timers. Start beep is short; the par (end) beep is longer so
@@ -62,6 +78,7 @@ class AudioService {
   Future<void> stop() => _player.stop();
 
   Future<void> dispose() async {
+    await _globalEventsSub?.cancel();
     await _player.dispose();
     _cache.clear();
   }

@@ -62,6 +62,10 @@ class ShotDetector {
   BeepOnsetDetector? _beepOnset;
   bool _beepWatchArmed = false;
 
+  /// Bumped whenever a start path (re)enters measurement mode, invalidating
+  /// any deferred default-mode restore scheduled by an earlier [stop].
+  int _sessionEpoch = 0;
+
   /// Stream of shots captured while in calibration mode. Empty during live
   /// runs and mic monitoring.
   Stream<CalibrationShot> get calibrationEvents => _calibrationEvents.stream;
@@ -186,6 +190,7 @@ class ShotDetector {
     _measureFrequency = false;
     _configureBandpass(enabled: false, lowHz: 0, highHz: 0);
     _clock = Stopwatch()..start();
+    _sessionEpoch++; // cancel any deferred restore from a previous stop()
     await IosAudioSession.useMeasurementMode();
     _lastError = IosAudioSession.lastError;
     try {
@@ -257,6 +262,7 @@ class ShotDetector {
     _lastDominantFreqHz = null;
     _lastDominantFreqStrength = 0;
     _clock = Stopwatch()..start();
+    _sessionEpoch++; // cancel any deferred restore from a previous stop()
     await IosAudioSession.useMeasurementMode();
     _lastError = IosAudioSession.lastError;
     try {
@@ -311,6 +317,7 @@ class ShotDetector {
     _measureFrequency = false;
     _calibrationMode = false;
 
+    _sessionEpoch++; // cancel any deferred restore from a previous stop()
     await IosAudioSession.useMeasurementMode();
     _lastError = IosAudioSession.lastError;
     try {
@@ -513,7 +520,19 @@ class ShotDetector {
     if (await _recorder.isRecording()) {
       await _recorder.stop();
     }
-    await IosAudioSession.useDefaultMode();
+    // Defer the mode restore past the longest beep: switching the session
+    // mode reroutes audio, which would audibly clip a par beep still sounding
+    // when the run stops. The epoch guard drops the restore if a start path
+    // re-entered measurement mode in the meantime.
+    final epoch = ++_sessionEpoch;
+    unawaited(
+      Future<void>.delayed(
+        const Duration(milliseconds: AudioService.parBeepDurationMs),
+        () {
+          if (epoch == _sessionEpoch) IosAudioSession.useDefaultMode();
+        },
+      ),
+    );
     _clock = null;
     _calibrationMode = false;
     _beepWatchArmed = false;
