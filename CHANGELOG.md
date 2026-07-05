@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05)
+
+
+### Features
+
+* **ios:** bypass voice DSP for cleaner shot detection ([#17](https://github.com/Mr-Jami/simple-shot-timer/issues/17)) ([5cb4967](https://github.com/Mr-Jami/simple-shot-timer/commit/5cb4967d86e33b715e05494361258f71fcff71bd))
+* **settings:** add tap-to-type value entry and half-second slider snap ([#22](https://github.com/Mr-Jami/simple-shot-timer/issues/22)) ([c84ea8e](https://github.com/Mr-Jami/simple-shot-timer/commit/c84ea8ecddb6159a2cd12d98b25127908d99c70d))
+
 ## [1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)
 
 
