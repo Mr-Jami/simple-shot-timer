@@ -6,6 +6,7 @@ import 'package:record/record.dart';
 import '../models/calibration_shot.dart';
 import '../utils/fft.dart';
 import 'audio_service.dart';
+import 'beep_onset_detector.dart';
 import 'biquad.dart';
 
 /// Streams PCM samples from the microphone and emits detection events
@@ -32,7 +33,15 @@ class ShotDetector {
   final StreamController<int> _events = StreamController<int>.broadcast();
   final StreamController<CalibrationShot> _calibrationEvents =
       StreamController<CalibrationShot>.broadcast();
+  final StreamController<int> _beepOnsetEvents =
+      StreamController<int>.broadcast();
   StreamSubscription<Uint8List>? _sub;
+
+  /// Listens for the audible onset of the start/par beep (issue #18). One-shot
+  /// per [armBeepDetection]; runs on the raw signal so the beep notch doesn't
+  /// hide what we're trying to hear.
+  BeepOnsetDetector? _beepOnset;
+  bool _beepWatchArmed = false;
 
   /// Stream of shots captured while in calibration mode. Empty during live
   /// runs and mic monitoring.
@@ -87,6 +96,28 @@ class ShotDetector {
   double _lastDominantFreqStrength = 0;
 
   Stream<int> get events => _events.stream;
+
+  /// Emits the clock-relative timestamp (ms) at which the start/par beep became
+  /// audible, once per armed beep. Consumed by the timer to anchor `t=0` to the
+  /// audible beep instead of the playback request.
+  Stream<int> get beepOnsetEvents => _beepOnsetEvents.stream;
+
+  /// Arms one-shot beep-onset detection. Call immediately before playing a
+  /// start/par beep; the next sustained burst of beep-frequency energy in the
+  /// mic stream is timestamped and emitted on [beepOnsetEvents].
+  void armBeepDetection() {
+    _beepOnset ??= BeepOnsetDetector(
+      sampleRate: sampleRate.toDouble(),
+      frequencyHz: AudioService.beepFrequencyHz.toDouble(),
+    );
+    _beepOnset!.reset();
+    _beepWatchArmed = true;
+  }
+
+  /// Stops listening for a beep onset (e.g. on timeout) without emitting.
+  void cancelBeepDetection() {
+    _beepWatchArmed = false;
+  }
 
   /// Most recent normalized peak amplitude observed (0..1).
   /// Useful for driving a live VU-style level meter in the UI.
@@ -302,6 +333,18 @@ class ShotDetector {
       _processCalibrationChunk(samples, chunkArrivalMs);
       return;
     }
+    // Listen for the beep onset on the RAW signal, before the notch below
+    // strips the beep frequency we're keying on. One-shot per arm.
+    if (_beepWatchArmed) {
+      final onsetIdx = _beepOnset!.process(samples);
+      if (onsetIdx >= 0) {
+        _beepWatchArmed = false;
+        // Same time-localisation as a shot: back out the chunk delivery delay
+        // and the samples between the onset and the chunk's end.
+        final tailMs = ((sampleCount - onsetIdx) * 1000) ~/ sampleRate;
+        _beepOnsetEvents.add(chunkArrivalMs - _assumedDeliveryDelayMs - tailMs);
+      }
+    }
     if (_measureFrequency) _updateDominantFrequency(samples);
     for (final n in _beepNotches) {
       n.processInt16InPlace(samples);
@@ -461,12 +504,14 @@ class ShotDetector {
     }
     _clock = null;
     _calibrationMode = false;
+    _beepWatchArmed = false;
   }
 
   Future<void> dispose() async {
     await stop();
     await _events.close();
     await _calibrationEvents.close();
+    await _beepOnsetEvents.close();
     await _recorder.dispose();
   }
 }
