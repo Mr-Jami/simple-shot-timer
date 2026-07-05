@@ -109,6 +109,8 @@
   "settings.volume": "Volume",
   "settings.visualFlash": "Visual flash on beep",
   "settings.hapticOnBeep": "Haptic on beep",
+  "settings.beepLatencyOffset": "Beep latency offset",
+  "settings.beepLatencyOffsetHint": "Extra delay subtracted from shot times for output the mic can't hear itself, e.g. a Bluetooth speaker. Leave at 0 to rely on automatic beep calibration.",
   "settings.sensitivity": "Sensitivity",
   "settings.echoFilter": "Echo filter",
   "settings.testMicTitle": "Test microphone",

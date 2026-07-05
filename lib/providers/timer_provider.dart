@@ -22,11 +22,31 @@ class TimerNotifier extends Notifier<TimerState> {
   Timer? _tickTimer;
   final List<Timer> _parTimers = [];
   StreamSubscription<int>? _detectionSub;
+  StreamSubscription<int>? _beepOnsetSub;
+  Timer? _onsetTimeoutTimer;
 
-  /// Master-clock timestamp when the *current* cycle's beep fired. Shot
-  /// timestamps and the on-screen elapsed counter are both measured from
-  /// here, so each par cycle reads from 0.
+  /// Master-clock `t=0` for the current cycle. Shot timestamps and the on-screen
+  /// elapsed counter are both measured from here, so each par cycle reads from
+  /// 0. Initially provisional (set to the beep-playback request time plus the
+  /// manual offset); once the detector reports the *audible* beep onset it is
+  /// rebased onto that, correcting for audio output latency (issue #18).
   int _cycleStartClockMs = 0;
+
+  /// Clock time at which the current cycle's beep playback was requested — the
+  /// reference the measured onset latency is computed against.
+  int _pendingBeepRequestedMs = 0;
+
+  /// Whether we're still waiting for the audible onset of the current cycle's
+  /// beep. Guards against acting on a stale/duplicate onset event.
+  bool _awaitingOnset = false;
+
+  /// Latency beyond which a measured onset is treated as a spurious match
+  /// (noise, a late unrelated tone) and ignored — we keep the provisional base.
+  static const int _maxPlausibleLatencyMs = 700;
+
+  /// How long to wait for an onset before giving up for this cycle and keeping
+  /// the provisional (request-time + manual offset) base.
+  static const int _onsetTimeoutMs = 900;
 
   /// Currently-active par cycle (1..N). For non-par/single-cycle runs this
   /// stays at 1 throughout.
@@ -89,6 +109,8 @@ class TimerNotifier extends Notifier<TimerState> {
 
     // Subscribe to detections first so the stream is ready when the beep fires.
     _detectionSub = detector.events.listen(_onDetection);
+    // And to beep-onset events, so we can rebase t=0 onto the audible beep.
+    _beepOnsetSub = detector.beepOnsetEvents.listen(_onBeepOnset);
     await detector.start(
       clock: _clock,
       threshold: settings.detectionThreshold,
@@ -272,13 +294,83 @@ class TimerNotifier extends Notifier<TimerState> {
 
   /// Marks the start of a new par cycle: resets the per-cycle clock + state
   /// so shot timestamps and the on-screen elapsed counter both read from 0.
+  ///
+  /// The base starts *provisional* — anchored to the playback request time plus
+  /// the manual offset — and is rebased onto the audible beep by [_onBeepOnset]
+  /// once the detector hears it.
   void _beginCycle(int cycle) {
     _currentCycle = cycle;
-    _cycleStartClockMs = _clock.elapsedMilliseconds;
+    _pendingBeepRequestedMs = _clock.elapsedMilliseconds;
+    _cycleStartClockMs =
+        _pendingBeepRequestedMs + _snapshot.audioLatencyOffsetMs;
+    _armOnsetDetection();
     state = state.copyWith(
       elapsedMs: 0,
       currentParIndex: cycle,
     );
+  }
+
+  /// Arms acoustic beep-onset detection for the cycle just started, with a
+  /// timeout that falls back to the provisional base if no onset is heard
+  /// (e.g. beep muted, or output route the mic can't pick up).
+  void _armOnsetDetection() {
+    _awaitingOnset = true;
+    final detector = ref.read(shotDetectorProvider);
+    detector.armBeepDetection();
+    _onsetTimeoutTimer?.cancel();
+    _onsetTimeoutTimer = Timer(
+      const Duration(milliseconds: _onsetTimeoutMs),
+      () {
+        _awaitingOnset = false;
+        ref.read(shotDetectorProvider).cancelBeepDetection();
+      },
+    );
+  }
+
+  /// Rebases the current cycle's `t=0` onto the moment the beep became audible.
+  /// Already-recorded shots in this cycle are shifted by the same correction so
+  /// nothing reads inconsistently, and the elapsed display is refreshed.
+  void _onBeepOnset(int onsetMs) {
+    if (!_awaitingOnset) return;
+    final result = calibrateBase(
+      requestMs: _pendingBeepRequestedMs,
+      onsetMs: onsetMs,
+      manualOffsetMs: _snapshot.audioLatencyOffsetMs,
+      maxPlausibleLatencyMs: _maxPlausibleLatencyMs,
+    );
+    _awaitingOnset = false;
+    _onsetTimeoutTimer?.cancel();
+    if (result == null) return; // implausible — keep the provisional base
+
+    final delta = result.newBaseMs - _cycleStartClockMs;
+    if (delta == 0) return;
+    _cycleStartClockMs = result.newBaseMs;
+    final adjusted = [
+      for (final s in state.shots)
+        if (s.cycleIndex == _currentCycle)
+          s.copyWith(timeMs: math.max(0, s.timeMs - delta))
+        else
+          s,
+    ];
+    state = state.copyWith(
+      shots: adjusted,
+      elapsedMs: math.max(0, _clock.elapsedMilliseconds - _cycleStartClockMs),
+    );
+  }
+
+  /// Pure latency-calibration math (visible for testing). Given when the beep
+  /// was requested and when it was actually heard, returns the corrected base
+  /// (audible onset + manual offset), or null when the measured latency is out
+  /// of the plausible range and should be discarded.
+  static ({int newBaseMs, int latencyMs})? calibrateBase({
+    required int requestMs,
+    required int onsetMs,
+    required int manualOffsetMs,
+    required int maxPlausibleLatencyMs,
+  }) {
+    final latencyMs = onsetMs - requestMs;
+    if (latencyMs < 0 || latencyMs > maxPlausibleLatencyMs) return null;
+    return (newBaseMs: onsetMs + manualOffsetMs, latencyMs: latencyMs);
   }
 
   void _schedulePars() {
@@ -339,7 +431,7 @@ class TimerNotifier extends Notifier<TimerState> {
         return;
       }
       state = state.copyWith(
-        elapsedMs: _clock.elapsedMilliseconds - _cycleStartClockMs,
+        elapsedMs: math.max(0, _clock.elapsedMilliseconds - _cycleStartClockMs),
         micLevel: detector.lastPeak,
       );
     });
@@ -362,12 +454,17 @@ class TimerNotifier extends Notifier<TimerState> {
     _beepTimer = null;
     _tickTimer?.cancel();
     _tickTimer = null;
+    _onsetTimeoutTimer?.cancel();
+    _onsetTimeoutTimer = null;
+    _awaitingOnset = false;
     for (final t in _parTimers) {
       t.cancel();
     }
     _parTimers.clear();
     await _detectionSub?.cancel();
     _detectionSub = null;
+    await _beepOnsetSub?.cancel();
+    _beepOnsetSub = null;
     await ref.read(shotDetectorProvider).stop();
     _clock.stop();
     if (await WakelockPlus.enabled) {
@@ -379,12 +476,17 @@ class TimerNotifier extends Notifier<TimerState> {
   void _cleanup() {
     _beepTimer?.cancel();
     _tickTimer?.cancel();
+    _onsetTimeoutTimer?.cancel();
+    _onsetTimeoutTimer = null;
+    _awaitingOnset = false;
     for (final t in _parTimers) {
       t.cancel();
     }
     _parTimers.clear();
     _detectionSub?.cancel();
     _detectionSub = null;
+    _beepOnsetSub?.cancel();
+    _beepOnsetSub = null;
     _clock
       ..stop()
       ..reset();

@@ -179,6 +179,23 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: (v) =>
                   notifier.update((c) => c.copyWith(hapticOnBeep: v)),
             ),
+            _IntSlider(
+              label: context.tr('settings.beepLatencyOffset'),
+              value: s.audioLatencyOffsetMs,
+              min: AppSettings.audioLatencyOffsetMinMs,
+              max: AppSettings.audioLatencyOffsetMaxMs,
+              step: 10,
+              display: (v) => '${v}ms',
+              onChanged: (v) =>
+                  notifier.update((c) => c.copyWith(audioLatencyOffsetMs: v)),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Text(
+                context.tr('settings.beepLatencyOffsetHint'),
+                style: const TextStyle(fontSize: 12),
+              ),
+            ),
             _Section(context.tr('settings.section.shotDetection')),
             _IntSlider(
               label: context.tr('settings.sensitivity'),
