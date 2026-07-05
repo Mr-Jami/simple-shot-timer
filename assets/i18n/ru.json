@@ -2,6 +2,7 @@
   "app.title": "Simple Shot Timer",
 
   "common.cancel": "Отмена",
+  "common.ok": "ОК",
   "common.reset": "Сброс",
   "common.add": "Добавить",
   "common.delete": "Удалить",
@@ -122,6 +123,7 @@
   "settings.historyKeepMostRecent": "Хранить самые новые",
   "settings.historyStringsValue": "{count} серий",
   "settings.historyHint": "Самые старые серии удаляются автоматически при превышении лимита.",
+  "settings.editRange": "Диапазон: {range}",
 
   "micTest.title": "Проверить микрофон",
   "micTest.instruction": "Издайте звук, который нужно обнаружить. Красная линия — текущий порог обнаружения; настройте чувствительность, чтобы пики едва пересекали её.",

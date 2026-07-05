@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../i18n/app_localizations.dart';
 import '../providers/providers.dart';
 import '../providers/settings_provider.dart';
+import '../utils/slider_units.dart';
 import '../widgets/mic_level_meter.dart';
+import '../widgets/settings_slider.dart';
 
 /// Live microphone meter used to dial in sensitivity without running a string.
 /// Make noise at the source you intend to detect (clap, gunshot at the range)
@@ -132,23 +134,17 @@ class _MicTestScreenState extends ConsumerState<MicTestScreen> {
               ),
             ),
             const SizedBox(height: 32),
-            Row(
-              children: [
-                Text(context.tr('micTest.sensitivity')),
-                Expanded(
-                  child: Slider(
-                    value: settings.sensitivityPercent.toDouble(),
-                    min: 0,
-                    max: 100,
-                    divisions: 100,
-                    label: '${settings.sensitivityPercent}%',
-                    onChanged: (v) => notifier.update(
-                      (c) => c.copyWith(sensitivityPercent: v.round()),
-                    ),
-                  ),
-                ),
-                Text('${settings.sensitivityPercent}%'),
-              ],
+            SettingsIntSlider(
+              label: context.tr('micTest.sensitivity'),
+              value: settings.sensitivityPercent,
+              min: 0,
+              max: 100,
+              step: 1,
+              unit: percentUnit,
+              contentPadding: EdgeInsets.zero,
+              onChanged: (v) => notifier.update(
+                (c) => c.copyWith(sensitivityPercent: v),
+              ),
             ),
             const SizedBox(height: 16),
             Text(

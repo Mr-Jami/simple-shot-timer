@@ -2,6 +2,7 @@
   "app.title": "Simple Shot Timer",
 
   "common.cancel": "Cancelar",
+  "common.ok": "Aceptar",
   "common.reset": "Restablecer",
   "common.add": "Añadir",
   "common.delete": "Eliminar",
@@ -122,6 +123,7 @@
   "settings.historyKeepMostRecent": "Mantener las más recientes",
   "settings.historyStringsValue": "{count} series",
   "settings.historyHint": "Las series más antiguas se eliminan automáticamente al superar el límite.",
+  "settings.editRange": "Rango: {range}",
 
   "micTest.title": "Probar micrófono",
   "micTest.instruction": "Produce el ruido que quieras detectar. La línea roja es el umbral de detección actual — ajusta la sensibilidad hasta que los picos apenas la crucen.",
