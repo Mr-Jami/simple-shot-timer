@@ -20,10 +20,13 @@ final settingsServiceProvider = Provider<SettingsService>(
   (ref) => SettingsService(ref.watch(sharedPreferencesProvider)),
 );
 
+/// Overridden in `main()` with an eagerly-constructed instance. Eager so the
+/// constructor's audioplayers AudioContext (an AVAudioSession `setCategory`
+/// on iOS) is applied at startup — were it lazily created on the first beep,
+/// it would reset the measurement-mode session mid-recording (see
+/// `IosAudioSession`).
 final audioServiceProvider = Provider<AudioService>((ref) {
-  final service = AudioService();
-  ref.onDispose(service.dispose);
-  return service;
+  throw UnimplementedError('AudioService must be overridden in main()');
 });
 
 final shotDetectorProvider = Provider<ShotDetector>((ref) {
