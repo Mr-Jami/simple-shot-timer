@@ -2,6 +2,7 @@
   "app.title": "Simple Shot Timer",
 
   "common.cancel": "Cancel",
+  "common.ok": "OK",
   "common.reset": "Reset",
   "common.add": "Add",
   "common.delete": "Delete",
@@ -122,6 +123,7 @@
   "settings.historyKeepMostRecent": "Keep most recent",
   "settings.historyStringsValue": "{count} strings",
   "settings.historyHint": "Oldest strings are deleted automatically once the cap is exceeded.",
+  "settings.editRange": "Range: {range}",
 
   "micTest.title": "Test microphone",
   "micTest.instruction": "Make the noise you want to detect. The red line is the current detection threshold — adjust sensitivity until peaks just cross it.",

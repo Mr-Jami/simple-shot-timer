@@ -2,6 +2,7 @@
   "app.title": "Simple Shot Timer",
 
   "common.cancel": "Abbrechen",
+  "common.ok": "OK",
   "common.reset": "Zurücksetzen",
   "common.add": "Hinzufügen",
   "common.delete": "Löschen",
@@ -122,6 +123,7 @@
   "settings.historyKeepMostRecent": "Aktuellste behalten",
   "settings.historyStringsValue": "{count} Durchgänge",
   "settings.historyHint": "Ältere Durchgänge werden automatisch gelöscht, sobald das Limit überschritten wird.",
+  "settings.editRange": "Bereich: {range}",
 
   "micTest.title": "Mikrofon testen",
   "micTest.instruction": "Erzeuge das Geräusch, das erkannt werden soll. Die rote Linie zeigt die aktuelle Erkennungsschwelle – Empfindlichkeit so anpassen, dass die Spitzen sie gerade überschreiten.",

@@ -2,6 +2,7 @@
   "app.title": "Simple Shot Timer",
 
   "common.cancel": "Annuler",
+  "common.ok": "OK",
   "common.reset": "Réinitialiser",
   "common.add": "Ajouter",
   "common.delete": "Supprimer",
@@ -122,6 +123,7 @@
   "settings.historyKeepMostRecent": "Garder les plus récents",
   "settings.historyStringsValue": "{count} séries",
   "settings.historyHint": "Les séries les plus anciennes sont supprimées automatiquement une fois la limite dépassée.",
+  "settings.editRange": "Plage : {range}",
 
   "micTest.title": "Tester le microphone",
   "micTest.instruction": "Produisez le bruit à détecter. La ligne rouge représente le seuil de détection actuel — ajustez la sensibilité jusqu'à ce que les pics la franchissent à peine.",

@@ -78,13 +78,5 @@
   "76": "Shot Detection (PCM Mic Stream, Amplitude Peak Detection)",
   "77": "Riverpod State Management (single TimerNotifier owns Stopwatch, beeps, mic subscription)",
   "78": "Monochrome Material 3 Theme (surfaceTint transparent to kill elevation hue bloom)",
-  "79": "Semantic Versioning via Conventional Commits + release-please Release Flow",
-  "80": "settings_screen.dart",
-  "81": "main.dart",
-  "82": "enums.dart",
-  "83": "providers.dart",
-  "84": "databaseProvider",
-  "85": "List",
-  "86": "slider_math_test.dart",
-  "87": "slider_units_test.dart"
+  "79": "Semantic Versioning via Conventional Commits + release-please Release Flow"
 }

@@ -215,8 +215,8 @@
     "semantic_hash": "c69ac517f0e8ce0e7d64633ea4577d42"
   },
   "lib/screens/settings_screen.dart": {
-    "mtime": 1783282319.5186174,
-    "ast_hash": "7b1f182c53ed20ad34f33569189de418",
+    "mtime": 1783281531.6538596,
+    "ast_hash": "0aa7386fe7d9159260b28d5577a393cb",
     "semantic_hash": ""
   },
   "lib/services/audio_service.dart": {
@@ -640,13 +640,13 @@
     "semantic_hash": ""
   },
   "lib/utils/slider_units.dart": {
-    "mtime": 1783282288.5591283,
-    "ast_hash": "1f8937709088d56febb1cc8e0350ee50",
+    "mtime": 1783281372.1075902,
+    "ast_hash": "716a94b13053e5cd5205699dc09473b2",
     "semantic_hash": ""
   },
   "lib/widgets/settings_slider.dart": {
-    "mtime": 1783282312.548719,
-    "ast_hash": "132e0b2e5f7e8060bc4254286c2f1823",
+    "mtime": 1783281394.88387,
+    "ast_hash": "4b4dcf0e8b2dc7c4501ff1a8c983ebc6",
     "semantic_hash": ""
   },
   "test/ios_audio_session_test.dart": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "test/slider_math_test.dart": {
-    "mtime": 1783282321.738687,
-    "ast_hash": "0054f9080b6e308f9975f87572e1e3c4",
+    "mtime": 1783281557.7203474,
+    "ast_hash": "5a11ab4eeed25992ec441c0ec56d845b",
     "semantic_hash": ""
   },
   "test/slider_units_test.dart": {

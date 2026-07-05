@@ -6,11 +6,13 @@ import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../models/enums.dart';
 import '../providers/settings_provider.dart';
+import '../utils/slider_units.dart';
+import '../widgets/settings_slider.dart';
 import 'auto_configure_screen.dart';
 import 'mic_test_screen.dart';
 
-String _formatHz(int hz) =>
-    hz >= 1000 ? '${(hz / 1000).toStringAsFixed(1)} kHz' : '$hz Hz';
+/// Duration sliders magnetically settle on half-second multiples (issue #14).
+const _kDurationMagnetMs = 500;
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -74,34 +76,40 @@ class SettingsScreen extends ConsumerWidget {
                   notifier.update((c) => c.copyWith(delayMode: m)),
             ),
             if (s.delayMode == DelayMode.fixed)
-              _SecondsSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.fixedDelay'),
-                valueMs: s.fixedDelayMs,
-                minMs: 0,
-                maxMs: 10000,
-                stepMs: 100,
+                value: s.fixedDelayMs,
+                min: 0,
+                max: 10000,
+                step: 100,
+                unit: secondsFromMsUnit,
+                magnet: _kDurationMagnetMs,
                 onChanged: (v) =>
                     notifier.update((c) => c.copyWith(fixedDelayMs: v)),
               ),
             if (s.delayMode == DelayMode.random) ...[
-              _SecondsSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.randomMin'),
-                valueMs: s.randomDelayMinMs,
-                minMs: 0,
-                maxMs: 10000,
-                stepMs: 100,
+                value: s.randomDelayMinMs,
+                min: 0,
+                max: 10000,
+                step: 100,
+                unit: secondsFromMsUnit,
+                magnet: _kDurationMagnetMs,
                 onChanged: (v) {
                   final max = v > s.randomDelayMaxMs ? v : s.randomDelayMaxMs;
                   notifier.update((c) =>
                       c.copyWith(randomDelayMinMs: v, randomDelayMaxMs: max));
                 },
               ),
-              _SecondsSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.randomMax'),
-                valueMs: s.randomDelayMaxMs,
-                minMs: 0,
-                maxMs: 10000,
-                stepMs: 100,
+                value: s.randomDelayMaxMs,
+                min: 0,
+                max: 10000,
+                step: 100,
+                unit: secondsFromMsUnit,
+                magnet: _kDurationMagnetMs,
                 onChanged: (v) {
                   final min = v < s.randomDelayMinMs ? v : s.randomDelayMinMs;
                   notifier.update((c) =>
@@ -111,21 +119,24 @@ class SettingsScreen extends ConsumerWidget {
             ],
             if (s.drillMode == DrillMode.par) ...[
               _Section(context.tr('settings.section.parTime')),
-              _SecondsSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.parDuration'),
-                valueMs: s.parDurationMs,
-                minMs: 100,
-                maxMs: 30000,
-                stepMs: 100,
+                value: s.parDurationMs,
+                min: 100,
+                max: 30000,
+                step: 100,
+                unit: secondsFromMsUnit,
+                magnet: _kDurationMagnetMs,
                 onChanged: (v) =>
                     notifier.update((c) => c.copyWith(parDurationMs: v)),
               ),
-              _IntSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.parRepeatCount'),
                 value: s.parRepeatCount,
                 min: AppSettings.parRepeatMin,
                 max: AppSettings.parRepeatMax,
                 step: 1,
+                unit: countUnit,
                 display: (v) => v == 1
                     ? context.tr('settings.parBeepSingle')
                     : context.tr('settings.parBeepMany', args: {'count': v}),
@@ -133,37 +144,39 @@ class SettingsScreen extends ConsumerWidget {
                     notifier.update((c) => c.copyWith(parRepeatCount: v)),
               ),
               if (s.parRepeatCount > 1)
-                _SecondsSlider(
+                SettingsIntSlider(
                   label: context.tr('settings.parInterval'),
-                  valueMs: s.parIntervalMs,
-                  minMs: 0,
-                  maxMs: 30000,
-                  stepMs: 100,
+                  value: s.parIntervalMs,
+                  min: 0,
+                  max: 30000,
+                  step: 100,
+                  unit: secondsFromMsUnit,
+                  magnet: _kDurationMagnetMs,
                   onChanged: (v) =>
                       notifier.update((c) => c.copyWith(parIntervalMs: v)),
                 ),
             ],
             if (s.drillMode == DrillMode.stage) ...[
               _Section(context.tr('settings.section.stage')),
-              _IntSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.stageDuration'),
                 value: s.stageDurationMs,
                 min: AppSettings.stageDurationMinMs,
                 max: AppSettings.stageDurationMaxMs,
                 step: 1000,
-                display: (v) => '${(v / 1000).round()}s',
+                unit: wholeSecondsFromMsUnit,
                 onChanged: (v) =>
                     notifier.update((c) => c.copyWith(stageDurationMs: v)),
               ),
             ],
             _Section(context.tr('settings.section.beep')),
-            _DoubleSlider(
+            SettingsDoubleSlider(
               label: context.tr('settings.volume'),
               value: s.beepVolume,
               min: 0,
               max: 1,
-              divisions: 20,
-              display: (v) => '${(v * 100).round()}%',
+              step: 0.05,
+              unit: fractionPercentUnit,
               onChanged: (v) =>
                   notifier.update((c) => c.copyWith(beepVolume: v)),
             ),
@@ -179,13 +192,13 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: (v) =>
                   notifier.update((c) => c.copyWith(hapticOnBeep: v)),
             ),
-            _IntSlider(
+            SettingsIntSlider(
               label: context.tr('settings.beepLatencyOffset'),
               value: s.audioLatencyOffsetMs,
               min: AppSettings.audioLatencyOffsetMinMs,
               max: AppSettings.audioLatencyOffsetMaxMs,
               step: 10,
-              display: (v) => '${v}ms',
+              unit: millisecondsUnit,
               onChanged: (v) =>
                   notifier.update((c) => c.copyWith(audioLatencyOffsetMs: v)),
             ),
@@ -197,23 +210,23 @@ class SettingsScreen extends ConsumerWidget {
               ),
             ),
             _Section(context.tr('settings.section.shotDetection')),
-            _IntSlider(
+            SettingsIntSlider(
               label: context.tr('settings.sensitivity'),
               value: s.sensitivityPercent,
               min: 0,
               max: 100,
               step: 1,
-              display: (v) => '$v%',
+              unit: percentUnit,
               onChanged: (v) =>
                   notifier.update((c) => c.copyWith(sensitivityPercent: v)),
             ),
-            _IntSlider(
+            SettingsIntSlider(
               label: context.tr('settings.echoFilter'),
               value: s.echoFilterMs,
               min: 20,
               max: 300,
               step: 10,
-              display: (v) => '${v}ms',
+              unit: millisecondsUnit,
               onChanged: (v) =>
                   notifier.update((c) => c.copyWith(echoFilterMs: v)),
             ),
@@ -225,13 +238,13 @@ class SettingsScreen extends ConsumerWidget {
                   notifier.update((c) => c.copyWith(bandFilterEnabled: v)),
             ),
             if (s.bandFilterEnabled) ...[
-              _IntSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.bandLow'),
                 value: s.bandLowHz,
                 min: AppSettings.bandLowMinHz,
                 max: AppSettings.bandLowMaxHz,
                 step: 50,
-                display: _formatHz,
+                unit: hertzUnit,
                 onChanged: (v) {
                   // Keep low strictly below high, with at least 500 Hz of
                   // separation so the bandpass actually has a passband.
@@ -245,13 +258,13 @@ class SettingsScreen extends ConsumerWidget {
                       ));
                 },
               ),
-              _IntSlider(
+              SettingsIntSlider(
                 label: context.tr('settings.bandHigh'),
                 value: s.bandHighHz,
                 min: AppSettings.bandHighMinHz,
                 max: AppSettings.bandHighMaxHz,
                 step: 100,
-                display: _formatHz,
+                unit: hertzUnit,
                 onChanged: (v) {
                   final low = v - 500 < s.bandLowHz ? v - 500 : s.bandLowHz;
                   notifier.update((c) => c.copyWith(
@@ -331,12 +344,13 @@ class SettingsScreen extends ConsumerWidget {
               ),
             ),
             _Section(context.tr('settings.section.history')),
-            _IntSlider(
+            SettingsIntSlider(
               label: context.tr('settings.historyKeepMostRecent'),
               value: s.historyCap,
               min: AppSettings.historyCapMin,
               max: AppSettings.historyCapMax,
               step: 50,
+              unit: countUnit,
               display: (v) => context
                   .tr('settings.historyStringsValue', args: {'count': v}),
               onChanged: (v) =>
@@ -439,115 +453,3 @@ class _EnumPicker<T extends Enum> extends StatelessWidget {
   }
 }
 
-class _IntSlider extends StatelessWidget {
-  const _IntSlider({
-    required this.label,
-    required this.value,
-    required this.min,
-    required this.max,
-    required this.step,
-    required this.display,
-    required this.onChanged,
-  });
-
-  final String label;
-  final int value;
-  final int min;
-  final int max;
-  final int step;
-  final String Function(int) display;
-  final ValueChanged<int> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final divisions = ((max - min) / step).round();
-    return ListTile(
-      title: Row(
-        children: [
-          Expanded(child: Text(label)),
-          Text(display(value)),
-        ],
-      ),
-      subtitle: Slider(
-        value: value.toDouble().clamp(min.toDouble(), max.toDouble()),
-        min: min.toDouble(),
-        max: max.toDouble(),
-        divisions: divisions <= 0 ? null : divisions,
-        onChanged: (v) {
-          final snapped = (v / step).round() * step;
-          onChanged(snapped.clamp(min, max));
-        },
-      ),
-    );
-  }
-}
-
-class _SecondsSlider extends StatelessWidget {
-  const _SecondsSlider({
-    required this.label,
-    required this.valueMs,
-    required this.minMs,
-    required this.maxMs,
-    required this.stepMs,
-    required this.onChanged,
-  });
-
-  final String label;
-  final int valueMs;
-  final int minMs;
-  final int maxMs;
-  final int stepMs;
-  final ValueChanged<int> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return _IntSlider(
-      label: label,
-      value: valueMs,
-      min: minMs,
-      max: maxMs,
-      step: stepMs,
-      display: (v) => '${(v / 1000).toStringAsFixed(1)}s',
-      onChanged: onChanged,
-    );
-  }
-}
-
-class _DoubleSlider extends StatelessWidget {
-  const _DoubleSlider({
-    required this.label,
-    required this.value,
-    required this.min,
-    required this.max,
-    required this.divisions,
-    required this.display,
-    required this.onChanged,
-  });
-
-  final String label;
-  final double value;
-  final double min;
-  final double max;
-  final int divisions;
-  final String Function(double) display;
-  final ValueChanged<double> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Row(
-        children: [
-          Expanded(child: Text(label)),
-          Text(display(value)),
-        ],
-      ),
-      subtitle: Slider(
-        value: value.clamp(min, max),
-        min: min,
-        max: max,
-        divisions: divisions,
-        onChanged: onChanged,
-      ),
-    );
-  }
-}
