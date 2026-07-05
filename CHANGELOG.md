@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)
+
+
+### Features
+
+* **timer:** anchor t=0 to the audible beep, not the playback request ([#19](https://github.com/Mr-Jami/simple-shot-timer/issues/19)) ([eaf6a4f](https://github.com/Mr-Jami/simple-shot-timer/commit/eaf6a4f1f70b4159a7caaa492ea7b237024835c7))
+
 ## [1.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02)
 
 
