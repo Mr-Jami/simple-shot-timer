@@ -229,6 +229,13 @@ Configure these under *Settings → Secrets and variables → Actions*:
   Settings).
 - **`VIBRATE`** — optional haptic feedback on beep.
 
+## Maintainer
+
+Built and maintained by [Tareq Jami](https://tareqjami.de) of
+[Jami IT](https://jami-it.de) — software engineering and AI consulting,
+Hamburg, Germany. The app ships under `cc.jami.simpleshottimer` on Google
+Play; see [JOIN_TESTING.md](JOIN_TESTING.md) for the closed test.
+
 ## License
 
 See [LICENSE](LICENSE).
