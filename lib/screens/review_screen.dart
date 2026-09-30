@@ -118,16 +118,7 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
         onDismissed: (_) => _deleteShot(i),
         child: ListTile(
           dense: true,
-          leading: CircleAvatar(
-            radius: 14,
-            backgroundColor: shot.manual
-                ? theme.colorScheme.tertiaryContainer
-                : theme.colorScheme.primaryContainer,
-            child: Text(
-              '$cycleOrdinal',
-              style: const TextStyle(fontSize: 12),
-            ),
-          ),
+          leading: _ShotBadge(ordinal: cycleOrdinal, manual: shot.manual),
           title: Text(
             '${formatSeconds(shot.timeMs)}s',
             style: const TextStyle(
@@ -142,7 +133,6 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
                     'seconds': (split / 1000).toStringAsFixed(2),
                   }),
           ),
-          trailing: shot.manual ? const Icon(Icons.edit, size: 16) : null,
         ),
       ));
     }
@@ -349,6 +339,33 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
           else
             ..._buildShotRows(context, theme, s),
         ],
+      ),
+    );
+  }
+}
+
+/// Shot number in a circle. Detected shots are filled; a shot the user added
+/// by hand is outlined, which is the whole "manual" marker.
+class _ShotBadge extends StatelessWidget {
+  const _ShotBadge({required this.ordinal, required this.manual});
+  final int ordinal;
+  final bool manual;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      width: 28,
+      height: 28,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: manual ? null : scheme.surfaceContainerHighest,
+        border: manual ? Border.all(color: scheme.outline) : null,
+      ),
+      child: Text(
+        '$ordinal',
+        style: TextStyle(fontSize: 12, color: scheme.onSurface),
       ),
     );
   }
