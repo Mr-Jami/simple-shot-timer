@@ -76,9 +76,11 @@ jobs:
 
       - name: Prepare Play Store release notes
         # Pull the body of the GitHub Release for the current tag (or the
-        # latest release when triggered manually) into the whatsnew file the
-        # upload action reads. Play Store caps each locale at 500 chars, so we
-        # truncate. Falls back to a generic message if no release exists yet.
+        # latest release when triggered manually) and turn it into plain-text
+        # "What's new" notes: user-facing sections only, no links, commit
+        # hashes or scopes, capped at Play Store's 500 chars per locale. The
+        # GitHub Release itself is left untouched. Falls back to a generic
+        # message if no release exists yet.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -89,13 +91,9 @@ jobs:
           else
             NOTES=$(gh release view --json body --jq .body 2>/dev/null || echo "")
           fi
-          if [ -z "$NOTES" ]; then
-            NOTES="Bug fixes and improvements."
-          fi
-          # Strip markdown heading markers (#, ##, ###...) so '### Features'
-          # renders as 'Features' in Play Store, which doesn't parse markdown.
-          NOTES=$(printf '%s' "$NOTES" | sed -E 's/^#{1,6}[[:space:]]+//')
-          printf '%s' "$NOTES" | head -c 500 > distribution/whatsnew/whatsnew-en-US
+          printf '%s' "$NOTES" \
+            | python3 .github/scripts/play_release_notes.py --max-chars 500 \
+            > distribution/whatsnew/whatsnew-en-US
           echo "--- whatsnew-en-US ---"
           cat distribution/whatsnew/whatsnew-en-US
 
