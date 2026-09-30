@@ -61,8 +61,10 @@ class HomeScreen extends ConsumerWidget {
             IconButton(
               tooltip: context.tr('home.drillsTooltip'),
               icon: const Icon(Icons.bookmarks_outlined),
-              // Settings are snapshotted when a string starts, so switching
-              // drills mid-run would only make the countdown chips lie.
+              // The timer snapshots settings at start, so a mid-run pick
+              // wouldn't touch the running string, only make the countdown
+              // chips lie. Settings stays editable mid-run as it always was;
+              // this just keeps the one-tap path from inviting it.
               onPressed:
                   inProgress ? null : () => _showDrillPicker(context, ref),
             ),

@@ -61,6 +61,19 @@ void main() {
       );
     });
 
+    test('a number too large for a double is not fatal', () {
+      // 1e400 decodes as infinity; toInt() on that throws, and decodeList
+      // must not let a single stored value take the app down at startup.
+      final decoded = CustomDrill.decodeList(
+        '[{"id": 1, "name": "Huge", "par_duration_ms": 1e400}]',
+      );
+      expect(decoded.single.name, 'Huge');
+      expect(
+        decoded.single.config.parDurationMs,
+        DrillConfig.defaults.parDurationMs,
+      );
+    });
+
     test('normalizes names on decode', () {
       final decoded =
           CustomDrill.decodeList('[{"id": 1, "name": "  Bill   Drill \\n"}]');

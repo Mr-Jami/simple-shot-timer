@@ -45,7 +45,9 @@ class DrillConfig {
     final d = defaults;
     int readInt(String key, int fallback) {
       final v = map[key];
-      return v is num ? v.toInt() : fallback;
+      // A JSON number too large for a double decodes as infinity, and
+      // toInt() throws on that; fall back rather than fail at startup.
+      return v is num && v.isFinite ? v.toInt() : fallback;
     }
 
     return DrillConfig(

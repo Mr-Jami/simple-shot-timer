@@ -165,5 +165,14 @@ void main() {
       final c = DrillConfig.fromMap(const {'par_duration_ms': 'soon'});
       expect(c.parDurationMs, DrillConfig.defaults.parDurationMs);
     });
+
+    test('non-finite numbers fall back instead of throwing', () {
+      final c = DrillConfig.fromMap(const {
+        'par_duration_ms': double.infinity,
+        'stage_duration_ms': double.nan,
+      });
+      expect(c.parDurationMs, DrillConfig.defaults.parDurationMs);
+      expect(c.stageDurationMs, DrillConfig.defaults.stageDurationMs);
+    });
   });
 }
