@@ -5,12 +5,13 @@ import '../i18n/app_localizations.dart';
 import '../models/custom_drill.dart';
 import '../providers/custom_drills_provider.dart';
 import '../widgets/drill_tile.dart';
+import '../widgets/tab_header.dart';
 import 'custom_drill_flows.dart';
 
 enum _DrillAction { apply, rename, overwrite, delete }
 
-/// Manage saved custom drills (issue #24): apply, rename, overwrite with the
-/// current settings, delete. Reached from Settings and the home quick pick.
+/// The Drills tab (issue #24): tap a saved drill to apply it; rename,
+/// overwrite with the current settings or delete it from its menu.
 class CustomDrillsScreen extends ConsumerWidget {
   const CustomDrillsScreen({super.key});
 
@@ -18,37 +19,41 @@ class CustomDrillsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final drills = ref.watch(customDrillsProvider);
     final activeId = ref.watch(activeDrillProvider.select((d) => d?.id));
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.tr('drills.manageTitle')),
-        actions: [
-          IconButton(
-            tooltip: context.tr('drills.saveCurrent'),
-            icon: const Icon(Icons.bookmark_add_outlined),
-            onPressed: () => saveCurrentDrill(context, ref),
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          TabHeader(
+            title: context.tr('drills.manageTitle'),
+            actions: [
+              IconButton(
+                tooltip: context.tr('drills.saveCurrent'),
+                icon: const Icon(Icons.bookmark_add_outlined),
+                onPressed: () => saveCurrentDrill(context, ref),
+              ),
+            ],
+          ),
+          Expanded(
+            child: drills.isEmpty
+                ? _EmptyState(onSave: () => saveCurrentDrill(context, ref))
+                : ListView.separated(
+                    itemCount: drills.length,
+                    separatorBuilder: (_, __) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      final d = drills[index];
+                      return DrillTile(
+                        drill: d,
+                        active: d.id == activeId,
+                        onTap: () => applyDrill(context, ref, d),
+                        trailing: PopupMenuButton<_DrillAction>(
+                          onSelected: (action) => _run(context, ref, d, action),
+                          itemBuilder: (_) => _menuItems(context),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
-      ),
-      body: SafeArea(
-        top: false,
-        child: drills.isEmpty
-            ? _EmptyState(onSave: () => saveCurrentDrill(context, ref))
-            : ListView.separated(
-                itemCount: drills.length,
-                separatorBuilder: (_, __) => const Divider(height: 1),
-                itemBuilder: (context, index) {
-                  final d = drills[index];
-                  return DrillTile(
-                    drill: d,
-                    active: d.id == activeId,
-                    onTap: () => applyDrill(context, ref, d),
-                    trailing: PopupMenuButton<_DrillAction>(
-                      onSelected: (action) => _run(context, ref, d, action),
-                      itemBuilder: (_) => _menuItems(context),
-                    ),
-                  );
-                },
-              ),
       ),
     );
   }
