@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/app_settings.dart';
+import '../models/custom_drill.dart';
 import '../models/enums.dart';
 
 class SettingsService {
@@ -30,6 +31,10 @@ class SettingsService {
   static const _kTheme = 'theme_mode';
   static const _kHistoryCap = 'history_cap';
   static const _kLocale = 'locale_code';
+
+  /// Saved custom drills (issue #24), one JSON list next to the settings
+  /// keys. Not part of [AppSettings]; survives [reset].
+  static const _kCustomDrills = 'custom_drills';
 
   AppSettings load() {
     const defaults = AppSettings();
@@ -96,7 +101,19 @@ class SettingsService {
     ]);
   }
 
-  Future<void> reset() => _prefs.clear();
+  List<CustomDrill> loadDrills() =>
+      CustomDrill.decodeList(_prefs.getString(_kCustomDrills));
+
+  Future<void> saveDrills(List<CustomDrill> drills) =>
+      _prefs.setString(_kCustomDrills, CustomDrill.encodeList(drills));
+
+  /// Factory reset: wipes every preference except the custom drills, which
+  /// are user-authored content like saved strings and survive a reset.
+  Future<void> reset() async {
+    for (final key in _prefs.getKeys().toList()) {
+      if (key != _kCustomDrills) await _prefs.remove(key);
+    }
+  }
 
   T _readEnum<T extends Enum>(String key, List<T> values, T fallback) {
     final raw = _prefs.getString(key);

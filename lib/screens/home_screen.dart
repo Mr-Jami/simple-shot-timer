@@ -3,14 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
+import '../models/drill_config.dart';
 import '../models/enums.dart';
 import '../models/timer_state.dart';
+import '../providers/custom_drills_provider.dart';
 import '../providers/history_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/timer_provider.dart';
 import '../utils/time_format.dart';
 import '../widgets/big_time_display.dart';
+import '../widgets/drill_picker_sheet.dart';
 import '../widgets/flash_overlay.dart';
+import 'custom_drill_flows.dart';
+import 'custom_drills_screen.dart';
 import 'history_screen.dart';
 import 'review_screen.dart';
 import 'settings_screen.dart';
@@ -23,6 +28,8 @@ class HomeScreen extends ConsumerWidget {
     final state = ref.watch(timerProvider);
     final visualFlash =
         ref.watch(settingsProvider.select((s) => s.visualFlash));
+    final inProgress = state.phase == TimerPhase.running ||
+        state.phase == TimerPhase.countdown;
 
     ref.listen(timerProvider, (prev, next) async {
       if (prev?.phase != TimerPhase.finished &&
@@ -51,6 +58,14 @@ class HomeScreen extends ConsumerWidget {
           ),
           title: Text(context.tr('app.title')),
           actions: [
+            IconButton(
+              tooltip: context.tr('home.drillsTooltip'),
+              icon: const Icon(Icons.bookmarks_outlined),
+              // Settings are snapshotted when a string starts, so switching
+              // drills mid-run would only make the countdown chips lie.
+              onPressed:
+                  inProgress ? null : () => _showDrillPicker(context, ref),
+            ),
             IconButton(
               tooltip: context.tr('home.historyTooltip'),
               icon: const Icon(Icons.history),
@@ -82,6 +97,24 @@ class HomeScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Opens the quick-pick sheet with a snapshot of the saved drills (issue
+/// #24). The sheet closes itself before invoking a callback, so each one
+/// runs on this screen's context.
+void _showDrillPicker(BuildContext context, WidgetRef ref) {
+  showModalBottomSheet<void>(
+    context: context,
+    builder: (_) => DrillPickerSheet(
+      drills: ref.read(customDrillsProvider),
+      activeId: ref.read(activeDrillProvider)?.id,
+      onApply: (drill) => applyDrill(context, ref, drill),
+      onManage: () => Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => const CustomDrillsScreen()),
+      ),
+      onSaveCurrent: () => saveCurrentDrill(context, ref),
+    ),
+  );
 }
 
 /// The launcher PNG is monochrome with a solid black background. In dark
@@ -120,11 +153,17 @@ class _TimerArea extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
+    final activeDrillName =
+        ref.watch(activeDrillProvider.select((d) => d?.name));
     switch (state.phase) {
       case TimerPhase.idle:
-        return _IdleView(settings: settings);
+        return _IdleView(settings: settings, activeDrillName: activeDrillName);
       case TimerPhase.countdown:
-        return _CountdownView(state: state, settings: settings);
+        return _CountdownView(
+          state: state,
+          settings: settings,
+          activeDrillName: activeDrillName,
+        );
       case TimerPhase.running:
         return _RunningView(state: state);
       case TimerPhase.finished:
@@ -134,8 +173,9 @@ class _TimerArea extends ConsumerWidget {
 }
 
 class _IdleView extends StatelessWidget {
-  const _IdleView({required this.settings});
+  const _IdleView({required this.settings, required this.activeDrillName});
   final AppSettings settings;
+  final String? activeDrillName;
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +196,7 @@ class _IdleView extends StatelessWidget {
             style: theme.textTheme.bodyLarge,
           ),
           const SizedBox(height: 24),
-          _SettingsSummary(settings: settings),
+          _SettingsSummary(settings: settings, activeDrillName: activeDrillName),
         ],
       ),
     );
@@ -164,9 +204,14 @@ class _IdleView extends StatelessWidget {
 }
 
 class _CountdownView extends StatelessWidget {
-  const _CountdownView({required this.state, required this.settings});
+  const _CountdownView({
+    required this.state,
+    required this.settings,
+    required this.activeDrillName,
+  });
   final TimerState state;
   final AppSettings settings;
+  final String? activeDrillName;
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +219,7 @@ class _CountdownView extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 16),
-        _SettingsSummary(settings: settings),
+        _SettingsSummary(settings: settings, activeDrillName: activeDrillName),
         Expanded(
           child: Center(
             child: Column(
@@ -203,25 +248,22 @@ class _CountdownView extends StatelessWidget {
 }
 
 class _SettingsSummary extends StatelessWidget {
-  const _SettingsSummary({required this.settings});
+  const _SettingsSummary({required this.settings, this.activeDrillName});
   final AppSettings settings;
+
+  /// Name of the saved custom drill the current settings match, if any.
+  final String? activeDrillName;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final chips = <String>[
-      context.tr('home.modeChip',
-          args: {'mode': settings.drillMode.labelFor(context)}),
-      _delayLabel(context, settings),
-      if (settings.drillMode == DrillMode.par) _parLabel(context, settings),
-      if (settings.drillMode == DrillMode.stage)
-        _stageLabel(context, settings),
-    ];
+    final chips = DrillConfig.fromSettings(settings).chipLabels(context);
     return Wrap(
       alignment: WrapAlignment.center,
       spacing: 8,
       runSpacing: 8,
       children: [
+        if (activeDrillName != null) _ActiveDrillChip(name: activeDrillName!),
         for (final c in chips)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -239,31 +281,48 @@ class _SettingsSummary extends StatelessWidget {
       ],
     );
   }
+}
 
-  static String _delayLabel(BuildContext context, AppSettings s) {
-    switch (s.delayMode) {
-      case DelayMode.instant:
-        return context.tr('home.delayInstant');
-      case DelayMode.fixed:
-        return context.tr('home.delayFixed',
-            args: {'seconds': (s.fixedDelayMs / 1000).toStringAsFixed(1)});
-      case DelayMode.random:
-        return context.tr('home.delayRandom');
-    }
-  }
+/// Emphasised pill naming the loaded custom drill (issue #24), so the user
+/// sees at a glance which saved drill the chips next to it describe. Same
+/// base as the sibling chips, lifted with the primary colour: that role is
+/// what the high-contrast themes in `app.dart` override, container roles are
+/// not.
+class _ActiveDrillChip extends StatelessWidget {
+  const _ActiveDrillChip({required this.name});
+  final String name;
 
-  static String _parLabel(BuildContext context, AppSettings s) {
-    final dur = (s.parDurationMs / 1000).toStringAsFixed(1);
-    final count = s.parRepeatCount;
-    return count == 1
-        ? context.tr('home.parSingle', args: {'duration': dur})
-        : context
-            .tr('home.parRepeated', args: {'duration': dur, 'count': count});
-  }
-
-  static String _stageLabel(BuildContext context, AppSettings s) {
-    return context.tr('home.stage',
-        args: {'duration': (s.stageDurationMs / 1000).round()});
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final color = theme.colorScheme.primary;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest,
+        border: Border.all(color: color),
+        borderRadius: BorderRadius.circular(999),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.bookmark, size: 14, color: color),
+          const SizedBox(width: 4),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 200),
+            child: Text(
+              name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: color,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
