@@ -5,14 +5,28 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../models/enums.dart';
+import '../providers/custom_drills_provider.dart';
 import '../providers/settings_provider.dart';
 import '../utils/slider_units.dart';
 import '../widgets/settings_slider.dart';
 import 'auto_configure_screen.dart';
+import 'custom_drill_flows.dart';
+import 'custom_drills_screen.dart';
 import 'mic_test_screen.dart';
 
 /// Duration sliders magnetically settle on half-second multiples (issue #14).
 const _kDurationMagnetMs = 500;
+
+/// Subtitle of the "Saved drills" tile: "No drills saved yet", "3 saved", or
+/// "Active: Bill Drill - 3 saved" when the current settings match a drill.
+String _drillsSubtitle(BuildContext context, int count, String? activeName) {
+  if (count == 0) return context.tr('drills.noneYet');
+  return [
+    if (activeName != null)
+      context.tr('drills.active', args: {'name': activeName}),
+    context.tr('drills.count', args: {'count': count}),
+  ].join(' · ');
+}
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -21,6 +35,10 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final s = ref.watch(settingsProvider);
     final notifier = ref.read(settingsProvider.notifier);
+    final drillCount =
+        ref.watch(customDrillsProvider.select((drills) => drills.length));
+    final activeDrillName =
+        ref.watch(activeDrillProvider.select((d) => d?.name));
 
     return Scaffold(
       appBar: AppBar(
@@ -59,6 +77,23 @@ class SettingsScreen extends ConsumerWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 8),
           children: [
+            _Section(context.tr('settings.section.customDrills')),
+            ListTile(
+              leading: const Icon(Icons.bookmark_add_outlined),
+              title: Text(context.tr('drills.saveCurrent')),
+              subtitle: Text(context.tr('drills.saveCurrentHint')),
+              onTap: () => saveCurrentDrill(context, ref),
+            ),
+            ListTile(
+              leading: const Icon(Icons.bookmarks_outlined),
+              title: Text(context.tr('drills.manageTitle')),
+              subtitle:
+                  Text(_drillsSubtitle(context, drillCount, activeDrillName)),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const CustomDrillsScreen()),
+              ),
+            ),
             _Section(context.tr('settings.section.drillMode')),
             _EnumPicker<DrillMode>(
               values: DrillMode.values,
