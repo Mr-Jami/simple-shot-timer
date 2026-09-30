@@ -195,5 +195,6 @@
   "micTest.tip": "Consejo: los disparos saturan el micrófono (~95–100 %). Las palmadas en interior suelen quedar entre 5–30 %. Elige una sensibilidad que sitúe la línea roja justo por debajo del pico más bajo que quieras capturar, muy por encima del sonido más fuerte que quieras ignorar.",
 
   "errors.micPermissionDenied": "Permiso de micrófono denegado",
-  "errors.saveFailed": "No se pudo guardar la serie. Añade un disparo para reintentar."
+  "errors.saveFailed": "No se pudo guardar la serie. Añade un disparo para reintentar.",
+  "errors.micStartFailed": "No se pudo iniciar el micrófono."
 }

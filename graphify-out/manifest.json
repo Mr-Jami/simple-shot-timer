@@ -5,7 +5,7 @@
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
-    "mtime": 1778852221.9483223,
+    "mtime": 1790812044.8327725,
     "ast_hash": "5750135a653193ad7b868e6ffe3b8ada",
     "semantic_hash": "5750135a653193ad7b868e6ffe3b8ada"
   },
@@ -35,28 +35,28 @@
     "semantic_hash": "f276a44edd917afd836899357fdae60e"
   },
   "assets/i18n/de.json": {
-    "mtime": 1790811024.4585333,
-    "ast_hash": "013893dad08af8082f6e69c8e475b90d",
+    "mtime": 1790812199.0522711,
+    "ast_hash": "903c9d1c34a0e18e0edc7d1f8147c8d5",
     "semantic_hash": ""
   },
   "assets/i18n/en.json": {
-    "mtime": 1790811024.4565787,
-    "ast_hash": "d3886de4451066ffae60c006cd21a8db",
+    "mtime": 1790812199.0512583,
+    "ast_hash": "cf336d0486f61b3c85eca0b32c88bf9b",
     "semantic_hash": ""
   },
   "assets/i18n/es.json": {
-    "mtime": 1790811024.4600601,
-    "ast_hash": "30cb85c24592ac5ec369f24eeaba915b",
+    "mtime": 1790812199.0527751,
+    "ast_hash": "294ef9c4613c17c0cd6309fe84d12959",
     "semantic_hash": ""
   },
   "assets/i18n/fr.json": {
-    "mtime": 1790811024.461067,
-    "ast_hash": "ec31f61999d1833b4d62b246363b2144",
+    "mtime": 1790812199.0537808,
+    "ast_hash": "a22f99e58d6a0f2210ae4e353980d993",
     "semantic_hash": ""
   },
   "assets/i18n/ru.json": {
-    "mtime": 1790811024.462729,
-    "ast_hash": "deb1d354af4514cb81547f5ce2e73d75",
+    "mtime": 1790812199.0555966,
+    "ast_hash": "0a86302e7a2f457db307e471cd1e4f58",
     "semantic_hash": ""
   },
   "ios/Flutter/ephemeral/flutter_lldb_helper.py": {
@@ -185,8 +185,8 @@
     "semantic_hash": "9a063a3cbf4d91b92ffbcbb211fb8678"
   },
   "lib/providers/timer_provider.dart": {
-    "mtime": 1790811300.7584934,
-    "ast_hash": "5047ac66b39d134bace9efa00ff69df7",
+    "mtime": 1790812198.4596052,
+    "ast_hash": "2ef3074d89c7cf863825cab05f1c9230",
     "semantic_hash": ""
   },
   "lib/screens/auto_configure_screen.dart": {
@@ -1110,8 +1110,8 @@
     "semantic_hash": ""
   },
   "test/timer_notifier_test.dart": {
-    "mtime": 1790811120.5766315,
-    "ast_hash": "38012d7aef2a4e121912e011cd25dba8",
+    "mtime": 1790812200.1091492,
+    "ast_hash": "0c1f8fd5358638cc80d4fb24375d9582",
     "semantic_hash": ""
   }
 }

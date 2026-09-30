@@ -64,10 +64,13 @@ class TimerNotifier extends Notifier<TimerState> {
   /// written to history; it is saved only if the user adds a shot by hand.
   TimerString? _pendingDraft;
 
-  /// True while [start] or [stop] is in progress. Both await platform work
-  /// before the phase changes, so a second tap in that window must be a
-  /// no-op rather than a second run or a second history row.
-  bool _busy = false;
+  /// [start] and [stop] each await platform work before the phase settles,
+  /// so a second tap of the same action in that window is a no-op rather
+  /// than a second run or a second history row. STOP during a start is not
+  /// ignored: it asks the start to cancel at its next wait.
+  bool _starting = false;
+  bool _stopping = false;
+  bool _cancelRequested = false;
 
   @override
   TimerState build() {
@@ -76,23 +79,39 @@ class TimerNotifier extends Notifier<TimerState> {
   }
 
   Future<void> start() async {
-    if (_busy) return;
-    _busy = true;
+    if (_starting || _stopping) return;
+    _starting = true;
+    _cancelRequested = false;
     try {
       await _start();
     } finally {
-      _busy = false;
+      _starting = false;
+      _cancelRequested = false;
     }
   }
 
   Future<void> stop() async {
-    if (_busy) return;
-    _busy = true;
+    if (_stopping) return;
+    if (_starting) {
+      // The countdown is on screen but the mic is still coming up. The
+      // start path tears down as soon as its current wait returns.
+      _cancelRequested = true;
+      return;
+    }
+    _stopping = true;
     try {
       await _stop();
     } finally {
-      _busy = false;
+      _stopping = false;
     }
+  }
+
+  /// Undoes a start that was cancelled or failed part-way: no string, back
+  /// to idle, flash counter kept.
+  Future<void> _abortStart({String? error}) async {
+    await _teardownRun();
+    _pendingDraft = null;
+    state = _idleKeepingCounter().copyWith(error: error);
   }
 
   Future<void> _start() async {
@@ -148,18 +167,29 @@ class TimerNotifier extends Notifier<TimerState> {
     _detectionSub = detector.events.listen(_onDetection);
     // And to beep-onset events, so we can rebase t=0 onto the audible beep.
     _beepOnsetSub = detector.beepOnsetEvents.listen(_onBeepOnset);
-    await detector.start(
-      clock: _clock,
-      threshold: settings.detectionThreshold,
-      echoFilterMs: settings.echoFilterMs,
-      // Only blank during the countdown; the detector's notch filter handles
-      // the beep itself, so shots fired during/right after the beep still
-      // register.
-      blankingMs: delayMs,
-      bandFilterEnabled: settings.bandFilterEnabled,
-      bandLowHz: settings.bandLowHz,
-      bandHighHz: settings.bandHighHz,
-    );
+    try {
+      await detector.start(
+        clock: _clock,
+        threshold: settings.detectionThreshold,
+        echoFilterMs: settings.echoFilterMs,
+        // Only blank during the countdown; the detector's notch filter
+        // handles the beep itself, so shots fired during/right after the
+        // beep still register.
+        blankingMs: delayMs,
+        bandFilterEnabled: settings.bandFilterEnabled,
+        bandLowHz: settings.bandLowHz,
+        bandHighHz: settings.bandHighHz,
+      );
+    } catch (_) {
+      // A mic that will not start must not leave a countdown with no beep
+      // coming and no way out.
+      await _abortStart(error: 'errors.micStartFailed');
+      return;
+    }
+    if (_cancelRequested) {
+      await _abortStart();
+      return;
+    }
 
     // Async setup complete. Start the clock and schedule the beep so the user
     // experiences exactly delayMs of countdown.
@@ -168,6 +198,7 @@ class TimerNotifier extends Notifier<TimerState> {
 
     if (delayMs == 0) {
       await _fireStartBeep(silent: false);
+      if (_cancelRequested) await _abortStart();
     } else {
       _beepTimer = Timer(
         Duration(milliseconds: delayMs),

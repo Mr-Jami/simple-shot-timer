@@ -19,6 +19,11 @@ import 'package:simple_shot_timer/services/volume_service.dart';
 
 class _FakeShotSource implements ShotSource {
   int startCalls = 0;
+  int stopCalls = 0;
+
+  /// How long the mic takes to come up; zero completes at once.
+  Duration startDelay = Duration.zero;
+  bool failStart = false;
   final _events = StreamController<int>.broadcast();
   final _onsets = StreamController<int>.broadcast();
 
@@ -41,10 +46,14 @@ class _FakeShotSource implements ShotSource {
     int bandHighHz = 0,
   }) async {
     startCalls++;
+    if (startDelay > Duration.zero) await Future.delayed(startDelay);
+    if (failStart) throw StateError('mic busy');
   }
 
   @override
-  Future<void> stop() async {}
+  Future<void> stop() async {
+    stopCalls++;
+  }
   @override
   void armBeepDetection() {}
   @override
@@ -166,7 +175,11 @@ void main() {
     _Harness.store.strings.clear();
     _Harness.store.insertDelay = Duration.zero;
     _Harness.store.failInserts = false;
-    _Harness.source.startCalls = 0;
+    _Harness.source
+      ..startCalls = 0
+      ..stopCalls = 0
+      ..startDelay = Duration.zero
+      ..failStart = false;
     _Harness.beeps
       ..startBeeps = 0
       ..parBeeps = 0;
@@ -305,6 +318,52 @@ void main() {
         async.elapse(const Duration(milliseconds: 10));
         expect(h.phase, TimerPhase.running);
         expect(_Harness.source.startCalls, 1);
+      });
+    });
+
+    test('STOP while the mic is still starting cancels the run', () {
+      fakeAsync((async) {
+        final h = _Harness(prefs);
+        h.settings(
+          (s) => s.copyWith(delayMode: DelayMode.fixed, fixedDelayMs: 2000),
+          async,
+        );
+        _Harness.source.startDelay = const Duration(milliseconds: 500);
+        h.timer.start();
+        async.flushMicrotasks();
+        expect(h.phase, TimerPhase.countdown,
+            reason: 'the countdown shows before the mic is up');
+
+        h.timer.stop(); // during the mic start
+        async.elapse(const Duration(milliseconds: 100));
+        expect(h.phase, TimerPhase.countdown,
+            reason: 'nothing to tear down yet; the cancel waits for the mic');
+
+        async.elapse(const Duration(milliseconds: 500));
+        expect(h.phase, TimerPhase.idle);
+        expect(_Harness.source.stopCalls, 1);
+        async.elapse(const Duration(seconds: 3));
+        expect(_Harness.beeps.startBeeps, 0, reason: 'no beep after cancel');
+        expect(_Harness.store.strings, isEmpty);
+      });
+    });
+
+    test('a mic that fails to start returns to idle with an error', () {
+      fakeAsync((async) {
+        final h = _Harness(prefs);
+        h.settings(
+          (s) => s.copyWith(delayMode: DelayMode.fixed, fixedDelayMs: 2000),
+          async,
+        );
+        _Harness.source.failStart = true;
+        h.timer.start();
+        async.flushMicrotasks();
+        async.elapse(const Duration(milliseconds: 10));
+        final state = h.container.read(timerProvider);
+        expect(state.phase, TimerPhase.idle);
+        expect(state.error, 'errors.micStartFailed');
+        async.elapse(const Duration(seconds: 3));
+        expect(_Harness.beeps.startBeeps, 0);
       });
     });
 
