@@ -9,6 +9,7 @@ class AppSettings {
     this.bandHighHz = 6000,
     this.beepVolume = 0.9,
     this.audioLatencyOffsetMs = 0,
+    this.beepLatencyEstimateMs = defaultBeepLatencyEstimateMs,
     this.delayMode = DelayMode.random,
     this.fixedDelayMs = 2000,
     this.randomDelayMinMs = 1000,
@@ -48,6 +49,12 @@ class AppSettings {
   /// Bluetooth speaker the phone mic doesn't pick up. 0 = rely purely on the
   /// measured beep onset. See issue #18.
   final int audioLatencyOffsetMs;
+
+  /// Learned audio output latency (ms): how long after a beep is requested
+  /// it becomes audible on this phone and output route. The flash and the
+  /// haptic are delayed by this amount so all three signals land together.
+  /// Refined from every acoustically measured beep onset; not user-facing.
+  final int beepLatencyEstimateMs;
 
   final DelayMode delayMode;
   final int fixedDelayMs;
@@ -91,6 +98,9 @@ class AppSettings {
   static const int audioLatencyOffsetMinMs = 0;
   static const int audioLatencyOffsetMaxMs = 500;
 
+  /// Typical Android media-stream output latency before any measurement.
+  static const int defaultBeepLatencyEstimateMs = 60;
+
   /// Amplitude threshold (0..1) derived from [sensitivityPercent].
   double get detectionThreshold =>
       ((100 - sensitivityPercent.clamp(0, 100)) / 100).clamp(0.0, 1.0);
@@ -103,6 +113,7 @@ class AppSettings {
     int? bandHighHz,
     double? beepVolume,
     int? audioLatencyOffsetMs,
+    int? beepLatencyEstimateMs,
     DelayMode? delayMode,
     int? fixedDelayMs,
     int? randomDelayMinMs,
@@ -129,6 +140,8 @@ class AppSettings {
         beepVolume: beepVolume ?? this.beepVolume,
         audioLatencyOffsetMs:
             audioLatencyOffsetMs ?? this.audioLatencyOffsetMs,
+        beepLatencyEstimateMs:
+            beepLatencyEstimateMs ?? this.beepLatencyEstimateMs,
         delayMode: delayMode ?? this.delayMode,
         fixedDelayMs: fixedDelayMs ?? this.fixedDelayMs,
         randomDelayMinMs: randomDelayMinMs ?? this.randomDelayMinMs,

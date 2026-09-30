@@ -5,6 +5,7 @@ import '../services/audio_service.dart';
 import '../services/database_service.dart';
 import '../services/settings_service.dart';
 import '../services/shot_detector.dart';
+import '../services/volume_service.dart';
 
 /// Overridden in `main()` after `SharedPreferences.getInstance()` resolves.
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
@@ -28,6 +29,8 @@ final settingsServiceProvider = Provider<SettingsService>(
 final audioServiceProvider = Provider<AudioService>((ref) {
   throw UnimplementedError('AudioService must be overridden in main()');
 });
+
+final volumeServiceProvider = Provider<VolumeService>((ref) => VolumeService());
 
 final shotDetectorProvider = Provider<ShotDetector>((ref) {
   final detector = ShotDetector();

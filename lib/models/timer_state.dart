@@ -11,6 +11,8 @@ class TimerState {
     this.micLevel = 0,
     this.delayUsedMs,
     this.savedStringId,
+    this.savedAt,
+    this.beepInaudible = false,
     this.error,
   });
 
@@ -28,12 +30,22 @@ class TimerState {
   final int currentParIndex;
   final double micLevel;
 
-  /// Incremented every time a beep (start or par) fires so the UI can
-  /// drive a one-shot flash animation by listening for changes.
+  /// Incremented every time a beep (start or par) becomes audible so the UI
+  /// can drive a one-shot flash animation by listening for increases. Only
+  /// ever goes up within an app session; the overlay ignores anything else.
   final int flashTick;
 
   final int? delayUsedMs;
   final int? savedStringId;
+
+  /// When the finished string was written to history; null until it is.
+  final DateTime? savedAt;
+
+  /// True when the run started while the media stream was muted or at zero
+  /// volume, so the start beep cannot be heard. The flash and haptic still
+  /// work; the UI shows a one-line notice.
+  final bool beepInaudible;
+
   final String? error;
 
   int get shotCount => shots.length;
@@ -43,6 +55,11 @@ class TimerState {
     if (shots.length < 2) return null;
     return shots.last.timeMs - shots[shots.length - 2].timeMs;
   }
+
+  /// A run that ended with nothing detected. Such a run is not written to
+  /// history; it can still be saved by adding a shot by hand.
+  bool get nothingRecorded =>
+      phase == TimerPhase.finished && shots.isEmpty && savedStringId == null;
 
   /// Shots fired in the cycle the timer is currently displaying. For non-par
   /// runs (currentParIndex always 1) this returns every shot. The home
@@ -77,6 +94,8 @@ class TimerState {
     double? micLevel,
     int? delayUsedMs,
     int? savedStringId,
+    DateTime? savedAt,
+    bool? beepInaudible,
     String? error,
     bool clearError = false,
     bool clearSavedId = false,
@@ -89,7 +108,10 @@ class TimerState {
         flashTick: flashTick ?? this.flashTick,
         micLevel: micLevel ?? this.micLevel,
         delayUsedMs: delayUsedMs ?? this.delayUsedMs,
-        savedStringId: clearSavedId ? null : (savedStringId ?? this.savedStringId),
+        savedStringId:
+            clearSavedId ? null : (savedStringId ?? this.savedStringId),
+        savedAt: clearSavedId ? null : (savedAt ?? this.savedAt),
+        beepInaudible: beepInaudible ?? this.beepInaudible,
         error: clearError ? null : (error ?? this.error),
       );
 }
