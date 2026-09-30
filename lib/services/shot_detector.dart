@@ -8,6 +8,7 @@ import '../utils/fft.dart';
 import 'audio_service.dart';
 import 'beep_onset_detector.dart';
 import 'biquad.dart';
+import 'timer_ports.dart';
 import 'ios_audio_session.dart';
 
 /// Streams PCM samples from the microphone and emits detection events
@@ -19,7 +20,7 @@ import 'ios_audio_session.dart';
 /// PCM stream before peak detection, so the start/par beep itself does not
 /// register as a shot and — more importantly — a shot fired during the beep
 /// still does.
-class ShotDetector {
+class ShotDetector implements ShotSource {
   ShotDetector();
 
   static const int sampleRate = 44100;
@@ -118,16 +119,19 @@ class ShotDetector {
   double? _lastDominantFreqHz;
   double _lastDominantFreqStrength = 0;
 
+  @override
   Stream<int> get events => _events.stream;
 
   /// Emits the clock-relative timestamp (ms) at which the start/par beep became
   /// audible, once per armed beep. Consumed by the timer to anchor `t=0` to the
   /// audible beep instead of the playback request.
+  @override
   Stream<int> get beepOnsetEvents => _beepOnsetEvents.stream;
 
   /// Arms one-shot beep-onset detection. Call immediately before playing a
   /// start/par beep; the next sustained burst of beep-frequency energy in the
   /// mic stream is timestamped and emitted on [beepOnsetEvents].
+  @override
   void armBeepDetection() {
     _beepOnset ??= BeepOnsetDetector(
       sampleRate: sampleRate.toDouble(),
@@ -138,12 +142,14 @@ class ShotDetector {
   }
 
   /// Stops listening for a beep onset (e.g. on timeout) without emitting.
+  @override
   void cancelBeepDetection() {
     _beepWatchArmed = false;
   }
 
   /// Most recent normalized peak amplitude observed (0..1).
   /// Useful for driving a live VU-style level meter in the UI.
+  @override
   double get lastPeak => _lastPeak;
   double get currentThreshold => _threshold;
 
@@ -162,6 +168,7 @@ class ShotDetector {
 
   bool get isRunning => _sub != null;
 
+  @override
   Future<bool> hasPermission() => _recorder.hasPermission();
 
   /// Starts the mic stream in calibration mode: bypass the notch + bandpass,
@@ -284,6 +291,7 @@ class ShotDetector {
     }
   }
 
+  @override
   Future<void> start({
     required Stopwatch clock,
     required double threshold,
@@ -514,6 +522,7 @@ class ShotDetector {
     if (until > _blankingUntilMs) _blankingUntilMs = until;
   }
 
+  @override
   Future<void> stop() async {
     await _sub?.cancel();
     _sub = null;

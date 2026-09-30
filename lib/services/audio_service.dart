@@ -4,8 +4,10 @@ import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 
+import 'timer_ports.dart';
+
 /// Generates and plays a sine-wave start/par beep entirely from memory.
-class AudioService {
+class AudioService implements BeepPlayer {
   AudioService() {
     // Keep the most recent global platform error around for diagnostics
     // (mirrors ShotDetector.lastError). Expected noise on iOS: when a beep
@@ -62,9 +64,11 @@ class AudioService {
   static const int startBeepDurationMs = 300;
   static const int parBeepDurationMs = 700;
 
+  @override
   Future<void> playStartBeep({required double volume}) =>
       _play(beepFrequencyHz, startBeepDurationMs, volume);
 
+  @override
   Future<void> playParBeep({required double volume}) =>
       _play(beepFrequencyHz, parBeepDurationMs, volume);
 

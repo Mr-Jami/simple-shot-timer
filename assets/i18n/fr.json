@@ -194,5 +194,6 @@
   "micTest.playTestBeep": "Lire le bip de test",
   "micTest.tip": "Astuce : les coups de feu saturent généralement le micro (~95–100 %). Les claquements en intérieur se situent autour de 5–30 %. Choisissez une sensibilité plaçant la ligne rouge juste sous le pic le plus faible à capturer, bien au-dessus du bruit le plus fort à ignorer.",
 
-  "errors.micPermissionDenied": "Accès au microphone refusé"
+  "errors.micPermissionDenied": "Accès au microphone refusé",
+  "errors.saveFailed": "Impossible d'enregistrer la série. Ajoutez un tir pour réessayer."
 }

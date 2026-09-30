@@ -194,5 +194,6 @@
   "micTest.playTestBeep": "Testton abspielen",
   "micTest.tip": "Tipp: Schüsse übersteuern das Mikrofon meist (~95–100%). Innen-Klatschen liegt typischerweise bei 5–30%. Wähle eine Empfindlichkeit, bei der die rote Linie knapp unter der niedrigsten zu erfassenden Spitze liegt – deutlich über dem lautesten zu ignorierenden Geräusch.",
 
-  "errors.micPermissionDenied": "Mikrofonzugriff verweigert"
+  "errors.micPermissionDenied": "Mikrofonzugriff verweigert",
+  "errors.saveFailed": "Durchgang konnte nicht gespeichert werden. Schuss hinzufügen, um es erneut zu versuchen."
 }

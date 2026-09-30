@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibration/vibration.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../models/app_settings.dart';
 import '../models/enums.dart';
@@ -11,8 +9,8 @@ import '../models/par_config.dart';
 import '../models/par_schedule.dart';
 import '../models/shot.dart';
 import '../models/timer_state.dart';
-import '../services/background_service.dart';
 import '../models/timer_string.dart';
+import 'history_provider.dart';
 import 'providers.dart';
 import 'settings_provider.dart';
 
@@ -66,6 +64,11 @@ class TimerNotifier extends Notifier<TimerState> {
   /// written to history; it is saved only if the user adds a shot by hand.
   TimerString? _pendingDraft;
 
+  /// True while [start] or [stop] is in progress. Both await platform work
+  /// before the phase changes, so a second tap in that window must be a
+  /// no-op rather than a second run or a second history row.
+  bool _busy = false;
+
   @override
   TimerState build() {
     ref.onDispose(_cleanup);
@@ -73,11 +76,31 @@ class TimerNotifier extends Notifier<TimerState> {
   }
 
   Future<void> start() async {
+    if (_busy) return;
+    _busy = true;
+    try {
+      await _start();
+    } finally {
+      _busy = false;
+    }
+  }
+
+  Future<void> stop() async {
+    if (_busy) return;
+    _busy = true;
+    try {
+      await _stop();
+    } finally {
+      _busy = false;
+    }
+  }
+
+  Future<void> _start() async {
     if (state.phase != TimerPhase.idle && state.phase != TimerPhase.finished) {
       return;
     }
     final settings = ref.read(settingsProvider);
-    final detector = ref.read(shotDetectorProvider);
+    final detector = ref.read(shotSourceProvider);
     if (!await detector.hasPermission()) {
       // Set a translation key; the UI listener resolves it through
       // AppLocalizations so the SnackBar matches the current language.
@@ -92,15 +115,11 @@ class TimerNotifier extends Notifier<TimerState> {
     _pendingDraft = null;
     final delayMs = _computeDelayMs(settings);
 
+    final env = ref.read(runEnvironmentProvider);
     if (settings.keepScreenAwake) {
-      await WakelockPlus.enable();
+      await env.setKeepAwake(true);
     }
-
-    // Promote to a foreground service so Android won't suspend the mic
-    // stream or kill the beep timers when the user locks the screen or
-    // switches apps. On iOS this is a no-op (the audio background mode in
-    // Info.plist handles it via the active AVAudioSession).
-    await BackgroundService.start();
+    await env.setForeground(true);
 
     // Reset clock but leave it stopped. We delay starting it until after the
     // native mic stream is ready, so the Timer(delayMs) below and the on-screen
@@ -157,7 +176,7 @@ class TimerNotifier extends Notifier<TimerState> {
     }
   }
 
-  Future<void> stop() async {
+  Future<void> _stop() async {
     if (state.phase != TimerPhase.countdown &&
         state.phase != TimerPhase.running) {
       return;
@@ -206,15 +225,27 @@ class TimerNotifier extends Notifier<TimerState> {
       return;
     }
 
-    final db = ref.read(databaseProvider);
-    final saved = await db.insertString(draft, historyCap: settings.historyCap);
-
-    state = state.copyWith(
-      phase: TimerPhase.finished,
-      shots: saved.shots,
-      savedStringId: saved.id,
-      savedAt: saved.createdAt,
-    );
+    try {
+      final saved = await ref
+          .read(stringStoreProvider)
+          .insertString(draft, historyCap: settings.historyCap);
+      state = state.copyWith(
+        phase: TimerPhase.finished,
+        shots: saved.shots,
+        savedStringId: saved.id,
+        savedAt: saved.createdAt,
+      );
+      ref.invalidate(historyProvider);
+    } catch (_) {
+      // Keep the result on screen; the next "Add shot" retries the save.
+      _pendingDraft = draft;
+      state = state.copyWith(
+        phase: TimerPhase.finished,
+        shots: shots,
+        clearSavedId: true,
+        error: 'errors.saveFailed',
+      );
+    }
   }
 
   void reset() {
@@ -259,22 +290,54 @@ class TimerNotifier extends Notifier<TimerState> {
     final updated = [...state.shots, shot];
     state = state.copyWith(shots: updated);
     if (state.phase != TimerPhase.finished) return;
-    final db = ref.read(databaseProvider);
+    final store = ref.read(stringStoreProvider);
     final id = state.savedStringId;
     if (id != null) {
-      await db.replaceShots(id, updated);
-    } else if (_pendingDraft != null) {
-      // First shot on a run that detected nothing: now it is worth saving.
-      final saved = await db.insertString(
-        _pendingDraft!.copyWith(shots: updated),
+      await store.replaceShots(id, updated);
+      ref.invalidate(historyProvider);
+      return;
+    }
+    // First shot on a run that detected nothing: now it is worth saving.
+    final draft = _pendingDraft;
+    // Null here means a save is already in flight; the shot is in state and
+    // the in-flight save reconciles it below.
+    if (draft == null) return;
+    _pendingDraft = null; // before the await: a second tap must not insert it
+    try {
+      final saved = await store.insertString(
+        draft.copyWith(shots: updated),
         historyCap: _snapshot.historyCap,
       );
-      _pendingDraft = null;
-      state = state.copyWith(
-        shots: saved.shots,
-        savedStringId: saved.id,
-        savedAt: saved.createdAt,
-      );
+      if (state.phase != TimerPhase.finished) {
+        // Reset while saving; the row exists, the screen has moved on.
+        ref.invalidate(historyProvider);
+        return;
+      }
+      // Shots added or removed while saving live only in state. Make the
+      // row match state rather than the other way round.
+      final current = state.shots;
+      if (current.length == saved.shots.length) {
+        state = state.copyWith(
+          shots: saved.shots,
+          savedStringId: saved.id,
+          savedAt: saved.createdAt,
+        );
+      } else {
+        final reindexed = [
+          for (var i = 0; i < current.length; i++)
+            current[i].copyWith(index: i, stringId: saved.id),
+        ];
+        await store.replaceShots(saved.id!, reindexed);
+        state = state.copyWith(
+          shots: reindexed,
+          savedStringId: saved.id,
+          savedAt: saved.createdAt,
+        );
+      }
+      ref.invalidate(historyProvider);
+    } catch (_) {
+      _pendingDraft = draft;
+      state = state.copyWith(error: 'errors.saveFailed');
     }
   }
 
@@ -291,27 +354,33 @@ class TimerNotifier extends Notifier<TimerState> {
     state = state.copyWith(shots: reindexed);
     if (state.phase == TimerPhase.finished && state.savedStringId != null) {
       await ref
-          .read(databaseProvider)
+          .read(stringStoreProvider)
           .replaceShots(state.savedStringId!, reindexed);
+      ref.invalidate(historyProvider);
     }
   }
 
   Future<void> updateNotes(String notes) async {
     final id = state.savedStringId;
     if (id == null) return;
-    await ref.read(databaseProvider).updateStringMeta(id, notes: notes);
+    await ref.read(stringStoreProvider).updateStringMeta(id, notes: notes);
+    ref.invalidate(historyProvider);
   }
 
   Future<void> updateLabel(String label) async {
     final id = state.savedStringId;
     if (id == null) return;
-    await ref.read(databaseProvider).updateStringMeta(id, label: label);
+    await ref.read(stringStoreProvider).updateStringMeta(id, label: label);
+    ref.invalidate(historyProvider);
   }
 
   Future<void> updatePenalty(int penaltyMs) async {
     final id = state.savedStringId;
     if (id == null) return;
-    await ref.read(databaseProvider).updateStringMeta(id, penaltyMs: penaltyMs);
+    await ref
+        .read(stringStoreProvider)
+        .updateStringMeta(id, penaltyMs: penaltyMs);
+    ref.invalidate(historyProvider);
   }
 
   /// Visible for testing — pure delay computation.
@@ -399,14 +468,14 @@ class TimerNotifier extends Notifier<TimerState> {
   /// (e.g. beep muted, or output route the mic can't pick up).
   void _armOnsetDetection() {
     _awaitingOnset = true;
-    final detector = ref.read(shotDetectorProvider);
+    final detector = ref.read(shotSourceProvider);
     detector.armBeepDetection();
     _onsetTimeoutTimer?.cancel();
     _onsetTimeoutTimer = Timer(
       const Duration(milliseconds: _onsetTimeoutMs),
       () {
         _awaitingOnset = false;
-        ref.read(shotDetectorProvider).cancelBeepDetection();
+        ref.read(shotSourceProvider).cancelBeepDetection();
       },
     );
   }
@@ -488,25 +557,23 @@ class TimerNotifier extends Notifier<TimerState> {
   }
 
   Future<void> _playStartBeep() async {
-    final audio = ref.read(audioServiceProvider);
+    final audio = ref.read(beepPlayerProvider);
     unawaited(audio.playStartBeep(volume: _snapshot.beepVolume));
   }
 
   Future<void> _playParBeep() async {
-    final audio = ref.read(audioServiceProvider);
+    final audio = ref.read(beepPlayerProvider);
     unawaited(audio.playParBeep(volume: _snapshot.beepVolume));
   }
 
   Future<void> _maybeHaptic() async {
     if (!_snapshot.hapticOnBeep) return;
-    if (await Vibration.hasVibrator()) {
-      unawaited(Vibration.vibrate(duration: 100));
-    }
+    await ref.read(runEnvironmentProvider).vibrate();
   }
 
   void _startTick() {
     _tickTimer?.cancel();
-    final detector = ref.read(shotDetectorProvider);
+    final detector = ref.read(shotSourceProvider);
     _tickTimer = Timer.periodic(const Duration(milliseconds: 50), (_) {
       if (state.phase != TimerPhase.running &&
           state.phase != TimerPhase.countdown) {
@@ -550,16 +617,17 @@ class TimerNotifier extends Notifier<TimerState> {
         (c) => c.copyWith(beepLatencyEstimateMs: _latencyEstimateMs),
       ));
     }
-    await _detectionSub?.cancel();
+    // Not awaited: nothing depends on the cancel completing, and a broadcast
+    // subscription's cancel future resolves outside the caller's zone.
+    unawaited(_detectionSub?.cancel());
     _detectionSub = null;
-    await _beepOnsetSub?.cancel();
+    unawaited(_beepOnsetSub?.cancel());
     _beepOnsetSub = null;
-    await ref.read(shotDetectorProvider).stop();
+    await ref.read(shotSourceProvider).stop();
     _clock.stop();
-    if (await WakelockPlus.enabled) {
-      await WakelockPlus.disable();
-    }
-    await BackgroundService.stop();
+    final env = ref.read(runEnvironmentProvider);
+    await env.setKeepAwake(false);
+    await env.setForeground(false);
   }
 
   void _cancelSignalTimers() {
@@ -587,11 +655,11 @@ class TimerNotifier extends Notifier<TimerState> {
     _clock
       ..stop()
       ..reset();
-    // Best-effort wakelock release; ignore failure.
-    WakelockPlus.disable().catchError((_) {});
-    BackgroundService.stop().catchError((_) {});
-    final detector = ref.read(shotDetectorProvider);
-    detector.stop().catchError((_) {});
+    // Best-effort release of everything the run held; ignore failures.
+    final env = ref.read(runEnvironmentProvider);
+    env.setKeepAwake(false).catchError((_) {});
+    env.setForeground(false).catchError((_) {});
+    ref.read(shotSourceProvider).stop().catchError((_) {});
   }
 }
 

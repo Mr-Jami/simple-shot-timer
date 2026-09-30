@@ -34,12 +34,6 @@ class HomeScreen extends ConsumerWidget {
     final state = ref.watch(timerProvider);
 
     ref.listen(timerProvider, (prev, next) async {
-      // A string reached history: a finished run with an id, or a shot added
-      // by hand to a run that had detected nothing.
-      if (next.savedStringId != null &&
-          prev?.savedStringId != next.savedStringId) {
-        ref.invalidate(historyProvider);
-      }
       if (next.error != null && prev?.error != next.error) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(context.tr(next.error!))),
