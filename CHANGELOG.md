@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30)
+
+
+### Features
+
+* **drills:** save, load and manage named custom drills ([#25](https://github.com/Mr-Jami/simple-shot-timer/issues/25)) ([83fcee8](https://github.com/Mr-Jami/simple-shot-timer/commit/83fcee826d24078e75672330fea1673868d9ab2c)), closes [#24](https://github.com/Mr-Jami/simple-shot-timer/issues/24)
+
 ## [1.6.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05)
 
 
