@@ -146,6 +146,35 @@ Each commit on `main` should start with a type:
 
 A scope is optional: `feat(settings): add language picker`.
 
+### Commit messages are store release notes
+
+`feat:`, `fix:` and `perf:` subjects end up in two places:
+
+- **GitHub Release / `CHANGELOG.md`**: verbatim, with scope, links and
+  commit hashes.
+- **Play Store "What's new"**: rewritten by
+  `.github/scripts/play_release_notes.py` into plain bullets under
+  *Changed*, *New*, *Fixes* and *Improvements*. Scope, links and issue
+  numbers are removed, and the first letter is capitalised. Dependency
+  bumps and reverts are left out, and the text is capped at 500 characters
+  (later bullets are dropped first, with a warning in the deploy log).
+
+A `BREAKING CHANGE:` footer is published in full under *Changed*, listed
+first, so write it for users too: say what is gone or behaves differently.
+
+So write the subject for the person updating the app, not for a reviewer.
+Describe what changed for them in plain words:
+
+| Instead of | Write |
+| --- | --- |
+| `fix(detector): notch out beep tone` | `fix(detector): shots fired during the beep are now detected` |
+| `feat(ios): bypass voice DSP` | `feat(ios): cleaner shot detection on iPhone` |
+
+Anything that users won't notice (refactors, tests, CI, build tweaks) should
+use a non-releasing type such as `refactor:`, `test:`, `ci:` or `chore:` so
+it stays out of the store notes. For squash-merged PRs, the **PR title**
+becomes the commit subject, so the same rules apply to PR titles.
+
 ### Release flow
 
 1. Land conventional commits on `main` via PR or direct push.
