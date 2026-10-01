@@ -1,0 +1,9 @@
+# Only the text sources of the video are tracked. Media (fonts, audio, renders)
+# is reproduced from the sources listed in README.md.
+composition/assets/*
+!composition/assets/music-rms.js
+composition/.thumbnails/
+work/
+*.mp4
+*.jpg
+*.png
