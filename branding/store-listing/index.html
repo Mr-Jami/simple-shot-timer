@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Simple Shot Timer — store listing graphics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&family=Roboto:ital,wght@0,100..900&display=block" rel="stylesheet">
+<style>
+  /* ===== page ===== */
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px; background: #444; font-family: "Roboto", sans-serif; font-variant-numeric: tabular-nums; }
+  #sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .slide { position: relative; width: 1080px; height: 1920px; overflow: hidden; margin: 0 0 40px; background: #000; }
+  .slide.yellow { background: #fee036; }
+  .slide canvas { position: absolute; left: 0; top: 0; }
+  .cap { position: absolute; left: 110px; right: 110px; top: 118px; text-align: center; z-index: 2; }
+  .cap img { display: block; width: 116px; height: 116px; margin: 0 auto; }
+  .cap h2 {
+    margin: 44px 0 0; font-family: "Montserrat", sans-serif; font-style: italic; font-weight: 800;
+    font-size: 46px; line-height: 1.22; letter-spacing: 0.01em; text-transform: uppercase; color: #fff;
+  }
+  .slide.yellow .cap h2 { color: #000; }
+
+  /* ===== phone frame (same proportions as the launch video) ===== */
+  .phone {
+    position: absolute; left: 233px; top: 486px; width: 614px; height: 1296px; border-radius: 66px;
+    background: #0c0c0c; padding: 14px; box-shadow: 0 0 0 3px #2a2a2a, 0 30px 90px rgba(0,0,0,0.55); z-index: 3;
+  }
+  .screen { position: relative; width: 586px; height: 1268px; border-radius: 54px; overflow: hidden; background: #000; }
+  .app { position: absolute; left: 0; top: 0; width: 390px; height: 845px; transform: scale(1.5); transform-origin: 0 0; font-size: 14px; color: #fff; }
+
+  /* ===== app UI (ported from branding/launch-video/composition/index.html) ===== */
+  svg.i { width: 24px; height: 24px; fill: #fff; display: block; flex: none; }
+  .status { position: absolute; left: 0; right: 0; top: 0; height: 24px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 600; color: #fff; z-index: 3; }
+  .status .dots { display: flex; gap: 4px; align-items: center; }
+  .status .dots span { display: block; width: 14px; height: 8px; border-radius: 2px; background: #fff; }
+  .shell { position: absolute; inset: 0; background: #000; }
+  .tab { position: absolute; left: 0; right: 0; top: 0; height: 753px; overflow: hidden; background: #000; }
+  .tarea { position: absolute; left: 16px; right: 16px; top: 40px; height: 585px; }
+  .tv { position: absolute; inset: 0; }
+  .topslot { position: absolute; left: 0; right: 0; top: 0; height: 104px; }
+  .centre { position: absolute; left: 0; right: 0; top: 104px; bottom: 65px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .centre-all { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .runfoot { position: absolute; left: 0; right: 0; bottom: 0; height: 65px; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .chip { display: flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; background: #1c1c1c; color: #aaaaaa; font-size: 12px; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; }
+  .chip.active { border: 1px solid #fff; color: #fff; font-weight: 600; gap: 4px; }
+  .chip.active svg.i { width: 14px; height: 14px; }
+  .big-label { font-size: 16px; line-height: 24px; letter-spacing: 2px; color: #aaaaaa; font-weight: 500; text-align: center; }
+  .big-num { font-size: 96px; font-weight: 700; line-height: 1; letter-spacing: -1.9px; color: #fff; text-align: center; }
+  .stats { display: flex; justify-content: space-evenly; height: 50px; }
+  .stat { display: flex; flex-direction: column; align-items: center; }
+  .stat .l { font-size: 12px; line-height: 16px; letter-spacing: 2px; color: #aaaaaa; font-weight: 500; }
+  .stat .v { font-size: 24px; line-height: 32px; margin-top: 2px; }
+  .micline { position: absolute; left: 24px; right: 24px; bottom: 0; height: 3px; border-radius: 2px; background: #222222; }
+  .micline .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: #fff; }
+  .micline .thr { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: #ff5252; left: 85%; }
+  .fin-centre { position: absolute; left: 0; right: 0; top: 0; bottom: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .fin-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 130px; }
+  .obtns { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+  .obtn { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 20px 0 16px; border: 1px solid #333333; border-radius: 20px; font-size: 14px; font-weight: 500; }
+  .obtn svg.i { width: 18px; height: 18px; }
+  .saved { margin-top: 8px; text-align: center; font-size: 14px; line-height: 20px; color: #aaaaaa; }
+  .ready-t { font-size: 28px; line-height: 36px; margin-top: 16px; }
+  .ready-s { font-size: 16px; line-height: 24px; margin-top: 8px; }
+  .lastline { display: flex; align-items: center; gap: 4px; margin-top: 16px; padding: 8px 12px; font-size: 14px; color: #aaaaaa; }
+  .lastline svg.i { width: 18px; height: 18px; fill: #aaaaaa; }
+  .bigbtn { position: absolute; left: 16px; right: 16px; top: 641px; height: 96px; border-radius: 48px; background: #fff; color: #000; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 28px; font-weight: 700; }
+  .bigbtn svg.i { width: 36px; height: 36px; fill: #000; }
+  .bigbtn.stop { background: #f44336; color: #fff; }
+  .bigbtn.stop svg.i { fill: #fff; }
+  .navbar { position: absolute; left: 0; right: 0; top: 753px; height: 92px; background: #111111; display: flex; padding-bottom: 20px; }
+  .navbar.dim { opacity: 0.38; }
+  .dest { flex: 1; position: relative; }
+  .dest .pill { position: absolute; left: 50%; top: 10px; width: 64px; height: 32px; margin-left: -32px; border-radius: 16px; background: #fff; opacity: 0; }
+  .dest svg.i { position: absolute; left: 50%; top: 14px; margin-left: -12px; fill: #aaaaaa; }
+  .dest .ic-f { display: none; }
+  .dest .lbl { position: absolute; left: 0; right: 0; top: 46px; text-align: center; font-size: 12px; line-height: 16px; font-weight: 500; color: #aaaaaa; }
+  .dest.on .pill { opacity: 1; }
+  .dest.on .ic-o { display: none; }
+  .dest.on .ic-f { display: block; fill: #000; }
+  .dest.on .lbl { color: #fff; font-weight: 600; }
+  .snack { position: absolute; left: 0; right: 0; top: 705px; height: 48px; background: #fff; color: #000; display: flex; align-items: center; padding: 0 16px; font-size: 14px; z-index: 4; }
+  .thead { position: absolute; left: 16px; right: 8px; top: 36px; height: 36px; display: flex; align-items: center; }
+  .thead .tt { flex: 1; font-size: 28px; line-height: 36px; font-weight: 600; letter-spacing: -0.5px; }
+  .thead .act { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+  .list { position: absolute; left: 0; right: 0; top: 76px; }
+  .tile { position: relative; display: flex; align-items: center; height: 72px; padding: 0 16px; }
+  .tile .lead { width: 24px; margin-right: 16px; }
+  .tile .txt { flex: 1; min-width: 0; }
+  .tile .t1 { font-size: 16px; line-height: 24px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .t2 { font-size: 14px; line-height: 20px; color: #aaaaaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .trail { margin-left: 16px; }
+  .tile .trail svg.i { fill: #aaaaaa; }
+  .tile .num { font-size: 14px; font-weight: 600; color: #fff; }
+  .divider { height: 1px; background: #222222; }
+  .drow .t1 { font-weight: 600; }
+  .drow .lead svg.i { fill: #aaaaaa; }
+  .drow .lead .ic-check { display: none; }
+  .drow.on .lead .ic-check { display: block; fill: #fff; }
+  .drow.on .lead .ic-bm { display: none; }
+  .variant { position: absolute; left: 0; right: 0; top: 76px; }
+  .sec { padding: 24px 16px 8px; font-size: 12px; line-height: 16px; letter-spacing: 2px; font-weight: 600; color: #fff; text-transform: uppercase; }
+  .cchips { display: flex; gap: 8px; padding: 0 16px; }
+  .cc { position: relative; height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid #333333; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: #fff; }
+  .cc.on { background: #fff; border-color: #fff; color: #000; padding-left: 8px; }
+  .cc svg.i { width: 18px; height: 18px; fill: #000; }
+  .sl { position: relative; height: 76px; padding: 8px 16px 0; }
+  .sl-t { display: flex; justify-content: space-between; align-items: center; height: 24px; font-size: 16px; }
+  .sl-v { font-weight: 600; font-size: 16px; padding: 0 6px; }
+  .trk { position: relative; height: 4px; margin: 20px 10px 0; border-radius: 2px; background: #333333; }
+  .trk .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: #fff; }
+  .trk .th { position: absolute; top: -8px; width: 20px; height: 20px; margin-left: -10px; border-radius: 10px; background: #fff; }
+  .sw { display: flex; justify-content: space-between; align-items: center; height: 56px; padding: 0 16px; font-size: 16px; }
+  .swt { position: relative; width: 52px; height: 32px; border-radius: 16px; background: #fff; flex: none; }
+  .swt span { position: absolute; right: 4px; top: 4px; width: 24px; height: 24px; border-radius: 12px; background: #000; }
+  .swt.off { background: #1c1c1c; border: 2px solid #333333; }
+  .swt.off span { left: 6px; top: 6px; width: 16px; height: 16px; background: #888888; }
+  .gap16 { height: 16px; }
+  .page { position: absolute; inset: 0; background: #000; overflow: hidden; }
+  .appbar { position: absolute; left: 0; right: 0; top: 0; height: 80px; background: #111111; z-index: 2; }
+  .bar { position: absolute; left: 0; right: 0; top: 24px; height: 56px; display: flex; align-items: center; padding: 0 4px; }
+  .bar .icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin-left: 4px; }
+  .bar .title { flex: 1; font-size: 22px; font-weight: 400; margin-left: 16px; }
+  .pbody { position: absolute; left: 0; right: 0; top: 80px; bottom: 0; overflow: hidden; z-index: 1; }
+  .rv-scroll { position: absolute; left: 16px; right: 16px; top: 16px; }
+  .rv-date { font-size: 14px; line-height: 20px; }
+  .rv-head { font-size: 12px; line-height: 16px; color: #aaaaaa; margin-top: 4px; }
+  .grid { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .cell { height: 71px; border-radius: 12px; background: #1c1c1c; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .cell .l { font-size: 11px; letter-spacing: 2px; color: #aaaaaa; font-weight: 500; }
+  .cell .v { font-size: 20px; font-weight: 600; margin-top: 2px; }
+  .field { position: relative; margin-top: 16px; height: 56px; border: 1px solid #555555; border-radius: 4px; padding: 0 12px; display: flex; align-items: center; font-size: 16px; }
+  .field.notes { margin-top: 12px; height: 80px; align-items: flex-start; padding-top: 20px; color: #aaaaaa; }
+  .field .fl { position: absolute; left: 8px; top: -9px; padding: 0 4px; background: #000; font-size: 12px; color: #aaaaaa; }
+  .pen { display: flex; align-items: center; height: 48px; margin-top: 12px; font-size: 14px; }
+  .pen .txt { flex: 1; }
+  .pen .ib { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+  .hdiv { height: 32px; display: flex; align-items: center; }
+  .hdiv span { display: block; width: 100%; height: 1px; background: #222222; }
+  .shots-h { height: 40px; display: flex; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 500; }
+  .add-t { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 0 12px; }
+  .add-t svg.i { width: 18px; height: 18px; }
+  .rows { margin-top: 8px; }
+  .row { height: 64px; display: flex; align-items: center; gap: 16px; }
+  .av { width: 28px; height: 28px; border-radius: 14px; background: #1c1c1c; display: flex; align-items: center; justify-content: center; font-size: 12px; flex: none; }
+  .rt { font-size: 16px; line-height: 24px; font-weight: 600; }
+  .rs { font-size: 14px; line-height: 20px; color: #aaaaaa; }
+  .mic-body { position: absolute; left: 16px; right: 16px; top: 16px; }
+  .mic-ins { font-size: 14px; line-height: 1.45; }
+  .meter-h { margin-top: 24px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 2px; color: #aaaaaa; font-weight: 500; }
+  .meter { position: relative; margin-top: 4px; height: 22px; border-radius: 11px; background: #1c1c1c; }
+  .meter .mfill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 11px; background: #fff; }
+  .meter .mthr { position: absolute; top: -2px; bottom: -2px; width: 2px; margin-left: -1px; background: #ff5252; }
+  .mrow { margin-top: 16px; display: flex; justify-content: space-between; font-size: 14px; }
+  .dom { margin-top: 16px; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .dom svg.i { width: 18px; height: 18px; }
+  .tbtn { margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 20px 0 16px; border: 1px solid #333333; border-radius: 20px; font-size: 14px; font-weight: 500; }
+  .tbtn svg.i { width: 18px; height: 18px; }
+  .mic-sl { margin-top: 32px; }
+  .mic-sl .trk { margin: 20px 10px 0; }
+  .tip { margin-top: 24px; font-size: 12px; line-height: 1.4; color: #cccccc; }
+
+  /* ===== feature graphic 1024x500 ===== */
+  .feature { position: relative; width: 1024px; height: 500px; overflow: hidden; background: #000; margin: 0 0 40px; }
+  .feature canvas { position: absolute; left: 0; top: 0; }
+  .feature .brand { position: absolute; left: 48px; top: 84px; z-index: 2; font-family: "Montserrat", sans-serif; font-style: italic; font-weight: 800; }
+  .feature .brand .t { font-size: 60px; line-height: 1.02; color: #fee036; text-transform: uppercase; }
+  .feature .brand .s { margin-top: 26px; font-size: 19px; line-height: 1.35; color: #fff; text-transform: uppercase; max-width: 380px; }
+  .feature .brand .bar { position: absolute; left: 0; top: 230px; width: 8px; height: 150px; background: repeating-linear-gradient(135deg, #fee036 0 6px, transparent 6px 12px); border: 2px solid #fee036; }
+  .feature .mark { position: absolute; right: 30px; top: 22px; width: 76px; height: 76px; z-index: 2; }
+  .feature .ready { position: absolute; left: 612px; top: 426px; z-index: 2; font-family: "Montserrat", sans-serif; font-style: italic; font-weight: 800; font-size: 24px; color: #000; }
+  .feature .mini { position: absolute; z-index: 3; transform-origin: 0 0; transform: scale(0.345); }
+  .feature .mini .phone { position: static; left: auto; top: auto; }
+</style>
+</head>
+<body>
+
+<svg id="sprite" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-timer" viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></symbol>
+  <symbol id="i-bookmarks-o" viewBox="0 0 24 24"><path d="M15 7v12.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10m4-6H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/></symbol>
+  <symbol id="i-bookmarks-f" viewBox="0 0 24 24"><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></symbol>
+  <symbol id="i-settings-o" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></symbol>
+  <symbol id="i-settings-f" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></symbol>
+  <symbol id="i-bookmark-o" viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/></symbol>
+  <symbol id="i-bookmark-add" viewBox="0 0 24 24"><path d="M17 11v6.97l-5-2.14-5 2.14V5h6V3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V11h-2zm4-4h-2v2h-2V7h-2V5h2V3h2v2h2v2z"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+  <symbol id="i-graphic-eq" viewBox="0 0 24 24"><path d="M7 18h2V6H7v12zm4 4h2V2h-2v20zm-8-8h2v-4H3v4zm12 4h2V6h-2v12zm4-8v4h2v-4h-2z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7z"/></symbol>
+  <symbol id="i-add" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></symbol>
+  <symbol id="i-remove" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+  <symbol id="i-eq" viewBox="0 0 24 24"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"/></symbol>
+</svg>
+
+<!-- ============ reusable blocks (cloned by script) ============ -->
+<template id="t-status"><div class="status"><span>9:41</span><span class="dots"><span></span><span></span></span></div></template>
+<template id="t-nav">
+  <div class="navbar">
+    <div class="dest" data-i="0"><div class="pill"></div><svg class="i ic-o"><use href="#i-timer"/></svg><svg class="i ic-f"><use href="#i-timer"/></svg><div class="lbl">Timer</div></div>
+    <div class="dest" data-i="1"><div class="pill"></div><svg class="i ic-o"><use href="#i-bookmarks-o"/></svg><svg class="i ic-f"><use href="#i-bookmarks-f"/></svg><div class="lbl">Drills</div></div>
+    <div class="dest" data-i="2"><div class="pill"></div><svg class="i ic-o"><use href="#i-history"/></svg><svg class="i ic-f"><use href="#i-history"/></svg><div class="lbl">History</div></div>
+    <div class="dest" data-i="3"><div class="pill"></div><svg class="i ic-o"><use href="#i-settings-o"/></svg><svg class="i ic-f"><use href="#i-settings-f"/></svg><div class="lbl">Settings</div></div>
+  </div>
+</template>
+
+<!-- ============ 1. Ready (Timer tab, idle) ============ -->
+<section class="slide black" id="slide-1">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-white.png" alt=""><h2>Press START and<br>draw on the beep</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab"><div class="tarea"><div class="tv"><div class="centre-all">
+      <svg class="i" style="width:96px;height:96px;"><use href="#i-timer"/></svg>
+      <div class="ready-t">Ready</div>
+      <div class="ready-s">Press START to begin</div>
+      <div class="chips" style="margin-top:24px;">
+        <span class="chip active"><svg class="i"><use href="#i-bookmark"/></svg>El Presidente</span>
+        <span class="chip">Standard mode</span><span class="chip">Random delay</span>
+      </div>
+      <div class="lastline">Last 2.37s · 5 shots<svg class="i"><use href="#i-chevron"/></svg></div>
+    </div></div></div>
+    <div class="bigbtn"><svg class="i"><use href="#i-play"/></svg>START</div></div>
+    <div data-nav="0"></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ 2. Running ============ -->
+<section class="slide yellow" id="slide-2">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-black.png" alt=""><h2>Hears every shot.<br>Splits update live</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab"><div class="tarea"><div class="tv">
+      <div class="topslot"></div>
+      <div class="centre"><div class="big-label">LAST</div><div class="big-num">1.91</div></div>
+      <div class="runfoot">
+        <div class="stats">
+          <div class="stat"><span class="l">SHOTS</span><span class="v">3</span></div>
+          <div class="stat"><span class="l">FIRST</span><span class="v">1.42</span></div>
+          <div class="stat"><span class="l">SPLIT</span><span class="v">0.23s</span></div>
+        </div>
+        <div class="micline"><div class="fill" style="width:91%"></div><div class="thr"></div></div>
+      </div>
+    </div></div>
+    <div class="bigbtn stop"><svg class="i"><use href="#i-stop"/></svg>STOP</div></div>
+    <div data-nav="0" data-dim></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ 3. Finished ============ -->
+<section class="slide black" id="slide-3">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-white.png" alt=""><h2>Instant breakdown: total,<br>first shot and split</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab"><div class="tarea"><div class="tv">
+      <div class="fin-centre"><div class="big-label">TOTAL</div><div class="big-num">2.37</div></div>
+      <div class="fin-bottom">
+        <div class="stats">
+          <div class="stat"><span class="l">SHOTS</span><span class="v">5</span></div>
+          <div class="stat"><span class="l">FIRST</span><span class="v">1.42</span></div>
+          <div class="stat"><span class="l">SPLIT</span><span class="v">0.22s</span></div>
+        </div>
+        <div class="obtns">
+          <div class="obtn"><svg class="i"><use href="#i-list"/></svg>Review</div>
+          <div class="obtn"><svg class="i"><use href="#i-add"/></svg>Add shot</div>
+        </div>
+        <div class="saved">Saved 9:41 AM</div>
+      </div>
+    </div></div>
+    <div class="bigbtn"><svg class="i"><use href="#i-play"/></svg>START</div></div>
+    <div data-nav="0"></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ 4. Review ============ -->
+<section class="slide yellow" id="slide-4">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-black.png" alt=""><h2>Shot-by-shot review with<br>splits, fastest, slowest<br>and your notes</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="page">
+    <div class="appbar"><div data-status></div>
+      <div class="bar"><div class="icon"><svg class="i"><use href="#i-back"/></svg></div><div class="title">Review</div><div class="icon"><svg class="i"><use href="#i-share"/></svg></div></div>
+    </div>
+    <div class="pbody"><div class="rv-scroll">
+      <div class="rv-date">Oct 1, 2026 9:41 AM</div>
+      <div class="rv-head">Standard · Random (1.58s delay)</div>
+      <div class="grid">
+        <div class="cell"><span class="l">TOTAL</span><span class="v">2.37s</span></div>
+        <div class="cell"><span class="l">FIRST</span><span class="v">1.42s</span></div>
+        <div class="cell"><span class="l">FASTEST</span><span class="v">0.22s</span></div>
+        <div class="cell"><span class="l">SLOWEST</span><span class="v">0.26s</span></div>
+        <div class="cell"><span class="l">AVERAGE</span><span class="v">0.24s</span></div>
+        <div class="cell"><span class="l">SHOTS</span><span class="v">5</span></div>
+      </div>
+      <div class="field"><span class="fl">Label</span>El Presidente dry run</div>
+      <div class="field notes">Notes</div>
+      <div class="pen"><span class="txt">Penalty: 0.00s</span><span class="ib"><svg class="i"><use href="#i-remove"/></svg></span><span class="ib"><svg class="i"><use href="#i-add"/></svg></span></div>
+      <div class="hdiv"><span></span></div>
+      <div class="shots-h"><span>Shots (5)</span><span class="add-t"><svg class="i"><use href="#i-add"/></svg>Add</span></div>
+      <div class="rows">
+        <div class="row"><div class="av">1</div><div><div class="rt">1.42s</div><div class="rs">first</div></div></div>
+        <div class="row"><div class="av">2</div><div><div class="rt">1.68s</div><div class="rs">split 0.26s</div></div></div>
+        <div class="row"><div class="av">3</div><div><div class="rt">1.91s</div><div class="rs">split 0.23s</div></div></div>
+        <div class="row"><div class="av">4</div><div><div class="rt">2.15s</div><div class="rs">split 0.24s</div></div></div>
+        <div class="row"><div class="av">5</div><div><div class="rt">2.37s</div><div class="rs">split 0.22s</div></div></div>
+      </div>
+    </div></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ 5. Drills tab ============ -->
+<section class="slide black" id="slide-5">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-white.png" alt=""><h2>Save your drills.<br>Load any one with a tap</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab">
+      <div class="thead"><div class="tt">Saved drills</div><div class="act"><svg class="i"><use href="#i-bookmark-add"/></svg></div></div>
+      <div class="list">
+        <div class="tile drow"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">El Presidente</div><div class="t2">Standard mode · Random delay</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+        <div class="tile drow on"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">Bill Drill</div><div class="t2">Standard mode · Fixed 2.0s delay</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+        <div class="tile drow"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">Draw drill</div><div class="t2">Par mode · Random delay · Par 1.5s × 5</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+        <div class="tile drow"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">Stage warm-up</div><div class="t2">Stage mode · Random delay · Stage 60s</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+        <div class="tile drow"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">Dot torture</div><div class="t2">Standard mode · Instant start</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+      </div>
+    </div>
+    <div class="snack">Applied “Bill Drill”</div>
+    <div data-nav="1"></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ 6. Settings (Par) ============ -->
+<section class="slide yellow" id="slide-6">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-black.png" alt=""><h2>Standard, Par or Stage.<br>Random start delay,<br>par time and cycles</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab">
+      <div class="thead"><div class="tt">Settings</div></div>
+      <div class="variant">
+        <div class="sec">Drill mode</div>
+        <div class="cchips"><div class="cc">Standard</div><div class="cc on"><svg class="i"><use href="#i-check"/></svg>Par</div><div class="cc">Stage</div></div>
+        <div class="sec">Start delay</div>
+        <div class="cchips"><div class="cc">Instant</div><div class="cc">Fixed</div><div class="cc on"><svg class="i"><use href="#i-check"/></svg>Random</div></div>
+        <div class="sl"><div class="sl-t"><span>Random min</span><span class="sl-v">1.0s</span></div><div class="trk"><div class="fill" style="width:10%"></div><div class="th" style="left:10%"></div></div></div>
+        <div class="sl"><div class="sl-t"><span>Random max</span><span class="sl-v">4.0s</span></div><div class="trk"><div class="fill" style="width:40%"></div><div class="th" style="left:40%"></div></div></div>
+        <div class="sec">Par time</div>
+        <div class="sl"><div class="sl-t"><span>Duration</span><span class="sl-v">2.0s</span></div><div class="trk"><div class="fill" style="width:6.4%"></div><div class="th" style="left:6.4%"></div></div></div>
+        <div class="sl"><div class="sl-t"><span>Repeat count</span><span class="sl-v">5 beeps</span></div><div class="trk"><div class="fill" style="width:21%"></div><div class="th" style="left:21%"></div></div></div>
+        <div class="sl"><div class="sl-t"><span>Interval between beeps</span><span class="sl-v">5.0s</span></div><div class="trk"><div class="fill" style="width:16.7%"></div><div class="th" style="left:16.7%"></div></div></div>
+        <div class="sec">Beep</div>
+        <div class="sl"><div class="sl-t"><span>Volume</span><span class="sl-v">90%</span></div><div class="trk"><div class="fill" style="width:90%"></div><div class="th" style="left:90%"></div></div></div>
+        <div class="sw"><span>Visual flash on beep</span><div class="swt"><span></span></div></div>
+      </div>
+    </div>
+    <div data-nav="3"></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ 7. Test microphone ============ -->
+<section class="slide black" id="slide-7">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-white.png" alt=""><h2>Dial in the mic with<br>a live level meter</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="page">
+    <div class="appbar"><div data-status></div>
+      <div class="bar"><div class="icon"><svg class="i"><use href="#i-back"/></svg></div><div class="title">Test microphone</div></div>
+    </div>
+    <div class="pbody"><div class="mic-body">
+      <div class="mic-ins">Make the noise you want to detect. The red line is the current detection threshold — adjust sensitivity until peaks just cross it.</div>
+      <div class="meter-h"><span>MIC</span><span>94%</span></div>
+      <div class="meter"><div class="mfill" style="width:94%"></div><div class="mthr" style="left:85%"></div></div>
+      <div class="mrow"><span>Peak hold: 98%</span><span>Threshold: 85%</span></div>
+      <div class="dom"><svg class="i"><use href="#i-eq"/></svg><span>Dominant: 1840 Hz</span></div>
+      <div class="tbtn"><svg class="i"><use href="#i-graphic-eq"/></svg>Play test beep</div>
+      <div class="mic-sl">
+        <div class="sl-t"><span>Sensitivity</span><span class="sl-v">15%</span></div>
+        <div class="trk"><div class="fill" style="width:15%"></div><div class="th" style="left:15%"></div></div>
+      </div>
+      <div class="tip">Tip: gunshots typically saturate the mic (~95–100%). Indoor claps usually land 5–30%. Pick a sensitivity that puts the red line just below the lowest peak you want to capture, well above the loudest sound you want to ignore.</div>
+    </div></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ 8. History tab ============ -->
+<section class="slide yellow" id="slide-8">
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-black.png" alt=""><h2>Every string saved.<br>Browse, review, export CSV</h2></div>
+  <div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab">
+      <div class="thead"><div class="tt">History</div><div class="act"><svg class="i"><use href="#i-more"/></svg></div></div>
+      <div class="list">
+        <div class="tile"><div class="txt"><div class="t1" style="font-weight:600">El Presidente dry run</div><div class="t2">Oct 1, 2026 9:41 AM · Standard</div></div><div class="trail num">2.37s</div></div>
+        <div class="divider"></div>
+        <div class="tile"><div class="txt"><div class="t1" style="font-weight:600">Bill Drill, cold</div><div class="t2">Oct 1, 2026 9:36 AM · Standard</div></div><div class="trail num">1.84s</div></div>
+        <div class="divider"></div>
+        <div class="tile"><div class="txt"><div class="t1" style="font-weight:600">4.12s · 6 shots</div><div class="t2">Sep 30, 2026 6:12 PM · Par 2.0s ×5 /5.0s</div></div><div class="trail num">4.12s</div></div>
+        <div class="divider"></div>
+        <div class="tile"><div class="txt"><div class="t1" style="font-weight:600">Stage 1 walk-through</div><div class="t2">Sep 30, 2026 5:58 PM · Stage 60.0s</div></div><div class="trail num">48.20s</div></div>
+        <div class="divider"></div>
+        <div class="tile"><div class="txt"><div class="t1" style="font-weight:600">2.61s · 5 shots</div><div class="t2">Sep 28, 2026 7:05 PM · Standard</div></div><div class="trail num">2.61s</div></div>
+        <div class="divider"></div>
+        <div class="tile"><div class="txt"><div class="t1" style="font-weight:600">Draw drill</div><div class="t2">Sep 28, 2026 6:52 PM · Par 1.5s ×5 /5.0s</div></div><div class="trail num">1.38s</div></div>
+        <div class="divider"></div>
+        <div class="tile"><div class="txt"><div class="t1" style="font-weight:600">2.88s · 5 shots</div><div class="t2">Sep 27, 2026 10:14 AM · Standard</div></div><div class="trail num">2.88s</div></div>
+        <div class="divider"></div>
+      </div>
+    </div>
+    <div data-nav="2"></div>
+  </div></div></div></div>
+</section>
+
+<!-- ============ Feature graphic 1024x500 ============ -->
+<section class="feature" id="feature">
+  <canvas width="1024" height="500"></canvas>
+  <img class="mark" src="assets/mark-black.png" alt="">
+  <div class="brand">
+    <div class="t">Simple<br>Shot Timer</div>
+    <div class="s">Saved drills, splits,<br>history &amp; more</div>
+    <div class="bar"></div>
+  </div>
+  <div class="ready">Shooter ready?</div>
+
+  <!-- centre: running -->
+  <div class="mini" style="left:588px; top:-66px;"><div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab"><div class="tarea"><div class="tv">
+      <div class="topslot"></div>
+      <div class="centre"><div class="big-label">LAST</div><div class="big-num">1.91</div></div>
+      <div class="runfoot">
+        <div class="stats">
+          <div class="stat"><span class="l">SHOTS</span><span class="v">3</span></div>
+          <div class="stat"><span class="l">FIRST</span><span class="v">1.42</span></div>
+          <div class="stat"><span class="l">SPLIT</span><span class="v">0.23s</span></div>
+        </div>
+        <div class="micline"><div class="fill" style="width:91%"></div><div class="thr"></div></div>
+      </div>
+    </div></div>
+    <div class="bigbtn stop"><svg class="i"><use href="#i-stop"/></svg>STOP</div></div>
+    <div data-nav="0" data-dim></div>
+  </div></div></div></div></div>
+
+  <!-- left: ready -->
+  <div class="mini" style="left:372px; top:226px;"><div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab"><div class="tarea"><div class="tv"><div class="centre-all" style="justify-content:flex-start; padding-top:40px;">
+      <svg class="i" style="width:96px;height:96px;"><use href="#i-timer"/></svg>
+      <div class="ready-t">Ready</div>
+      <div class="ready-s">Press START to begin</div>
+      <div class="chips" style="margin-top:24px;">
+        <span class="chip active"><svg class="i"><use href="#i-bookmark"/></svg>El Presidente</span>
+        <span class="chip">Standard mode</span><span class="chip">Random delay</span>
+      </div>
+    </div></div></div>
+    <div class="bigbtn"><svg class="i"><use href="#i-play"/></svg>START</div></div>
+    <div data-nav="0"></div>
+  </div></div></div></div></div>
+
+  <!-- right: saved drills -->
+  <div class="mini" style="left:836px; top:112px;"><div class="phone"><div class="screen"><div class="app"><div class="shell">
+    <div data-status></div>
+    <div class="tab">
+      <div class="thead"><div class="tt">Saved drills</div><div class="act"><svg class="i"><use href="#i-bookmark-add"/></svg></div></div>
+      <div class="list">
+        <div class="tile drow on"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">El Presidente</div><div class="t2">Standard mode · Random delay</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+        <div class="tile drow"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">Bill Drill</div><div class="t2">Standard mode · Fixed 2.0s delay</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+        <div class="tile drow"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">Draw drill</div><div class="t2">Par mode · Random delay · Par 1.5s × 5</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+        <div class="tile drow"><div class="lead"><svg class="i ic-bm"><use href="#i-bookmark-o"/></svg><svg class="i ic-check"><use href="#i-check-circle"/></svg></div><div class="txt"><div class="t1">Stage warm-up</div><div class="t2">Stage mode · Random delay · Stage 60s</div></div><div class="trail"><svg class="i"><use href="#i-more"/></svg></div></div>
+        <div class="divider"></div>
+      </div>
+    </div>
+    <div data-nav="1"></div>
+  </div></div></div></div></div>
+</section>
+
+<script>
+  // Clone the status bar and bottom tab bar into every placeholder.
+  document.querySelectorAll('[data-status]').forEach(function (el) {
+    el.replaceWith(document.getElementById('t-status').content.cloneNode(true));
+  });
+  document.querySelectorAll('[data-nav]').forEach(function (el) {
+    var nav = document.getElementById('t-nav').content.cloneNode(true).firstElementChild;
+    nav.querySelector('.dest[data-i="' + el.getAttribute('data-nav') + '"]').classList.add('on');
+    if (el.hasAttribute('data-dim')) nav.classList.add('dim');
+    el.replaceWith(nav);
+  });
+
+  // Halftone: a dot grid whose dots grow from nothing (at a wavy threshold line) to
+  // nearly touching at the bottom edge. Deterministic, no randomness.
+  function halftone(canvas, dotColor, startY, spacing, maxR) {
+    var ctx = canvas.getContext('2d'), W = canvas.width, H = canvas.height;
+    ctx.fillStyle = dotColor;
+    for (var y = spacing / 2; y < H + spacing; y += spacing) {
+      for (var x = spacing / 2; x < W + spacing; x += spacing) {
+        var wave = 110 * Math.sin(x / W * Math.PI * 1.3 + 0.4) - 160 * (x / W);
+        var yT = startY + wave;
+        var p = (y - yT) / (H - yT);
+        if (p <= 0) continue;
+        if (p > 1) p = 1;
+        var r = maxR * Math.pow(p, 0.85);
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+  }
+  document.querySelectorAll('.slide').forEach(function (s) {
+    var yellow = s.classList.contains('yellow');
+    halftone(s.querySelector('canvas'), yellow ? '#000' : '#fee036', 1230, 26, 13.4);
+  });
+
+  // Feature graphic: black left, yellow right, halftone seam between them.
+  (function () {
+    var c = document.querySelector('.feature canvas'), ctx = c.getContext('2d'), W = c.width, H = c.height;
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#fee036';
+    var xEdge = 600;
+    ctx.fillRect(xEdge, 0, W - xEdge, H);
+    // yellow dots growing toward the yellow panel, across a 170 px band
+    var sp = 16;
+    for (var y = sp / 2; y < H + sp; y += sp) {
+      for (var x = xEdge - 190 + sp / 2; x < xEdge + sp; x += sp) {
+        var wave = 26 * Math.sin(y / H * Math.PI * 2.2 + 0.7);
+        var p = (x - (xEdge - 180 + wave)) / 180;
+        if (p <= 0) continue; if (p > 1) p = 1;
+        ctx.beginPath(); ctx.arc(x, y, 8.2 * Math.pow(p, 0.9), 0, Math.PI * 2); ctx.fill();
+      }
+    }
+  })();
+</script>
+</body>
+</html>
