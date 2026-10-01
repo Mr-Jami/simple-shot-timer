@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.7.0...v2.0.0) (2026-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ui:** the app is restructured around a bottom tab bar. The app bar, the home Reset button and the drill quick-pick sheet are gone, runs that detect no shots are no longer saved to history, detection settings live on their own page, and the app is portrait-only.
+
+### Features
+
+* **ui:** UX review follow-ups: aligned beep signals, tab navigation, monochrome theme ([5c24d0c](https://github.com/Mr-Jami/simple-shot-timer/commit/5c24d0c8cbe7b865e7229f2c26ab88970fe604b0))
+
 ## [1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30)
 
 
