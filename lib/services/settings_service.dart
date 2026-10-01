@@ -16,6 +16,7 @@ class SettingsService {
   static const _kBandHigh = 'band_high_hz';
   static const _kBeepVolume = 'beep_volume';
   static const _kAudioLatencyOffset = 'audio_latency_offset_ms';
+  static const _kBeepLatencyEstimate = 'beep_latency_estimate_ms';
   static const _kDelayMode = 'delay_mode';
   static const _kFixedDelay = 'fixed_delay_ms';
   static const _kRandomMin = 'random_delay_min_ms';
@@ -49,6 +50,8 @@ class SettingsService {
       beepVolume: _prefs.getDouble(_kBeepVolume) ?? defaults.beepVolume,
       audioLatencyOffsetMs:
           _prefs.getInt(_kAudioLatencyOffset) ?? defaults.audioLatencyOffsetMs,
+      beepLatencyEstimateMs: _prefs.getInt(_kBeepLatencyEstimate) ??
+          defaults.beepLatencyEstimateMs,
       delayMode: _readEnum(_kDelayMode, DelayMode.values, defaults.delayMode),
       fixedDelayMs: _prefs.getInt(_kFixedDelay) ?? defaults.fixedDelayMs,
       randomDelayMinMs:
@@ -80,6 +83,7 @@ class SettingsService {
       _prefs.setInt(_kBandHigh, s.bandHighHz),
       _prefs.setDouble(_kBeepVolume, s.beepVolume),
       _prefs.setInt(_kAudioLatencyOffset, s.audioLatencyOffsetMs),
+      _prefs.setInt(_kBeepLatencyEstimate, s.beepLatencyEstimateMs),
       _prefs.setString(_kDelayMode, s.delayMode.name),
       _prefs.setInt(_kFixedDelay, s.fixedDelayMs),
       _prefs.setInt(_kRandomMin, s.randomDelayMinMs),

@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vibration/vibration.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../models/app_settings.dart';
 import '../models/enums.dart';
@@ -11,8 +9,8 @@ import '../models/par_config.dart';
 import '../models/par_schedule.dart';
 import '../models/shot.dart';
 import '../models/timer_state.dart';
-import '../services/background_service.dart';
 import '../models/timer_string.dart';
+import 'history_provider.dart';
 import 'providers.dart';
 import 'settings_provider.dart';
 
@@ -56,6 +54,24 @@ class TimerNotifier extends Notifier<TimerState> {
   DrillMode _runMode = DrillMode.standard;
   DelayMode _runDelayMode = DelayMode.instant;
 
+  /// Output latency (ms) the flash and haptic are delayed by so they land on
+  /// the audible beep instead of on the playback request. Seeded from the
+  /// persisted estimate at start and refined by every measured onset.
+  int _latencyEstimateMs = AppSettings.defaultBeepLatencyEstimateMs;
+  final List<Timer> _signalTimers = [];
+
+  /// A finished run that detected nothing is kept here instead of being
+  /// written to history; it is saved only if the user adds a shot by hand.
+  TimerString? _pendingDraft;
+
+  /// [start] and [stop] each await platform work before the phase settles,
+  /// so a second tap of the same action in that window is a no-op rather
+  /// than a second run or a second history row. STOP during a start is not
+  /// ignored: it asks the start to cancel at its next wait.
+  bool _starting = false;
+  bool _stopping = false;
+  bool _cancelRequested = false;
+
   @override
   TimerState build() {
     ref.onDispose(_cleanup);
@@ -63,11 +79,47 @@ class TimerNotifier extends Notifier<TimerState> {
   }
 
   Future<void> start() async {
+    if (_starting || _stopping) return;
+    _starting = true;
+    _cancelRequested = false;
+    try {
+      await _start();
+    } finally {
+      _starting = false;
+      _cancelRequested = false;
+    }
+  }
+
+  Future<void> stop() async {
+    if (_stopping) return;
+    if (_starting) {
+      // The countdown is on screen but the mic is still coming up. The
+      // start path tears down as soon as its current wait returns.
+      _cancelRequested = true;
+      return;
+    }
+    _stopping = true;
+    try {
+      await _stop();
+    } finally {
+      _stopping = false;
+    }
+  }
+
+  /// Undoes a start that was cancelled or failed part-way: no string, back
+  /// to idle, flash counter kept.
+  Future<void> _abortStart({String? error}) async {
+    await _teardownRun();
+    _pendingDraft = null;
+    state = _idleKeepingCounter().copyWith(error: error);
+  }
+
+  Future<void> _start() async {
     if (state.phase != TimerPhase.idle && state.phase != TimerPhase.finished) {
       return;
     }
     final settings = ref.read(settingsProvider);
-    final detector = ref.read(shotDetectorProvider);
+    final detector = ref.read(shotSourceProvider);
     if (!await detector.hasPermission()) {
       // Set a translation key; the UI listener resolves it through
       // AppLocalizations so the SnackBar matches the current language.
@@ -78,17 +130,15 @@ class TimerNotifier extends Notifier<TimerState> {
     _snapshot = settings;
     _runMode = settings.drillMode;
     _runDelayMode = settings.delayMode;
+    _latencyEstimateMs = settings.beepLatencyEstimateMs;
+    _pendingDraft = null;
     final delayMs = _computeDelayMs(settings);
 
+    final env = ref.read(runEnvironmentProvider);
     if (settings.keepScreenAwake) {
-      await WakelockPlus.enable();
+      await env.setKeepAwake(true);
     }
-
-    // Promote to a foreground service so Android won't suspend the mic
-    // stream or kill the beep timers when the user locks the screen or
-    // switches apps. On iOS this is a no-op (the audio background mode in
-    // Info.plist handles it via the active AVAudioSession).
-    await BackgroundService.start();
+    await env.setForeground(true);
 
     // Reset clock but leave it stopped. We delay starting it until after the
     // native mic stream is ready, so the Timer(delayMs) below and the on-screen
@@ -100,29 +150,46 @@ class TimerNotifier extends Notifier<TimerState> {
     // Show the countdown view immediately for instant feedback. elapsedMs stays
     // at 0 (clock not running yet), so the display reads the full delayMs until
     // the clock actually starts a few hundred ms later.
+    // Carry the flash counter over: it only has to increase within the app
+    // session, and dropping it to zero would read as a beep to the overlay.
     state = TimerState.idle().copyWith(
       phase: delayMs > 0 ? TimerPhase.countdown : TimerPhase.running,
       delayUsedMs: delayMs,
+      flashTick: state.flashTick,
       clearError: true,
       clearSavedId: true,
     );
+    // Not awaited: the countdown must be on screen in the same frame as the
+    // tap, and the check only decides whether a one-line notice is shown.
+    unawaited(_checkBeepAudible());
 
     // Subscribe to detections first so the stream is ready when the beep fires.
     _detectionSub = detector.events.listen(_onDetection);
     // And to beep-onset events, so we can rebase t=0 onto the audible beep.
     _beepOnsetSub = detector.beepOnsetEvents.listen(_onBeepOnset);
-    await detector.start(
-      clock: _clock,
-      threshold: settings.detectionThreshold,
-      echoFilterMs: settings.echoFilterMs,
-      // Only blank during the countdown; the detector's notch filter handles
-      // the beep itself, so shots fired during/right after the beep still
-      // register.
-      blankingMs: delayMs,
-      bandFilterEnabled: settings.bandFilterEnabled,
-      bandLowHz: settings.bandLowHz,
-      bandHighHz: settings.bandHighHz,
-    );
+    try {
+      await detector.start(
+        clock: _clock,
+        threshold: settings.detectionThreshold,
+        echoFilterMs: settings.echoFilterMs,
+        // Only blank during the countdown; the detector's notch filter
+        // handles the beep itself, so shots fired during/right after the
+        // beep still register.
+        blankingMs: delayMs,
+        bandFilterEnabled: settings.bandFilterEnabled,
+        bandLowHz: settings.bandLowHz,
+        bandHighHz: settings.bandHighHz,
+      );
+    } catch (_) {
+      // A mic that will not start must not leave a countdown with no beep
+      // coming and no way out.
+      await _abortStart(error: 'errors.micStartFailed');
+      return;
+    }
+    if (_cancelRequested) {
+      await _abortStart();
+      return;
+    }
 
     // Async setup complete. Start the clock and schedule the beep so the user
     // experiences exactly delayMs of countdown.
@@ -131,6 +198,7 @@ class TimerNotifier extends Notifier<TimerState> {
 
     if (delayMs == 0) {
       await _fireStartBeep(silent: false);
+      if (_cancelRequested) await _abortStart();
     } else {
       _beepTimer = Timer(
         Duration(milliseconds: delayMs),
@@ -139,7 +207,7 @@ class TimerNotifier extends Notifier<TimerState> {
     }
   }
 
-  Future<void> stop() async {
+  Future<void> _stop() async {
     if (state.phase != TimerPhase.countdown &&
         state.phase != TimerPhase.running) {
       return;
@@ -149,7 +217,7 @@ class TimerNotifier extends Notifier<TimerState> {
     final shots = List<Shot>.from(state.shots);
     if (shots.isEmpty && state.phase == TimerPhase.countdown) {
       // Stopped before the start beep fired — discard.
-      state = TimerState.idle();
+      state = _idleKeepingCounter();
       return;
     }
 
@@ -176,20 +244,55 @@ class TimerNotifier extends Notifier<TimerState> {
       parIntervalMs: _runMode == DrillMode.par ? settings.parIntervalMs : null,
     );
 
-    final db = ref.read(databaseProvider);
-    final saved = await db.insertString(draft, historyCap: settings.historyCap);
+    if (shots.isEmpty) {
+      // Nothing to review and nothing worth a history row. Keep the draft so
+      // "Add shot" from the finished view can still save it.
+      _pendingDraft = draft;
+      state = state.copyWith(
+        phase: TimerPhase.finished,
+        shots: const [],
+        clearSavedId: true,
+      );
+      return;
+    }
 
-    state = state.copyWith(
-      phase: TimerPhase.finished,
-      shots: saved.shots,
-      savedStringId: saved.id,
-    );
+    try {
+      final saved = await ref
+          .read(stringStoreProvider)
+          .insertString(draft, historyCap: settings.historyCap);
+      state = state.copyWith(
+        phase: TimerPhase.finished,
+        shots: saved.shots,
+        savedStringId: saved.id,
+        savedAt: saved.createdAt,
+      );
+      ref.invalidate(historyProvider);
+    } catch (_) {
+      // Keep the result on screen; the next "Add shot" retries the save.
+      _pendingDraft = draft;
+      state = state.copyWith(
+        phase: TimerPhase.finished,
+        shots: shots,
+        clearSavedId: true,
+        error: 'errors.saveFailed',
+      );
+    }
   }
 
   void reset() {
     _cleanup();
-    state = TimerState.idle();
+    _pendingDraft = null;
+    state = _idleKeepingCounter();
   }
+
+  /// Back to idle when the run is over and the result has been seen. A no-op
+  /// while a string is in progress, so leaving Home mid-run is safe.
+  void resetIfFinished() {
+    if (state.phase == TimerPhase.finished) reset();
+  }
+
+  TimerState _idleKeepingCounter() =>
+      TimerState.idle().copyWith(flashTick: state.flashTick);
 
   Future<void> addManualShot() async {
     if (state.phase != TimerPhase.running &&
@@ -217,10 +320,55 @@ class TimerNotifier extends Notifier<TimerState> {
     );
     final updated = [...state.shots, shot];
     state = state.copyWith(shots: updated);
-    if (state.phase == TimerPhase.finished && state.savedStringId != null) {
-      await ref
-          .read(databaseProvider)
-          .replaceShots(state.savedStringId!, updated);
+    if (state.phase != TimerPhase.finished) return;
+    final store = ref.read(stringStoreProvider);
+    final id = state.savedStringId;
+    if (id != null) {
+      await store.replaceShots(id, updated);
+      ref.invalidate(historyProvider);
+      return;
+    }
+    // First shot on a run that detected nothing: now it is worth saving.
+    final draft = _pendingDraft;
+    // Null here means a save is already in flight; the shot is in state and
+    // the in-flight save reconciles it below.
+    if (draft == null) return;
+    _pendingDraft = null; // before the await: a second tap must not insert it
+    try {
+      final saved = await store.insertString(
+        draft.copyWith(shots: updated),
+        historyCap: _snapshot.historyCap,
+      );
+      if (state.phase != TimerPhase.finished) {
+        // Reset while saving; the row exists, the screen has moved on.
+        ref.invalidate(historyProvider);
+        return;
+      }
+      // Shots added or removed while saving live only in state. Make the
+      // row match state rather than the other way round.
+      final current = state.shots;
+      if (current.length == saved.shots.length) {
+        state = state.copyWith(
+          shots: saved.shots,
+          savedStringId: saved.id,
+          savedAt: saved.createdAt,
+        );
+      } else {
+        final reindexed = [
+          for (var i = 0; i < current.length; i++)
+            current[i].copyWith(index: i, stringId: saved.id),
+        ];
+        await store.replaceShots(saved.id!, reindexed);
+        state = state.copyWith(
+          shots: reindexed,
+          savedStringId: saved.id,
+          savedAt: saved.createdAt,
+        );
+      }
+      ref.invalidate(historyProvider);
+    } catch (_) {
+      _pendingDraft = draft;
+      state = state.copyWith(error: 'errors.saveFailed');
     }
   }
 
@@ -237,27 +385,33 @@ class TimerNotifier extends Notifier<TimerState> {
     state = state.copyWith(shots: reindexed);
     if (state.phase == TimerPhase.finished && state.savedStringId != null) {
       await ref
-          .read(databaseProvider)
+          .read(stringStoreProvider)
           .replaceShots(state.savedStringId!, reindexed);
+      ref.invalidate(historyProvider);
     }
   }
 
   Future<void> updateNotes(String notes) async {
     final id = state.savedStringId;
     if (id == null) return;
-    await ref.read(databaseProvider).updateStringMeta(id, notes: notes);
+    await ref.read(stringStoreProvider).updateStringMeta(id, notes: notes);
+    ref.invalidate(historyProvider);
   }
 
   Future<void> updateLabel(String label) async {
     final id = state.savedStringId;
     if (id == null) return;
-    await ref.read(databaseProvider).updateStringMeta(id, label: label);
+    await ref.read(stringStoreProvider).updateStringMeta(id, label: label);
+    ref.invalidate(historyProvider);
   }
 
   Future<void> updatePenalty(int penaltyMs) async {
     final id = state.savedStringId;
     if (id == null) return;
-    await ref.read(databaseProvider).updateStringMeta(id, penaltyMs: penaltyMs);
+    await ref
+        .read(stringStoreProvider)
+        .updateStringMeta(id, penaltyMs: penaltyMs);
+    ref.invalidate(historyProvider);
   }
 
   /// Visible for testing — pure delay computation.
@@ -281,15 +435,45 @@ class TimerNotifier extends Notifier<TimerState> {
 
   Future<void> _fireStartBeep({required bool silent}) async {
     _beginCycle(1);
-    state = state.copyWith(
-      phase: TimerPhase.running,
-      flashTick: state.flashTick + 1,
-    );
+    state = state.copyWith(phase: TimerPhase.running);
     if (!silent) {
       await _playStartBeep();
+      _scheduleSignals();
     }
     _schedulePars();
     _startTick();
+  }
+
+  /// The flash and the haptic are the beep's visual and tactile twins. Both
+  /// are delayed by the current output-latency estimate so all three land on
+  /// the same instant; the acoustic onset keeps the estimate honest.
+  void _scheduleSignals() {
+    _signalTimers.add(
+      Timer(Duration(milliseconds: _latencyEstimateMs), () {
+        if (state.phase != TimerPhase.running &&
+            state.phase != TimerPhase.countdown) {
+          return;
+        }
+        state = state.copyWith(flashTick: state.flashTick + 1);
+        unawaited(_maybeHaptic());
+      }),
+    );
+  }
+
+  /// Exponential moving average of the output latency: 70% history, 30% new
+  /// sample, so two or three strings converge on a phone and output route
+  /// without one odd reading dragging the estimate around.
+  static int blendLatency(int estimateMs, int measuredMs) =>
+      (0.7 * estimateMs + 0.3 * measuredMs).round();
+
+  Future<void> _checkBeepAudible() async {
+    final audible = await ref.read(volumeServiceProvider).isMediaAudible();
+    if (audible != false) return;
+    if (state.phase != TimerPhase.countdown &&
+        state.phase != TimerPhase.running) {
+      return;
+    }
+    state = state.copyWith(beepInaudible: true);
   }
 
   /// Marks the start of a new par cycle: resets the per-cycle clock + state
@@ -315,14 +499,14 @@ class TimerNotifier extends Notifier<TimerState> {
   /// (e.g. beep muted, or output route the mic can't pick up).
   void _armOnsetDetection() {
     _awaitingOnset = true;
-    final detector = ref.read(shotDetectorProvider);
+    final detector = ref.read(shotSourceProvider);
     detector.armBeepDetection();
     _onsetTimeoutTimer?.cancel();
     _onsetTimeoutTimer = Timer(
       const Duration(milliseconds: _onsetTimeoutMs),
       () {
         _awaitingOnset = false;
-        ref.read(shotDetectorProvider).cancelBeepDetection();
+        ref.read(shotSourceProvider).cancelBeepDetection();
       },
     );
   }
@@ -341,6 +525,8 @@ class TimerNotifier extends Notifier<TimerState> {
     _awaitingOnset = false;
     _onsetTimeoutTimer?.cancel();
     if (result == null) return; // implausible — keep the provisional base
+
+    _latencyEstimateMs = blendLatency(_latencyEstimateMs, result.latencyMs);
 
     final delta = result.newBaseMs - _cycleStartClockMs;
     if (delta == 0) return;
@@ -390,41 +576,35 @@ class TimerNotifier extends Notifier<TimerState> {
             event.cycle < totalCycles) {
           _beginCycle(event.cycle + 1);
         }
-        state = state.copyWith(
-          currentParIndex: event.cycle,
-          flashTick: state.flashTick + 1,
-        );
+        state = state.copyWith(currentParIndex: event.cycle);
         if (event.kind == ParBeepKind.start) {
           _playStartBeep();
         } else {
           _playParBeep();
         }
+        _scheduleSignals();
       }));
     }
   }
 
   Future<void> _playStartBeep() async {
-    final audio = ref.read(audioServiceProvider);
+    final audio = ref.read(beepPlayerProvider);
     unawaited(audio.playStartBeep(volume: _snapshot.beepVolume));
-    await _maybeHaptic();
   }
 
   Future<void> _playParBeep() async {
-    final audio = ref.read(audioServiceProvider);
+    final audio = ref.read(beepPlayerProvider);
     unawaited(audio.playParBeep(volume: _snapshot.beepVolume));
-    await _maybeHaptic();
   }
 
   Future<void> _maybeHaptic() async {
     if (!_snapshot.hapticOnBeep) return;
-    if (await Vibration.hasVibrator()) {
-      unawaited(Vibration.vibrate(duration: 100));
-    }
+    await ref.read(runEnvironmentProvider).vibrate();
   }
 
   void _startTick() {
     _tickTimer?.cancel();
-    final detector = ref.read(shotDetectorProvider);
+    final detector = ref.read(shotSourceProvider);
     _tickTimer = Timer.periodic(const Duration(milliseconds: 50), (_) {
       if (state.phase != TimerPhase.running &&
           state.phase != TimerPhase.countdown) {
@@ -461,16 +641,31 @@ class TimerNotifier extends Notifier<TimerState> {
       t.cancel();
     }
     _parTimers.clear();
-    await _detectionSub?.cancel();
-    _detectionSub = null;
-    await _beepOnsetSub?.cancel();
-    _beepOnsetSub = null;
-    await ref.read(shotDetectorProvider).stop();
-    _clock.stop();
-    if (await WakelockPlus.enabled) {
-      await WakelockPlus.disable();
+    _cancelSignalTimers();
+    if (_latencyEstimateMs != _snapshot.beepLatencyEstimateMs) {
+      // Persist what this run learned about the output route, once.
+      unawaited(ref.read(settingsProvider.notifier).update(
+        (c) => c.copyWith(beepLatencyEstimateMs: _latencyEstimateMs),
+      ));
     }
-    await BackgroundService.stop();
+    // Not awaited: nothing depends on the cancel completing, and a broadcast
+    // subscription's cancel future resolves outside the caller's zone.
+    unawaited(_detectionSub?.cancel());
+    _detectionSub = null;
+    unawaited(_beepOnsetSub?.cancel());
+    _beepOnsetSub = null;
+    await ref.read(shotSourceProvider).stop();
+    _clock.stop();
+    final env = ref.read(runEnvironmentProvider);
+    await env.setKeepAwake(false);
+    await env.setForeground(false);
+  }
+
+  void _cancelSignalTimers() {
+    for (final t in _signalTimers) {
+      t.cancel();
+    }
+    _signalTimers.clear();
   }
 
   void _cleanup() {
@@ -483,6 +678,7 @@ class TimerNotifier extends Notifier<TimerState> {
       t.cancel();
     }
     _parTimers.clear();
+    _cancelSignalTimers();
     _detectionSub?.cancel();
     _detectionSub = null;
     _beepOnsetSub?.cancel();
@@ -490,11 +686,11 @@ class TimerNotifier extends Notifier<TimerState> {
     _clock
       ..stop()
       ..reset();
-    // Best-effort wakelock release; ignore failure.
-    WakelockPlus.disable().catchError((_) {});
-    BackgroundService.stop().catchError((_) {});
-    final detector = ref.read(shotDetectorProvider);
-    detector.stop().catchError((_) {});
+    // Best-effort release of everything the run held; ignore failures.
+    final env = ref.read(runEnvironmentProvider);
+    env.setKeepAwake(false).catchError((_) {});
+    env.setForeground(false).catchError((_) {});
+    ref.read(shotSourceProvider).stop().catchError((_) {});
   }
 }
 

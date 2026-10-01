@@ -36,6 +36,22 @@ import UIKit
         result(FlutterMethodNotImplemented)
       }
     }
+
+    // Whether the beep can be heard at all (lib/services/volume_service.dart).
+    // iOS has no public API to show the volume HUD, so that call reports
+    // not-implemented and the Dart side treats it as a no-op.
+    let volumeChannel = FlutterMethodChannel(
+      name: "cc.jami.simpleshottimer/volume",
+      binaryMessenger: engineBridge.applicationRegistrar.messenger()
+    )
+    volumeChannel.setMethodCallHandler { call, result in
+      switch call.method {
+      case "isMediaAudible":
+        result(AVAudioSession.sharedInstance().outputVolume > 0)
+      default:
+        result(FlutterMethodNotImplemented)
+      }
+    }
   }
 
   /// Replicates the session setup the record plugin performs when it manages

@@ -47,6 +47,18 @@ void main() {
     });
   });
 
+  group('SettingsService beep latency estimate', () {
+    test('defaults when absent and round-trips when saved', () async {
+      final service = SettingsService(prefs);
+      expect(
+        service.load().beepLatencyEstimateMs,
+        AppSettings.defaultBeepLatencyEstimateMs,
+      );
+      await service.save(const AppSettings(beepLatencyEstimateMs: 123));
+      expect(SettingsService(prefs).load().beepLatencyEstimateMs, 123);
+    });
+  });
+
   group('SettingsService.reset', () {
     test('restores every setting to its default but keeps the drills',
         () async {

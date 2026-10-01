@@ -8,6 +8,7 @@ import '../models/timer_string.dart';
 import '../providers/history_provider.dart';
 import '../services/export_service.dart';
 import '../utils/time_format.dart';
+import '../widgets/tab_header.dart';
 import 'review_screen.dart';
 
 /// One-line drill summary for the history row, e.g. "Par 2.0s ×4 / 5s rest",
@@ -40,117 +41,127 @@ class HistoryScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final history = ref.watch(historyProvider);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.tr('history.title')),
-        actions: [
-          PopupMenuButton<String>(
-            onSelected: (value) async {
-              if (value == 'export') {
-                final items = history.value ?? const [];
-                if (items.isEmpty) return;
-                final subject = context.tr('history.exportSubject');
-                final exporter = ExportService();
-                final file = await exporter.writeAllStringsCsv(items);
-                await exporter.share(file, subject: subject);
-              } else if (value == 'clear') {
-                final confirm = await showDialog<bool>(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                    title: Text(context.tr('history.clearConfirmTitle')),
-                    content: Text(context.tr('history.clearConfirmBody')),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(ctx, false),
-                        child: Text(context.tr('common.cancel')),
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          TabHeader(
+            title: context.tr('history.title'),
+            actions: [
+              PopupMenuButton<String>(
+                onSelected: (value) async {
+                  if (value == 'export') {
+                    final items = history.value ?? const [];
+                    if (items.isEmpty) return;
+                    final subject = context.tr('history.exportSubject');
+                    final exporter = ExportService();
+                    final file = await exporter.writeAllStringsCsv(items);
+                    await exporter.share(file, subject: subject);
+                  } else if (value == 'clear') {
+                    final confirm = await showDialog<bool>(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: Text(context.tr('history.clearConfirmTitle')),
+                        content: Text(context.tr('history.clearConfirmBody')),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(ctx, false),
+                            child: Text(context.tr('common.cancel')),
+                          ),
+                          FilledButton(
+                            onPressed: () => Navigator.pop(ctx, true),
+                            child: Text(context.tr('common.deleteAll')),
+                          ),
+                        ],
                       ),
-                      FilledButton(
-                        onPressed: () => Navigator.pop(ctx, true),
-                        child: Text(context.tr('common.deleteAll')),
-                      ),
-                    ],
+                    );
+                    if (confirm == true) {
+                      await ref.read(historyProvider.notifier).deleteAll();
+                    }
+                  }
+                },
+                itemBuilder: (_) => [
+                  PopupMenuItem(
+                    value: 'export',
+                    child: Text(context.tr('history.exportAll')),
                   ),
-                );
-                if (confirm == true) {
-                  await ref.read(historyProvider.notifier).deleteAll();
-                }
-              }
-            },
-            itemBuilder: (_) => [
-              PopupMenuItem(
-                value: 'export',
-                child: Text(context.tr('history.exportAll')),
-              ),
-              PopupMenuItem(
-                value: 'clear',
-                child: Text(context.tr('history.clearAll')),
+                  PopupMenuItem(
+                    value: 'clear',
+                    child: Text(context.tr('history.clearAll')),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
-      body: SafeArea(
-        top: false,
-        child: history.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, _) => Center(
-            child: Text(
-              context.tr('common.failedToLoad', args: {'error': e.toString()}),
-            ),
-          ),
-          data: (items) {
-            if (items.isEmpty) {
-              return Center(child: Text(context.tr('history.empty')));
-            }
-            final dateFmt = DateFormat.yMMMd().add_jm();
-            return ListView.separated(
-              itemCount: items.length,
-              separatorBuilder: (_, __) => const Divider(height: 1),
-              itemBuilder: (context, index) {
-                final s = items[index];
-                return Dismissible(
-                  key: ValueKey('string-${s.id}'),
-                  direction: DismissDirection.endToStart,
-                  background: Container(
-                    color: Theme.of(context).colorScheme.errorContainer,
-                    alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: const Icon(Icons.delete),
-                  ),
-                  onDismissed: (_) =>
-                      ref.read(historyProvider.notifier).delete(s.id!),
-                  child: ListTile(
-                    title: Text(
-                      s.label?.isNotEmpty == true
-                          ? s.label!
-                          : context.tr('history.itemFallback', args: {
-                              'seconds': formatSeconds(s.totalTimeMs),
-                              'count': s.shotCount,
-                            }),
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    subtitle: Text(
-                      '${dateFmt.format(s.createdAt.toLocal())} · '
-                      '${_drillSummary(context, s)}',
-                    ),
-                    trailing: Text(
-                      '${formatSeconds(s.totalTimeMs)}s',
-                      style: const TextStyle(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontWeight: FontWeight.w600,
+          Expanded(
+            child: history.when(
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (e, _) => Center(
+                child: Text(
+                  context
+                      .tr('common.failedToLoad', args: {'error': e.toString()}),
+                ),
+              ),
+              data: (items) {
+                if (items.isEmpty) {
+                  return Center(child: Text(context.tr('history.empty')));
+                }
+                final dateFmt = DateFormat.yMMMd().add_jm();
+                return ListView.separated(
+                  itemCount: items.length,
+                  separatorBuilder: (_, __) => const Divider(height: 1),
+                  itemBuilder: (context, index) {
+                    final s = items[index];
+                    return Dismissible(
+                      key: ValueKey('string-${s.id}'),
+                      direction: DismissDirection.endToStart,
+                      background: Container(
+                        color: Theme.of(context).colorScheme.errorContainer,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: const Icon(Icons.delete),
                       ),
-                    ),
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => ReviewScreen(stringId: s.id!),
+                      onDismissed: (_) =>
+                          ref.read(historyProvider.notifier).delete(s.id!),
+                      child: ListTile(
+                        title: Text(
+                          s.label?.isNotEmpty == true
+                              ? s.label!
+                              : s.shotCount == 1
+                                  ? context
+                                      .tr('history.itemFallbackOne', args: {
+                                      'seconds': formatSeconds(s.totalTimeMs),
+                                    })
+                                  : context.tr('history.itemFallback', args: {
+                                      'seconds': formatSeconds(s.totalTimeMs),
+                                      'count': s.shotCount,
+                                    }),
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        subtitle: Text(
+                          '${dateFmt.format(s.createdAt.toLocal())} · '
+                          '${_drillSummary(context, s)}',
+                        ),
+                        trailing: Text(
+                          '${formatSeconds(s.totalTimeMs)}s',
+                          style: const TextStyle(
+                            fontFeatures: [FontFeature.tabularFigures()],
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => ReviewScreen(stringId: s.id!),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
               },
-            );
-          },
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

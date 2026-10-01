@@ -5,6 +5,8 @@ import '../services/audio_service.dart';
 import '../services/database_service.dart';
 import '../services/settings_service.dart';
 import '../services/shot_detector.dart';
+import '../services/timer_ports.dart';
+import '../services/volume_service.dart';
 
 /// Overridden in `main()` after `SharedPreferences.getInstance()` resolves.
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
@@ -28,6 +30,19 @@ final settingsServiceProvider = Provider<SettingsService>(
 final audioServiceProvider = Provider<AudioService>((ref) {
   throw UnimplementedError('AudioService must be overridden in main()');
 });
+
+final volumeServiceProvider = Provider<VolumeService>((ref) => VolumeService());
+
+// The timer depends on these ports rather than on the plugin-backed classes
+// above, so tests can drive a run with fakes (see timer_notifier_test.dart).
+final shotSourceProvider =
+    Provider<ShotSource>((ref) => ref.watch(shotDetectorProvider));
+final beepPlayerProvider =
+    Provider<BeepPlayer>((ref) => ref.watch(audioServiceProvider));
+final stringStoreProvider =
+    Provider<StringStore>((ref) => ref.watch(databaseProvider));
+final runEnvironmentProvider =
+    Provider<RunEnvironment>((ref) => const PluginRunEnvironment());
 
 final shotDetectorProvider = Provider<ShotDetector>((ref) {
   final detector = ShotDetector();

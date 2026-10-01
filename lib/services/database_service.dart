@@ -4,8 +4,9 @@ import 'package:sqflite/sqflite.dart';
 
 import '../models/shot.dart';
 import '../models/timer_string.dart';
+import 'timer_ports.dart';
 
-class DatabaseService {
+class DatabaseService implements StringStore {
   DatabaseService._(this._db);
 
   final Database _db;
@@ -76,6 +77,7 @@ class DatabaseService {
     }
   }
 
+  @override
   Future<TimerString> insertString(TimerString s, {required int historyCap}) async {
     return _db.transaction((txn) async {
       final id = await txn.insert('strings', s.toMap()..remove('id'));
@@ -89,6 +91,7 @@ class DatabaseService {
     });
   }
 
+  @override
   Future<void> updateStringMeta(
     int id, {
     String? label,
@@ -139,6 +142,7 @@ class DatabaseService {
     await _db.delete('strings');
   }
 
+  @override
   Future<void> replaceShots(int stringId, List<Shot> shots) async {
     await _db.transaction((txn) async {
       await txn.delete('shots', where: 'string_id = ?', whereArgs: [stringId]);
