@@ -61,51 +61,60 @@ class _MainShellState extends ConsumerState<MainShell> {
       systemNavigationBarDividerColor: scheme.surfaceContainer,
     );
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: systemBars,
-      child: FlashOverlay(
-        trigger: flashTick,
-        enabled: visualFlash,
-        reducedMotion: reducedMotionOf(context),
-        child: Scaffold(
-          body: IndexedStack(
-            index: _index,
-            children: const [
-              HomeScreen(),
-              CustomDrillsScreen(),
-              HistoryScreen(),
-              SettingsScreen(),
-            ],
-          ),
-          bottomNavigationBar: AbsorbPointer(
-            absorbing: inProgress,
-            child: AnimatedOpacity(
-              opacity: inProgress ? 0.38 : 1,
-              duration: motion(context, kMotionMedium),
-              child: NavigationBar(
-                selectedIndex: _index,
-                onDestinationSelected: _select,
-                destinations: [
-                  NavigationDestination(
-                    icon: const Icon(Icons.timer_outlined),
-                    selectedIcon: const Icon(Icons.timer),
-                    label: context.tr('nav.timer'),
-                  ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.bookmarks_outlined),
-                    selectedIcon: const Icon(Icons.bookmarks),
-                    label: context.tr('nav.drills'),
-                  ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.history),
-                    label: context.tr('nav.history'),
-                  ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.settings_outlined),
-                    selectedIcon: const Icon(Icons.settings),
-                    label: context.tr('nav.settings'),
-                  ),
-                ],
+    return PopScope<Object?>(
+      // System back on another tab returns to the timer; on the timer it
+      // leaves the app as usual. A pushed page (Review, calibration) sits
+      // above this route and pops first.
+      canPop: _index == 0,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) _select(0);
+      },
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: systemBars,
+        child: FlashOverlay(
+          trigger: flashTick,
+          enabled: visualFlash,
+          reducedMotion: reducedMotionOf(context),
+          child: Scaffold(
+            body: IndexedStack(
+              index: _index,
+              children: const [
+                HomeScreen(),
+                CustomDrillsScreen(),
+                HistoryScreen(),
+                SettingsScreen(),
+              ],
+            ),
+            bottomNavigationBar: AbsorbPointer(
+              absorbing: inProgress,
+              child: AnimatedOpacity(
+                opacity: inProgress ? 0.38 : 1,
+                duration: motion(context, kMotionMedium),
+                child: NavigationBar(
+                  selectedIndex: _index,
+                  onDestinationSelected: _select,
+                  destinations: [
+                    NavigationDestination(
+                      icon: const Icon(Icons.timer_outlined),
+                      selectedIcon: const Icon(Icons.timer),
+                      label: context.tr('nav.timer'),
+                    ),
+                    NavigationDestination(
+                      icon: const Icon(Icons.bookmarks_outlined),
+                      selectedIcon: const Icon(Icons.bookmarks),
+                      label: context.tr('nav.drills'),
+                    ),
+                    NavigationDestination(
+                      icon: const Icon(Icons.history),
+                      label: context.tr('nav.history'),
+                    ),
+                    NavigationDestination(
+                      icon: const Icon(Icons.settings_outlined),
+                      selectedIcon: const Icon(Icons.settings),
+                      label: context.tr('nav.settings'),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

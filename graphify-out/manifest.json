@@ -5,7 +5,7 @@
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
-    "mtime": 1790812044.8327725,
+    "mtime": 1790812741.1102378,
     "ast_hash": "5750135a653193ad7b868e6ffe3b8ada",
     "semantic_hash": "5750135a653193ad7b868e6ffe3b8ada"
   },
@@ -1095,8 +1095,8 @@
     "semantic_hash": ""
   },
   "lib/screens/main_shell.dart": {
-    "mtime": 1790809066.565923,
-    "ast_hash": "1dadb1f8ad5bed087ddf478252ed3097",
+    "mtime": 1790812615.709793,
+    "ast_hash": "767443d91bc9060f8c20fdc978446852",
     "semantic_hash": ""
   },
   "lib/widgets/tab_header.dart": {
