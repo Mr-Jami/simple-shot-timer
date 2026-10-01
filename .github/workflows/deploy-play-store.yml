@@ -80,16 +80,20 @@ jobs:
         # "What's new" notes: user-facing sections only, no links, commit
         # hashes or scopes, capped at Play Store's 500 chars per locale. The
         # GitHub Release itself is left untouched. Falls back to a generic
-        # message if no release exists yet.
+        # "Bug fixes and improvements." when gh can't read the release, the
+        # body is empty or has no user-facing sections; each case logs a
+        # warning annotation explaining why.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p distribution/whatsnew
           TAG="${GITHUB_REF_NAME}"
           if [[ "$TAG" == v*.*.* ]]; then
-            NOTES=$(gh release view "$TAG" --json body --jq .body 2>/dev/null || echo "")
+            NOTES=$(gh release view "$TAG" --json body --jq .body) \
+              || echo "::warning title=Play Store release notes::gh release view $TAG failed (see error above)"
           else
-            NOTES=$(gh release view --json body --jq .body 2>/dev/null || echo "")
+            NOTES=$(gh release view --json body --jq .body) \
+              || echo "::warning title=Play Store release notes::gh release view (latest) failed (see error above)"
           fi
           printf '%s' "$NOTES" \
             | python3 .github/scripts/play_release_notes.py --max-chars 500 \

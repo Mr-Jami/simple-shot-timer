@@ -153,10 +153,14 @@ A scope is optional: `feat(settings): add language picker`.
 - **GitHub Release / `CHANGELOG.md`**: verbatim, with scope, links and
   commit hashes.
 - **Play Store "What's new"**: rewritten by
-  `.github/scripts/play_release_notes.py` into plain bullets under *New*,
-  *Fixes* and *Improvements*. Scope, links and issue numbers are removed,
-  and the first letter is capitalised. Breaking-change notes, dependency
-  bumps and reverts are left out, and the text is capped at 500 characters.
+  `.github/scripts/play_release_notes.py` into plain bullets under
+  *Changed*, *New*, *Fixes* and *Improvements*. Scope, links and issue
+  numbers are removed, and the first letter is capitalised. Dependency
+  bumps and reverts are left out, and the text is capped at 500 characters
+  (later bullets are dropped first, with a warning in the deploy log).
+
+A `BREAKING CHANGE:` footer is published in full under *Changed*, listed
+first, so write it for users too: say what is gone or behaves differently.
 
 So write the subject for the person updating the app, not for a reviewer.
 Describe what changed for them in plain words:
