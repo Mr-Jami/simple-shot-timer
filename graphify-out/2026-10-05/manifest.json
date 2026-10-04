@@ -1345,8 +1345,8 @@
     "semantic_hash": ""
   },
   "website/src/motion.js": {
-    "mtime": 1791153517.1866438,
-    "ast_hash": "763140fc193d487d4c5a5e5a5d9ff335",
+    "mtime": 1791154667.7517352,
+    "ast_hash": "419caa82d25b4973d7e7d1a3eb2fc709",
     "semantic_hash": ""
   },
   "website/src/screens.js": {
@@ -1375,13 +1375,13 @@
     "semantic_hash": ""
   },
   "website/index.html": {
-    "mtime": 1791154222.2715342,
-    "ast_hash": "61dec515da744b0457bc63b1ca88b465",
+    "mtime": 1791155179.5897107,
+    "ast_hash": "493062db97ad00dd214053040abcd7e1",
     "semantic_hash": ""
   },
   "website/og-image/index.html": {
-    "mtime": 1791153822.4068189,
-    "ast_hash": "241b2f689ffacc18077f9b29d6a1e178",
+    "mtime": 1791155179.5912232,
+    "ast_hash": "7c841844494bfed3348d45b8a4164260",
     "semantic_hash": ""
   },
   "website/public/robots.txt": {
@@ -1415,8 +1415,8 @@
     "semantic_hash": ""
   },
   "website/public/og.png": {
-    "mtime": 1791151994.3084867,
-    "ast_hash": "b587ea985e0ea8aedbb9c48f5b517101",
+    "mtime": 1791155264.5243955,
+    "ast_hash": "aa0010b9a5f9ad8534bc72540184af17",
     "semantic_hash": ""
   },
   "website/privacy/index.html": {
@@ -1425,13 +1425,13 @@
     "semantic_hash": ""
   },
   "website/public/llms.txt": {
-    "mtime": 1791153810.372344,
-    "ast_hash": "555fa630c89c525b351bf9b4057c11d2",
+    "mtime": 1791154894.5373847,
+    "ast_hash": "53e09779a847693aa53bb8f023ab08f3",
     "semantic_hash": ""
   },
   "website/src/i18n.js": {
-    "mtime": 1791153908.2642393,
-    "ast_hash": "bde70a0fc389f34f78eb8891b752fd2a",
+    "mtime": 1791154577.9777176,
+    "ast_hash": "33e1802c492e08c52d45aa333ad41985",
     "semantic_hash": ""
   },
   "website/changelog/index.html": {
@@ -1465,8 +1465,8 @@
     "semantic_hash": ""
   },
   "website/de/index.html": {
-    "mtime": 1791154222.2725341,
-    "ast_hash": "62882f2c4c5aaf00d71ccf0c676e03dc",
+    "mtime": 1791154829.9564102,
+    "ast_hash": "6a6bc966a036fc0821b667dc046c702a",
     "semantic_hash": ""
   },
   "website/imprint/index.html": {
@@ -1485,8 +1485,8 @@
     "semantic_hash": ""
   },
   "website/public/og-de.png": {
-    "mtime": 1791153834.697022,
-    "ast_hash": "35790eeefb4bd71294e11dae758b0b94",
+    "mtime": 1791155266.5194602,
+    "ast_hash": "17146a739c1fb508c1b426b6cc04f153",
     "semantic_hash": ""
   }
 }
