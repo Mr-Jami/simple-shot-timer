@@ -11,7 +11,7 @@ import {
 } from 'animejs';
 import { screen, phoneScreen, SAMPLE_SHOTS, sec } from './screens.js';
 import { drawHalftone } from './halftone.js';
-import { number } from './i18n.js';
+import { number, t } from './i18n.js';
 
 const settle = spring({ bounce: 0, duration: 700 });
 const quick = spring({ bounce: 0, duration: 450 });
@@ -22,6 +22,16 @@ export const reduceMotion = () => reduceQuery.matches;
 const whenSeen = (target, fn, enter = 'bottom-=12% top') =>
   onScroll({ target, enter, repeat: false, onEnter: fn });
 
+/**
+ * True when part of `el` is in the viewport right now. This script can run
+ * after the first paint, so anything already on screen has been drawn: hiding
+ * it to reveal it again would flash. Such elements just stay as they are.
+ */
+const onScreen = (el) => {
+  const r = el.getBoundingClientRect();
+  return r.bottom > 0 && r.top < window.innerHeight;
+};
+
 // ----- Hero intro: nav, pill, headline words, copy, then the phone -----
 export function intro() {
   const root = document.documentElement;
@@ -31,6 +41,15 @@ export function intro() {
   const words = h1.querySelectorAll('.word-clip > span');
   const items = document.querySelectorAll('[data-intro]');
   const phone = document.querySelector('[data-intro-phone]');
+
+  // On a slow connection the CSS fallback (site.css, `intro-fallback`) may have
+  // shown the hero before this script arrived. motion-ready removes that
+  // animation and its fill, so pin the hero visible and skip the replay.
+  if (Number(getComputedStyle(h1).opacity) > 0) {
+    utils.set([...items, phone, h1], { opacity: 1 });
+    root.classList.add('motion-ready');
+    return;
+  }
 
   root.classList.add('motion-ready');
   utils.set(h1, { opacity: 1 });
@@ -54,10 +73,12 @@ export function intro() {
 function reveals() {
   const rise = reduceMotion() ? 0 : 28;
   document.querySelectorAll('[data-reveal]').forEach((el) => {
+    if (onScreen(el)) return;
     utils.set(el, { opacity: 0, y: rise });
     whenSeen(el, () => animate(el, { opacity: 1, y: 0, ease: settle }));
   });
   document.querySelectorAll('[data-reveal-group]').forEach((group) => {
+    if (onScreen(group)) return;
     const kids = [...group.children];
     utils.set(kids, { opacity: 0, y: rise });
     whenSeen(group, () => animate(kids, { opacity: 1, y: 0, ease: settle, delay: stagger(70) }));
@@ -70,7 +91,7 @@ function counters() {
     const to = Number(el.dataset.count);
     const from = Number(el.dataset.from ?? 0);
     const fmt = number;
-    if (reduceMotion()) return;
+    if (reduceMotion() || onScreen(el)) return;
     const n = { v: from };
     el.textContent = fmt(from);
     whenSeen(el, () => animate(n, {
@@ -98,6 +119,7 @@ function story() {
     if (!self.matches.wide) {
       const rise = reduceMotion() ? 0 : 28;
       steps.forEach((s) => {
+        if (onScreen(s)) return;
         const parts = [s.querySelector('.step-text'), s.querySelector('.phone-step')];
         utils.set(parts, { opacity: 0, y: rise });
         whenSeen(s, () => animate(parts, { opacity: 1, y: 0, ease: settle, delay: stagger(90) }));
@@ -152,7 +174,7 @@ function runningLoop(layer) {
       if (fired) animate(level, { width: ['94%', '6%'], duration: 480, ease: 'out(3)' });
     }
     const n = done.length;
-    label.textContent = n ? 'LAST' : 'TIME';
+    label.textContent = n ? t('home.last') : t('home.time');
     num.textContent = sec(n ? done[n - 1] : ms);
     count.textContent = String(n);
     first.textContent = n ? sec(done[0]) : '--';
@@ -323,10 +345,10 @@ function bento() {
   // Themes and the muted notice arrive once.
   if (!still) {
     const th = card('themes').querySelectorAll('.tm');
-    utils.set(th, { y: 60 });
+    if (!onScreen(card('themes'))) utils.set(th, { y: 60 });
     whenSeen(card('themes'), () => animate(th, { y: 0, ease: settle, delay: stagger(90, { start: 150 }) }));
     const note = card('muted').querySelector('.mt-notice');
-    utils.set(note, { y: 40, opacity: 0 });
+    if (!onScreen(card('muted'))) utils.set(note, { y: 40, opacity: 0 });
     whenSeen(card('muted'), () => animate(note, { y: 0, opacity: 1, ease: settle, delay: 200 }));
   }
 }
