@@ -187,7 +187,7 @@
       "label": "MainActivity",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L9",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
       "community": 99,
@@ -207,7 +207,7 @@
       "label": ".configureFlutterEngine()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L10",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
       "community": 99,
@@ -376,7 +376,7 @@
       "file_type": "code",
       "type": "module",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "flutter",
       "community": 10,
@@ -387,7 +387,7 @@
       "file_type": "code",
       "type": "module",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L2",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "uikit",
       "community": 10,
@@ -449,7 +449,7 @@
       "file_type": "code",
       "type": "module",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "avfoundation",
       "community": 10,
@@ -459,7 +459,7 @@
       "label": "AppDelegate",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate",
       "community": 10,
@@ -489,7 +489,7 @@
       "label": ".application()",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate_application",
       "community": 10,
@@ -529,7 +529,7 @@
       "label": ".didInitializeImplicitFlutterEngine()",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L14",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
       "community": 10,
@@ -549,7 +549,7 @@
       "label": ".configureAudioSession()",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate_configureaudiosession",
       "community": 10,
@@ -649,7 +649,7 @@
       "label": "SceneDelegate",
       "file_type": "code",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L4",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "ios_runner_scenedelegate_scenedelegate",
       "community": 10,
@@ -682,7 +682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 42,
+      "community": 54,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -692,7 +692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerwidget",
-      "community": 21,
+      "community": 54,
       "norm_label": "consumerwidget"
     },
     {
@@ -732,7 +732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 96,
+      "community": 42,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -742,7 +742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "i18n_app_localizations_dart",
-      "community": 82,
+      "community": 80,
       "norm_label": "../i18n/app_localizations.dart"
     },
     {
@@ -762,7 +762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 42,
+      "community": 80,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -912,7 +912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "list",
-      "community": 17,
+      "community": 81,
       "norm_label": "list"
     },
     {
@@ -1062,7 +1062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main",
-      "community": 99,
+      "community": 93,
       "norm_label": "main.dart"
     },
     {
@@ -1072,7 +1072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_prefs",
-      "community": 99,
+      "community": 93,
       "norm_label": "prefs"
     },
     {
@@ -1082,7 +1082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_db",
-      "community": 99,
+      "community": 93,
       "norm_label": "db"
     },
     {
@@ -1092,7 +1092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_audio",
-      "community": 99,
+      "community": 93,
       "norm_label": "audio"
     },
     {
@@ -1102,7 +1102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_main",
-      "community": 99,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -1112,18 +1112,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_setpreferredorientations",
-      "community": 99,
+      "community": 93,
       "norm_label": "setpreferredorientations"
-    },
-    {
-      "label": "package:flutter/foundation.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "package_flutter_foundation_dart",
-      "community": 99,
-      "norm_label": "package:flutter/foundation.dart"
     },
     {
       "label": "package:shared_preferences/shared_preferences.dart",
@@ -1142,7 +1132,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "app_dart",
-      "community": 99,
+      "community": 93,
       "norm_label": "app.dart"
     },
     {
@@ -1152,7 +1142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_providers_dart",
-      "community": 99,
+      "community": 93,
       "norm_label": "../providers/providers.dart"
     },
     {
@@ -1162,7 +1152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_audio_service_dart",
-      "community": 99,
+      "community": 93,
       "norm_label": "../services/audio_service.dart"
     },
     {
@@ -1172,7 +1162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_background_service_dart",
-      "community": 99,
+      "community": 93,
       "norm_label": "services/background_service.dart"
     },
     {
@@ -1182,8 +1172,18 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_database_service_dart",
-      "community": 99,
+      "community": 93,
       "norm_label": "../services/database_service.dart"
+    },
+    {
+      "label": "../utils/legal.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "utils_legal_dart",
+      "community": 93,
+      "norm_label": "../utils/legal.dart"
     },
     {
       "label": "app_settings.dart",
@@ -3062,7 +3062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_activedrillprovider",
-      "community": 21,
+      "community": 113,
       "norm_label": "activedrillprovider"
     },
     {
@@ -3172,7 +3172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_custom_drill_dart",
-      "community": 98,
+      "community": 34,
       "norm_label": "../models/custom_drill.dart"
     },
     {
@@ -3192,7 +3192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_dart",
-      "community": 96,
+      "community": 17,
       "norm_label": "providers.dart"
     },
     {
@@ -3222,7 +3222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_historynotifier",
-      "community": 17,
+      "community": 81,
       "norm_label": "historynotifier"
     },
     {
@@ -3232,7 +3232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "asyncnotifier",
-      "community": 17,
+      "community": 81,
       "norm_label": "asyncnotifier"
     },
     {
@@ -3292,7 +3292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 17,
+      "community": 8,
       "norm_label": "../models/timer_string.dart"
     },
     {
@@ -3402,7 +3402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_shotdetectorprovider",
-      "community": 100,
+      "community": 97,
       "norm_label": "shotdetectorprovider"
     },
     {
@@ -3542,7 +3542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_app_settings_dart",
-      "community": 80,
+      "community": 90,
       "norm_label": "../models/app_settings.dart"
     },
     {
@@ -3552,7 +3552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 96,
+      "community": 42,
       "norm_label": "string_provider.dart"
     },
     {
@@ -3572,7 +3572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 96,
+      "community": 42,
       "norm_label": "read"
     },
     {
@@ -3852,7 +3852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timerprovider",
-      "community": 21,
+      "community": 54,
       "norm_label": "timerprovider"
     },
     {
@@ -4282,7 +4282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "statelesswidget",
-      "community": 14,
+      "community": 85,
       "norm_label": "statelesswidget"
     },
     {
@@ -4442,7 +4442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_start",
-      "community": 100,
+      "community": 97,
       "norm_label": "_start"
     },
     {
@@ -4452,7 +4452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_stop",
-      "community": 100,
+      "community": 97,
       "norm_label": "_stop"
     },
     {
@@ -4492,7 +4492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_dispose",
-      "community": 100,
+      "community": 97,
       "norm_label": "dispose"
     },
     {
@@ -4812,7 +4812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_customdrillsscreen",
-      "community": 21,
+      "community": 113,
       "norm_label": "customdrillsscreen"
     },
     {
@@ -4882,7 +4882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 106,
+      "community": 98,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -4912,7 +4912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_detectionsettingsscreen",
-      "community": 80,
+      "community": 54,
       "norm_label": "detectionsettingsscreen"
     },
     {
@@ -4922,7 +4922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_build",
-      "community": 54,
+      "community": 21,
       "norm_label": "build"
     },
     {
@@ -4932,7 +4932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "materialpageroute",
-      "community": 54,
+      "community": 21,
       "norm_label": "materialpageroute"
     },
     {
@@ -5092,7 +5092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_homescreen",
-      "community": 21,
+      "community": 54,
       "norm_label": "homescreen"
     },
     {
@@ -5102,7 +5102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_bigbutton",
-      "community": 21,
+      "community": 54,
       "norm_label": "_bigbutton"
     },
     {
@@ -5112,7 +5112,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_timerarea",
-      "community": 21,
+      "community": 113,
       "norm_label": "_timerarea"
     },
     {
@@ -5122,7 +5122,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_topslot",
-      "community": 14,
+      "community": 85,
       "norm_label": "_topslot"
     },
     {
@@ -5132,7 +5132,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runfooter",
-      "community": 14,
+      "community": 85,
       "norm_label": "_runfooter"
     },
     {
@@ -5152,7 +5152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_laststringline",
-      "community": 14,
+      "community": 85,
       "norm_label": "_laststringline"
     },
     {
@@ -5162,7 +5162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_countdownview",
-      "community": 14,
+      "community": 85,
       "norm_label": "_countdownview"
     },
     {
@@ -5172,7 +5172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_settingssummary",
-      "community": 14,
+      "community": 85,
       "norm_label": "_settingssummary"
     },
     {
@@ -5182,7 +5182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_activedrillchip",
-      "community": 14,
+      "community": 85,
       "norm_label": "_activedrillchip"
     },
     {
@@ -5192,7 +5192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runningview",
-      "community": 14,
+      "community": 85,
       "norm_label": "_runningview"
     },
     {
@@ -5212,7 +5212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_finishedview",
-      "community": 21,
+      "community": 54,
       "norm_label": "_finishedview"
     },
     {
@@ -5222,7 +5222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_statsrow",
-      "community": 14,
+      "community": 85,
       "norm_label": "_statsrow"
     },
     {
@@ -5232,7 +5232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_stat",
-      "community": 14,
+      "community": 85,
       "norm_label": "_stat"
     },
     {
@@ -5562,7 +5562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_select",
-      "community": 21,
+      "community": 54,
       "norm_label": "_select"
     },
     {
@@ -5802,7 +5802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_start",
-      "community": 100,
+      "community": 97,
       "norm_label": "_start"
     },
     {
@@ -5812,7 +5812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dispose",
-      "community": 100,
+      "community": 97,
       "norm_label": "dispose"
     },
     {
@@ -5852,7 +5852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbody",
-      "community": 3,
+      "community": 100,
       "norm_label": "_reviewbody"
     },
     {
@@ -5862,7 +5862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbodystate",
-      "community": 3,
+      "community": 100,
       "norm_label": "_reviewbodystate"
     },
     {
@@ -5872,7 +5872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_shotbadge",
-      "community": 14,
+      "community": 85,
       "norm_label": "_shotbadge"
     },
     {
@@ -5882,7 +5882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_summarygrid",
-      "community": 14,
+      "community": 85,
       "norm_label": "_summarygrid"
     },
     {
@@ -5902,7 +5902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 14,
+      "community": 85,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -5922,7 +5922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 14,
+      "community": 85,
       "norm_label": "_percyclesummary"
     },
     {
@@ -5932,7 +5932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 14,
+      "community": 85,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -5942,7 +5942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclestat",
-      "community": 14,
+      "community": 85,
       "norm_label": "_cyclestat"
     },
     {
@@ -6226,26 +6226,6 @@
       "norm_label": "_kdurationmagnetms"
     },
     {
-      "label": "_sourceUrl",
-      "file_type": "code",
-      "source_file": "lib/screens/settings_screen.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_screens_settings_screen_sourceurl",
-      "community": 80,
-      "norm_label": "_sourceurl"
-    },
-    {
-      "label": "static const",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "static_const",
-      "community": 80,
-      "norm_label": "static const"
-    },
-    {
       "label": "_detectionSummary",
       "file_type": "code",
       "source_file": "lib/screens/settings_screen.dart",
@@ -6262,7 +6242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_settings_screen_build",
-      "community": 54,
+      "community": 21,
       "norm_label": "build"
     },
     {
@@ -6272,7 +6252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_settings_screen_confirmreset",
-      "community": 54,
+      "community": 80,
       "norm_label": "_confirmreset"
     },
     {
@@ -7442,7 +7422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 83,
+      "community": 99,
       "norm_label": "dart:io"
     },
     {
@@ -7546,6 +7526,16 @@
       "norm_label": "_invoke"
     },
     {
+      "label": "package:flutter/foundation.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_flutter_foundation_dart",
+      "community": 99,
+      "norm_label": "package:flutter/foundation.dart"
+    },
+    {
       "label": "settings_service.dart",
       "file_type": "code",
       "source_file": "lib/services/settings_service.dart",
@@ -7584,6 +7574,16 @@
       "id": "lib_services_settings_service_ksensitivity",
       "community": 1,
       "norm_label": "_ksensitivity"
+    },
+    {
+      "label": "static const",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "static_const",
+      "community": 1,
+      "norm_label": "static const"
     },
     {
       "label": "_kEchoFilter",
@@ -9216,6 +9216,46 @@
       "norm_label": "peakfrequencyhz"
     },
     {
+      "label": "legal.dart",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal",
+      "community": 99,
+      "norm_label": "legal.dart"
+    },
+    {
+      "label": "kCopyrightNotice",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal_kcopyrightnotice",
+      "community": 99,
+      "norm_label": "kcopyrightnotice"
+    },
+    {
+      "label": "kSourceUrl",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal_ksourceurl",
+      "community": 99,
+      "norm_label": "ksourceurl"
+    },
+    {
+      "label": "registerAppLicenses",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal_registerapplicenses",
+      "community": 99,
+      "norm_label": "registerapplicenses"
+    },
+    {
       "label": "motion.dart",
       "file_type": "code",
       "source_file": "lib/utils/motion.dart",
@@ -10262,7 +10302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter",
-      "community": 91,
+      "community": 96,
       "norm_label": "mic_level_meter.dart"
     },
     {
@@ -10272,7 +10312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_miclevelmeter",
-      "community": 91,
+      "community": 96,
       "norm_label": "miclevelmeter"
     },
     {
@@ -10282,7 +10322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_level",
-      "community": 91,
+      "community": 96,
       "norm_label": "level"
     },
     {
@@ -10292,7 +10332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_threshold",
-      "community": 91,
+      "community": 96,
       "norm_label": "threshold"
     },
     {
@@ -10302,7 +10342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_height",
-      "community": 91,
+      "community": 96,
       "norm_label": "height"
     },
     {
@@ -10312,7 +10352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_compact",
-      "community": 91,
+      "community": 96,
       "norm_label": "compact"
     },
     {
@@ -10322,7 +10362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_build",
-      "community": 91,
+      "community": 96,
       "norm_label": "build"
     },
     {
@@ -10472,7 +10512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "valuechanged",
-      "community": 93,
+      "community": 13,
       "norm_label": "valuechanged"
     },
     {
@@ -10582,7 +10622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "t",
-      "community": 93,
+      "community": 13,
       "norm_label": "t"
     },
     {
@@ -10592,7 +10632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets",
-      "community": 93,
+      "community": 13,
       "norm_label": "settings_widgets.dart"
     },
     {
@@ -10602,7 +10642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_settingssection",
-      "community": 93,
+      "community": 13,
       "norm_label": "settingssection"
     },
     {
@@ -10612,7 +10652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_enumchoice",
-      "community": 93,
+      "community": 13,
       "norm_label": "enumchoice"
     },
     {
@@ -10622,7 +10662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_title",
-      "community": 93,
+      "community": 13,
       "norm_label": "title"
     },
     {
@@ -10632,7 +10672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_values",
-      "community": 93,
+      "community": 13,
       "norm_label": "values"
     },
     {
@@ -10642,7 +10682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_current",
-      "community": 93,
+      "community": 13,
       "norm_label": "current"
     },
     {
@@ -10652,7 +10692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_onchanged",
-      "community": 93,
+      "community": 13,
       "norm_label": "onchanged"
     },
     {
@@ -10662,7 +10702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_build",
-      "community": 93,
+      "community": 13,
       "norm_label": "build"
     },
     {
@@ -11102,7 +11142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test",
-      "community": 86,
+      "community": 83,
       "norm_label": "custom_drill_test.dart"
     },
     {
@@ -11112,7 +11152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_drill",
-      "community": 86,
+      "community": 83,
       "norm_label": "_drill"
     },
     {
@@ -11122,7 +11162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_main",
-      "community": 86,
+      "community": 83,
       "norm_label": "main"
     },
     {
@@ -11132,7 +11172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_app_settings_dart",
-      "community": 85,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/app_settings.dart"
     },
     {
@@ -11142,7 +11182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_custom_drill_dart",
-      "community": 86,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/custom_drill.dart"
     },
     {
@@ -11152,7 +11192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_drill_config_dart",
-      "community": 86,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/drill_config.dart"
     },
     {
@@ -11162,7 +11202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_enums_dart",
-      "community": 41,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/enums.dart"
     },
     {
@@ -11402,7 +11442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 91,
+      "community": 111,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -11412,7 +11452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 91,
+      "community": 111,
       "norm_label": "_host"
     },
     {
@@ -11422,7 +11462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 91,
+      "community": 111,
       "norm_label": "_visiblesignal"
     },
     {
@@ -11432,7 +11472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 91,
+      "community": 111,
       "norm_label": "main"
     },
     {
@@ -11442,7 +11482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 91,
+      "community": 111,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -11452,7 +11492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test",
-      "community": 83,
+      "community": 99,
       "norm_label": "i18n_parity_test.dart"
     },
     {
@@ -11462,7 +11502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholder",
-      "community": 83,
+      "community": 99,
       "norm_label": "placeholder"
     },
     {
@@ -11472,7 +11512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_main",
-      "community": 83,
+      "community": 99,
       "norm_label": "main"
     },
     {
@@ -11482,7 +11522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_load",
-      "community": 83,
+      "community": 99,
       "norm_label": "load"
     },
     {
@@ -11492,7 +11532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholders",
-      "community": 83,
+      "community": 99,
       "norm_label": "placeholders"
     },
     {
@@ -11502,7 +11542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_i18n_app_localizations_dart",
-      "community": 83,
+      "community": 99,
       "norm_label": "package:simple_shot_timer/i18n/app_localizations.dart"
     },
     {
@@ -11616,13 +11656,73 @@
       "norm_label": "main"
     },
     {
+      "label": "legal_test.dart",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test",
+      "community": 99,
+      "norm_label": "legal_test.dart"
+    },
+    {
+      "label": "attribution",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test_attribution",
+      "community": 99,
+      "norm_label": "attribution"
+    },
+    {
+      "label": "originalUrl",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test_originalurl",
+      "community": 99,
+      "norm_label": "originalurl"
+    },
+    {
+      "label": "main",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test_main",
+      "community": 99,
+      "norm_label": "main"
+    },
+    {
+      "label": "package:simple_shot_timer/utils/legal.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_simple_shot_timer_utils_legal_dart",
+      "community": 99,
+      "norm_label": "package:simple_shot_timer/utils/legal.dart"
+    },
+    {
+      "label": "File",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "file",
+      "community": 99,
+      "norm_label": "file"
+    },
+    {
       "label": "par_schedule_test.dart",
       "file_type": "code",
       "source_file": "test/par_schedule_test.dart",
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test",
-      "community": 85,
+      "community": 83,
       "norm_label": "par_schedule_test.dart"
     },
     {
@@ -11632,7 +11732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test_main",
-      "community": 85,
+      "community": 83,
       "norm_label": "main"
     },
     {
@@ -11642,7 +11742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_par_schedule_dart",
-      "community": 85,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/par_schedule.dart"
     },
     {
@@ -11692,7 +11792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test",
-      "community": 85,
+      "community": 83,
       "norm_label": "shot_detector_test.dart"
     },
     {
@@ -11702,7 +11802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test_main",
-      "community": 85,
+      "community": 83,
       "norm_label": "main"
     },
     {
@@ -15094,7 +15194,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L9",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
@@ -15104,7 +15204,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L10",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
@@ -15114,7 +15214,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L9",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
       "target": "flutteractivity",
@@ -15124,7 +15224,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L10",
+      "source_location": "L14",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
@@ -15137,7 +15237,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L15",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
       "target": "methodchannel"
@@ -15252,7 +15352,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L2",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "flutter",
@@ -15274,7 +15374,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate",
       "target": "flutter",
@@ -15285,7 +15385,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L3",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "uikit",
@@ -15296,7 +15396,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L2",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate",
       "target": "uikit",
@@ -15327,7 +15427,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "avfoundation",
@@ -15337,7 +15437,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate",
@@ -15347,7 +15447,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "flutterappdelegate",
@@ -15357,7 +15457,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "flutterimplicitenginedelegate",
@@ -15367,7 +15467,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate_application",
@@ -15377,7 +15477,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15387,7 +15487,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L14",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
@@ -15397,7 +15497,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_application",
@@ -15408,7 +15508,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "context": "return_type",
       "source": "ios_runner_appdelegate_appdelegate_application",
@@ -15419,7 +15519,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_application",
@@ -15430,7 +15530,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15441,7 +15541,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L14",
+      "source_location": "L18",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
@@ -15453,7 +15553,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L29",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
       "target": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15463,7 +15563,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15474,7 +15574,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15547,7 +15647,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L4",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate",
       "target": "ios_runner_scenedelegate_scenedelegate",
@@ -15557,7 +15657,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L4",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate_scenedelegate",
       "target": "flutterscenedelegate",
@@ -17007,6 +17107,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/widgets/drill_name_dialog.dart",
       "source_location": null,
       "weight": 1.0,
@@ -17021,6 +17131,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_ios_audio_session_test",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
       "target": "package_flutter_services_dart"
     },
     {
@@ -17091,16 +17211,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_main",
-      "target": "package_flutter_foundation_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/main.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_main",
       "target": "package_shared_preferences_shared_preferences_dart"
     },
     {
@@ -17147,21 +17257,11 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "lib/services/ios_audio_session.dart",
+      "source_file": "lib/main.dart",
       "source_location": null,
       "weight": 1.0,
-      "source": "lib_services_ios_audio_session",
-      "target": "package_flutter_foundation_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "test/ios_audio_session_test.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "test_ios_audio_session_test",
-      "target": "package_flutter_foundation_dart"
+      "source": "lib_main",
+      "target": "utils_legal_dart"
     },
     {
       "relation": "imports",
@@ -17272,6 +17372,16 @@
       "weight": 1.0,
       "source": "lib_providers_providers",
       "target": "services_database_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_settings_screen",
+      "target": "utils_legal_dart"
     },
     {
       "relation": "references",
@@ -25207,16 +25317,6 @@
       "target": "lib_screens_settings_screen_settingsscreen"
     },
     {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/settings_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_screens_settings_screen",
-      "target": "lib_screens_settings_screen_sourceurl"
-    },
-    {
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -25238,17 +25338,6 @@
       "target": "packageinfo"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/screens/settings_screen.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "source": "lib_screens_settings_screen",
-      "target": "static_const"
-    },
-    {
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -25257,17 +25346,6 @@
       "weight": 1.0,
       "source": "lib_screens_settings_screen",
       "target": "widgets_settings_widgets_dart"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/settings_service.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "source": "lib_services_settings_service",
-      "target": "static_const"
     },
     {
       "relation": "references",
@@ -26505,6 +26583,16 @@
       "target": "dart_io"
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "dart_io"
+    },
+    {
       "relation": "defines",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -26565,6 +26653,16 @@
       "target": "lib_services_ios_audio_session_usemeasurementmode"
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/ios_audio_session.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_ios_audio_session",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -26585,6 +26683,36 @@
       "context": "variable_type",
       "source": "lib_services_ios_audio_session",
       "target": "static_string"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/ios_audio_session_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_ios_audio_session_test",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "package_flutter_foundation_dart"
     },
     {
       "relation": "defines",
@@ -26895,6 +27023,17 @@
       "weight": 1.0,
       "source": "lib_services_settings_service",
       "target": "lib_services_settings_service_settingsservice"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/settings_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "source": "lib_services_settings_service",
+      "target": "static_const"
     },
     {
       "relation": "imports",
@@ -28317,6 +28456,36 @@
       "context": "variable_type",
       "source": "lib_utils_fft",
       "target": "required_double_samplerate_double"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "lib_utils_legal_kcopyrightnotice"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "lib_utils_legal_ksourceurl"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "lib_utils_legal_registerapplicenses"
     },
     {
       "relation": "references",
@@ -30138,6 +30307,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "package_flutter_test_flutter_test_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/par_schedule_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -31125,6 +31304,57 @@
       "weight": 1.0,
       "source": "test_latency_calibration_test",
       "target": "test_latency_calibration_test_main"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "type_lookup",
+      "source": "test_legal_test",
+      "target": "file"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "package_simple_shot_timer_utils_legal_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "test_legal_test_attribution"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "test_legal_test_main"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "test_legal_test_originalurl"
     },
     {
       "relation": "imports",
@@ -33831,5 +34061,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1d859808b2e70961f76a828ea54f36d227602ae8"
+  "built_at_commit": "6aafd389ec52f6c4138c317f6ad51a9eb000a1f7"
 }

@@ -70,9 +70,9 @@
     "semantic_hash": "96dd20bf4a73723415e8469cca39af25"
   },
   "ios/RunnerTests/RunnerTests.swift": {
-    "mtime": 1778778071.5565238,
-    "ast_hash": "24e5d095048eb86c30423f4e04b6e57b",
-    "semantic_hash": "24e5d095048eb86c30423f4e04b6e57b"
+    "mtime": 1791145360.6930087,
+    "ast_hash": "14518092573028552f2edf1834221a66",
+    "semantic_hash": ""
   },
   "ios/Runner/AppDelegate.swift": {
     "mtime": 1791144747.0752535,
@@ -365,8 +365,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791144724.7806878,
-    "ast_hash": "f7d584d84c1f956f46b5a04cd29863bd",
+    "mtime": 1791145257.3301556,
+    "ast_hash": "c3b0eafd53e518f1c170ad664a97bf1e",
     "semantic_hash": ""
   },
   "agent-os/standards/index.yml": {
@@ -1320,8 +1320,8 @@
     "semantic_hash": ""
   },
   "test/legal_test.dart": {
-    "mtime": 1791144804.4434762,
-    "ast_hash": "99bd3c842b6374dc58faaab3bb59f691",
+    "mtime": 1791145355.7750268,
+    "ast_hash": "128536527655eab710e811d5bfa55948",
     "semantic_hash": ""
   }
 }
