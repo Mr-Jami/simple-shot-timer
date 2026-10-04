@@ -64,3 +64,5 @@ flutter:
   assets:
     - assets/i18n/
     - assets/branding/
+    # Section-7 license terms, shown on the in-app licenses page.
+    - NOTICE

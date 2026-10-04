@@ -187,7 +187,7 @@
       "label": "MainActivity",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L9",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
       "community": 99,
@@ -207,7 +207,7 @@
       "label": ".configureFlutterEngine()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L10",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
       "community": 99,
@@ -376,7 +376,7 @@
       "file_type": "code",
       "type": "module",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "flutter",
       "community": 10,
@@ -387,7 +387,7 @@
       "file_type": "code",
       "type": "module",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L2",
+      "source_location": "L6",
       "_origin": "ast",
       "id": "uikit",
       "community": 10,
@@ -398,7 +398,7 @@
       "file_type": "code",
       "type": "module",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L3",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "xctest",
       "community": 10,
@@ -408,7 +408,7 @@
       "label": "RunnerTests",
       "file_type": "code",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "ios_runnertests_runnertests_runnertests",
       "community": 10,
@@ -428,7 +428,7 @@
       "label": ".testExample()",
       "file_type": "code",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "ios_runnertests_runnertests_runnertests_testexample",
       "community": 10,
@@ -449,7 +449,7 @@
       "file_type": "code",
       "type": "module",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "_origin": "ast",
       "id": "avfoundation",
       "community": 10,
@@ -459,7 +459,7 @@
       "label": "AppDelegate",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate",
       "community": 10,
@@ -489,7 +489,7 @@
       "label": ".application()",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate_application",
       "community": 10,
@@ -529,7 +529,7 @@
       "label": ".didInitializeImplicitFlutterEngine()",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L14",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
       "community": 10,
@@ -549,7 +549,7 @@
       "label": ".configureAudioSession()",
       "file_type": "code",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "ios_runner_appdelegate_appdelegate_configureaudiosession",
       "community": 10,
@@ -649,7 +649,7 @@
       "label": "SceneDelegate",
       "file_type": "code",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L4",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "ios_runner_scenedelegate_scenedelegate",
       "community": 10,
@@ -682,7 +682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 21,
+      "community": 54,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -692,7 +692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerwidget",
-      "community": 21,
+      "community": 54,
       "norm_label": "consumerwidget"
     },
     {
@@ -732,7 +732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 17,
+      "community": 42,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -742,7 +742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "i18n_app_localizations_dart",
-      "community": 82,
+      "community": 80,
       "norm_label": "../i18n/app_localizations.dart"
     },
     {
@@ -762,7 +762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 42,
+      "community": 80,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -912,7 +912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "list",
-      "community": 97,
+      "community": 81,
       "norm_label": "list"
     },
     {
@@ -1042,7 +1042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_convert",
-      "community": 85,
+      "community": 83,
       "norm_label": "dart:convert"
     },
     {
@@ -1062,7 +1062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main",
-      "community": 81,
+      "community": 93,
       "norm_label": "main.dart"
     },
     {
@@ -1072,7 +1072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_prefs",
-      "community": 81,
+      "community": 93,
       "norm_label": "prefs"
     },
     {
@@ -1082,7 +1082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_db",
-      "community": 81,
+      "community": 93,
       "norm_label": "db"
     },
     {
@@ -1092,7 +1092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_audio",
-      "community": 81,
+      "community": 93,
       "norm_label": "audio"
     },
     {
@@ -1102,7 +1102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_main",
-      "community": 81,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -1112,7 +1112,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_setpreferredorientations",
-      "community": 81,
+      "community": 93,
       "norm_label": "setpreferredorientations"
     },
     {
@@ -1132,7 +1132,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "app_dart",
-      "community": 81,
+      "community": 93,
       "norm_label": "app.dart"
     },
     {
@@ -1142,7 +1142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_providers_dart",
-      "community": 81,
+      "community": 93,
       "norm_label": "../providers/providers.dart"
     },
     {
@@ -1152,7 +1152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_audio_service_dart",
-      "community": 81,
+      "community": 93,
       "norm_label": "../services/audio_service.dart"
     },
     {
@@ -1162,7 +1162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_background_service_dart",
-      "community": 81,
+      "community": 93,
       "norm_label": "services/background_service.dart"
     },
     {
@@ -1172,8 +1172,18 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_database_service_dart",
-      "community": 81,
+      "community": 93,
       "norm_label": "../services/database_service.dart"
+    },
+    {
+      "label": "../utils/legal.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "utils_legal_dart",
+      "community": 93,
+      "norm_label": "../utils/legal.dart"
     },
     {
       "label": "app_settings.dart",
@@ -2372,7 +2382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_math",
-      "community": 116,
+      "community": 55,
       "norm_label": "dart:math"
     },
     {
@@ -3162,7 +3172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_custom_drill_dart",
-      "community": 98,
+      "community": 34,
       "norm_label": "../models/custom_drill.dart"
     },
     {
@@ -3212,7 +3222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_historynotifier",
-      "community": 97,
+      "community": 81,
       "norm_label": "historynotifier"
     },
     {
@@ -3222,7 +3232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "asyncnotifier",
-      "community": 97,
+      "community": 81,
       "norm_label": "asyncnotifier"
     },
     {
@@ -3282,7 +3292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 17,
+      "community": 8,
       "norm_label": "../models/timer_string.dart"
     },
     {
@@ -3392,7 +3402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_shotdetectorprovider",
-      "community": 96,
+      "community": 97,
       "norm_label": "shotdetectorprovider"
     },
     {
@@ -3482,7 +3492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_settings_provider_settingsprovider",
-      "community": 21,
+      "community": 54,
       "norm_label": "settingsprovider"
     },
     {
@@ -3532,7 +3542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_app_settings_dart",
-      "community": 80,
+      "community": 90,
       "norm_label": "../models/app_settings.dart"
     },
     {
@@ -3542,7 +3552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 17,
+      "community": 42,
       "norm_label": "string_provider.dart"
     },
     {
@@ -3562,7 +3572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 17,
+      "community": 42,
       "norm_label": "read"
     },
     {
@@ -3662,7 +3672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "streamsubscription",
-      "community": 4,
+      "community": 52,
       "norm_label": "streamsubscription"
     },
     {
@@ -3842,7 +3852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timerprovider",
-      "community": 21,
+      "community": 54,
       "norm_label": "timerprovider"
     },
     {
@@ -4152,7 +4162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_async",
-      "community": 4,
+      "community": 52,
       "norm_label": "dart:async"
     },
     {
@@ -4272,7 +4282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "statelesswidget",
-      "community": 52,
+      "community": 85,
       "norm_label": "statelesswidget"
     },
     {
@@ -4432,7 +4442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_start",
-      "community": 96,
+      "community": 97,
       "norm_label": "_start"
     },
     {
@@ -4442,7 +4452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_stop",
-      "community": 96,
+      "community": 97,
       "norm_label": "_stop"
     },
     {
@@ -4472,7 +4482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_apply",
-      "community": 21,
+      "community": 54,
       "norm_label": "_apply"
     },
     {
@@ -4482,7 +4492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_dispose",
-      "community": 96,
+      "community": 97,
       "norm_label": "dispose"
     },
     {
@@ -4512,7 +4522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_calibration_shot_dart",
-      "community": 56,
+      "community": 9,
       "norm_label": "../models/calibration_shot.dart"
     },
     {
@@ -4652,7 +4662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_applydrill",
-      "community": 21,
+      "community": 54,
       "norm_label": "applydrill"
     },
     {
@@ -4872,7 +4882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 106,
+      "community": 98,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -4902,7 +4912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_detectionsettingsscreen",
-      "community": 21,
+      "community": 54,
       "norm_label": "detectionsettingsscreen"
     },
     {
@@ -5082,7 +5092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_homescreen",
-      "community": 21,
+      "community": 54,
       "norm_label": "homescreen"
     },
     {
@@ -5092,7 +5102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_bigbutton",
-      "community": 21,
+      "community": 54,
       "norm_label": "_bigbutton"
     },
     {
@@ -5112,7 +5122,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_topslot",
-      "community": 52,
+      "community": 85,
       "norm_label": "_topslot"
     },
     {
@@ -5122,7 +5132,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runfooter",
-      "community": 52,
+      "community": 85,
       "norm_label": "_runfooter"
     },
     {
@@ -5142,7 +5152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_laststringline",
-      "community": 52,
+      "community": 85,
       "norm_label": "_laststringline"
     },
     {
@@ -5152,7 +5162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_countdownview",
-      "community": 52,
+      "community": 85,
       "norm_label": "_countdownview"
     },
     {
@@ -5162,7 +5172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_settingssummary",
-      "community": 52,
+      "community": 85,
       "norm_label": "_settingssummary"
     },
     {
@@ -5172,7 +5182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_activedrillchip",
-      "community": 52,
+      "community": 85,
       "norm_label": "_activedrillchip"
     },
     {
@@ -5182,7 +5192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runningview",
-      "community": 52,
+      "community": 85,
       "norm_label": "_runningview"
     },
     {
@@ -5202,7 +5212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_finishedview",
-      "community": 21,
+      "community": 54,
       "norm_label": "_finishedview"
     },
     {
@@ -5212,7 +5222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_statsrow",
-      "community": 52,
+      "community": 85,
       "norm_label": "_statsrow"
     },
     {
@@ -5222,7 +5232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_stat",
-      "community": 52,
+      "community": 85,
       "norm_label": "_stat"
     },
     {
@@ -5552,7 +5562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_select",
-      "community": 21,
+      "community": 54,
       "norm_label": "_select"
     },
     {
@@ -5562,7 +5572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_build",
-      "community": 21,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -5792,7 +5802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_start",
-      "community": 96,
+      "community": 97,
       "norm_label": "_start"
     },
     {
@@ -5802,7 +5812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dispose",
-      "community": 96,
+      "community": 97,
       "norm_label": "dispose"
     },
     {
@@ -5862,7 +5872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_shotbadge",
-      "community": 52,
+      "community": 85,
       "norm_label": "_shotbadge"
     },
     {
@@ -5872,7 +5882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_summarygrid",
-      "community": 52,
+      "community": 85,
       "norm_label": "_summarygrid"
     },
     {
@@ -5892,7 +5902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 52,
+      "community": 85,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -5912,7 +5922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 52,
+      "community": 85,
       "norm_label": "_percyclesummary"
     },
     {
@@ -5922,7 +5932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 52,
+      "community": 85,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -5932,7 +5942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclestat",
-      "community": 52,
+      "community": 85,
       "norm_label": "_cyclestat"
     },
     {
@@ -6192,7 +6202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_settings_screen_settingsscreen",
-      "community": 21,
+      "community": 54,
       "norm_label": "settingsscreen"
     },
     {
@@ -6242,7 +6252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_settings_screen_confirmreset",
-      "community": 21,
+      "community": 80,
       "norm_label": "_confirmreset"
     },
     {
@@ -6292,7 +6302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service",
-      "community": 4,
+      "community": 52,
       "norm_label": "audio_service.dart"
     },
     {
@@ -6312,7 +6322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_player",
-      "community": 4,
+      "community": 52,
       "norm_label": "_player"
     },
     {
@@ -6322,7 +6332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "audioplayer",
-      "community": 4,
+      "community": 52,
       "norm_label": "audioplayer"
     },
     {
@@ -6332,7 +6342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_cache",
-      "community": 4,
+      "community": 52,
       "norm_label": "_cache"
     },
     {
@@ -6342,7 +6352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_globaleventssub",
-      "community": 4,
+      "community": 52,
       "norm_label": "_globaleventssub"
     },
     {
@@ -6352,7 +6362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_lastglobalerror",
-      "community": 4,
+      "community": 52,
       "norm_label": "lastglobalerror"
     },
     {
@@ -6362,7 +6372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_beepfrequencyhz",
-      "community": 4,
+      "community": 52,
       "norm_label": "beepfrequencyhz"
     },
     {
@@ -6372,7 +6382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_startbeepdurationms",
-      "community": 4,
+      "community": 52,
       "norm_label": "startbeepdurationms"
     },
     {
@@ -6382,7 +6392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_parbeepdurationms",
-      "community": 4,
+      "community": 52,
       "norm_label": "parbeepdurationms"
     },
     {
@@ -6392,7 +6402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_playstartbeep",
-      "community": 4,
+      "community": 52,
       "norm_label": "playstartbeep"
     },
     {
@@ -6402,7 +6412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_playparbeep",
-      "community": 4,
+      "community": 52,
       "norm_label": "playparbeep"
     },
     {
@@ -6412,7 +6422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_play",
-      "community": 4,
+      "community": 52,
       "norm_label": "_play"
     },
     {
@@ -6422,7 +6432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_stop",
-      "community": 4,
+      "community": 52,
       "norm_label": "stop"
     },
     {
@@ -6432,7 +6442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_dispose",
-      "community": 4,
+      "community": 52,
       "norm_label": "dispose"
     },
     {
@@ -6442,7 +6452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_generatewav",
-      "community": 4,
+      "community": 52,
       "norm_label": "_generatewav"
     },
     {
@@ -6462,7 +6472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_audioplayers_audioplayers_dart",
-      "community": 4,
+      "community": 52,
       "norm_label": "package:audioplayers/audioplayers.dart"
     },
     {
@@ -6492,7 +6502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_auto_configure_calibrationsuggestion",
-      "community": 56,
+      "community": 9,
       "norm_label": "calibrationsuggestion"
     },
     {
@@ -7152,7 +7162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_database_service_databaseservice",
-      "community": 119,
+      "community": 103,
       "norm_label": "databaseservice"
     },
     {
@@ -7322,7 +7332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_path_dart",
-      "community": 111,
+      "community": 8,
       "norm_label": "package:path/path.dart"
     },
     {
@@ -7332,7 +7342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_provider_path_provider_dart",
-      "community": 111,
+      "community": 8,
       "norm_label": "package:path_provider/path_provider.dart"
     },
     {
@@ -7352,7 +7362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service",
-      "community": 111,
+      "community": 8,
       "norm_label": "export_service.dart"
     },
     {
@@ -7362,7 +7372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportservice",
-      "community": 111,
+      "community": 8,
       "norm_label": "exportservice"
     },
     {
@@ -7372,7 +7382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writestringcsv",
-      "community": 111,
+      "community": 8,
       "norm_label": "writestringcsv"
     },
     {
@@ -7382,7 +7392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writeallstringscsv",
-      "community": 111,
+      "community": 8,
       "norm_label": "writeallstringscsv"
     },
     {
@@ -7392,7 +7402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_share",
-      "community": 111,
+      "community": 8,
       "norm_label": "share"
     },
     {
@@ -7402,7 +7412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_csv",
-      "community": 111,
+      "community": 8,
       "norm_label": "_csv"
     },
     {
@@ -7412,7 +7422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 83,
+      "community": 99,
       "norm_label": "dart:io"
     },
     {
@@ -7422,7 +7432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_share_plus_share_plus_dart",
-      "community": 111,
+      "community": 8,
       "norm_label": "package:share_plus/share_plus.dart"
     },
     {
@@ -8552,7 +8562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_stringstore",
-      "community": 119,
+      "community": 103,
       "norm_label": "stringstore"
     },
     {
@@ -9204,6 +9214,46 @@
       "id": "lib_utils_fft_peakfrequencyhz",
       "community": 7,
       "norm_label": "peakfrequencyhz"
+    },
+    {
+      "label": "legal.dart",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal",
+      "community": 99,
+      "norm_label": "legal.dart"
+    },
+    {
+      "label": "kCopyrightNotice",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal_kcopyrightnotice",
+      "community": 99,
+      "norm_label": "kcopyrightnotice"
+    },
+    {
+      "label": "kSourceUrl",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal_ksourceurl",
+      "community": 99,
+      "norm_label": "ksourceurl"
+    },
+    {
+      "label": "registerAppLicenses",
+      "file_type": "code",
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_utils_legal_registerapplicenses",
+      "community": 99,
+      "norm_label": "registerapplicenses"
     },
     {
       "label": "motion.dart",
@@ -10252,7 +10302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter",
-      "community": 54,
+      "community": 96,
       "norm_label": "mic_level_meter.dart"
     },
     {
@@ -10262,7 +10312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_miclevelmeter",
-      "community": 54,
+      "community": 96,
       "norm_label": "miclevelmeter"
     },
     {
@@ -10272,7 +10322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_level",
-      "community": 54,
+      "community": 96,
       "norm_label": "level"
     },
     {
@@ -10282,7 +10332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_threshold",
-      "community": 54,
+      "community": 96,
       "norm_label": "threshold"
     },
     {
@@ -10292,7 +10342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_height",
-      "community": 54,
+      "community": 96,
       "norm_label": "height"
     },
     {
@@ -10302,7 +10352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_compact",
-      "community": 54,
+      "community": 96,
       "norm_label": "compact"
     },
     {
@@ -10312,7 +10362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_build",
-      "community": 54,
+      "community": 96,
       "norm_label": "build"
     },
     {
@@ -10342,7 +10392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_settingsdoubleslider",
-      "community": 52,
+      "community": 13,
       "norm_label": "settingsdoubleslider"
     },
     {
@@ -10352,7 +10402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_sliderrow",
-      "community": 52,
+      "community": 13,
       "norm_label": "_sliderrow"
     },
     {
@@ -10462,7 +10512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "valuechanged",
-      "community": 93,
+      "community": 13,
       "norm_label": "valuechanged"
     },
     {
@@ -10572,7 +10622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "t",
-      "community": 93,
+      "community": 13,
       "norm_label": "t"
     },
     {
@@ -10582,7 +10632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets",
-      "community": 93,
+      "community": 13,
       "norm_label": "settings_widgets.dart"
     },
     {
@@ -10592,7 +10642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_settingssection",
-      "community": 93,
+      "community": 13,
       "norm_label": "settingssection"
     },
     {
@@ -10602,7 +10652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_enumchoice",
-      "community": 93,
+      "community": 13,
       "norm_label": "enumchoice"
     },
     {
@@ -10612,7 +10662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_title",
-      "community": 93,
+      "community": 13,
       "norm_label": "title"
     },
     {
@@ -10622,7 +10672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_values",
-      "community": 93,
+      "community": 13,
       "norm_label": "values"
     },
     {
@@ -10632,7 +10682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_current",
-      "community": 93,
+      "community": 13,
       "norm_label": "current"
     },
     {
@@ -10642,7 +10692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_onchanged",
-      "community": 93,
+      "community": 13,
       "norm_label": "onchanged"
     },
     {
@@ -10652,7 +10702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_build",
-      "community": 93,
+      "community": 13,
       "norm_label": "build"
     },
     {
@@ -10662,7 +10712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header",
-      "community": 91,
+      "community": 81,
       "norm_label": "tab_header.dart"
     },
     {
@@ -10672,7 +10722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_tabheader",
-      "community": 91,
+      "community": 81,
       "norm_label": "tabheader"
     },
     {
@@ -10682,7 +10732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_title",
-      "community": 91,
+      "community": 81,
       "norm_label": "title"
     },
     {
@@ -10692,7 +10742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_actions",
-      "community": 91,
+      "community": 81,
       "norm_label": "actions"
     },
     {
@@ -10702,7 +10752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_build",
-      "community": 91,
+      "community": 81,
       "norm_label": "build"
     },
     {
@@ -11092,7 +11142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test",
-      "community": 86,
+      "community": 83,
       "norm_label": "custom_drill_test.dart"
     },
     {
@@ -11102,7 +11152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_drill",
-      "community": 86,
+      "community": 83,
       "norm_label": "_drill"
     },
     {
@@ -11112,7 +11162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_main",
-      "community": 86,
+      "community": 83,
       "norm_label": "main"
     },
     {
@@ -11122,7 +11172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_app_settings_dart",
-      "community": 85,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/app_settings.dart"
     },
     {
@@ -11132,7 +11182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_custom_drill_dart",
-      "community": 86,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/custom_drill.dart"
     },
     {
@@ -11142,7 +11192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_drill_config_dart",
-      "community": 86,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/drill_config.dart"
     },
     {
@@ -11152,7 +11202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_enums_dart",
-      "community": 41,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/enums.dart"
     },
     {
@@ -11312,7 +11362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 116,
+      "community": 55,
       "norm_label": "delay_test.dart"
     },
     {
@@ -11322,7 +11372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 116,
+      "community": 55,
       "norm_label": "main"
     },
     {
@@ -11342,7 +11392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test",
-      "community": 85,
+      "community": 83,
       "norm_label": "drill_config_test.dart"
     },
     {
@@ -11352,7 +11402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_drill",
-      "community": 85,
+      "community": 83,
       "norm_label": "_drill"
     },
     {
@@ -11362,7 +11412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_other",
-      "community": 85,
+      "community": 83,
       "norm_label": "_other"
     },
     {
@@ -11372,7 +11422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_singlefieldedits",
-      "community": 85,
+      "community": 83,
       "norm_label": "_singlefieldedits"
     },
     {
@@ -11382,7 +11432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_main",
-      "community": 85,
+      "community": 83,
       "norm_label": "main"
     },
     {
@@ -11392,7 +11442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 115,
+      "community": 111,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -11402,7 +11452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 115,
+      "community": 111,
       "norm_label": "_host"
     },
     {
@@ -11412,7 +11462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 115,
+      "community": 111,
       "norm_label": "_visiblesignal"
     },
     {
@@ -11422,7 +11472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 115,
+      "community": 111,
       "norm_label": "main"
     },
     {
@@ -11432,7 +11482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 115,
+      "community": 111,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -11442,7 +11492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test",
-      "community": 83,
+      "community": 99,
       "norm_label": "i18n_parity_test.dart"
     },
     {
@@ -11452,7 +11502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholder",
-      "community": 83,
+      "community": 99,
       "norm_label": "placeholder"
     },
     {
@@ -11462,7 +11512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_main",
-      "community": 83,
+      "community": 99,
       "norm_label": "main"
     },
     {
@@ -11472,7 +11522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_load",
-      "community": 83,
+      "community": 99,
       "norm_label": "load"
     },
     {
@@ -11482,7 +11532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholders",
-      "community": 83,
+      "community": 99,
       "norm_label": "placeholders"
     },
     {
@@ -11492,7 +11542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_i18n_app_localizations_dart",
-      "community": 83,
+      "community": 99,
       "norm_label": "package:simple_shot_timer/i18n/app_localizations.dart"
     },
     {
@@ -11606,13 +11656,73 @@
       "norm_label": "main"
     },
     {
+      "label": "legal_test.dart",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test",
+      "community": 99,
+      "norm_label": "legal_test.dart"
+    },
+    {
+      "label": "attribution",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test_attribution",
+      "community": 99,
+      "norm_label": "attribution"
+    },
+    {
+      "label": "originalUrl",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test_originalurl",
+      "community": 99,
+      "norm_label": "originalurl"
+    },
+    {
+      "label": "main",
+      "file_type": "code",
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_legal_test_main",
+      "community": 99,
+      "norm_label": "main"
+    },
+    {
+      "label": "package:simple_shot_timer/utils/legal.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_simple_shot_timer_utils_legal_dart",
+      "community": 99,
+      "norm_label": "package:simple_shot_timer/utils/legal.dart"
+    },
+    {
+      "label": "File",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "file",
+      "community": 99,
+      "norm_label": "file"
+    },
+    {
       "label": "par_schedule_test.dart",
       "file_type": "code",
       "source_file": "test/par_schedule_test.dart",
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test",
-      "community": 41,
+      "community": 83,
       "norm_label": "par_schedule_test.dart"
     },
     {
@@ -11622,7 +11732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test_main",
-      "community": 41,
+      "community": 83,
       "norm_label": "main"
     },
     {
@@ -11632,7 +11742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_par_schedule_dart",
-      "community": 41,
+      "community": 83,
       "norm_label": "package:simple_shot_timer/models/par_schedule.dart"
     },
     {
@@ -11682,7 +11792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test",
-      "community": 85,
+      "community": 83,
       "norm_label": "shot_detector_test.dart"
     },
     {
@@ -11692,7 +11802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test_main",
-      "community": 85,
+      "community": 83,
       "norm_label": "main"
     },
     {
@@ -11892,7 +12002,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_memorystore",
-      "community": 119,
+      "community": 103,
       "norm_label": "_memorystore"
     },
     {
@@ -12476,10 +12586,40 @@
       "norm_label": "changelog"
     },
     {
-      "label": "[1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30)",
+      "label": "[2.0.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.7.0...v2.0.0) (2026-10-01)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L3",
+      "_origin": "ast",
+      "id": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
+      "community": 50,
+      "norm_label": "[2.0.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.7.0...v2.0.0) (2026-10-01)"
+    },
+    {
+      "label": "\u26a0 BREAKING CHANGES",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "changelog_breaking_changes",
+      "community": 50,
+      "norm_label": "\u26a0 breaking changes"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "changelog_features",
+      "community": 50,
+      "norm_label": "features"
+    },
+    {
+      "label": "[1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
       "community": 50,
@@ -12489,9 +12629,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L6",
+      "source_location": "L17",
       "_origin": "ast",
-      "id": "changelog_features",
+      "id": "changelog_features_17",
       "community": 50,
       "norm_label": "features"
     },
@@ -12499,7 +12639,7 @@
       "label": "[1.6.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L10",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
       "community": 50,
@@ -12509,9 +12649,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L13",
+      "source_location": "L24",
       "_origin": "ast",
-      "id": "changelog_features_13",
+      "id": "changelog_features_24",
       "community": 50,
       "norm_label": "features"
     },
@@ -12519,7 +12659,7 @@
       "label": "[1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
       "community": 50,
@@ -12529,9 +12669,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L21",
+      "source_location": "L32",
       "_origin": "ast",
-      "id": "changelog_features_21",
+      "id": "changelog_features_32",
       "community": 50,
       "norm_label": "features"
     },
@@ -12539,7 +12679,7 @@
       "label": "[1.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L25",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
       "community": 50,
@@ -12549,7 +12689,7 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "changelog_bug_fixes",
       "community": 50,
@@ -12559,7 +12699,7 @@
       "label": "[1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L32",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
       "community": 50,
@@ -12569,9 +12709,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L46",
       "_origin": "ast",
-      "id": "changelog_features_35",
+      "id": "changelog_features_46",
       "community": 50,
       "norm_label": "features"
     },
@@ -12579,9 +12719,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L40",
+      "source_location": "L51",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_40",
+      "id": "changelog_bug_fixes_51",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -12589,7 +12729,7 @@
       "label": "[1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L44",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
       "community": 50,
@@ -12599,9 +12739,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L47",
+      "source_location": "L58",
       "_origin": "ast",
-      "id": "changelog_features_47",
+      "id": "changelog_features_58",
       "community": 50,
       "norm_label": "features"
     },
@@ -12609,7 +12749,7 @@
       "label": "[1.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.1.0...v1.2.0) (2026-05-19)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
       "community": 50,
@@ -12619,9 +12759,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L56",
+      "source_location": "L67",
       "_origin": "ast",
-      "id": "changelog_features_56",
+      "id": "changelog_features_67",
       "community": 50,
       "norm_label": "features"
     },
@@ -12629,9 +12769,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L63",
+      "source_location": "L74",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_63",
+      "id": "changelog_bug_fixes_74",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -12639,7 +12779,7 @@
       "label": "[1.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.0.0...v1.1.0) (2026-05-15)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L67",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
       "community": 50,
@@ -12649,9 +12789,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L70",
+      "source_location": "L81",
       "_origin": "ast",
-      "id": "changelog_features_70",
+      "id": "changelog_features_81",
       "community": 50,
       "norm_label": "features"
     },
@@ -12659,9 +12799,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L79",
+      "source_location": "L90",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_79",
+      "id": "changelog_bug_fixes_90",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -12829,7 +12969,7 @@
       "label": "Architecture Notes",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L123",
+      "source_location": "L124",
       "_origin": "ast",
       "id": "readme_architecture_notes",
       "community": 28,
@@ -12839,7 +12979,7 @@
       "label": "Adding a New Language",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L170",
+      "source_location": "L171",
       "_origin": "ast",
       "id": "readme_adding_a_new_language",
       "community": 28,
@@ -12849,7 +12989,7 @@
       "label": "Versioning",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L186",
+      "source_location": "L187",
       "_origin": "ast",
       "id": "readme_versioning",
       "community": 28,
@@ -12859,7 +12999,7 @@
       "label": "Commit format",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L193",
+      "source_location": "L194",
       "_origin": "ast",
       "id": "readme_commit_format",
       "community": 28,
@@ -12869,7 +13009,7 @@
       "label": "Commit messages are store release notes",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L207",
+      "source_location": "L208",
       "_origin": "ast",
       "id": "readme_commit_messages_are_store_release_notes",
       "community": 28,
@@ -12879,7 +13019,7 @@
       "label": "Release flow",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L236",
+      "source_location": "L237",
       "_origin": "ast",
       "id": "readme_release_flow",
       "community": 28,
@@ -12889,7 +13029,7 @@
       "label": "Continuous Integration",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L258",
+      "source_location": "L262",
       "_origin": "ast",
       "id": "readme_continuous_integration",
       "community": 28,
@@ -12899,7 +13039,7 @@
       "label": "Releasing to Google Play",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L268",
+      "source_location": "L272",
       "_origin": "ast",
       "id": "readme_releasing_to_google_play",
       "community": 28,
@@ -12909,7 +13049,7 @@
       "label": "Triggers",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L273",
+      "source_location": "L277",
       "_origin": "ast",
       "id": "readme_triggers",
       "community": 28,
@@ -12919,7 +13059,7 @@
       "label": "Required GitHub secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L280",
+      "source_location": "L284",
       "_origin": "ast",
       "id": "readme_required_github_secrets",
       "community": 28,
@@ -12929,9 +13069,49 @@
       "label": "One-time setup checklist",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L292",
+      "source_location": "L296",
       "_origin": "ast",
       "id": "readme_one_time_setup_checklist",
+      "community": 28,
+      "norm_label": "one-time setup checklist"
+    },
+    {
+      "label": "Releasing to the App Store",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L318",
+      "_origin": "ast",
+      "id": "readme_releasing_to_the_app_store",
+      "community": 28,
+      "norm_label": "releasing to the app store"
+    },
+    {
+      "label": "Triggers",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L325",
+      "_origin": "ast",
+      "id": "readme_triggers_325",
+      "community": 28,
+      "norm_label": "triggers"
+    },
+    {
+      "label": "Required GitHub secrets",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L330",
+      "_origin": "ast",
+      "id": "readme_required_github_secrets_330",
+      "community": 28,
+      "norm_label": "required github secrets"
+    },
+    {
+      "label": "One-time setup checklist",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L341",
+      "_origin": "ast",
+      "id": "readme_one_time_setup_checklist_341",
       "community": 28,
       "norm_label": "one-time setup checklist"
     },
@@ -12939,7 +13119,7 @@
       "label": "Permissions",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L314",
+      "source_location": "L359",
       "_origin": "ast",
       "id": "readme_permissions",
       "community": 28,
@@ -12949,7 +13129,7 @@
       "label": "Maintainer",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L332",
+      "source_location": "L382",
       "_origin": "ast",
       "id": "readme_maintainer",
       "community": 28,
@@ -12959,7 +13139,7 @@
       "label": "License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L341",
+      "source_location": "L391",
       "_origin": "ast",
       "id": "readme_license",
       "community": 28,
@@ -14216,10 +14396,20 @@
       "norm_label": "store listing graphics"
     },
     {
+      "label": "App Store",
+      "file_type": "document",
+      "source_file": "branding/store-listing/README.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "branding_store_listing_readme_app_store",
+      "community": 114,
+      "norm_label": "app store"
+    },
+    {
       "label": "How the screens are made",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L17",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "branding_store_listing_readme_how_the_screens_are_made",
       "community": 114,
@@ -14229,7 +14419,7 @@
       "label": "Exporting",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L30",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "branding_store_listing_readme_exporting",
       "community": 114,
@@ -14239,7 +14429,7 @@
       "label": "Updating after a UI change",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L46",
+      "source_location": "L67",
       "_origin": "ast",
       "id": "branding_store_listing_readme_updating_after_a_ui_change",
       "community": 114,
@@ -14249,7 +14439,7 @@
       "label": "Captions",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L52",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "branding_store_listing_readme_captions",
       "community": 114,
@@ -15004,7 +15194,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L9",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
@@ -15014,7 +15204,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L10",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
@@ -15024,7 +15214,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L9",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
       "target": "flutteractivity",
@@ -15034,7 +15224,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L10",
+      "source_location": "L14",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
@@ -15047,7 +15237,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt",
-      "source_location": "L15",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
       "target": "methodchannel"
@@ -15119,7 +15309,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests",
       "target": "flutter",
@@ -15129,7 +15319,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests",
       "target": "ios_runnertests_runnertests_runnertests",
@@ -15140,7 +15330,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L2",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests",
       "target": "uikit",
@@ -15151,7 +15341,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L3",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests",
       "target": "xctest",
@@ -15162,7 +15352,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L2",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "flutter",
@@ -15184,7 +15374,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate",
       "target": "flutter",
@@ -15195,7 +15385,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L3",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "uikit",
@@ -15206,7 +15396,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L2",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate",
       "target": "uikit",
@@ -15216,7 +15406,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests_runnertests",
       "target": "ios_runnertests_runnertests_runnertests_testexample",
@@ -15226,7 +15416,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests_runnertests",
       "target": "xctestcase",
@@ -15237,7 +15427,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L1",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "avfoundation",
@@ -15247,7 +15437,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate",
@@ -15257,7 +15447,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "flutterappdelegate",
@@ -15267,7 +15457,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "flutterimplicitenginedelegate",
@@ -15277,7 +15467,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate_application",
@@ -15287,7 +15477,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15297,7 +15487,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L14",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate",
       "target": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
@@ -15307,7 +15497,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_application",
@@ -15318,7 +15508,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "context": "return_type",
       "source": "ios_runner_appdelegate_appdelegate_application",
@@ -15329,7 +15519,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
+      "source_location": "L11",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_application",
@@ -15340,7 +15530,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15351,7 +15541,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L14",
+      "source_location": "L18",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
@@ -15363,7 +15553,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L29",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "ios_runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
       "target": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15373,7 +15563,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15384,7 +15574,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_appdelegate_appdelegate_configureaudiosession",
@@ -15457,7 +15647,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L4",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate",
       "target": "ios_runner_scenedelegate_scenedelegate",
@@ -15467,7 +15657,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/SceneDelegate.swift",
-      "source_location": "L4",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "ios_runner_scenedelegate_scenedelegate",
       "target": "flutterscenedelegate",
@@ -16917,6 +17107,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/widgets/drill_name_dialog.dart",
       "source_location": null,
       "weight": 1.0,
@@ -16931,6 +17131,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_ios_audio_session_test",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
       "target": "package_flutter_services_dart"
     },
     {
@@ -17047,6 +17257,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_main",
+      "target": "utils_legal_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/providers/providers.dart",
       "source_location": null,
       "weight": 1.0,
@@ -17152,6 +17372,16 @@
       "weight": 1.0,
       "source": "lib_providers_providers",
       "target": "services_database_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/settings_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_settings_screen",
+      "target": "utils_legal_dart"
     },
     {
       "relation": "references",
@@ -26353,6 +26583,16 @@
       "target": "dart_io"
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "dart_io"
+    },
+    {
       "relation": "defines",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -26448,10 +26688,30 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/ios_audio_session_test.dart",
       "source_location": null,
       "weight": 1.0,
       "source": "test_ios_audio_session_test",
+      "target": "package_flutter_foundation_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
       "target": "package_flutter_foundation_dart"
     },
     {
@@ -28196,6 +28456,36 @@
       "context": "variable_type",
       "source": "lib_utils_fft",
       "target": "required_double_samplerate_double"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "lib_utils_legal_kcopyrightnotice"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "lib_utils_legal_ksourceurl"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/utils/legal.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_utils_legal",
+      "target": "lib_utils_legal_registerapplicenses"
     },
     {
       "relation": "references",
@@ -30017,6 +30307,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "package_flutter_test_flutter_test_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/par_schedule_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -31006,6 +31306,57 @@
       "target": "test_latency_calibration_test_main"
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "type_lookup",
+      "source": "test_legal_test",
+      "target": "file"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "package_simple_shot_timer_utils_legal_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "test_legal_test_attribution"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "test_legal_test_main"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/legal_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_legal_test",
+      "target": "test_legal_test_originalurl"
+    },
+    {
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -31802,7 +32153,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L67",
+      "source_location": "L78",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
@@ -31812,7 +32163,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L64",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
@@ -31822,7 +32173,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L44",
+      "source_location": "L55",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
@@ -31832,7 +32183,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L32",
+      "source_location": "L43",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
@@ -31842,7 +32193,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L25",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
@@ -31852,7 +32203,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L29",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
@@ -31862,7 +32213,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L10",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
@@ -31872,7 +32223,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L3",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
@@ -31882,9 +32233,29 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "changelog_changelog",
+      "target": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
       "source_location": "L6",
       "weight": 1.0,
-      "source": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
+      "source": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
+      "target": "changelog_breaking_changes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
       "target": "changelog_features",
       "confidence_score": 1.0
     },
@@ -31892,27 +32263,37 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L13",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
+      "target": "changelog_features_17",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
-      "target": "changelog_features_13",
+      "target": "changelog_features_24",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L21",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
-      "target": "changelog_features_21",
+      "target": "changelog_features_32",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L39",
       "weight": 1.0,
       "source": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
       "target": "changelog_bug_fixes",
@@ -31922,70 +32303,70 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L40",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
-      "target": "changelog_bug_fixes_40",
+      "target": "changelog_bug_fixes_51",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
-      "target": "changelog_features_35",
+      "target": "changelog_features_46",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L47",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
-      "target": "changelog_features_47",
+      "target": "changelog_features_58",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L63",
+      "source_location": "L74",
       "weight": 1.0,
       "source": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
-      "target": "changelog_bug_fixes_63",
+      "target": "changelog_bug_fixes_74",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L56",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
-      "target": "changelog_features_56",
+      "target": "changelog_features_67",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L79",
+      "source_location": "L90",
       "weight": 1.0,
       "source": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
-      "target": "changelog_bug_fixes_79",
+      "target": "changelog_bug_fixes_90",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L70",
+      "source_location": "L81",
       "weight": 1.0,
       "source": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
-      "target": "changelog_features_70",
+      "target": "changelog_features_81",
       "confidence_score": 1.0
     },
     {
@@ -32012,7 +32393,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L338",
+      "source_location": "L388",
       "weight": 1.0,
       "source": "readme",
       "target": "join_testing",
@@ -32102,7 +32483,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L170",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_adding_a_new_language",
@@ -32112,7 +32493,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L123",
+      "source_location": "L124",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_architecture_notes",
@@ -32122,7 +32503,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L258",
+      "source_location": "L262",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_continuous_integration",
@@ -32152,7 +32533,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L341",
+      "source_location": "L391",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_license",
@@ -32162,7 +32543,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L332",
+      "source_location": "L382",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_maintainer",
@@ -32172,7 +32553,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L314",
+      "source_location": "L359",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_permissions",
@@ -32192,10 +32573,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L268",
+      "source_location": "L272",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_releasing_to_google_play",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "readme_simple_shot_timer",
+      "target": "readme_releasing_to_the_app_store",
       "confidence_score": 1.0
     },
     {
@@ -32212,7 +32603,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L186",
+      "source_location": "L187",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_versioning",
@@ -32222,7 +32613,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L193",
+      "source_location": "L194",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_commit_format",
@@ -32232,7 +32623,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L207",
+      "source_location": "L208",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_commit_messages_are_store_release_notes",
@@ -32242,7 +32633,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L236",
+      "source_location": "L237",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_release_flow",
@@ -32252,7 +32643,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L292",
+      "source_location": "L296",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_one_time_setup_checklist",
@@ -32262,7 +32653,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L280",
+      "source_location": "L284",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_required_github_secrets",
@@ -32272,10 +32663,40 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L273",
+      "source_location": "L277",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_triggers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L341",
+      "weight": 1.0,
+      "source": "readme_releasing_to_the_app_store",
+      "target": "readme_one_time_setup_checklist_341",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L330",
+      "weight": 1.0,
+      "source": "readme_releasing_to_the_app_store",
+      "target": "readme_required_github_secrets_330",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L325",
+      "weight": 1.0,
+      "source": "readme_releasing_to_the_app_store",
+      "target": "readme_triggers_325",
       "confidence_score": 1.0
     },
     {
@@ -33442,7 +33863,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L52",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "branding_store_listing_readme_store_listing_graphics",
+      "target": "branding_store_listing_readme_app_store",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/store-listing/README.md",
+      "source_location": "L73",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_captions",
@@ -33452,7 +33883,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L30",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_exporting",
@@ -33462,7 +33893,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L17",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_how_the_screens_are_made",
@@ -33472,7 +33903,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L46",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_updating_after_a_ui_change",
@@ -33630,5 +34061,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a350ab351d21d082527b42995c9681c0dad55d77"
+  "built_at_commit": "f91d2114d93f441ae538ad5551aee40aad9176ac"
 }

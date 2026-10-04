@@ -138,6 +138,8 @@
   "settings.historyStringsValue": "{count} series",
   "settings.historyHint": "Las series más antiguas se eliminan automáticamente al superar el límite.",
   "settings.editRange": "Rango: {range}",
+  "settings.openSource": "Gratis y de código abierto · GPLv3",
+  "settings.legalese": "Software libre bajo la GNU GPL v3 con condiciones adicionales, sin ninguna garantía. Los textos de la licencia están más abajo en la lista, en «simple_shot_timer». Código fuente: {url}",
 
   "drills.saveCurrent": "Guardar ejercicio actual…",
   "drills.saveCurrentHint": "Guarda el modo, el retardo de inicio y los valores Par/Stage",

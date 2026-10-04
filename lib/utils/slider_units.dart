@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
 /// Bundles row display, dialog prefill, parsing and range hint for one unit
 /// family, so a slider's readout and its typed input can't drift apart.
 abstract class SliderUnit<T extends num> {

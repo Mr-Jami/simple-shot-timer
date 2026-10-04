@@ -1,0 +1,54 @@
+Simple Shot Timer
+
+Copyright (C) 2026 Tareq Jami (Jami IT)
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, version 3 of the License, together with the additional
+terms below.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+
+You should have received a copy of the GNU General Public License along
+with this program in the file LICENSE. If not, see
+<https://www.gnu.org/licenses/>.
+
+
+ADDITIONAL TERMS UNDER SECTION 7 OF THE GNU GPL VERSION 3
+
+The following terms supplement the GNU General Public License version 3
+for this program, as permitted by its section 7. They apply to this
+program and to every work based on it.
+
+1. Attribution (section 7(b)). Any work based on this program that you
+convey must preserve the following author attribution in the Appropriate
+Legal Notices it displays:
+
+    Based on Simple Shot Timer by Tareq Jami (Jami IT).
+    The original app is free:
+    https://jami-it.de/apps/simpleshottimer/
+
+The attribution must appear on the first screen or page that the feature
+displaying the Appropriate Legal Notices shows (for an app, for example
+its About, Credits or Licenses screen), directly next to the work's own
+copyright notice, and must be no less prominent than that copyright
+notice, in particular not in a smaller text size. Including this NOTICE
+file, or its text, in a list of licenses or among other license texts
+does not by itself meet this requirement.
+
+The attribution may be translated into the language of the user interface
+around it, as long as its meaning and the link are kept.
+
+2. Marking of modified versions (section 7(c)). You must not misrepresent
+a modified version as the original program, or as published or endorsed
+by Tareq Jami or Jami IT. A modified version you convey must use a name
+other than "Simple Shot Timer" and must be marked as modified from the
+original.
+
+3. Names and logos (section 7(e)). This license grants no rights under
+trademark law to use the name "Simple Shot Timer", the names "Tareq Jami"
+and "Jami IT", or the app's icon and logo, except as needed to give the
+attribution required by term 1.

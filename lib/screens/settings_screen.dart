@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -6,6 +10,7 @@ import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../models/enums.dart';
 import '../providers/settings_provider.dart';
+import '../utils/legal.dart';
 import '../utils/slider_units.dart';
 import '../widgets/settings_slider.dart';
 import '../widgets/settings_widgets.dart';
@@ -324,19 +329,35 @@ class _Credits extends StatelessWidget {
       letterSpacing: 1,
     );
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
-      child: Center(
-        child: FutureBuilder<PackageInfo>(
-          future: PackageInfo.fromPlatform(),
-          builder: (context, snapshot) {
-            final version = snapshot.data?.version;
-            final suffix = version == null ? '' : '  •  v$version';
-            return Text(
-              '© ${DateTime.now().year} Jami IT$suffix',
-              style: style,
-            );
-          },
-        ),
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+      child: FutureBuilder<PackageInfo>(
+        future: PackageInfo.fromPlatform(),
+        builder: (context, snapshot) {
+          final version = snapshot.data?.version;
+          final suffix = version == null ? '' : '  •  v$version';
+          return Column(
+            children: [
+              Text('$kCopyrightNotice$suffix', style: style),
+              // The GPLv3 "Appropriate Legal Notices": copyright, no
+              // warranty and the license texts, one tap away.
+              TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: theme.textTheme.bodySmall,
+                ),
+                onPressed: () => showLicensePage(
+                  context: context,
+                  applicationName: context.tr('app.title'),
+                  applicationVersion: version,
+                  applicationLegalese: '$kCopyrightNotice\n\n'
+                      '${context.tr('settings.legalese', args: {
+                        'url': kSourceUrl,
+                      })}',
+                ),
+                child: Text(context.tr('settings.openSource')),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

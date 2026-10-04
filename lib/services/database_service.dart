@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';

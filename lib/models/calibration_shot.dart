@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
 /// A single impulse captured during the auto-configure calibration run.
 ///
 /// Carries enough information to suggest both a sensitivity threshold (from
