@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.0.0...v2.1.0) (2026-10-04)
+
+
+### Features
+
+* **settings:** see the app's open-source licenses in Settings ([#30](https://github.com/Mr-Jami/simple-shot-timer/issues/30)) ([629a4a3](https://github.com/Mr-Jami/simple-shot-timer/commit/629a4a3db791e2f18946d4fca70cdbe6311badd1))
+
 ## [2.0.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.7.0...v2.0.0) (2026-10-01)
 
 
