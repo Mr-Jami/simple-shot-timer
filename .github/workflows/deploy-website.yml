@@ -1,0 +1,97 @@
+name: Deploy website
+
+# Builds website/ (simpleshottimer.com) and deploys it to Netlify with the
+# Netlify CLI. Netlify itself never builds: the site is not linked to the repo.
+#   push to main             -> production deploy (also when a release updates
+#                               CHANGELOG.md: the /changelog/ pages, the footer
+#                               version, sitemap.xml and llms-full.txt are built
+#                               from it)
+#   pull request (same repo) -> preview deploy at pr-<number>--<site>.netlify.app
+#   manual run               -> production deploy when run on main, build only elsewhere
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'CHANGELOG.md'
+      - '.github/workflows/deploy-website.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'CHANGELOG.md'
+      - '.github/workflows/deploy-website.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-website-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build & deploy to Netlify
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: website
+
+    env:
+      NODE_VERSION: '22'
+      NETLIFY_CLI_VERSION: '27.10.2'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # Pull requests from forks get no secrets, so they stop after the build.
+      - name: Deploy preview
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ] || [ -z "$NETLIFY_SITE_ID" ]; then
+            echo "::notice::Netlify secrets are not set yet, so there is no preview deploy (see website/README.md)."
+            exit 0
+          fi
+          npx --yes "netlify-cli@${NETLIFY_CLI_VERSION}" deploy \
+            --no-build --dir dist \
+            --alias "pr-${PR_NUMBER}" \
+            --message "PR #${PR_NUMBER} @ ${GITHUB_SHA::7}" \
+            --json > "$RUNNER_TEMP/deploy.json"
+          echo "### Preview: $(jq -r .deploy_url "$RUNNER_TEMP/deploy.json")" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Deploy to production
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ] || [ -z "$NETLIFY_SITE_ID" ]; then
+            echo "::error::NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID secrets are required (see website/README.md)."
+            exit 1
+          fi
+          npx --yes "netlify-cli@${NETLIFY_CLI_VERSION}" deploy \
+            --no-build --dir dist --prod \
+            --message "main @ ${GITHUB_SHA::7}" \
+            --json > "$RUNNER_TEMP/deploy.json"
+          echo "### Live: $(jq -r .url "$RUNNER_TEMP/deploy.json")" >> "$GITHUB_STEP_SUMMARY"
