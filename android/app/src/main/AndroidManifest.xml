@@ -1,7 +1,10 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- Microphone for shot detection -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <!-- Keep screen awake during timing -->
+    <!-- Lets the foreground service hold a CPU wake lock (allowWakeLock: true)
+         so detection + beeps keep running in the background. Keeping the
+         screen on uses wakelock_plus and needs no permission. -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <!-- Haptic feedback on beep -->
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -12,6 +15,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE"/>
     <!-- Required to show the persistent run notification on Android 13+. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- flutter_foreground_task declares this for restarting the service after
+         a reboot. We run it with autoRunOnBoot: false, so drop the permission. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" tools:node="remove"/>
     <!-- Declare microphone hardware feature, non-required so app still installs on devices without one -->
     <uses-feature android:name="android.hardware.microphone" android:required="false"/>
 
