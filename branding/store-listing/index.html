@@ -172,6 +172,38 @@
   .feature .ready { position: absolute; left: 612px; top: 426px; z-index: 2; font-family: "Montserrat", sans-serif; font-style: italic; font-weight: 800; font-size: 24px; color: #000; }
   .feature .mini { position: absolute; z-index: 3; transform-origin: 0 0; transform: scale(0.345); }
   .feature .mini .phone { position: static; left: auto; top: auto; }
+
+  /* ===== App Store variant (index.html?ios): 1320x2868 =====
+     Flutter on iOS draws the same Material widgets, but with SF Pro text, a
+     centred app bar title, the iOS back chevron and the iPhone safe areas.
+     The app is a 393x852 pt iPhone (59 pt top inset, 34 pt home indicator),
+     scaled 2.3x into an iPhone frame. */
+  body.ios .slide { width: 1320px; height: 2868px; }
+  body.ios .cap { left: 120px; right: 120px; top: 170px; }
+  body.ios .cap img { width: 140px; height: 140px; }
+  body.ios .cap h2 { margin-top: 54px; font-size: 58px; }
+  body.ios .phone { left: 192px; top: 660px; width: 936px; height: 1992px; border-radius: 142px; padding: 16px; box-shadow: 0 0 0 4px #2a2a2a, 0 40px 120px rgba(0,0,0,0.55); }
+  body.ios .screen { width: 904px; height: 1960px; border-radius: 126px; }
+  body.ios .app { width: 393px; height: 852px; transform: scale(2.3); font-family: -apple-system, "SF Pro Text", system-ui, sans-serif; }
+  body.ios .feature { display: none; }
+  body.ios .status { display: block; height: 54px; padding: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
+  body.ios .status .island { position: absolute; left: 50%; top: 11px; width: 126px; height: 37px; margin-left: -63px; border-radius: 19px; background: #000; }
+  body.ios .status .clock { position: absolute; left: 16px; width: 100px; top: 19px; line-height: 22px; text-align: center; }
+  body.ios .status .sys { position: absolute; right: 24px; top: 19px; height: 22px; display: flex; gap: 6px; align-items: center; }
+  body.ios .status svg { display: block; fill: #fff; }
+  body.ios .homebar { position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: #fff; z-index: 5; }
+  body.ios .tab { height: 746px; }
+  body.ios .tarea { top: 75px; height: 543px; }
+  body.ios .bigbtn { top: 634px; }
+  body.ios .navbar { top: 746px; height: 106px; padding-bottom: 34px; }
+  body.ios .snack { top: 698px; }
+  body.ios .thead { top: 71px; }
+  body.ios .list, body.ios .variant { top: 111px; }
+  body.ios .appbar { height: 115px; }
+  body.ios .bar { top: 59px; }
+  body.ios .bar .title { position: absolute; left: 0; right: 0; margin: 0; text-align: center; }
+  body.ios .bar .title + .icon { margin-left: auto; margin-right: 4px; }
+  body.ios .pbody { top: 115px; }
 </style>
 </head>
 <body>
@@ -192,6 +224,7 @@
   <symbol id="i-graphic-eq" viewBox="0 0 24 24"><path d="M7 18h2V6H7v12zm4 4h2V2h-2v20zm-8-8h2v-4H3v4zm12 4h2V6h-2v12zm4-8v4h2v-4h-2z"/></symbol>
   <symbol id="i-share" viewBox="0 0 24 24"><path d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></symbol>
   <symbol id="i-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol>
+  <symbol id="i-back-ios" viewBox="0 0 24 24"><path d="M16.88 2.88c-.49-.49-1.28-.49-1.77 0l-8.41 8.41c-.39.39-.39 1.02 0 1.41l8.41 8.41c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.54 12l7.35-7.35c.48-.49.48-1.28-.01-1.77z"/></symbol>
   <symbol id="i-list" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7z"/></symbol>
   <symbol id="i-add" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></symbol>
   <symbol id="i-remove" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></symbol>
@@ -203,6 +236,11 @@
 
 <!-- ============ reusable blocks (cloned by script) ============ -->
 <template id="t-status"><div class="status"><span>9:41</span><span class="dots"><span></span><span></span></span></div></template>
+<template id="t-status-ios"><div class="status"><div class="island"></div><span class="clock">9:41</span><span class="sys">
+  <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+  <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 11.5L6.1 9.1A3.4 3.4 0 0 1 10.9 9.1Z"/><path d="M3.13 6.13A7.6 7.6 0 0 1 13.87 6.13L12.18 7.82A5.2 5.2 0 0 0 4.82 7.82Z"/><path d="M.16 3.16A11.8 11.8 0 0 1 16.84 3.16L15.15 4.85A9.4 9.4 0 0 0 1.85 4.85Z"/></svg>
+  <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="#fff" stroke-opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.5"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2z" fill-opacity=".4"/></svg>
+</span></div></template>
 <template id="t-nav">
   <div class="navbar">
     <div class="dest" data-i="0"><div class="pill"></div><svg class="i ic-o"><use href="#i-timer"/></svg><svg class="i ic-f"><use href="#i-timer"/></svg><div class="lbl">Timer</div></div>
@@ -491,9 +529,17 @@
 </section>
 
 <script>
+  // index.html?ios renders the App Store set: iPhone frame and iOS chrome.
+  var ios = /[?&]ios(&|=|$)/.test(location.search);
+  if (ios) {
+    document.body.classList.add('ios');
+    document.querySelectorAll('use[href="#i-back"]').forEach(function (u) { u.setAttribute('href', '#i-back-ios'); });
+    document.querySelectorAll('.app').forEach(function (a) { a.insertAdjacentHTML('beforeend', '<div class="homebar"></div>'); });
+  }
+
   // Clone the status bar and bottom tab bar into every placeholder.
   document.querySelectorAll('[data-status]').forEach(function (el) {
-    el.replaceWith(document.getElementById('t-status').content.cloneNode(true));
+    el.replaceWith(document.getElementById(ios ? 't-status-ios' : 't-status').content.cloneNode(true));
   });
   document.querySelectorAll('[data-nav]').forEach(function (el) {
     var nav = document.getElementById('t-nav').content.cloneNode(true).firstElementChild;
@@ -509,7 +555,7 @@
     ctx.fillStyle = dotColor;
     for (var y = spacing / 2; y < H + spacing; y += spacing) {
       for (var x = spacing / 2; x < W + spacing; x += spacing) {
-        var wave = 110 * Math.sin(x / W * Math.PI * 1.3 + 0.4) - 160 * (x / W);
+        var wave = (110 * Math.sin(x / W * Math.PI * 1.3 + 0.4) - 160 * (x / W)) * W / 1080;
         var yT = startY + wave;
         var p = (y - yT) / (H - yT);
         if (p <= 0) continue;
@@ -520,8 +566,9 @@
     }
   }
   document.querySelectorAll('.slide').forEach(function (s) {
-    var yellow = s.classList.contains('yellow');
-    halftone(s.querySelector('canvas'), yellow ? '#000' : '#fee036', 1230, 26, 13.4);
+    var yellow = s.classList.contains('yellow'), c = s.querySelector('canvas');
+    if (ios) { c.width = 1320; c.height = 2868; }
+    halftone(c, yellow ? '#000' : '#fee036', ios ? 1800 : 1230, ios ? 32 : 26, ios ? 16.4 : 13.4);
   });
 
   // Feature graphic: black left, yellow right, halftone seam between them.

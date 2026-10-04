@@ -1,7 +1,8 @@
 # Store listing graphics
 
-Phone screenshots and the feature graphic for the Google Play listing, in the
-listing's black / yellow halftone style. One HTML page (`index.html`) holds all
+Phone screenshots and the feature graphic for the Google Play listing, and the
+iPhone screenshots for the App Store, in the listing's black / yellow halftone
+style. One HTML page (`index.html`) holds all
 of them; a browser screenshot of each section is the deliverable.
 
 Current set: 2026-10-01, app 2.0 UI (four-tab shell, saved drills).
@@ -13,6 +14,24 @@ Current set: 2026-10-01, app 2.0 UI (four-tab shell, saved drills).
 
 Google Play accepts 2–8 phone screenshots (PNG/JPEG, 9:16, 320–3840 px per side)
 and one 1024x500 feature graphic without transparency. The exports meet both.
+
+### App Store
+
+`index.html?ios` renders the same eight slides for the App Store: 1320x2868, the
+6.9" iPhone size, which App Store Connect scales down for every smaller iPhone.
+Export them to `out/ios/01-ready.png` … `out/ios/08-history.png`. The App Store
+has no feature graphic (the app icon comes from the build), so `#feature` is
+hidden in this mode.
+
+The iOS variant keeps the captions and halftone and swaps the device: an iPhone
+frame with Dynamic Island and home indicator, the iOS status bar, and the app laid
+out at 393x852 pt inside the iPhone safe areas (59 pt top, 34 pt bottom). Flutter
+draws the same Material widgets on iOS but with SF Pro text, a centred app bar
+title and the iOS back chevron, so the variant does too. App Store Connect rejects
+screenshots with an alpha channel; Chrome's exports are RGB.
+
+App previews (videos) are optional and must be screen recordings of the app
+itself, so the HTML launch video can't be used as one.
 
 ## How the screens are made
 
@@ -39,6 +58,8 @@ python -m http.server 8765 --bind 127.0.0.1
 #   page.goto('http://127.0.0.1:8765/index.html'); await fonts.ready
 #   page.locator('#slide-1').screenshot({ path: 'out/01-ready.png', scale: 'css' })
 #   ... #slide-8, #feature
+#   App Store: page.goto('http://127.0.0.1:8765/index.html?ios'), then
+#   #slide-1 … #slide-8 to out/ios/
 ```
 
 Check sizes with `ffprobe -show_entries stream=width,height out/*.png`.
