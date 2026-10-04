@@ -397,10 +397,12 @@ section 7 that are set out in [NOTICE](NOTICE). In short:
 - You may use, study, modify and share the app, and you may sell modified
   versions, as long as everyone you give or sell a copy to also gets its
   complete source code under these same terms (GPLv3 plus NOTICE).
-- Anything built on it must show this attribution in its legal notices
-  (for example an About, Credits or Licenses screen):
+- Anything built on it must show this attribution on the first screen of
+  its legal notices (for example an About, Credits or Licenses screen),
+  right next to its own copyright notice and at least as prominent:
   *"Based on Simple Shot Timer by Tareq Jami (Jami IT). The original app is
   free: https://jami-it.de/apps/simpleshottimer/"*
+  Shipping NOTICE in a list of licenses is not enough.
 - Modified versions need their own name and must not present themselves as
   the original or as made or endorsed by Tareq Jami or Jami IT.
 - The license gives no rights to the name "Simple Shot Timer", the names

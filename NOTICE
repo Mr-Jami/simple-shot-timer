@@ -25,12 +25,19 @@ program and to every work based on it.
 
 1. Attribution (section 7(b)). Any work based on this program that you
 convey must preserve the following author attribution in the Appropriate
-Legal Notices it displays (for an app, for example its About, Credits or
-Licenses screen):
+Legal Notices it displays:
 
     Based on Simple Shot Timer by Tareq Jami (Jami IT).
     The original app is free:
     https://jami-it.de/apps/simpleshottimer/
+
+The attribution must appear on the first screen or page that the feature
+displaying the Appropriate Legal Notices shows (for an app, for example
+its About, Credits or Licenses screen), directly next to the work's own
+copyright notice, and must be no less prominent than that copyright
+notice, in particular not in a smaller text size. Including this NOTICE
+file, or its text, in a list of licenses or among other license texts
+does not by itself meet this requirement.
 
 The attribution may be translated into the language of the user interface
 around it, as long as its meaning and the link are kept.
