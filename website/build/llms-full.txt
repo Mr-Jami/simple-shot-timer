@@ -1,0 +1,126 @@
+# Simple Shot Timer
+
+> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android, and on iOS soon. It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
+
+Website: https://simpleshottimer.com/
+Google Play: https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer
+iOS: coming soon to the App Store
+Source code: https://github.com/Mr-Jami/simple-shot-timer
+App privacy policy: https://simpleshottimer.com/privacy/ (German, legally binding: https://simpleshottimer.com/de/datenschutz/)
+Website privacy policy: https://simpleshottimer.com/privacy/website/
+Imprint: https://simpleshottimer.com/imprint/
+German version of this site: https://simpleshottimer.com/de/
+Founder and maintainer: Tareq Jami (Jami IT), Hamburg, Germany
+
+## At a glance
+
+- The first and currently only free and open-source shot timer app (GPL-3.0-only). No ads, no data tracking.
+- Price: $0. No ads, subscriptions or in-app purchases. A dedicated shot timer costs $100 or more.
+- 3 drill modes: Standard, Par and Stage.
+- Stages of up to 200 seconds.
+- Up to 5,000 strings kept in the history (the cap is adjustable from 50 to 5,000; default 500).
+- 5 languages: English, Deutsch, Español, Français, Русский.
+- Platforms: Android now; iOS soon.
+- Open source under GPL-3.0-only, with additional attribution terms under section 7 (NOTICE file in the repository).
+
+## How it works
+
+### Start: Stand by. Beep. Go.
+
+Choose an instant, fixed or random start delay. The clock starts when the beep is heard, not when the phone asks for it: the app measures the beep through the microphone, so speaker lag never ends up in your time. The beep is a 2,325 Hz tone, the pitch range used by most club shot timers; the start beep is short and the par beep is longer.
+
+### Detection: Hears every shot.
+
+Shots are picked up from the raw microphone signal with the phone's voice processing switched off. A notch at the beep's pitch keeps the beep out, an echo filter ignores reflections off walls and baffles, and a shot fired during the beep still counts.
+
+### Results: Every split, the second you stop.
+
+Total time, first shot and last split are on screen the moment you press STOP. The review lists every shot with its split, adds fastest, slowest and average, and takes a label, notes and a penalty. Shots can be added or deleted by hand in the review.
+
+### Drills: Standard, Par or Stage.
+
+Run an open string (Standard), beat a par time with repeat cycles and a rest between them (Par), or time a whole stage of up to 200 seconds (Stage). Save the drills you run often under a name and load any of them with one tap from the Drills tab; each saved drill can be renamed, overwritten or deleted.
+
+### History: Every string, kept.
+
+Each run is saved on your phone together with the drill it was shot with. Keep up to 5,000 strings, look back any time and export one string or your whole history as CSV through the share sheet. A run that detects no shots is not saved unless you add a shot by hand.
+
+## Details
+
+- Auto-configure: fire a few shots with your usual gun and stance, and the app suggests a sensitivity and frequency band tuned to what it heard on that range. Both can also be set by hand.
+- Live mic test: a level meter with the threshold line, to dial in sensitivity before going hot.
+- Flash and buzz on the beep: each beep comes with a screen flash and a haptic, timed to land with the sound. With the system's reduced-motion setting on, a gentle edge ring replaces the flash.
+- Keeps running in the background: switch apps or lock the screen mid-string; detection and par beeps carry on.
+- Honest times on any speaker: for a Bluetooth speaker or earbuds the mic can't hear, a manual latency offset keeps the clock starting on the sound.
+- Never miss a beep: if the media volume is muted while a string runs, a one-line notice says so. On Android, tapping it opens the volume panel.
+- Themes: follow the system, or pick light, dark or high contrast, all in the app's black-and-white look.
+- Keep the screen awake during a string; optional haptic on every beep.
+- Navigation: four tabs (Timer, Drills, History, Settings). The tab bar is inert while a string is running.
+
+## Privacy
+
+Your strings stay on your phone.
+
+- No account: there is nothing to sign up for.
+- No ads, no tracking: no analytics, advertising or tracking code. The app sends nothing off your phone.
+- Nothing recorded: the mic signal is analysed in memory while a string runs. Audio is never saved or sent.
+- Data the app stores (strings, shot times, settings) lives in a local SQLite database and preferences file on the device. It can be viewed, edited, exported as CSV and deleted in the app; uninstalling removes everything.
+- The website simpleshottimer.com sets no cookies, loads nothing from third parties and has no analytics. It is hosted by Netlify, which processes access data (such as IP address and time of request) to deliver the pages; server logs are deleted after 30 days at the latest.
+- App privacy policy: https://simpleshottimer.com/privacy/
+- Website privacy policy: https://simpleshottimer.com/privacy/website/
+
+## FAQ
+
+### Is it really free?
+
+Yes. There are no ads, no subscriptions and no in-app purchases. The app is open source under GPLv3.
+
+### Will it replace a real shot timer?
+
+Not completely. The app is limited by your phone's hardware, so it can't reach the level of a decent dedicated timer. It's a solid alternative if you don't want to spend $100 or more on a timer, or if you left yours at home.
+
+### Does it work for live fire?
+
+Yes. Fire a few shots with Auto-configure and the app suggests a sensitivity and frequency band for that gun and range. On a busy line, a shot from the next bay can register if it is as loud as yours; you can delete it in the review.
+
+### Can I use it for dry fire?
+
+Yes. Par mode gives you a start beep and a par beep to beat, with repeat cycles and a rest between them. A dry-fire click is quiet, so either raise the sensitivity until it registers or simply shoot against the par time.
+
+### Will a Bluetooth speaker throw off my times?
+
+No. The clock starts when the mic hears the beep, so the speaker's lag is measured, not guessed. For sound the mic can't hear, such as earbuds, set a manual latency offset in Settings.
+
+### Is there an iPhone version?
+
+It's coming to the App Store soon. On Android it's available now on Google Play, and you can join the beta to get new builds first: https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md
+
+### Does the app record me?
+
+No. While a string runs, the mic signal is analysed in memory to spot shots and is never saved or sent. Your strings and settings are stored only on your phone.
+
+### Can I get my data out?
+
+Yes. Export a single string or your whole history as CSV through the share sheet and open it in any spreadsheet.
+
+## Releases
+
+Generated from the app's CHANGELOG.md; the full list is at https://simpleshottimer.com/changelog/
+
+<!--site:changelog-md-->
+
+## Download
+
+Simple Shot Timer is free on Google Play (https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer) and coming soon to the App Store. Want new builds first? Join the Android beta: https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md
+
+## About
+
+Simple Shot Timer was founded and is maintained by Tareq Jami of Jami IT, a software engineering and AI consulting business in Hamburg, Germany (https://jami-it.de/en/). The app is open source under GPL-3.0-only; the code, issues and releases are on GitHub.
+
+## Links
+
+- Source code: https://github.com/Mr-Jami/simple-shot-timer
+- Report a bug: https://github.com/Mr-Jami/simple-shot-timer/issues
+- License: https://github.com/Mr-Jami/simple-shot-timer/blob/main/LICENSE
+- Changelog: https://simpleshottimer.com/changelog/
+- Imprint: https://simpleshottimer.com/imprint/

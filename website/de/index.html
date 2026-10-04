@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Simple Shot Timer: die kostenlose Open-Source-Shot-Timer-App</title>
+  <meta name="description" content="Simple Shot Timer ist die kostenlose Open-Source-Shot-Timer-App: keine Werbung, kein Datentracking. Sie hört jeden Schuss, zeigt deine Splits live, kann Par- und Stage-Drills und speichert jeden Durchgang. Für Android, bald auch für iOS.">
+  <!--site:alternates-->
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Simple Shot Timer">
+  <meta property="og:url" content="https://simpleshottimer.com/de/">
+  <meta property="og:title" content="Simple Shot Timer: Beep. Ziehen. Split.">
+  <meta property="og:description" content="Die kostenlose Open-Source-Shot-Timer-App. Keine Werbung, kein Datentracking. Für Android, bald auch für iOS.">
+  <meta property="og:image" content="https://simpleshottimer.com/og-de.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Simple Shot Timer auf einem Smartphone mit einem Durchgang von 2,37 Sekunden">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Simple Shot Timer",
+    "url": "https://simpleshottimer.com/de/",
+    "description": "Die kostenlose Open-Source-Shot-Timer-App, ohne Werbung und ohne Datentracking. Ein Shot Timer für Trockentraining und den Schießstand: erkennt Schüsse über das Mikrofon, kann Standard-, Par- und Stage-Drills, speichert Drills und jeden Durchgang und exportiert als CSV. Für Android, bald auch für iOS.",
+    "operatingSystem": "Android",
+    "applicationCategory": "SportsApplication",
+    "downloadUrl": "https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer",
+    "installUrl": "https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer",
+    "image": "https://simpleshottimer.com/og-de.png",
+    "inLanguage": ["en", "de", "es", "fr", "ru"],
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "author": { "@type": "Person", "name": "Tareq Jami", "url": "https://tareqjami.de" },
+    "maintainer": { "@type": "Person", "name": "Tareq Jami", "url": "https://tareqjami.de" },
+    "publisher": { "@type": "Organization", "name": "Jami IT", "url": "https://jami-it.de" }
+  }
+  </script>
+  <!-- Same inline script as /index.html (its sha256 is allow-listed in public/_headers). -->
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="/src/styles/site.css">
+  <link rel="stylesheet" href="/src/styles/app-ui.css">
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+
+<!--site:sprite-->
+
+<a class="skip" href="#features">Zum Inhalt springen</a>
+
+<!--site:nav intro-->
+
+<main id="top">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="hero-pill" data-intro><span class="pill-dot" aria-hidden="true"></span>Kostenlos &amp; Open Source · Android · iOS bald</p>
+        <h1 class="display" id="hero-title" data-intro-words>Beep. Ziehen. Split.</h1>
+        <p class="lede" data-intro>Simple Shot Timer macht dein Smartphone zum Shot Timer für Trockentraining und den Schießstand. Die App hört jeden Schuss, zeigt deine Splits noch während du schießt und speichert jeden Durchgang.</p>
+        <div class="cta-row" data-intro>
+          <a class="btn btn-yellow" href="https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer&amp;hl=de" rel="noopener">Bei Google Play laden</a>
+          <a class="btn btn-ghost" href="#features">So funktioniert’s</a>
+        </div>
+        <ul class="trust" data-intro>
+          <li>Keine Werbung</li><li>Kein Datentracking</li><li>Kein Konto</li><li>Open Source</li>
+        </ul>
+      </div>
+
+      <div class="hero-demo" data-intro-phone>
+        <div class="phone phone-hero" id="demo-phone" role="group" aria-label="Interaktive Shot-Timer-Demo"></div>
+        <div class="demo-bar">
+          <p class="demo-hint" id="demo-hint" aria-live="polite">Probier’s aus: Drück START, warte auf den Beep und tippe dann für jeden Schuss auf den Bildschirm.</p>
+          <button class="chip-btn" id="demo-mic" type="button" aria-pressed="false">
+            <svg class="ico" width="16" height="16" aria-hidden="true"><use href="#i-mic"/></svg><span>Per Klatschen auslösen</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Statement ============ -->
+  <section class="statement" aria-labelledby="statement-title">
+    <div class="wrap">
+      <h2 class="statement-title" id="statement-title" data-statement>Simple Shot Timer ist die <span class="nowrap">Shot-Timer-App,</span> die <em>kostenlos und Open Source</em> ist.</h2>
+      <p class="statement-sub" data-reveal>Keine Werbung, kein Datentracking. Für Android, bald auch für iOS.</p>
+    </div>
+  </section>
+
+  <!-- ============ Auf einen Blick ============ -->
+  <section class="specs" aria-label="Auf einen Blick">
+    <div class="wrap"><div class="specs-grid" data-reveal-group>
+      <div class="spec">
+        <p class="spec-num"><span data-count="0" data-from="100">0</span><small>€</small></p>
+        <p class="spec-label">Der Preis. Ein eigener Shot Timer kostet 100 € oder mehr.</p>
+      </div>
+      <div class="spec">
+        <p class="spec-num"><span data-count="3">3</span></p>
+        <p class="spec-label">Modi: Standard, Par und Stage</p>
+      </div>
+      <div class="spec">
+        <p class="spec-num"><span data-count="200">200</span><small>s</small></p>
+        <p class="spec-label">Längste Stage, die du stoppen kannst</p>
+      </div>
+      <div class="spec">
+        <p class="spec-num"><span data-count="5000">5.000</span></p>
+        <p class="spec-label">Durchgänge in deinem Verlauf</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ============ So funktioniert's ============ -->
+  <section class="features" id="features" aria-labelledby="features-title">
+    <div class="wrap">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">So funktioniert’s</p>
+        <h2 class="h2" id="features-title">Vom Beep<br>bis zum letzten Split.</h2>
+      </header>
+
+      <div class="story">
+        <div class="story-stage" aria-hidden="true">
+          <div class="phone phone-story" id="story-phone"></div>
+        </div>
+        <ol class="story-steps">
+          <li class="step" data-screen="standby">
+            <div class="step-text">
+              <p class="step-num">01 · Start</p>
+              <h3 class="h3">Bereithalten. Beep. Los.</h3>
+              <p>Wähle einen Sofortstart, eine feste oder eine zufällige Startverzögerung. Die Zeit läuft ab dem Moment, in dem der Beep zu hören ist, nicht ab dem Moment, in dem das Telefon ihn abspielen will: Die App misst den Beep über das Mikrofon, damit die Verzögerung des Lautsprechers nie in deiner Zeit landet.</p>
+            </div>
+            <div class="phone phone-step" aria-hidden="true"></div>
+          </li>
+          <li class="step" data-screen="running">
+            <div class="step-text">
+              <p class="step-num">02 · Erkennung</p>
+              <h3 class="h3">Hört jeden Schuss.</h3>
+              <p>Schüsse werden direkt im Mikrofonsignal erkannt, mit ausgeschalteter Sprachverarbeitung des Telefons. Ein Kerbfilter auf der Tonhöhe des Beeps hält den Beep heraus, ein Echo-Filter ignoriert Reflexionen von Wänden und Blenden, und ein Schuss während des Beeps zählt trotzdem.</p>
+            </div>
+            <div class="phone phone-step" aria-hidden="true"></div>
+          </li>
+          <li class="step" data-screen="review">
+            <div class="step-text">
+              <p class="step-num">03 · Ergebnisse</p>
+              <h3 class="h3">Jeder Split, sobald du stoppst.</h3>
+              <p>Gesamtzeit, erster Schuss und letzter Split stehen auf dem Bildschirm, sobald du STOPP drückst. Die Auswertung zeigt jeden Schuss mit seinem Split, dazu schnellsten, langsamsten und durchschnittlichen Split, und nimmt eine Bezeichnung, Notizen und eine Strafzeit auf.</p>
+            </div>
+            <div class="phone phone-step" aria-hidden="true"></div>
+          </li>
+          <li class="step" data-screen="drills">
+            <div class="step-text">
+              <p class="step-num">04 · Drills</p>
+              <h3 class="h3">Standard, Par oder Stage.</h3>
+              <p>Schieß einen offenen Durchgang, schlag eine Par-Zeit mit Wiederholungen und Pausen dazwischen oder stopp eine ganze Stage von bis zu 200 Sekunden. Speichere die Drills, die du oft schießt, und lade jeden davon mit einem Tipp.</p>
+            </div>
+            <div class="phone phone-step" aria-hidden="true"></div>
+          </li>
+          <li class="step" data-screen="history">
+            <div class="step-text">
+              <p class="step-num">05 · Verlauf</p>
+              <h3 class="h3">Jeder Durchgang bleibt.</h3>
+              <p>Jeder Durchgang wird auf deinem Telefon gespeichert, zusammen mit dem Drill, mit dem du ihn geschossen hast. Behalte bis zu 5.000 Durchgänge, schau jederzeit zurück und exportiere einen einzelnen Durchgang oder deinen ganzen Verlauf als CSV.</p>
+            </div>
+            <div class="phone phone-step" aria-hidden="true"></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Details ============ -->
+  <section class="details" id="details" aria-labelledby="details-title">
+    <div class="wrap">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Details</p>
+        <h2 class="h2" id="details-title">Gemacht für den Schießstand.</h2>
+        <p class="section-sub">Die kleinen Dinge, die aus einem Telefon einen Timer machen, dem du an der Linie vertrauen kannst.</p>
+      </header>
+
+      <div class="bento" data-reveal-group>
+        <article class="card span-4" data-viz="autoconfig">
+          <div class="viz viz-autoconfig" aria-hidden="true">
+            <div class="ac-meter">
+              <div class="ac-bars"></div>
+              <div class="ac-thr"><span>Schwelle</span></div>
+            </div>
+            <div class="ac-out">
+              <p class="ac-count"><span class="ac-n">0</span> erfasst</p>
+              <div class="ac-suggest">
+                <p class="ac-title">Vorgeschlagene Einstellungen</p>
+                <p><span>Empfindlichkeit</span><b>15%</b></p>
+                <p><span>Frequenzband</span><b>1.200–6.000 Hz</b></p>
+              </div>
+            </div>
+          </div>
+          <h3 class="card-title">Automatisch konfigurieren</h3>
+          <p class="card-text">Gib ein paar Schüsse mit deiner üblichen Waffe und Haltung ab. Die App schlägt eine Empfindlichkeit und ein Frequenzband vor, abgestimmt auf das, was sie auf diesem Stand gehört hat.</p>
+        </article>
+
+        <article class="card span-2" data-viz="flash">
+          <div class="viz viz-flash" aria-hidden="true">
+            <div class="fl-phone"><div class="fl-glow"></div><span class="fl-label">BEEP</span></div>
+            <div class="fl-wave"><span></span><span></span><span></span></div>
+          </div>
+          <h3 class="card-title">Blitz und Vibration beim Beep</h3>
+          <p class="card-text">Zu jedem Beep gibt es einen Bildschirm-Blitz und eine Vibration, genau im Moment des Beeps. Ist „Bewegung reduzieren“ an, ersetzt ein dezenter Rahmen den Blitz.</p>
+        </article>
+
+        <article class="card span-2" data-viz="background">
+          <div class="viz viz-bg" aria-hidden="true">
+            <div class="bg-note">
+              <span class="bg-icon"><svg width="22" height="22"><use href="#mark"/></svg></span>
+              <span class="bg-txt" lang="en"><b>Shot Timer</b><span>Run in progress</span></span>
+              <span class="bg-time">0:12</span>
+            </div>
+            <div class="bg-note bg-note-2"><span class="bg-ghost"></span><span class="bg-ghost bg-ghost-s"></span></div>
+          </div>
+          <h3 class="card-title">Läuft im Hintergrund weiter</h3>
+          <p class="card-text">Wechsle die App oder sperr den Bildschirm mitten im Durchgang. Erkennung und Par-Beeps laufen weiter.</p>
+        </article>
+
+        <article class="card span-2" data-viz="latency">
+          <div class="viz viz-latency" aria-hidden="true">
+            <div class="lt-row"><span class="lt-l">Beep gesendet</span><span class="lt-track"><i class="lt-tick lt-a"></i></span></div>
+            <div class="lt-row"><span class="lt-l">Beep gehört</span><span class="lt-track"><i class="lt-tick lt-b"></i></span></div>
+            <div class="lt-gap"><span class="lt-brace"></span><b class="lt-ms">+180 ms</b></div>
+          </div>
+          <h3 class="card-title">Ehrliche Zeiten mit jedem Lautsprecher</h3>
+          <p class="card-text">Der Beep kommt aus einem Bluetooth-Lautsprecher, den das Mikrofon nicht hört? Stell einen Latenzausgleich ein, und die Zeit startet trotzdem mit dem Beep.</p>
+        </article>
+
+        <article class="card span-2" data-viz="languages">
+          <div class="viz viz-lang" aria-hidden="true">
+            <p class="lg-word"><span>Ready</span></p>
+            <p class="lg-code">EN</p>
+          </div>
+          <h3 class="card-title">Spricht deine Sprache</h3>
+          <p class="card-text">English, Deutsch, Español, Français und Русский.</p>
+        </article>
+
+        <article class="card span-3" data-viz="themes">
+          <div class="viz viz-themes" aria-hidden="true">
+            <div class="tm tm-light"><span class="tm-num">2.37</span><span class="tm-btn"></span><span class="tm-name">Hell</span></div>
+            <div class="tm tm-dark"><span class="tm-num">2.37</span><span class="tm-btn"></span><span class="tm-name">Dunkel</span></div>
+            <div class="tm tm-hc"><span class="tm-num">2.37</span><span class="tm-btn"></span><span class="tm-name">Hoher Kontrast</span></div>
+          </div>
+          <h3 class="card-title">Schwarz-weiß, wie du willst</h3>
+          <p class="card-text">Folge dem System oder wähle hell, dunkel oder hohen Kontrast. Jedes Design behält den Schwarz-Weiß-Look der App.</p>
+        </article>
+
+        <article class="card span-3" data-viz="muted">
+          <div class="viz viz-muted" aria-hidden="true">
+            <div class="mt-notice"><svg width="20" height="20"><use href="#i-volume-off"/></svg><span>Medienlautstärke aus. Töne bleiben stumm.</span></div>
+          </div>
+          <h3 class="card-title">Keinen Beep verpassen</h3>
+          <p class="card-text">Ist die Medienlautstärke während eines Durchgangs stumm, sagt dir eine einzeilige Meldung Bescheid. Unter Android öffnet ein Tipp darauf die Lautstärkeregelung.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Datenschutz + Open Source ============ -->
+  <section class="privacy" id="privacy" aria-labelledby="privacy-title">
+    <div class="wrap">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Datenschutz</p>
+        <h2 class="h2" id="privacy-title">Deine Durchgänge bleiben<br>auf deinem Telefon.</h2>
+      </header>
+      <div class="pv-grid" data-reveal-group>
+        <div class="pv">
+          <svg class="pv-ico" width="40" height="40" aria-hidden="true"><use href="#i-no-account"/></svg>
+          <h3>Kein Konto</h3>
+          <p>Es gibt nichts, wofür du dich anmelden musst. App öffnen und los.</p>
+        </div>
+        <div class="pv">
+          <svg class="pv-ico" width="40" height="40" aria-hidden="true"><use href="#i-block"/></svg>
+          <h3>Keine Werbung, kein Tracking</h3>
+          <p>Kein Analyse-, Werbe- oder Tracking-Code. Die App sendet nichts von deinem Telefon.</p>
+        </div>
+        <div class="pv">
+          <svg class="pv-ico" width="40" height="40" aria-hidden="true"><use href="#i-mic-off"/></svg>
+          <h3>Keine Aufnahme</h3>
+          <p>Das Mikrofonsignal wird während eines Durchgangs im Arbeitsspeicher ausgewertet. Audio wird nie gespeichert oder gesendet.</p>
+        </div>
+      </div>
+      <div class="oss" data-reveal>
+        <div>
+          <h3>Open Source unter GPLv3.</h3>
+          <p>Jede Zeile der App liegt auf GitHub, du kannst also alles selbst nachprüfen.</p>
+        </div>
+        <div class="oss-links">
+          <a class="btn btn-ink" href="https://github.com/Mr-Jami/simple-shot-timer" rel="noopener"><svg class="ico" width="18" height="18" aria-hidden="true"><use href="#i-github"/></svg>Auf GitHub ansehen</a>
+          <a class="btn btn-ink-ghost" href="/de/datenschutz/">Datenschutzerklärung</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2" id="faq-title">Fragen und Antworten.</h2>
+        <p class="section-sub">Noch etwas offen? <a href="https://github.com/Mr-Jami/simple-shot-timer/issues" rel="noopener">Eröffne ein Issue auf GitHub</a>.</p>
+      </header>
+      <div class="faq-list" data-reveal-group>
+        <details>
+          <summary>Ist die App wirklich kostenlos?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Ja. Es gibt keine Werbung, kein Abo und keine In-App-Käufe. Die App ist Open Source unter GPLv3.</p></div>
+        </details>
+        <details>
+          <summary>Ersetzt sie einen echten Shot Timer?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Nicht ganz. Die App ist an die Hardware deines Telefons gebunden und kommt deshalb nicht an einen guten eigenen Timer heran. Sie ist eine solide Alternative, wenn du nicht 100 € oder mehr für einen Timer ausgeben willst oder deinen zu Hause vergessen hast.</p></div>
+        </details>
+        <details>
+          <summary>Funktioniert sie beim scharfen Schießen?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Ja. Gib mit „Automatisch konfigurieren“ ein paar Schüsse ab, und die App schlägt Empfindlichkeit und Frequenzband für diese Waffe und diesen Stand vor. Auf einem vollen Stand kann ein Schuss vom Nachbarstand zählen, wenn er so laut ist wie deiner; du kannst ihn in der Auswertung löschen.</p></div>
+        </details>
+        <details>
+          <summary>Kann ich sie fürs Trockentraining nutzen?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Ja. Der Par-Modus gibt dir einen Start-Beep und einen Par-Beep, den du schlagen musst, mit Wiederholungen und Pausen dazwischen. Ein Trockenschuss-Klick ist leise: Erhöh also die Empfindlichkeit, bis er erkannt wird, oder schieß einfach gegen die Par-Zeit.</p></div>
+        </details>
+        <details>
+          <summary>Verfälscht ein Bluetooth-Lautsprecher meine Zeiten?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Nein. Die Zeit startet, wenn das Mikrofon den Beep hört; die Verzögerung des Lautsprechers wird also gemessen, nicht geschätzt. Für einen Beep, den das Mikrofon nicht hört, etwa über Kopfhörer, stellst du in den Einstellungen einen Latenzausgleich ein.</p></div>
+        </details>
+        <details>
+          <summary>Gibt es eine iPhone-Version?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Sie kommt bald in den App Store. Für Android gibt es die App schon bei Google Play, und über den <a href="https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md" rel="noopener" hreflang="en">Beta-Test</a> bekommst du neue Versionen zuerst.</p></div>
+        </details>
+        <details>
+          <summary>Nimmt die App mich auf?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Nein. Während eines Durchgangs wird das Mikrofonsignal im Arbeitsspeicher ausgewertet, um Schüsse zu erkennen, und nie gespeichert oder gesendet. Deine Durchgänge und Einstellungen liegen nur auf deinem Telefon. Details stehen in der <a href="/de/datenschutz/">Datenschutzerklärung der App</a>.</p></div>
+        </details>
+        <details>
+          <summary>Komme ich an meine Daten?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Ja. Exportiere einen einzelnen Durchgang oder deinen ganzen Verlauf als CSV über das Teilen-Menü und öffne ihn in jeder Tabellenkalkulation.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Download ============ -->
+  <section class="cta" id="download" aria-labelledby="cta-title">
+    <canvas class="cta-halftone" aria-hidden="true"></canvas>
+    <div class="wrap cta-inner">
+      <svg class="cta-mark" viewBox="103 91 320 320" width="96" height="96" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round"><path d="M278 147A105 105 0 1 1 264 355"/><path d="M133 207H237"/><path d="M159 264H208"/><path d="M184 315H184.01"/></g></svg>
+      <h2 class="cta-title" id="cta-title" data-reveal>Schütze bereit?</h2>
+      <p class="cta-sub" data-reveal>Simple Shot Timer gibt es kostenlos bei Google Play, bald auch im App Store.</p>
+      <div class="cta-row cta-badges" data-reveal>
+        <a class="badge badge-de" href="https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer&amp;hl=de" rel="noopener">
+          <img src="/google-play-badge-de.png" width="646" height="250" alt="Jetzt bei Google Play">
+        </a>
+        <span class="soon">iOS · bald verfügbar</span>
+      </div>
+      <p class="cta-beta" data-reveal>Neue Versionen zuerst? <a href="https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md" rel="noopener" hreflang="en">Beim Android-Beta-Test mitmachen</a></p>
+    </div>
+  </section>
+</main>
+
+<!--site:footer-->
+
+</body>
+</html>

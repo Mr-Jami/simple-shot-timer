@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- Source of public/og.png (1200x630), the link preview image. Not part of
+     the site build. To re-export: serve the website/ folder over http, open
+     /og-image/ (or /og-image/?lang=de for public/og-de.png), and screenshot #og
+     at CSS scale 1 (see website/README.md). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OG image</title>
+<link rel="stylesheet" href="/node_modules/@fontsource-variable/inter/opsz.css">
+<link rel="stylesheet" href="/node_modules/@fontsource-variable/roboto/wght.css">
+<link rel="stylesheet" href="/src/styles/site.css">
+<link rel="stylesheet" href="/src/styles/app-ui.css">
+<style>
+  body { margin: 0; padding: 40px; background: #333; }
+  #og { position: relative; width: 1200px; height: 630px; overflow: hidden; background: #000; }
+  #og canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .og-glow { position: absolute; inset: 0; background: radial-gradient(420px 380px at 900px 300px, rgba(254, 224, 54, 0.16), transparent 70%); }
+  .og-copy { position: absolute; left: 72px; top: 64px; width: 660px; }
+  .og-brand { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 650; letter-spacing: -0.02em; }
+  .og-brand svg { width: 40px; height: 40px; color: #fff; }
+  .og-title { margin-top: 36px; font-size: 96px; line-height: 0.94; letter-spacing: -0.036em; font-weight: 700; }
+  .og-sub { margin-top: 26px; font-size: 28px; line-height: 1.3; letter-spacing: -0.02em; color: #a1a1a6; }
+  .og-sub b { color: #fee036; font-weight: 600; }
+  .og-phone { position: absolute; left: 760px; top: 52px; }
+  .og-phone .phone { --pw: 330; }
+</style>
+</head>
+<body>
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="mark" viewBox="103 91 320 320"><g fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round"><path d="M278 147A105 105 0 1 1 264 355"/><path d="M133 207H237"/><path d="M159 264H208"/></g><circle cx="184" cy="315" r="13" fill="currentColor"/></symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></symbol>
+  <symbol id="i-bookmarks-o" viewBox="0 0 24 24"><path d="M15 7v12.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10m4-6H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></symbol>
+  <symbol id="i-settings-o" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7z"/></symbol>
+  <symbol id="i-add" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+</svg>
+
+<div id="og">
+  <canvas></canvas>
+  <div class="og-glow"></div>
+  <div class="og-copy">
+    <div class="og-brand"><svg><use href="#mark"/></svg>Simple Shot Timer</div>
+    <div class="og-title" data-de="Beep. Ziehen.<br>Split.">Beep. Draw.<br>Split.</div>
+    <p class="og-sub" data-de="Die kostenlose<br>Open-Source-Shot-Timer-App.<br><b>Keine Werbung. Kein Datentracking.</b>">The free and open-source<br>shot timer app.<br><b>No ads. No data tracking.</b></p>
+  </div>
+  <div class="og-phone">
+    <div class="phone"><div class="phone-screen"><div class="app">
+      <div class="status"><span class="clock">9:41</span><span class="dots"><span></span><span></span></span></div>
+      <div class="shell">
+        <div class="tab"><div class="tarea"><div class="tv">
+          <div class="fin-centre"><div class="big-label" data-de="GESAMT">TOTAL</div><div class="big-num">2.37</div></div>
+          <div class="fin-bottom">
+            <div class="stats">
+              <div class="stat"><span class="l" data-de="SCHÜSSE">SHOTS</span><span class="v">5</span></div>
+              <div class="stat"><span class="l" data-de="ERSTER">FIRST</span><span class="v">1.42</span></div>
+              <div class="stat"><span class="l">SPLIT</span><span class="v">0.22s</span></div>
+            </div>
+            <div class="obtns">
+              <div class="obtn"><svg class="i"><use href="#i-list"/></svg><span data-de="Auswerten">Review</span></div>
+              <div class="obtn"><svg class="i"><use href="#i-add"/></svg><span data-de="Schuss hinzufügen">Add shot</span></div>
+            </div>
+            <div class="saved" data-de="Gespeichert 09:41">Saved 9:41 AM</div>
+          </div>
+        </div></div>
+        <div class="bigbtn"><svg class="i"><use href="#i-play"/></svg>START</div></div>
+        <div class="navbar">
+          <div class="dest on"><span class="pill"></span><svg class="i ic-o"><use href="#i-timer"/></svg><svg class="i ic-f"><use href="#i-timer"/></svg><span class="lbl">Timer</span></div>
+          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-bookmarks-o"/></svg><span class="lbl">Drills</span></div>
+          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-history"/></svg><span class="lbl" data-de="Verlauf">History</span></div>
+          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-settings-o"/></svg><span class="lbl" data-de="Einstellungen">Settings</span></div>
+        </div>
+      </div>
+    </div></div></div>
+  </div>
+</div>
+
+<script type="module">
+  import { drawHalftone } from '/src/halftone.js';
+  const c = document.querySelector('#og canvas');
+  // ?lang=de renders public/og-de.png.
+  if (new URLSearchParams(location.search).get('lang') === 'de') {
+    document.documentElement.lang = 'de';
+    document.querySelectorAll('[data-de]').forEach((el) => { el.innerHTML = el.dataset.de; });
+  }
+  await document.fonts.ready;
+  drawHalftone(c, 0.5);
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+# German 404 page for unknown paths under /de/ (existing files are served first).
+/de/*  /de/404.html  404
