@@ -27,7 +27,7 @@
   <article class="wrap legal-wrap">
     <p class="eyebrow">Privacy</p>
     <h1 class="h2">App privacy policy</h1>
-    <p class="legal-meta">Last updated: 4 October 2026</p>
+    <p class="legal-meta">Last updated: 5 October 2026</p>
     <p class="legal-lede">This policy covers the Simple Shot Timer app for Android and iPhone (iOS). What happens when you visit this website is explained in the <a href="/privacy/website/">website privacy policy</a>. The <a href="/de/datenschutz/" hreflang="de">German version</a> is the legally binding one.</p>
 
     <section class="legal-summary" aria-labelledby="summary">
@@ -53,8 +53,8 @@
     </ul>
     <p>This lives in a local SQLite database and a preferences file in the app's private storage. I never receive it. If your phone's own backup is switched on (iCloud Backup on iPhone, Google backup on Android), the operating system may include this data in that backup, which stays between you and Apple or Google.</p>
     <p><strong>Microphone:</strong></p>
-    <p>With your permission, the app uses the microphone to detect shots in real time. Audio is analysed in memory only while a session is running, and only to spot peaks above the threshold you set. <strong>Nothing is recorded, saved or transmitted.</strong></p>
-    <p>You can grant or revoke the permission at any time in your system settings. Without it the app still works; you enter shots manually.</p>
+    <p>The app needs the microphone to time a string. With your permission, it uses it to detect shots and to hear when the start beep actually plays, so the clock starts on the audible beep. It also uses the microphone in the mic test and in auto-configure when you open them. Audio is analysed in memory only while one of these is running, to measure levels and frequencies. <strong>Nothing is recorded, saved or transmitted.</strong></p>
+    <p>You can grant or revoke the permission at any time in your system settings. Without it the app can't time a string; your history, saved drills and settings stay available.</p>
     <p><strong>CSV export:</strong></p>
     <p>When you export a session as CSV, the app writes the file to temporary storage and hands it to your system's share dialog. Where it goes from there (e-mail, messaging, cloud storage) is up to the app you pick; I have no involvement in or visibility into that transfer.</p>
 
@@ -84,14 +84,15 @@
     <h2 id="permissions">Permissions</h2>
     <p><strong>Android:</strong></p>
     <ul>
-      <li><strong>Microphone</strong> (<code>RECORD_AUDIO</code>): live shot detection. Optional, revocable at any time.</li>
+      <li><strong>Microphone</strong> (<code>RECORD_AUDIO</code>): shot detection, hearing the start beep, the mic test and auto-configure. Needed to time a string; revocable at any time.</li>
       <li><strong>Foreground service</strong> (<code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_MICROPHONE</code>) and <strong>notifications</strong> (<code>POST_NOTIFICATIONS</code>): keep detection and beeps running while a session runs in the background, with the notification Android shows during that time.</li>
       <li><strong>Vibration</strong> (<code>VIBRATE</code>): haptic feedback on beeps.</li>
-      <li><strong>Wake lock</strong> (<code>WAKE_LOCK</code>): keeps the screen on during a session.</li>
+      <li><strong>Wake lock</strong> (<code>WAKE_LOCK</code>): keeps the processor awake while a session runs in the background, so detection and beeps don't stop.</li>
     </ul>
+    <p>Keeping the screen on during a session needs no permission.</p>
     <p><strong>iPhone:</strong></p>
     <ul>
-      <li><strong>Microphone</strong>: live shot detection. Requested by the system prompt on first START; optional, revocable in Settings → Privacy &amp; Security → Microphone.</li>
+      <li><strong>Microphone</strong>: shot detection, hearing the start beep, the mic test and auto-configure. The system asks the first time the app needs it (START, the mic test or auto-configure). Needed to time a string; revocable in Settings → Privacy &amp; Security → Microphone.</li>
       <li><strong>Background audio</strong>: while a session runs, the app keeps listening and playing beeps when you lock the screen or switch apps. iOS shows the microphone indicator during that time.</li>
     </ul>
     <p>Vibration and keeping the screen on need no permission on iPhone.</p>

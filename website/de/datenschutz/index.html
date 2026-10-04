@@ -28,7 +28,7 @@
   <article class="wrap legal-wrap">
     <p class="eyebrow">Datenschutz</p>
     <h1 class="h2">Datenschutz der App</h1>
-    <p class="legal-meta">Stand: 04. Oktober 2026</p>
+    <p class="legal-meta">Stand: 05. Oktober 2026</p>
     <p class="legal-lede">Diese Erklärung gilt für die App Simple Shot Timer für Android und iPhone (iOS). Was beim Besuch dieser Website passiert, steht in der <a href="/de/datenschutz/website/">Datenschutzerklärung der Website</a>.</p>
 
     <section class="legal-summary" aria-labelledby="kurz">
@@ -54,8 +54,8 @@
     </ul>
     <p>Das liegt in einer lokalen SQLite-Datenbank und einer Einstellungsdatei im privaten Speicher der App. Ich erhalte diese Daten nie. Ist die Datensicherung deines Telefons eingeschaltet (iCloud-Backup auf dem iPhone, Google-Backup unter Android), kann das Betriebssystem diese Daten in die Sicherung aufnehmen; das bleibt zwischen dir und Apple bzw. Google.</p>
     <p><strong>Mikrofon:</strong></p>
-    <p>Wenn du es erlaubst, nutzt die App das Mikrofon, um Schüsse in Echtzeit zu erkennen. Das Audio wird nur während eines laufenden Durchgangs im Arbeitsspeicher ausgewertet, und zwar nur darauf, ob ein Pegel über dem eingestellten Schwellenwert liegt. <strong>Es wird nichts aufgenommen, gespeichert oder übertragen.</strong></p>
-    <p>Die Berechtigung kannst du jederzeit in den Systemeinstellungen erteilen oder entziehen. Ohne Mikrofon funktioniert die App weiter, dann gibst du Schüsse manuell ein.</p>
+    <p>Die App braucht das Mikrofon, um einen Durchgang zu stoppen. Wenn du es erlaubst, erkennt sie damit Schüsse und hört, wann der Start-Beep tatsächlich erklingt, damit die Zeit mit dem hörbaren Beep startet. Außerdem nutzt sie das Mikrofon im Mikrofontest und beim automatischen Konfigurieren, wenn du diese öffnest. Das Audio wird nur, solange eine dieser Funktionen läuft, im Arbeitsspeicher ausgewertet, um Pegel und Frequenzen zu messen. <strong>Es wird nichts aufgenommen, gespeichert oder übertragen.</strong></p>
+    <p>Die Berechtigung kannst du jederzeit in den Systemeinstellungen erteilen oder entziehen. Ohne sie kann die App keinen Durchgang stoppen; Verlauf, gespeicherte Drills und Einstellungen bleiben nutzbar.</p>
     <p><strong>CSV-Export:</strong></p>
     <p>Exportierst du einen Durchgang als CSV, legt die App die Datei im temporären Speicher ab und übergibt sie an den Teilen-Dialog deines Systems. Wohin sie dann geht (E-Mail, Messenger, Cloud), entscheidest du mit der App, die du dort auswählst. Darauf habe ich keinen Einfluss und keinen Einblick.</p>
 
@@ -85,14 +85,15 @@
     <h2 id="berechtigungen">Berechtigungen</h2>
     <p><strong>Android:</strong></p>
     <ul>
-      <li><strong>Mikrofon</strong> (<code>RECORD_AUDIO</code>): Schusserkennung. Optional, jederzeit widerrufbar.</li>
+      <li><strong>Mikrofon</strong> (<code>RECORD_AUDIO</code>): Schusserkennung, Erkennung des Start-Beeps, Mikrofontest und automatisches Konfigurieren. Nötig, um einen Durchgang zu stoppen; jederzeit widerrufbar.</li>
       <li><strong>Vordergrunddienst</strong> (<code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_MICROPHONE</code>) und <strong>Benachrichtigungen</strong> (<code>POST_NOTIFICATIONS</code>): halten Schusserkennung und Signaltöne während eines Durchgangs im Hintergrund aktiv, mit der Benachrichtigung, die Android dabei anzeigt.</li>
       <li><strong>Vibration</strong> (<code>VIBRATE</code>): haptisches Feedback beim Signalton.</li>
-      <li><strong>Wake Lock</strong> (<code>WAKE_LOCK</code>): hält den Bildschirm während eines Durchgangs an.</li>
+      <li><strong>Wake Lock</strong> (<code>WAKE_LOCK</code>): hält den Prozessor wach, während ein Durchgang im Hintergrund läuft, damit Erkennung und Signaltöne nicht stoppen.</li>
     </ul>
+    <p>Den Bildschirm während eines Durchgangs eingeschaltet zu lassen braucht keine Berechtigung.</p>
     <p><strong>iPhone:</strong></p>
     <ul>
-      <li><strong>Mikrofon</strong>: Schusserkennung. Abfrage über den Systemdialog beim ersten START; optional, jederzeit widerrufbar unter Einstellungen → Datenschutz &amp; Sicherheit → Mikrofon.</li>
+      <li><strong>Mikrofon</strong>: Schusserkennung, Erkennung des Start-Beeps, Mikrofontest und automatisches Konfigurieren. Abfrage über den Systemdialog, wenn die App das Mikrofon zum ersten Mal braucht (START, Mikrofontest oder automatisches Konfigurieren). Nötig, um einen Durchgang zu stoppen; jederzeit widerrufbar unter Einstellungen → Datenschutz &amp; Sicherheit → Mikrofon.</li>
       <li><strong>Hintergrund-Audio</strong>: Während eines Durchgangs hört die App weiter zu und spielt Signaltöne, auch wenn du den Bildschirm sperrst oder die App wechselst. iOS zeigt in dieser Zeit die Mikrofonanzeige.</li>
     </ul>
     <p>Vibration und eingeschalteter Bildschirm brauchen auf dem iPhone keine Berechtigung.</p>

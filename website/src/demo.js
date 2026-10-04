@@ -2,7 +2,8 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 // The hero phone: a playable shot timer. START, a random delay, the app's
-// 2325 Hz beep, then every tap, Space press or (opt-in) clap is a shot.
+// 2325 Hz beep, then a simulated five-shot string with realistic splits.
+// The demo never touches the microphone.
 import { animate, spring } from 'animejs';
 import {
   icon, statusBar, navBar, readyView, standbyView, runningView, reviewPage,
@@ -14,11 +15,15 @@ const BEEP_HZ = 2325; // AudioService.beepFrequencyHz
 const BEEP_MS = 300; // AudioService.startBeepDurationMs
 const DELAY_MIN_MS = 1200;
 const DELAY_MAX_MS = 3200;
-const AUTO_STOP_MS = 10000;
-const MAX_SHOTS = 30;
-const MIC_THRESHOLD = 0.25;
-const MIN_SPLIT_MS = 60;
-const MIC_MIN_SPLIT_MS = 120;
+const STOP_AFTER_LAST_MS = 900; // the string ends itself shortly after the last shot
+
+/** A five-shot string: a draw to the first shot, then four splits. Varies per run. */
+const simulatedString = () => {
+  const between = (lo, hi) => lo + Math.random() * (hi - lo);
+  const times = [Math.round(between(1250, 1650))];
+  for (let i = 1; i < 5; i++) times.push(times[i - 1] + Math.round(between(195, 290)));
+  return times;
+};
 
 const firm = spring({ bounce: 0, duration: 350 });
 
@@ -28,7 +33,7 @@ const clockText = () => {
 };
 const shotWord = (n) => (n === 1 ? t('demo.shotOne') : t('demo.shotMany', { count: n }));
 
-export function initDemo({ phone, hint, micButton, reduceMotion }) {
+export function initDemo({ phone, hint, reduceMotion }) {
   phone.innerHTML = phoneScreen(`
     ${statusBar(clockText())}
     <div class="shell">
@@ -99,8 +104,7 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
   let raf = 0;
   let lastRun = null;
   const runs = [];
-  const timers = {};
-  let visible = true;
+  const timers = { shots: [] };
 
   // ----- hint under the phone -----
   let hintText = '';
@@ -110,7 +114,7 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
     hint.innerHTML = html;
   };
 
-  // ----- audio: the app's sine beep, plus a soft tick for taps -----
+  // ----- audio: the app's sine beep, plus a soft tick for each simulated shot -----
   let ctx = null;
   let noise = null;
   const ensureAudio = () => {
@@ -212,19 +216,6 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
     else animate(refs.flash, { opacity: [0.92, 0], duration: 280, ease: 'out(3)' });
     if (navigator.vibrate) navigator.vibrate(40);
   };
-  const ripple = (x, y) => {
-    const el = document.createElement('div');
-    el.className = 'ripple';
-    el.style.left = `${x}px`;
-    el.style.top = `${y}px`;
-    refs.timerTab.appendChild(el);
-    animate(el, {
-      opacity: [0.9, 0],
-      scale: reduceMotion() ? 1 : [0.3, 1.6],
-      duration: 420, ease: 'out(3)',
-      onComplete: () => el.remove(),
-    });
-  };
   const snack = (text) => {
     clearTimeout(timers.snack);
     refs.snack.textContent = text;
@@ -239,12 +230,10 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
   const clearTimers = () => {
     clearTimeout(timers.delay);
     clearTimeout(timers.beep);
-    clearTimeout(timers.auto);
+    clearTimeout(timers.end);
+    timers.shots.forEach(clearTimeout);
+    timers.shots = [];
     cancelAnimationFrame(raf);
-  };
-  const armAutoStop = () => {
-    clearTimeout(timers.auto);
-    timers.auto = setTimeout(stop, AUTO_STOP_MS);
   };
 
   function start() {
@@ -284,9 +273,11 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
     // Flash, haptic and the view change land on the same frame as the sound.
     flash();
     show('running');
-    refs.timerTab.classList.add('firing');
-    setHint(mic.on ? t('demo.goClap') : t('demo.goTap'));
-    armAutoStop();
+    setHint(t('demo.go'));
+    // Each shot lands at its time after the audible beep (t0).
+    const times = simulatedString();
+    timers.shots = times.map((ms) => setTimeout(() => shot(ms), Math.max(0, t0 + ms - performance.now())));
+    timers.end = setTimeout(stop, Math.max(0, t0 + times[times.length - 1] + STOP_AFTER_LAST_MS - performance.now()));
     const loop = () => {
       if (state !== 'running') return;
       if (!shots.length) run.num.textContent = sec(Math.max(0, performance.now() - t0));
@@ -295,11 +286,9 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
     loop();
   }
 
-  function shot(ms, { x, y, source } = {}) {
-    if (state !== 'running' || ms < 0) return;
-    const prev = shots[shots.length - 1];
-    if (prev != null && ms - prev < (source === 'mic' ? MIC_MIN_SPLIT_MS : MIN_SPLIT_MS)) return;
-    shots.push(Math.round(ms));
+  function shot(ms) {
+    if (state !== 'running') return;
+    shots.push(ms);
     const n = shots.length;
     run.label.textContent = t('home.last');
     run.num.textContent = sec(ms);
@@ -308,14 +297,8 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
     run.split.textContent = n > 1 ? `${sec(shots[n - 1] - shots[n - 2])}s` : '--';
     // The app's 120 ms scale tick on every detected shot.
     if (!reduceMotion()) animate(run.num, { scale: [1, 1.06, 1], duration: 120, ease: 'out(2)' });
-    if (source !== 'mic') {
-      animate(run.level, { width: ['94%', '6%'], duration: 480, ease: 'out(3)' });
-      tick();
-    }
-    if (x != null) ripple(x, y);
-    if (n === 1) setHint(t('demo.keepGoing'));
-    armAutoStop();
-    if (n >= MAX_SHOTS) stop();
+    animate(run.level, { width: ['94%', '6%'], duration: 480, ease: 'out(3)' });
+    tick();
   }
 
   function stop() {
@@ -331,7 +314,6 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
     if (state !== 'running') return;
     clearTimers();
     state = 'finished';
-    refs.timerTab.classList.remove('firing');
     setButton(false);
     setNavBusy(false);
     const n = shots.length;
@@ -395,102 +377,11 @@ export function initDemo({ phone, hint, micButton, reduceMotion }) {
     if (d && !d.disabled) selectTab(Number(d.dataset.dest));
   });
 
-  refs.timerTab.addEventListener('pointerdown', (e) => {
-    if (e.target.closest('button')) return;
-    if (state === 'standby') { setHint(t('demo.notYet')); return; }
-    if (state !== 'running') return;
-    e.preventDefault();
-    const r = app.getBoundingClientRect();
-    const s = r.width / 390;
-    shot(e.timeStamp - t0, { x: (e.clientX - r.left) / s, y: (e.clientY - r.top) / s, source: 'tap' });
-  });
-
-  // Space fires while the demo is on screen. Pressing Space on the focused
-  // STOP button would stop the run instead, so the key is swallowed then.
-  const typing = (el) => el && el.closest && el.closest('input, textarea, select, [contenteditable="true"]');
-  document.addEventListener('keydown', (e) => {
-    if (e.code !== 'Space' || state !== 'running' || !visible || typing(e.target)) return;
-    e.preventDefault();
-    if (!e.repeat) shot(e.timeStamp - t0, { source: 'key' });
-  });
-  document.addEventListener('keyup', (e) => {
-    if (e.code === 'Space' && state === 'running' && visible && !typing(e.target)) e.preventDefault();
-  });
-
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(phone);
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       if (state === 'standby' || state === 'running') stop();
-      mic.off();
     }
   });
   setInterval(() => app.querySelectorAll('.clock').forEach((c) => { c.textContent = clockText(); }), 20000);
 
-  // ----- optional microphone: clap to fire -----
-  const mic = {
-    on: false,
-    stream: null,
-    analyser: null,
-    buf: null,
-    prev: 0,
-    raf: 0,
-    async toggle() {
-      if (this.on) { this.off(); return; }
-      ensureAudio();
-      if (!ctx || !navigator.mediaDevices?.getUserMedia) {
-        setHint(t('demo.micUnavailable'));
-        return;
-      }
-      try {
-        // Voice processing off, like the app's raw mic source: noise
-        // suppression and AGC flatten exactly the transient we look for.
-        this.stream = await navigator.mediaDevices.getUserMedia({
-          audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false },
-        });
-      } catch {
-        setHint(t('demo.micDenied'));
-        return;
-      }
-      const src = ctx.createMediaStreamSource(this.stream);
-      this.analyser = ctx.createAnalyser();
-      this.analyser.fftSize = 1024;
-      this.buf = new Float32Array(this.analyser.fftSize);
-      src.connect(this.analyser);
-      this.on = true;
-      micButton.setAttribute('aria-pressed', 'true');
-      micButton.querySelector('span').textContent = t('demo.micListening');
-      setHint(state === 'running' ? t('demo.micOnRunning') : t('demo.micOn'));
-      this.loop();
-    },
-    off() {
-      if (!this.on) return;
-      this.on = false;
-      cancelAnimationFrame(this.raf);
-      this.stream?.getTracks().forEach((track) => track.stop());
-      this.stream = null;
-      micButton.setAttribute('aria-pressed', 'false');
-      micButton.querySelector('span').textContent = t('demo.micOff');
-    },
-    loop() {
-      if (!this.on) return;
-      this.analyser.getFloatTimeDomainData(this.buf);
-      let peak = 0;
-      for (let i = 0; i < this.buf.length; i++) {
-        const v = Math.abs(this.buf[i]);
-        if (v > peak) peak = v;
-      }
-      if (state === 'running') {
-        const now = performance.now();
-        run.level.style.width = `${Math.min(100, 6 + peak * 140)}%`;
-        // Skip the beep itself; the app notches it out instead.
-        const afterBeep = now - t0 > BEEP_MS + 80;
-        if (afterBeep && peak >= MIC_THRESHOLD && this.prev < MIC_THRESHOLD) {
-          shot(now - t0 - 10, { source: 'mic' });
-        }
-      }
-      this.prev = peak;
-      this.raf = requestAnimationFrame(() => this.loop());
-    },
-  };
-  micButton.addEventListener('click', () => mic.toggle());
 }

@@ -5,13 +5,13 @@ The homepage for Simple Shot Timer, in English and German: a static site built w
 builds and deploys it through its GitHub integration, configured in `../netlify.toml`.
 
 The hero phone is a playable timer: press START, wait for the app's 2325 Hz beep,
-then tap the screen, press Space or (after opting in) clap for each shot. The other
+and a simulated five-shot string comes in with realistic splits. The other
 phones show the app's screens recreated in HTML, with the same markup and colours as
 `branding/store-listing/index.html` and the app's own strings in each language.
 
 The site loads nothing from third parties: fonts (Inter, Roboto, Montserrat) are
-bundled from `@fontsource`, and there are no cookies, analytics or embeds. The
-optional clap mode analyses the microphone in the browser and sends nothing.
+bundled from `@fontsource`, and there are no cookies, analytics or embeds. The demo
+never uses the microphone, and `_headers` denies it (`microphone=()`).
 
 ## Local development
 
@@ -51,7 +51,7 @@ website/
 ├── src/
 │   ├── main.js           # homepage script: demo and motion (other pages need no JS)
 │   ├── i18n.js           # EN/DE strings for the phones and the demo hints
-│   ├── demo.js           # the playable hero timer (Web Audio beep, taps, Space, clap mode)
+│   ├── demo.js           # the playable hero timer (Web Audio beep, simulated string)
 │   ├── screens.js        # app screens as HTML strings
 │   ├── motion.js         # all Anime.js motion: intro, reveals, sticky story, bento, FAQ
 │   ├── halftone.js       # the store listing's halftone dots, drawn on a canvas
@@ -70,7 +70,8 @@ attributes, so they stay small even before CSS applies.
 Pages hold `<!--site:...-->` placeholders (`nav`, `footer`, `alternates`, `sprite`,
 `changelog`) that the plugin in `vite.config.js` fills in from `build/`. So the
 navigation, the language switch, the footer and the canonical/hreflang links are
-written once for both languages. The build fails if a placeholder is left unfilled.
+written once for both languages. The build fails if a placeholder is left unfilled,
+in the pages and in `llms-full.txt`.
 
 ### Adding a page
 
@@ -88,6 +89,9 @@ release-please writes. Entries are rewritten for app users with the same rules a
 *Changed*, *New*, *Fixes* and *Improvements*). The German page translates the headings;
 the entries stay in English. The footer version, the changelog's `lastmod` in
 `sitemap.xml` and the release list in `llms-full.txt` come from the same file.
+Only `## x.y.z` headings count as releases, so a hand-added `## Unreleased` is
+skipped. If no release can be parsed, the build fails instead of deploying an empty
+changelog.
 
 Netlify also builds when `CHANGELOG.md` changes on `main` (see the `ignore` rule in
 `../netlify.toml`), so merging a release PR republishes the site with the new version.

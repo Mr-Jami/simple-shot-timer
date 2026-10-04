@@ -63,7 +63,7 @@ Your strings stay on your phone.
 
 - No account: there is nothing to sign up for.
 - No ads, no tracking: no analytics, advertising or tracking code. The app sends nothing off your phone.
-- Nothing recorded: the mic signal is analysed in memory while a string runs. Audio is never saved or sent.
+- Nothing recorded: the mic signal is analysed in memory while the app listens (during a string, the mic test or auto-configure). Audio is never saved or sent. The app needs microphone permission to time a string.
 - Data the app stores (strings, shot times, settings) lives in a local SQLite database and preferences file on the device. It can be viewed, edited, exported as CSV and deleted in the app; uninstalling removes everything.
 - The website simpleshottimer.com sets no cookies, loads nothing from third parties and has no analytics. It is hosted by Netlify, which processes access data (such as IP address and time of request) to deliver the pages; server logs are deleted after 30 days at the latest.
 - App privacy policy: https://simpleshottimer.com/privacy/
@@ -97,7 +97,7 @@ It's coming to the App Store soon. On Android it's available now on Google Play,
 
 ### Does the app record me?
 
-No. While a string runs, the mic signal is analysed in memory to spot shots and is never saved or sent. Your strings and settings are stored only on your phone.
+No. While the app listens (during a string, the mic test or auto-configure), the mic signal is analysed in memory and is never saved or sent. Your strings and settings are stored only on your phone.
 
 ### Can I get my data out?
 

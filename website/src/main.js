@@ -8,7 +8,6 @@ intro();
 initDemo({
   phone: document.getElementById('demo-phone'),
   hint: document.getElementById('demo-hint'),
-  micButton: document.getElementById('demo-mic'),
   reduceMotion,
 });
 initMotion();
