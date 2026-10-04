@@ -316,6 +316,8 @@ class SettingsScreen extends ConsumerWidget {
 class _Credits extends StatelessWidget {
   const _Credits();
 
+  static const _sourceUrl = 'https://github.com/Mr-Jami/simple-shot-timer';
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -324,19 +326,36 @@ class _Credits extends StatelessWidget {
       letterSpacing: 1,
     );
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
-      child: Center(
-        child: FutureBuilder<PackageInfo>(
-          future: PackageInfo.fromPlatform(),
-          builder: (context, snapshot) {
-            final version = snapshot.data?.version;
-            final suffix = version == null ? '' : '  •  v$version';
-            return Text(
-              '© ${DateTime.now().year} Jami IT$suffix',
-              style: style,
-            );
-          },
-        ),
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+      child: FutureBuilder<PackageInfo>(
+        future: PackageInfo.fromPlatform(),
+        builder: (context, snapshot) {
+          final version = snapshot.data?.version;
+          final suffix = version == null ? '' : '  •  v$version';
+          final copyright = '© ${DateTime.now().year} Jami IT';
+          return Column(
+            children: [
+              Text('$copyright$suffix', style: style),
+              // The GPLv3 "Appropriate Legal Notices": copyright, no
+              // warranty and the license texts, one tap away.
+              TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: theme.textTheme.bodySmall,
+                ),
+                onPressed: () => showLicensePage(
+                  context: context,
+                  applicationName: context.tr('app.title'),
+                  applicationVersion: version,
+                  applicationLegalese: '$copyright\n\n'
+                      '${context.tr('settings.legalese', args: {
+                        'url': _sourceUrl,
+                      })}',
+                ),
+                child: Text(context.tr('settings.openSource')),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

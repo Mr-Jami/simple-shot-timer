@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,6 +18,14 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  // Flutter already bundles the app's own LICENSE (the GPLv3 text) for the
+  // licenses page; the section-7 additional terms in NOTICE are added here.
+  LicenseRegistry.addLicense(() async* {
+    yield LicenseEntryWithLineBreaks(
+      const ['simple_shot_timer'],
+      await rootBundle.loadString('NOTICE'),
+    );
+  });
   // Register the foreground notification channel early so the first start of
   // a string doesn't pay the channel-creation latency.
   BackgroundService.init();
