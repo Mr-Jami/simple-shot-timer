@@ -400,7 +400,7 @@ section 7 that are set out in [NOTICE](NOTICE). In short:
 - Anything built on it must show this attribution in its legal notices
   (for example an About, Credits or Licenses screen):
   *"Based on Simple Shot Timer by Tareq Jami (Jami IT). The original app is
-  free: https://github.com/Mr-Jami/simple-shot-timer"*
+  free: https://jami-it.de/apps/simpleshottimer/"*
 - Modified versions need their own name and must not present themselves as
   the original or as made or endorsed by Tareq Jami or Jami IT.
 
