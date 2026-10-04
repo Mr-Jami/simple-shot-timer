@@ -52,10 +52,16 @@ void main() {
       '// Copyright (C) 2026 Tareq Jami (Jami IT)',
       '// Additional terms under GPLv3 section 7 apply; see NOTICE.',
     ];
+    const dirs = [
+      'lib',
+      'test',
+      'android/app/src/main/kotlin',
+      'ios/Runner',
+      'ios/RunnerTests',
+    ];
     final sources = [
-      for (final dir in ['lib', 'test', 'android/app/src/main/kotlin'])
+      for (final dir in dirs)
         ...Directory(dir).listSync(recursive: true).whereType<File>(),
-      ...Directory('ios/Runner').listSync().whereType<File>(),
     ].where((f) => RegExp(r'\.(dart|kt|swift)$').hasMatch(f.path));
 
     final missing = [
