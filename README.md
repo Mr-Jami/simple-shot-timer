@@ -91,7 +91,8 @@ flutter create . --platforms=android,ios,web
 │   ├── workflows/
 │   │   ├── ci.yml                  # Analyze + test on every push / PR
 │   │   ├── release-please.yml      # Release PR, version bump, tag + GitHub Release
-│   │   └── deploy-play-store.yml   # Build AAB and publish to Google Play
+│   │   ├── deploy-play-store.yml   # Build AAB and publish to Google Play
+│   │   └── deploy-app-store.yml    # Build IPA and upload to App Store Connect
 │   ├── scripts/
 │   │   └── play_release_notes.py   # GitHub Release body -> Play Store "What's new"
 │   └── pull_request_template.md
@@ -244,10 +245,13 @@ becomes the commit subject, so the same rules apply to PR titles.
 4. Start `.github/workflows/deploy-play-store.yml` from *Run workflow* in
    the Actions tab and pick the track. It builds the signed AAB from `main`
    and uploads it with notes taken from the latest GitHub Release.
+   For iOS, start `.github/workflows/deploy-app-store.yml` the same way; the
+   build lands in TestFlight and is submitted for review in App Store
+   Connect.
 
-> The Android `versionCode` is set from `github.run_number` at build time,
-> so it always increases monotonically (Play Store requires this even when
-> the `versionName` doesn't change).
+> The Android `versionCode` and the iOS `CFBundleVersion` are set from
+> `github.run_number` at build time, so they always increase monotonically
+> (both stores require this even when the version name doesn't change).
 
 > The tag from step 3 does not start the deploy by itself: release-please
 > pushes it with the default `GITHUB_TOKEN`, which cannot trigger other
@@ -310,6 +314,47 @@ Configure these under *Settings → Secrets and variables → Actions*:
    Console, and download its JSON key.
 6. Add all five secrets listed above to GitHub.
 7. Tag a release: `git tag v1.0.0 && git push --tags`.
+
+## Releasing to the App Store
+
+`.github/workflows/deploy-app-store.yml` builds a signed IPA on a macOS
+runner with Xcode `26.3` and uploads it to App Store Connect, where it
+appears in TestFlight. Submitting a build for App Review is done in App
+Store Connect. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
+
+### Triggers
+
+- **Tag push** matching `v*.*.*`.
+- **Manual** via the *Run workflow* button.
+
+### Required GitHub secrets
+
+| Secret | Description |
+| --- | --- |
+| `IOS_DISTRIBUTION_CERTIFICATE_BASE64` | Apple Distribution certificate with its private key as `.p12`, base64-encoded (`base64 -i distribution.p12`). |
+| `IOS_DISTRIBUTION_CERTIFICATE_PASSWORD` | Password of that `.p12`. |
+| `IOS_PROVISIONING_PROFILE_BASE64` | App Store provisioning profile for `cc.jami.simpleshottimer`, base64-encoded. The workflow reads the team ID and profile name from it. |
+| `APP_STORE_CONNECT_API_KEY_ID` | Key ID of an App Store Connect team API key (*App Manager* role or higher). |
+| `APP_STORE_CONNECT_API_ISSUER_ID` | Issuer ID shown above the key list in App Store Connect. |
+| `APP_STORE_CONNECT_API_KEY` | Contents of the downloaded `AuthKey_<KEY_ID>.p8`. |
+
+### One-time setup checklist
+
+1. Have an active Apple Developer Program membership.
+2. In App Store Connect, *Users and Access → Integrations → App Store
+   Connect API*, create a team key and download its `.p8` (it can be
+   downloaded only once).
+3. In *Certificates, IDs & Profiles*, register the App ID
+   `cc.jami.simpleshottimer` (no capabilities needed: background audio is
+   an `Info.plist` entry), create an *Apple Distribution* certificate and an
+   *App Store Connect* provisioning profile for that App ID.
+4. Create the app in App Store Connect (*Apps → +*) with that bundle ID.
+5. Add all six secrets listed above to GitHub.
+
+The distribution certificate and the profile expire after one year; renew
+both and update the three `IOS_*` secrets. Apple raises the minimum Xcode
+for uploads every spring; bump `XCODE_VERSION` (and `runs-on` if the image
+no longer has it) in the workflow when that happens.
 
 ## Permissions
 
