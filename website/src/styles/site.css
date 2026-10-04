@@ -87,6 +87,7 @@ button { font: inherit; color: inherit; }
   letter-spacing: -0.02em;
   font-weight: 680;
 }
+.lede strong { color: var(--text); font-weight: 600; }
 .lede {
   font-size: clamp(1.1875rem, 1rem + 0.55vw, 1.4375rem);
   line-height: 1.42;
@@ -575,15 +576,7 @@ button { font: inherit; color: inherit; }
   .release-head { position: sticky; top: calc(var(--nav-h) + 40px); align-self: start; }
 }
 
-/* ===== Statement ===== */
-.statement { padding: 32px 0 80px; }
-.statement-title {
-  max-width: 17em;
-  font-size: clamp(2.125rem, 1.1rem + 4vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 700;
-}
-.statement-title em { font-style: normal; color: var(--yellow); }
 .nowrap { white-space: nowrap; }
-.statement-sub { margin-top: 28px; max-width: 32em; color: var(--text-2); font-size: clamp(1.1875rem, 1rem + 0.6vw, 1.5rem); line-height: 1.4; letter-spacing: -0.016em; }
 
 /* ===== Review pass: touch targets, press feedback, phone CTAs ===== */
 /* 2. Hit areas reach Apple's 44pt minimum without changing how controls look. */
@@ -610,3 +603,6 @@ button { font: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .nav-links a:active, .nav-lang:active, .faq summary:active .faq-ico { transform: none; }
 }
+/* No single-word last lines in running text; balanced lines in headings. */
+.lede, .section-sub, .step-text p, .card-text, .pv p, .faq-a p, .cta-sub, .legal p, .legal-lede { text-wrap: pretty; }
+.h2, .h3, .card-title, .pv h3, .oss h3 { text-wrap: balance; }

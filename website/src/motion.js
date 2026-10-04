@@ -64,38 +64,6 @@ function reveals() {
   });
 }
 
-// ----- Statement: each word brightens as the sentence scrolls into view -----
-function statement() {
-  const el = document.querySelector('[data-statement]');
-  if (!el) return;
-  const wrapWords = (node) => {
-    [...node.childNodes].forEach((child) => {
-      if (child.nodeType === Node.ELEMENT_NODE) { wrapWords(child); return; }
-      if (child.nodeType !== Node.TEXT_NODE) return;
-      const frag = document.createDocumentFragment();
-      child.textContent.split(/(\s+)/).forEach((part) => {
-        if (!part) return;
-        if (/^\s+$/.test(part)) { frag.append(part); return; }
-        const word = document.createElement('span');
-        word.className = 'sw';
-        word.textContent = part;
-        frag.append(word);
-      });
-      child.replaceWith(frag);
-    });
-  };
-  wrapWords(el);
-  if (reduceMotion()) return;
-  // Synced to scroll: dim when the line enters, fully lit once it reaches the middle.
-  animate(el.querySelectorAll('.sw'), {
-    opacity: [0.16, 1],
-    ease: 'linear',
-    duration: 500,
-    delay: stagger(110),
-    autoplay: onScroll({ target: el, enter: 'bottom-=8% top', leave: 'center+=12% center', sync: 0.25 }),
-  });
-}
-
 // ----- Spec numbers count to their value (the price counts down from $100) -----
 function counters() {
   document.querySelectorAll('[data-count]').forEach((el) => {
@@ -413,7 +381,6 @@ function download() {
 }
 
 export function initMotion() {
-  statement();
   reveals();
   counters();
   story();
