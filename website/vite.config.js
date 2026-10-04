@@ -11,7 +11,20 @@ const root = import.meta.dirname;
 // The app's CHANGELOG.md (release-please). A release updates it, which also
 // redeploys the site, so the changelog page and the footer version stay current.
 const changelogPath = resolve(root, '../CHANGELOG.md');
-const releases = () => parseChangelog(readFileSync(changelogPath, 'utf8'));
+const releases = () => {
+  const all = parseChangelog(readFileSync(changelogPath, 'utf8'));
+  // A changelog the parser can't read must fail the build, not deploy a site
+  // with an empty changelog page and no version in the footer.
+  if (!all.length || !all[0].version) throw new Error(`No release found in ${changelogPath}`);
+  return all;
+};
+
+/** Throws if any <!--site:...--> placeholder is left in `text`. */
+const assertFilled = (text, where) => {
+  const left = text.match(/<!--site:[^>]*-->/);
+  if (left) throw new Error(`Unfilled placeholder ${left[0]} in ${where}`);
+  return text;
+};
 
 /** Fills the <!--site:...--> placeholders in every page. */
 function siteChrome() {
@@ -23,7 +36,7 @@ function siteChrome() {
         const path = ctx.path.replace(/index\.html$/, '');
         const page = pageFor(path);
         const all = releases();
-        const version = all[0]?.version ?? '';
+        const { version } = all[0];
         let out = html
           .replaceAll('<!--site:sprite-->', sprite(root))
           .replaceAll('<!--site:version-->', version);
@@ -35,9 +48,7 @@ function siteChrome() {
             .replaceAll('<!--site:footer-->', footer(page, version))
             .replaceAll('<!--site:changelog-->', renderChangelog(all, page.lang));
         }
-        const left = out.match(/<!--site:[^>]*-->/);
-        if (left) throw new Error(`Unfilled placeholder ${left[0]} in ${ctx.path}`);
-        return out;
+        return assertFilled(out, ctx.path);
       },
     },
     // Files that depend on the changelog are generated too, so a release
@@ -47,13 +58,16 @@ function siteChrome() {
       this.emitFile({
         type: 'asset',
         fileName: 'sitemap.xml',
-        source: sitemap({ '/changelog/': all[0]?.date }),
+        source: sitemap({ '/changelog/': all[0].date }),
       });
       this.emitFile({
         type: 'asset',
         fileName: 'llms-full.txt',
-        source: readFileSync(resolve(root, 'build/llms-full.txt'), 'utf8')
-          .replace('<!--site:changelog-md-->', renderChangelogText(all)),
+        source: assertFilled(
+          readFileSync(resolve(root, 'build/llms-full.txt'), 'utf8')
+            .replace('<!--site:changelog-md-->', renderChangelogText(all)),
+          'llms-full.txt',
+        ),
       });
     },
     configureServer(server) {

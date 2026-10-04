@@ -54,8 +54,14 @@ export function parseChangelog(md) {
     // "## [2.1.0](https://…/compare/v2.0.0...v2.1.0) (2026-10-04)" or "## 1.0.0 (2026-05-14)"
     const h2 = line.match(/^##\s+(?:\[([^\]]+)\]\(([^)]+)\)|(\S+))(?:\s+\((\d{4}-\d{2}-\d{2})\))?/);
     if (h2) {
-      rel = { version: h2[1] || h2[3], url: h2[2] || null, date: h2[4] || null, raw: {} };
-      releases.push(rel);
+      const version = h2[1] || h2[3];
+      // Only released versions count. A hand-added "## Unreleased" (or any other
+      // non-semver heading) and its entries are skipped, so it can never show up
+      // as the latest version.
+      rel = /^\d+\.\d+\.\d+/.test(version)
+        ? { version, url: h2[2] || null, date: h2[4] || null, raw: {} }
+        : null;
+      if (rel) releases.push(rel);
       sec = null;
       continue;
     }
