@@ -7,6 +7,7 @@
       "release-type": "dart",
       "package-name": "simple_shot_timer",
       "changelog-path": "CHANGELOG.md",
+      "exclude-paths": ["website"],
       "changelog-sections": [
         { "type": "feat", "section": "Features" },
         { "type": "fix", "section": "Bug Fixes" },
