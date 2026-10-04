@@ -33,6 +33,11 @@ npm run preview   # serves dist/
 | `/privacy/website/` | `/de/datenschutz/website/` | the website's privacy policy |
 | `/imprint/` | `/de/impressum/` | imprint, linked to Jami IT |
 
+`/download` is a short link for QR codes and posts. It is not a page:
+`public/download/redirect.js` sends Android to Google Play, iPhone and iPad to the App
+Store (once enabled) and everything else to the homepage, the same way
+jami-it.de/apps/simpleshottimer/ does. It is `noindex` and not in the sitemap.
+
 The German privacy policies and imprint are the legally binding versions. Unknown
 paths get `404.html`, or `de/404.html` under `/de/` (see `public/_redirects`).
 
@@ -149,7 +154,8 @@ in a PR comment. The `ignore` rule skips builds for commits that change neither
 - **When the iPhone app is live**: in both homepages, replace "iPhone soon" in the hero
   pill, the coming-soon box in `#download` (with Apple's *Download on the App Store*
   badge), the iPhone answer in the FAQ, and add `"iOS"` to `operatingSystem` in the
-  JSON-LD. Update `public/llms.txt` and `build/llms-full.txt` too.
+  JSON-LD. Update `public/llms.txt` and `build/llms-full.txt` too. In
+  `public/download/redirect.js`, set `APP_STORE_URL` and `APP_STORE_ENABLED = true`.
 - **Link preview images**: `public/og.png` and `public/og-de.png` are screenshots of
   `#og` in `og-image/index.html` at 1200x630. Run `npm run dev`, open
   `http://localhost:5173/og-image/` (add `?lang=de` for the German one), and capture
