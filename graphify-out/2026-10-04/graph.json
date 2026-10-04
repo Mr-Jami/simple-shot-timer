@@ -4,106 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "label": "play_release_notes.py",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes",
-      "community": 108,
-      "norm_label": "play_release_notes.py"
-    },
-    {
-      "label": "warn()",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L47",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_warn",
-      "community": 108,
-      "norm_label": "warn()"
-    },
-    {
-      "label": "section_for()",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L51",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_section_for",
-      "community": 108,
-      "norm_label": "section_for()"
-    },
-    {
-      "label": "clean_entry()",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_clean_entry",
-      "community": 108,
-      "norm_label": "clean_entry()"
-    },
-    {
-      "label": "parse()",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L73",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_parse",
-      "community": 108,
-      "norm_label": "parse()"
-    },
-    {
-      "label": "shorten()",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L109",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_shorten",
-      "community": 108,
-      "norm_label": "shorten()"
-    },
-    {
-      "label": "render()",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L116",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_render",
-      "community": 108,
-      "norm_label": "render()"
-    },
-    {
-      "label": "main()",
-      "file_type": "code",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L138",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_main",
-      "community": 108,
-      "norm_label": "main()"
-    },
-    {
-      "label": "Returns (sections in output order, whether any section heading was seen).",
-      "file_type": "rationale",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L74",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_rationale_74",
-      "community": 108,
-      "norm_label": "returns (sections in output order, whether any section heading was seen)."
-    },
-    {
-      "label": "Returns (notes, number of entries left out for length).",
-      "file_type": "rationale",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L117",
-      "_origin": "ast",
-      "id": "github_scripts_play_release_notes_rationale_117",
-      "community": 108,
-      "norm_label": "returns (notes, number of entries left out for length)."
-    },
-    {
       "label": "build.gradle.kts",
       "file_type": "code",
       "source_file": "android/app/build.gradle.kts",
@@ -246,31 +146,11 @@
     {
       "label": "music-rms.js",
       "file_type": "code",
-      "source_file": "brag-output/2026-09-24/composition/assets/music-rms.js",
+      "source_file": "brag-output/composition/assets/music-rms.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_assets_music_rms",
-      "community": 121,
-      "norm_label": "music-rms.js"
-    },
-    {
-      "label": "music-rms.js",
-      "file_type": "code",
-      "source_file": "brag-output/2026-10-01/composition/assets/music-rms.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_assets_music_rms",
-      "community": 122,
-      "norm_label": "music-rms.js"
-    },
-    {
-      "label": "music-rms.js",
-      "file_type": "code",
-      "source_file": "branding/launch-video/composition/assets/music-rms.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_launch_video_composition_assets_music_rms",
-      "community": 123,
+      "id": "brag_output_composition_assets_music_rms",
+      "community": 95,
       "norm_label": "music-rms.js"
     },
     {
@@ -732,7 +612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 17,
+      "community": 87,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -762,7 +642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 42,
+      "community": 80,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -2372,7 +2252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_math",
-      "community": 116,
+      "community": 55,
       "norm_label": "dart:math"
     },
     {
@@ -2522,7 +2402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_timer_state_timerstate",
-      "community": 29,
+      "community": 57,
       "norm_label": "timerstate"
     },
     {
@@ -3042,7 +2922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_customdrillsprovider",
-      "community": 113,
+      "community": 21,
       "norm_label": "customdrillsprovider"
     },
     {
@@ -3052,7 +2932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_activedrillprovider",
-      "community": 113,
+      "community": 21,
       "norm_label": "activedrillprovider"
     },
     {
@@ -3162,7 +3042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_custom_drill_dart",
-      "community": 98,
+      "community": 34,
       "norm_label": "../models/custom_drill.dart"
     },
     {
@@ -3182,7 +3062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_dart",
-      "community": 17,
+      "community": 90,
       "norm_label": "providers.dart"
     },
     {
@@ -3282,7 +3162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 17,
+      "community": 8,
       "norm_label": "../models/timer_string.dart"
     },
     {
@@ -3332,7 +3212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_audioserviceprovider",
-      "community": 100,
+      "community": 18,
       "norm_label": "audioserviceprovider"
     },
     {
@@ -3362,7 +3242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_beepplayerprovider",
-      "community": 118,
+      "community": 57,
       "norm_label": "beepplayerprovider"
     },
     {
@@ -3532,7 +3412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_app_settings_dart",
-      "community": 80,
+      "community": 90,
       "norm_label": "../models/app_settings.dart"
     },
     {
@@ -3542,7 +3422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 17,
+      "community": 87,
       "norm_label": "string_provider.dart"
     },
     {
@@ -3552,7 +3432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_stringbyidprovider",
-      "community": 3,
+      "community": 87,
       "norm_label": "stringbyidprovider"
     },
     {
@@ -3562,7 +3442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 17,
+      "community": 87,
       "norm_label": "read"
     },
     {
@@ -3582,7 +3462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timernotifier",
-      "community": 29,
+      "community": 57,
       "norm_label": "timernotifier"
     },
     {
@@ -3662,7 +3542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "streamsubscription",
-      "community": 4,
+      "community": 15,
       "norm_label": "streamsubscription"
     },
     {
@@ -4072,7 +3952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playstartbeep",
-      "community": 118,
+      "community": 57,
       "norm_label": "_playstartbeep"
     },
     {
@@ -4082,7 +3962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playparbeep",
-      "community": 118,
+      "community": 57,
       "norm_label": "_playparbeep"
     },
     {
@@ -4152,7 +4032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_async",
-      "community": 4,
+      "community": 15,
       "norm_label": "dart:async"
     },
     {
@@ -4222,7 +4102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreen",
-      "community": 100,
+      "community": 96,
       "norm_label": "autoconfigurescreen"
     },
     {
@@ -4242,7 +4122,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreenstate",
-      "community": 100,
+      "community": 96,
       "norm_label": "_autoconfigurescreenstate"
     },
     {
@@ -4262,7 +4142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_shotlist",
-      "community": 56,
+      "community": 52,
       "norm_label": "_shotlist"
     },
     {
@@ -4382,7 +4262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "voidcallback",
-      "community": 34,
+      "community": 98,
       "norm_label": "voidcallback"
     },
     {
@@ -4532,7 +4412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows",
-      "community": 95,
+      "community": 21,
       "norm_label": "custom_drill_flows.dart"
     },
     {
@@ -4542,7 +4422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_drills",
-      "community": 95,
+      "community": 21,
       "norm_label": "drills"
     },
     {
@@ -4552,7 +4432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_config",
-      "community": 95,
+      "community": 21,
       "norm_label": "config"
     },
     {
@@ -4562,7 +4442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_name",
-      "community": 95,
+      "community": 21,
       "norm_label": "name"
     },
     {
@@ -4572,7 +4452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_existing",
-      "community": 95,
+      "community": 21,
       "norm_label": "existing"
     },
     {
@@ -4582,7 +4462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_taken",
-      "community": 95,
+      "community": 21,
       "norm_label": "taken"
     },
     {
@@ -4592,7 +4472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_confirmed",
-      "community": 95,
+      "community": 21,
       "norm_label": "confirmed"
     },
     {
@@ -4602,7 +4482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_result",
-      "community": 95,
+      "community": 21,
       "norm_label": "result"
     },
     {
@@ -4612,7 +4492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_false",
-      "community": 95,
+      "community": 21,
       "norm_label": "false"
     },
     {
@@ -4622,7 +4502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return_result",
-      "community": 95,
+      "community": 21,
       "norm_label": "return result ??"
     },
     {
@@ -4632,7 +4512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_savecurrentdrill",
-      "community": 113,
+      "community": 21,
       "norm_label": "savecurrentdrill"
     },
     {
@@ -4642,7 +4522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_add",
-      "community": 95,
+      "community": 21,
       "norm_label": "add"
     },
     {
@@ -4662,7 +4542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_read",
-      "community": 95,
+      "community": 21,
       "norm_label": "read"
     },
     {
@@ -4672,7 +4552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_renamedrill",
-      "community": 113,
+      "community": 21,
       "norm_label": "renamedrill"
     },
     {
@@ -4682,7 +4562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_rename",
-      "community": 95,
+      "community": 21,
       "norm_label": "rename"
     },
     {
@@ -4692,7 +4572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_overwritedrill",
-      "community": 95,
+      "community": 21,
       "norm_label": "overwritedrill"
     },
     {
@@ -4702,7 +4582,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_deletedrill",
-      "community": 113,
+      "community": 21,
       "norm_label": "deletedrill"
     },
     {
@@ -4712,7 +4592,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_delete",
-      "community": 95,
+      "community": 21,
       "norm_label": "delete"
     },
     {
@@ -4722,7 +4602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_confirmandoverwrite",
-      "community": 95,
+      "community": 21,
       "norm_label": "_confirmandoverwrite"
     },
     {
@@ -4732,7 +4612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_overwrite",
-      "community": 95,
+      "community": 21,
       "norm_label": "overwrite"
     },
     {
@@ -4742,7 +4622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_confirm",
-      "community": 95,
+      "community": 21,
       "norm_label": "_confirm"
     },
     {
@@ -4752,7 +4632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_snack",
-      "community": 95,
+      "community": 21,
       "norm_label": "_snack"
     },
     {
@@ -4772,7 +4652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_drill_name_dialog_dart",
-      "community": 95,
+      "community": 21,
       "norm_label": "../widgets/drill_name_dialog.dart"
     },
     {
@@ -4802,7 +4682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_customdrillsscreen",
-      "community": 113,
+      "community": 21,
       "norm_label": "customdrillsscreen"
     },
     {
@@ -4832,7 +4712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_build",
-      "community": 113,
+      "community": 21,
       "norm_label": "build"
     },
     {
@@ -4872,7 +4752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 106,
+      "community": 80,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -5102,7 +4982,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_timerarea",
-      "community": 113,
+      "community": 21,
       "norm_label": "_timerarea"
     },
     {
@@ -5512,7 +5392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshell",
-      "community": 26,
+      "community": 100,
       "norm_label": "mainshell"
     },
     {
@@ -5522,7 +5402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshellstate",
-      "community": 26,
+      "community": 100,
       "norm_label": "_mainshellstate"
     },
     {
@@ -5652,7 +5532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreenstate",
-      "community": 100,
+      "community": 18,
       "norm_label": "_mictestscreenstate"
     },
     {
@@ -5812,7 +5692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_build",
-      "community": 100,
+      "community": 18,
       "norm_label": "build"
     },
     {
@@ -5832,7 +5712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewscreen",
-      "community": 3,
+      "community": 87,
       "norm_label": "reviewscreen"
     },
     {
@@ -5972,7 +5852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "texteditingcontroller",
-      "community": 102,
+      "community": 40,
       "norm_label": "texteditingcontroller"
     },
     {
@@ -6072,7 +5952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_build",
-      "community": 3,
+      "community": 87,
       "norm_label": "build"
     },
     {
@@ -6292,7 +6172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service",
-      "community": 4,
+      "community": 15,
       "norm_label": "audio_service.dart"
     },
     {
@@ -6312,7 +6192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_player",
-      "community": 4,
+      "community": 15,
       "norm_label": "_player"
     },
     {
@@ -6322,7 +6202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "audioplayer",
-      "community": 4,
+      "community": 15,
       "norm_label": "audioplayer"
     },
     {
@@ -6332,7 +6212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_cache",
-      "community": 4,
+      "community": 15,
       "norm_label": "_cache"
     },
     {
@@ -6342,7 +6222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_globaleventssub",
-      "community": 4,
+      "community": 15,
       "norm_label": "_globaleventssub"
     },
     {
@@ -6352,7 +6232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_lastglobalerror",
-      "community": 4,
+      "community": 15,
       "norm_label": "lastglobalerror"
     },
     {
@@ -6362,7 +6242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_beepfrequencyhz",
-      "community": 4,
+      "community": 15,
       "norm_label": "beepfrequencyhz"
     },
     {
@@ -6372,7 +6252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_startbeepdurationms",
-      "community": 4,
+      "community": 15,
       "norm_label": "startbeepdurationms"
     },
     {
@@ -6382,7 +6262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_parbeepdurationms",
-      "community": 4,
+      "community": 15,
       "norm_label": "parbeepdurationms"
     },
     {
@@ -6392,7 +6272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_playstartbeep",
-      "community": 4,
+      "community": 15,
       "norm_label": "playstartbeep"
     },
     {
@@ -6402,7 +6282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_playparbeep",
-      "community": 4,
+      "community": 15,
       "norm_label": "playparbeep"
     },
     {
@@ -6412,7 +6292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_play",
-      "community": 4,
+      "community": 15,
       "norm_label": "_play"
     },
     {
@@ -6422,7 +6302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_stop",
-      "community": 4,
+      "community": 15,
       "norm_label": "stop"
     },
     {
@@ -6432,7 +6312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_dispose",
-      "community": 4,
+      "community": 15,
       "norm_label": "dispose"
     },
     {
@@ -6442,7 +6322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_audio_service_generatewav",
-      "community": 4,
+      "community": 15,
       "norm_label": "_generatewav"
     },
     {
@@ -6462,7 +6342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_audioplayers_audioplayers_dart",
-      "community": 4,
+      "community": 15,
       "norm_label": "package:audioplayers/audioplayers.dart"
     },
     {
@@ -7152,7 +7032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_database_service_databaseservice",
-      "community": 119,
+      "community": 103,
       "norm_label": "databaseservice"
     },
     {
@@ -7322,7 +7202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_path_dart",
-      "community": 111,
+      "community": 8,
       "norm_label": "package:path/path.dart"
     },
     {
@@ -7332,7 +7212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_provider_path_provider_dart",
-      "community": 111,
+      "community": 8,
       "norm_label": "package:path_provider/path_provider.dart"
     },
     {
@@ -7352,7 +7232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service",
-      "community": 111,
+      "community": 8,
       "norm_label": "export_service.dart"
     },
     {
@@ -7362,7 +7242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportservice",
-      "community": 111,
+      "community": 8,
       "norm_label": "exportservice"
     },
     {
@@ -7372,7 +7252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writestringcsv",
-      "community": 111,
+      "community": 8,
       "norm_label": "writestringcsv"
     },
     {
@@ -7382,7 +7262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writeallstringscsv",
-      "community": 111,
+      "community": 8,
       "norm_label": "writeallstringscsv"
     },
     {
@@ -7392,7 +7272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_share",
-      "community": 111,
+      "community": 8,
       "norm_label": "share"
     },
     {
@@ -7402,7 +7282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_csv",
-      "community": 111,
+      "community": 8,
       "norm_label": "_csv"
     },
     {
@@ -7422,7 +7302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_share_plus_share_plus_dart",
-      "community": 111,
+      "community": 8,
       "norm_label": "package:share_plus/share_plus.dart"
     },
     {
@@ -8552,7 +8432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_stringstore",
-      "community": 119,
+      "community": 103,
       "norm_label": "stringstore"
     },
     {
@@ -8562,7 +8442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_runenvironment",
-      "community": 120,
+      "community": 31,
       "norm_label": "runenvironment"
     },
     {
@@ -8572,7 +8452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_pluginrunenvironment",
-      "community": 120,
+      "community": 31,
       "norm_label": "pluginrunenvironment"
     },
     {
@@ -9632,7 +9512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display",
-      "community": 104,
+      "community": 19,
       "norm_label": "big_time_display.dart"
     },
     {
@@ -9642,7 +9522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_bigtimedisplay",
-      "community": 112,
+      "community": 19,
       "norm_label": "bigtimedisplay"
     },
     {
@@ -9652,7 +9532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "statefulwidget",
-      "community": 112,
+      "community": 19,
       "norm_label": "statefulwidget"
     },
     {
@@ -9662,7 +9542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_bigtimedisplaystate",
-      "community": 112,
+      "community": 19,
       "norm_label": "_bigtimedisplaystate"
     },
     {
@@ -9672,7 +9552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "state",
-      "community": 112,
+      "community": 19,
       "norm_label": "state"
     },
     {
@@ -9682,7 +9562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "singletickerproviderstatemixin",
-      "community": 112,
+      "community": 19,
       "norm_label": "singletickerproviderstatemixin"
     },
     {
@@ -9692,7 +9572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_timems",
-      "community": 104,
+      "community": 19,
       "norm_label": "timems"
     },
     {
@@ -9702,7 +9582,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_label",
-      "community": 104,
+      "community": 19,
       "norm_label": "label"
     },
     {
@@ -9712,7 +9592,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_fontsize",
-      "community": 104,
+      "community": 19,
       "norm_label": "fontsize"
     },
     {
@@ -9722,7 +9602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_pulsekey",
-      "community": 104,
+      "community": 19,
       "norm_label": "pulsekey"
     },
     {
@@ -9732,7 +9612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "object",
-      "community": 104,
+      "community": 19,
       "norm_label": "object?"
     },
     {
@@ -9742,7 +9622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_ctrl",
-      "community": 104,
+      "community": 19,
       "norm_label": "_ctrl"
     },
     {
@@ -9752,7 +9632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animationcontroller",
-      "community": 104,
+      "community": 19,
       "norm_label": "animationcontroller"
     },
     {
@@ -9762,7 +9642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_scale",
-      "community": 104,
+      "community": 19,
       "norm_label": "_scale"
     },
     {
@@ -9772,7 +9652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animation",
-      "community": 104,
+      "community": 19,
       "norm_label": "animation"
     },
     {
@@ -9782,7 +9662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_createstate",
-      "community": 104,
+      "community": 19,
       "norm_label": "createstate"
     },
     {
@@ -9792,7 +9672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_didupdatewidget",
-      "community": 104,
+      "community": 19,
       "norm_label": "didupdatewidget"
     },
     {
@@ -9802,7 +9682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_dispose",
-      "community": 104,
+      "community": 19,
       "norm_label": "dispose"
     },
     {
@@ -9812,7 +9692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_build",
-      "community": 104,
+      "community": 19,
       "norm_label": "build"
     },
     {
@@ -9822,7 +9702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog",
-      "community": 102,
+      "community": 40,
       "norm_label": "drill_name_dialog.dart"
     },
     {
@@ -9832,7 +9712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_drillnamedialog",
-      "community": 112,
+      "community": 40,
       "norm_label": "_drillnamedialog"
     },
     {
@@ -9842,7 +9722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_drillnamedialogstate",
-      "community": 112,
+      "community": 40,
       "norm_label": "_drillnamedialogstate"
     },
     {
@@ -9852,7 +9732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_initial",
-      "community": 102,
+      "community": 40,
       "norm_label": "initial"
     },
     {
@@ -9862,7 +9742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "required_string_confirmlabel_string",
-      "community": 102,
+      "community": 40,
       "norm_label": "required string confirmlabel,\n  string"
     },
     {
@@ -9872,7 +9752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_title",
-      "community": 102,
+      "community": 40,
       "norm_label": "title"
     },
     {
@@ -9882,7 +9762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_confirmlabel",
-      "community": 102,
+      "community": 40,
       "norm_label": "confirmlabel"
     },
     {
@@ -9892,7 +9772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_controller",
-      "community": 102,
+      "community": 40,
       "norm_label": "_controller"
     },
     {
@@ -9902,7 +9782,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_normalized",
-      "community": 102,
+      "community": 40,
       "norm_label": "_normalized"
     },
     {
@@ -9912,7 +9792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_error",
-      "community": 102,
+      "community": 40,
       "norm_label": "_error"
     },
     {
@@ -9922,7 +9802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_canconfirm",
-      "community": 102,
+      "community": 40,
       "norm_label": "_canconfirm"
     },
     {
@@ -9932,7 +9812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_showdrillnamedialog",
-      "community": 102,
+      "community": 40,
       "norm_label": "showdrillnamedialog"
     },
     {
@@ -9942,7 +9822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_createstate",
-      "community": 102,
+      "community": 40,
       "norm_label": "createstate"
     },
     {
@@ -9952,7 +9832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_initstate",
-      "community": 102,
+      "community": 40,
       "norm_label": "initstate"
     },
     {
@@ -9962,7 +9842,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_dispose",
-      "community": 102,
+      "community": 40,
       "norm_label": "dispose"
     },
     {
@@ -9972,7 +9852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_onchanged",
-      "community": 102,
+      "community": 40,
       "norm_label": "_onchanged"
     },
     {
@@ -9982,7 +9862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_confirm",
-      "community": 102,
+      "community": 40,
       "norm_label": "_confirm"
     },
     {
@@ -9992,7 +9872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_name_dialog_build",
-      "community": 102,
+      "community": 40,
       "norm_label": "build"
     },
     {
@@ -10082,7 +9962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_flash_overlay_flashoverlay",
-      "community": 112,
+      "community": 19,
       "norm_label": "flashoverlay"
     },
     {
@@ -10092,7 +9972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_flash_overlay_flashoverlaystate",
-      "community": 112,
+      "community": 19,
       "norm_label": "_flashoverlaystate"
     },
     {
@@ -10332,7 +10212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_settingsintslider",
-      "community": 13,
+      "community": 52,
       "norm_label": "settingsintslider"
     },
     {
@@ -10342,7 +10222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_settingsdoubleslider",
-      "community": 52,
+      "community": 13,
       "norm_label": "settingsdoubleslider"
     },
     {
@@ -10352,7 +10232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_sliderrow",
-      "community": 52,
+      "community": 13,
       "norm_label": "_sliderrow"
     },
     {
@@ -10662,7 +10542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header",
-      "community": 91,
+      "community": 105,
       "norm_label": "tab_header.dart"
     },
     {
@@ -10672,7 +10552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_tabheader",
-      "community": 91,
+      "community": 105,
       "norm_label": "tabheader"
     },
     {
@@ -10682,7 +10562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_title",
-      "community": 91,
+      "community": 105,
       "norm_label": "title"
     },
     {
@@ -10692,7 +10572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_actions",
-      "community": 91,
+      "community": 105,
       "norm_label": "actions"
     },
     {
@@ -10702,7 +10582,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_tab_header_build",
-      "community": 91,
+      "community": 105,
       "norm_label": "build"
     },
     {
@@ -11312,7 +11192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 116,
+      "community": 55,
       "norm_label": "delay_test.dart"
     },
     {
@@ -11322,7 +11202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 116,
+      "community": 55,
       "norm_label": "main"
     },
     {
@@ -11392,7 +11272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 115,
+      "community": 91,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -11402,7 +11282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 115,
+      "community": 91,
       "norm_label": "_host"
     },
     {
@@ -11412,7 +11292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 115,
+      "community": 91,
       "norm_label": "_visiblesignal"
     },
     {
@@ -11422,7 +11302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 115,
+      "community": 91,
       "norm_label": "main"
     },
     {
@@ -11432,7 +11312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 115,
+      "community": 91,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -11882,7 +11762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_fakeenvironment",
-      "community": 120,
+      "community": 31,
       "norm_label": "_fakeenvironment"
     },
     {
@@ -11892,7 +11772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_memorystore",
-      "community": 119,
+      "community": 103,
       "norm_label": "_memorystore"
     },
     {
@@ -12426,36 +12306,6 @@
       "norm_label": "package:simple_shot_timer/models/timer_state.dart"
     },
     {
-      "label": "pull_request_template.md",
-      "file_type": "document",
-      "source_file": ".github/pull_request_template.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "github_pull_request_template",
-      "community": 117,
-      "norm_label": "pull_request_template.md"
-    },
-    {
-      "label": "Summary",
-      "file_type": "document",
-      "source_file": ".github/pull_request_template.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "github_pull_request_template_summary",
-      "community": 117,
-      "norm_label": "summary"
-    },
-    {
-      "label": "Test plan",
-      "file_type": "document",
-      "source_file": ".github/pull_request_template.md",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "github_pull_request_template_test_plan",
-      "community": 117,
-      "norm_label": "test plan"
-    },
-    {
       "label": "CHANGELOG.md",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
@@ -12696,20 +12546,20 @@
       "norm_label": "join_testing.md"
     },
     {
-      "label": "Join the Simple Shot Timer beta",
+      "label": "Join the closed test for Simple Shot Timer",
       "file_type": "document",
       "source_file": "JOIN_TESTING.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "join_testing_join_the_simple_shot_timer_beta",
+      "id": "join_testing_join_the_closed_test_for_simple_shot_timer",
       "community": 28,
-      "norm_label": "join the simple shot timer beta"
+      "norm_label": "join the closed test for simple shot timer"
     },
     {
       "label": "How to join (Android)",
       "file_type": "document",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L8",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "join_testing_how_to_join_android",
       "community": 28,
@@ -12719,47 +12569,47 @@
       "label": "1. Join the tester group",
       "file_type": "document",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L13",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "join_testing_1_join_the_tester_group",
       "community": 28,
       "norm_label": "1. join the tester group"
     },
     {
-      "label": "2. Opt in to the beta",
+      "label": "2. Opt in to the test",
       "file_type": "document",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L23",
+      "source_location": "L22",
       "_origin": "ast",
-      "id": "join_testing_2_opt_in_to_the_beta",
+      "id": "join_testing_2_opt_in_to_the_test",
       "community": 28,
-      "norm_label": "2. opt in to the beta"
+      "norm_label": "2. opt in to the test"
     },
     {
-      "label": "3. Install or update",
+      "label": "3. Install",
       "file_type": "document",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L32",
+      "source_location": "L31",
       "_origin": "ast",
-      "id": "join_testing_3_install_or_update",
+      "id": "join_testing_3_install",
       "community": 28,
-      "norm_label": "3. install or update"
+      "norm_label": "3. install"
     },
     {
-      "label": "Leaving the beta",
+      "label": "Leaving the test",
       "file_type": "document",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L42",
+      "source_location": "L41",
       "_origin": "ast",
-      "id": "join_testing_leaving_the_beta",
+      "id": "join_testing_leaving_the_test",
       "community": 28,
-      "norm_label": "leaving the beta"
+      "norm_label": "leaving the test"
     },
     {
       "label": "Reporting bugs and feedback",
       "file_type": "document",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L50",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "join_testing_reporting_bugs_and_feedback",
       "community": 28,
@@ -12789,7 +12639,7 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L9",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "readme_features",
       "community": 28,
@@ -12799,7 +12649,7 @@
       "label": "Requirements",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L57",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "readme_requirements",
       "community": 28,
@@ -12809,7 +12659,7 @@
       "label": "Getting Started",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L65",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "readme_getting_started",
       "community": 28,
@@ -12819,7 +12669,7 @@
       "label": "Project Structure",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L86",
+      "source_location": "L62",
       "_origin": "ast",
       "id": "readme_project_structure",
       "community": 28,
@@ -12829,7 +12679,7 @@
       "label": "Architecture Notes",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L123",
+      "source_location": "L90",
       "_origin": "ast",
       "id": "readme_architecture_notes",
       "community": 28,
@@ -12839,7 +12689,7 @@
       "label": "Adding a New Language",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L170",
+      "source_location": "L115",
       "_origin": "ast",
       "id": "readme_adding_a_new_language",
       "community": 28,
@@ -12849,7 +12699,7 @@
       "label": "Versioning",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L186",
+      "source_location": "L128",
       "_origin": "ast",
       "id": "readme_versioning",
       "community": 28,
@@ -12859,27 +12709,17 @@
       "label": "Commit format",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L193",
+      "source_location": "L135",
       "_origin": "ast",
       "id": "readme_commit_format",
       "community": 28,
       "norm_label": "commit format"
     },
     {
-      "label": "Commit messages are store release notes",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L207",
-      "_origin": "ast",
-      "id": "readme_commit_messages_are_store_release_notes",
-      "community": 28,
-      "norm_label": "commit messages are store release notes"
-    },
-    {
       "label": "Release flow",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L236",
+      "source_location": "L149",
       "_origin": "ast",
       "id": "readme_release_flow",
       "community": 28,
@@ -12889,7 +12729,7 @@
       "label": "Continuous Integration",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L258",
+      "source_location": "L170",
       "_origin": "ast",
       "id": "readme_continuous_integration",
       "community": 28,
@@ -12899,7 +12739,7 @@
       "label": "Releasing to Google Play",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L268",
+      "source_location": "L178",
       "_origin": "ast",
       "id": "readme_releasing_to_google_play",
       "community": 28,
@@ -12909,7 +12749,7 @@
       "label": "Triggers",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L273",
+      "source_location": "L183",
       "_origin": "ast",
       "id": "readme_triggers",
       "community": 28,
@@ -12919,7 +12759,7 @@
       "label": "Required GitHub secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L280",
+      "source_location": "L190",
       "_origin": "ast",
       "id": "readme_required_github_secrets",
       "community": 28,
@@ -12929,7 +12769,7 @@
       "label": "One-time setup checklist",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L292",
+      "source_location": "L202",
       "_origin": "ast",
       "id": "readme_one_time_setup_checklist",
       "community": 28,
@@ -12939,7 +12779,7 @@
       "label": "Permissions",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L314",
+      "source_location": "L224",
       "_origin": "ast",
       "id": "readme_permissions",
       "community": 28,
@@ -12949,7 +12789,7 @@
       "label": "Maintainer",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L332",
+      "source_location": "L232",
       "_origin": "ast",
       "id": "readme_maintainer",
       "community": 28,
@@ -12959,7 +12799,7 @@
       "label": "License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L341",
+      "source_location": "L239",
       "_origin": "ast",
       "id": "readme_license",
       "community": 28,
@@ -13148,1112 +12988,302 @@
     {
       "label": "brag-plan.md",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan",
-      "community": 89,
+      "id": "brag_output_brag_plan",
+      "community": 51,
       "norm_label": "brag-plan.md"
     },
     {
       "label": "Brag Plan: Simple Shot Timer",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "community": 89,
+      "id": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "community": 51,
       "norm_label": "brag plan: simple shot timer"
     },
     {
       "label": "What is this app?",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_what_is_this_app",
-      "community": 89,
+      "id": "brag_output_brag_plan_what_is_this_app",
+      "community": 51,
       "norm_label": "what is this app?"
     },
     {
       "label": "The angle",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_the_angle",
-      "community": 89,
+      "id": "brag_output_brag_plan_the_angle",
+      "community": 51,
       "norm_label": "the angle"
     },
     {
       "label": "Hook (first 2-3 seconds)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L14",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_hook_first_2_3_seconds",
-      "community": 89,
+      "id": "brag_output_brag_plan_hook_first_2_3_seconds",
+      "community": 51,
       "norm_label": "hook (first 2-3 seconds)"
     },
     {
       "label": "Key moments (the middle)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L18",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_key_moments_the_middle",
-      "community": 89,
+      "id": "brag_output_brag_plan_key_moments_the_middle",
+      "community": 51,
       "norm_label": "key moments (the middle)"
     },
     {
       "label": "Outro / punchline",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L26",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_outro_punchline",
-      "community": 89,
+      "id": "brag_output_brag_plan_outro_punchline",
+      "community": 51,
       "norm_label": "outro / punchline"
     },
     {
       "label": "User flow worth showing",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_user_flow_worth_showing",
-      "community": 89,
+      "id": "brag_output_brag_plan_user_flow_worth_showing",
+      "community": 51,
       "norm_label": "user flow worth showing"
     },
     {
       "label": "Tone",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L33",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_tone",
-      "community": 89,
+      "id": "brag_output_brag_plan_tone",
+      "community": 51,
       "norm_label": "tone"
     },
     {
       "label": "Format: vertical \u2014 1080x1920",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_format_vertical_1080x1920",
-      "community": 89,
+      "id": "brag_output_brag_plan_format_vertical_1080x1920",
+      "community": 51,
       "norm_label": "format: vertical \u2014 1080x1920"
     },
     {
       "label": "Duration: 22 s",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_duration_22_s",
-      "community": 89,
+      "id": "brag_output_brag_plan_duration_22_s",
+      "community": 51,
       "norm_label": "duration: 22 s"
     },
     {
       "label": "Visual identity (from lib/app.dart)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L42",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_visual_identity_from_lib_app_dart",
-      "community": 89,
+      "id": "brag_output_brag_plan_visual_identity_from_lib_app_dart",
+      "community": 51,
       "norm_label": "visual identity (from lib/app.dart)"
     },
     {
       "label": "Share copy (draft)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L52",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_share_copy_draft",
-      "community": 89,
+      "id": "brag_output_brag_plan_share_copy_draft",
+      "community": 51,
       "norm_label": "share copy (draft)"
     },
     {
       "label": "Audio direction",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L56",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_audio_direction",
-      "community": 89,
+      "id": "brag_output_brag_plan_audio_direction",
+      "community": 51,
       "norm_label": "audio direction"
     },
     {
       "label": "Storyboard",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L78",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_storyboard",
-      "community": 89,
+      "id": "brag_output_brag_plan_storyboard",
+      "community": 51,
       "norm_label": "storyboard"
     },
     {
       "label": "Scene 1 \u2014 Cold open \u2014 0.00\u20134.60 s (4.6 s)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_scene_1_cold_open_0_00_4_60_s_4_6_s",
-      "community": 89,
+      "id": "brag_output_brag_plan_scene_1_cold_open_0_00_4_60_s_4_6_s",
+      "community": 51,
       "norm_label": "scene 1 \u2014 cold open \u2014 0.00\u20134.60 s (4.6 s)"
     },
     {
       "label": "Scene 2 \u2014 It hears every shot \u2014 4.60\u201310.00 s (5.4 s)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L92",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
-      "community": 89,
+      "id": "brag_output_brag_plan_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
+      "community": 51,
       "norm_label": "scene 2 \u2014 it hears every shot \u2014 4.60\u201310.00 s (5.4 s)"
     },
     {
       "label": "Scene 3 \u2014 Every split. Saved. \u2014 10.00\u201313.89 s (3.9 s)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L105",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_scene_3_every_split_saved_10_00_13_89_s_3_9_s",
-      "community": 89,
+      "id": "brag_output_brag_plan_scene_3_every_split_saved_10_00_13_89_s_3_9_s",
+      "community": 51,
       "norm_label": "scene 3 \u2014 every split. saved. \u2014 10.00\u201313.89 s (3.9 s)"
     },
     {
       "label": "Scene 4 \u2014 Built for the range \u2014 13.89\u201317.71 s (3.8 s)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L115",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_scene_4_built_for_the_range_13_89_17_71_s_3_8_s",
-      "community": 89,
+      "id": "brag_output_brag_plan_scene_4_built_for_the_range_13_89_17_71_s_3_8_s",
+      "community": 51,
       "norm_label": "scene 4 \u2014 built for the range \u2014 13.89\u201317.71 s (3.8 s)"
     },
     {
       "label": "Scene 5 \u2014 Outro \u2014 17.71\u201322.00 s (4.29 s)",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L125",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_scene_5_outro_17_71_22_00_s_4_29_s",
-      "community": 89,
+      "id": "brag_output_brag_plan_scene_5_outro_17_71_22_00_s_4_29_s",
+      "community": 51,
       "norm_label": "scene 5 \u2014 outro \u2014 17.71\u201322.00 s (4.29 s)"
     },
     {
       "label": "Revision 2 (2026-09-24): user feedback",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L135",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_brag_plan_revision_2_2026_09_24_user_feedback",
-      "community": 89,
+      "id": "brag_output_brag_plan_revision_2_2026_09_24_user_feedback",
+      "community": 51,
       "norm_label": "revision 2 (2026-09-24): user feedback"
     },
     {
       "label": "composition-brief.md",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief",
-      "community": 109,
+      "id": "brag_output_composition_brief",
+      "community": 89,
       "norm_label": "composition-brief.md"
     },
     {
       "label": "Hyperframes Composition Brief: Simple Shot Timer",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "community": 109,
+      "id": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "community": 89,
       "norm_label": "hyperframes composition brief: simple shot timer"
     },
     {
       "label": "Objective",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_objective",
-      "community": 109,
+      "id": "brag_output_composition_brief_objective",
+      "community": 89,
       "norm_label": "objective"
     },
     {
       "label": "Output",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_output",
-      "community": 109,
+      "id": "brag_output_composition_brief_output",
+      "community": 89,
       "norm_label": "output"
     },
     {
       "label": "Source Material",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L12",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_source_material",
-      "community": 109,
+      "id": "brag_output_composition_brief_source_material",
+      "community": 89,
       "norm_label": "source material"
     },
     {
       "label": "Creative Direction",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L25",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_creative_direction",
-      "community": 109,
+      "id": "brag_output_composition_brief_creative_direction",
+      "community": 89,
       "norm_label": "creative direction"
     },
     {
       "label": "Visual Identity",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_visual_identity",
-      "community": 109,
+      "id": "brag_output_composition_brief_visual_identity",
+      "community": 89,
       "norm_label": "visual identity"
     },
     {
       "label": "Storyboard",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L36",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_storyboard",
-      "community": 109,
+      "id": "brag_output_composition_brief_storyboard",
+      "community": 89,
       "norm_label": "storyboard"
     },
     {
       "label": "Audio",
       "file_type": "document",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L43",
       "_origin": "ast",
-      "id": "brag_output_2026_09_24_composition_brief_audio",
-      "community": 109,
+      "id": "brag_output_composition_brief_audio",
+      "community": 89,
       "norm_label": "audio"
-    },
-    {
-      "label": "brag-plan.md",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan",
-      "community": 51,
-      "norm_label": "brag-plan.md"
-    },
-    {
-      "label": "Brag Plan: Simple Shot Timer (revision 3, 2026-10-01)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "community": 51,
-      "norm_label": "brag plan: simple shot timer (revision 3, 2026-10-01)"
-    },
-    {
-      "label": "What is this app?",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_what_is_this_app",
-      "community": 51,
-      "norm_label": "what is this app?"
-    },
-    {
-      "label": "The angle",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_the_angle",
-      "community": 51,
-      "norm_label": "the angle"
-    },
-    {
-      "label": "Hook (first 2-3 seconds)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_hook_first_2_3_seconds",
-      "community": 51,
-      "norm_label": "hook (first 2-3 seconds)"
-    },
-    {
-      "label": "Key moments (the middle)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_key_moments_the_middle",
-      "community": 51,
-      "norm_label": "key moments (the middle)"
-    },
-    {
-      "label": "Outro / punchline",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L33",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_outro_punchline",
-      "community": 51,
-      "norm_label": "outro / punchline"
-    },
-    {
-      "label": "User flow worth showing",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_user_flow_worth_showing",
-      "community": 51,
-      "norm_label": "user flow worth showing"
-    },
-    {
-      "label": "Tone",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L42",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_tone",
-      "community": 51,
-      "norm_label": "tone"
-    },
-    {
-      "label": "Format: vertical \u2014 1080x1920",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L48",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_format_vertical_1080x1920",
-      "community": 51,
-      "norm_label": "format: vertical \u2014 1080x1920"
-    },
-    {
-      "label": "Duration: 29.9 s",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L49",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_duration_29_9_s",
-      "community": 51,
-      "norm_label": "duration: 29.9 s"
-    },
-    {
-      "label": "Visual identity (from lib/theme/app_theme.dart, 2.0)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L55",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_visual_identity_from_lib_theme_app_theme_dart_2_0",
-      "community": 51,
-      "norm_label": "visual identity (from lib/theme/app_theme.dart, 2.0)"
-    },
-    {
-      "label": "Share copy (draft)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L69",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_share_copy_draft",
-      "community": 51,
-      "norm_label": "share copy (draft)"
-    },
-    {
-      "label": "Audio direction",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L73",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_audio_direction",
-      "community": 51,
-      "norm_label": "audio direction"
-    },
-    {
-      "label": "Storyboard",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L93",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_storyboard",
-      "community": 51,
-      "norm_label": "storyboard"
-    },
-    {
-      "label": "Scene 1 \u2014 Cold open \u2014 0.00\u20134.60 s (4.6 s)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L95",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_scene_1_cold_open_0_00_4_60_s_4_6_s",
-      "community": 51,
-      "norm_label": "scene 1 \u2014 cold open \u2014 0.00\u20134.60 s (4.6 s)"
-    },
-    {
-      "label": "Scene 2 \u2014 It hears every shot \u2014 4.60\u201310.00 s (5.4 s)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L105",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
-      "community": 51,
-      "norm_label": "scene 2 \u2014 it hears every shot \u2014 4.60\u201310.00 s (5.4 s)"
-    },
-    {
-      "label": "Scene 3 \u2014 Every split. Saved. \u2014 10.00\u201313.34 s (3.3 s)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L117",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_scene_3_every_split_saved_10_00_13_34_s_3_3_s",
-      "community": 51,
-      "norm_label": "scene 3 \u2014 every split. saved. \u2014 10.00\u201313.34 s (3.3 s)"
-    },
-    {
-      "label": "Scene 4 \u2014 Pick your drill \u2014 13.34\u201316.62 s (3.3 s)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L128",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_scene_4_pick_your_drill_13_34_16_62_s_3_3_s",
-      "community": 51,
-      "norm_label": "scene 4 \u2014 pick your drill \u2014 13.34\u201316.62 s (3.3 s)"
-    },
-    {
-      "label": "Scene 5 \u2014 Save your drills (new) \u2014 16.62\u201320.44 s (3.8 s)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L138",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_scene_5_save_your_drills_new_16_62_20_44_s_3_8_s",
-      "community": 51,
-      "norm_label": "scene 5 \u2014 save your drills (new) \u2014 16.62\u201320.44 s (3.8 s)"
-    },
-    {
-      "label": "Scene 6 \u2014 Dial in the mic \u2014 20.44\u201325.95 s (5.5 s incl. 1.6 s navigation)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L151",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_scene_6_dial_in_the_mic_20_44_25_95_s_5_5_s_incl_1_6_s_navigation",
-      "community": 51,
-      "norm_label": "scene 6 \u2014 dial in the mic \u2014 20.44\u201325.95 s (5.5 s incl. 1.6 s navigation)"
-    },
-    {
-      "label": "Scene 7 \u2014 Outro \u2014 26.97\u201329.90 s (2.9 s)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L163",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_scene_7_outro_26_97_29_90_s_2_9_s",
-      "community": 51,
-      "norm_label": "scene 7 \u2014 outro \u2014 26.97\u201329.90 s (2.9 s)"
-    },
-    {
-      "label": "Fictional data on screen",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L172",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_brag_plan_fictional_data_on_screen",
-      "community": 51,
-      "norm_label": "fictional data on screen"
-    },
-    {
-      "label": "composition-brief.md",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief",
-      "community": 105,
-      "norm_label": "composition-brief.md"
-    },
-    {
-      "label": "Hyperframes Composition Brief: Simple Shot Timer (2.0 UI, revision 3)",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "community": 105,
-      "norm_label": "hyperframes composition brief: simple shot timer (2.0 ui, revision 3)"
-    },
-    {
-      "label": "Objective",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_objective",
-      "community": 105,
-      "norm_label": "objective"
-    },
-    {
-      "label": "Output",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_output",
-      "community": 105,
-      "norm_label": "output"
-    },
-    {
-      "label": "Source Material",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_source_material",
-      "community": 105,
-      "norm_label": "source material"
-    },
-    {
-      "label": "Creative Direction",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L36",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_creative_direction",
-      "community": 105,
-      "norm_label": "creative direction"
-    },
-    {
-      "label": "Visual Identity",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L42",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_visual_identity",
-      "community": 105,
-      "norm_label": "visual identity"
-    },
-    {
-      "label": "Storyboard",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L53",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_storyboard",
-      "community": 105,
-      "norm_label": "storyboard"
-    },
-    {
-      "label": "Audio",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L64",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_audio",
-      "community": 105,
-      "norm_label": "audio"
-    },
-    {
-      "label": "Hyperframes Instructions",
-      "file_type": "document",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L79",
-      "_origin": "ast",
-      "id": "brag_output_2026_10_01_composition_brief_hyperframes_instructions",
-      "community": 105,
-      "norm_label": "hyperframes instructions"
-    },
-    {
-      "label": "README.md",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme",
-      "community": 110,
-      "norm_label": "readme.md"
-    },
-    {
-      "label": "Launch video",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_launch_video",
-      "community": 110,
-      "norm_label": "launch video"
-    },
-    {
-      "label": "What is tracked",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_what_is_tracked",
-      "community": 110,
-      "norm_label": "what is tracked"
-    },
-    {
-      "label": "What is not tracked, and where it comes from",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L21",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_what_is_not_tracked_and_where_it_comes_from",
-      "community": 110,
-      "norm_label": "what is not tracked, and where it comes from"
-    },
-    {
-      "label": "Generating the beeps",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L41",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_generating_the_beeps",
-      "community": 110,
-      "norm_label": "generating the beeps"
-    },
-    {
-      "label": "Regenerating `music-rms.js` (only if the music or its length changes)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_regenerating_music_rms_js_only_if_the_music_or_its_length_changes",
-      "community": 110,
-      "norm_label": "regenerating `music-rms.js` (only if the music or its length changes)"
-    },
-    {
-      "label": "Rendering",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L69",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_rendering",
-      "community": 110,
-      "norm_label": "rendering"
-    },
-    {
-      "label": "How the composition is built",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L86",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_how_the_composition_is_built",
-      "community": 110,
-      "norm_label": "how the composition is built"
-    },
-    {
-      "label": "Facts shown on screen",
-      "file_type": "document",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L104",
-      "_origin": "ast",
-      "id": "branding_launch_video_readme_facts_shown_on_screen",
-      "community": 110,
-      "norm_label": "facts shown on screen"
-    },
-    {
-      "label": "brief.md",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief",
-      "community": 107,
-      "norm_label": "brief.md"
-    },
-    {
-      "label": "Composition brief: Simple Shot Timer launch video (2.0 UI, revision 3)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "community": 107,
-      "norm_label": "composition brief: simple shot timer launch video (2.0 ui, revision 3)"
-    },
-    {
-      "label": "Objective",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_objective",
-      "community": 107,
-      "norm_label": "objective"
-    },
-    {
-      "label": "Output",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_output",
-      "community": 107,
-      "norm_label": "output"
-    },
-    {
-      "label": "Source Material",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_source_material",
-      "community": 107,
-      "norm_label": "source material"
-    },
-    {
-      "label": "Creative Direction",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L36",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_creative_direction",
-      "community": 107,
-      "norm_label": "creative direction"
-    },
-    {
-      "label": "Visual Identity",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L42",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_visual_identity",
-      "community": 107,
-      "norm_label": "visual identity"
-    },
-    {
-      "label": "Storyboard",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L53",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_storyboard",
-      "community": 107,
-      "norm_label": "storyboard"
-    },
-    {
-      "label": "Audio",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L64",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_audio",
-      "community": 107,
-      "norm_label": "audio"
-    },
-    {
-      "label": "Hyperframes Instructions",
-      "file_type": "document",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L79",
-      "_origin": "ast",
-      "id": "branding_launch_video_brief_hyperframes_instructions",
-      "community": 107,
-      "norm_label": "hyperframes instructions"
-    },
-    {
-      "label": "storyboard.md",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard",
-      "community": 87,
-      "norm_label": "storyboard.md"
-    },
-    {
-      "label": "Storyboard: Simple Shot Timer launch video (revision 3, 2026-10-01)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "community": 87,
-      "norm_label": "storyboard: simple shot timer launch video (revision 3, 2026-10-01)"
-    },
-    {
-      "label": "What is this app?",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_what_is_this_app",
-      "community": 87,
-      "norm_label": "what is this app?"
-    },
-    {
-      "label": "The angle",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_the_angle",
-      "community": 87,
-      "norm_label": "the angle"
-    },
-    {
-      "label": "Hook (first 2-3 seconds)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_hook_first_2_3_seconds",
-      "community": 87,
-      "norm_label": "hook (first 2-3 seconds)"
-    },
-    {
-      "label": "Key moments (the middle)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_key_moments_the_middle",
-      "community": 87,
-      "norm_label": "key moments (the middle)"
-    },
-    {
-      "label": "Outro / punchline",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L33",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_outro_punchline",
-      "community": 87,
-      "norm_label": "outro / punchline"
-    },
-    {
-      "label": "User flow worth showing",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_user_flow_worth_showing",
-      "community": 87,
-      "norm_label": "user flow worth showing"
-    },
-    {
-      "label": "Tone",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L42",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_tone",
-      "community": 87,
-      "norm_label": "tone"
-    },
-    {
-      "label": "Format: vertical \u2014 1080x1920",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L48",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_format_vertical_1080x1920",
-      "community": 87,
-      "norm_label": "format: vertical \u2014 1080x1920"
-    },
-    {
-      "label": "Duration: 29.9 s",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L49",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_duration_29_9_s",
-      "community": 87,
-      "norm_label": "duration: 29.9 s"
-    },
-    {
-      "label": "Visual identity (from lib/theme/app_theme.dart, 2.0)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L55",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_visual_identity_from_lib_theme_app_theme_dart_2_0",
-      "community": 87,
-      "norm_label": "visual identity (from lib/theme/app_theme.dart, 2.0)"
-    },
-    {
-      "label": "Share copy (draft)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L69",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_share_copy_draft",
-      "community": 87,
-      "norm_label": "share copy (draft)"
-    },
-    {
-      "label": "Audio direction",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L73",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_audio_direction",
-      "community": 87,
-      "norm_label": "audio direction"
-    },
-    {
-      "label": "Storyboard",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L93",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_storyboard",
-      "community": 87,
-      "norm_label": "storyboard"
-    },
-    {
-      "label": "Scene 1 \u2014 Cold open \u2014 0.00\u20134.60 s (4.6 s)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L95",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_scene_1_cold_open_0_00_4_60_s_4_6_s",
-      "community": 87,
-      "norm_label": "scene 1 \u2014 cold open \u2014 0.00\u20134.60 s (4.6 s)"
-    },
-    {
-      "label": "Scene 2 \u2014 It hears every shot \u2014 4.60\u201310.00 s (5.4 s)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L105",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
-      "community": 87,
-      "norm_label": "scene 2 \u2014 it hears every shot \u2014 4.60\u201310.00 s (5.4 s)"
-    },
-    {
-      "label": "Scene 3 \u2014 Every split. Saved. \u2014 10.00\u201313.34 s (3.3 s)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L117",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_scene_3_every_split_saved_10_00_13_34_s_3_3_s",
-      "community": 87,
-      "norm_label": "scene 3 \u2014 every split. saved. \u2014 10.00\u201313.34 s (3.3 s)"
-    },
-    {
-      "label": "Scene 4 \u2014 Pick your drill \u2014 13.34\u201316.62 s (3.3 s)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L128",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_scene_4_pick_your_drill_13_34_16_62_s_3_3_s",
-      "community": 87,
-      "norm_label": "scene 4 \u2014 pick your drill \u2014 13.34\u201316.62 s (3.3 s)"
-    },
-    {
-      "label": "Scene 5 \u2014 Save your drills (new) \u2014 16.62\u201320.44 s (3.8 s)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L138",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_scene_5_save_your_drills_new_16_62_20_44_s_3_8_s",
-      "community": 87,
-      "norm_label": "scene 5 \u2014 save your drills (new) \u2014 16.62\u201320.44 s (3.8 s)"
-    },
-    {
-      "label": "Scene 6 \u2014 Dial in the mic \u2014 20.44\u201325.95 s (5.5 s incl. 1.6 s navigation)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L151",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_scene_6_dial_in_the_mic_20_44_25_95_s_5_5_s_incl_1_6_s_navigation",
-      "community": 87,
-      "norm_label": "scene 6 \u2014 dial in the mic \u2014 20.44\u201325.95 s (5.5 s incl. 1.6 s navigation)"
-    },
-    {
-      "label": "Scene 7 \u2014 Outro \u2014 26.97\u201329.90 s (2.9 s)",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L163",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_scene_7_outro_26_97_29_90_s_2_9_s",
-      "community": 87,
-      "norm_label": "scene 7 \u2014 outro \u2014 26.97\u201329.90 s (2.9 s)"
-    },
-    {
-      "label": "Fictional data on screen",
-      "file_type": "document",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L172",
-      "_origin": "ast",
-      "id": "branding_launch_video_storyboard_fictional_data_on_screen",
-      "community": 87,
-      "norm_label": "fictional data on screen"
-    },
-    {
-      "label": "README.md",
-      "file_type": "document",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_store_listing_readme",
-      "community": 114,
-      "norm_label": "readme.md"
-    },
-    {
-      "label": "Store listing graphics",
-      "file_type": "document",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "branding_store_listing_readme_store_listing_graphics",
-      "community": 114,
-      "norm_label": "store listing graphics"
-    },
-    {
-      "label": "How the screens are made",
-      "file_type": "document",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "branding_store_listing_readme_how_the_screens_are_made",
-      "community": 114,
-      "norm_label": "how the screens are made"
-    },
-    {
-      "label": "Exporting",
-      "file_type": "document",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "branding_store_listing_readme_exporting",
-      "community": 114,
-      "norm_label": "exporting"
-    },
-    {
-      "label": "Updating after a UI change",
-      "file_type": "document",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "branding_store_listing_readme_updating_after_a_ui_change",
-      "community": 114,
-      "norm_label": "updating after a ui change"
-    },
-    {
-      "label": "Captions",
-      "file_type": "document",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L52",
-      "_origin": "ast",
-      "id": "branding_store_listing_readme_captions",
-      "community": 114,
-      "norm_label": "captions"
     },
     {
       "label": "README.md",
@@ -14758,173 +13788,6 @@
     }
   ],
   "links": [
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes",
-      "target": "github_scripts_play_release_notes_clean_entry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L138",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes",
-      "target": "github_scripts_play_release_notes_main",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes",
-      "target": "github_scripts_play_release_notes_parse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L116",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes",
-      "target": "github_scripts_play_release_notes_render",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L51",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes",
-      "target": "github_scripts_play_release_notes_section_for",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L109",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes",
-      "target": "github_scripts_play_release_notes_shorten",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes",
-      "target": "github_scripts_play_release_notes_warn",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L150",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_main",
-      "target": "github_scripts_play_release_notes_warn",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L131",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_render",
-      "target": "github_scripts_play_release_notes_warn",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L86",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_parse",
-      "target": "github_scripts_play_release_notes_section_for",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "indirect_call",
-      "context": "argument",
-      "confidence": "INFERRED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L101",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_parse",
-      "target": "github_scripts_play_release_notes_clean_entry",
-      "confidence_score": 0.5
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L146",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_main",
-      "target": "github_scripts_play_release_notes_parse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L74",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_rationale_74",
-      "target": "github_scripts_play_release_notes_parse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L132",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_render",
-      "target": "github_scripts_play_release_notes_shorten",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L147",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_main",
-      "target": "github_scripts_play_release_notes_render",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L117",
-      "weight": 1.0,
-      "source": "github_scripts_play_release_notes_rationale_117",
-      "target": "github_scripts_play_release_notes_render",
-      "confidence_score": 1.0
-    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -31771,26 +30634,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".github/pull_request_template.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "source": "github_pull_request_template",
-      "target": "github_pull_request_template_summary",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".github/pull_request_template.md",
-      "source_location": "L12",
-      "weight": 1.0,
-      "source": "github_pull_request_template",
-      "target": "github_pull_request_template_test_plan",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -32005,14 +30848,14 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "join_testing",
-      "target": "join_testing_join_the_simple_shot_timer_beta",
+      "target": "join_testing_join_the_closed_test_for_simple_shot_timer",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L338",
+      "source_location": "L237",
       "weight": 1.0,
       "source": "readme",
       "target": "join_testing",
@@ -32022,9 +30865,9 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0,
-      "source": "join_testing_join_the_simple_shot_timer_beta",
+      "source": "join_testing_join_the_closed_test_for_simple_shot_timer",
       "target": "join_testing_how_to_join_android",
       "confidence_score": 1.0
     },
@@ -32032,19 +30875,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L42",
+      "source_location": "L41",
       "weight": 1.0,
-      "source": "join_testing_join_the_simple_shot_timer_beta",
-      "target": "join_testing_leaving_the_beta",
+      "source": "join_testing_join_the_closed_test_for_simple_shot_timer",
+      "target": "join_testing_leaving_the_test",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L50",
+      "source_location": "L46",
       "weight": 1.0,
-      "source": "join_testing_join_the_simple_shot_timer_beta",
+      "source": "join_testing_join_the_closed_test_for_simple_shot_timer",
       "target": "join_testing_reporting_bugs_and_feedback",
       "confidence_score": 1.0
     },
@@ -32052,7 +30895,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L13",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "join_testing_how_to_join_android",
       "target": "join_testing_1_join_the_tester_group",
@@ -32062,20 +30905,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L23",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "join_testing_how_to_join_android",
-      "target": "join_testing_2_opt_in_to_the_beta",
+      "target": "join_testing_2_opt_in_to_the_test",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "JOIN_TESTING.md",
-      "source_location": "L32",
+      "source_location": "L31",
       "weight": 1.0,
       "source": "join_testing_how_to_join_android",
-      "target": "join_testing_3_install_or_update",
+      "target": "join_testing_3_install",
       "confidence_score": 1.0
     },
     {
@@ -32102,7 +30945,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L170",
+      "source_location": "L115",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_adding_a_new_language",
@@ -32112,7 +30955,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L123",
+      "source_location": "L90",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_architecture_notes",
@@ -32122,7 +30965,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L258",
+      "source_location": "L170",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_continuous_integration",
@@ -32132,7 +30975,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L9",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_features",
@@ -32142,7 +30985,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L65",
+      "source_location": "L41",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_getting_started",
@@ -32152,7 +30995,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L341",
+      "source_location": "L239",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_license",
@@ -32162,7 +31005,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L332",
+      "source_location": "L232",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_maintainer",
@@ -32172,7 +31015,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L314",
+      "source_location": "L224",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_permissions",
@@ -32182,7 +31025,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L86",
+      "source_location": "L62",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_project_structure",
@@ -32192,7 +31035,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L268",
+      "source_location": "L178",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_releasing_to_google_play",
@@ -32202,7 +31045,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L57",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_requirements",
@@ -32212,7 +31055,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L186",
+      "source_location": "L128",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_versioning",
@@ -32222,7 +31065,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L193",
+      "source_location": "L135",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_commit_format",
@@ -32232,17 +31075,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L207",
-      "weight": 1.0,
-      "source": "readme_versioning",
-      "target": "readme_commit_messages_are_store_release_notes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L236",
+      "source_location": "L149",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_release_flow",
@@ -32252,7 +31085,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L292",
+      "source_location": "L202",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_one_time_setup_checklist",
@@ -32262,7 +31095,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L280",
+      "source_location": "L190",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_required_github_secrets",
@@ -32272,7 +31105,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L273",
+      "source_location": "L183",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_triggers",
@@ -32451,1031 +31284,281 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L1",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan",
-      "target": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
+      "source": "brag_output_brag_plan",
+      "target": "brag_output_brag_plan_brag_plan_simple_shot_timer",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L56",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_audio_direction",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_audio_direction",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L40",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_duration_22_s",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_duration_22_s",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L39",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_format_vertical_1080x1920",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_format_vertical_1080x1920",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L14",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_hook_first_2_3_seconds",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_hook_first_2_3_seconds",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L18",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_key_moments_the_middle",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_key_moments_the_middle",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L26",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_outro_punchline",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_outro_punchline",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L135",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_revision_2_2026_09_24_user_feedback",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_revision_2_2026_09_24_user_feedback",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L52",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_share_copy_draft",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_share_copy_draft",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L78",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_storyboard",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_storyboard",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L9",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_the_angle",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_the_angle",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L33",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_tone",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_tone",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L30",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_user_flow_worth_showing",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_user_flow_worth_showing",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L42",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_visual_identity_from_lib_app_dart",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_visual_identity_from_lib_app_dart",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L5",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_brag_plan_simple_shot_timer",
-      "target": "brag_output_2026_09_24_brag_plan_what_is_this_app",
+      "source": "brag_output_brag_plan_brag_plan_simple_shot_timer",
+      "target": "brag_output_brag_plan_what_is_this_app",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L80",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_storyboard",
-      "target": "brag_output_2026_09_24_brag_plan_scene_1_cold_open_0_00_4_60_s_4_6_s",
+      "source": "brag_output_brag_plan_storyboard",
+      "target": "brag_output_brag_plan_scene_1_cold_open_0_00_4_60_s_4_6_s",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L92",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_storyboard",
-      "target": "brag_output_2026_09_24_brag_plan_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
+      "source": "brag_output_brag_plan_storyboard",
+      "target": "brag_output_brag_plan_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L105",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_storyboard",
-      "target": "brag_output_2026_09_24_brag_plan_scene_3_every_split_saved_10_00_13_89_s_3_9_s",
+      "source": "brag_output_brag_plan_storyboard",
+      "target": "brag_output_brag_plan_scene_3_every_split_saved_10_00_13_89_s_3_9_s",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L115",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_storyboard",
-      "target": "brag_output_2026_09_24_brag_plan_scene_4_built_for_the_range_13_89_17_71_s_3_8_s",
+      "source": "brag_output_brag_plan_storyboard",
+      "target": "brag_output_brag_plan_scene_4_built_for_the_range_13_89_17_71_s_3_8_s",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/brag-plan.md",
+      "source_file": "brag-output/brag-plan.md",
       "source_location": "L125",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_brag_plan_storyboard",
-      "target": "brag_output_2026_09_24_brag_plan_scene_5_outro_17_71_22_00_s_4_29_s",
+      "source": "brag_output_brag_plan_storyboard",
+      "target": "brag_output_brag_plan_scene_5_outro_17_71_22_00_s_4_29_s",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L1",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief",
-      "target": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "source": "brag_output_composition_brief",
+      "target": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L43",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "target": "brag_output_2026_09_24_composition_brief_audio",
+      "source": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "target": "brag_output_composition_brief_audio",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L25",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "target": "brag_output_2026_09_24_composition_brief_creative_direction",
+      "source": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "target": "brag_output_composition_brief_creative_direction",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L3",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "target": "brag_output_2026_09_24_composition_brief_objective",
+      "source": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "target": "brag_output_composition_brief_objective",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L6",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "target": "brag_output_2026_09_24_composition_brief_output",
+      "source": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "target": "brag_output_composition_brief_output",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L12",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "target": "brag_output_2026_09_24_composition_brief_source_material",
+      "source": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "target": "brag_output_composition_brief_source_material",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L36",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "target": "brag_output_2026_09_24_composition_brief_storyboard",
+      "source": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "target": "brag_output_composition_brief_storyboard",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-09-24/composition-brief.md",
+      "source_file": "brag-output/composition-brief.md",
       "source_location": "L30",
       "weight": 1.0,
-      "source": "brag_output_2026_09_24_composition_brief_hyperframes_composition_brief_simple_shot_timer",
-      "target": "brag_output_2026_09_24_composition_brief_visual_identity",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan",
-      "target": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_audio_direction",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L49",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_duration_29_9_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L172",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_fictional_data_on_screen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L48",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_format_vertical_1080x1920",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_hook_first_2_3_seconds",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_key_moments_the_middle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L33",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_outro_punchline",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L69",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_share_copy_draft",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L93",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_storyboard",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L12",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_the_angle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_tone",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_user_flow_worth_showing",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L55",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_visual_identity_from_lib_theme_app_theme_dart_2_0",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_brag_plan_simple_shot_timer_revision_3_2026_10_01",
-      "target": "brag_output_2026_10_01_brag_plan_what_is_this_app",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L95",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_storyboard",
-      "target": "brag_output_2026_10_01_brag_plan_scene_1_cold_open_0_00_4_60_s_4_6_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L105",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_storyboard",
-      "target": "brag_output_2026_10_01_brag_plan_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L117",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_storyboard",
-      "target": "brag_output_2026_10_01_brag_plan_scene_3_every_split_saved_10_00_13_34_s_3_3_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L128",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_storyboard",
-      "target": "brag_output_2026_10_01_brag_plan_scene_4_pick_your_drill_13_34_16_62_s_3_3_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L138",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_storyboard",
-      "target": "brag_output_2026_10_01_brag_plan_scene_5_save_your_drills_new_16_62_20_44_s_3_8_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L151",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_storyboard",
-      "target": "brag_output_2026_10_01_brag_plan_scene_6_dial_in_the_mic_20_44_25_95_s_5_5_s_incl_1_6_s_navigation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/brag-plan.md",
-      "source_location": "L163",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_brag_plan_storyboard",
-      "target": "brag_output_2026_10_01_brag_plan_scene_7_outro_26_97_29_90_s_2_9_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief",
-      "target": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L64",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_audio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L36",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_creative_direction",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L79",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_hyperframes_instructions",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_objective",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_output",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_source_material",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L53",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_storyboard",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "brag-output/2026-10-01/composition-brief.md",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "brag_output_2026_10_01_composition_brief_hyperframes_composition_brief_simple_shot_timer_2_0_ui_revision_3",
-      "target": "brag_output_2026_10_01_composition_brief_visual_identity",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme",
-      "target": "branding_launch_video_readme_launch_video",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L104",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme_launch_video",
-      "target": "branding_launch_video_readme_facts_shown_on_screen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L86",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme_launch_video",
-      "target": "branding_launch_video_readme_how_the_composition_is_built",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L69",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme_launch_video",
-      "target": "branding_launch_video_readme_rendering",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L21",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme_launch_video",
-      "target": "branding_launch_video_readme_what_is_not_tracked_and_where_it_comes_from",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme_launch_video",
-      "target": "branding_launch_video_readme_what_is_tracked",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L41",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme_what_is_not_tracked_and_where_it_comes_from",
-      "target": "branding_launch_video_readme_generating_the_beeps",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/README.md",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "branding_launch_video_readme_what_is_not_tracked_and_where_it_comes_from",
-      "target": "branding_launch_video_readme_regenerating_music_rms_js_only_if_the_music_or_its_length_changes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief",
-      "target": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L64",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_audio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L36",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_creative_direction",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L79",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_hyperframes_instructions",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_objective",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_output",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_source_material",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L53",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_storyboard",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/brief.md",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "branding_launch_video_brief_composition_brief_simple_shot_timer_launch_video_2_0_ui_revision_3",
-      "target": "branding_launch_video_brief_visual_identity",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard",
-      "target": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_audio_direction",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L49",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_duration_29_9_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L172",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_fictional_data_on_screen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L48",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_format_vertical_1080x1920",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_hook_first_2_3_seconds",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_key_moments_the_middle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L33",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_outro_punchline",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L69",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_share_copy_draft",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L93",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_storyboard",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L12",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_the_angle",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_tone",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_user_flow_worth_showing",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L55",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_visual_identity_from_lib_theme_app_theme_dart_2_0",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard_simple_shot_timer_launch_video_revision_3_2026_10_01",
-      "target": "branding_launch_video_storyboard_what_is_this_app",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L95",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard",
-      "target": "branding_launch_video_storyboard_scene_1_cold_open_0_00_4_60_s_4_6_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L105",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard",
-      "target": "branding_launch_video_storyboard_scene_2_it_hears_every_shot_4_60_10_00_s_5_4_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L117",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard",
-      "target": "branding_launch_video_storyboard_scene_3_every_split_saved_10_00_13_34_s_3_3_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L128",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard",
-      "target": "branding_launch_video_storyboard_scene_4_pick_your_drill_13_34_16_62_s_3_3_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L138",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard",
-      "target": "branding_launch_video_storyboard_scene_5_save_your_drills_new_16_62_20_44_s_3_8_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L151",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard",
-      "target": "branding_launch_video_storyboard_scene_6_dial_in_the_mic_20_44_25_95_s_5_5_s_incl_1_6_s_navigation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/launch-video/storyboard.md",
-      "source_location": "L163",
-      "weight": 1.0,
-      "source": "branding_launch_video_storyboard_storyboard",
-      "target": "branding_launch_video_storyboard_scene_7_outro_26_97_29_90_s_2_9_s",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "branding_store_listing_readme",
-      "target": "branding_store_listing_readme_store_listing_graphics",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L52",
-      "weight": 1.0,
-      "source": "branding_store_listing_readme_store_listing_graphics",
-      "target": "branding_store_listing_readme_captions",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L30",
-      "weight": 1.0,
-      "source": "branding_store_listing_readme_store_listing_graphics",
-      "target": "branding_store_listing_readme_exporting",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "branding_store_listing_readme_store_listing_graphics",
-      "target": "branding_store_listing_readme_how_the_screens_are_made",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "branding/store-listing/README.md",
-      "source_location": "L46",
-      "weight": 1.0,
-      "source": "branding_store_listing_readme_store_listing_graphics",
-      "target": "branding_store_listing_readme_updating_after_a_ui_change",
+      "source": "brag_output_composition_brief_hyperframes_composition_brief_simple_shot_timer",
+      "target": "brag_output_composition_brief_visual_identity",
       "confidence_score": 1.0
     },
     {
@@ -33630,5 +31713,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a350ab351d21d082527b42995c9681c0dad55d77"
+  "built_at_commit": "a1ec09cbcc298e6bd1705f8b29ce840213d16f67"
 }
