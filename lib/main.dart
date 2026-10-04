@@ -1,4 +1,7 @@
-import 'package:flutter/foundation.dart';
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +12,7 @@ import 'providers/providers.dart';
 import 'services/audio_service.dart';
 import 'services/background_service.dart';
 import 'services/database_service.dart';
+import 'utils/legal.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,14 +22,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  // Flutter already bundles the app's own LICENSE (the GPLv3 text) for the
-  // licenses page; the section-7 additional terms in NOTICE are added here.
-  LicenseRegistry.addLicense(() async* {
-    yield LicenseEntryWithLineBreaks(
-      const ['simple_shot_timer'],
-      await rootBundle.loadString('NOTICE'),
-    );
-  });
+  registerAppLicenses();
   // Register the foreground notification channel early so the first start of
   // a string doesn't pay the channel-creation latency.
   BackgroundService.init();

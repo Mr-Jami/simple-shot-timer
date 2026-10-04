@@ -139,7 +139,7 @@
   "settings.historyHint": "Oldest strings are deleted automatically once the cap is exceeded.",
   "settings.editRange": "Range: {range}",
   "settings.openSource": "Free & open source · GPLv3",
-  "settings.legalese": "Free software under the GNU GPL v3 with additional terms, provided without any warranty. The license texts are listed below under \"simple_shot_timer\". Source code: {url}",
+  "settings.legalese": "Free software under the GNU GPL v3 with additional terms, provided without any warranty. The license texts are under \"simple_shot_timer\" further down the list. Source code: {url}",
 
   "drills.saveCurrent": "Save current drill…",
   "drills.saveCurrentHint": "Stores drill mode, start delay and par/stage values",

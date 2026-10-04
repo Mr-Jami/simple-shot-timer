@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
 /// Rounds [raw] to the nearest multiple of [step], clamped to [min, max].
 int clampToStep(num raw, {required int min, required int max, required int step}) {
   final snapped = (raw / step).round() * step;

@@ -139,7 +139,7 @@
   "settings.historyHint": "Ältere Durchgänge werden automatisch gelöscht, sobald das Limit überschritten wird.",
   "settings.editRange": "Bereich: {range}",
   "settings.openSource": "Kostenlos & Open Source · GPLv3",
-  "settings.legalese": "Freie Software unter der GNU GPL v3 mit zusätzlichen Bedingungen, ohne jegliche Gewährleistung. Die Lizenztexte stehen unten unter „simple_shot_timer“. Quellcode: {url}",
+  "settings.legalese": "Freie Software unter der GNU GPL v3 mit zusätzlichen Bedingungen, ohne jegliche Gewährleistung. Die Lizenztexte stehen weiter unten in der Liste unter „simple_shot_timer“. Quellcode: {url}",
 
   "drills.saveCurrent": "Aktuellen Drill speichern…",
   "drills.saveCurrentHint": "Speichert Modus, Startverzögerung und Par-/Stage-Werte",

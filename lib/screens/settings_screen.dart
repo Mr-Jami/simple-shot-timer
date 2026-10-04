@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -6,6 +10,7 @@ import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../models/enums.dart';
 import '../providers/settings_provider.dart';
+import '../utils/legal.dart';
 import '../utils/slider_units.dart';
 import '../widgets/settings_slider.dart';
 import '../widgets/settings_widgets.dart';
@@ -316,8 +321,6 @@ class SettingsScreen extends ConsumerWidget {
 class _Credits extends StatelessWidget {
   const _Credits();
 
-  static const _sourceUrl = 'https://github.com/Mr-Jami/simple-shot-timer';
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -332,10 +335,9 @@ class _Credits extends StatelessWidget {
         builder: (context, snapshot) {
           final version = snapshot.data?.version;
           final suffix = version == null ? '' : '  •  v$version';
-          final copyright = '© ${DateTime.now().year} Jami IT';
           return Column(
             children: [
-              Text('$copyright$suffix', style: style),
+              Text('$kCopyrightNotice$suffix', style: style),
               // The GPLv3 "Appropriate Legal Notices": copyright, no
               // warranty and the license texts, one tap away.
               TextButton(
@@ -346,9 +348,9 @@ class _Credits extends StatelessWidget {
                   context: context,
                   applicationName: context.tr('app.title'),
                   applicationVersion: version,
-                  applicationLegalese: '$copyright\n\n'
+                  applicationLegalese: '$kCopyrightNotice\n\n'
                       '${context.tr('settings.legalese', args: {
-                        'url': _sourceUrl,
+                        'url': kSourceUrl,
                       })}',
                 ),
                 child: Text(context.tr('settings.openSource')),
