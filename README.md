@@ -395,16 +395,19 @@ Simple Shot Timer is free software under the
 section 7 that are set out in [NOTICE](NOTICE). In short:
 
 - You may use, study, modify and share the app, and you may sell modified
-  versions, as long as you publish their full source code under the same
-  license.
+  versions, as long as everyone you give or sell a copy to also gets its
+  complete source code under these same terms (GPLv3 plus NOTICE).
 - Anything built on it must show this attribution in its legal notices
   (for example an About, Credits or Licenses screen):
   *"Based on Simple Shot Timer by Tareq Jami (Jami IT). The original app is
   free: https://jami-it.de/apps/simpleshottimer/"*
 - Modified versions need their own name and must not present themselves as
   the original or as made or endorsed by Tareq Jami or Jami IT.
+- The license gives no rights to the name "Simple Shot Timer", the names
+  Tareq Jami and Jami IT, or the app's icon and logo, beyond the attribution
+  above.
 
 [NOTICE](NOTICE) is the binding text; this summary is for convenience.
-Everything published before the switch to GPLv3, including all releases up
-to 2.0.0, was licensed under the Apache License 2.0 and stays available
-under it.
+Everything published before the switch to GPLv3, including every release up
+to and including 2.0.0, was licensed under the Apache License 2.0 and stays
+available under it.
