@@ -4,8 +4,8 @@ import '../models/custom_drill.dart';
 import '../models/drill_config.dart';
 
 /// One saved drill as a list row: name, one-line summary and a check mark
-/// when it is the drill the current settings match. Shared by the home
-/// quick-pick sheet and the manage screen (issue #24).
+/// when it is the drill the current settings match. Used by the Drills tab
+/// (issue #24).
 class DrillTile extends StatelessWidget {
   const DrillTile({
     super.key,

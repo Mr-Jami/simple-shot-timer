@@ -1,34 +1,58 @@
 # Simple Shot Timer
 
 A Flutter shot timer for dry-fire and live-fire drills. Detects shots through
-the microphone, supports standard and par drills, persists every string to
-local SQLite, and exports to CSV.
+the microphone, supports standard, par and stage drills, saves the drills you
+run often, persists every string to local SQLite, and exports to CSV.
+
+Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer).
 
 ## Features
 
+- **Navigation** — Four tabs: Timer, Drills, History, Settings. The tab bar
+  is greyed out and inert while a string is counting down or running.
 - **Drill modes** — Standard (open string), Par (configurable repeat
   count with optional rest interval between cycles, each cycle bounded
   by distinct start/end beeps), and Stage (long single-window timer up
   to 200s for scenario practice).
 - **Start delay** — Instant, fixed, or random within a min/max range.
-- **Shot detection** — Live PCM mic stream, amplitude-based peak detection
-  with echo filter and beep blanking so the start/par beep never registers
-  as a shot.
-- **Live mic test** — Dedicated screen with a level meter and threshold line
-  to dial in sensitivity before going hot.
+- **Saved drills** — Save the current drill (mode, start delay, par/stage
+  timing) under a name. On the Drills tab, tap a drill to apply it; its menu
+  renames, overwrites or deletes it.
+- **Shot detection** — Raw mic stream with the platform's voice processing
+  bypassed, an optional frequency-band filter and a notch at the beep tone,
+  then peak detection with an echo filter. The beep never counts as a shot,
+  and a shot fired during the beep still does.
+- **Auto-configure** — Fire a few shots and the app suggests a sensitivity
+  and frequency band for that gun and range. You can still set both by hand.
+- **Beep timing** — `t=0` is the moment the start beep is heard, measured
+  through the mic, rather than the moment playback was requested. A manual
+  latency offset covers output the mic can't hear, such as a Bluetooth
+  speaker. The flash and haptic are delayed by the learned output latency so
+  they land with the sound.
+- **Live mic test** — Level meter with the threshold line to dial in
+  sensitivity before going hot (Settings → Shot detection).
+- **Background tracking** — A string keeps detecting shots and playing par
+  beeps when you switch to another app.
 - **History** — Every string saved automatically with a rolling cap (50–5000,
-  default 500). Review individual strings with split times, fastest/slowest,
-  average, and editable label / notes / penalty.
+  default 500), together with the drill configuration it was shot with.
+  Review individual strings with split times, fastest/slowest, average, and
+  editable label / notes / penalty. A run that detects no shots is not saved
+  unless you add a shot by hand.
 - **CSV export** — Per-string or full-history export via the native share
   sheet.
-- **Manual shots** — Add or remove shots after the fact on the home screen
-  or in review.
-- **Localization** — English and German, with a JSON-backed delegate; adding
-  a language means dropping one JSON file and adding one line.
+- **Manual shots** — Add shots after the fact on the Timer tab; add or
+  delete them in review.
+- **Muted-phone notice** — While a string runs, a one-line notice appears
+  if the media volume is muted or at zero. On Android, tapping it opens the
+  volume panel.
+- **Localization** — English, German, Spanish, French and Russian, with a
+  JSON-backed delegate; adding a language means dropping one JSON file and
+  adding one line.
 - **Theme** — Monochrome Material 3 (matches the app icon). System / Light /
-  Dark / High-contrast selectable in settings.
-- **Quality-of-life** — Visual screen flash on beep, optional haptic on
-  beep, keep-screen-awake during a string.
+  Dark / High contrast selectable in settings.
+- **Quality-of-life** — Visual screen flash on beep (an edge ring instead
+  when the system asks for reduced motion), optional haptic on beep,
+  keep-screen-awake during a string, portrait layout.
 
 ## Requirements
 
@@ -63,25 +87,34 @@ flutter create . --platforms=android,ios,web
 
 ```
 .
-├── .github/workflows/
-│   ├── ci.yml                  # Lint + test on every push / PR
-│   └── deploy-play-store.yml   # Build AAB and publish to Google Play
-├── android/                    # Android platform code (manifest, mipmaps, Gradle)
-├── ios/                        # iOS platform code (Xcode project, AppIcon set)
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml                  # Analyze + test on every push / PR
+│   │   ├── release-please.yml      # Release PR, version bump, tag + GitHub Release
+│   │   └── deploy-play-store.yml   # Build AAB and publish to Google Play
+│   ├── scripts/
+│   │   └── play_release_notes.py   # GitHub Release body -> Play Store "What's new"
+│   └── pull_request_template.md
+├── android/                    # Android platform code (manifest, Gradle, volume channel)
+├── ios/                        # iOS platform code (Xcode project, audio-session + volume channels)
 ├── assets/
-│   └── i18n/                   # en.json, de.json — translation bundles
-├── branding/                   # Store-listing artwork (not bundled at runtime)
+│   ├── branding/               # App icon
+│   └── i18n/                   # en, de, es, fr, ru translation bundles
+├── branding/                   # Store-listing graphics + launch video sources (not bundled)
 ├── lib/
 │   ├── app.dart                # MaterialApp wiring (theme, locale, delegates)
-│   ├── main.dart               # Entry point + ProviderScope bootstrap
+│   ├── main.dart               # Entry point: portrait lock, ProviderScope overrides
 │   ├── i18n/                   # AppLocalizations + JSON-backed delegate
-│   ├── models/                 # AppSettings, Shot, TimerString, enums, etc.
-│   ├── providers/              # Riverpod notifiers (timer, settings, history)
-│   ├── screens/                # Home, Settings, History, Review, Mic Test
-│   ├── services/               # Audio, mic detection, SQLite, CSV export
-│   ├── utils/                  # time_format helpers
-│   └── widgets/                # BigTimeDisplay, FlashOverlay, MicLevelMeter
-├── test/                       # Unit tests for delay, detector, splits
+│   ├── models/                 # AppSettings, DrillConfig, CustomDrill, TimerString, par schedule, etc.
+│   ├── providers/              # Riverpod notifiers (timer, settings, history, saved drills)
+│   ├── screens/                # Tab shell, Timer, Drills, History, Review, Settings,
+│   │                           # Shot detection, Mic test, Auto-configure
+│   ├── services/               # Audio, shot + beep-onset detection, filters, SQLite,
+│   │                           # CSV export, platform channels, timer ports
+│   ├── theme/                  # Monochrome ThemeData
+│   ├── utils/                  # FFT, slider math + units, motion, time formatting
+│   └── widgets/                # BigTimeDisplay, FlashOverlay, MicLevelMeter, SettingsSlider, etc.
+├── test/                       # Unit + widget tests, TimerNotifier runs under FakeAsync
 ├── analysis_options.yaml
 ├── pubspec.yaml
 └── README.md
@@ -91,26 +124,48 @@ flutter create . --platforms=android,ios,web
 
 - **State management** — [Riverpod](https://riverpod.dev) (`Notifier`s, no
   external state). The timer is a single `TimerNotifier` that owns the
-  `Stopwatch`, beep timers, par schedule, and mic subscription.
+  `Stopwatch`, beep timers, par schedule, and mic subscription. It reaches
+  the platform only through four ports in `lib/services/timer_ports.dart`
+  (`ShotSource`, `BeepPlayer`, `StringStore`, `RunEnvironment`), which the
+  plugin-backed services implement. `test/timer_notifier_test.dart` drives
+  whole runs against fakes under `FakeAsync`.
 - **Persistence** — `sqflite` for strings/shots, `shared_preferences` for
-  settings. Settings are loaded once at startup via a provider override in
-  `main.dart`.
+  settings and saved drills (a JSON list). `SharedPreferences`, the database
+  and `AudioService` are created once in `main()` and injected through
+  `ProviderScope` overrides.
 - **Audio** —
-  - **Detection:** `record` package streams PCM16 chunks from the mic.
-    `ShotDetector` scans each chunk for the peak amplitude, applies an echo
-    filter and a blanking window that covers the start beep + acoustic decay,
-    then emits a clock-relative timestamp.
+  - **Detection:** `record` package streams raw PCM16 chunks from the mic
+    (`AudioSource.unprocessed` on Android, the `measurement` session mode on
+    iOS, so voice processing doesn't flatten the shot transient).
+    `ShotDetector` runs an optional band-pass and a notch at the beep
+    frequency, then scans each chunk for the peak amplitude, applies an echo
+    filter and a blanking window over the start delay, and emits a
+    clock-relative timestamp.
+  - **Beep onset:** before each start/par beep the detector arms a one-shot
+    onset detector on the unfiltered signal. The timer anchors `t=0` to the
+    audible onset and keeps a running estimate of the output latency
+    (`beepLatencyEstimateMs`) that delays the flash and haptic.
   - **Playback:** `audioplayers` plays an in-memory sine-wave WAV. The
     Android `AudioContext` is configured with `audioFocus: none` and the
     media usage stream so the beep does not pause the active `AudioRecord`
     stream.
+  - **Background:** during a string, `flutter_foreground_task` runs a
+    microphone-type foreground service on Android, and iOS declares the
+    `audio` background mode. Detection and beeps stay in the main isolate.
+- **Platform channels** — `IosAudioSession` switches the iOS session mode,
+  and `VolumeService` (`cc.jami.simpleshottimer/volume`) reports whether the
+  media stream is audible and opens the volume panel. Both are handled in
+  `MainActivity.kt` / `AppDelegate.swift`.
 - **Internationalization** — Custom `LocalizationsDelegate` that loads
   `assets/i18n/{code}.json` at runtime. Lookups use a flat dot-notation key
   (`home.standBy`) with `{placeholder}` interpolation. Missing keys fall
-  back to the key string itself for visible-during-dev debugging.
+  back to the key string itself, and `test/i18n_parity_test.dart` fails if
+  any locale's keys or placeholders differ from `en.json`.
 - **Theming** — Hand-tuned monochrome `ColorScheme` (pure black/white
   surfaces, neutral grey container variants, `surfaceTint: transparent`
-  globally to kill M3's elevation-driven hue bloom).
+  globally to kill M3's elevation-driven hue bloom). High contrast is its
+  own palette. `test/theme_monochrome_test.dart` checks that every colour
+  role stock widgets read stays grey.
 
 ## Adding a New Language
 
@@ -120,8 +175,11 @@ flutter create . --platforms=android,ios,web
    `lib/i18n/app_localizations.dart`:
 
    ```dart
-   AppLocale(code: 'fr', displayName: 'Français'),
+   AppLocale(code: 'it', displayName: 'Italiano'),
    ```
+
+3. Run `flutter test`: `test/i18n_parity_test.dart` checks that the new file
+   has every key and `{placeholder}` of `en.json`.
 
 The Settings → Language dropdown picks the new option up automatically.
 
@@ -183,26 +241,29 @@ becomes the commit subject, so the same rules apply to PR titles.
    the version bump in `pubspec.yaml` and an updated `CHANGELOG.md`.
 3. When you merge that PR, release-please creates a Git tag (`v1.1.0`) and
    a matching GitHub Release.
-4. The tag push triggers `.github/workflows/deploy-play-store.yml`, which
-   builds the signed AAB and uploads it to the Play Store `internal` track.
+4. Start `.github/workflows/deploy-play-store.yml` from *Run workflow* in
+   the Actions tab and pick the track. It builds the signed AAB from `main`
+   and uploads it with notes taken from the latest GitHub Release.
 
 > The Android `versionCode` is set from `github.run_number` at build time,
 > so it always increases monotonically (Play Store requires this even when
 > the `versionName` doesn't change).
 
-> If you want the release-please-created tag to also trigger the deploy
-> workflow automatically, give release-please a Personal Access Token with
-> `workflow` scope and pass it via the `token:` input — the default
-> `GITHUB_TOKEN` cannot trigger other workflows. Otherwise you can kick
-> the deploy off manually via *Run workflow* in the Actions tab.
+> The tag from step 3 does not start the deploy by itself: release-please
+> pushes it with the default `GITHUB_TOKEN`, which cannot trigger other
+> workflows. To deploy on every release automatically, give release-please a
+> Personal Access Token with `workflow` scope via its `token:` input; the tag
+> push then publishes to the `internal` track.
 
 ## Continuous Integration
 
-`.github/workflows/ci.yml` runs on every push and PR against `main`:
+`.github/workflows/ci.yml` runs on every push and PR against `main`, on
+Flutter `3.41.9` and JDK 17:
 
-- `dart format` check
 - `flutter analyze`
 - `flutter test`
+
+Formatting is not checked in CI.
 
 ## Releasing to Google Play
 
@@ -252,18 +313,35 @@ Configure these under *Settings → Secrets and variables → Actions*:
 
 ## Permissions
 
+Android:
+
 - **`RECORD_AUDIO`** — required for shot detection through the mic. The app
-  requests it on first START.
+  requests it the first time the mic is needed (START, mic test or
+  auto-configure).
+- **`FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MICROPHONE`** — keep detection
+  and beeps running while the app is in the background during a string.
+- **`POST_NOTIFICATIONS`** — Android 13+ needs it to show the foreground
+  service's notification; requested when a string starts, if not yet
+  granted.
 - **`WAKE_LOCK`** — keeps the screen on during a string (toggleable in
   Settings).
 - **`VIBRATE`** — optional haptic feedback on beep.
+
+iOS:
+
+- **`NSMicrophoneUsageDescription`** (`ios/Runner/Info.plist`) — the text
+  of the microphone prompt. iOS closes an app that opens the mic without it.
+- **`audio` background mode** — keeps detection and beeps running while the
+  app is in the background during a string.
 
 ## Maintainer
 
 Built and maintained by [Tareq Jami](https://tareqjami.de) of
 [Jami IT](https://jami-it.de) — software engineering and AI consulting,
-Hamburg, Germany. The app ships under `cc.jami.simpleshottimer` on Google
-Play; see [JOIN_TESTING.md](JOIN_TESTING.md) for the closed test.
+Hamburg, Germany. The app ships under `cc.jami.simpleshottimer` on
+[Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer);
+see [JOIN_TESTING.md](JOIN_TESTING.md) to get new builds early through the
+beta. Bugs and feedback: [GitHub Issues](https://github.com/Mr-Jami/simple-shot-timer/issues).
 
 ## License
 

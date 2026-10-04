@@ -40,8 +40,10 @@ platforms that restrict gunfire sounds.
 
 ### Generating the beeps
 
-They match `AudioService`: 2325 Hz sine, 300 ms (start) and 700 ms (par),
-8 ms attack, 20 ms release, 48 kHz 16-bit mono.
+Same tone as `AudioService`: 2325 Hz sine, 300 ms (start) and 700 ms (par),
+8 ms attack, 20 ms release. The files below are 48 kHz 16-bit mono with
+ffmpeg's default linear fades; the app synthesises the beep at 44.1 kHz with
+raised-cosine ramps.
 
 ```sh
 ffmpeg -f lavfi -i "sine=frequency=2325:sample_rate=48000:duration=0.3" \

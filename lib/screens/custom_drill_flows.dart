@@ -8,9 +8,9 @@ import '../providers/custom_drills_provider.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/drill_name_dialog.dart';
 
-// User flows around custom drills (issue #24), shared by the settings
-// section, the manage screen and the home quick pick so every entry point
-// behaves identically. Each flow reads its notifiers before the first await,
+// User flows around custom drills (issue #24), kept apart from the Drills
+// tab so any future entry point behaves identically. Each flow reads its
+// notifiers before the first await,
 // and a flow that uses the context after a dialog checks `mounted` first.
 
 /// Prompts for a name and saves the current drill configuration under it.
