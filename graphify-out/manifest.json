@@ -355,7 +355,7 @@
     "semantic_hash": "269aa4105ec2ad2b0ce69d17d9f83a0d"
   },
   "CHANGELOG.md": {
-    "mtime": 1791146228.1223087,
+    "mtime": 1791157595.450931,
     "ast_hash": "cb9de7cd838a09c7314ea388d3b74af0",
     "semantic_hash": ""
   },
@@ -1330,8 +1330,8 @@
     "semantic_hash": ""
   },
   "website/src/demo.js": {
-    "mtime": 1791153893.0364761,
-    "ast_hash": "dd272993c363a1c4426e6a8c28a3230f",
+    "mtime": 1791157384.1773665,
+    "ast_hash": "51ffa0ce694537990f96e756e9b486e3",
     "semantic_hash": ""
   },
   "website/src/halftone.js": {
@@ -1340,13 +1340,13 @@
     "semantic_hash": ""
   },
   "website/src/main.js": {
-    "mtime": 1791154222.2646642,
-    "ast_hash": "34ccbcd4f3d3e6709edce95f36d31e94",
+    "mtime": 1791157384.1783688,
+    "ast_hash": "9b046f9f93ebbd2c331eacca16699929",
     "semantic_hash": ""
   },
   "website/src/motion.js": {
-    "mtime": 1791155571.6398175,
-    "ast_hash": "763140fc193d487d4c5a5e5a5d9ff335",
+    "mtime": 1791157544.8608472,
+    "ast_hash": "b9b4f5e09716754a2e0a5112a2b0ff00",
     "semantic_hash": ""
   },
   "website/src/screens.js": {
@@ -1355,8 +1355,8 @@
     "semantic_hash": ""
   },
   "website/vite.config.js": {
-    "mtime": 1791153800.3907962,
-    "ast_hash": "2d4fe88d4e17f74e743e1ffb566573bd",
+    "mtime": 1791157569.07937,
+    "ast_hash": "74180e64ab39511bea1c0152e55d3576",
     "semantic_hash": ""
   },
   "website/404.html": {
@@ -1365,13 +1365,13 @@
     "semantic_hash": ""
   },
   "website/README.md": {
-    "mtime": 1791156247.4936543,
-    "ast_hash": "f94b03666e200f399f02a52a848af5d1",
+    "mtime": 1791157614.6267273,
+    "ast_hash": "0aa22f226faeab733195f06a1c18789a",
     "semantic_hash": ""
   },
   "website/index.html": {
-    "mtime": 1791155571.635818,
-    "ast_hash": "ad8eb2b61db622262b28c3075a8d0a79",
+    "mtime": 1791157418.8934186,
+    "ast_hash": "50e90d05ac84bf87ccd8eeefa07b47aa",
     "semantic_hash": ""
   },
   "website/og-image/index.html": {
@@ -1415,8 +1415,8 @@
     "semantic_hash": ""
   },
   "website/privacy/index.html": {
-    "mtime": 1791154222.266215,
-    "ast_hash": "cc76e9e430065f518d1dd8ba7a69398b",
+    "mtime": 1791157418.8913355,
+    "ast_hash": "e216b6a7fb89b87e65c9c3733d3954c8",
     "semantic_hash": ""
   },
   "website/public/llms.txt": {
@@ -1425,8 +1425,8 @@
     "semantic_hash": ""
   },
   "website/src/i18n.js": {
-    "mtime": 1791154577.9777176,
-    "ast_hash": "33e1802c492e08c52d45aa333ad41985",
+    "mtime": 1791157384.1783688,
+    "ast_hash": "71683df912abc138408d439bdaafde85",
     "semantic_hash": ""
   },
   "website/changelog/index.html": {
@@ -1445,13 +1445,13 @@
     "semantic_hash": ""
   },
   "website/de/datenschutz/index.html": {
-    "mtime": 1791154222.2682607,
-    "ast_hash": "43282c6b1975ed244a054eed697bc3f5",
+    "mtime": 1791157418.8913355,
+    "ast_hash": "142830f9ae6f2497434917c57aadb152",
     "semantic_hash": ""
   },
   "website/de/datenschutz/website/index.html": {
-    "mtime": 1791154222.2692523,
-    "ast_hash": "1bf3a423dc9823cd8a77e540ac89f337",
+    "mtime": 1791157418.8924189,
+    "ast_hash": "68e0c32cca5866de9896819d921bd101",
     "semantic_hash": ""
   },
   "website/de/impressum/index.html": {
@@ -1460,8 +1460,8 @@
     "semantic_hash": ""
   },
   "website/de/index.html": {
-    "mtime": 1791155571.6368177,
-    "ast_hash": "e7bad739ef1d123ca0f563bd3191b559",
+    "mtime": 1791157418.893924,
+    "ast_hash": "112f14b13568c887fe80c27b5365d13c",
     "semantic_hash": ""
   },
   "website/imprint/index.html": {
@@ -1470,8 +1470,8 @@
     "semantic_hash": ""
   },
   "website/privacy/website/index.html": {
-    "mtime": 1791154222.267236,
-    "ast_hash": "36fc52d11caf87b13bbd3235b849b43d",
+    "mtime": 1791157418.8924189,
+    "ast_hash": "eeecded247eb4d68c64805f794203fa0",
     "semantic_hash": ""
   },
   "website/public/google-play-badge-de.png": {
