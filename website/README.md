@@ -1,8 +1,8 @@
 # simpleshottimer.com
 
 The homepage for Simple Shot Timer, in English and German: a static site built with
-[Vite](https://vite.dev) and animated with [Anime.js](https://animejs.com) 4. It is
-deployed to Netlify by `.github/workflows/deploy-website.yml`.
+[Vite](https://vite.dev) and animated with [Anime.js](https://animejs.com) 4. Netlify
+builds and deploys it through its GitHub integration, configured in `../netlify.toml`.
 
 The hero phone is a playable timer: press START, wait for the app's 2325 Hz beep,
 then tap the screen, press Space or (after opting in) clap for each shot. The other
@@ -89,8 +89,9 @@ release-please writes. Entries are rewritten for app users with the same rules a
 the entries stay in English. The footer version, the changelog's `lastmod` in
 `sitemap.xml` and the release list in `llms-full.txt` come from the same file.
 
-The deploy workflow also runs when `CHANGELOG.md` changes on `main`, so merging a
-release PR republishes the site with the new version. Nobody has to touch `website/`.
+Netlify also builds when `CHANGELOG.md` changes on `main` (see the `ignore` rule in
+`../netlify.toml`), so merging a release PR republishes the site with the new version.
+Nobody has to touch `website/`.
 
 ## Motion
 
@@ -110,30 +111,22 @@ Motion follows Apple's guidance for fluid interfaces:
 
 ## Deployment
 
-Pushing a change under `website/` (or to `CHANGELOG.md`) to `main` deploys to
-production. A pull request that touches either gets a preview at
-`pr-<number>--<site>.netlify.app`, linked in the workflow run's summary. Netlify never
-builds the site itself: the workflow builds it and uploads `dist/` with the Netlify
-CLI (`--no-build`).
+Netlify's GitHub integration builds and deploys the site; `../netlify.toml` holds the
+settings (base `website`, `npm run build`, publish `dist`, Node 22). Pushes to `main`
+go to production. Every pull request gets a deploy preview, and the Netlify bot links it
+in a PR comment. The `ignore` rule skips builds for commits that change neither
+`website/` nor `CHANGELOG.md`, so app-only commits cost no build minutes.
 
 ### One-time setup
 
-1. **Create the Netlify site without linking it to Git** (otherwise Netlify builds on
-   every push as well). Either run `npx netlify-cli sites:create --name simpleshottimer`,
-   or in the Netlify UI choose *Add new project → Deploy manually* and drop any folder.
-2. **Copy the site ID**: the *Project ID* (formerly *Site ID*) under the project's
-   configuration, *General → Project details*.
-3. **Create a personal access token**: *User settings → Applications → Personal
-   access tokens → New access token*.
-4. **Add two repository secrets** under *Settings → Secrets and variables → Actions*:
-
-   | Secret | Value |
-   | --- | --- |
-   | `NETLIFY_AUTH_TOKEN` | The personal access token from step 3 |
-   | `NETLIFY_SITE_ID` | The site ID from step 2 |
-
-5. **Deploy once**: *Actions → Deploy website → Run workflow* on `main`.
-6. **Connect the domain**: in Netlify, *Domain management → Add a domain*, enter
+1. **Import the repository**: in Netlify, *Add new project → Import an existing
+   project → GitHub*, authorise the Netlify app for `Mr-Jami/simple-shot-timer`, pick the
+   repository and keep `main` as the branch to deploy. The build settings are read from
+   `netlify.toml`, so the fields can stay as Netlify fills them in. Select *Deploy*.
+2. **Name the project** (optional): *Project configuration → General → Project
+   information → Change project name*, for example `simpleshottimer`. This only changes
+   the `*.netlify.app` address.
+3. **Connect the domain**: in Netlify, *Domain management → Add a domain*, enter
    `simpleshottimer.com` and make it the primary domain (`www` then redirects to it).
    Netlify recommends Netlify DNS for an apex domain: change the nameservers at the
    registrar to the four Netlify shows. With DNS kept at the registrar instead, add an

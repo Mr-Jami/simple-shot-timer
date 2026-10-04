@@ -92,8 +92,7 @@ flutter create . --platforms=android,ios,web
 │   │   ├── ci.yml                  # Analyze + test on every push / PR
 │   │   ├── release-please.yml      # Release PR, version bump, tag + GitHub Release
 │   │   ├── deploy-play-store.yml   # Build AAB and publish to Google Play
-│   │   ├── deploy-app-store.yml    # Build IPA and upload to App Store Connect
-│   │   └── deploy-website.yml      # Build website/ and deploy it to Netlify
+│   │   └── deploy-app-store.yml    # Build IPA and upload to App Store Connect
 │   ├── scripts/
 │   │   └── play_release_notes.py   # GitHub Release body -> Play Store "What's new"
 │   └── pull_request_template.md
@@ -119,6 +118,7 @@ flutter create . --platforms=android,ios,web
 ├── test/                       # Unit + widget tests, TimerNotifier runs under FakeAsync
 ├── website/                    # simpleshottimer.com (Vite + Anime.js), see website/README.md
 ├── analysis_options.yaml
+├── netlify.toml                # Netlify build settings for website/
 ├── pubspec.yaml
 └── README.md
 ```
@@ -361,13 +361,12 @@ no longer has it) in the workflow when that happens.
 ## Website
 
 [simpleshottimer.com](https://simpleshottimer.com) (English, with German under
-`/de/`) is built from `website/` and deployed to Netlify by
-`.github/workflows/deploy-website.yml`: pushes to `main` that touch `website/` go live,
-pull requests get a preview deploy. Its changelog page is generated from
+`/de/`) is built from `website/` by Netlify's GitHub integration, configured in
+`netlify.toml`: pushes to `main` go live, and every pull request gets a deploy preview
+that the Netlify bot links in a comment. Its changelog page is generated from
 `CHANGELOG.md`, so merging a release PR republishes the site as well. The app's
-privacy policy is at <https://simpleshottimer.com/privacy/>. The site needs the
-`NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` secrets; setup, DNS and maintenance notes
-are in [website/README.md](website/README.md). Commits under `website/` are excluded
+privacy policy is at <https://simpleshottimer.com/privacy/>. Setup, DNS and
+maintenance notes are in [website/README.md](website/README.md). Commits under `website/` are excluded
 from release-please, so they never change the app version or the store release notes.
 
 ## Permissions

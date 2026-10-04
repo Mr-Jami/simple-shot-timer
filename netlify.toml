@@ -1,0 +1,18 @@
+# simpleshottimer.com is built and deployed by Netlify's GitHub integration:
+# production from main, a deploy preview (with the Netlify bot's comment) for
+# every pull request. This file overrides the build settings in the Netlify UI.
+
+[build]
+  base = "website"
+  command = "npm run build"
+  publish = "dist"  # relative to base
+
+  # Skip builds that can't change the site. The /changelog/ pages, the footer
+  # version, sitemap.xml and llms-full.txt are generated from the app's
+  # CHANGELOG.md, so a release (which only touches files outside website/)
+  # still deploys. Exit 0 skips, anything else builds. Without a cache Netlify
+  # sets CACHED_COMMIT_REF to COMMIT_REF; the first check makes that build run.
+  ignore = '[ "$CACHED_COMMIT_REF" != "$COMMIT_REF" ] && git diff --quiet "$CACHED_COMMIT_REF" "$COMMIT_REF" -- . ../CHANGELOG.md ../netlify.toml'
+
+[build.environment]
+  NODE_VERSION = "22"
