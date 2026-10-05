@@ -1,0 +1,6 @@
+# simpleshottimer.com: everything may be crawled, including by AI crawlers.
+# A plain-text summary for language models is at /llms.txt (full text: /llms-full.txt).
+User-agent: *
+Allow: /
+
+Sitemap: https://simpleshottimer.com/sitemap.xml

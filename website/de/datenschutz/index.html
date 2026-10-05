@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Datenschutz der App · Simple Shot Timer</title>
+  <meta name="description" content="Datenschutzerklärung der App Simple Shot Timer: alle Daten bleiben auf deinem Gerät, kein Konto, kein Tracking, keine Audioaufnahme.">
+  <!--site:alternates-->
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Simple Shot Timer">
+  <meta property="og:url" content="https://simpleshottimer.com/de/datenschutz/">
+  <meta property="og:title" content="Datenschutz der App · Simple Shot Timer">
+  <meta property="og:description" content="Alle Daten der App bleiben auf deinem Gerät. Kein Konto, kein Tracking, keine Audioaufnahme.">
+  <meta property="og:image" content="https://simpleshottimer.com/og-de.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/src/styles/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Zum Inhalt springen</a>
+<!--site:nav-->
+
+<main class="legal" id="content">
+  <article class="wrap legal-wrap">
+    <p class="eyebrow">Datenschutz</p>
+    <h1 class="h2">Datenschutz der App</h1>
+    <p class="legal-meta">Stand: 05. Oktober 2026</p>
+    <p class="legal-lede">Diese Erklärung gilt für die App Simple Shot Timer für Android und iPhone (iOS). Was beim Besuch dieser Website passiert, steht in der <a href="/de/datenschutz/website/">Datenschutzerklärung der Website</a>.</p>
+
+    <section class="legal-summary" aria-labelledby="kurz">
+      <h2 id="kurz">Kurz gesagt</h2>
+      <p>Simple Shot Timer arbeitet komplett lokal. Die App legt kein Konto an, schickt keine Daten an mich oder an Dritte und enthält weder Analyse- noch Werbe- oder Tracking-SDKs. Was die App speichert, bleibt bei dir: auf deinem Gerät und, wenn du sie eingeschaltet hast, in der Datensicherung deines Telefons.</p>
+      <p>Die App ist Open Source (GPLv3). Den Code findest du auf <a href="https://github.com/Mr-Jami/simple-shot-timer" rel="noopener">GitHub</a>, du kannst also selbst nachsehen, dass das hier stimmt.</p>
+    </section>
+
+    <h2 id="verantwortlicher">Verantwortlicher</h2>
+    <address>
+      <strong>Tareq Jami</strong> — Jami IT<br>
+      Tilsiterstraße 142<br>
+      22047 Hamburg, Deutschland<br>
+      E-Mail: <a href="mailto:info@jami-it.de">info@jami-it.de</a>
+    </address>
+
+    <h2 id="daten">Welche Daten die App verarbeitet</h2>
+    <p><strong>Auf deinem Gerät gespeichert:</strong></p>
+    <ul>
+      <li>Timer-Durchgänge („Strings“): Zeitpunkt, Übungsmodus, Verzögerung, optional Bezeichnung, Notizen und Strafzeit</li>
+      <li>Schusszeiten: Position im Durchgang, Zeit in Millisekunden, ob manuell ergänzt</li>
+      <li>Einstellungen wie Sprache, Verlaufslimit und Audio-Schwellenwerte</li>
+    </ul>
+    <p>Das liegt in einer lokalen SQLite-Datenbank und einer Einstellungsdatei im privaten Speicher der App. Ich erhalte diese Daten nie. Ist die Datensicherung deines Telefons eingeschaltet (iCloud-Backup auf dem iPhone, Google-Backup unter Android), kann das Betriebssystem diese Daten in die Sicherung aufnehmen; das bleibt zwischen dir und Apple bzw. Google.</p>
+    <p><strong>Mikrofon:</strong></p>
+    <p>Die App braucht das Mikrofon, um einen Durchgang zu stoppen. Wenn du es erlaubst, erkennt sie damit Schüsse und hört, wann der Start-Beep tatsächlich erklingt, damit die Zeit mit dem hörbaren Beep startet. Außerdem nutzt sie das Mikrofon im Mikrofontest und beim automatischen Konfigurieren, wenn du diese öffnest. Das Audio wird nur, solange eine dieser Funktionen läuft, im Arbeitsspeicher ausgewertet, um Pegel und Frequenzen zu messen. <strong>Es wird nichts aufgenommen, gespeichert oder übertragen.</strong></p>
+    <p>Die Berechtigung kannst du jederzeit in den Systemeinstellungen erteilen oder entziehen. Ohne sie kann die App keinen Durchgang stoppen; Verlauf, gespeicherte Drills und Einstellungen bleiben nutzbar.</p>
+    <p><strong>CSV-Export:</strong></p>
+    <p>Exportierst du einen Durchgang als CSV, legt die App die Datei im temporären Speicher ab und übergibt sie an den Teilen-Dialog deines Systems. Wohin sie dann geht (E-Mail, Messenger, Cloud), entscheidest du mit der App, die du dort auswählst. Darauf habe ich keinen Einfluss und keinen Einblick.</p>
+
+    <h2 id="rechtsgrundlage">Rechtsgrundlage</h2>
+    <ul>
+      <li>Lokale Speicherung von Durchgängen und Einstellungen: Art. 6 Abs. 1 lit. b DSGVO, weil sie nötig ist, um die Funktion zu erbringen, die du beim Starten und Speichern eines Durchgangs nutzt.</li>
+      <li>Mikrofonzugriff: Art. 6 Abs. 1 lit. a DSGVO, also deine Einwilligung über die Berechtigungsabfrage des Systems. Du kannst sie jederzeit in den Systemeinstellungen widerrufen; was bis dahin passiert ist, bleibt rechtmäßig.</li>
+    </ul>
+
+    <h2 id="speicherdauer">Speicherdauer</h2>
+    <p>Deine Daten bleiben auf dem Gerät, bis</p>
+    <ul>
+      <li>du einen einzelnen Durchgang in der App löschst,</li>
+      <li>du „Alle löschen“ auslöst,</li>
+      <li>das einstellbare Verlaufslimit die ältesten Durchgänge entfernt oder</li>
+      <li>du die App deinstallierst.</li>
+    </ul>
+    <p>Temporäre Exportdateien liegen im Temp-Verzeichnis des Systems und können von dort jederzeit entfernt werden.</p>
+
+    <h2 id="empfaenger">Empfänger und Drittländer</h2>
+    <p>Ich erhalte, hoste oder übertrage keine deiner Daten. Es gibt keine Empfänger, und weil die App selbst nichts von deinem Gerät sendet, übermittle ich auch nichts in Drittländer nach Art. 44 ff. DSGVO. Eine Gerätesicherung bei Apple oder Google richtest du selbst ein; dafür gelten deren Datenschutzbestimmungen.</p>
+
+    <h2 id="rechte">Deine Rechte</h2>
+    <p>Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Da alle Daten nur auf deinem Gerät liegen, übst du diese Rechte direkt in der App aus: Durchgänge ansehen, bearbeiten, als CSV exportieren und löschen. Beim Deinstallieren ist alles weg.</p>
+    <p>Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren (Art. 77 DSGVO). Für mich zuständig ist der Hamburgische Beauftragte für Datenschutz und Informationsfreiheit, Ludwig-Erhard-Straße 22, 20459 Hamburg.</p>
+
+    <h2 id="berechtigungen">Berechtigungen</h2>
+    <p><strong>Android:</strong></p>
+    <ul>
+      <li><strong>Mikrofon</strong> (<code>RECORD_AUDIO</code>): Schusserkennung, Erkennung des Start-Beeps, Mikrofontest und automatisches Konfigurieren. Nötig, um einen Durchgang zu stoppen; jederzeit widerrufbar.</li>
+      <li><strong>Vordergrunddienst</strong> (<code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_MICROPHONE</code>) und <strong>Benachrichtigungen</strong> (<code>POST_NOTIFICATIONS</code>): halten Schusserkennung und Signaltöne während eines Durchgangs im Hintergrund aktiv, mit der Benachrichtigung, die Android dabei anzeigt.</li>
+      <li><strong>Vibration</strong> (<code>VIBRATE</code>): haptisches Feedback beim Signalton.</li>
+      <li><strong>Wake Lock</strong> (<code>WAKE_LOCK</code>): hält den Prozessor wach, während ein Durchgang im Hintergrund läuft, damit Erkennung und Signaltöne nicht stoppen.</li>
+    </ul>
+    <p>Den Bildschirm während eines Durchgangs eingeschaltet zu lassen braucht keine Berechtigung.</p>
+    <p><strong>iPhone:</strong></p>
+    <ul>
+      <li><strong>Mikrofon</strong>: Schusserkennung, Erkennung des Start-Beeps, Mikrofontest und automatisches Konfigurieren. Abfrage über den Systemdialog, wenn die App das Mikrofon zum ersten Mal braucht (START, Mikrofontest oder automatisches Konfigurieren). Nötig, um einen Durchgang zu stoppen; jederzeit widerrufbar unter Einstellungen → Datenschutz &amp; Sicherheit → Mikrofon.</li>
+      <li><strong>Hintergrund-Audio</strong>: Während eines Durchgangs hört die App weiter zu und spielt Signaltöne, auch wenn du den Bildschirm sperrst oder die App wechselst. iOS zeigt in dieser Zeit die Mikrofonanzeige.</li>
+    </ul>
+    <p>Vibration und eingeschalteter Bildschirm brauchen auf dem iPhone keine Berechtigung.</p>
+
+    <h2 id="kinder">Kinder</h2>
+    <p>Die App richtet sich an Erwachsene, etwa Sportschützen auf dem Stand, und nicht gezielt an Kinder unter 16 Jahren. Ich verarbeite wissentlich keine Daten von Kindern.</p>
+
+    <h2 id="aenderungen">Änderungen</h2>
+    <p>Ändert sich die App, passe ich diese Erklärung an. Das Datum oben zeigt den aktuellen Stand; wesentliche Änderungen kündige ich in den Store-Einträgen an.</p>
+  </article>
+</main>
+
+<!--site:footer-->
+</body>
+</html>

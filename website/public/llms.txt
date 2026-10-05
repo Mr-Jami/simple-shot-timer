@@ -1,0 +1,39 @@
+# Simple Shot Timer
+
+> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android, and on iOS soon. It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
+
+- The free and open-source shot timer app. No ads, no data tracking.
+- Price: free. No ads, subscriptions or in-app purchases, and no data tracking: the app sends nothing off the phone.
+- Platforms: Android (Google Play, package `cc.jami.simpleshottimer`); iOS coming soon to the App Store.
+- Languages: English, German, Spanish, French and Russian.
+- License: GPL-3.0-only with additional attribution terms under section 7 (see NOTICE in the repository).
+- Founder and maintainer: Tareq Jami of Jami IT (https://jami-it.de/en/), Hamburg, Germany.
+- It is not meant to fully replace a dedicated shot timer: it is limited by phone hardware, and is a solid alternative to buying a $100+ timer or for when you left yours at home.
+
+## Pages
+
+- [Homepage](https://simpleshottimer.com/): what the app does, how it works, details, privacy summary, FAQ and download links
+- [What's new](https://simpleshottimer.com/changelog/): every release, newest first, in plain language
+- [App privacy policy](https://simpleshottimer.com/privacy/): what the app stores and processes (everything stays on the device)
+- [Website privacy policy](https://simpleshottimer.com/privacy/website/): what happens when you visit this site (hosting by Netlify, no cookies or tracking)
+- [Imprint](https://simpleshottimer.com/imprint/): legal notice; the site and app are run by Jami IT
+- [Full text](https://simpleshottimer.com/llms-full.txt): the homepage, FAQ and changelog in one plain-text file
+
+## German
+
+- [Startseite](https://simpleshottimer.com/de/): the homepage in German
+- [Neuerungen](https://simpleshottimer.com/de/changelog/), [Datenschutz der App](https://simpleshottimer.com/de/datenschutz/) (legally binding), [Datenschutz der Website](https://simpleshottimer.com/de/datenschutz/website/), [Impressum](https://simpleshottimer.com/de/impressum/)
+
+## Get the app
+
+- [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer): the Android app
+- [Android beta](https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md): how to get new builds before the public release
+
+## Project
+
+- [Source code](https://github.com/Mr-Jami/simple-shot-timer): the Flutter app, open source on GitHub
+- [Issues](https://github.com/Mr-Jami/simple-shot-timer/issues): bug reports and feedback
+
+## Optional
+
+- [Jami IT](https://jami-it.de/en/): the maker's software engineering and AI consulting business

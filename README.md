@@ -116,7 +116,9 @@ flutter create . --platforms=android,ios,web
 │   ├── utils/                  # FFT, slider math + units, motion, time formatting
 │   └── widgets/                # BigTimeDisplay, FlashOverlay, MicLevelMeter, SettingsSlider, etc.
 ├── test/                       # Unit + widget tests, TimerNotifier runs under FakeAsync
+├── website/                    # simpleshottimer.com (Vite + Anime.js), see website/README.md
 ├── analysis_options.yaml
+├── netlify.toml                # Netlify build settings for website/
 ├── pubspec.yaml
 └── README.md
 ```
@@ -355,6 +357,17 @@ The distribution certificate and the profile expire after one year; renew
 both and update the three `IOS_*` secrets. Apple raises the minimum Xcode
 for uploads every spring; bump `XCODE_VERSION` (and `runs-on` if the image
 no longer has it) in the workflow when that happens.
+
+## Website
+
+[simpleshottimer.com](https://simpleshottimer.com) (English, with German under
+`/de/`) is built from `website/` by Netlify's GitHub integration, configured in
+`netlify.toml`: pushes to `main` go live, and every pull request gets a deploy preview
+that the Netlify bot links in a comment. Its changelog page is generated from
+`CHANGELOG.md`, so merging a release PR republishes the site as well. The app's
+privacy policy is at <https://simpleshottimer.com/privacy/>. Setup, DNS and
+maintenance notes are in [website/README.md](website/README.md). Commits under `website/` are excluded
+from release-please, so they never change the app version or the store release notes.
 
 ## Permissions
 
