@@ -2,7 +2,7 @@
 
 > Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android, and on iOS soon. It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
 
-- The first and currently only free and open-source shot timer app.
+- The free and open-source shot timer app. No ads, no data tracking.
 - Price: free. No ads, subscriptions or in-app purchases, and no data tracking: the app sends nothing off the phone.
 - Platforms: Android (Google Play, package `cc.jami.simpleshottimer`); iOS coming soon to the App Store.
 - Languages: English, German, Spanish, French and Russian.

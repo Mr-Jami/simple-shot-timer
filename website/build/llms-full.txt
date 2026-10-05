@@ -14,7 +14,7 @@ Founder and maintainer: Tareq Jami (Jami IT), Hamburg, Germany
 
 ## At a glance
 
-- The first and currently only free and open-source shot timer app (GPL-3.0-only). No ads, no data tracking.
+- The free and open-source shot timer app (GPL-3.0-only). No ads, no data tracking.
 - Price: $0. No ads, subscriptions or in-app purchases. A dedicated shot timer costs $100 or more.
 - 3 drill modes: Standard, Par and Stage.
 - Stages of up to 200 seconds.
