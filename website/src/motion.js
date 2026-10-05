@@ -128,8 +128,9 @@ function story() {
     }
 
     let active = -1;
+    // The dimmed step text is a CSS starting state (site.css), so it is right
+    // from the first paint; activate() animates from there.
     utils.set(layers, { opacity: 0 });
-    utils.set(texts, { opacity: 0.28 });
     const live = runningLoop(runLayer);
 
     const activate = (i) => {
@@ -165,8 +166,8 @@ function runningLoop(layer) {
   const LOOP = 4600;
   const START = 500; // a beat on 0.00 before the clock runs
   let fired = 0;
-  const render = (t) => {
-    const ms = Math.max(0, t - START);
+  const render = (now) => {
+    const ms = Math.max(0, now - START);
     const done = SAMPLE_SHOTS.filter((s) => s <= ms);
     if (done.length !== fired) {
       fired = done.length;
@@ -225,7 +226,7 @@ function bento() {
       b.style.height = `${levels[i] * 100}%`;
       b.classList.toggle('hot', levels[i] > THR);
     });
-    utils.set(out, { opacity: 0.35 });
+    // Starts dimmed in CSS (site.css), so it never paints bright first.
     if (still) {
       levels = levels.map((v, i) => ([6, 14, 22, 29].includes(i) ? 0.92 : v));
       paint();
@@ -233,7 +234,7 @@ function bento() {
       utils.set(out, { opacity: 1 });
     } else {
       paint();
-      const t = createTimer({
+      const loop = createTimer({
         duration: 150, loop: true, autoplay: false,
         onLoop: () => {
           step = (step + 1) % CYCLE;
@@ -253,7 +254,7 @@ function bento() {
           }
         },
       });
-      whileVisible(c, t);
+      whileVisible(c, loop);
     }
   }
 
@@ -282,11 +283,11 @@ function bento() {
     const c = card('background');
     const time = c.querySelector('.bg-time');
     let s = 12;
-    const t = createTimer({
+    const loop = createTimer({
       duration: 1000, loop: true, autoplay: false,
       onLoop: () => { s += 1; time.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; },
     });
-    whileVisible(c, t);
+    whileVisible(c, loop);
   }
 
   // Latency: the heard beep trails the sent one, and the gap is measured.
@@ -311,8 +312,8 @@ function bento() {
           .add(ms, { opacity: 1, y: 0 }, 600)
           .add(parts, { opacity: 0, duration: 320, ease: 'out(2)' }, 3000);
       };
-      const t = createTimer({ duration: 3800, loop: true, autoplay: false, onBegin: cycle, onLoop: cycle });
-      whileVisible(c, t);
+      const loop = createTimer({ duration: 3800, loop: true, autoplay: false, onBegin: cycle, onLoop: cycle });
+      whileVisible(c, loop);
     }
   }
 
@@ -323,7 +324,7 @@ function bento() {
     const code = c.querySelector('.lg-code');
     const LANGS = [['Ready', 'EN'], ['Bereit', 'DE'], ['Listo', 'ES'], ['Prêt', 'FR'], ['Готов', 'RU']];
     let i = 0;
-    const t = createTimer({
+    const loop = createTimer({
       duration: 1700, loop: true, autoplay: false,
       onLoop: () => {
         i = (i + 1) % LANGS.length;
@@ -339,7 +340,7 @@ function bento() {
         animate(next, { y: ['100%', '0%'], opacity: [0, 1], ease: quick, onComplete: () => utils.set(next, { position: 'static' }) });
       },
     });
-    whileVisible(c, t);
+    whileVisible(c, loop);
   }
 
   // Themes and the muted notice arrive once.
@@ -394,11 +395,14 @@ function download() {
       autoplay: onScroll({ target: section, enter: 'bottom top', leave: 'bottom bottom', sync: 0.25 }),
       onUpdate: draw,
     });
-    const strokes = createDrawable(section.querySelectorAll('.cta-mark path'));
-    utils.set(strokes, { draw: '0 0' });
-    whenSeen(section.querySelector('.cta-mark'), () => animate(strokes, {
-      draw: ['0 0', '0 1'], duration: 900, ease: 'inOut(3)', delay: stagger(140),
-    }), 'bottom-=10% top');
+    const mark = section.querySelector('.cta-mark');
+    if (!onScreen(mark)) {
+      const strokes = createDrawable(mark.querySelectorAll('path'));
+      utils.set(strokes, { draw: '0 0' });
+      whenSeen(mark, () => animate(strokes, {
+        draw: ['0 0', '0 1'], duration: 900, ease: 'inOut(3)', delay: stagger(140),
+      }), 'bottom-=10% top');
+    }
   }
 }
 

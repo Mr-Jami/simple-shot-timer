@@ -213,6 +213,15 @@ button { font: inherit; color: inherit; }
 .js [data-intro], .js [data-intro-words], .js [data-intro-phone] { opacity: 0; animation: intro-fallback 0.4s 2.5s forwards; }
 .js.motion-ready [data-intro], .js.motion-ready [data-intro-words], .js.motion-ready [data-intro-phone] { animation: none; }
 @keyframes intro-fallback { to { opacity: 1; } }
+/* Other dimmed starting states, set in CSS so they hold from the first paint
+   instead of being applied by motion.js after content has been drawn. */
+@media (min-width: 1000px) {
+  .js .story-steps .step:not(:first-child) .step-text { opacity: 0.28; animation: intro-fallback 0.4s 2.5s forwards; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .ac-suggest { opacity: 0.35; animation: intro-fallback 0.4s 2.5s forwards; }
+}
+.js.motion-ready .step-text, .js.motion-ready .ac-suggest { animation: none; }
 .word-clip { display: inline-block; overflow: clip; overflow-clip-margin: 0.12em; padding-bottom: 0.06em; margin-bottom: -0.06em; vertical-align: top; }
 .word-clip > span { display: inline-block; will-change: transform; }
 
