@@ -1365,8 +1365,8 @@
     "semantic_hash": ""
   },
   "website/README.md": {
-    "mtime": 1791157614.6267273,
-    "ast_hash": "0aa22f226faeab733195f06a1c18789a",
+    "mtime": 1791158049.2808008,
+    "ast_hash": "c7ce48ea775acd19fe289f395bb42630",
     "semantic_hash": ""
   },
   "website/index.html": {
@@ -1482,6 +1482,16 @@
   "website/public/og-de.png": {
     "mtime": 1791155266.5194602,
     "ast_hash": "17146a739c1fb508c1b426b6cc04f153",
+    "semantic_hash": ""
+  },
+  "website/public/download/redirect.js": {
+    "mtime": 1791158037.655987,
+    "ast_hash": "affff6761e430a3936b2aba41ab1ef13",
+    "semantic_hash": ""
+  },
+  "website/public/download/index.html": {
+    "mtime": 1791158037.96262,
+    "ast_hash": "3f5bb7ccf0eac365e9b2411009ac67ae",
     "semantic_hash": ""
   }
 }

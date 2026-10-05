@@ -1,16 +1,16 @@
 # Graph Report - simple-shot-timer  (2026-10-05)
 
 ## Corpus Check
-- 131 files · ~225,422 words
+- 132 files · ~225,711 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1586 nodes · 2119 edges · 123 communities (95 shown, 28 thin omitted)
+- 1587 nodes · 2119 edges · 124 communities (96 shown, 28 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 12 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4e74dab4`
+- Built from commit: `add63a57`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -160,7 +160,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (123 total, 28 thin omitted)
+## Communities (124 total, 28 thin omitted)
 
 ### Community 0 - "Audio Capture & Shot Detection"
 Cohesion: 0.03
