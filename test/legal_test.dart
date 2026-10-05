@@ -16,7 +16,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   const attribution = 'Based on Simple Shot Timer by Tareq Jami (Jami IT).';
-  const originalUrl = 'https://jami-it.de/apps/simpleshottimer/';
+  const originalUrl = 'https://simpleshottimer.com/';
 
   test('NOTICE ships as an asset with the attribution and its link', () async {
     final notice = await rootBundle.loadString('NOTICE');

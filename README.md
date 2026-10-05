@@ -414,7 +414,7 @@ section 7 that are set out in [NOTICE](NOTICE). In short:
   its legal notices (for example an About, Credits or Licenses screen),
   right next to its own copyright notice and at least as prominent:
   *"Based on Simple Shot Timer by Tareq Jami (Jami IT). The original app is
-  free: https://jami-it.de/apps/simpleshottimer/"*
+  free: https://simpleshottimer.com/"*
   Shipping NOTICE in a list of licenses is not enough.
 - Modified versions need their own name and must not present themselves as
   the original or as made or endorsed by Tareq Jami or Jami IT.
