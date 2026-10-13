@@ -24,6 +24,15 @@ void main() {
     expect(notice, contains(originalUrl));
   });
 
+  test('the privacy policy link follows the language', () {
+    expect(privacyPolicyUri('de').toString(),
+        'https://simpleshottimer.com/de/datenschutz/');
+    for (final code in ['en', 'es', 'fr', 'ru']) {
+      expect(privacyPolicyUri(code).toString(),
+          'https://simpleshottimer.com/privacy/');
+    }
+  });
+
   test('the in-app copyright notice matches NOTICE', () async {
     final notice = await rootBundle.loadString('NOTICE');
     expect(

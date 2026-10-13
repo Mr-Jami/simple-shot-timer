@@ -3,7 +3,6 @@
 
   "common.cancel": "Annuler",
   "common.ok": "OK",
-  "common.reset": "Réinitialiser",
   "common.add": "Ajouter",
   "common.delete": "Supprimer",
   "common.deleteAll": "Tout supprimer",
@@ -97,9 +96,10 @@
   "review.headerLine": "{drill} · {delay} ({seconds}s de délai)",
 
   "settings.title": "Paramètres",
-  "settings.factoryResetTooltip": "Réinitialisation d'usine",
-  "settings.resetConfirmTitle": "Restaurer les valeurs par défaut ?",
-  "settings.resetConfirmBody": "Toutes les préférences seront réinitialisées. Les séries enregistrées et les exercices personnalisés ne sont pas affectés.",
+  "settings.deleteAllData": "Supprimer toutes les données et paramètres",
+  "settings.deleteAllConfirmTitle": "Supprimer toutes les données et paramètres ?",
+  "settings.deleteAllConfirmBody": "Toutes les séries enregistrées, tous les exercices personnalisés et tous les paramètres seront supprimés de cet appareil. Cette action est irréversible.\n\nPour rétablir uniquement les paramètres par défaut et garder vos séries et exercices, choisissez « Réinitialiser les paramètres ».",
+  "settings.resetSettingsOnly": "Réinitialiser les paramètres",
   "settings.section.customDrills": "Exercices personnalisés",
   "settings.section.drillMode": "Mode d'exercice",
   "settings.section.startDelay": "Délai de départ",
@@ -139,6 +139,8 @@
   "settings.historyHint": "Les séries les plus anciennes sont supprimées automatiquement une fois la limite dépassée.",
   "settings.editRange": "Plage : {range}",
   "settings.openSource": "Gratuit et open source · GPLv3",
+  "settings.privacyPolicy": "Politique de confidentialité",
+  "settings.linkOpenFailed": "Impossible d'ouvrir {url}",
   "settings.legalese": "Logiciel libre sous licence GNU GPL v3 avec des conditions supplémentaires, sans aucune garantie. Les textes de licence figurent plus bas dans la liste, sous « simple_shot_timer ». Code source : {url}",
 
   "drills.saveCurrent": "Enregistrer l'exercice actuel…",

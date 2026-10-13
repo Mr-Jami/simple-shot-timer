@@ -3,7 +3,6 @@
 
   "common.cancel": "Cancel",
   "common.ok": "OK",
-  "common.reset": "Reset",
   "common.add": "Add",
   "common.delete": "Delete",
   "common.deleteAll": "Delete all",
@@ -97,9 +96,10 @@
   "review.headerLine": "{drill} · {delay} ({seconds}s delay)",
 
   "settings.title": "Settings",
-  "settings.factoryResetTooltip": "Factory reset",
-  "settings.resetConfirmTitle": "Reset to defaults?",
-  "settings.resetConfirmBody": "All preferences will be restored to defaults. Saved strings and custom drills are not affected.",
+  "settings.deleteAllData": "Delete all data and settings",
+  "settings.deleteAllConfirmTitle": "Delete all data and settings?",
+  "settings.deleteAllConfirmBody": "This deletes every saved string, custom drill and setting from this device. It can't be undone.\n\nTo restore only the default settings and keep your strings and drills, choose Reset settings only.",
+  "settings.resetSettingsOnly": "Reset settings only",
   "settings.section.customDrills": "Custom drills",
   "settings.section.drillMode": "Drill mode",
   "settings.section.startDelay": "Start delay",
@@ -139,6 +139,8 @@
   "settings.historyHint": "Oldest strings are deleted automatically once the cap is exceeded.",
   "settings.editRange": "Range: {range}",
   "settings.openSource": "Free & open source · GPLv3",
+  "settings.privacyPolicy": "Privacy policy",
+  "settings.linkOpenFailed": "Couldn't open {url}",
   "settings.legalese": "Free software under the GNU GPL v3 with additional terms, provided without any warranty. The license texts are under \"simple_shot_timer\" further down the list. Source code: {url}",
 
   "drills.saveCurrent": "Save current drill…",

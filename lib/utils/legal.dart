@@ -13,6 +13,16 @@ const kCopyrightNotice = '© 2026 Tareq Jami (Jami IT)';
 /// Where the GPL source code lives.
 const kSourceUrl = 'https://github.com/Mr-Jami/simple-shot-timer';
 
+/// The app privacy policy, which App Store guideline 5.1.1(i) requires to be
+/// reachable from inside the app. German readers get the German version,
+/// which is the legally binding one; every other language gets English.
+const kPrivacyPolicyUrl = 'https://simpleshottimer.com/privacy/';
+const kPrivacyPolicyUrlDe = 'https://simpleshottimer.com/de/datenschutz/';
+
+Uri privacyPolicyUri(String languageCode) => Uri.parse(
+      languageCode == 'de' ? kPrivacyPolicyUrlDe : kPrivacyPolicyUrl,
+    );
+
 /// Adds the section-7 additional terms in NOTICE to the app's entry on the
 /// licenses page. Flutter already bundles the app's own LICENSE (the GPLv3
 /// text) there.

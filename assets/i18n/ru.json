@@ -3,7 +3,6 @@
 
   "common.cancel": "Отмена",
   "common.ok": "ОК",
-  "common.reset": "Сброс",
   "common.add": "Добавить",
   "common.delete": "Удалить",
   "common.deleteAll": "Удалить все",
@@ -97,9 +96,10 @@
   "review.headerLine": "{drill} · {delay} (задержка {seconds}с)",
 
   "settings.title": "Настройки",
-  "settings.factoryResetTooltip": "Заводской сброс",
-  "settings.resetConfirmTitle": "Сбросить к значениям по умолчанию?",
-  "settings.resetConfirmBody": "Все настройки будут восстановлены. Сохранённые серии и свои упражнения не пострадают.",
+  "settings.deleteAllData": "Удалить все данные и настройки",
+  "settings.deleteAllConfirmTitle": "Удалить все данные и настройки?",
+  "settings.deleteAllConfirmBody": "С этого устройства будут удалены все сохранённые серии, свои упражнения и настройки. Это нельзя отменить.\n\nЧтобы только вернуть настройки по умолчанию и сохранить серии и упражнения, выберите «Сбросить только настройки».",
+  "settings.resetSettingsOnly": "Сбросить только настройки",
   "settings.section.customDrills": "Свои упражнения",
   "settings.section.drillMode": "Режим упражнения",
   "settings.section.startDelay": "Стартовая задержка",
@@ -139,6 +139,8 @@
   "settings.historyHint": "Самые старые серии удаляются автоматически при превышении лимита.",
   "settings.editRange": "Диапазон: {range}",
   "settings.openSource": "Бесплатно и с открытым кодом · GPLv3",
+  "settings.privacyPolicy": "Политика конфиденциальности",
+  "settings.linkOpenFailed": "Не удалось открыть {url}",
   "settings.legalese": "Свободное ПО под лицензией GNU GPL v3 с дополнительными условиями, без каких-либо гарантий. Тексты лицензий приведены ниже в списке, в разделе «simple_shot_timer». Исходный код: {url}",
 
   "drills.saveCurrent": "Сохранить текущее упражнение…",

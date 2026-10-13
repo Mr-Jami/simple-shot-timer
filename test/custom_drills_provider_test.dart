@@ -145,6 +145,33 @@ void main() {
     });
   });
 
+  group('SettingsNotifier reset vs deleteAll', () {
+    test('reset restores defaults and keeps the drills', () async {
+      await notifier().add('Par', _par);
+      await settings().update((s) => s.copyWith(beepVolume: 0.2));
+
+      await settings().reset();
+      container.invalidate(customDrillsProvider);
+
+      expect(container.read(settingsProvider).beepVolume,
+          const AppSettings().beepVolume);
+      expect(drills().map((d) => d.name), ['Par']);
+    });
+
+    test('deleteAll restores defaults and removes the drills', () async {
+      await notifier().add('Par', _par);
+      await settings().update((s) => s.copyWith(beepVolume: 0.2));
+
+      await settings().deleteAll();
+      container.invalidate(customDrillsProvider);
+
+      expect(container.read(settingsProvider).beepVolume,
+          const AppSettings().beepVolume);
+      expect(drills(), isEmpty);
+      expect(prefs.getKeys(), isEmpty);
+    });
+  });
+
   group('activeDrillProvider', () {
     test('is null without drills', () {
       expect(container.read(activeDrillProvider), isNull);

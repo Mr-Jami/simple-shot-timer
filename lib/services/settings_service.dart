@@ -115,13 +115,18 @@ class SettingsService {
   Future<void> saveDrills(List<CustomDrill> drills) =>
       _prefs.setString(_kCustomDrills, CustomDrill.encodeList(drills));
 
-  /// Factory reset: wipes every preference except the custom drills, which
-  /// are user-authored content like saved strings and survive a reset.
+  /// "Reset settings only": wipes every preference except the custom drills,
+  /// which are user-authored content like saved strings and survive a reset.
   Future<void> reset() async {
     for (final key in _prefs.getKeys().toList()) {
       if (key != _kCustomDrills) await _prefs.remove(key);
     }
   }
+
+  /// Part of "Delete all data and settings": removes every preference,
+  /// custom drills included. Saved strings live in the database and are
+  /// deleted separately.
+  Future<void> clear() => _prefs.clear();
 
   T _readEnum<T extends Enum>(String key, List<T> values, T fallback) {
     final raw = _prefs.getString(key);

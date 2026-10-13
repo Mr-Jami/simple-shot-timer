@@ -95,4 +95,23 @@ void main() {
       expect(prefs.getKeys(), isEmpty);
     });
   });
+
+  group('SettingsService.clear', () {
+    test('removes every setting and the drills', () async {
+      final service = SettingsService(prefs);
+      await service.save(const AppSettings(
+        sensitivityPercent: 5,
+        themeMode: AppThemeMode.dark,
+        localeCode: 'fr',
+      ));
+      await service.saveDrills(_drills);
+
+      await service.clear();
+
+      expect(prefs.getKeys(), isEmpty);
+      expect(service.loadDrills(), isEmpty);
+      expect(service.load().sensitivityPercent,
+          const AppSettings().sensitivityPercent);
+    });
+  });
 }
