@@ -100,6 +100,8 @@
   "settings.deleteAllConfirmTitle": "Удалить все данные и настройки?",
   "settings.deleteAllConfirmBody": "С этого устройства будут удалены все сохранённые серии, свои упражнения и настройки. Это нельзя отменить.\n\nЧтобы только вернуть настройки по умолчанию и сохранить серии и упражнения, выберите «Сбросить только настройки».",
   "settings.resetSettingsOnly": "Сбросить только настройки",
+  "settings.deleteAllDone": "Все данные и настройки удалены",
+  "settings.deleteAllFailed": "Не удалось удалить всё. Попробуйте ещё раз.",
   "settings.section.customDrills": "Свои упражнения",
   "settings.section.drillMode": "Режим упражнения",
   "settings.section.startDelay": "Стартовая задержка",

@@ -33,9 +33,12 @@ class SettingsNotifier extends Notifier<AppSettings> {
   /// Preferences half of "Delete all data and settings": defaults again and
   /// the custom drills gone too. The caller deletes the saved strings and
   /// invalidates `customDrillsProvider`, which still holds the old list.
-  Future<void> deleteAll() async {
-    await ref.read(settingsServiceProvider).clear();
-    state = const AppSettings();
+  /// False when the prefs write failed; the state is left alone then, since
+  /// the old settings would be back on the next launch.
+  Future<bool> deleteAll() async {
+    final cleared = await ref.read(settingsServiceProvider).clear();
+    if (cleared) state = const AppSettings();
+    return cleared;
   }
 }
 

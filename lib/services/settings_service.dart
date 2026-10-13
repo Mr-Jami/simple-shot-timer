@@ -125,8 +125,8 @@ class SettingsService {
 
   /// Part of "Delete all data and settings": removes every preference,
   /// custom drills included. Saved strings live in the database and are
-  /// deleted separately.
-  Future<void> clear() => _prefs.clear();
+  /// deleted separately. False when the platform store failed to write.
+  Future<bool> clear() => _prefs.clear();
 
   T _readEnum<T extends Enum>(String key, List<T> values, T fallback) {
     final raw = _prefs.getString(key);

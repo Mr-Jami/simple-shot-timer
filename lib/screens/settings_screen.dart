@@ -13,6 +13,7 @@ import '../models/enums.dart';
 import '../providers/custom_drills_provider.dart';
 import '../providers/history_provider.dart';
 import '../providers/settings_provider.dart';
+import '../services/export_service.dart';
 import '../utils/legal.dart';
 import '../utils/slider_units.dart';
 import '../widgets/settings_slider.dart';
@@ -327,13 +328,29 @@ class SettingsScreen extends ConsumerWidget {
         ],
       ),
     );
+    if (!context.mounted) return;
     switch (choice) {
       case _WipeChoice.settingsOnly:
         await ref.read(settingsProvider.notifier).reset();
       case _WipeChoice.everything:
-        await ref.read(historyProvider.notifier).deleteAll();
-        await ref.read(settingsProvider.notifier).deleteAll();
-        ref.invalidate(customDrillsProvider);
+        // Resolved before the wipe: the language may reset with it, and the
+        // context may be gone afterwards.
+        final messenger = ScaffoldMessenger.of(context);
+        final done = context.tr('settings.deleteAllDone');
+        final failed = context.tr('settings.deleteAllFailed');
+        var deleted = false;
+        try {
+          await ref.read(historyProvider.notifier).deleteAll();
+          await ExportService().deleteExports();
+          deleted = await ref.read(settingsProvider.notifier).deleteAll();
+        } on Exception {
+          // Reported below; a partial wipe must not pass for a full one.
+        } finally {
+          ref.invalidate(customDrillsProvider);
+        }
+        messenger.showSnackBar(
+          SnackBar(content: Text(deleted ? done : failed)),
+        );
       case null:
         break;
     }

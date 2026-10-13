@@ -100,6 +100,8 @@
   "settings.deleteAllConfirmTitle": "Alle Daten und Einstellungen löschen?",
   "settings.deleteAllConfirmBody": "Alle gespeicherten Durchgänge, eigenen Drills und Einstellungen werden von diesem Gerät gelöscht. Das lässt sich nicht rückgängig machen.\n\nWenn du nur die Standardeinstellungen wiederherstellen und Durchgänge und Drills behalten willst, wähle „Nur Einstellungen zurücksetzen“.",
   "settings.resetSettingsOnly": "Nur Einstellungen zurücksetzen",
+  "settings.deleteAllDone": "Alle Daten und Einstellungen gelöscht",
+  "settings.deleteAllFailed": "Nicht alles konnte gelöscht werden. Bitte versuche es erneut.",
   "settings.section.customDrills": "Eigene Drills",
   "settings.section.drillMode": "Modus",
   "settings.section.startDelay": "Startverzögerung",

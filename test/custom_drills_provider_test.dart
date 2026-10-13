@@ -162,13 +162,26 @@ void main() {
       await notifier().add('Par', _par);
       await settings().update((s) => s.copyWith(beepVolume: 0.2));
 
-      await settings().deleteAll();
+      expect(await settings().deleteAll(), isTrue);
       container.invalidate(customDrillsProvider);
 
       expect(container.read(settingsProvider).beepVolume,
           const AppSettings().beepVolume);
       expect(drills(), isEmpty);
       expect(prefs.getKeys(), isEmpty);
+    });
+
+    test('deleteAll reports a failed write and keeps the settings', () async {
+      final failing = ProviderContainer(overrides: [
+        sharedPreferencesProvider.overrideWithValue(prefs),
+        settingsServiceProvider.overrideWithValue(_FailingClear(prefs)),
+      ]);
+      addTearDown(failing.dispose);
+      final notifier = failing.read(settingsProvider.notifier);
+      await notifier.update((s) => s.copyWith(beepVolume: 0.2));
+
+      expect(await notifier.deleteAll(), isFalse);
+      expect(failing.read(settingsProvider).beepVolume, 0.2);
     });
   });
 
@@ -211,4 +224,12 @@ void main() {
       expect(container.read(activeDrillProvider), isNull);
     });
   });
+}
+
+/// A prefs store whose clear fails, as when the platform write is rejected.
+class _FailingClear extends SettingsService {
+  _FailingClear(super.prefs);
+
+  @override
+  Future<bool> clear() async => false;
 }

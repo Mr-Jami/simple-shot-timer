@@ -100,6 +100,8 @@
   "settings.deleteAllConfirmTitle": "¿Eliminar todos los datos y ajustes?",
   "settings.deleteAllConfirmBody": "Se eliminarán de este dispositivo todas las series guardadas, los ejercicios personalizados y los ajustes. No se puede deshacer.\n\nPara restablecer solo los ajustes predeterminados y conservar tus series y ejercicios, elige «Restablecer solo los ajustes».",
   "settings.resetSettingsOnly": "Restablecer solo los ajustes",
+  "settings.deleteAllDone": "Se han eliminado todos los datos y ajustes",
+  "settings.deleteAllFailed": "No se pudo eliminar todo. Inténtalo de nuevo.",
   "settings.section.customDrills": "Ejercicios personalizados",
   "settings.section.drillMode": "Modo de ejercicio",
   "settings.section.startDelay": "Retardo de inicio",

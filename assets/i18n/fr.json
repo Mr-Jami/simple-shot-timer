@@ -100,6 +100,8 @@
   "settings.deleteAllConfirmTitle": "Supprimer toutes les données et paramètres ?",
   "settings.deleteAllConfirmBody": "Toutes les séries enregistrées, tous les exercices personnalisés et tous les paramètres seront supprimés de cet appareil. Cette action est irréversible.\n\nPour rétablir uniquement les paramètres par défaut et garder vos séries et exercices, choisissez « Réinitialiser les paramètres ».",
   "settings.resetSettingsOnly": "Réinitialiser les paramètres",
+  "settings.deleteAllDone": "Toutes les données et tous les paramètres ont été supprimés",
+  "settings.deleteAllFailed": "Impossible de tout supprimer. Veuillez réessayer.",
   "settings.section.customDrills": "Exercices personnalisés",
   "settings.section.drillMode": "Mode d'exercice",
   "settings.section.startDelay": "Délai de départ",
