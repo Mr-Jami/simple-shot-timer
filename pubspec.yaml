@@ -47,6 +47,9 @@ dependencies:
   # screen or switch apps mid-string without losing detection or beeps.
   flutter_foreground_task: ^9.1.0
 
+  # Opens the privacy policy from Settings (App Store guideline 5.1.1).
+  url_launcher: ^6.3.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

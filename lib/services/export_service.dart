@@ -72,6 +72,25 @@ class ExportService {
     return file;
   }
 
+  /// Names of the files [writeStringCsv] and [writeAllStringsCsv] create.
+  static final _exportName =
+      RegExp(r'^(string_(\d+|draft)_\d+|simple_shot_timer_export_\d+)\.csv$');
+
+  /// Part of "Delete all data and settings": removes every CSV export still
+  /// in temporary storage, including the copy share_plus keeps in
+  /// `share_plus/` on Android until the next share. [tempDir] is for tests.
+  Future<void> deleteExports({Directory? tempDir}) async {
+    final root = tempDir ?? await getTemporaryDirectory();
+    for (final dir in [root, Directory(p.join(root.path, 'share_plus'))]) {
+      if (!await dir.exists()) continue;
+      await for (final entity in dir.list(followLinks: false)) {
+        if (entity is File && _exportName.hasMatch(p.basename(entity.path))) {
+          await entity.delete();
+        }
+      }
+    }
+  }
+
   Future<void> share(File file, {String? subject}) async {
     await Share.shareXFiles([XFile(file.path)], subject: subject);
   }

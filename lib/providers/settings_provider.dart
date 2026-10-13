@@ -24,9 +24,21 @@ class SettingsNotifier extends Notifier<AppSettings> {
   /// other setting keeps its value (issue #24).
   Future<void> applyDrill(DrillConfig config) => update(config.applyTo);
 
+  /// "Reset settings only": defaults again, custom drills kept.
   Future<void> reset() async {
     await ref.read(settingsServiceProvider).reset();
     state = const AppSettings();
+  }
+
+  /// Preferences half of "Delete all data and settings": defaults again and
+  /// the custom drills gone too. The caller deletes the saved strings and
+  /// invalidates `customDrillsProvider`, which still holds the old list.
+  /// False when the prefs write failed; the state is left alone then, since
+  /// the old settings would be back on the next launch.
+  Future<bool> deleteAll() async {
+    final cleared = await ref.read(settingsServiceProvider).clear();
+    if (cleared) state = const AppSettings();
+    return cleared;
   }
 }
 

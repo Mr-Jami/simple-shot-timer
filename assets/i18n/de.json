@@ -3,7 +3,6 @@
 
   "common.cancel": "Abbrechen",
   "common.ok": "OK",
-  "common.reset": "Zurücksetzen",
   "common.add": "Hinzufügen",
   "common.delete": "Löschen",
   "common.deleteAll": "Alle löschen",
@@ -97,9 +96,12 @@
   "review.headerLine": "{drill} · {delay} ({seconds}s Verzögerung)",
 
   "settings.title": "Einstellungen",
-  "settings.factoryResetTooltip": "Auf Werkseinstellungen zurücksetzen",
-  "settings.resetConfirmTitle": "Auf Standardwerte zurücksetzen?",
-  "settings.resetConfirmBody": "Alle Einstellungen werden auf die Standardwerte zurückgesetzt. Gespeicherte Durchgänge und eigene Drills bleiben erhalten.",
+  "settings.deleteAllData": "Alle Daten und Einstellungen löschen",
+  "settings.deleteAllConfirmTitle": "Alle Daten und Einstellungen löschen?",
+  "settings.deleteAllConfirmBody": "Alle gespeicherten Durchgänge, eigenen Drills und Einstellungen werden von diesem Gerät gelöscht. Das lässt sich nicht rückgängig machen.\n\nWenn du nur die Standardeinstellungen wiederherstellen und Durchgänge und Drills behalten willst, wähle „Nur Einstellungen zurücksetzen“.",
+  "settings.resetSettingsOnly": "Nur Einstellungen zurücksetzen",
+  "settings.deleteAllDone": "Alle Daten und Einstellungen gelöscht",
+  "settings.deleteAllFailed": "Nicht alles konnte gelöscht werden. Bitte versuche es erneut.",
   "settings.section.customDrills": "Eigene Drills",
   "settings.section.drillMode": "Modus",
   "settings.section.startDelay": "Startverzögerung",
@@ -139,6 +141,8 @@
   "settings.historyHint": "Ältere Durchgänge werden automatisch gelöscht, sobald das Limit überschritten wird.",
   "settings.editRange": "Bereich: {range}",
   "settings.openSource": "Kostenlos & Open Source · GPLv3",
+  "settings.privacyPolicy": "Datenschutzerklärung",
+  "settings.linkOpenFailed": "{url} konnte nicht geöffnet werden",
   "settings.legalese": "Freie Software unter der GNU GPL v3 mit zusätzlichen Bedingungen, ohne jegliche Gewährleistung. Die Lizenztexte stehen weiter unten in der Liste unter „simple_shot_timer“. Quellcode: {url}",
 
   "drills.saveCurrent": "Aktuellen Drill speichern…",

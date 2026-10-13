@@ -5,11 +5,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../i18n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../models/enums.dart';
+import '../providers/custom_drills_provider.dart';
+import '../providers/history_provider.dart';
 import '../providers/settings_provider.dart';
+import '../services/export_service.dart';
 import '../utils/legal.dart';
 import '../utils/slider_units.dart';
 import '../widgets/settings_slider.dart';
@@ -277,11 +281,11 @@ class SettingsScreen extends ConsumerWidget {
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: Center(
                     child: TextButton.icon(
-                      icon: const Icon(Icons.restart_alt),
-                      label: Text(context.tr('settings.factoryResetTooltip')),
+                      icon: const Icon(Icons.delete_forever_outlined),
+                      label: Text(context.tr('settings.deleteAllData')),
                       style:
                           TextButton.styleFrom(foregroundColor: scheme.error),
-                      onPressed: () => _confirmReset(context, ref),
+                      onPressed: () => _confirmDeleteAll(context, ref),
                     ),
                   ),
                 ),
@@ -294,32 +298,88 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> _confirmReset(BuildContext context, WidgetRef ref) async {
-    final confirm = await showDialog<bool>(
+  /// One entry point for both wipes: deleting everything is the headline,
+  /// restoring default settings while keeping strings and drills is the
+  /// milder way out of the same dialog.
+  Future<void> _confirmDeleteAll(BuildContext context, WidgetRef ref) async {
+    final scheme = Theme.of(context).colorScheme;
+    final choice = await showDialog<_WipeChoice>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(context.tr('settings.resetConfirmTitle')),
-        content: Text(context.tr('settings.resetConfirmBody')),
+        title: Text(context.tr('settings.deleteAllConfirmTitle')),
+        content: Text(context.tr('settings.deleteAllConfirmBody')),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
+            onPressed: () => Navigator.pop(ctx),
             child: Text(context.tr('common.cancel')),
           ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, _WipeChoice.settingsOnly),
+            child: Text(context.tr('settings.resetSettingsOnly')),
+          ),
           FilledButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text(context.tr('common.reset')),
+            style: FilledButton.styleFrom(
+              backgroundColor: scheme.error,
+              foregroundColor: scheme.onError,
+            ),
+            onPressed: () => Navigator.pop(ctx, _WipeChoice.everything),
+            child: Text(context.tr('common.deleteAll')),
           ),
         ],
       ),
     );
-    if (confirm == true) {
-      await ref.read(settingsProvider.notifier).reset();
+    if (!context.mounted) return;
+    switch (choice) {
+      case _WipeChoice.settingsOnly:
+        await ref.read(settingsProvider.notifier).reset();
+      case _WipeChoice.everything:
+        // Resolved before the wipe: the language may reset with it, and the
+        // context may be gone afterwards.
+        final messenger = ScaffoldMessenger.of(context);
+        final done = context.tr('settings.deleteAllDone');
+        final failed = context.tr('settings.deleteAllFailed');
+        var deleted = false;
+        try {
+          await ref.read(historyProvider.notifier).deleteAll();
+          await ExportService().deleteExports();
+          deleted = await ref.read(settingsProvider.notifier).deleteAll();
+        } on Exception {
+          // Reported below; a partial wipe must not pass for a full one.
+        } finally {
+          ref.invalidate(customDrillsProvider);
+        }
+        messenger.showSnackBar(
+          SnackBar(content: Text(deleted ? done : failed)),
+        );
+      case null:
+        break;
     }
   }
 }
 
+enum _WipeChoice { settingsOnly, everything }
+
 class _Credits extends StatelessWidget {
   const _Credits();
+
+  /// Opens the policy in an in-app browser (Safari view / Custom Tab), so
+  /// Back returns straight to Settings.
+  Future<void> _openPrivacyPolicy(BuildContext context) async {
+    final uri = privacyPolicyUri(Localizations.localeOf(context).languageCode);
+    var opened = false;
+    try {
+      opened = await launchUrl(uri);
+    } on Exception {
+      // Reported below, like a `false` result.
+    }
+    if (!opened && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          context.tr('settings.linkOpenFailed', args: {'url': uri}),
+        ),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -354,6 +414,13 @@ class _Credits extends StatelessWidget {
                       })}',
                 ),
                 child: Text(context.tr('settings.openSource')),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: theme.textTheme.bodySmall,
+                ),
+                onPressed: () => _openPrivacyPolicy(context),
+                child: Text(context.tr('settings.privacyPolicy')),
               ),
             ],
           );
