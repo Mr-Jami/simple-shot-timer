@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.1.0...v2.2.0) (2026-10-13)
+
+
+### Features
+
+* **settings:** open the privacy policy and delete all your data from Settings ([#33](https://github.com/Mr-Jami/simple-shot-timer/issues/33)) ([e10e407](https://github.com/Mr-Jami/simple-shot-timer/commit/e10e4075b10f8774ab78daae6c040fd197512e95))
+
 ## [2.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.0.0...v2.1.0) (2026-10-04)
 
 
