@@ -1,0 +1,42 @@
+CREATE
+LAST	Len	"Simple Shot Timer"
+LAST	Lde	"Simple Shot Timer"
+LAST	Den	"free and open-source shot timer app for Android and iOS"
+LAST	Dde	"freie Open-Source-Shot-Timer-App für Android und iOS"
+LAST	Des	"aplicación de cronómetro de tiro libre y de código abierto para Android e iOS"
+LAST	Dfr	"application libre et open source de chronomètre de tir pour Android et iOS"
+LAST	Dpl	"wolna aplikacja timera strzeleckiego o otwartym kodzie dla Androida i iOS"
+LAST	Dpt-br	"aplicativo livre e de código aberto de timer de tiro para Android e iOS"
+LAST	Dfi	"vapaa ja avoimen lähdekoodin ajanottosovellus ammuntaan Androidille ja iOS:lle"
+LAST	Dru	"свободное приложение-таймер для стрельбы с открытым исходным кодом для Android и iOS"
+LAST	P31	Q620615	S854	"https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P31	Q341	S854	"https://github.com/Mr-Jami/simple-shot-timer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P275	Q10513445	S854	"https://github.com/Mr-Jami/simple-shot-timer/blob/main/LICENSE"	S813	+2026-10-19T00:00:00Z/11
+LAST	P6216	Q50423863	S854	"https://github.com/Mr-Jami/simple-shot-timer/blob/main/NOTICE"	S813	+2026-10-19T00:00:00Z/11
+LAST	P306	Q94	S854	"https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P306	Q48493	S854	"https://apps.apple.com/app/simple-shot-timer/id6819042653"	S813	+2026-10-19T00:00:00Z/11
+LAST	P400	Q94	S854	"https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P400	Q48493	S854	"https://apps.apple.com/app/simple-shot-timer/id6819042653"	S813	+2026-10-19T00:00:00Z/11
+LAST	P277	Q406009	S854	"https://github.com/Mr-Jami/simple-shot-timer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P1547	Q39072787	S854	"https://github.com/Mr-Jami/simple-shot-timer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P750	Q79576	S854	"https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P750	Q368215	S854	"https://apps.apple.com/app/simple-shot-timer/id6819042653"	S813	+2026-10-19T00:00:00Z/11
+LAST	P437	Q54820071	S854	"https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P3418	"cc.jami.simpleshottimer"	S854	"https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer"	S813	+2026-10-19T00:00:00Z/11
+LAST	P3861	"6819042653"	S854	"https://apps.apple.com/app/simple-shot-timer/id6819042653"	S813	+2026-10-19T00:00:00Z/11
+LAST	P856	"https://simpleshottimer.com/"	P407	Q1860
+LAST	P856	"https://simpleshottimer.com/de/"	P407	Q188
+LAST	P1324	"https://github.com/Mr-Jami/simple-shot-timer"	P10627	Q364	P8423	Q186055
+LAST	P1401	"https://github.com/Mr-Jami/simple-shot-timer/issues"
+LAST	P407	Q1860	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P407	Q188	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P407	Q1321	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P407	Q1412	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P407	Q150	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P407	Q809	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P407	Q750553	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P407	Q7737	S854	"https://github.com/Mr-Jami/simple-shot-timer/tree/main/assets/i18n"	S813	+2026-10-19T00:00:00Z/11
+LAST	P366	Q2502572	S854	"https://simpleshottimer.com/"	S813	+2026-10-19T00:00:00Z/11
+LAST	P366	Q5309588	S854	"https://simpleshottimer.com/"	S813	+2026-10-19T00:00:00Z/11
+LAST	P571	+2026-05-14T00:00:00Z/11	S854	"https://github.com/Mr-Jami/simple-shot-timer/releases/tag/v1.0.0"	S813	+2026-10-19T00:00:00Z/11
+LAST	P348	"2.3.1"	P548	Q2804309	P577	+2026-10-19T00:00:00Z/11	S854	"https://github.com/Mr-Jami/simple-shot-timer/releases/tag/v2.3.1"	S813	+2026-10-19T00:00:00Z/11
