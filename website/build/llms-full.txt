@@ -111,7 +111,7 @@ Generated from the app's CHANGELOG.md; the full list is at https://simpleshottim
 
 ## Download
 
-Simple Shot Timer is free on Google Play (https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer) and the App Store (https://apps.apple.com/app/simple-shot-timer/id6819042653). Want new builds first? Join the Android beta: https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md
+Simple Shot Timer is free on Google Play (https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer) and the App Store (https://apps.apple.com/app/simple-shot-timer/id6819042653).
 
 ## About
 

@@ -466,8 +466,6 @@ button { font: inherit; color: inherit; }
   .cta-badges { gap: 12px; }
   .cta-badges .store-badge img { height: 48px; }
 }
-.cta-beta { margin-top: 28px; color: var(--text-2); font-size: 0.9375rem; }
-.cta-beta a { color: var(--text); text-underline-offset: 3px; }
 
 /* ===== Footer ===== */
 .footer { padding: 64px 0 40px; border-top: 1px solid var(--line); background: #000; font-size: 0.875rem; }
