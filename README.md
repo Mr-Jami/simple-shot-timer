@@ -4,7 +4,8 @@ A Flutter shot timer for dry-fire and live-fire drills. Detects shots through
 the microphone, supports standard, par and stage drills, saves the drills you
 run often, persists every string to local SQLite, and exports to CSV.
 
-Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer).
+Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer)
+and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653).
 
 ## Features
 
@@ -26,8 +27,8 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami
   and frequency band for that gun and range. You can still set both by hand.
 - **Beep timing** — `t=0` is the moment the start beep is heard, measured
   through the mic, rather than the moment playback was requested. A manual
-  latency offset covers output the mic can't hear, such as a Bluetooth
-  speaker. The flash and haptic are delayed by the learned output latency so
+  latency offset covers output the mic can't hear, such as Bluetooth
+  earbuds. The flash and haptic are delayed by the learned output latency so
   they land with the sound.
 - **Live mic test** — Level meter with the threshold line to dial in
   sensitivity before going hot (Settings → Shot detection).
@@ -45,10 +46,14 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami
 - **Muted-phone notice** — While a string runs, a one-line notice appears
   if the media volume is muted or at zero. On Android, tapping it opens the
   volume panel.
+- **Privacy and data** — Everything stays on the device: no account, no
+  analytics, nothing is sent anywhere. Settings links to the privacy policy
+  and the open-source licenses, and *Delete all data and settings* wipes
+  strings, saved drills and settings (or, with *Reset settings only*, just
+  the settings).
 - **Localization** — English, German, Spanish, Finnish, French, Polish,
-  Portuguese and Russian, with a
-  JSON-backed delegate; adding a language means dropping one JSON file and
-  adding one line.
+  Portuguese (Brazilian) and Russian, with a JSON-backed delegate; adding a
+  language means dropping one JSON file and adding one line.
 - **Theme** — Monochrome Material 3 (matches the app icon). System / Light /
   Dark / High contrast selectable in settings.
 - **Quality-of-life** — Visual screen flash on beep (an edge ring instead
@@ -62,6 +67,8 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami
 - Dart SDK `>=3.3.0` (bundled with Flutter)
 - JDK 17 (for Android builds)
 - Android SDK with `platforms;android-36` + `build-tools;36.0.0` (or newer)
+- Xcode 26 on macOS (for iOS builds; CI uses `26.3`, deployment target
+  iOS 15.0)
 
 ## Getting Started
 
@@ -101,8 +108,8 @@ flutter create . --platforms=android,ios,web
 ├── ios/                        # iOS platform code (Xcode project, audio-session + volume channels)
 ├── assets/
 │   ├── branding/               # App icon
-│   └── i18n/                   # en, de, es, fr, ru translation bundles
-├── branding/                   # Store-listing graphics + launch video sources (not bundled)
+│   └── i18n/                   # en, de, es, fi, fr, pl, pt, ru translation bundles
+├── branding/                   # Store-listing graphics + text, launch video sources (not bundled)
 ├── lib/
 │   ├── app.dart                # MaterialApp wiring (theme, locale, delegates)
 │   ├── main.dart               # Entry point: portrait lock, ProviderScope overrides
@@ -326,7 +333,14 @@ Configure these under *Settings → Secrets and variables → Actions*:
 `.github/workflows/deploy-app-store.yml` builds a signed IPA on a macOS
 runner with Xcode `26.3` and uploads it to App Store Connect, where it
 appears in TestFlight. Submitting a build for App Review is done in App
-Store Connect. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
+Store Connect: add the version (the one in `pubspec.yaml`), select the
+build and fill in *What's New*, since the workflow uploads no release
+notes. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
+
+The listing text for both stores (descriptions, short description, What's
+New) is kept in
+[branding/store-listing/listing-text.md](branding/store-listing/listing-text.md)
+and pasted into Play Console and App Store Connect by hand.
 
 ### Triggers
 
@@ -356,6 +370,10 @@ Store Connect. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
    *App Store Connect* provisioning profile for that App ID.
 4. Create the app in App Store Connect (*Apps → +*) with that bundle ID.
 5. Add all six secrets listed above to GitHub.
+6. Declare the EU Digital Services Act trader status (*Business → Digital
+   Services Act* in App Store Connect) and complete its verification.
+   Without it the app is not offered in any EU storefront, and Apple can
+   refuse to accept updates for review.
 
 The distribution certificate and the profile expire after one year; renew
 both and update the three `IOS_*` secrets. Apple raises the minimum Xcode
@@ -401,9 +419,10 @@ iOS:
 Built and maintained by [Tareq Jami](https://tareqjami.de) of
 [Jami IT](https://jami-it.de) — software engineering and AI consulting,
 Hamburg, Germany. The app ships under `cc.jami.simpleshottimer` on
-[Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer);
-see [JOIN_TESTING.md](JOIN_TESTING.md) to get new builds early through the
-beta. Bugs and feedback: [GitHub Issues](https://github.com/Mr-Jami/simple-shot-timer/issues).
+[Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer)
+and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653);
+on Android, see [JOIN_TESTING.md](JOIN_TESTING.md) to get new builds early
+through the beta. Bugs and feedback: [GitHub Issues](https://github.com/Mr-Jami/simple-shot-timer/issues).
 
 ## License
 
