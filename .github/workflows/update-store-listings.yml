@@ -111,7 +111,9 @@ jobs:
         # description, keywords, What's New, support and marketing URL on the
         # version, in each language under fastlane/metadata/ios. Nothing is
         # submitted for review, and fields without a file (the English
-        # keywords) keep their current value.
+        # keywords) keep their current value. deliver runs precheck after the
+        # upload even without a submission, and precheck fails with an API
+        # key, so it is switched off.
         env:
           VERSION_INPUT: ${{ inputs.app_store_version }}
         run: |
@@ -129,6 +131,7 @@ jobs:
             skip_binary_upload:true \
             skip_screenshots:true \
             submit_for_review:false \
+            run_precheck_before_submit:false \
             force:true
 
       - name: Remove API key
