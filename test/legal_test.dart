@@ -27,7 +27,7 @@ void main() {
   test('the privacy policy link follows the language', () {
     expect(privacyPolicyUri('de').toString(),
         'https://simpleshottimer.com/de/datenschutz/');
-    for (final code in ['en', 'es', 'fr', 'ru']) {
+    for (final code in ['en', 'es', 'fi', 'fr', 'pl', 'pt', 'ru']) {
       expect(privacyPolicyUri(code).toString(),
           'https://simpleshottimer.com/privacy/');
     }

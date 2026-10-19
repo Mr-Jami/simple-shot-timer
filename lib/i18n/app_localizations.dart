@@ -33,7 +33,10 @@ const List<AppLocale> kSupportedAppLocales = <AppLocale>[
   AppLocale(code: 'en', displayName: 'English'),
   AppLocale(code: 'de', displayName: 'Deutsch'),
   AppLocale(code: 'es', displayName: 'Español'),
+  AppLocale(code: 'fi', displayName: 'Suomi'),
   AppLocale(code: 'fr', displayName: 'Français'),
+  AppLocale(code: 'pl', displayName: 'Polski'),
+  AppLocale(code: 'pt', displayName: 'Português'),
   AppLocale(code: 'ru', displayName: 'Русский'),
 ];
 

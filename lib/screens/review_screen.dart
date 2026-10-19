@@ -431,11 +431,16 @@ class _SummaryGrid extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  i.label,
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    letterSpacing: 2,
-                    color: theme.colorScheme.onSurfaceVariant,
+                // Long translations (DURCHSCHNITT, ENSIMMÄINEN) shrink to
+                // one line instead of wrapping out of the fixed-height tile.
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    i.label,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      letterSpacing: 2,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ),
                 Text(
@@ -634,11 +639,14 @@ class _CycleStat extends StatelessWidget {
     final theme = Theme.of(context);
     return Column(
       children: [
-        Text(
-          label,
-          style: theme.textTheme.labelSmall?.copyWith(
-            letterSpacing: 1.5,
-            color: theme.colorScheme.onSurfaceVariant,
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            label,
+            style: theme.textTheme.labelSmall?.copyWith(
+              letterSpacing: 1.5,
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
         ),
         const SizedBox(height: 2),

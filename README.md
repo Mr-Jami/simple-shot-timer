@@ -45,7 +45,8 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami
 - **Muted-phone notice** — While a string runs, a one-line notice appears
   if the media volume is muted or at zero. On Android, tapping it opens the
   volume panel.
-- **Localization** — English, German, Spanish, French and Russian, with a
+- **Localization** — English, German, Spanish, Finnish, French, Polish,
+  Portuguese and Russian, with a
   JSON-backed delegate; adding a language means dropping one JSON file and
   adding one line.
 - **Theme** — Monochrome Material 3 (matches the app icon). System / Light /
