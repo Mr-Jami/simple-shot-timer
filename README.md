@@ -393,7 +393,8 @@ no longer has it) in the workflow when that happens.
 
 The listing text for both stores, in every app language, lives in
 [fastlane/metadata/](fastlane/metadata/README.md): Play title, short and
-full description; App Store name, subtitle, description, keywords and URLs.
+full description; App Store name, subtitle, promotional text, description,
+keywords and URLs.
 `.github/workflows/update-store-listings.yml` uploads it with fastlane,
 using the deploy workflows' secrets, together with the App Store's What's
 New, which it builds from the GitHub Releases. Start it from *Run workflow*:
@@ -407,6 +408,9 @@ New, which it builds from the GitHub Releases. Start it from *Run workflow*:
   submits. Description, keywords and What's New can only change with a new
   version, so run it for each release before submitting; the English
   keywords have no file and keep whatever App Store Connect has.
+- **What's New** (on by default) writes the App Store What's New from the
+  GitHub Releases. Turn it off to change other fields without replacing
+  What's New text edited in App Store Connect.
 - **Validate only** saves nothing: it checks the Google Play listings with
   Google and prints the App Store What's New. App Store Connect has no dry
   run, so nothing is sent to Apple.

@@ -40,6 +40,7 @@ Brazilian, like the app.
 | `ios/*/name.txt` | App Store: Name | 30 |
 | `ios/*/subtitle.txt` | App Store: Subtitle | 30 |
 | `ios/*/privacy_url.txt` | App Store: Privacy Policy URL | |
+| `ios/*/promotional_text.txt` | App Store: Promotional Text (*Werbetext*) | 170 |
 | `ios/*/description.txt` | App Store: Description | 4000 |
 | `ios/*/keywords.txt` | App Store: Keywords, comma-separated | 100 |
 | `ios/*/support_url.txt` | App Store: Support URL | |
@@ -51,9 +52,14 @@ What's New can only change with a new version. The privacy URL is the page
 the app itself opens: `/de/datenschutz/` for German, `/privacy/` for every
 other language.
 
+The promotional text sits above the description. It is the one version field
+Apple lets you change without a new version, but the workflow writes it to
+the version being prepared, so it appears once that version is live. It
+currently ends with "Now in 8 languages"; refresh it when that stops being
+news.
+
 `ios/en-US` has no `keywords.txt`: the English keywords live only in App Store
-Connect, and the workflow leaves fields without a file alone. Promotional
-text isn't kept here either.
+Connect, and the workflow leaves fields without a file alone.
 
 ## What's New
 
@@ -67,7 +73,9 @@ every language:
   Store, up to the one being prepared, written into each `ios/*/` folder as
   `release_notes.txt` by the workflow just before the upload. A committed
   `release_notes.txt` would be overwritten, so the listing test rejects one.
-  *Validate only* shows the text without uploading it.
+  *Validate only* shows the text without uploading it; with *What's New*
+  switched off the workflow writes none, and App Store Connect keeps its
+  text.
 
 So the commit and PR titles are the release notes (see "Commit messages are
 store release notes" in the main README).
