@@ -33,6 +33,7 @@
 
 - [Source code](https://github.com/Mr-Jami/simple-shot-timer): the Flutter app, open source on GitHub
 - [Issues](https://github.com/Mr-Jami/simple-shot-timer/issues): bug reports and feedback
+- [Wikidata](https://www.wikidata.org/wiki/Q141781031): structured facts about the app
 
 ## Optional
 

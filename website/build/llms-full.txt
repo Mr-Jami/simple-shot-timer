@@ -6,6 +6,7 @@ Website: https://simpleshottimer.com/
 Google Play: https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer
 App Store: https://apps.apple.com/app/simple-shot-timer/id6819042653
 Source code: https://github.com/Mr-Jami/simple-shot-timer
+Wikidata: https://www.wikidata.org/wiki/Q141781031
 App privacy policy: https://simpleshottimer.com/privacy/ (German, legally binding: https://simpleshottimer.com/de/datenschutz/)
 Website privacy policy: https://simpleshottimer.com/privacy/website/
 Imprint: https://simpleshottimer.com/imprint/

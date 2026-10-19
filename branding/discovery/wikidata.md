@@ -5,8 +5,12 @@ is, as structured facts: a free, open-source mobile app for Android and iOS,
 used for practical shooting and dry fire, with its website, source code and
 store IDs. Google's Knowledge Graph and most AI models draw on Wikidata.
 
-Checked on 2026-10-19: Wikidata has no item for Simple Shot Timer, Tareq Jami
-or Jami IT yet. Every item and property ID below was looked up through the
+**Created on 2026-10-20 as [Q141781031](https://www.wikidata.org/wiki/Q141781031)**, by hand
+(QuickStatements needs an autoconfirmed account: 4 days and 50 edits). The
+draft below stays as the reference for what the item should say.
+
+Checked on 2026-10-19: Wikidata had no item for Simple Shot Timer, Tareq Jami
+or Jami IT. Every item and property ID below was looked up through the
 Wikidata API; [AntennaPod](https://www.wikidata.org/wiki/Q16927599), an
 open-source app with a mature item, served as the model.
 
