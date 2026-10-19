@@ -142,6 +142,11 @@ build is unsigned without `key.properties`, so it needs no workarounds.
    (*+ → New file*) with the contents of
    [cc.jami.simpleshottimer.yml](cc.jami.simpleshottimer.yml) (copy it from
    GitHub's *Raw* view). Commit message: `New app: Simple Shot Timer`.
+   The file must use LF line endings and contain no comments: the pipeline's
+   `fdroid rewritemeta` job fails on anything that isn't in F-Droid's exact
+   format, and the build job's final check can't find `versionCode` behind a
+   CRLF. In GitLab's Web IDE the line ending is shown (and switched) at the
+   bottom right of the editor.
 4. Open a merge request from that branch to `fdroid/fdroiddata:master`.
    Title: `New app: Simple Shot Timer`. Choose the *App inclusion* template
    and replace its text with
