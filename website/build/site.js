@@ -10,6 +10,7 @@ import { resolve } from 'node:path';
 
 export const ORIGIN = 'https://simpleshottimer.com';
 const PLAY = 'https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer';
+const APP_STORE = 'https://apps.apple.com/app/simple-shot-timer/id6819042653';
 const REPO = 'https://github.com/Mr-Jami/simple-shot-timer';
 
 /** Every page in both languages. The English URL is also x-default. */
@@ -45,7 +46,7 @@ const T = {
     sitePrivacy: 'Website privacy policy',
     imprint: 'Imprint',
     version: 'Version',
-    trademark: 'Google Play and the Google Play logo are trademarks of Google LLC.',
+    trademark: 'Google Play and the Google Play logo are trademarks of Google LLC. Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.',
     footerLabel: 'Footer',
   },
   de: {
@@ -69,7 +70,7 @@ const T = {
     sitePrivacy: 'Datenschutz der Website',
     imprint: 'Impressum',
     version: 'Version',
-    trademark: 'Google Play und das Google Play-Logo sind Marken von Google LLC.',
+    trademark: 'Google Play und das Google Play-Logo sind Marken von Google LLC. Apple und das Apple-Logo sind Marken der Apple Inc., die in den USA und weiteren Ländern eingetragen sind. App Store ist eine Dienstleistungsmarke der Apple Inc.',
     footerLabel: 'Fußzeile',
   },
 };
@@ -130,6 +131,7 @@ export function footer(page, version) {
         <h2>${t.app}</h2>
         <ul>
           ${item(PLAY, 'Google Play', true)}
+          ${item(APP_STORE, 'App Store', true)}
           ${item(l('/changelog/'), t.changelog)}
           ${item(`${REPO}/blob/main/JOIN_TESTING.md`, t.beta, true)}
         </ul>

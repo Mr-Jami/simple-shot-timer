@@ -1,10 +1,10 @@
 # Simple Shot Timer
 
-> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android, and on iOS soon. It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
+> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android and iPhone (iOS). It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
 
 Website: https://simpleshottimer.com/
 Google Play: https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer
-iOS: coming soon to the App Store
+App Store: https://apps.apple.com/app/simple-shot-timer/id6819042653
 Source code: https://github.com/Mr-Jami/simple-shot-timer
 App privacy policy: https://simpleshottimer.com/privacy/ (German, legally binding: https://simpleshottimer.com/de/datenschutz/)
 Website privacy policy: https://simpleshottimer.com/privacy/website/
@@ -20,7 +20,7 @@ Founder and maintainer: Tareq Jami (Jami IT), Hamburg, Germany
 - Stages of up to 200 seconds.
 - Up to 5,000 strings kept in the history (the cap is adjustable from 50 to 5,000; default 500).
 - 8 languages: English, Deutsch, Español, Suomi, Français, Polski, Português, Русский.
-- Platforms: Android now; iOS soon.
+- Platforms: Android and iPhone (iOS).
 - Open source under GPL-3.0-only, with additional attribution terms under section 7 (NOTICE file in the repository).
 
 ## How it works
@@ -93,7 +93,7 @@ No. The clock starts when the mic hears the beep, so the speaker's lag is measur
 
 ### Is there an iPhone version?
 
-It's coming to the App Store soon. On Android it's available now on Google Play, and you can join the beta to get new builds first: https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md
+Yes. It's free on the App Store for iPhone (https://apps.apple.com/app/simple-shot-timer/id6819042653), just as it is on Google Play for Android. On Android you can also join the beta to get new builds first: https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md
 
 ### Does the app record me?
 
@@ -111,7 +111,7 @@ Generated from the app's CHANGELOG.md; the full list is at https://simpleshottim
 
 ## Download
 
-Simple Shot Timer is free on Google Play (https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer) and coming soon to the App Store. Want new builds first? Join the Android beta: https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md
+Simple Shot Timer is free on Google Play (https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer) and the App Store (https://apps.apple.com/app/simple-shot-timer/id6819042653). Want new builds first? Join the Android beta: https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md
 
 ## About
 
