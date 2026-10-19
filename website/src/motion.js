@@ -32,7 +32,7 @@ const onScreen = (el) => {
   return r.bottom > 0 && r.top < window.innerHeight;
 };
 
-// ----- Hero intro: nav, pill, headline words, copy, then the phone -----
+// ----- Hero intro: nav, headline words, copy, then the phone -----
 export function intro() {
   const root = document.documentElement;
   const h1 = document.querySelector('[data-intro-words]');
@@ -61,7 +61,6 @@ export function intro() {
   utils.set(words, { y: '105%' });
   createTimeline({ defaults: { ease: settle } })
     .add('.nav', { opacity: [0, 1], y: [-14, 0] }, 0)
-    .add('.hero .hero-pill', { opacity: [0, 1], y: [14, 0] }, 120)
     .add(words, { y: ['105%', '0%'] }, stagger(90, { start: 200 }))
     .add('.hero .lede', { opacity: [0, 1], y: [18, 0] }, 460)
     .add('.hero .cta-row', { opacity: [0, 1], y: [18, 0] }, 540)
@@ -401,9 +400,12 @@ function download() {
     const mark = section.querySelector('.cta-mark');
     if (!onScreen(mark)) {
       const strokes = createDrawable(mark.querySelectorAll('path'));
-      utils.set(strokes, { draw: '0 0' });
+      // A zero-length stroke with round caps still paints a dot, so each
+      // stroke stays hidden until its own draw begins.
+      utils.set(strokes, { draw: '0 0', opacity: 0 });
       whenSeen(mark, () => animate(strokes, {
-        draw: ['0 0', '0 1'], duration: 900, ease: 'inOut(3)', delay: stagger(140),
+        draw: ['0 0', '0 1'], opacity: { to: 1, duration: 1 },
+        duration: 900, ease: 'inOut(3)', delay: stagger(140),
       }), 'bottom-=10% top');
     }
   }

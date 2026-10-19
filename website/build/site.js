@@ -36,7 +36,6 @@ const T = {
     jamiIt: 'https://jami-it.de/en/',
     app: 'App',
     changelog: 'Changelog',
-    beta: 'Join the beta',
     project: 'Project',
     source: 'Source code',
     bug: 'Report a bug',
@@ -60,7 +59,6 @@ const T = {
     jamiIt: 'https://jami-it.de/',
     app: 'App',
     changelog: 'Neuerungen',
-    beta: 'Beim Beta-Test mitmachen',
     project: 'Projekt',
     source: 'Quellcode',
     bug: 'Fehler melden',
@@ -133,7 +131,6 @@ export function footer(page, version) {
           ${item(PLAY, 'Google Play', true)}
           ${item(APP_STORE, 'App Store', true)}
           ${item(l('/changelog/'), t.changelog)}
-          ${item(`${REPO}/blob/main/JOIN_TESTING.md`, t.beta, true)}
         </ul>
       </div>
       <div>

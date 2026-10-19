@@ -28,7 +28,6 @@
 
 - [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer): the Android app
 - [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653): the iPhone app
-- [Android beta](https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md): how to get new builds before the public release
 
 ## Project
 

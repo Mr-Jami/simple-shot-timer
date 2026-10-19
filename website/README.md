@@ -151,12 +151,17 @@ in a PR comment. The `ignore` rule skips builds for commits that change neither
 - **Security headers** live in `public/_headers`. The CSP allows the one inline script
   in both homepages by its SHA-256 hash. If you change that line, recompute the hash:
   `printf "%s" "document.documentElement.classList.add('js')" | openssl dgst -sha256 -binary | openssl base64`
-- **Store links**: the Google Play and App Store links appear in both homepages (hero
-  buttons, the FAQ, the `#download` badges), in the footer (`build/site.js`, which also
+- **Store links**: the Google Play and App Store links appear in both homepages (the
+  hero and `#download` badges, the FAQ), in the footer (`build/site.js`, which also
   holds the trademark notices), in `public/download/redirect.js` and in both llms files.
   Change them everywhere together. The badges are the official artwork from Google and
   Apple (`public/google-play-badge*.png`, `public/app-store-badge*.svg`); don't redraw
-  or recolour them.
+  or recolour them. The Google PNGs are cropped to the badge (Google's downloads come
+  with transparent padding), so both badges line up by height alone: 48px in the hero,
+  56px in `#download`. A replacement download needs the same crop, e.g.
+  `ffmpeg -i in.png -vf crop=W:H:X:Y out.png` with the box of the visible art.
+  Which platforms the app runs on is said once in the hero's checklist ("iPhone &
+  Android"), not in a separate label.
 - **Link preview images**: `public/og.png` and `public/og-de.png` are screenshots of
   `#og` in `og-image/index.html` at 1200x630. Run `npm run dev`, open
   `http://localhost:5173/og-image/` (add `?lang=de` for the German one), and capture

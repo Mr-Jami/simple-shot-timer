@@ -25,18 +25,25 @@ export function drawHalftone(canvas, p, color = '#fee036') {
   const reach = Math.min(200, H * 0.3);
   const e = 1 - (1 - p) ** 3; // ease out
   const startY = H + 30 - (reach + 30) * e;
-  for (let y = spacing / 2; y < H + spacing; y += spacing) {
-    for (let x = spacing / 2; x < W + spacing; x += spacing) {
-      const wave = (reach * 0.14) * Math.sin((x / W) * Math.PI * 1.3 + 0.4) - (reach * 0.16) * (x / W);
-      const yT = startY + wave;
+  // One path for every dot and a single fill: far fewer draw calls per
+  // scroll frame than filling each dot on its own.
+  ctx.beginPath();
+  for (let x = spacing / 2; x < W + spacing; x += spacing) {
+    const wave = (reach * 0.14) * Math.sin((x / W) * Math.PI * 1.3 + 0.4) - (reach * 0.16) * (x / W);
+    const yT = startY + wave;
+    // While the line is still below the bottom edge, this column has no dots
+    // yet. Without this check H - yT turns negative, q flips sign and the
+    // whole column above the line fills with full-size dots.
+    if (yT >= H) continue;
+    for (let y = spacing / 2; y < H + spacing; y += spacing) {
       let q = (y - yT) / (H - yT);
       if (q <= 0) continue;
       if (q > 1) q = 1;
       const r = maxR * q ** 0.85;
       if (r < 0.4) continue;
-      ctx.beginPath();
+      ctx.moveTo(x + r, y);
       ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
     }
   }
+  ctx.fill();
 }
