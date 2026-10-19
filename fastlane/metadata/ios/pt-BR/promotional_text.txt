@@ -1,0 +1,1 @@
+Timer de tiro grátis e de código aberto para tiro em seco e real. Ouve cada disparo, mostra splits ao vivo, exercícios par. Sem anúncios. Agora em 8 idiomas.
