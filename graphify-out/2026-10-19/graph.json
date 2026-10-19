@@ -17,7 +17,7 @@
       "label": "warn()",
       "file_type": "code",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L47",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "github_scripts_play_release_notes_warn",
       "community": 108,
@@ -27,7 +27,7 @@
       "label": "section_for()",
       "file_type": "code",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L51",
+      "source_location": "L56",
       "_origin": "ast",
       "id": "github_scripts_play_release_notes_section_for",
       "community": 108,
@@ -37,7 +37,7 @@
       "label": "clean_entry()",
       "file_type": "code",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L57",
+      "source_location": "L62",
       "_origin": "ast",
       "id": "github_scripts_play_release_notes_clean_entry",
       "community": 108,
@@ -47,7 +47,7 @@
       "label": "parse()",
       "file_type": "code",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L73",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "github_scripts_play_release_notes_parse",
       "community": 108,
@@ -57,7 +57,7 @@
       "label": "shorten()",
       "file_type": "code",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L109",
+      "source_location": "L114",
       "_origin": "ast",
       "id": "github_scripts_play_release_notes_shorten",
       "community": 108,
@@ -67,7 +67,7 @@
       "label": "render()",
       "file_type": "code",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L116",
+      "source_location": "L121",
       "_origin": "ast",
       "id": "github_scripts_play_release_notes_render",
       "community": 108,
@@ -77,7 +77,7 @@
       "label": "main()",
       "file_type": "code",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L138",
+      "source_location": "L143",
       "_origin": "ast",
       "id": "github_scripts_play_release_notes_main",
       "community": 108,
@@ -87,9 +87,9 @@
       "label": "Returns (sections in output order, whether any section heading was seen).",
       "file_type": "rationale",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L74",
+      "source_location": "L79",
       "_origin": "ast",
-      "id": "github_scripts_play_release_notes_rationale_74",
+      "id": "github_scripts_play_release_notes_rationale_79",
       "community": 108,
       "norm_label": "returns (sections in output order, whether any section heading was seen)."
     },
@@ -97,9 +97,9 @@
       "label": "Returns (notes, number of entries left out for length).",
       "file_type": "rationale",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L117",
+      "source_location": "L122",
       "_origin": "ast",
-      "id": "github_scripts_play_release_notes_rationale_117",
+      "id": "github_scripts_play_release_notes_rationale_122",
       "community": 108,
       "norm_label": "returns (notes, number of entries left out for length)."
     },
@@ -180,7 +180,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity",
-      "community": 116,
+      "community": 99,
       "norm_label": "mainactivity.kt"
     },
     {
@@ -190,7 +190,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity",
-      "community": 116,
+      "community": 99,
       "norm_label": "mainactivity"
     },
     {
@@ -200,7 +200,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "flutteractivity",
-      "community": 116,
+      "community": 99,
       "norm_label": "flutteractivity"
     },
     {
@@ -210,7 +210,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_mainactivity_configureflutterengine",
-      "community": 116,
+      "community": 99,
       "norm_label": ".configureflutterengine()"
     },
     {
@@ -220,7 +220,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_mainactivity_kt_flutterengine",
-      "community": 116,
+      "community": 99,
       "norm_label": "flutterengine"
     },
     {
@@ -682,7 +682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 54,
+      "community": 133,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -712,7 +712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_material_dart",
-      "community": 91,
+      "community": 125,
       "norm_label": "package:flutter/material.dart"
     },
     {
@@ -732,7 +732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 102,
+      "community": 81,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -762,7 +762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 133,
+      "community": 80,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -912,7 +912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "list",
-      "community": 137,
+      "community": 81,
       "norm_label": "list"
     },
     {
@@ -1042,7 +1042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_convert",
-      "community": 134,
+      "community": 106,
       "norm_label": "dart:convert"
     },
     {
@@ -1052,7 +1052,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_services_dart",
-      "community": 98,
+      "community": 99,
       "norm_label": "package:flutter/services.dart"
     },
     {
@@ -2382,7 +2382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_math",
-      "community": 138,
+      "community": 55,
       "norm_label": "dart:math"
     },
     {
@@ -2532,7 +2532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_timer_state_timerstate",
-      "community": 29,
+      "community": 57,
       "norm_label": "timerstate"
     },
     {
@@ -3092,7 +3092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return",
-      "community": 81,
+      "community": 82,
       "norm_label": "return"
     },
     {
@@ -3182,7 +3182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_drill_config_dart",
-      "community": 127,
+      "community": 112,
       "norm_label": "../models/drill_config.dart"
     },
     {
@@ -3192,7 +3192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_dart",
-      "community": 102,
+      "community": 81,
       "norm_label": "providers.dart"
     },
     {
@@ -3212,7 +3212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider",
-      "community": 102,
+      "community": 81,
       "norm_label": "history_provider.dart"
     },
     {
@@ -3222,7 +3222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_historynotifier",
-      "community": 137,
+      "community": 81,
       "norm_label": "historynotifier"
     },
     {
@@ -3232,7 +3232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "asyncnotifier",
-      "community": 137,
+      "community": 81,
       "norm_label": "asyncnotifier"
     },
     {
@@ -3252,7 +3252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_build",
-      "community": 102,
+      "community": 81,
       "norm_label": "build"
     },
     {
@@ -3262,7 +3262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_refresh",
-      "community": 102,
+      "community": 81,
       "norm_label": "refresh"
     },
     {
@@ -3272,7 +3272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_delete",
-      "community": 102,
+      "community": 81,
       "norm_label": "delete"
     },
     {
@@ -3282,7 +3282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_deleteall",
-      "community": 102,
+      "community": 81,
       "norm_label": "deleteall"
     },
     {
@@ -3292,7 +3292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 102,
+      "community": 52,
       "norm_label": "../models/timer_string.dart"
     },
     {
@@ -3322,7 +3322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_databaseprovider",
-      "community": 102,
+      "community": 81,
       "norm_label": "databaseprovider"
     },
     {
@@ -3372,7 +3372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_beepplayerprovider",
-      "community": 85,
+      "community": 57,
       "norm_label": "beepplayerprovider"
     },
     {
@@ -3402,7 +3402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_shotdetectorprovider",
-      "community": 21,
+      "community": 84,
       "norm_label": "shotdetectorprovider"
     },
     {
@@ -3562,7 +3562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 102,
+      "community": 81,
       "norm_label": "string_provider.dart"
     },
     {
@@ -3582,7 +3582,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 102,
+      "community": 81,
       "norm_label": "read"
     },
     {
@@ -3602,7 +3602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timernotifier",
-      "community": 29,
+      "community": 57,
       "norm_label": "timernotifier"
     },
     {
@@ -3862,7 +3862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timerprovider",
-      "community": 26,
+      "community": 54,
       "norm_label": "timerprovider"
     },
     {
@@ -4092,7 +4092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playstartbeep",
-      "community": 85,
+      "community": 57,
       "norm_label": "_playstartbeep"
     },
     {
@@ -4102,7 +4102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playparbeep",
-      "community": 85,
+      "community": 57,
       "norm_label": "_playparbeep"
     },
     {
@@ -4212,7 +4212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_state_dart",
-      "community": 14,
+      "community": 5,
       "norm_label": "../models/timer_state.dart"
     },
     {
@@ -4242,7 +4242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreen",
-      "community": 21,
+      "community": 84,
       "norm_label": "autoconfigurescreen"
     },
     {
@@ -4262,7 +4262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreenstate",
-      "community": 21,
+      "community": 84,
       "norm_label": "_autoconfigurescreenstate"
     },
     {
@@ -4292,7 +4292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "statelesswidget",
-      "community": 82,
+      "community": 14,
       "norm_label": "statelesswidget"
     },
     {
@@ -4312,7 +4312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_suggestionrow",
-      "community": 82,
+      "community": 56,
       "norm_label": "_suggestionrow"
     },
     {
@@ -4402,7 +4402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "voidcallback",
-      "community": 127,
+      "community": 112,
       "norm_label": "voidcallback"
     },
     {
@@ -4452,7 +4452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_start",
-      "community": 21,
+      "community": 84,
       "norm_label": "_start"
     },
     {
@@ -4462,7 +4462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_stop",
-      "community": 21,
+      "community": 84,
       "norm_label": "_stop"
     },
     {
@@ -4502,7 +4502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_dispose",
-      "community": 21,
+      "community": 84,
       "norm_label": "dispose"
     },
     {
@@ -4992,7 +4992,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen",
-      "community": 132,
+      "community": 3,
       "norm_label": "history_screen.dart"
     },
     {
@@ -5012,7 +5012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen_drillsummary",
-      "community": 132,
+      "community": 3,
       "norm_label": "_drillsummary"
     },
     {
@@ -5022,7 +5022,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen_fmt",
-      "community": 132,
+      "community": 3,
       "norm_label": "fmt"
     },
     {
@@ -5042,7 +5042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_intl_intl_dart",
-      "community": 132,
+      "community": 3,
       "norm_label": "package:intl/intl.dart"
     },
     {
@@ -5052,7 +5052,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_history_provider_dart",
-      "community": 132,
+      "community": 3,
       "norm_label": "../providers/history_provider.dart"
     },
     {
@@ -5062,7 +5062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_export_service_dart",
-      "community": 132,
+      "community": 3,
       "norm_label": "../services/export_service.dart"
     },
     {
@@ -5072,7 +5072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_time_format_dart",
-      "community": 132,
+      "community": 3,
       "norm_label": "../utils/time_format.dart"
     },
     {
@@ -5082,7 +5082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "review_screen_dart",
-      "community": 132,
+      "community": 3,
       "norm_label": "review_screen.dart"
     },
     {
@@ -5102,7 +5102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_homescreen",
-      "community": 26,
+      "community": 54,
       "norm_label": "homescreen"
     },
     {
@@ -5112,7 +5112,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_bigbutton",
-      "community": 26,
+      "community": 54,
       "norm_label": "_bigbutton"
     },
     {
@@ -5132,7 +5132,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_topslot",
-      "community": 82,
+      "community": 14,
       "norm_label": "_topslot"
     },
     {
@@ -5142,7 +5142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runfooter",
-      "community": 82,
+      "community": 14,
       "norm_label": "_runfooter"
     },
     {
@@ -5162,7 +5162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_laststringline",
-      "community": 82,
+      "community": 14,
       "norm_label": "_laststringline"
     },
     {
@@ -5172,7 +5172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_countdownview",
-      "community": 82,
+      "community": 14,
       "norm_label": "_countdownview"
     },
     {
@@ -5182,7 +5182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_settingssummary",
-      "community": 82,
+      "community": 14,
       "norm_label": "_settingssummary"
     },
     {
@@ -5192,7 +5192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_activedrillchip",
-      "community": 82,
+      "community": 14,
       "norm_label": "_activedrillchip"
     },
     {
@@ -5202,7 +5202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runningview",
-      "community": 82,
+      "community": 14,
       "norm_label": "_runningview"
     },
     {
@@ -5232,7 +5232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_statsrow",
-      "community": 82,
+      "community": 14,
       "norm_label": "_statsrow"
     },
     {
@@ -5242,7 +5242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_stat",
-      "community": 82,
+      "community": 14,
       "norm_label": "_stat"
     },
     {
@@ -5322,7 +5322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widget",
-      "community": 127,
+      "community": 112,
       "norm_label": "widget"
     },
     {
@@ -5532,7 +5532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshell",
-      "community": 26,
+      "community": 21,
       "norm_label": "mainshell"
     },
     {
@@ -5542,7 +5542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshellstate",
-      "community": 26,
+      "community": 21,
       "norm_label": "_mainshellstate"
     },
     {
@@ -5572,7 +5572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_select",
-      "community": 26,
+      "community": 54,
       "norm_label": "_select"
     },
     {
@@ -5582,7 +5582,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_build",
-      "community": 26,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -5812,7 +5812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_start",
-      "community": 21,
+      "community": 84,
       "norm_label": "_start"
     },
     {
@@ -5822,7 +5822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dispose",
-      "community": 21,
+      "community": 84,
       "norm_label": "dispose"
     },
     {
@@ -5882,7 +5882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_shotbadge",
-      "community": 82,
+      "community": 14,
       "norm_label": "_shotbadge"
     },
     {
@@ -5892,7 +5892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_summarygrid",
-      "community": 82,
+      "community": 14,
       "norm_label": "_summarygrid"
     },
     {
@@ -5912,7 +5912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 82,
+      "community": 14,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -5932,7 +5932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 82,
+      "community": 14,
       "norm_label": "_percyclesummary"
     },
     {
@@ -5942,7 +5942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 82,
+      "community": 14,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -5952,7 +5952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclestat",
-      "community": 82,
+      "community": 14,
       "norm_label": "_cyclestat"
     },
     {
@@ -6142,7 +6142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_persistmeta",
-      "community": 102,
+      "community": 81,
       "norm_label": "_persistmeta"
     },
     {
@@ -6152,7 +6152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_deleteshot",
-      "community": 102,
+      "community": 81,
       "norm_label": "_deleteshot"
     },
     {
@@ -6162,7 +6162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_addshot",
-      "community": 102,
+      "community": 81,
       "norm_label": "_addshot"
     },
     {
@@ -7492,7 +7492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 90,
+      "community": 118,
       "norm_label": "dart:io"
     },
     {
@@ -7602,7 +7602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_foundation_dart",
-      "community": 84,
+      "community": 99,
       "norm_label": "package:flutter/foundation.dart"
     },
     {
@@ -7622,7 +7622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_settings_service_settingsservice",
-      "community": 103,
+      "community": 1,
       "norm_label": "settingsservice"
     },
     {
@@ -8652,7 +8652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_runenvironment",
-      "community": 139,
+      "community": 31,
       "norm_label": "runenvironment"
     },
     {
@@ -8662,7 +8662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_pluginrunenvironment",
-      "community": 139,
+      "community": 31,
       "norm_label": "pluginrunenvironment"
     },
     {
@@ -8862,7 +8862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service",
-      "community": 98,
+      "community": 99,
       "norm_label": "volume_service.dart"
     },
     {
@@ -8872,7 +8872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_volumeservice",
-      "community": 98,
+      "community": 99,
       "norm_label": "volumeservice"
     },
     {
@@ -8882,7 +8882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_channel",
-      "community": 98,
+      "community": 99,
       "norm_label": "_channel"
     },
     {
@@ -8892,7 +8892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "methodchannel",
-      "community": 116,
+      "community": 99,
       "norm_label": "methodchannel"
     },
     {
@@ -8902,7 +8902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_ismediaaudible",
-      "community": 98,
+      "community": 99,
       "norm_label": "ismediaaudible"
     },
     {
@@ -8912,7 +8912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_showvolumepanel",
-      "community": 98,
+      "community": 99,
       "norm_label": "showvolumepanel"
     },
     {
@@ -8922,7 +8922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_theme",
-      "community": 136,
+      "community": 125,
       "norm_label": "app_theme.dart"
     },
     {
@@ -8932,7 +8932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_theme_scheme",
-      "community": 136,
+      "community": 125,
       "norm_label": "scheme"
     },
     {
@@ -8942,7 +8942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_theme_base",
-      "community": 136,
+      "community": 125,
       "norm_label": "base"
     },
     {
@@ -8952,7 +8952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_theme_buildapptheme",
-      "community": 136,
+      "community": 125,
       "norm_label": "buildapptheme"
     },
     {
@@ -8962,7 +8962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_theme_monochromescheme",
-      "community": 136,
+      "community": 125,
       "norm_label": "monochromescheme"
     },
     {
@@ -9302,7 +9302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal",
-      "community": 84,
+      "community": 99,
       "norm_label": "legal.dart"
     },
     {
@@ -9312,7 +9312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_kcopyrightnotice",
-      "community": 84,
+      "community": 99,
       "norm_label": "kcopyrightnotice"
     },
     {
@@ -9322,7 +9322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_ksourceurl",
-      "community": 84,
+      "community": 99,
       "norm_label": "ksourceurl"
     },
     {
@@ -9332,7 +9332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_kprivacypolicyurl",
-      "community": 84,
+      "community": 99,
       "norm_label": "kprivacypolicyurl"
     },
     {
@@ -9342,7 +9342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_kprivacypolicyurlde",
-      "community": 84,
+      "community": 99,
       "norm_label": "kprivacypolicyurlde"
     },
     {
@@ -9352,7 +9352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_privacypolicyuri",
-      "community": 84,
+      "community": 99,
       "norm_label": "privacypolicyuri"
     },
     {
@@ -9362,7 +9362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_registerapplicenses",
-      "community": 84,
+      "community": 99,
       "norm_label": "registerapplicenses"
     },
     {
@@ -9442,7 +9442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math",
-      "community": 81,
+      "community": 82,
       "norm_label": "slider_math.dart"
     },
     {
@@ -9452,7 +9452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_snapped",
-      "community": 81,
+      "community": 82,
       "norm_label": "snapped"
     },
     {
@@ -9462,7 +9462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_tolerance",
-      "community": 81,
+      "community": 82,
       "norm_label": "tolerance"
     },
     {
@@ -9472,7 +9472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "required_int_magnet_int",
-      "community": 81,
+      "community": 82,
       "norm_label": "required int magnet,\n  int"
     },
     {
@@ -9482,7 +9482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_stepped",
-      "community": 81,
+      "community": 82,
       "norm_label": "stepped"
     },
     {
@@ -9492,7 +9492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_nearest",
-      "community": 81,
+      "community": 82,
       "norm_label": "nearest"
     },
     {
@@ -9502,7 +9502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_clamptostep",
-      "community": 81,
+      "community": 82,
       "norm_label": "clamptostep"
     },
     {
@@ -9512,7 +9512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_clamp",
-      "community": 81,
+      "community": 82,
       "norm_label": "clamp"
     },
     {
@@ -9522,7 +9522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_clamptostepdouble",
-      "community": 81,
+      "community": 82,
       "norm_label": "clamptostepdouble"
     },
     {
@@ -9532,7 +9532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_slider_math_softsnap",
-      "community": 81,
+      "community": 82,
       "norm_label": "softsnap"
     },
     {
@@ -10162,7 +10162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile",
-      "community": 127,
+      "community": 112,
       "norm_label": "drill_tile.dart"
     },
     {
@@ -10172,7 +10172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drilltile",
-      "community": 127,
+      "community": 112,
       "norm_label": "drilltile"
     },
     {
@@ -10182,7 +10182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drill",
-      "community": 127,
+      "community": 112,
       "norm_label": "drill"
     },
     {
@@ -10192,7 +10192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_active",
-      "community": 127,
+      "community": 112,
       "norm_label": "active"
     },
     {
@@ -10202,7 +10202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_ontap",
-      "community": 127,
+      "community": 112,
       "norm_label": "ontap"
     },
     {
@@ -10212,7 +10212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_trailing",
-      "community": 127,
+      "community": 112,
       "norm_label": "trailing"
     },
     {
@@ -10222,7 +10222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_build",
-      "community": 127,
+      "community": 112,
       "norm_label": "build"
     },
     {
@@ -10502,7 +10502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_settingsdoubleslider",
-      "community": 82,
+      "community": 13,
       "norm_label": "settingsdoubleslider"
     },
     {
@@ -11342,7 +11342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drills_provider_test_failingclear",
-      "community": 103,
+      "community": 1,
       "norm_label": "_failingclear"
     },
     {
@@ -11502,7 +11502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 138,
+      "community": 55,
       "norm_label": "delay_test.dart"
     },
     {
@@ -11512,7 +11512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 138,
+      "community": 55,
       "norm_label": "main"
     },
     {
@@ -11532,7 +11532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test",
-      "community": 134,
+      "community": 106,
       "norm_label": "drill_config_test.dart"
     },
     {
@@ -11542,7 +11542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_drill",
-      "community": 134,
+      "community": 106,
       "norm_label": "_drill"
     },
     {
@@ -11552,7 +11552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_other",
-      "community": 134,
+      "community": 106,
       "norm_label": "_other"
     },
     {
@@ -11562,7 +11562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_singlefieldedits",
-      "community": 134,
+      "community": 106,
       "norm_label": "_singlefieldedits"
     },
     {
@@ -11572,7 +11572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_main",
-      "community": 134,
+      "community": 106,
       "norm_label": "main"
     },
     {
@@ -11642,7 +11642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 91,
+      "community": 94,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -11652,7 +11652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 91,
+      "community": 94,
       "norm_label": "_host"
     },
     {
@@ -11662,7 +11662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 91,
+      "community": 94,
       "norm_label": "_visiblesignal"
     },
     {
@@ -11672,7 +11672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 91,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -11682,7 +11682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 91,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -11752,7 +11752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test",
-      "community": 101,
+      "community": 99,
       "norm_label": "ios_audio_session_test.dart"
     },
     {
@@ -11762,7 +11762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_channel",
-      "community": 101,
+      "community": 99,
       "norm_label": "channel"
     },
     {
@@ -11772,7 +11772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_messenger",
-      "community": 101,
+      "community": 99,
       "norm_label": "messenger"
     },
     {
@@ -11782,7 +11782,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_calls",
-      "community": 101,
+      "community": 99,
       "norm_label": "calls"
     },
     {
@@ -11792,7 +11792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_main",
-      "community": 101,
+      "community": 99,
       "norm_label": "main"
     },
     {
@@ -11802,7 +11802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_installhandler",
-      "community": 101,
+      "community": 99,
       "norm_label": "installhandler"
     },
     {
@@ -11812,7 +11812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_ios_audio_session_dart",
-      "community": 101,
+      "community": 99,
       "norm_label": "package:simple_shot_timer/services/ios_audio_session.dart"
     },
     {
@@ -11992,7 +11992,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test",
-      "community": 106,
+      "community": 94,
       "norm_label": "shot_detector_test.dart"
     },
     {
@@ -12002,7 +12002,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test_main",
-      "community": 106,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -12232,7 +12232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test",
-      "community": 91,
+      "community": 125,
       "norm_label": "theme_monochrome_test.dart"
     },
     {
@@ -12242,7 +12242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_main",
-      "community": 91,
+      "community": 125,
       "norm_label": "main"
     },
     {
@@ -12252,7 +12252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_roles",
-      "community": 91,
+      "community": 125,
       "norm_label": "roles"
     },
     {
@@ -12262,7 +12262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_theme_app_theme_dart",
-      "community": 91,
+      "community": 125,
       "norm_label": "package:simple_shot_timer/theme/app_theme.dart"
     },
     {
@@ -12302,7 +12302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_fakeenvironment",
-      "community": 139,
+      "community": 31,
       "norm_label": "_fakeenvironment"
     },
     {
@@ -12322,7 +12322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_audiblevolume",
-      "community": 98,
+      "community": 99,
       "norm_label": "_audiblevolume"
     },
     {
@@ -14112,7 +14112,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "join_testing",
-      "community": 135,
+      "community": 92,
       "norm_label": "join_testing.md"
     },
     {
@@ -14299,7 +14299,7 @@
       "label": "Release flow",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L256",
+      "source_location": "L262",
       "_origin": "ast",
       "id": "readme_release_flow",
       "community": 111,
@@ -14309,7 +14309,7 @@
       "label": "Continuous Integration",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L281",
+      "source_location": "L287",
       "_origin": "ast",
       "id": "readme_continuous_integration",
       "community": 28,
@@ -14319,7 +14319,7 @@
       "label": "Releasing to Google Play",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L291",
+      "source_location": "L297",
       "_origin": "ast",
       "id": "readme_releasing_to_google_play",
       "community": 113,
@@ -14329,7 +14329,7 @@
       "label": "Triggers",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L296",
+      "source_location": "L302",
       "_origin": "ast",
       "id": "readme_triggers",
       "community": 113,
@@ -14339,7 +14339,7 @@
       "label": "Required GitHub secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L303",
+      "source_location": "L309",
       "_origin": "ast",
       "id": "readme_required_github_secrets",
       "community": 113,
@@ -14349,7 +14349,7 @@
       "label": "One-time setup checklist",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L315",
+      "source_location": "L321",
       "_origin": "ast",
       "id": "readme_one_time_setup_checklist",
       "community": 113,
@@ -14359,7 +14359,7 @@
       "label": "Releasing to the App Store",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L337",
+      "source_location": "L343",
       "_origin": "ast",
       "id": "readme_releasing_to_the_app_store",
       "community": 115,
@@ -14369,9 +14369,9 @@
       "label": "Triggers",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L348",
+      "source_location": "L354",
       "_origin": "ast",
-      "id": "readme_triggers_348",
+      "id": "readme_triggers_354",
       "community": 115,
       "norm_label": "triggers"
     },
@@ -14379,9 +14379,9 @@
       "label": "Required GitHub secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L353",
+      "source_location": "L359",
       "_origin": "ast",
-      "id": "readme_required_github_secrets_353",
+      "id": "readme_required_github_secrets_359",
       "community": 115,
       "norm_label": "required github secrets"
     },
@@ -14389,9 +14389,9 @@
       "label": "One-time setup checklist",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L364",
+      "source_location": "L370",
       "_origin": "ast",
-      "id": "readme_one_time_setup_checklist_364",
+      "id": "readme_one_time_setup_checklist_370",
       "community": 115,
       "norm_label": "one-time setup checklist"
     },
@@ -14399,7 +14399,7 @@
       "label": "Store listings",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L386",
+      "source_location": "L392",
       "_origin": "ast",
       "id": "readme_store_listings",
       "community": 28,
@@ -14409,7 +14409,7 @@
       "label": "Website",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L410",
+      "source_location": "L418",
       "_origin": "ast",
       "id": "readme_website",
       "community": 28,
@@ -14419,7 +14419,7 @@
       "label": "Permissions",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L421",
+      "source_location": "L429",
       "_origin": "ast",
       "id": "readme_permissions",
       "community": 28,
@@ -14429,7 +14429,7 @@
       "label": "Maintainer",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L444",
+      "source_location": "L452",
       "_origin": "ast",
       "id": "readme_maintainer",
       "community": 28,
@@ -14439,7 +14439,7 @@
       "label": "License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L454",
+      "source_location": "L462",
       "_origin": "ast",
       "id": "readme_license",
       "community": 28,
@@ -15786,10 +15786,20 @@
       "norm_label": "fields"
     },
     {
+      "label": "What's New",
+      "file_type": "document",
+      "source_file": "fastlane/metadata/README.md",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "fastlane_metadata_readme_what_s_new",
+      "community": 100,
+      "norm_label": "what's new"
+    },
+    {
       "label": "By hand",
       "file_type": "document",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L66",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "fastlane_metadata_readme_by_hand",
       "community": 100,
@@ -15799,7 +15809,7 @@
       "label": "Writing and translating",
       "file_type": "document",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L78",
+      "source_location": "L90",
       "_origin": "ast",
       "id": "fastlane_metadata_readme_writing_and_translating",
       "community": 100,
@@ -16422,7 +16432,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L57",
+      "source_location": "L62",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes",
       "target": "github_scripts_play_release_notes_clean_entry",
@@ -16432,7 +16442,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L138",
+      "source_location": "L143",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes",
       "target": "github_scripts_play_release_notes_main",
@@ -16442,7 +16452,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L73",
+      "source_location": "L78",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes",
       "target": "github_scripts_play_release_notes_parse",
@@ -16452,7 +16462,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L116",
+      "source_location": "L121",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes",
       "target": "github_scripts_play_release_notes_render",
@@ -16462,7 +16472,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L51",
+      "source_location": "L56",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes",
       "target": "github_scripts_play_release_notes_section_for",
@@ -16472,7 +16482,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes",
       "target": "github_scripts_play_release_notes_shorten",
@@ -16482,7 +16492,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L47",
+      "source_location": "L52",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes",
       "target": "github_scripts_play_release_notes_warn",
@@ -16493,7 +16503,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L150",
+      "source_location": "L158",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes_main",
       "target": "github_scripts_play_release_notes_warn",
@@ -16504,7 +16514,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L131",
+      "source_location": "L136",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes_render",
       "target": "github_scripts_play_release_notes_warn",
@@ -16515,7 +16525,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L86",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes_parse",
       "target": "github_scripts_play_release_notes_section_for",
@@ -16526,7 +16536,7 @@
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L101",
+      "source_location": "L106",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes_parse",
       "target": "github_scripts_play_release_notes_clean_entry",
@@ -16537,7 +16547,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L146",
+      "source_location": "L154",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes_main",
       "target": "github_scripts_play_release_notes_parse",
@@ -16547,9 +16557,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L74",
+      "source_location": "L79",
       "weight": 1.0,
-      "source": "github_scripts_play_release_notes_rationale_74",
+      "source": "github_scripts_play_release_notes_rationale_79",
       "target": "github_scripts_play_release_notes_parse",
       "confidence_score": 1.0
     },
@@ -16558,7 +16568,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L132",
+      "source_location": "L137",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes_render",
       "target": "github_scripts_play_release_notes_shorten",
@@ -16569,7 +16579,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L147",
+      "source_location": "L155",
       "weight": 1.0,
       "source": "github_scripts_play_release_notes_main",
       "target": "github_scripts_play_release_notes_render",
@@ -16579,9 +16589,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": ".github/scripts/play_release_notes.py",
-      "source_location": "L117",
+      "source_location": "L122",
       "weight": 1.0,
-      "source": "github_scripts_play_release_notes_rationale_117",
+      "source": "github_scripts_play_release_notes_rationale_122",
       "target": "github_scripts_play_release_notes_render",
       "confidence_score": 1.0
     },
@@ -36763,7 +36773,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L451",
+      "source_location": "L459",
       "weight": 1.0,
       "source": "readme",
       "target": "join_testing",
@@ -36853,7 +36863,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L418",
+      "source_location": "L426",
       "weight": 1.0,
       "source": "readme",
       "target": "website_readme",
@@ -36893,7 +36903,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L281",
+      "source_location": "L287",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_continuous_integration",
@@ -36923,7 +36933,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L454",
+      "source_location": "L462",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_license",
@@ -36933,7 +36943,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L444",
+      "source_location": "L452",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_maintainer",
@@ -36943,7 +36953,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L421",
+      "source_location": "L429",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_permissions",
@@ -36963,7 +36973,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L291",
+      "source_location": "L297",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_releasing_to_google_play",
@@ -36973,7 +36983,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L337",
+      "source_location": "L343",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_releasing_to_the_app_store",
@@ -36993,7 +37003,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L386",
+      "source_location": "L392",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_store_listings",
@@ -37013,7 +37023,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L410",
+      "source_location": "L418",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_website",
@@ -37043,7 +37053,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L256",
+      "source_location": "L262",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_release_flow",
@@ -37053,7 +37063,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L315",
+      "source_location": "L321",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_one_time_setup_checklist",
@@ -37063,7 +37073,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L303",
+      "source_location": "L309",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_required_github_secrets",
@@ -37073,7 +37083,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L296",
+      "source_location": "L302",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_triggers",
@@ -37083,30 +37093,30 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L364",
+      "source_location": "L370",
       "weight": 1.0,
       "source": "readme_releasing_to_the_app_store",
-      "target": "readme_one_time_setup_checklist_364",
+      "target": "readme_one_time_setup_checklist_370",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L353",
+      "source_location": "L359",
       "weight": 1.0,
       "source": "readme_releasing_to_the_app_store",
-      "target": "readme_required_github_secrets_353",
+      "target": "readme_required_github_secrets_359",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L348",
+      "source_location": "L354",
       "weight": 1.0,
       "source": "readme_releasing_to_the_app_store",
-      "target": "readme_triggers_348",
+      "target": "readme_triggers_354",
       "confidence_score": 1.0
     },
     {
@@ -38343,7 +38353,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L66",
+      "source_location": "L78",
       "weight": 1.0,
       "source": "fastlane_metadata_readme_store_listing_text",
       "target": "fastlane_metadata_readme_by_hand",
@@ -38373,7 +38383,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L78",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "fastlane_metadata_readme_store_listing_text",
+      "target": "fastlane_metadata_readme_what_s_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "fastlane/metadata/README.md",
+      "source_location": "L90",
       "weight": 1.0,
       "source": "fastlane_metadata_readme_store_listing_text",
       "target": "fastlane_metadata_readme_writing_and_translating",
@@ -38631,5 +38651,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "14c70db6cc833992335a3d806c6697319d1e1b9d"
+  "built_at_commit": "8c5a473374078e45664d90399ea34d2ddee1a027"
 }
