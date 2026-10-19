@@ -242,7 +242,7 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
   Widget build(BuildContext context) {
     final s = widget.string;
     final theme = Theme.of(context);
-    final dateFmt = DateFormat.yMMMd().add_jm();
+    final dateFmt = DateFormat.yMMMd(context.dateLocale).add_jm();
     return SafeArea(
       top: false,
       child: ListView(

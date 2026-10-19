@@ -628,7 +628,8 @@ class _FinishedView extends ConsumerWidget {
           savedAt == null
               ? ''
               : context.tr('home.savedAt', args: {
-                  'time': DateFormat.jm().format(savedAt.toLocal()),
+                  'time': DateFormat.jm(context.dateLocale)
+                      .format(savedAt.toLocal()),
                 }),
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,

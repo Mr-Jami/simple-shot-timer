@@ -101,4 +101,9 @@ class _AppLocalizationsDelegate
 extension AppLocalizationsX on BuildContext {
   String tr(String key, {Map<String, Object?>? args}) =>
       AppLocalizations.of(this).t(key, args: args);
+
+  /// The app language for intl, e.g. `DateFormat.yMMMd(context.dateLocale)`.
+  /// Without it DateFormat uses intl's default (en_US), so month names and
+  /// the clock format stay English in every language.
+  String get dateLocale => AppLocalizations.of(this).locale.languageCode;
 }

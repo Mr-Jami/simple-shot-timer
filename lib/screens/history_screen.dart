@@ -110,7 +110,7 @@ class HistoryScreen extends ConsumerWidget {
                 if (items.isEmpty) {
                   return Center(child: Text(context.tr('history.empty')));
                 }
-                final dateFmt = DateFormat.yMMMd().add_jm();
+                final dateFmt = DateFormat.yMMMd(context.dateLocale).add_jm();
                 return ListView.separated(
                   itemCount: items.length,
                   separatorBuilder: (_, __) => const Divider(height: 1),
