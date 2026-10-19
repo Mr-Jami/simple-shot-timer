@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.2](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.1...v2.3.2) (2026-10-19)
+
+
+### Bug Fixes
+
+* **i18n:** dates and times now show in the app's language ([b471a35](https://github.com/Mr-Jami/simple-shot-timer/commit/b471a35311a7124e53f23e8ca062362e5aa1313a))
+* **settings:** the latency offset hint now gives Bluetooth earbuds as its example ([ac528ab](https://github.com/Mr-Jami/simple-shot-timer/commit/ac528abff902b6a4360b518d4a884d285adc7ce4))
+
 ## [2.3.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.0...v2.3.1) (2026-10-19)
 
 
