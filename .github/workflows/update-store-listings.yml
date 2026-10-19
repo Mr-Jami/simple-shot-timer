@@ -21,6 +21,10 @@ on:
         description: 'App Store version to edit or create (empty: the version in pubspec.yaml)'
         required: false
         default: ''
+      whats_new:
+        description: 'App Store: write What''s New from the GitHub Releases (off: keep what App Store Connect has)'
+        type: boolean
+        default: true
       validate_only:
         description: 'Save nothing: validate the Google Play listings and show the App Store What''s New'
         type: boolean
@@ -83,14 +87,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Write What's New
-        # The App Store gets the same text as the Play "What's new": the
-        # GitHub Releases rewritten by play_release_notes.py, in English for
-        # every language. An App Store update can skip versions, so it covers
-        # every release after the version live on the App Store (read from
-        # Apple's public lookup API) up to the one being prepared.
+      - name: Resolve version
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION_INPUT: ${{ inputs.app_store_version }}
         run: |
           VERSION="${VERSION_INPUT:-$(sed -nE 's/^version: *([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' pubspec.yaml)}"
@@ -100,6 +98,18 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
+      - name: Write What's New
+        # The App Store gets the same text as the Play "What's new": the
+        # GitHub Releases rewritten by play_release_notes.py, in English for
+        # every language. An App Store update can skip versions, so it covers
+        # every release after the version live on the App Store (read from
+        # Apple's public lookup API) up to the one being prepared. With
+        # whats_new off no release_notes.txt is written, and App Store
+        # Connect keeps its text.
+        if: inputs.whats_new
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           # True when $1 <= $2 in version order.
           le() { [ "$(printf '%s\n%s\n' "$1" "$2" | sort -V | head -n1)" = "$1" ]; }
 
@@ -160,8 +170,9 @@ jobs:
       - name: Upload listings
         # Edits the version that is being prepared for submission (creating
         # it if needed): name, subtitle and privacy URL on the app, and
-        # description, keywords, What's New, support and marketing URL on the
-        # version, in each language under fastlane/metadata/ios. Nothing is
+        # description, promotional text, keywords, What's New, support and
+        # marketing URL on the version, in each language under
+        # fastlane/metadata/ios. Nothing is
         # submitted for review, and fields without a file (the English
         # keywords) keep their current value. deliver runs precheck after the
         # upload even without a submission, and precheck fails with an API
