@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.0...v2.3.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* **ios:** show all eight languages on the App Store ([#37](https://github.com/Mr-Jami/simple-shot-timer/issues/37)) ([098d97e](https://github.com/Mr-Jami/simple-shot-timer/commit/098d97eb44f98c404f3460adca29242d69f8f4fc))
+
 ## [2.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.2.0...v2.3.0) (2026-10-19)
 
 
