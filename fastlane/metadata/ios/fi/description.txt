@@ -1,0 +1,48 @@
+Simple Shot Timer on selkeä ja turhuuksista riisuttu ajanottosovellus (shot timer) kuivaharjoitteluun ja kovapanosammuntaan. Tehty practical-ampujille, jotka haluavat nopeaa palautetta, tarkat splitit ja harjoitteistaan täydellisen historian ilman mainoksia, seurantaa tai käyttäjätilejä.
+
+HARJOITUSTILAT
+• Perus: avoin sarja. Äänimerkki, ammu ja napauta LOPETA. Splitit ja kokonaisaika näkyvät näytöllä.
+• Par: aseta par-aika ja toistojen määrä. Jokaisella toistolla on oma aloitus- ja lopetusäänimerkkinsä, ja toistojen väliin voi lisätä tauon.
+• Stage: yksi pitkä, enintään 200 sekunnin aikaikkuna radan läpikäyntiin ja tilanneharjoitteluun.
+
+ALOITUSVIIVE
+Heti, kiinteä tai satunnainen minimin ja maksimin väliltä.
+
+TALLENNETUT HARJOITTEET
+Tallenna usein ampumasi harjoitteet nimellä (tila, aloitusviive, par- ja stage-aika) ja lataa mikä tahansa niistä yhdellä napautuksella.
+
+LAUKAUSTEN TUNNISTUS
+• Kuuntelee iPhonen mikrofonia ja tunnistaa jokaisen laukauksen sillä hetkellä, kun se ammutaan.
+• Aloitus- ja par-äänimerkit eivät koskaan laske laukaukseksi, äänimerkin aikana ammuttu laukaus lasketaan silti, ja kaikusuodatin estää laskemasta samaa laukausta kahdesti.
+• Ajanotto alkaa, kun mikrofoni kuulee äänimerkin, joten kaiuttimen viive ei koskaan päädy aikoihisi.
+• Automaattinen säätö: ammu muutama laukaus, niin sovellus ehdottaa herkkyyttä ja taajuuskaistaa juuri tälle aseelle ja radalle.
+• Mikrofonin testissä säädät herkkyyden reaaliaikaisen tasomittarin avulla ennen kuin ammut kovilla.
+• Lisää laukauksia käsin milloin tahansa, sarjan jälkeen tai tarkastelussa.
+
+HISTORIA JA TARKASTELU
+• Jokainen sarja tallentuu automaattisesti (enimmäismäärä 50–5000, oletuksena 500).
+• Tarkastele jokaista sarjaa: splitit, ensimmäinen laukaus sekä nopein, hitain ja keskimääräinen split.
+• Muokattava otsikko, muistiinpanot ja sakko jokaiselle sarjalle.
+
+CSV-VIENTI
+Vie yksittäinen sarja tai koko historiasi CSV-tiedostona jakovalikon kautta: lähetä se itsellesi sähköpostilla, tallenna Tiedostot-appiin tai avaa taulukkolaskentaohjelmassa.
+
+TOIMII TAUSTALLA
+Lukitse näyttö tai vaihda sovellusta kesken sarjan: ajanotto jatkaa laukausten tunnistamista ja par-äänimerkkien soittamista.
+
+YKSITYISYYS ENSIN
+• Kaikki pysyy laitteella. Ei tilejä, ei pilveä, ei analytiikkaa, ei mainoksia, ei seurantaa.
+• Mikrofonin signaalia käsitellään reaaliajassa muistissa ja vain silloin, kun sovellus kuuntelee (sarja, mikrofonin testi tai automaattinen säätö). Ääntä ei koskaan tallenneta eikä lähetetä minnekään.
+• Poista kaikki tietosi ja asetuksesi Asetuksista milloin tahansa.
+• Avoin lähdekoodi (GPL-3.0): koko koodi on GitHubissa osoitteessa github.com/Mr-Jami/simple-shot-timer, joten voit tarkistaa jokaisen väitteen itse.
+
+MUKAVUUS
+• Näytön välähdys äänimerkillä meluisille radoille ja paksuille kuulosuojaimille, lisäksi valinnainen värinä.
+• Ilmoitus varoittaa, jos äänenvoimakkuus on mykistetty sarjan aikana.
+• Näyttö pysyy päällä sarjan ajan.
+• Mustavalkoinen teema: Järjestelmä, Vaalea, Tumma tai Suuri kontrasti.
+
+KIELET
+Suomi, englanti, espanja, puola, portugali, ranska, saksa ja venäjä.
+
+Tehty ampumaradalle, dojolle ja kotiin kuivaharjoitteluun. Ilmainen, kevyt, ei sovelluksen sisäisiä ostoksia.

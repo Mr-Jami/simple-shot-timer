@@ -4,7 +4,7 @@ Phone screenshots and the feature graphic for the Google Play listing, and the
 iPhone screenshots for the App Store, in the listing's black / yellow halftone
 style. One HTML page (`index.html`) holds all
 of them; a browser screenshot of each section is the deliverable. The listing
-text (descriptions, What's New) is in [listing-text.md](listing-text.md).
+text in every language is in [fastlane/metadata/](../../fastlane/metadata/README.md).
 
 Current set: 2026-10-01, app 2.0 UI (four-tab shell, saved drills).
 

@@ -109,7 +109,8 @@ flutter create . --platforms=android,ios,web
 ├── assets/
 │   ├── branding/               # App icon
 │   └── i18n/                   # en, de, es, fi, fr, pl, pt, ru translation bundles
-├── branding/                   # Store-listing graphics + text, launch video sources (not bundled)
+├── branding/                   # Store-listing graphics + launch video sources (not bundled)
+├── fastlane/metadata/          # Store listing text per language (Play + App Store)
 ├── lib/
 │   ├── app.dart                # MaterialApp wiring (theme, locale, delegates)
 │   ├── main.dart               # Entry point: portrait lock, ProviderScope overrides
@@ -337,10 +338,10 @@ Store Connect: add the version (the one in `pubspec.yaml`), select the
 build and fill in *What's New*, since the workflow uploads no release
 notes. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
 
-The listing text for both stores (descriptions, short description, What's
-New) is kept in
-[branding/store-listing/listing-text.md](branding/store-listing/listing-text.md)
-and pasted into Play Console and App Store Connect by hand.
+The listing text for both stores, in all eight languages (descriptions,
+subtitles, keywords, What's New), is kept in
+[fastlane/metadata/](fastlane/metadata/README.md) and pasted into Play
+Console and App Store Connect by hand.
 
 ### Triggers
 
