@@ -334,7 +334,9 @@ Configure these under *Settings → Secrets and variables → Actions*:
      -alias upload
    ```
 4. Wire the keystore into `android/app/build.gradle.kts` (the workflow
-   writes `android/key.properties` from secrets at build time).
+   writes `android/key.properties` from secrets at build time). Without
+   `key.properties` the release APK is unsigned, as F-Droid's build server
+   expects; for an installable local build use `--debug` or `--profile`.
 5. Create a service account in Google Cloud, grant it access in the Play
    Console, and download its JSON key.
 6. Add all five secrets listed above to GitHub.

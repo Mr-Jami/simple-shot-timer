@@ -1,0 +1,2 @@
+Fixes:
+• Show all eight languages on the App Store

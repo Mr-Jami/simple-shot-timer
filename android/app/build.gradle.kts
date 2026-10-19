@@ -50,10 +50,14 @@ android {
 
     buildTypes {
         release {
+            // CI writes key.properties and signs with the upload key. Without
+            // it the release APK stays unsigned, which is what F-Droid's build
+            // server expects (it signs with its own key). For an installable
+            // local build without the key, use --debug or --profile.
             signingConfig = if (keystorePropertiesFile.exists()) {
                 signingConfigs.getByName("release")
             } else {
-                signingConfigs.getByName("debug")
+                null
             }
         }
     }
