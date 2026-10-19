@@ -6,7 +6,7 @@ supports. This folder is the source: the *Update store listings* workflow
 it to both stores. Screenshots and the feature graphic are in
 [`branding/store-listing/`](../../branding/store-listing/README.md).
 
-Last updated: 2026-10-19, app 2.3.1. The App Store is still on 2.1.0, so What's New covers 2.2.0 and 2.3.0 as well.
+Last updated: 2026-10-19, app 2.3.1.
 
 The layout is fastlane's: `supply` reads `android/`, `deliver` reads `ios/`.
 F-Droid reads `android/` too.
@@ -42,7 +42,6 @@ Brazilian, like the app.
 | `ios/*/privacy_url.txt` | App Store: Privacy Policy URL | |
 | `ios/*/description.txt` | App Store: Description | 4000 |
 | `ios/*/keywords.txt` | App Store: Keywords, comma-separated | 100 |
-| `ios/*/release_notes.txt` | App Store: What's New in This Version | 4000 |
 | `ios/*/support_url.txt` | App Store: Support URL | |
 | `ios/*/marketing_url.txt` | App Store: Marketing URL | |
 
@@ -56,9 +55,22 @@ other language.
 Connect, and the workflow leaves fields without a file alone. Promotional
 text isn't kept here either.
 
-The Play "What's new" text is generated from the GitHub Release
-(`.github/scripts/play_release_notes.py`) and is English only; Play shows it in
-every language.
+## What's New
+
+Neither store's release notes are kept here. Both are generated from the
+GitHub Releases by `.github/scripts/play_release_notes.py`, in English for
+every language:
+
+- **Play** "What's new": the latest release, written by
+  `deploy-play-store.yml`.
+- **App Store** What's New: every release after the version live on the App
+  Store, up to the one being prepared, written into each `ios/*/` folder as
+  `release_notes.txt` by the workflow just before the upload. A committed
+  `release_notes.txt` would be overwritten, so the listing test rejects one.
+  *Validate only* shows the text without uploading it.
+
+So the commit and PR titles are the release notes (see "Commit messages are
+store release notes" in the main README).
 
 `test/store_listing_test.dart` checks every file against these limits and
 fails when an app language has no folder in either store.
@@ -83,8 +95,6 @@ paste it into the field:
   both together, in every language.
 - When a feature changes, update English first, then each language, then the
   README features, the website homepages and `website/public/llms.txt`.
-- Each release needs What's New in every language in `ios/*/release_notes.txt`
-  before the App Store run.
 - Use the app's own words for anything on screen (`assets/i18n/<code>.json`):
   button labels such as STOPP, LOPETA or PARAR, mode names, Settings items.
 - Par, Stage and Split stay in English, as in the app and in IPSC.

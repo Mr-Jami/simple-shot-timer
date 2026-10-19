@@ -1,16 +1,16 @@
 # Graph Report - simple-shot-timer  (2026-10-19)
 
 ## Corpus Check
-- 138 files · ~240,808 words
+- 138 files · ~240,934 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1627 nodes · 2175 edges · 128 communities (100 shown, 28 thin omitted)
+- 1629 nodes · 2177 edges · 140 communities (111 shown, 29 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 12 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b8ecc1de`
+- Built from commit: `14c70db6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -136,6 +136,17 @@
 - [[_COMMUNITY_tab_header.dart|tab_header.dart]]
 - [[_COMMUNITY_packageflutter_riverpodflutter_riverpod.dart|package:flutter_riverpod/flutter_riverpod.dart]]
 - [[_COMMUNITY_stringByIdProvider|stringByIdProvider]]
+- [[_COMMUNITY_settings_widgets.dart|settings_widgets.dart]]
+- [[_COMMUNITY_par_schedule.dart|par_schedule.dart]]
+- [[_COMMUNITY__BigTimeDisplayState|_BigTimeDisplayState]]
+- [[_COMMUNITY_motion.dart|motion.dart]]
+- [[_COMMUNITY_history_screen.dart|history_screen.dart]]
+- [[_COMMUNITY_app.dart|app.dart]]
+- [[_COMMUNITY_drill_config_test.dart|drill_config_test.dart]]
+- [[_COMMUNITY_app_theme.dart|app_theme.dart]]
+- [[_COMMUNITY_List|List]]
+- [[_COMMUNITY_dartmath|dart:math]]
+- [[_COMMUNITY_RunEnvironment|RunEnvironment]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `t()` - 25 edges
@@ -145,8 +156,8 @@
 5. `Brag Plan: Simple Shot Timer` - 15 edges
 6. `Brag Plan: Simple Shot Timer (revision 3, 2026-10-01)` - 15 edges
 7. `Storyboard: Simple Shot Timer launch video (revision 3, 2026-10-01)` - 15 edges
-8. `screen()` - 13 edges
-9. `Changelog` - 13 edges
+8. `Changelog` - 14 edges
+9. `screen()` - 13 edges
 10. `icon()` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -164,7 +175,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (128 total, 28 thin omitted)
+## Communities (140 total, 29 thin omitted)
 
 ### Community 0 - "Audio Capture & Shot Detection"
 Cohesion: 0.03
@@ -172,15 +183,15 @@ Nodes (62): audio_service.dart, AudioRecorder, beep_onset_detector.dart, biquad.
 
 ### Community 1 - "App Bootstrap & Providers"
 Cohesion: 0.06
-Nodes (34): clear, _kAudioLatencyOffset, _kBandEnabled, _kBandHigh, _kBandLow, _kBeepLatencyEstimate, _kBeepVolume, _kCustomDrills (+26 more)
+Nodes (32): clear, _kAudioLatencyOffset, _kBandEnabled, _kBandHigh, _kBandLow, _kBeepLatencyEstimate, _kBeepVolume, _kCustomDrills (+24 more)
 
 ### Community 2 - "App Settings Model"
 Cohesion: 0.05
 Nodes (38): audioLatencyOffsetMaxMs, audioLatencyOffsetMinMs, audioLatencyOffsetMs, bandFilterEnabled, bandHighHz, bandHighMaxHz, bandHighMinHz, bandLowHz (+30 more)
 
 ### Community 3 - "History Screen"
-Cohesion: 0.09
-Nodes (23): IconData, _buildShotRows, _ChipSpec, createState, cycle, _cycleOrdinal, dispose, _formatMs (+15 more)
+Cohesion: 0.08
+Nodes (24): IconData, stringByIdProvider, build, _buildShotRows, _ChipSpec, createState, cycle, _cycleOrdinal (+16 more)
 
 ### Community 4 - "Localization (i18n)"
 Cohesion: 0.09
@@ -219,12 +230,12 @@ Cohesion: 0.08
 Nodes (23): copyWith, createdAt, delayMode, delayUsedMs, drillMode, firstShotForCycle, firstShotMs, fromMap (+15 more)
 
 ### Community 13 - "Settings Screen Widgets"
-Cohesion: 0.06
-Nodes (31): EdgeInsetsGeometry?, build, contentPadding, controller, _edit, initial, label, magnet (+23 more)
+Cohesion: 0.09
+Nodes (22): EdgeInsetsGeometry?, build, contentPadding, controller, _edit, initial, label, magnet (+14 more)
 
 ### Community 14 - "Screen Theming & State Display"
-Cohesion: 0.06
-Nodes (40): _SuggestionRow, _ActiveDrillChip, activeDrillName, child, _CountdownView, firstShotMs, _height, label (+32 more)
+Cohesion: 0.09
+Nodes (22): activeDrillName, child, firstShotMs, _height, label, line, name, notice (+14 more)
 
 ### Community 15 - "Auto-Configure Screen"
 Cohesion: 0.10
@@ -235,24 +246,24 @@ Cohesion: 0.09
 Nodes (21): beepInaudible, copyWith, currentCycleShotCount, currentCycleShots, currentParIndex, delayUsedMs, elapsedMs, error (+13 more)
 
 ### Community 17 - "Home Screen Widgets"
-Cohesion: 0.14
-Nodes (13): drill_config.dart, config, copyWith, decodeList, encodeList, fromMap, id, maxNameLength (+5 more)
+Cohesion: 0.13
+Nodes (14): drill_config.dart, config, copyWith, CustomDrill, decodeList, encodeList, fromMap, id (+6 more)
 
 ### Community 18 - "Mic Test Screen"
 Cohesion: 0.12
 Nodes (16): DateTime, double?, createState, _dominantFreqHz, _dominantFreqStrength, _error, freqHz, _FrequencyReadout (+8 more)
 
 ### Community 19 - "Flash Overlay Widget"
-Cohesion: 0.06
-Nodes (36): Animation, AnimationController, BigTimeDisplay, _BigTimeDisplayState, build, createState, _ctrl, didUpdateWidget (+28 more)
+Cohesion: 0.12
+Nodes (16): build, child, createState, _ctrl, didUpdateWidget, dispose, enabled, _pulse (+8 more)
 
 ### Community 20 - "History Provider"
 Cohesion: 0.11
 Nodes (17): dependencies, animejs, @fontsource/montserrat, @fontsource-variable/inter, @fontsource-variable/roboto, description, devDependencies, vite (+9 more)
 
 ### Community 21 - "App Root & Controls"
-Cohesion: 0.24
-Nodes (10): ConsumerState, ConsumerStatefulWidget, audioServiceProvider, AutoConfigureScreen, _AutoConfigureScreenState, MainShell, _MainShellState, build (+2 more)
+Cohesion: 0.15
+Nodes (16): ConsumerState, ConsumerStatefulWidget, audioServiceProvider, shotDetectorProvider, AutoConfigureScreen, _AutoConfigureScreenState, dispose, _start (+8 more)
 
 ### Community 22 - "Beep Onset Detector Tests"
 Cohesion: 0.13
@@ -271,12 +282,12 @@ Cohesion: 0.04
 Nodes (48): package:fake_async/fake_async.dart, package:simple_shot_timer/services/timer_ports.dart, package:simple_shot_timer/services/volume_service.dart, armBeepDetection, beepOnsetEvents, beeps, cancelBeepDetection, container (+40 more)
 
 ### Community 26 - "Auto-Configure Screen State"
-Cohesion: 0.12
-Nodes (16): custom_drills_screen.dart, history_screen.dart, home_screen.dart, build, createState, _index, ../models/enums.dart, package:flutter_localizations/flutter_localizations.dart (+8 more)
+Cohesion: 0.13
+Nodes (17): custom_drills_screen.dart, history_screen.dart, home_screen.dart, timerProvider, _BigButton, HomeScreen, build, createState (+9 more)
 
 ### Community 27 - "Par Schedule Model"
-Cohesion: 0.05
-Nodes (40): app_settings.dart, Duration, enums.dart, applyTo, chipLabels, defaults, _delayLabel, delayMode (+32 more)
+Cohesion: 0.08
+Nodes (25): applyTo, chipLabels, defaults, _delayLabel, delayMode, DrillConfig, DrillConfigLabels, drillMode (+17 more)
 
 ### Community 28 - "Settings Provider"
 Cohesion: 0.14
@@ -291,8 +302,8 @@ Cohesion: 0.20
 Nodes (9): changelog-path, changelog-sections, exclude-paths, include-component-in-tag, include-v-in-tag, package-name, packages, release-type (+1 more)
 
 ### Community 31 - "Monochrome Theme"
-Cohesion: 0.09
-Nodes (23): background_service.dart, armBeepDetection, beepOnsetEvents, cancelBeepDetection, events, hasPermission, insertString, lastPeak (+15 more)
+Cohesion: 0.10
+Nodes (20): background_service.dart, armBeepDetection, beepOnsetEvents, cancelBeepDetection, events, hasPermission, insertString, lastPeak (+12 more)
 
 ### Community 32 - "Biquad Filters"
 Cohesion: 0.25
@@ -327,8 +338,8 @@ Cohesion: 0.60
 Nodes (5): Simple Shot Timer App Icon (branding master), Monochrome Flat Line-Art Icon Style (single-color glyph on transparent background), Tapering Motion/Speed Lines Motif, Open Circular Arc Motif (timer dial / sound wave), Shot Timer (shooting-sports timing) Concept
 
 ### Community 40 - "String Provider"
-Cohesion: 0.06
-Nodes (38): bool get, countUnit, decimals, divisor, editText, format, FractionPercentUnit, fromNumber (+30 more)
+Cohesion: 0.11
+Nodes (20): bool get, countUnit, decimals, divisor, editText, format, FractionPercentUnit, fromNumber (+12 more)
 
 ### Community 41 - "Split Time Tests"
 Cohesion: 0.18
@@ -339,28 +350,28 @@ Cohesion: 0.20
 Nodes (10): Adding a page, Changelog, Deployment, Layout, Local development, Maintenance notes, Motion, One-time setup (+2 more)
 
 ### Community 50 - "Changelog"
-Cohesion: 0.07
-Nodes (29): [1.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.0.0...v1.1.0) (2026-05-15), [1.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.1.0...v1.2.0) (2026-05-19), [1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20), [1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20), [1.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02), [1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05), [1.6.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05), [1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30) (+21 more)
+Cohesion: 0.06
+Nodes (31): [1.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.0.0...v1.1.0) (2026-05-15), [1.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.1.0...v1.2.0) (2026-05-19), [1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20), [1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20), [1.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02), [1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05), [1.6.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05), [1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30) (+23 more)
 
 ### Community 51 - "slider_math.dart"
 Cohesion: 0.09
 Nodes (22): Audio direction, Brag Plan: Simple Shot Timer (revision 3, 2026-10-01), Duration: 29.9 s, Fictional data on screen, Format: vertical — 1080x1920, Hook (first 2-3 seconds), Key moments (the middle), Outro / punchline (+14 more)
 
 ### Community 52 - "history_screen.dart"
-Cohesion: 0.17
-Nodes (11): _csv, deleteExports, _exportName, ExportService, share, writeAllStringsCsv, writeStringCsv, ../models/timer_string.dart (+3 more)
+Cohesion: 0.18
+Nodes (10): _csv, deleteExports, _exportName, ExportService, share, writeAllStringsCsv, writeStringCsv, package:path_provider/path_provider.dart (+2 more)
 
 ### Community 53 - "How to join (Android)"
 Cohesion: 0.11
 Nodes (17): Audio plan, Core features, ranked for the video, Format / tone / length, How to run brag with this plan, Recording the RO audio (best option), RO audio: current status, Scene 1: Cold open "Are you ready?" (0.0 – ~4.5 s, the RO recording sets the length), Scene 2: Running view "It hears every shot" (~4.5 – 9.0 s) (+9 more)
 
 ### Community 54 - "big_time_display.dart"
-Cohesion: 0.11
-Nodes (29): ConsumerWidget, SimpleShotTimerApp, activeDrillProvider, historyProvider, volumeServiceProvider, settingsProvider, _checkBeepAudible, timerProvider (+21 more)
+Cohesion: 0.15
+Nodes (20): ConsumerWidget, SimpleShotTimerApp, historyProvider, volumeServiceProvider, settingsProvider, _checkBeepAudible, _apply, applyDrill (+12 more)
 
 ### Community 55 - "package:flutter/material.dart"
-Cohesion: 0.20
-Nodes (8): dart:math, package:simple_shot_timer/services/biquad.dart, beepHz, main, peakAbs, sampleRate, sine, main
+Cohesion: 0.29
+Nodes (6): package:simple_shot_timer/services/biquad.dart, beepHz, main, peakAbs, sampleRate, sine
 
 ### Community 56 - "dart:math"
 Cohesion: 0.09
@@ -371,16 +382,16 @@ Cohesion: 0.50
 Nodes (4): stringStoreProvider, addManualShot, updateLabel, updateNotes
 
 ### Community 80 - "settings_screen.dart"
-Cohesion: 0.07
-Nodes (32): auto_configure_screen.dart, detection_settings_screen.dart, ../i18n/app_localizations.dart, AppThemeMode, AppThemeModeX, DelayMode, DelayModeX, DrillMode (+24 more)
+Cohesion: 0.13
+Nodes (15): auto_configure_screen.dart, detection_settings_screen.dart, _Credits, _detectionSummary, _kDurationMagnetMs, _openPrivacyPolicy, _WipeChoice, mic_test_screen.dart (+7 more)
 
 ### Community 81 - "main.dart"
-Cohesion: 0.22
-Nodes (12): AppSettings, CustomDrillsNotifier, _persist, settingsServiceProvider, applyDrill, build, deleteAll, reset (+4 more)
+Cohesion: 0.07
+Nodes (32): int get, AppSettings, add, build, current, CustomDrillsNotifier, delete, findByName (+24 more)
 
 ### Community 82 - "enums.dart"
-Cohesion: 0.18
-Nodes (10): clamp, clampToStep, clampToStepDouble, nearest, snapped, softSnap, stepped, tolerance (+2 more)
+Cohesion: 0.11
+Nodes (18): _SuggestionRow, _ActiveDrillChip, _CountdownView, _LastStringLine, _RunFooter, _RunningView, _SettingsSummary, _Stat (+10 more)
 
 ### Community 83 - "par_schedule.dart"
 Cohesion: 0.18
@@ -415,11 +426,11 @@ Cohesion: 0.29
 Nodes (6): dart:io, package:simple_shot_timer/i18n/app_localizations.dart, load, main, placeholder, placeholders
 
 ### Community 91 - "i18n_parity_test.dart"
-Cohesion: 0.09
-Nodes (18): base, buildAppTheme, monochromeScheme, scheme, build, compact, height, level (+10 more)
+Cohesion: 0.12
+Nodes (14): build, compact, height, level, MicLevelMeter, threshold, package:flutter/material.dart, package:simple_shot_timer/theme/app_theme.dart (+6 more)
 
 ### Community 92 - "StatelessWidget"
-Cohesion: 0.25
+Cohesion: 0.29
 Nodes (7): 1. Join the tester group, 2. Opt in to the beta, 3. Install or update, How to join (Android), Join the Simple Shot Timer beta, Leaving the beta, Reporting bugs and feedback
 
 ### Community 93 - "drill_config_test.dart"
@@ -427,8 +438,8 @@ Cohesion: 0.17
 Nodes (11): app.dart, audio, db, main, prefs, setPreferredOrientations, ../providers/providers.dart, ../services/audio_service.dart (+3 more)
 
 ### Community 94 - "dart:math"
-Cohesion: 0.15
-Nodes (9): package:flutter_test/flutter_test.dart, package:simple_shot_timer/providers/timer_provider.dart, package:simple_shot_timer/utils/slider_math.dart, package:simple_shot_timer/utils/slider_units.dart, main, main, main, main (+1 more)
+Cohesion: 0.18
+Nodes (8): package:flutter_test/flutter_test.dart, package:simple_shot_timer/providers/timer_provider.dart, package:simple_shot_timer/utils/slider_math.dart, package:simple_shot_timer/utils/slider_units.dart, main, main, main, main
 
 ### Community 95 - "music-rms.js"
 Cohesion: 0.10
@@ -439,8 +450,8 @@ Cohesion: 0.29
 Nodes (6): Directory, package:path/path.dart, package:simple_shot_timer/services/export_service.dart, main, temp, touch
 
 ### Community 97 - "shotDetectorProvider"
-Cohesion: 0.33
-Nodes (6): shotDetectorProvider, dispose, _start, _stop, dispose, _start
+Cohesion: 0.12
+Nodes (16): build, _canConfirm, _confirm, confirmLabel, _controller, createState, dispose, _error (+8 more)
 
 ### Community 98 - "drill_name_dialog.dart"
 Cohesion: 0.29
@@ -451,7 +462,7 @@ Cohesion: 0.22
 Nodes (8): _channel, _invoke, IosAudioSession, lastError, useDefaultMode, useMeasurementMode, static const MethodChannel, static String?
 
 ### Community 100 - "settingsProvider"
-Cohesion: 0.22
+Cohesion: 0.40
 Nodes (5): By hand, Fields, Languages, Store listing text, Writing and translating
 
 ### Community 101 - "big_time_display.dart"
@@ -459,24 +470,24 @@ Cohesion: 0.29
 Nodes (6): package:simple_shot_timer/services/ios_audio_session.dart, calls, channel, installHandler, main, messenger
 
 ### Community 102 - "List"
-Cohesion: 0.25
-Nodes (10): AsyncNotifier, build, delete, deleteAll, HistoryNotifier, refresh, databaseProvider, _addShot (+2 more)
+Cohesion: 0.20
+Nodes (12): build, delete, deleteAll, refresh, databaseProvider, read, _addShot, _deleteShot (+4 more)
 
 ### Community 103 - "AppLocalizations"
-Cohesion: 0.15
-Nodes (15): detector, sharedPreferencesProvider, AudioService, DatabaseService, ShotDetector, BeepPlayer, ShotSource, StringStore (+7 more)
+Cohesion: 0.13
+Nodes (17): detector, sharedPreferencesProvider, AudioService, DatabaseService, SettingsService, ShotDetector, BeepPlayer, ShotSource (+9 more)
 
 ### Community 104 - "custom_drills_provider.dart"
-Cohesion: 0.17
-Nodes (11): int get, add, build, current, delete, findByName, _nextId, null (+3 more)
+Cohesion: 0.14
+Nodes (13): Animation, AnimationController, build, createState, _ctrl, didUpdateWidget, dispose, fontSize (+5 more)
 
 ### Community 105 - "tab_header.dart"
 Cohesion: 0.20
 Nodes (9): Audio, Creative Direction, Hyperframes Composition Brief: Simple Shot Timer (2.0 UI, revision 3), Hyperframes Instructions, Objective, Output, Source Material, Storyboard (+1 more)
 
 ### Community 106 - "settings_service_test.dart"
-Cohesion: 0.12
-Nodes (16): dart:convert, package:shared_preferences/shared_preferences.dart, package:simple_shot_timer/models/app_settings.dart, package:simple_shot_timer/models/custom_drill.dart, package:simple_shot_timer/models/drill_config.dart, package:simple_shot_timer/services/settings_service.dart, SharedPreferences, _drill (+8 more)
+Cohesion: 0.15
+Nodes (12): package:shared_preferences/shared_preferences.dart, package:simple_shot_timer/models/app_settings.dart, package:simple_shot_timer/models/custom_drill.dart, package:simple_shot_timer/models/drill_config.dart, package:simple_shot_timer/services/settings_service.dart, SharedPreferences, _drill, main (+4 more)
 
 ### Community 107 - "Composition brief: Simple Shot Timer launch video (2.0 UI, revision 3)"
 Cohesion: 0.20
@@ -499,8 +510,8 @@ Cohesion: 0.50
 Nodes (4): Commit format, Commit messages are store release notes, Release flow, Versioning
 
 ### Community 112 - "drill_tile.dart"
-Cohesion: 0.11
-Nodes (18): custom_drill_flows.dart, CustomDrill, _DrillAction, _EmptyState, _menuItems, onSave, _run, active (+10 more)
+Cohesion: 0.18
+Nodes (10): custom_drill_flows.dart, _DrillAction, _EmptyState, _menuItems, onSave, _run, ../models/custom_drill.dart, ../providers/custom_drills_provider.dart (+2 more)
 
 ### Community 113 - "settings_widgets.dart"
 Cohesion: 0.50
@@ -523,44 +534,84 @@ Cohesion: 0.33
 Nodes (5): File, package:simple_shot_timer/utils/legal.dart, attribution, main, originalUrl
 
 ### Community 124 - "customDrillsProvider"
-Cohesion: 0.50
-Nodes (4): customDrillsProvider, deleteDrill, renameDrill, saveCurrentDrill
+Cohesion: 0.29
+Nodes (8): activeDrillProvider, customDrillsProvider, deleteDrill, renameDrill, saveCurrentDrill, build, CustomDrillsScreen, _TimerArea
 
 ### Community 125 - "tab_header.dart"
-Cohesion: 0.33
-Nodes (5): actions, build, TabHeader, title, List
+Cohesion: 0.40
+Nodes (4): actions, build, TabHeader, title
 
 ### Community 126 - "package:flutter_riverpod/flutter_riverpod.dart"
-Cohesion: 0.50
-Nodes (3): read, package:flutter_riverpod/flutter_riverpod.dart, providers.dart
+Cohesion: 0.27
+Nodes (9): ../i18n/app_localizations.dart, AppThemeMode, AppThemeModeX, DelayMode, DelayModeX, DrillMode, DrillModeX, labelFor (+1 more)
 
 ### Community 127 - "stringByIdProvider"
+Cohesion: 0.20
+Nodes (9): active, build, drill, DrillTile, onTap, trailing, ../models/drill_config.dart, VoidCallback (+1 more)
+
+### Community 128 - "settings_widgets.dart"
+Cohesion: 0.20
+Nodes (9): build, current, EnumChoice, onChanged, SettingsSection, title, values, T (+1 more)
+
+### Community 129 - "par_schedule.dart"
+Cohesion: 0.22
+Nodes (8): app_settings.dart, enums.dart, computeParSchedule, cycle, kind, ParBeepEvent, ParBeepKind, timeMs
+
+### Community 130 - "_BigTimeDisplayState"
+Cohesion: 0.31
+Nodes (9): BigTimeDisplay, _BigTimeDisplayState, _DrillNameDialog, _DrillNameDialogState, FlashOverlay, _FlashOverlayState, SingleTickerProviderStateMixin, State (+1 more)
+
+### Community 131 - "motion.dart"
+Cohesion: 0.25
+Nodes (7): Duration, kMotionMedium, kMotionShort, kMotionTick, motion, reducedMotionOf, package:flutter/widgets.dart
+
+### Community 132 - "history_screen.dart"
+Cohesion: 0.25
+Nodes (7): _drillSummary, fmt, package:intl/intl.dart, ../providers/history_provider.dart, review_screen.dart, ../services/export_service.dart, ../utils/time_format.dart
+
+### Community 133 - "app.dart"
+Cohesion: 0.29
+Nodes (6): build, ../models/enums.dart, package:flutter_localizations/flutter_localizations.dart, ../providers/settings_provider.dart, screens/main_shell.dart, theme/app_theme.dart
+
+### Community 134 - "drill_config_test.dart"
+Cohesion: 0.33
+Nodes (5): dart:convert, _drill, main, _other, _singleFieldEdits
+
+### Community 136 - "app_theme.dart"
+Cohesion: 0.40
+Nodes (4): base, buildAppTheme, monochromeScheme, scheme
+
+### Community 137 - "List"
 Cohesion: 0.67
-Nodes (3): stringByIdProvider, build, ReviewScreen
+Nodes (3): AsyncNotifier, HistoryNotifier, List
+
+### Community 139 - "RunEnvironment"
+Cohesion: 0.67
+Nodes (3): PluginRunEnvironment, RunEnvironment, _FakeEnvironment
 
 ## Ambiguous Edges - Review These
 - `Open Circular Arc Motif (timer dial / sound wave)` → `Shot Timer (shooting-sports timing) Concept`  [AMBIGUOUS]
   assets/branding/icon.png · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **996 isolated node(s):** `flutter_export_environment.sh script`, `XCTest`, `AVFoundation`, `+registerWithRegistry`, `AppLocale` (+991 more)
+- **997 isolated node(s):** `flutter_export_environment.sh script`, `XCTest`, `AVFoundation`, `+registerWithRegistry`, `AppLocale` (+992 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `Open Circular Arc Motif (timer dial / sound wave)` and `Shot Timer (shooting-sports timing) Concept`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `DelayMode` connect `settings_screen.dart` to `App Settings Model`, `Par Schedule Model`, `Timer String Model`, `Timer Provider Core`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **Why does `DrillMode` connect `settings_screen.dart` to `App Settings Model`, `Par Schedule Model`, `Timer String Model`, `Timer Provider Core`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `DelayMode` connect `package:flutter_riverpod/flutter_riverpod.dart` to `App Settings Model`, `Timer Provider Core`, `Timer String Model`, `settings_screen.dart`, `Par Schedule Model`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `DrillMode` connect `package:flutter_riverpod/flutter_riverpod.dart` to `App Settings Model`, `Timer Provider Core`, `Timer String Model`, `settings_screen.dart`, `Par Schedule Model`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `AppSettings` connect `main.dart` to `App Settings Model`, `Timer Provider Core`, `Screen Theming & State Display`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `Returns (sections in output order, whether any section heading was seen).`, `Returns (notes, number of entries left out for length).`, `Intercept NOTIFY_DEBUGGER_ABOUT_RX_PAGES and touch the pages.` to the rest of the system?**
-  _1003 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1004 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audio Capture & Shot Detection` be split into smaller, more focused modules?**
   _Cohesion score 0.031746031746031744 - nodes in this community are weakly interconnected._
 - **Should `App Bootstrap & Providers` be split into smaller, more focused modules?**
-  _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._

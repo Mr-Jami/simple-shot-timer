@@ -103,7 +103,7 @@ flutter create . --platforms=android,ios,web
 │   │   ├── deploy-app-store.yml    # Build IPA and upload to App Store Connect
 │   │   └── update-store-listings.yml  # Upload the listing text to both stores
 │   ├── scripts/
-│   │   └── play_release_notes.py   # GitHub Release body -> Play Store "What's new"
+│   │   └── play_release_notes.py   # GitHub Releases -> store "What's new" (Play + App Store)
 │   └── pull_request_template.md
 ├── android/                    # Android platform code (manifest, Gradle, volume channel)
 ├── ios/                        # iOS platform code (Xcode project, audio-session + volume channels)
@@ -226,7 +226,7 @@ A scope is optional: `feat(settings): add language picker`.
 
 ### Commit messages are store release notes
 
-`feat:`, `fix:` and `perf:` subjects end up in two places:
+`feat:`, `fix:` and `perf:` subjects end up in three places:
 
 - **GitHub Release / `CHANGELOG.md`**: verbatim, with scope, links and
   commit hashes.
@@ -236,6 +236,12 @@ A scope is optional: `feat(settings): add language picker`.
   numbers are removed, and the first letter is capitalised. Dependency
   bumps and reverts are left out, and the text is capped at 500 characters
   (later bullets are dropped first, with a warning in the deploy log).
+- **App Store What's New**: the same rewrite, written by the store listings
+  workflow (see [Store listings](#store-listings)). It covers every release
+  since the version live on the App Store, since an App Store update can
+  skip versions, and is capped at 4000 characters.
+
+Both stores show these notes in English in every language.
 
 A `BREAKING CHANGE:` footer is published in full under *Changed*, listed
 first, so write it for users too: say what is gone or behaves differently.
@@ -341,8 +347,8 @@ runner with Xcode `26.3` and uploads it to App Store Connect, where it
 appears in TestFlight. Submitting a build for App Review is done in App
 Store Connect: run the store listings workflow (see
 [Store listings](#store-listings)), which creates the version from
-`pubspec.yaml` and fills in its text and *What's New* in every language,
-then select the build and submit. The app is iPhone-only
+`pubspec.yaml` and fills in its text in every language and *What's New*
+from the GitHub Releases, then select the build and submit. The app is iPhone-only
 (`TARGETED_DEVICE_FAMILY = 1`).
 
 ### Triggers
@@ -387,9 +393,10 @@ no longer has it) in the workflow when that happens.
 
 The listing text for both stores, in every app language, lives in
 [fastlane/metadata/](fastlane/metadata/README.md): Play title, short and
-full description; App Store name, subtitle, description, keywords, What's
-New and URLs. `.github/workflows/update-store-listings.yml` uploads it with
-fastlane, using the deploy workflows' secrets. Start it from *Run workflow*:
+full description; App Store name, subtitle, description, keywords and URLs.
+`.github/workflows/update-store-listings.yml` uploads it with fastlane,
+using the deploy workflows' secrets, together with the App Store's What's
+New, which it builds from the GitHub Releases. Start it from *Run workflow*:
 
 - **Store**: both, Google Play or App Store.
 - **Google Play** updates the main store listing in each language that has
@@ -400,8 +407,9 @@ fastlane, using the deploy workflows' secrets. Start it from *Run workflow*:
   submits. Description, keywords and What's New can only change with a new
   version, so run it for each release before submitting; the English
   keywords have no file and keep whatever App Store Connect has.
-- **Validate only** checks the Google Play listings without saving them.
-  App Store Connect has no dry run, so the App Store job is skipped then.
+- **Validate only** saves nothing: it checks the Google Play listings with
+  Google and prints the App Store What's New. App Store Connect has no dry
+  run, so nothing is sent to Apple.
 
 `test/store_listing_test.dart` fails when a field is over its store limit or
 an app language has no listing in either store, so adding a language means

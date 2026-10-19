@@ -1,6 +1,6 @@
 {
   ".release-please-manifest.json": {
-    "mtime": 1792437934.15974,
+    "mtime": 1792438074.77695,
     "ast_hash": "97944d11c70a8ad67a836a8cd8c128ef",
     "semantic_hash": ""
   },
@@ -355,18 +355,18 @@
     "semantic_hash": "269aa4105ec2ad2b0ce69d17d9f83a0d"
   },
   "CHANGELOG.md": {
-    "mtime": 1792437934.1602526,
+    "mtime": 1792438074.7778354,
     "ast_hash": "5a53c0ba4bad2a9cb21318c6a2575ef3",
     "semantic_hash": ""
   },
   "JOIN_TESTING.md": {
-    "mtime": 1792437934.221031,
+    "mtime": 1792438074.7784555,
     "ast_hash": "07add360f3dcf0067a34e70525a628fd",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792437934.6877725,
-    "ast_hash": "463259e4e08ac235b36cfc66f5786021",
+    "mtime": 1792438912.1975079,
+    "ast_hash": "058ea5a7775385a13fc710a94e6b3d8b",
     "semantic_hash": ""
   },
   "agent-os/standards/index.yml": {
@@ -385,7 +385,7 @@
     "semantic_hash": "f7ee1b402881509d197f34963e569927"
   },
   "pubspec.yaml": {
-    "mtime": 1792437934.1817484,
+    "mtime": 1792438074.834426,
     "ast_hash": "6d4b32a5b69363648a22a312bbe7a424",
     "semantic_hash": ""
   },
@@ -905,8 +905,8 @@
     "semantic_hash": ""
   },
   ".github/scripts/play_release_notes.py": {
-    "mtime": 1790813139.7861443,
-    "ast_hash": "515d5c5494a884156d24f7dc9d9160c1",
+    "mtime": 1792438808.5596955,
+    "ast_hash": "fcf108ca916d774580dd694a2b79ac9c",
     "semantic_hash": ""
   },
   "brag-output/2026-09-24/composition/assets/music-rms.js": {
@@ -935,8 +935,8 @@
     "semantic_hash": ""
   },
   ".github/pull_request_template.md": {
-    "mtime": 1790813139.7851443,
-    "ast_hash": "b142682a30f6251489b9eac5ee07b2d0",
+    "mtime": 1792438912.2512972,
+    "ast_hash": "c02e3262dfb4dc22f66e7a8b030c9986",
     "semantic_hash": ""
   },
   "brag-output/2026-09-24/brag-plan.md": {
@@ -995,7 +995,7 @@
     "semantic_hash": ""
   },
   "branding/launch-video/share-copy.txt": {
-    "mtime": 1792437934.222749,
+    "mtime": 1792438074.7794623,
     "ast_hash": "ea96ee9f0244dd7120cc37823dcc6890",
     "semantic_hash": ""
   },
@@ -1005,7 +1005,7 @@
     "semantic_hash": ""
   },
   "branding/store-listing/README.md": {
-    "mtime": 1792437934.567386,
+    "mtime": 1792438074.7794623,
     "ast_hash": "f65214642b785c3299025d14206bf02c",
     "semantic_hash": ""
   },
@@ -1365,12 +1365,12 @@
     "semantic_hash": ""
   },
   "website/README.md": {
-    "mtime": 1792437934.374122,
+    "mtime": 1792438074.835392,
     "ast_hash": "d5b604a5d43be975322164af32f8415d",
     "semantic_hash": ""
   },
   "website/index.html": {
-    "mtime": 1792437934.3766754,
+    "mtime": 1792438074.8384972,
     "ast_hash": "daa092eade77e17c2e35b0f866c359ca",
     "semantic_hash": ""
   },
@@ -1420,7 +1420,7 @@
     "semantic_hash": ""
   },
   "website/public/llms.txt": {
-    "mtime": 1792437934.3797815,
+    "mtime": 1792438074.8404715,
     "ast_hash": "9179d6170c37a19d73e57a9314436fbc",
     "semantic_hash": ""
   },
@@ -1450,7 +1450,7 @@
     "semantic_hash": ""
   },
   "website/de/datenschutz/website/index.html": {
-    "mtime": 1792437934.3751307,
+    "mtime": 1792438074.8375144,
     "ast_hash": "df638d3927dd22725c57bd39a54c8e0f",
     "semantic_hash": ""
   },
@@ -1460,7 +1460,7 @@
     "semantic_hash": ""
   },
   "website/de/index.html": {
-    "mtime": 1792437934.3766754,
+    "mtime": 1792438074.8375144,
     "ast_hash": "bf38694c66bbc4cff978d7389e911126",
     "semantic_hash": ""
   },
@@ -1470,7 +1470,7 @@
     "semantic_hash": ""
   },
   "website/privacy/website/index.html": {
-    "mtime": 1792437934.3782382,
+    "mtime": 1792438074.8384972,
     "ast_hash": "228de6b8c5e70145eb1db01ecba76e34",
     "semantic_hash": ""
   },
@@ -1485,7 +1485,7 @@
     "semantic_hash": ""
   },
   "website/public/download/redirect.js": {
-    "mtime": 1792437934.3797815,
+    "mtime": 1792438074.8404715,
     "ast_hash": "7459d3cfff2d7fc8f41cfb54e50c07d4",
     "semantic_hash": ""
   },
@@ -1515,462 +1515,422 @@
     "semantic_hash": ""
   },
   "website/public/app-store-badge-de.svg": {
-    "mtime": 1792437934.378772,
+    "mtime": 1792438074.8394732,
     "ast_hash": "e6ec7f8aec6de291a25e908d4c8a1a48",
     "semantic_hash": ""
   },
   "website/public/app-store-badge.svg": {
-    "mtime": 1792437934.378772,
+    "mtime": 1792438074.8394732,
     "ast_hash": "1b65926236d951b2af57201b275f595b",
     "semantic_hash": ""
   },
   "test/store_listing_test.dart": {
-    "mtime": 1792437934.6969852,
-    "ast_hash": "bf8ef360bc52b4fe017c69d2dab9f77b",
+    "mtime": 1792438875.3241496,
+    "ast_hash": "d73777f24086c53ecf7108454cca69dc",
     "semantic_hash": ""
   },
   ".github/workflows/update-store-listings.yml": {
-    "mtime": 1792437934.6877725,
-    "ast_hash": "46e122048f4262047aeef4700a2ba91f",
+    "mtime": 1792438833.450794,
+    "ast_hash": "a644c2ac9b18229525779e583ed2dab1",
     "semantic_hash": ""
   },
   "fastlane/metadata/README.md": {
-    "mtime": 1792437949.1718798,
-    "ast_hash": "410e0b2e2800672ab87a61d5e89bc0f6",
+    "mtime": 1792438902.7884123,
+    "ast_hash": "5e4e43064bca7582dfdd289d055727af",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/de-DE/full_description.txt": {
-    "mtime": 1792437934.5694623,
+    "mtime": 1792438074.781506,
     "ast_hash": "155affc4ec2b12d8940d966f54c10f43",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/de-DE/short_description.txt": {
-    "mtime": 1792437934.5704772,
+    "mtime": 1792438074.781506,
     "ast_hash": "a2254b883c878acabc41d9ea8003a6e5",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/de-DE/title.txt": {
-    "mtime": 1792437934.5704772,
+    "mtime": 1792438074.781506,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/full_description.txt": {
-    "mtime": 1792437934.5704772,
+    "mtime": 1792438074.781506,
     "ast_hash": "9e87b3e2a36e5cd8b606f2013e7dba2d",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/short_description.txt": {
-    "mtime": 1792437934.5714831,
+    "mtime": 1792438074.781506,
     "ast_hash": "497c38571e4a752f8ba805469f476453",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/title.txt": {
-    "mtime": 1792437934.5714831,
+    "mtime": 1792438074.781506,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/es-ES/full_description.txt": {
-    "mtime": 1792437934.5714831,
+    "mtime": 1792438074.783026,
     "ast_hash": "e129bdeadbf043711982456d75e7d2a8",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/es-ES/short_description.txt": {
-    "mtime": 1792437934.5714831,
+    "mtime": 1792438074.7840471,
     "ast_hash": "38aa23048fbf6f7eeaee603427ee842c",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/es-ES/title.txt": {
-    "mtime": 1792437934.5730045,
+    "mtime": 1792438074.7840471,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/fi-FI/full_description.txt": {
-    "mtime": 1792437934.5730045,
+    "mtime": 1792438074.7840471,
     "ast_hash": "e6edfeb4f1863a795ce524e383e8285b",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/fi-FI/short_description.txt": {
-    "mtime": 1792437934.5730045,
+    "mtime": 1792438074.7840471,
     "ast_hash": "c105fc6b57b62baa6330eeec714d5727",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/fi-FI/title.txt": {
-    "mtime": 1792437934.5730045,
+    "mtime": 1792438074.7850492,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/fr-FR/full_description.txt": {
-    "mtime": 1792437934.5746155,
+    "mtime": 1792438074.7850492,
     "ast_hash": "3277e9b2f03092cdf7d6642543e392b3",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/fr-FR/short_description.txt": {
-    "mtime": 1792437934.5746155,
+    "mtime": 1792438074.7850492,
     "ast_hash": "a572a58c8af56bde41ac69a4892031e8",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/fr-FR/title.txt": {
-    "mtime": 1792437934.5756414,
+    "mtime": 1792438074.7860465,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/pl-PL/full_description.txt": {
-    "mtime": 1792437934.5756414,
+    "mtime": 1792438074.7860465,
     "ast_hash": "c2ce1000bd7f339c8b845375a7cb6aa5",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/pl-PL/short_description.txt": {
-    "mtime": 1792437934.5756414,
+    "mtime": 1792438074.7860465,
     "ast_hash": "4e2916629677ce1ce8e9bf1708668668",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/pl-PL/title.txt": {
-    "mtime": 1792437934.5766315,
+    "mtime": 1792438074.7860465,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/pt-BR/full_description.txt": {
-    "mtime": 1792437934.5766315,
+    "mtime": 1792438074.787047,
     "ast_hash": "e3d91ab92e82fd8755f0abd2d755b706",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/pt-BR/short_description.txt": {
-    "mtime": 1792437934.5766315,
+    "mtime": 1792438074.787047,
     "ast_hash": "00ac15e3869c2af3e1090de201959a13",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/pt-BR/title.txt": {
-    "mtime": 1792437934.5766315,
+    "mtime": 1792438074.787047,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/ru-RU/full_description.txt": {
-    "mtime": 1792437934.5783978,
+    "mtime": 1792438074.7880468,
     "ast_hash": "888d9c3c037fb28276f2d8503fc26877",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/ru-RU/short_description.txt": {
-    "mtime": 1792437934.5783978,
+    "mtime": 1792438074.7880468,
     "ast_hash": "6539526a6110df323959df2e08b7555c",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/ru-RU/title.txt": {
-    "mtime": 1792437934.578943,
+    "mtime": 1792438074.7880468,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/de-DE/description.txt": {
-    "mtime": 1792437934.5794694,
+    "mtime": 1792438074.7890446,
     "ast_hash": "e7c659be09723d404409d06864398373",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/de-DE/keywords.txt": {
-    "mtime": 1792437934.5794694,
+    "mtime": 1792438074.7890446,
     "ast_hash": "b9e7f3ec82e0b0b10be65dd35f726547",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/de-DE/marketing_url.txt": {
-    "mtime": 1792437934.6892836,
+    "mtime": 1792438074.7890446,
     "ast_hash": "f9f27c7fd1129a6a1660076d900cc3dd",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/de-DE/name.txt": {
-    "mtime": 1792437934.5805025,
+    "mtime": 1792438074.7902174,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/de-DE/privacy_url.txt": {
-    "mtime": 1792437934.6892836,
+    "mtime": 1792438074.7902174,
     "ast_hash": "a884a04d1009e053d549e3b54d868cee",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/de-DE/release_notes.txt": {
-    "mtime": 1792437934.5805025,
-    "ast_hash": "38c30e2c82a1cb40d5ae27ddf926e103",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/de-DE/subtitle.txt": {
-    "mtime": 1792437934.581522,
+    "mtime": 1792438074.7907608,
     "ast_hash": "170d2a486a3fe51d7f037178113ff5fd",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/de-DE/support_url.txt": {
-    "mtime": 1792437934.6902988,
+    "mtime": 1792438074.7907608,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/en-US/description.txt": {
-    "mtime": 1792437934.581522,
+    "mtime": 1792438074.791776,
     "ast_hash": "c98fae1c4903d6e1842f9030097c4a70",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/en-US/marketing_url.txt": {
-    "mtime": 1792437934.6902988,
+    "mtime": 1792438074.791776,
     "ast_hash": "5afc2ba256975c4712705ee87104419c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/en-US/name.txt": {
-    "mtime": 1792437934.5825114,
+    "mtime": 1792438074.791776,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/en-US/privacy_url.txt": {
-    "mtime": 1792437934.6902988,
+    "mtime": 1792438074.792779,
     "ast_hash": "3ee3210a364a7177b38ee302cfc39960",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/en-US/release_notes.txt": {
-    "mtime": 1792437934.5825114,
-    "ast_hash": "8af040d5e1c6054d9acda551a734436e",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/en-US/subtitle.txt": {
-    "mtime": 1792437934.5825114,
+    "mtime": 1792438074.792779,
     "ast_hash": "91c619eaa6747db6c636146528f76c00",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/en-US/support_url.txt": {
-    "mtime": 1792437934.6914606,
+    "mtime": 1792438074.792779,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/es-ES/description.txt": {
-    "mtime": 1792437934.5835106,
+    "mtime": 1792438074.7937763,
     "ast_hash": "00e12ea68619c5fbc66d3eadc6f5cfbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/es-ES/keywords.txt": {
-    "mtime": 1792437934.5835106,
+    "mtime": 1792438074.7937763,
     "ast_hash": "61fcc30468cc81488da69b2363d4adcd",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/es-ES/marketing_url.txt": {
-    "mtime": 1792437934.6914606,
+    "mtime": 1792438074.7937763,
     "ast_hash": "5afc2ba256975c4712705ee87104419c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/es-ES/name.txt": {
-    "mtime": 1792437934.5845041,
+    "mtime": 1792438074.794796,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/es-ES/privacy_url.txt": {
-    "mtime": 1792437934.6914606,
+    "mtime": 1792438074.794796,
     "ast_hash": "3ee3210a364a7177b38ee302cfc39960",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/es-ES/release_notes.txt": {
-    "mtime": 1792437934.5845041,
-    "ast_hash": "0e54b699340a8d78710a2fb17b10bb4f",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/es-ES/subtitle.txt": {
-    "mtime": 1792437934.5855036,
+    "mtime": 1792438074.794796,
     "ast_hash": "81e4f3f4362989116ab93b85c25fdfd1",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/es-ES/support_url.txt": {
-    "mtime": 1792437934.6914606,
+    "mtime": 1792438074.794796,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fi/description.txt": {
-    "mtime": 1792437934.5855036,
+    "mtime": 1792438074.794796,
     "ast_hash": "105d737bb1045a7e0c6e107c9b54435c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fi/keywords.txt": {
-    "mtime": 1792437934.5865028,
+    "mtime": 1792438074.7967627,
     "ast_hash": "d7c745b410bd6b4f79c328a785cd5adc",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fi/marketing_url.txt": {
-    "mtime": 1792437934.692453,
+    "mtime": 1792438074.7967627,
     "ast_hash": "5afc2ba256975c4712705ee87104419c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fi/name.txt": {
-    "mtime": 1792437934.5865028,
+    "mtime": 1792438074.7967627,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fi/privacy_url.txt": {
-    "mtime": 1792437934.692453,
+    "mtime": 1792438074.7967627,
     "ast_hash": "3ee3210a364a7177b38ee302cfc39960",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/fi/release_notes.txt": {
-    "mtime": 1792437934.5865028,
-    "ast_hash": "357237dc64691a05f474ad59bfb36d76",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/fi/subtitle.txt": {
-    "mtime": 1792437934.5865028,
+    "mtime": 1792438074.7979066,
     "ast_hash": "4e489876da52204d3a2f5bbb2b91bb9f",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fi/support_url.txt": {
-    "mtime": 1792437934.692453,
+    "mtime": 1792438074.7979066,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fr-FR/description.txt": {
-    "mtime": 1792437934.5881803,
+    "mtime": 1792438074.7989213,
     "ast_hash": "ed8298017ec0f936c982e833ad9ded1f",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fr-FR/keywords.txt": {
-    "mtime": 1792437934.5881803,
+    "mtime": 1792438074.7989213,
     "ast_hash": "ade856b988e1f65d13e24baf924f4011",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fr-FR/marketing_url.txt": {
-    "mtime": 1792437934.6934512,
+    "mtime": 1792438074.7989213,
     "ast_hash": "5afc2ba256975c4712705ee87104419c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fr-FR/name.txt": {
-    "mtime": 1792437934.5897179,
+    "mtime": 1792438074.7999177,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fr-FR/privacy_url.txt": {
-    "mtime": 1792437934.6934512,
+    "mtime": 1792438074.7999177,
     "ast_hash": "3ee3210a364a7177b38ee302cfc39960",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/fr-FR/release_notes.txt": {
-    "mtime": 1792437934.5897179,
-    "ast_hash": "ff6ca2dedc4fb664ccc8be8b46b7b8b0",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/fr-FR/subtitle.txt": {
-    "mtime": 1792437934.5907662,
+    "mtime": 1792438074.800919,
     "ast_hash": "75c9763e3a3fae78497e671af9299054",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/fr-FR/support_url.txt": {
-    "mtime": 1792437934.6934512,
+    "mtime": 1792438074.800919,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pl/description.txt": {
-    "mtime": 1792437934.5917394,
+    "mtime": 1792438074.800919,
     "ast_hash": "a147f3709fa202d6d7ebe236b5cbcce8",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pl/keywords.txt": {
-    "mtime": 1792437934.5917394,
+    "mtime": 1792438074.8019178,
     "ast_hash": "ce2ffdc67183962d6cc8ec3f5b95f32b",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pl/marketing_url.txt": {
-    "mtime": 1792437934.6944513,
+    "mtime": 1792438074.8019178,
     "ast_hash": "5afc2ba256975c4712705ee87104419c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pl/name.txt": {
-    "mtime": 1792437934.5917394,
+    "mtime": 1792438074.8019178,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pl/privacy_url.txt": {
-    "mtime": 1792437934.6944513,
+    "mtime": 1792438074.8029182,
     "ast_hash": "3ee3210a364a7177b38ee302cfc39960",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/pl/release_notes.txt": {
-    "mtime": 1792437934.5930233,
-    "ast_hash": "89553696b409b598f398f8809031f238",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/pl/subtitle.txt": {
-    "mtime": 1792437934.5930233,
+    "mtime": 1792438074.8029182,
     "ast_hash": "0ba303072bc798e8bea1a36096139d0f",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pl/support_url.txt": {
-    "mtime": 1792437934.6949644,
+    "mtime": 1792438074.8039193,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pt-BR/description.txt": {
-    "mtime": 1792437934.594033,
+    "mtime": 1792438074.8039193,
     "ast_hash": "3b44747d759c95c3fc20dacfcf66699b",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pt-BR/keywords.txt": {
-    "mtime": 1792437934.594033,
+    "mtime": 1792438074.8039193,
     "ast_hash": "5b7d5dda0a135a031703171b082a9c05",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pt-BR/marketing_url.txt": {
-    "mtime": 1792437934.6949644,
+    "mtime": 1792438074.8039193,
     "ast_hash": "5afc2ba256975c4712705ee87104419c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pt-BR/name.txt": {
-    "mtime": 1792437934.5950396,
+    "mtime": 1792438074.8039193,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pt-BR/privacy_url.txt": {
-    "mtime": 1792437934.6949644,
+    "mtime": 1792438074.8053553,
     "ast_hash": "3ee3210a364a7177b38ee302cfc39960",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/pt-BR/release_notes.txt": {
-    "mtime": 1792437934.5950396,
-    "ast_hash": "413dbaba2b529761ea6f9df87c8389d9",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/pt-BR/subtitle.txt": {
-    "mtime": 1792437934.5960913,
+    "mtime": 1792438074.8053553,
     "ast_hash": "081ef34c9271a3eadb9fef0f349c8b58",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/pt-BR/support_url.txt": {
-    "mtime": 1792437934.6959777,
+    "mtime": 1792438074.8053553,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/ru/description.txt": {
-    "mtime": 1792437934.5971086,
+    "mtime": 1792438074.806867,
     "ast_hash": "f69140aad9ed3142a2996701d681a0fb",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/ru/keywords.txt": {
-    "mtime": 1792437934.5971086,
+    "mtime": 1792438074.806867,
     "ast_hash": "95acbdb6ea5b39659a69f13bbec7bbb1",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/ru/marketing_url.txt": {
-    "mtime": 1792437934.6959777,
+    "mtime": 1792438074.807886,
     "ast_hash": "5afc2ba256975c4712705ee87104419c",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/ru/name.txt": {
-    "mtime": 1792437934.5971086,
+    "mtime": 1792438074.807886,
     "ast_hash": "ffae79fd47b75df1ca265bf6c696a0ac",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/ru/privacy_url.txt": {
-    "mtime": 1792437934.6959777,
+    "mtime": 1792438074.807886,
     "ast_hash": "3ee3210a364a7177b38ee302cfc39960",
     "semantic_hash": ""
   },
-  "fastlane/metadata/ios/ru/release_notes.txt": {
-    "mtime": 1792437934.598104,
-    "ast_hash": "fbb35c9c89228f01ec184ecae051bae6",
-    "semantic_hash": ""
-  },
   "fastlane/metadata/ios/ru/subtitle.txt": {
-    "mtime": 1792437934.598104,
+    "mtime": 1792438074.8088832,
     "ast_hash": "0cc63d188d0fa6dd2cec0fc1bebafaf3",
     "semantic_hash": ""
   },
   "fastlane/metadata/ios/ru/support_url.txt": {
-    "mtime": 1792437934.6969852,
+    "mtime": 1792438074.8088832,
     "ast_hash": "fbca28face493ab762ee09d889b78fbe",
     "semantic_hash": ""
   }
