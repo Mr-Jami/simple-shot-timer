@@ -9,6 +9,7 @@ people and AI search find it. Nothing here is part of the app or the website.
 | [cc.jami.simpleshottimer.yml](cc.jami.simpleshottimer.yml) | Draft fdroiddata metadata (the file for `metadata/` in a fork of fdroiddata) |
 | [fdroid-merge-request.md](fdroid-merge-request.md) | The merge request description, filled in from fdroiddata's *App inclusion* template |
 | [wikidata.md](wikidata.md) | Draft Wikidata item: labels, descriptions, statements with their properties and references, how to create it |
+| [alternativeto.md](alternativeto.md) | Draft AlternativeTo listing: every field to fill in, and Shot Session as the app to list it against |
 | [wikidata-quickstatements.tsv](wikidata-quickstatements.tsv) | The same item as a QuickStatements V1 batch (tab-separated), to create it in one run |
 
 The F-Droid listing texts, icon, feature graphic, screenshots and changelogs
