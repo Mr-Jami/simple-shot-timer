@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.2.0...v2.3.0) (2026-10-19)
+
+
+### Features
+
+* **i18n:** use the app in Polish, Portuguese and Finnish ([#35](https://github.com/Mr-Jami/simple-shot-timer/issues/35)) ([0836213](https://github.com/Mr-Jami/simple-shot-timer/commit/08362136b9109b7c7319f3ed027c68d386da4237))
+
 ## [2.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.1.0...v2.2.0) (2026-10-13)
 
 
