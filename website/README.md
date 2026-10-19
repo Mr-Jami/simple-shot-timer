@@ -28,6 +28,10 @@ npm run preview   # serves dist/
 | English | German | Source |
 | --- | --- | --- |
 | `/` | `/de/` | `index.html`, `de/index.html` |
+| `/guides/` | `/de/ratgeber/` | index of the guides |
+| `/guides/phone-shot-timer/` | `/de/ratgeber/handy-als-shot-timer/` | guide: setting up a phone as a shot timer |
+| `/guides/dry-fire-par-drills/` | `/de/ratgeber/par-drills-trockentraining/` | guide: dry-fire safety, par times, five drills |
+| `/guides/shot-timer-app-vs-dedicated-timer/` | `/de/ratgeber/app-oder-shot-timer/` | guide: app or dedicated timer, compared honestly |
 | `/changelog/` | `/de/changelog/` | built from the repository's `CHANGELOG.md` |
 | `/privacy/` (app) | `/de/datenschutz/` | the app's privacy policy |
 | `/privacy/website/` | `/de/datenschutz/website/` | the website's privacy policy |
@@ -46,7 +50,7 @@ paths get `404.html`, or `de/404.html` under `/de/` (see `public/_redirects`).
 ```
 website/
 ├── index.html, de/index.html   # the homepages: copy, SEO tags, demo and section markup
-├── changelog/, privacy/, imprint/, de/...   # the other pages (see the table above)
+├── guides/, changelog/, privacy/, imprint/, de/...   # the other pages (see the table above)
 ├── 404.html, de/404.html
 ├── build/                # runs at build time, not in the browser
 │   ├── site.js           # page list, nav + footer + hreflang for both languages, sitemap
@@ -54,7 +58,8 @@ website/
 │   ├── sprite.html       # the icon sprite the homepages use
 │   └── llms-full.txt     # template for /llms-full.txt (the changelog is filled in)
 ├── src/
-│   ├── main.js           # homepage script: demo and motion (other pages need no JS)
+│   ├── main.js           # homepage script: demo and motion
+│   ├── guide.js          # guide pages: highlights the section being read
 │   ├── i18n.js           # EN/DE strings for the phones and the demo hints
 │   ├── demo.js           # the playable hero timer (Web Audio beep, simulated string)
 │   ├── screens.js        # app screens as HTML strings
@@ -85,6 +90,27 @@ in the pages and in `llms-full.txt`.
    `de/impressum/index.html`). The page joins the build, the sitemap and the language
    switch automatically.
 3. If the footer should link to it, add it to `footer()` in `build/site.js`.
+
+### Guides
+
+Each guide is an `article.guide-wrap` inside `main.legal.guide`: a header (eyebrow back
+to the index, title, "Updated … · N min read", lede), the contents list `.guide-toc` and
+the text in `.guide-body`, at most 700px wide. From 1100px the contents list sits sticky
+beside the text, and `src/guide.js` (the only script on these pages) marks the section
+being read with `aria-current`; without it the links still work. The drills guide uses
+`.drill` cards: a numbered `.drill-head`, the par times as large numbers in `.drill-par`,
+and the other settings in `.drill-setup`. Every guide ends with `.guide-cta` (the
+official store badges, as on the homepage) and `.guide-more`, links to the other two
+guides. The index pages use `.guide-cards`: a halftone panel with the guide's icon,
+topic and reading time, title, summary and "Read guide".
+
+Reading times assume 220 words a minute; update them in the meta line and on the index
+cards when a guide grows. Each guide carries Article JSON-LD in its `<head>`. A new guide
+needs its URL pair in `PAGES`, a card on both index pages, a `.guide-more` link in the
+other guides, and a line in `public/llms.txt` and `build/llms-full.txt`. Keep the facts
+in step with the app (setting names come from `assets/i18n/*.json`) and write German
+with *du* and "Beep", like the homepage. The nav shows "Guides"/"Ratgeber" only from
+900px wide; narrower screens reach the guides through the footer.
 
 ## Changelog
 

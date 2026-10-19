@@ -104,6 +104,14 @@ No. While the app listens (during a string, the mic test or auto-configure), the
 
 Yes. Export a single string or your whole history as CSV through the share sheet and open it in any spreadsheet.
 
+## Guides
+
+- How to use your phone as a shot timer: microphone permission, Auto-configure and the mic test, the frequency band filter, where to put the phone, hearing the beep through ear protection (screen flash, vibration), Bluetooth speakers and the latency offset for earbuds, busy ranges, saved drills, history and CSV. https://simpleshottimer.com/guides/phone-shot-timer/
+- Dry-fire par drills with par times: dry-fire safety rules, how par time training works and how to pick a par, and five classic drills (draw to first shot, ready to first shot, reload, target transitions, strong hand and weak hand only) with starting par times and Par mode settings. https://simpleshottimer.com/guides/dry-fire-par-drills/
+- Shot timer app or dedicated shot timer?: an honest comparison of beep loudness, microphone and fast splits, neighbouring bays, battery, price and history, and when a dedicated timer is worth buying. https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/
+
+All guides are also in German: https://simpleshottimer.com/de/ratgeber/
+
 ## Releases
 
 Generated from the app's CHANGELOG.md; the full list is at https://simpleshottimer.com/changelog/
