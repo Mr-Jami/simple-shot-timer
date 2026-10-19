@@ -182,8 +182,11 @@ flutter create . --platforms=android,ios,web
    AppLocale(code: 'it', displayName: 'Italiano'),
    ```
 
-3. Run `flutter test`: `test/i18n_parity_test.dart` checks that the new file
-   has every key and `{placeholder}` of `en.json`.
+3. Add the code to `CFBundleLocalizations` in `ios/Runner/Info.plist`, so
+   iOS and the App Store list the language.
+4. Run `flutter test`: `test/i18n_parity_test.dart` checks that the new file
+   has every key and `{placeholder}` of `en.json`, and that `Info.plist`
+   declares it.
 
 The Settings → Language dropdown picks the new option up automatically.
 

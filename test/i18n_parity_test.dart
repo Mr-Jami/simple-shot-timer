@@ -39,6 +39,23 @@ void main() {
     }
   });
 
+  test('ios/Runner/Info.plist declares every supported locale', () {
+    // iOS and the App Store take the app's languages from
+    // CFBundleLocalizations, not from the Flutter assets: a language missing
+    // here is missing from the App Store listing.
+    final plist = File('ios/Runner/Info.plist').readAsStringSync();
+    final array = RegExp(
+      r'<key>CFBundleLocalizations</key>\s*<array>(.*?)</array>',
+      dotAll: true,
+    ).firstMatch(plist);
+    expect(array, isNotNull, reason: 'Info.plist has no CFBundleLocalizations');
+    final declared = RegExp(r'<string>([^<]+)</string>')
+        .allMatches(array!.group(1)!)
+        .map((m) => m.group(1)!.split('-').first)
+        .toSet();
+    expect(declared, kSupportedAppLocales.map((l) => l.code).toSet());
+  });
+
   test('every translation keeps the placeholders of the en string', () {
     final en = load('en');
     for (final locale in kSupportedAppLocales) {
