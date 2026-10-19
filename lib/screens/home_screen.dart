@@ -654,13 +654,27 @@ class _StatsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      // Flexible caps each stat at a third of the row so long translations
+      // shrink (see _Stat) instead of overflowing it.
       children: [
-        _Stat(label: context.tr('home.stat.shots'), value: '$shotCount'),
-        _Stat(
-          label: context.tr('home.stat.first'),
-          value: firstShotMs == null ? '--' : formatSeconds(firstShotMs!),
+        Flexible(
+          child: _Stat(
+            label: context.tr('home.stat.shots'),
+            value: '$shotCount',
+          ),
         ),
-        _Stat(label: context.tr('home.stat.split'), value: formatSplit(splitMs)),
+        Flexible(
+          child: _Stat(
+            label: context.tr('home.stat.first'),
+            value: firstShotMs == null ? '--' : formatSeconds(firstShotMs!),
+          ),
+        ),
+        Flexible(
+          child: _Stat(
+            label: context.tr('home.stat.split'),
+            value: formatSplit(splitMs),
+          ),
+        ),
       ],
     );
   }
@@ -676,11 +690,14 @@ class _Stat extends StatelessWidget {
     final theme = Theme.of(context);
     return Column(
       children: [
-        Text(
-          label,
-          style: theme.textTheme.labelMedium?.copyWith(
-            letterSpacing: 2,
-            color: theme.colorScheme.onSurfaceVariant,
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            label,
+            style: theme.textTheme.labelMedium?.copyWith(
+              letterSpacing: 2,
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
         ),
         const SizedBox(height: 2),
