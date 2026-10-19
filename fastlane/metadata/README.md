@@ -6,7 +6,7 @@ supports. This folder is the source: the *Update store listings* workflow
 it to both stores. Screenshots and the feature graphic are in
 [`branding/store-listing/`](../../branding/store-listing/README.md).
 
-Last updated: 2026-10-19, app 2.3.0.
+Last updated: 2026-10-19, app 2.3.1. The App Store is still on 2.1.0, so What's New covers 2.2.0 and 2.3.0 as well.
 
 The layout is fastlane's: `supply` reads `android/`, `deliver` reads `ios/`.
 F-Droid reads `android/` too.
