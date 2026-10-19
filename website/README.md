@@ -35,7 +35,7 @@ npm run preview   # serves dist/
 
 `/download` is a short link for QR codes and posts. It is not a page:
 `public/download/redirect.js` sends Android to Google Play, iPhone and iPad to the App
-Store (once enabled) and everything else to the homepage, the same way
+Store and everything else to the homepage, the same way
 jami-it.de/apps/simpleshottimer/ does. It is `noindex` and not in the sitemap.
 
 The German privacy policies and imprint are the legally binding versions. Unknown
@@ -151,11 +151,12 @@ in a PR comment. The `ignore` rule skips builds for commits that change neither
 - **Security headers** live in `public/_headers`. The CSP allows the one inline script
   in both homepages by its SHA-256 hash. If you change that line, recompute the hash:
   `printf "%s" "document.documentElement.classList.add('js')" | openssl dgst -sha256 -binary | openssl base64`
-- **When the iPhone app is live**: in both homepages, replace "iPhone soon" in the hero
-  pill, the coming-soon box in `#download` (with Apple's *Download on the App Store*
-  badge), the iPhone answer in the FAQ, and add `"iOS"` to `operatingSystem` in the
-  JSON-LD. Update `public/llms.txt` and `build/llms-full.txt` too. In
-  `public/download/redirect.js`, set `APP_STORE_URL` and `APP_STORE_ENABLED = true`.
+- **Store links**: the Google Play and App Store links appear in both homepages (hero
+  buttons, the FAQ, the `#download` badges), in the footer (`build/site.js`, which also
+  holds the trademark notices), in `public/download/redirect.js` and in both llms files.
+  Change them everywhere together. The badges are the official artwork from Google and
+  Apple (`public/google-play-badge*.png`, `public/app-store-badge*.svg`); don't redraw
+  or recolour them.
 - **Link preview images**: `public/og.png` and `public/og-de.png` are screenshots of
   `#og` in `og-image/index.html` at 1200x630. Run `npm run dev`, open
   `http://localhost:5173/og-image/` (add `?lang=de` for the German one), and capture

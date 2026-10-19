@@ -1,0 +1,48 @@
+Simple Shot Timer est un chronomètre de tir (shot timer) simple et sans fioritures pour le tir à sec et le tir réel. Conçu pour les tireurs de tir sportif de vitesse et d'IPSC qui veulent un retour immédiat, des splits précis et l'historique complet de leurs exercices, sans publicité, sans pistage et sans compte.
+
+MODES D'EXERCICE
+• Standard : série libre. Le bip retentit, vous tirez, vous appuyez sur STOP. Splits et temps total à l'écran.
+• Par : réglez un temps par et le nombre de cycles. Chaque cycle a son propre bip de départ et de fin, avec une pause facultative entre les cycles.
+• Stage : une seule longue fenêtre de temps, jusqu'à 200 secondes, pour les reconnaissances de stage et l'entraînement sur scénario.
+
+DÉLAI DE DÉPART
+Instantané, fixe ou aléatoire entre un minimum et un maximum.
+
+EXERCICES ENREGISTRÉS
+Enregistrez sous un nom les exercices que vous faites souvent (mode, délai de départ, temps par et de stage) et chargez-en un d'un simple toucher.
+
+DÉTECTION DES TIRS
+• Écoute avec le micro de votre iPhone et repère chaque tir au moment où il part.
+• Les bips de départ et de par ne comptent jamais comme un tir, un tir pendant le bip compte quand même, et un filtre d'écho évite de compter deux fois le même tir.
+• Le chrono démarre quand le micro entend le bip : la latence du haut-parleur ne se retrouve jamais dans vos temps.
+• Configuration automatique : tirez quelques coups et l'application propose une sensibilité et une bande de fréquence pour cette arme et ce stand.
+• Dans le test du micro, un vumètre en direct vous aide à régler la sensibilité avant de tirer à balles réelles.
+• Ajoutez des tirs à la main à tout moment, après la série ou dans les détails.
+
+HISTORIQUE ET DÉTAILS
+• Chaque série est enregistrée automatiquement (limite de 50 à 5000, 500 par défaut).
+• Analysez chaque série : splits, premier tir, split le plus rapide, le plus lent et split moyen.
+• Étiquette, notes et pénalité modifiables pour chaque série.
+
+EXPORT CSV
+Exportez une série ou tout votre historique en CSV via le menu de partage : envoyez-le-vous par e-mail, enregistrez-le dans Fichiers ou ouvrez-le dans un tableur.
+
+FONCTIONNE EN ARRIÈRE-PLAN
+Verrouillez l'écran ou changez d'application en pleine série : le chrono continue de détecter les tirs et de jouer les bips de par.
+
+CONFIDENTIALITÉ D'ABORD
+• 100 % sur l'appareil. Pas de compte, pas de cloud, pas de statistiques d'usage, pas de pub, pas de pistage.
+• Le micro est utilisé en direct, en mémoire, uniquement quand l'application écoute (une série, le test du micro ou la configuration automatique). Aucun son n'est enregistré ni envoyé.
+• Supprimez toutes vos données et tous vos paramètres depuis les Paramètres, à tout moment.
+• Open source (GPL-3.0) : tout le code est sur GitHub, à l'adresse github.com/Mr-Jami/simple-shot-timer, pour que vous puissiez vérifier chacune de ces affirmations.
+
+CONFORT
+• Flash à l'écran au bip pour les stands bruyants et les protections auditives épaisses, plus vibration en option.
+• Un avis vous prévient si le volume est coupé pendant une série.
+• L'écran reste allumé pendant une série.
+• Thème monochrome : Système, Clair, Sombre ou Contraste élevé.
+
+LANGUES
+Français, allemand, anglais, espagnol, finnois, polonais, portugais et russe.
+
+Fait pour le stand, le dojo et le coin tir à sec à la maison. Gratuit, léger, sans achats intégrés.

@@ -1,0 +1,1 @@
+Timer de tiro práctico: par, splits, historial y CSV. Sin anuncios ni rastreo.

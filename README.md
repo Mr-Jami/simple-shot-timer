@@ -4,7 +4,8 @@ A Flutter shot timer for dry-fire and live-fire drills. Detects shots through
 the microphone, supports standard, par and stage drills, saves the drills you
 run often, persists every string to local SQLite, and exports to CSV.
 
-Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer).
+Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer)
+and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653).
 
 ## Features
 
@@ -26,8 +27,8 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami
   and frequency band for that gun and range. You can still set both by hand.
 - **Beep timing** — `t=0` is the moment the start beep is heard, measured
   through the mic, rather than the moment playback was requested. A manual
-  latency offset covers output the mic can't hear, such as a Bluetooth
-  speaker. The flash and haptic are delayed by the learned output latency so
+  latency offset covers output the mic can't hear, such as Bluetooth
+  earbuds. The flash and haptic are delayed by the learned output latency so
   they land with the sound.
 - **Live mic test** — Level meter with the threshold line to dial in
   sensitivity before going hot (Settings → Shot detection).
@@ -45,10 +46,14 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami
 - **Muted-phone notice** — While a string runs, a one-line notice appears
   if the media volume is muted or at zero. On Android, tapping it opens the
   volume panel.
+- **Privacy and data** — Everything stays on the device: no account, no
+  analytics, nothing is sent anywhere. Settings links to the privacy policy
+  and the open-source licenses, and *Delete all data and settings* wipes
+  strings, saved drills and settings (or, with *Reset settings only*, just
+  the settings).
 - **Localization** — English, German, Spanish, Finnish, French, Polish,
-  Portuguese and Russian, with a
-  JSON-backed delegate; adding a language means dropping one JSON file and
-  adding one line.
+  Portuguese (Brazilian) and Russian, with a JSON-backed delegate; adding a
+  language means dropping one JSON file and adding one line.
 - **Theme** — Monochrome Material 3 (matches the app icon). System / Light /
   Dark / High contrast selectable in settings.
 - **Quality-of-life** — Visual screen flash on beep (an edge ring instead
@@ -62,6 +67,8 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=cc.jami
 - Dart SDK `>=3.3.0` (bundled with Flutter)
 - JDK 17 (for Android builds)
 - Android SDK with `platforms;android-36` + `build-tools;36.0.0` (or newer)
+- Xcode 26 on macOS (for iOS builds; CI uses `26.3`, deployment target
+  iOS 15.0)
 
 ## Getting Started
 
@@ -93,7 +100,8 @@ flutter create . --platforms=android,ios,web
 │   │   ├── ci.yml                  # Analyze + test on every push / PR
 │   │   ├── release-please.yml      # Release PR, version bump, tag + GitHub Release
 │   │   ├── deploy-play-store.yml   # Build AAB and publish to Google Play
-│   │   └── deploy-app-store.yml    # Build IPA and upload to App Store Connect
+│   │   ├── deploy-app-store.yml    # Build IPA and upload to App Store Connect
+│   │   └── update-store-listings.yml  # Upload the listing text to both stores
 │   ├── scripts/
 │   │   └── play_release_notes.py   # GitHub Release body -> Play Store "What's new"
 │   └── pull_request_template.md
@@ -101,8 +109,9 @@ flutter create . --platforms=android,ios,web
 ├── ios/                        # iOS platform code (Xcode project, audio-session + volume channels)
 ├── assets/
 │   ├── branding/               # App icon
-│   └── i18n/                   # en, de, es, fr, ru translation bundles
+│   └── i18n/                   # en, de, es, fi, fr, pl, pt, ru translation bundles
 ├── branding/                   # Store-listing graphics + launch video sources (not bundled)
+├── fastlane/metadata/          # Store listing text per language (Play + App Store)
 ├── lib/
 │   ├── app.dart                # MaterialApp wiring (theme, locale, delegates)
 │   ├── main.dart               # Entry point: portrait lock, ProviderScope overrides
@@ -189,6 +198,10 @@ flutter create . --platforms=android,ios,web
    declares it.
 
 The Settings → Language dropdown picks the new option up automatically.
+
+Then translate the store listings: add the language to `storeLocales` in
+`test/store_listing_test.dart` and its folders under `fastlane/metadata/`
+(see [its README](fastlane/metadata/README.md)), or that test fails.
 
 ## Versioning
 
@@ -326,7 +339,11 @@ Configure these under *Settings → Secrets and variables → Actions*:
 `.github/workflows/deploy-app-store.yml` builds a signed IPA on a macOS
 runner with Xcode `26.3` and uploads it to App Store Connect, where it
 appears in TestFlight. Submitting a build for App Review is done in App
-Store Connect. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
+Store Connect: run the store listings workflow (see
+[Store listings](#store-listings)), which creates the version from
+`pubspec.yaml` and fills in its text and *What's New* in every language,
+then select the build and submit. The app is iPhone-only
+(`TARGETED_DEVICE_FAMILY = 1`).
 
 ### Triggers
 
@@ -356,11 +373,39 @@ Store Connect. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
    *App Store Connect* provisioning profile for that App ID.
 4. Create the app in App Store Connect (*Apps → +*) with that bundle ID.
 5. Add all six secrets listed above to GitHub.
+6. Declare the EU Digital Services Act trader status (*Business → Digital
+   Services Act* in App Store Connect) and complete its verification.
+   Without it the app is not offered in any EU storefront, and Apple can
+   refuse to accept updates for review.
 
 The distribution certificate and the profile expire after one year; renew
 both and update the three `IOS_*` secrets. Apple raises the minimum Xcode
 for uploads every spring; bump `XCODE_VERSION` (and `runs-on` if the image
 no longer has it) in the workflow when that happens.
+
+## Store listings
+
+The listing text for both stores, in every app language, lives in
+[fastlane/metadata/](fastlane/metadata/README.md): Play title, short and
+full description; App Store name, subtitle, description, keywords, What's
+New and URLs. `.github/workflows/update-store-listings.yml` uploads it with
+fastlane, using the deploy workflows' secrets. Start it from *Run workflow*:
+
+- **Store**: both, Google Play or App Store.
+- **Google Play** updates the main store listing in each language that has
+  a folder, adding translations Play doesn't have yet. Google reviews
+  listing changes before they go live.
+- **App Store** edits the version being prepared for submission, or creates
+  it: the version in `pubspec.yaml` unless you enter another. It never
+  submits. Description, keywords and What's New can only change with a new
+  version, so run it for each release before submitting; the English
+  keywords have no file and keep whatever App Store Connect has.
+- **Validate only** checks the Google Play listings without saving them.
+  App Store Connect has no dry run, so the App Store job is skipped then.
+
+`test/store_listing_test.dart` fails when a field is over its store limit or
+an app language has no listing in either store, so adding a language means
+writing its listings too.
 
 ## Website
 
@@ -401,9 +446,10 @@ iOS:
 Built and maintained by [Tareq Jami](https://tareqjami.de) of
 [Jami IT](https://jami-it.de) — software engineering and AI consulting,
 Hamburg, Germany. The app ships under `cc.jami.simpleshottimer` on
-[Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer);
-see [JOIN_TESTING.md](JOIN_TESTING.md) to get new builds early through the
-beta. Bugs and feedback: [GitHub Issues](https://github.com/Mr-Jami/simple-shot-timer/issues).
+[Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer)
+and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653);
+on Android, see [JOIN_TESTING.md](JOIN_TESTING.md) to get new builds early
+through the beta. Bugs and feedback: [GitHub Issues](https://github.com/Mr-Jami/simple-shot-timer/issues).
 
 ## License
 

@@ -458,7 +458,9 @@ button { font: inherit; color: inherit; }
 .badge { display: inline-flex; align-items: center; min-height: 50px; border-radius: 12px; transition: transform 100ms ease-out; }
 .badge:active { transform: scale(0.97); }
 .badge img { width: 220px; height: auto; margin: -16px -14px; }
-.soon { display: inline-flex; align-items: center; height: 50px; padding: 0 20px; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line-2); color: var(--text-2); font-size: 0.9375rem; font-weight: 550; background: rgba(0, 0, 0, 0.6); }
+/* Apple's badge has no padding, unlike the Google Play PNGs: match the
+   height of their visible art (about 50px in both languages). */
+.badge-apple img { width: auto; height: 50px; margin: 0; }
 .cta-beta { margin-top: 28px; color: var(--text-2); font-size: 0.9375rem; }
 .cta-beta a { color: var(--text); text-underline-offset: 3px; }
 

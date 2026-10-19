@@ -1,9 +1,12 @@
 # Join the Simple Shot Timer beta
 
 Simple Shot Timer is available to everyone on
-[Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer).
+[Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer)
+and, for iPhone, on the
+[App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653).
 Beta testers get new builds before they reach the public release and help us
-catch issues that don't show up on the bench.
+catch issues that don't show up on the bench. The beta is for Android only;
+on iPhone, install the app from the App Store.
 
 ## How to join (Android)
 

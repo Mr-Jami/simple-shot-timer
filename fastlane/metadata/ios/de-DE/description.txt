@@ -1,0 +1,48 @@
+Simple Shot Timer ist ein schlichter Shot Timer ohne Schnickschnack für Trockentraining und den Schießstand. Gemacht für Sportschützen im praktischen Schießen, die schnelles Feedback, genaue Splits und einen vollständigen Verlauf ihrer Drills wollen: ohne Werbung, ohne Tracking, ohne Konto.
+
+DRILL-MODI
+• Standard: offener Durchgang. Beep, schießen, STOPP tippen. Splits und Gesamtzeit auf dem Bildschirm.
+• Par: Stell eine Par-Zeit und die Zahl der Wiederholungen ein. Jede Wiederholung hat ihren eigenen Start- und End-Beep, auf Wunsch mit einer Pause dazwischen.
+• Stage: ein langes Zeitfenster von bis zu 200 Sekunden für Stage-Begehungen und Szenariotraining.
+
+STARTVERZÖGERUNG
+Sofort, fest oder zufällig zwischen einem Minimum und einem Maximum.
+
+GESPEICHERTE DRILLS
+Speichere die Drills, die du oft schießt (Modus, Startverzögerung, Par- und Stage-Zeit), unter einem Namen und lade jeden davon mit einem Tipp.
+
+SCHUSSERKENNUNG
+• Hört über das Mikrofon deines iPhones mit und erkennt jeden Schuss in dem Moment, in dem er fällt.
+• Start- und Par-Beeps zählen nie als Schuss, ein Schuss während des Beeps zählt trotzdem, und ein Echo-Filter verhindert, dass ein Schuss doppelt zählt.
+• Die Zeit startet, wenn das Mikrofon den Beep hört. So landet die Verzögerung des Lautsprechers nie in deinen Zeiten.
+• Automatisch konfigurieren: Gib ein paar Schüsse ab, und die App schlägt Empfindlichkeit und Frequenzband für diese Waffe und diesen Stand vor.
+• Im Mikrofontest stellst du die Empfindlichkeit mit einer Live-Pegelanzeige ein, bevor du scharf schießt.
+• Schüsse kannst du jederzeit von Hand hinzufügen, nach dem Durchgang oder in der Auswertung.
+
+VERLAUF & AUSWERTUNG
+• Jeder Durchgang wird automatisch gespeichert (Obergrenze von 50 bis 5.000, Standard 500).
+• Werte jeden Durchgang aus: Splits, erster Schuss, schnellster, langsamster und durchschnittlicher Split.
+• Bezeichnung, Notizen und Strafzeit kannst du für jeden Durchgang bearbeiten.
+
+CSV-EXPORT
+Exportiere einen einzelnen Durchgang oder deinen ganzen Verlauf als CSV über das Teilen-Menü: per Mail an dich selbst, in die Dateien-App oder direkt in die Tabellenkalkulation.
+
+LÄUFT WEITER
+Sperr den Bildschirm oder wechsle mitten im Durchgang die App: Der Timer erkennt weiter Schüsse und spielt die Par-Beeps.
+
+DATENSCHUTZ ZUERST
+• Alles bleibt auf dem Gerät. Kein Konto, keine Cloud, keine Analyse, keine Werbung, kein Tracking.
+• Das Mikrofonsignal wird live im Arbeitsspeicher ausgewertet, nur solange die App zuhört (bei einem Durchgang, im Mikrofontest oder beim automatischen Konfigurieren). Audio wird nie aufgenommen oder gesendet.
+• Lösche alle deine Daten und Einstellungen jederzeit in den Einstellungen.
+• Open Source (GPL-3.0): Der komplette Code liegt auf GitHub unter github.com/Mr-Jami/simple-shot-timer, du kannst also jede Aussage hier selbst nachprüfen.
+
+KOMFORT
+• Bildschirm-Blitz beim Beep für laute Stände und dicken Gehörschutz, dazu auf Wunsch Vibration.
+• Eine Meldung warnt dich, wenn die Lautstärke während eines Durchgangs stumm ist.
+• Der Bildschirm bleibt während eines Durchgangs an.
+• Schwarz-weißes Design: System, Hell, Dunkel oder Hoher Kontrast.
+
+SPRACHEN
+Deutsch, Englisch, Finnisch, Französisch, Polnisch, Portugiesisch, Russisch und Spanisch.
+
+Gemacht für den Schießstand, das Dojo und das Trockentraining im Keller. Kostenlos, schlank, ohne In-App-Käufe.

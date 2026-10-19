@@ -1,0 +1,48 @@
+Simple Shot Timer es un shot timer sencillo y sin complicaciones para el tiro en seco y el tiro real. Pensado para tiradores de tiro práctico que quieren una respuesta rápida, splits precisos y un historial completo de sus ejercicios, sin anuncios, sin rastreo y sin cuentas.
+
+MODOS DE EJERCICIO
+• Estándar: serie abierta. Suena el pitido, disparas y tocas STOP. Splits y tiempo total en pantalla.
+• Par: fija un tiempo par y el número de ciclos. Cada ciclo tiene su propio pitido de inicio y de fin, con un descanso opcional entre ciclos.
+• Stage: una sola ventana de tiempo larga, de hasta 200 segundos, para recorrer stages y practicar escenarios.
+
+RETARDO DE INICIO
+Inmediato, fijo o aleatorio entre un mínimo y un máximo.
+
+EJERCICIOS GUARDADOS
+Guarda con un nombre los ejercicios que haces a menudo (modo, retardo de inicio, tiempo par y de stage) y carga cualquiera de ellos con un toque.
+
+DETECCIÓN DE DISPAROS
+• Escucha a través del micrófono del iPhone y detecta cada disparo en el momento en que se produce.
+• Los pitidos de inicio y de par nunca cuentan como disparo, un disparo durante el pitido sí cuenta, y un filtro de eco evita que un mismo disparo cuente dos veces.
+• El cronómetro arranca cuando el micrófono oye el pitido, así que el retardo del altavoz nunca acaba en tus tiempos.
+• Configuración automática: haz unos disparos y la app te sugiere una sensibilidad y una banda de frecuencia para esa arma y ese campo de tiro.
+• En la prueba del micrófono, un medidor de nivel en vivo te ayuda a ajustar la sensibilidad antes de tirar con fuego real.
+• Añade disparos a mano en cualquier momento, al terminar la serie o en el detalle.
+
+HISTORIAL Y DETALLE
+• Cada serie se guarda automáticamente (límite de 50 a 5000, 500 por defecto).
+• Revisa cada serie con sus splits, el primer disparo y los splits más rápido, más lento y promedio.
+• Etiqueta, notas y penalización editables en cada serie.
+
+EXPORTACIÓN A CSV
+Exporta una serie o todo tu historial en CSV desde el menú Compartir: envíatelo por correo, guárdalo en Archivos o ábrelo en una hoja de cálculo.
+
+SIGUE FUNCIONANDO
+Bloquea la pantalla o cambia de app en mitad de una serie: el cronómetro sigue detectando disparos y dando los pitidos de par.
+
+PRIVACIDAD ANTE TODO
+• 100 % en el dispositivo. Sin cuentas, sin nube, sin analíticas, sin anuncios, sin rastreo.
+• El micrófono se usa en directo, en memoria, solo mientras la app escucha (una serie, la prueba del micrófono o la configuración automática). Nunca se graba ni se envía audio.
+• Elimina todos tus datos y ajustes desde Ajustes cuando quieras.
+• Código abierto (GPL-3.0): todo el código está en GitHub, en github.com/Mr-Jami/simple-shot-timer, para que puedas comprobar cada una de estas afirmaciones.
+
+COMODIDAD
+• Destello en pantalla con el pitido para campos de tiro ruidosos y protección auditiva gruesa, además de vibración opcional.
+• Un aviso te advierte si el volumen está silenciado durante una serie.
+• Mantiene la pantalla encendida durante la serie.
+• Tema monocromo: Sistema, Claro, Oscuro o Alto contraste.
+
+IDIOMAS
+Español, alemán, finlandés, francés, inglés, polaco, portugués y ruso.
+
+Hecho para el campo de tiro, el club y el rincón de tiro en seco de casa. Gratis, ligero y sin compras dentro de la app.

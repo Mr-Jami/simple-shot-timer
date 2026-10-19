@@ -1,10 +1,10 @@
 # Simple Shot Timer
 
-> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android, and on iOS soon. It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
+> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android and iPhone (iOS). It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
 
 - The free and open-source shot timer app. No ads, no data tracking.
 - Price: free. No ads, subscriptions or in-app purchases, and no data tracking: the app sends nothing off the phone.
-- Platforms: Android (Google Play, package `cc.jami.simpleshottimer`); iOS coming soon to the App Store.
+- Platforms: Android (Google Play, package `cc.jami.simpleshottimer`) and iPhone (App Store, bundle ID `cc.jami.simpleshottimer`).
 - Languages: English, German, Spanish, Finnish, French, Polish, Portuguese and Russian.
 - License: GPL-3.0-only with additional attribution terms under section 7 (see NOTICE in the repository).
 - Founder and maintainer: Tareq Jami of Jami IT (https://jami-it.de/en/), Hamburg, Germany.
@@ -27,6 +27,7 @@
 ## Get the app
 
 - [Google Play](https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer): the Android app
+- [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653): the iPhone app
 - [Android beta](https://github.com/Mr-Jami/simple-shot-timer/blob/main/JOIN_TESTING.md): how to get new builds before the public release
 
 ## Project

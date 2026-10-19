@@ -1,0 +1,48 @@
+Simple Shot Timer to prosty, konkretny timer strzelecki do treningu na sucho i strzelania ostrą amunicją. Stworzony dla strzelców dynamicznych, którzy chcą szybkiej informacji zwrotnej, dokładnych splitów i pełnej historii swoich ćwiczeń, bez reklam, śledzenia i kont.
+
+TRYBY ĆWICZEŃ
+• Standard: otwarta seria. Sygnał, strzelasz, naciskasz STOP. Splity i czas całkowity na ekranie.
+• Par: ustaw czas par i liczbę cykli. Każdy cykl ma własny sygnał startu i końca, z opcjonalną przerwą między cyklami.
+• Stage: jedno długie okno pomiaru, do 200 sekund, na zapoznanie z torem i trening scenariuszy.
+
+OPÓŹNIENIE STARTU
+Natychmiast, stałe lub losowe w zakresie od minimum do maksimum.
+
+ZAPISANE ĆWICZENIA
+Zapisz pod nazwą ćwiczenia, które często powtarzasz (tryb, opóźnienie startu, czas par i stage), i wczytaj dowolne z nich jednym dotknięciem.
+
+WYKRYWANIE STRZAŁÓW
+• Nasłuchuje przez mikrofon iPhone’a i wychwytuje każdy strzał w chwili jego oddania.
+• Sygnały startu i par nigdy nie liczą się jako strzał, strzał oddany w trakcie sygnału liczy się mimo to, a filtr echa nie pozwala policzyć jednego strzału dwa razy.
+• Pomiar rusza, gdy mikrofon usłyszy sygnał, więc opóźnienie głośnika nigdy nie trafia do twoich czasów.
+• Autokonfiguracja: oddaj kilka strzałów, a aplikacja zaproponuje czułość i pasmo częstotliwości dla tej broni i tej strzelnicy.
+• W teście mikrofonu ustawisz czułość z miernikiem poziomu na żywo, zanim zaczniesz strzelać na ostro.
+• Dodawaj strzały ręcznie w dowolnej chwili, po serii lub w analizie.
+
+HISTORIA I ANALIZA
+• Każda seria zapisuje się automatycznie (limit od 50 do 5000, domyślnie 500).
+• Analizuj każdą serię: splity, pierwszy strzał oraz najszybszy, najwolniejszy i średni split.
+• Edytowalna etykieta, notatki i kara dla każdej serii.
+
+EKSPORT CSV
+Eksportuj pojedynczą serię lub całą historię do CSV przez menu udostępniania: wyślij ją sobie mailem, zapisz w aplikacji Pliki albo otwórz w arkuszu kalkulacyjnym.
+
+DZIAŁA W TLE
+Zablokuj ekran albo przełącz aplikację w trakcie serii: timer dalej wykrywa strzały i odtwarza sygnały par.
+
+PRYWATNOŚĆ PRZEDE WSZYSTKIM
+• Wszystko zostaje na urządzeniu. Bez kont, bez chmury, bez analityki, bez reklam, bez śledzenia.
+• Mikrofon działa na żywo, w pamięci, tylko gdy aplikacja nasłuchuje (seria, test mikrofonu lub autokonfiguracja). Dźwięk nigdy nie jest nagrywany ani wysyłany.
+• Usuń wszystkie swoje dane i ustawienia w Ustawieniach, kiedy tylko chcesz.
+• Open source (GPL-3.0): cały kod jest na GitHubie pod adresem github.com/Mr-Jami/simple-shot-timer, więc każde z tych zapewnień możesz sprawdzić samodzielnie.
+
+WYGODA
+• Błysk ekranu przy sygnale na głośne strzelnice i grube ochronniki słuchu, do tego opcjonalna wibracja.
+• Komunikat ostrzega, gdy głośność jest wyciszona w trakcie serii.
+• Ekran nie gaśnie podczas serii.
+• Monochromatyczny motyw: Systemowy, Jasny, Ciemny lub Wysoki kontrast.
+
+JĘZYKI
+Polski, angielski, fiński, francuski, hiszpański, niemiecki, portugalski i rosyjski.
+
+Stworzony na strzelnicę, do klubu i do treningu na sucho w domu. Darmowy, lekki, bez zakupów w aplikacji.

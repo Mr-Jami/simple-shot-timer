@@ -1,0 +1,136 @@
+name: Update store listings
+
+# Uploads the listing text in fastlane/metadata (see its README) to Google
+# Play and App Store Connect, in every language that has a folder there.
+# Text only: binaries, screenshots, graphics and the Play "What's new" (which
+# deploy-play-store.yml sets from the GitHub Release) are left alone.
+
+on:
+  workflow_dispatch:
+    inputs:
+      store:
+        description: 'Which store listings to update'
+        type: choice
+        options:
+          - both
+          - google-play
+          - app-store
+        default: both
+      app_store_version:
+        description: 'App Store version to edit or create (empty: the version in pubspec.yaml)'
+        required: false
+        default: ''
+      validate_only:
+        description: 'Only check the Google Play listings, save nothing (skips the App Store, which has no dry run)'
+        type: boolean
+        default: false
+
+concurrency:
+  group: store-listings
+  cancel-in-progress: false
+
+env:
+  # The listings are UTF-8 (umlauts, Cyrillic); fastlane needs a UTF-8 locale.
+  LANG: C.UTF-8
+  LC_ALL: C.UTF-8
+  FASTLANE_SKIP_UPDATE_CHECK: '1'
+  FASTLANE_HIDE_CHANGELOG: '1'
+  FASTLANE_OPT_OUT_USAGE: '1'
+
+jobs:
+  google-play:
+    name: Google Play listings
+    if: inputs.store != 'app-store'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Install fastlane
+        run: gem install fastlane --no-document
+
+      - name: Upload listings
+        # Updates the main store listing (title, short and full description)
+        # in each language under fastlane/metadata/android, creating the
+        # translation if Play doesn't have it yet. Languages without a folder
+        # are not touched. Google reviews listing changes before they go live.
+        env:
+          SUPPLY_JSON_KEY_DATA: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          fastlane run upload_to_play_store \
+            package_name:cc.jami.simpleshottimer \
+            metadata_path:fastlane/metadata/android \
+            skip_upload_apk:true \
+            skip_upload_aab:true \
+            skip_upload_changelogs:true \
+            skip_upload_images:true \
+            skip_upload_screenshots:true \
+            validate_only:${{ inputs.validate_only }}
+
+  app-store:
+    name: App Store listings
+    if: inputs.store != 'google-play' && !inputs.validate_only
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Install fastlane
+        run: gem install fastlane --no-document
+
+      - name: Write App Store Connect API key
+        # fastlane reads the team API key from a JSON file; jq escapes the
+        # multi-line .p8 contents.
+        env:
+          API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+        run: |
+          jq -n \
+            --arg key_id "$API_KEY_ID" \
+            --arg issuer_id "$API_ISSUER_ID" \
+            --arg key "$API_KEY" \
+            '{key_id: $key_id, issuer_id: $issuer_id, key: $key, in_house: false}' \
+            > "$RUNNER_TEMP/asc_api_key.json"
+
+      - name: Upload listings
+        # Edits the version that is being prepared for submission (creating
+        # it if needed): name, subtitle and privacy URL on the app, and
+        # description, keywords, What's New, support and marketing URL on the
+        # version, in each language under fastlane/metadata/ios. Nothing is
+        # submitted for review, and fields without a file (the English
+        # keywords) keep their current value.
+        env:
+          VERSION_INPUT: ${{ inputs.app_store_version }}
+        run: |
+          VERSION="${VERSION_INPUT:-$(sed -nE 's/^version: *([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' pubspec.yaml)}"
+          if [ -z "$VERSION" ]; then
+            echo "::error title=App Store listings::No version given and none found in pubspec.yaml"
+            exit 1
+          fi
+          echo "Editing App Store version $VERSION"
+          fastlane run upload_to_app_store \
+            api_key_path:"$RUNNER_TEMP/asc_api_key.json" \
+            app_identifier:cc.jami.simpleshottimer \
+            app_version:"$VERSION" \
+            metadata_path:fastlane/metadata/ios \
+            skip_binary_upload:true \
+            skip_screenshots:true \
+            submit_for_review:false \
+            force:true
+
+      - name: Remove API key
+        if: always()
+        run: rm -f "$RUNNER_TEMP/asc_api_key.json"
