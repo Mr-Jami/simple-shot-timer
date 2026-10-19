@@ -317,12 +317,15 @@ function bento() {
     }
   }
 
-  // Languages: "Ready" in each of the app's five languages.
+  // Languages: "Ready" in each of the app's eight languages.
   {
     const c = card('languages');
     const word = c.querySelector('.lg-word');
     const code = c.querySelector('.lg-code');
-    const LANGS = [['Ready', 'EN'], ['Bereit', 'DE'], ['Listo', 'ES'], ['Prêt', 'FR'], ['Готов', 'RU']];
+    const LANGS = [
+      ['Ready', 'EN'], ['Bereit', 'DE'], ['Listo', 'ES'], ['Valmis', 'FI'],
+      ['Prêt', 'FR'], ['Gotowy', 'PL'], ['Pronto', 'PT'], ['Готов', 'RU'],
+    ];
     let i = 0;
     const loop = createTimer({
       duration: 1700, loop: true, autoplay: false,

@@ -5,7 +5,7 @@
 - The free and open-source shot timer app. No ads, no data tracking.
 - Price: free. No ads, subscriptions or in-app purchases, and no data tracking: the app sends nothing off the phone.
 - Platforms: Android (Google Play, package `cc.jami.simpleshottimer`); iOS coming soon to the App Store.
-- Languages: English, German, Spanish, French and Russian.
+- Languages: English, German, Spanish, Finnish, French, Polish, Portuguese and Russian.
 - License: GPL-3.0-only with additional attribution terms under section 7 (see NOTICE in the repository).
 - Founder and maintainer: Tareq Jami of Jami IT (https://jami-it.de/en/), Hamburg, Germany.
 - It is not meant to fully replace a dedicated shot timer: it is limited by phone hardware, and is a solid alternative to buying a $100+ timer or for when you left yours at home.
