@@ -406,10 +406,14 @@ New, which it builds from the GitHub Releases. Start it from *Run workflow*:
   a folder, adding translations Play doesn't have yet. Google reviews
   listing changes before they go live.
 - **App Store** edits the version being prepared for submission, or creates
-  it: the version in `pubspec.yaml` unless you enter another. It never
-  submits. Description, keywords and What's New can only change with a new
-  version, so run it for each release before submitting; the English
-  keywords have no file and keep whatever App Store Connect has.
+  it: the version in `pubspec.yaml` unless you enter another. Description,
+  keywords and What's New can only change with a new version, so run it for
+  each release; the English keywords have no file and keep whatever App
+  Store Connect has.
+- **Submit for review** (off by default) submits that version afterwards
+  with its latest build. Run it once the build from the deploy has finished
+  processing in App Store Connect (TestFlight shows it), and only after the
+  EU trader status is verified.
 - **What's New** (on by default) writes the App Store What's New from the
   GitHub Releases. Turn it off to change other fields without replacing
   What's New text edited in App Store Connect.

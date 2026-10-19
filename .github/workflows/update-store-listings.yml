@@ -25,6 +25,10 @@ on:
         description: 'App Store: write What''s New from the GitHub Releases (off: keep what App Store Connect has)'
         type: boolean
         default: true
+      submit_for_review:
+        description: 'App Store: submit the version for review afterwards, with its latest processed build'
+        type: boolean
+        default: false
       validate_only:
         description: 'Save nothing: validate the Google Play listings and show the App Store What''s New'
         type: boolean
@@ -172,11 +176,11 @@ jobs:
         # it if needed): name, subtitle and privacy URL on the app, and
         # description, promotional text, keywords, What's New, support and
         # marketing URL on the version, in each language under
-        # fastlane/metadata/ios. Nothing is
-        # submitted for review, and fields without a file (the English
-        # keywords) keep their current value. deliver runs precheck after the
-        # upload even without a submission, and precheck fails with an API
-        # key, so it is switched off.
+        # fastlane/metadata/ios. Fields without a file (the English keywords)
+        # keep their current value. With submit_for_review, deliver then
+        # submits the version with its latest processed build; otherwise
+        # nothing is submitted. deliver runs precheck after the upload, and
+        # precheck fails with an API key, so it is switched off.
         if: ${{ !inputs.validate_only }}
         run: |
           echo "Editing App Store version $VERSION"
@@ -187,7 +191,7 @@ jobs:
             metadata_path:fastlane/metadata/ios \
             skip_binary_upload:true \
             skip_screenshots:true \
-            submit_for_review:false \
+            submit_for_review:${{ inputs.submit_for_review }} \
             run_precheck_before_submit:false \
             force:true
 
