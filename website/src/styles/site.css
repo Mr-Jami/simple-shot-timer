@@ -160,6 +160,10 @@ button { font: inherit; color: inherit; }
   .nav-links { display: flex; }
   .nav-bar > .btn { margin-left: 8px; }
 }
+/* A fourth link only fits next to the full brand name from about 900px
+   (German labels are the longest); below that the footer links the guides. */
+.nav-links .nav-wide { display: none; }
+@media (min-width: 900px) { .nav-links .nav-wide { display: block; } }
 
 /* ===== Hero ===== */
 .hero { position: relative; padding: calc(var(--nav-h) + 72px) 0 72px; overflow: clip; }
@@ -557,6 +561,54 @@ button { font: inherit; color: inherit; }
 .legal-card {
   margin: 32px 0 20px; padding: 24px 28px; border-radius: 20px;
   background: var(--card-hi); box-shadow: inset 0 0 0 1px var(--line);
+}
+
+/* ===== Guides: the legal article layout plus a few blocks ===== */
+.legal .eyebrow a { color: inherit; text-decoration: none; }
+.legal .eyebrow a:hover { text-decoration: underline; text-decoration-color: currentColor; }
+.legal ol { list-style: decimal; padding-left: 1.3em; }
+/* Jumps from the contents list land below the fixed nav. */
+.legal h2[id], .legal h3[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.guide-toc {
+  margin-top: 36px; padding: 20px 26px; border-radius: 20px;
+  background: var(--card-hi); box-shadow: inset 0 0 0 1px var(--line);
+}
+.guide-toc ol { columns: 2 220px; column-gap: 32px; }
+.guide-toc li { break-inside: avoid; }
+.legal .guide-toc li, .legal .guide-toc li + li { margin: 0; padding: 3px 0; font-size: 1rem; }
+.legal .guide-toc a { color: var(--text-2); text-decoration: none; }
+.legal .guide-toc a:hover { color: var(--text); }
+.drill {
+  margin-top: 24px; padding: 24px 26px; border-radius: 20px;
+  background: var(--card-hi); box-shadow: inset 0 0 0 1px var(--line);
+}
+.legal .drill h3 { margin-top: 0; }
+.drill-setup { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px 24px; margin-top: 18px; }
+/* The par time carries the most text, so it gets its own row. */
+.drill-setup > div:first-child { grid-column: 1 / -1; }
+.drill-setup dt { color: var(--text-3); font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; }
+.drill-setup dd { margin: 4px 0 0; color: var(--text); font-size: 1rem; line-height: 1.45; }
+.legal .drill-setup + p { margin-top: 16px; }
+.guide-cta {
+  margin-top: 72px; padding: 30px; border-radius: 24px;
+  background: rgba(254, 224, 54, 0.07); box-shadow: inset 0 0 0 1px rgba(254, 224, 54, 0.22);
+}
+.legal .guide-cta h2 { margin-top: 0; font-size: 1.5rem; }
+.guide-cta .btn { margin-top: 22px; }
+.legal .btn-yellow { color: var(--ink); }
+.legal .guide-list { display: grid; gap: 14px; margin-top: 40px; padding-left: 0; list-style: none; }
+.legal .guide-list li + li { margin-top: 0; }
+.legal .guide-list a {
+  display: block; padding: 24px 26px; border-radius: 20px; text-decoration: none;
+  background: var(--card-hi); box-shadow: inset 0 0 0 1px var(--line);
+  transition: box-shadow 160ms ease, transform 100ms ease-out;
+}
+.legal .guide-list a:hover { box-shadow: inset 0 0 0 1px var(--line-2); }
+.legal .guide-list a:active { transform: scale(0.99); }
+.guide-list-title { display: block; color: var(--text); font-size: 1.25rem; font-weight: 650; line-height: 1.3; letter-spacing: -0.02em; }
+.guide-list-text { display: block; margin-top: 8px; color: var(--text-2); font-size: 1rem; line-height: 1.55; }
+@media (prefers-reduced-motion: reduce) {
+  .legal .guide-list a:active { transform: none; }
 }
 
 /* ===== Changelog ===== */

@@ -16,6 +16,10 @@ const REPO = 'https://github.com/Mr-Jami/simple-shot-timer';
 /** Every page in both languages. The English URL is also x-default. */
 export const PAGES = [
   { en: '/', de: '/de/' },
+  { en: '/guides/', de: '/de/ratgeber/' },
+  { en: '/guides/phone-shot-timer/', de: '/de/ratgeber/handy-als-shot-timer/' },
+  { en: '/guides/dry-fire-par-drills/', de: '/de/ratgeber/par-drills-trockentraining/' },
+  { en: '/guides/shot-timer-app-vs-dedicated-timer/', de: '/de/ratgeber/app-oder-shot-timer/' },
   { en: '/changelog/', de: '/de/changelog/' },
   { en: '/privacy/', de: '/de/datenschutz/' },
   { en: '/privacy/website/', de: '/de/datenschutz/website/' },
@@ -30,6 +34,7 @@ const T = {
     features: 'Features',
     privacy: 'Privacy',
     faq: 'FAQ',
+    guides: 'Guides',
     getApp: 'Get the app',
     switchLabel: 'Deutsch',
     tagline: 'The free and open-source shot timer app. Made in Hamburg by',
@@ -53,6 +58,7 @@ const T = {
     features: 'Funktionen',
     privacy: 'Datenschutz',
     faq: 'FAQ',
+    guides: 'Ratgeber',
     getApp: 'App laden',
     switchLabel: 'English',
     tagline: 'Die kostenlose Open-Source-Shot-Timer-App. Gemacht in Hamburg von',
@@ -105,6 +111,7 @@ export function nav(page, { intro = false } = {}) {
       <li><a href="${home}#features">${t.features}</a></li>
       <li><a href="${home}#privacy">${t.privacy}</a></li>
       <li><a href="${home}#faq">${t.faq}</a></li>
+      <li class="nav-wide"><a href="${link('/guides/', page.lang)}">${t.guides}</a></li>
     </ul>
     <a class="nav-lang" href="${page.other}" hreflang="${other}" lang="${other}" title="${t.switchLabel}">${other.toUpperCase()}<span class="sr-only"> (${t.switchLabel})</span></a>
     <a class="btn btn-yellow btn-sm" href="${home}#download">${t.getApp}</a>
@@ -130,6 +137,7 @@ export function footer(page, version) {
         <ul>
           ${item(PLAY, 'Google Play', true)}
           ${item(APP_STORE, 'App Store', true)}
+          ${item(l('/guides/'), t.guides)}
           ${item(l('/changelog/'), t.changelog)}
         </ul>
       </div>

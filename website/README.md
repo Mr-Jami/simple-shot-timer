@@ -28,6 +28,10 @@ npm run preview   # serves dist/
 | English | German | Source |
 | --- | --- | --- |
 | `/` | `/de/` | `index.html`, `de/index.html` |
+| `/guides/` | `/de/ratgeber/` | index of the guides |
+| `/guides/phone-shot-timer/` | `/de/ratgeber/handy-als-shot-timer/` | guide: setting up a phone as a shot timer |
+| `/guides/dry-fire-par-drills/` | `/de/ratgeber/par-drills-trockentraining/` | guide: dry-fire safety, par times, five drills |
+| `/guides/shot-timer-app-vs-dedicated-timer/` | `/de/ratgeber/app-oder-shot-timer/` | guide: app or dedicated timer, compared honestly |
 | `/changelog/` | `/de/changelog/` | built from the repository's `CHANGELOG.md` |
 | `/privacy/` (app) | `/de/datenschutz/` | the app's privacy policy |
 | `/privacy/website/` | `/de/datenschutz/website/` | the website's privacy policy |
@@ -46,7 +50,7 @@ paths get `404.html`, or `de/404.html` under `/de/` (see `public/_redirects`).
 ```
 website/
 ├── index.html, de/index.html   # the homepages: copy, SEO tags, demo and section markup
-├── changelog/, privacy/, imprint/, de/...   # the other pages (see the table above)
+├── guides/, changelog/, privacy/, imprint/, de/...   # the other pages (see the table above)
 ├── 404.html, de/404.html
 ├── build/                # runs at build time, not in the browser
 │   ├── site.js           # page list, nav + footer + hreflang for both languages, sitemap
@@ -85,6 +89,18 @@ in the pages and in `llms-full.txt`.
    `de/impressum/index.html`). The page joins the build, the sitemap and the language
    switch automatically.
 3. If the footer should link to it, add it to `footer()` in `build/site.js`.
+
+### Guides
+
+The guides use the legal pages' article layout (`main.legal.guide`) plus a few blocks in
+`site.css`: a contents list (`.guide-toc`), drill cards (`.drill` with a `.drill-setup`
+list of timer settings), a closing call to action (`.guide-cta`) and the index cards
+(`.guide-list`). Each guide carries Article JSON-LD in its `<head>`. A new guide needs
+its URL pair in `PAGES`, a card on both index pages, and a line in `public/llms.txt`
+and `build/llms-full.txt`. Keep the facts in step with the app (setting names come from
+`assets/i18n/*.json`) and write German with *du* and "Beep", like the homepage. The nav
+shows "Guides"/"Ratgeber" only from 900px wide; narrower screens reach the guides
+through the footer.
 
 ## Changelog
 
