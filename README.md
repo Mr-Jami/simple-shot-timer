@@ -100,7 +100,8 @@ flutter create . --platforms=android,ios,web
 │   │   ├── ci.yml                  # Analyze + test on every push / PR
 │   │   ├── release-please.yml      # Release PR, version bump, tag + GitHub Release
 │   │   ├── deploy-play-store.yml   # Build AAB and publish to Google Play
-│   │   └── deploy-app-store.yml    # Build IPA and upload to App Store Connect
+│   │   ├── deploy-app-store.yml    # Build IPA and upload to App Store Connect
+│   │   └── update-store-listings.yml  # Upload the listing text to both stores
 │   ├── scripts/
 │   │   └── play_release_notes.py   # GitHub Release body -> Play Store "What's new"
 │   └── pull_request_template.md
@@ -197,6 +198,10 @@ flutter create . --platforms=android,ios,web
    declares it.
 
 The Settings → Language dropdown picks the new option up automatically.
+
+Then translate the store listings: add the language to `storeLocales` in
+`test/store_listing_test.dart` and its folders under `fastlane/metadata/`
+(see [its README](fastlane/metadata/README.md)), or that test fails.
 
 ## Versioning
 
@@ -334,14 +339,11 @@ Configure these under *Settings → Secrets and variables → Actions*:
 `.github/workflows/deploy-app-store.yml` builds a signed IPA on a macOS
 runner with Xcode `26.3` and uploads it to App Store Connect, where it
 appears in TestFlight. Submitting a build for App Review is done in App
-Store Connect: add the version (the one in `pubspec.yaml`), select the
-build and fill in *What's New*, since the workflow uploads no release
-notes. The app is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`).
-
-The listing text for both stores, in all eight languages (descriptions,
-subtitles, keywords, What's New), is kept in
-[fastlane/metadata/](fastlane/metadata/README.md) and pasted into Play
-Console and App Store Connect by hand.
+Store Connect: run the store listings workflow (see
+[Store listings](#store-listings)), which creates the version from
+`pubspec.yaml` and fills in its text and *What's New* in every language,
+then select the build and submit. The app is iPhone-only
+(`TARGETED_DEVICE_FAMILY = 1`).
 
 ### Triggers
 
@@ -380,6 +382,30 @@ The distribution certificate and the profile expire after one year; renew
 both and update the three `IOS_*` secrets. Apple raises the minimum Xcode
 for uploads every spring; bump `XCODE_VERSION` (and `runs-on` if the image
 no longer has it) in the workflow when that happens.
+
+## Store listings
+
+The listing text for both stores, in every app language, lives in
+[fastlane/metadata/](fastlane/metadata/README.md): Play title, short and
+full description; App Store name, subtitle, description, keywords, What's
+New and URLs. `.github/workflows/update-store-listings.yml` uploads it with
+fastlane, using the deploy workflows' secrets. Start it from *Run workflow*:
+
+- **Store**: both, Google Play or App Store.
+- **Google Play** updates the main store listing in each language that has
+  a folder, adding translations Play doesn't have yet. Google reviews
+  listing changes before they go live.
+- **App Store** edits the version being prepared for submission, or creates
+  it: the version in `pubspec.yaml` unless you enter another. It never
+  submits. Description, keywords and What's New can only change with a new
+  version, so run it for each release before submitting; the English
+  keywords have no file and keep whatever App Store Connect has.
+- **Validate only** checks the Google Play listings without saving them.
+  App Store Connect has no dry run, so the App Store job is skipped then.
+
+`test/store_listing_test.dart` fails when a field is over its store limit or
+an app language has no listing in either store, so adding a language means
+writing its listings too.
 
 ## Website
 
