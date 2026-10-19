@@ -1,8 +1,9 @@
 name: Update store listings
 
 # Uploads the listing text in fastlane/metadata (see its README) to Google
-# Play and App Store Connect, in every language that has a folder there.
-# Text only: binaries, screenshots, graphics and the Play "What's new" (which
+# Play and App Store Connect, in every language that has a folder there, and
+# the App Store's What's New, built from the GitHub Releases. Text only:
+# binaries, screenshots, graphics and the Play "What's new" (which
 # deploy-play-store.yml sets from the GitHub Release) are left alone.
 
 on:
@@ -21,7 +22,7 @@ on:
         required: false
         default: ''
       validate_only:
-        description: 'Only check the Google Play listings, save nothing (skips the App Store, which has no dry run)'
+        description: 'Save nothing: validate the Google Play listings and show the App Store What''s New'
         type: boolean
         default: false
 
@@ -75,24 +76,75 @@ jobs:
 
   app-store:
     name: App Store listings
-    if: inputs.store != 'google-play' && !inputs.validate_only
+    if: inputs.store != 'google-play'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Write What's New
+        # The App Store gets the same text as the Play "What's new": the
+        # GitHub Releases rewritten by play_release_notes.py, in English for
+        # every language. An App Store update can skip versions, so it covers
+        # every release after the version live on the App Store (read from
+        # Apple's public lookup API) up to the one being prepared.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION_INPUT: ${{ inputs.app_store_version }}
+        run: |
+          VERSION="${VERSION_INPUT:-$(sed -nE 's/^version: *([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' pubspec.yaml)}"
+          if [ -z "$VERSION" ]; then
+            echo "::error title=App Store listings::No version given and none found in pubspec.yaml"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+          # True when $1 <= $2 in version order.
+          le() { [ "$(printf '%s\n%s\n' "$1" "$2" | sort -V | head -n1)" = "$1" ]; }
+
+          LIVE=$(curl -fsS "https://itunes.apple.com/lookup?bundleId=cc.jami.simpleshottimer&country=us" \
+            | jq -r '.results[0].version // empty') || LIVE=""
+          if [ -z "$LIVE" ]; then
+            echo "::warning title=App Store What's New::Couldn't read the live App Store version; using the v$VERSION release only"
+          elif le "$VERSION" "$LIVE"; then
+            echo "::warning title=App Store What's New::$VERSION is not newer than the live $LIVE; using the v$VERSION release only"
+            LIVE=""
+          fi
+
+          : > "$RUNNER_TEMP/releases.md"
+          for v in $(gh release list --limit 100 --json tagName --jq '.[].tagName' \
+                     | sed -n 's/^v\([0-9][0-9.]*\)$/\1/p' | sort -rV); do
+            le "$v" "$VERSION" || continue
+            if [ -n "$LIVE" ] && le "$v" "$LIVE"; then break; fi
+            echo "Including v$v"
+            gh release view "v$v" --json body --jq .body >> "$RUNNER_TEMP/releases.md"
+            echo >> "$RUNNER_TEMP/releases.md"
+            [ -n "$LIVE" ] || break
+          done
+
+          python3 .github/scripts/play_release_notes.py --max-chars 4000 --store "App Store" \
+            < "$RUNNER_TEMP/releases.md" > "$RUNNER_TEMP/whats_new.txt"
+          for dir in fastlane/metadata/ios/*/; do
+            cp "$RUNNER_TEMP/whats_new.txt" "${dir}release_notes.txt"
+          done
+          echo "--- What's New for $VERSION (live: ${LIVE:-not used}) ---"
+          cat "$RUNNER_TEMP/whats_new.txt"
+
       - name: Set up Ruby
+        if: ${{ !inputs.validate_only }}
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
 
       - name: Install fastlane
+        if: ${{ !inputs.validate_only }}
         run: gem install fastlane --no-document
 
       - name: Write App Store Connect API key
         # fastlane reads the team API key from a JSON file; jq escapes the
         # multi-line .p8 contents.
+        if: ${{ !inputs.validate_only }}
         env:
           API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
           API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
@@ -114,14 +166,8 @@ jobs:
         # keywords) keep their current value. deliver runs precheck after the
         # upload even without a submission, and precheck fails with an API
         # key, so it is switched off.
-        env:
-          VERSION_INPUT: ${{ inputs.app_store_version }}
+        if: ${{ !inputs.validate_only }}
         run: |
-          VERSION="${VERSION_INPUT:-$(sed -nE 's/^version: *([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' pubspec.yaml)}"
-          if [ -z "$VERSION" ]; then
-            echo "::error title=App Store listings::No version given and none found in pubspec.yaml"
-            exit 1
-          fi
           echo "Editing App Store version $VERSION"
           fastlane run upload_to_app_store \
             api_key_path:"$RUNNER_TEMP/asc_api_key.json" \

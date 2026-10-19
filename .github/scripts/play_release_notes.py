@@ -14,11 +14,13 @@ becomes
     New:
     • Save, load and manage named custom drills
 
-Reads the release body from stdin, writes the notes to stdout. Output is
-capped at --max-chars (Play Store limit is 500 per locale), cutting at a
-whole bullet rather than mid-sentence. When the result is the generic
-fallback or entries had to be dropped, a GitHub Actions ::warning:: saying
-why goes to stderr.
+Reads the release body from stdin, writes the notes to stdout. Several
+bodies in a row (newest first) merge into one set of sections, which is how
+the App Store's What's New covers every release since the live version.
+Output is capped at --max-chars (Play Store limit is 500 per locale, App
+Store 4000), cutting at a whole bullet rather than mid-sentence. When the
+result is the generic fallback or entries had to be dropped, a GitHub
+Actions ::warning:: saying why goes to stderr.
 """
 
 import argparse
@@ -26,6 +28,9 @@ import re
 import sys
 
 FALLBACK = "Bug fixes and improvements."
+
+# Names the store in warning titles; set from --store.
+STORE = "Play Store"
 
 # release-please section heading -> store heading, in output order.
 # "Changed" carries the BREAKING CHANGE footer text, which is where
@@ -45,7 +50,7 @@ BULLET = re.compile(r"^\s*[*-]\s+(.*)$")
 
 
 def warn(message: str) -> None:
-    print(f"::warning title=Play Store release notes::{message}", file=sys.stderr)
+    print(f"::warning title={STORE} release notes::{message}", file=sys.stderr)
 
 
 def section_for(heading: str) -> str | None:
@@ -136,9 +141,12 @@ def render(sections: list[tuple[str, list[str]]], max_chars: int) -> tuple[str, 
 
 
 def main() -> None:
+    global STORE
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--max-chars", type=int, default=500)
+    parser.add_argument("--store", default=STORE, help="store name for warnings")
     args = parser.parse_args()
+    STORE = args.store
     sys.stdin.reconfigure(encoding="utf-8-sig")
     sys.stdout.reconfigure(encoding="utf-8")
     body = sys.stdin.read()

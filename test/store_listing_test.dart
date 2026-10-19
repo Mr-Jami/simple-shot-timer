@@ -27,7 +27,9 @@ void main() {
   };
 
   // File name -> character limit. Files listed in `required` must exist in
-  // every locale folder of that store.
+  // every locale folder of that store. release_notes (What's New) is not
+  // here on purpose: update-store-listings.yml writes it from the GitHub
+  // Releases, so a hand-written one would be overwritten.
   const playLimits = {
     'title': 30,
     'short_description': 80,
@@ -39,7 +41,6 @@ void main() {
     'subtitle': 30,
     'description': 4000,
     'keywords': 100,
-    'release_notes': 4000,
     'promotional_text': 170,
     'support_url': 255,
     'marketing_url': 255,
@@ -48,7 +49,6 @@ void main() {
   const appStoreRequired = {
     'name',
     'description',
-    'release_notes',
     'support_url',
     'privacy_url',
   };
