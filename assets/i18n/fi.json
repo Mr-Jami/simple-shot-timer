@@ -127,7 +127,7 @@
   "settings.visualFlash": "Näytön välähdys äänimerkillä",
   "settings.hapticOnBeep": "Värinä äänimerkillä",
   "settings.beepLatencyOffset": "Äänimerkin viiveen korjaus",
-  "settings.beepLatencyOffsetHint": "Laukausajoista vähennettävä lisäviive, kun mikrofoni ei kuule äänimerkkiä itse, esim. Bluetooth-kaiuttimesta. Jätä arvoksi 0, niin äänimerkin automaattinen kalibrointi hoitaa asian.",
+  "settings.beepLatencyOffsetHint": "Laukausajoista vähennettävä lisäviive, kun mikrofoni ei kuule äänimerkkiä itse, esim. Bluetooth-kuulokkeista. Jätä arvoksi 0, niin äänimerkin automaattinen kalibrointi hoitaa asian.",
   "settings.sensitivity": "Herkkyys",
   "settings.echoFilter": "Kaikusuodatin",
   "settings.testMicTitle": "Testaa mikrofoni",

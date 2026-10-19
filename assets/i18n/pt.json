@@ -127,7 +127,7 @@
   "settings.visualFlash": "Flash na tela com o bipe",
   "settings.hapticOnBeep": "Vibrar com o bipe",
   "settings.beepLatencyOffset": "Compensação de latência do bipe",
-  "settings.beepLatencyOffsetHint": "Atraso extra subtraído dos tempos dos disparos quando o microfone não consegue ouvir o bipe, por exemplo numa caixa de som Bluetooth. Deixe em 0 para usar a calibração automática do bipe.",
+  "settings.beepLatencyOffsetHint": "Atraso extra subtraído dos tempos dos disparos quando o microfone não consegue ouvir o bipe, por exemplo em fones de ouvido Bluetooth. Deixe em 0 para usar a calibração automática do bipe.",
   "settings.sensitivity": "Sensibilidade",
   "settings.echoFilter": "Filtro de eco",
   "settings.testMicTitle": "Testar microfone",

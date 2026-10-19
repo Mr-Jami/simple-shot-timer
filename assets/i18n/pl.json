@@ -127,7 +127,7 @@
   "settings.visualFlash": "Błysk ekranu przy sygnale",
   "settings.hapticOnBeep": "Wibracja przy sygnale",
   "settings.beepLatencyOffset": "Korekta opóźnienia sygnału",
-  "settings.beepLatencyOffsetHint": "Dodatkowe opóźnienie odejmowane od czasów strzałów, gdy mikrofon nie słyszy sygnału, np. z głośnika Bluetooth. Zostaw 0, aby polegać na automatycznej kalibracji sygnału.",
+  "settings.beepLatencyOffsetHint": "Dodatkowe opóźnienie odejmowane od czasów strzałów, gdy mikrofon nie słyszy sygnału, np. ze słuchawek Bluetooth. Zostaw 0, aby polegać na automatycznej kalibracji sygnału.",
   "settings.sensitivity": "Czułość",
   "settings.echoFilter": "Filtr echa",
   "settings.testMicTitle": "Test mikrofonu",
