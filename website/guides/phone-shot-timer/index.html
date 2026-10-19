@@ -35,19 +35,22 @@
   }
   </script>
   <link rel="stylesheet" href="/src/styles/site.css">
+  <script type="module" src="/src/guide.js"></script>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
 <!--site:nav-->
 
 <main class="legal guide" id="content">
-  <article class="wrap legal-wrap">
-    <p class="eyebrow"><a href="/guides/">Guides</a></p>
-    <h1 class="h2">How to use your phone as a shot timer</h1>
-    <p class="legal-meta">Updated 19 October 2026</p>
-    <p class="legal-lede">A phone can do what a shot timer does: give a start beep, hear your shots through the microphone and show your splits. These steps set it up so the times hold up, at home in dry fire and on the range. The examples use <a href="/">Simple Shot Timer</a>, which is free on Android and iPhone.</p>
-
-    <nav class="guide-toc" aria-label="On this page">
+  <article class="wrap guide-wrap">
+    <header class="guide-head">
+      <p class="eyebrow"><a href="/guides/">Guides</a></p>
+      <h1 class="h2">How to use your phone as a shot timer</h1>
+      <p class="legal-meta">Updated 19 October 2026 · 5 min read</p>
+      <p class="legal-lede">A phone can do what a shot timer does: give a start beep, hear your shots through the microphone and show your splits. These steps set it up so the times hold up, at home in dry fire and on the range. The examples use <a href="/">Simple Shot Timer</a>, which is free on Android and iPhone.</p>
+    </header>
+    <nav class="guide-toc" aria-labelledby="toc-title">
+      <p class="guide-toc-title" id="toc-title">On this page</p>
       <ol>
         <li><a href="#microphone">Allow the microphone</a></li>
         <li><a href="#detection">Tune shot detection</a></li>
@@ -58,55 +61,67 @@
         <li><a href="#after">Drills, history and CSV</a></li>
       </ol>
     </nav>
+    <div class="guide-body">
+      <h2 id="microphone">1. Allow the microphone</h2>
+      <p>A shot timer listens for shots, so the app needs the microphone. It asks the first time you need it: when you press START, open the mic test or run Auto-configure. Without the permission it can't time a string.</p>
+      <p>The microphone is only used while the app is listening, and the signal is analysed in memory. Nothing is recorded or sent anywhere; the <a href="/privacy/">privacy policy</a> has the details.</p>
 
-    <h2 id="microphone">1. Allow the microphone</h2>
-    <p>A shot timer listens for shots, so the app needs the microphone. It asks the first time you need it: when you press START, open the mic test or run Auto-configure. Without the permission it can't time a string.</p>
-    <p>The microphone is only used while the app is listening, and the signal is analysed in memory. Nothing is recorded or sent anywhere; the <a href="/privacy/">privacy policy</a> has the details.</p>
+      <h2 id="detection">2. Tune shot detection</h2>
+      <p>Every gun, room and phone sounds different, so set detection once for each place you train. All of it lives under Settings → Shot detection.</p>
+      <ul>
+        <li><strong>Auto-configure</strong> is the quickest way. Tap Start, fire a few shots with your usual ammo and stance, then tap Stop. The app suggests a sensitivity and a frequency band that fit what it heard. Tap a capture to leave it out, for example a door slamming.</li>
+        <li><strong>Test microphone</strong> shows a live level meter with a red threshold line. Make the sound you want to detect and adjust the sensitivity until its peaks just cross the line, while the sounds you want to ignore stay below it. Gunshots usually push the meter to 95–100%.</li>
+        <li><strong>Frequency band filter</strong> only counts sounds whose energy sits in the band you set. It keeps out rumble, hiss and most noise that isn't a shot.</li>
+      </ul>
+      <p>The start beep never counts as a shot, and a shot fired while the beep is still playing does. An echo filter ignores the reflections right after a shot, so one shot doesn't count twice off a wall or a baffle.</p>
 
-    <h2 id="detection">2. Tune shot detection</h2>
-    <p>Every gun, room and phone sounds different, so set detection once for each place you train. All of it lives under Settings → Shot detection.</p>
-    <ul>
-      <li><strong>Auto-configure</strong> is the quickest way. Tap Start, fire a few shots with your usual ammo and stance, then tap Stop. The app suggests a sensitivity and a frequency band that fit what it heard. Tap a capture to leave it out, for example a door slamming.</li>
-      <li><strong>Test microphone</strong> shows a live level meter with a red threshold line. Make the sound you want to detect and adjust the sensitivity until its peaks just cross the line, while the sounds you want to ignore stay below it. Gunshots usually push the meter to 95–100%.</li>
-      <li><strong>Frequency band filter</strong> only counts sounds whose energy sits in the band you set. It keeps out rumble, hiss and most noise that isn't a shot.</li>
-    </ul>
-    <p>The start beep never counts as a shot, and a shot fired while the beep is still playing does. An echo filter ignores the reflections right after a shot, so one shot doesn't count twice off a wall or a baffle.</p>
+      <h2 id="placement">3. Where to put the phone</h2>
+      <ul>
+        <li>Keep the microphone uncovered. In a pocket or a closed pouch, shots arrive muffled and the quiet ones can drop below the threshold.</li>
+        <li>Put it in the same place every time, close to you, so the levels you tuned stay valid.</li>
+        <li>On the range, keep it out of the way of ejected brass and away from the muzzle line.</li>
+        <li>During a string you can lock the screen or switch apps: the timer keeps detecting shots and playing par beeps. Android shows a notification while it runs.</li>
+      </ul>
 
-    <h2 id="placement">3. Where to put the phone</h2>
-    <ul>
-      <li>Keep the microphone uncovered. In a pocket or a closed pouch, shots arrive muffled and the quiet ones can drop below the threshold.</li>
-      <li>Put it in the same place every time, close to you, so the levels you tuned stay valid.</li>
-      <li>On the range, keep it out of the way of ejected brass and away from the muzzle line.</li>
-      <li>During a string you can lock the screen or switch apps: the timer keeps detecting shots and playing par beeps. Android shows a notification while it runs.</li>
-    </ul>
+      <h2 id="beep">4. Hear the beep</h2>
+      <p>Turn the media volume up. If it is muted or at zero while a string runs, the app shows a one-line notice so you don't stand there waiting for a beep that never comes.</p>
+      <p><strong>Ear protection and loud ranges.</strong> Switch on the screen flash and the vibration on the beep in Settings → Beep. They fire at the same moment as the sound, so you can start on the flash when the beep is hard to hear. With reduced motion switched on in your phone's settings, a subtle edge ring replaces the flash.</p>
+      <p><strong>Bluetooth speakers.</strong> Bluetooth adds delay, but the clock starts when the microphone hears the beep, not when the phone asks for it to play. A speaker the phone can hear is measured on every string, so its lag doesn't end up in your times.</p>
+      <p><strong>Earbuds and headphones.</strong> The microphone can't hear sound that only plays in your ears. For that case, set a beep latency offset under Settings → Shot detection. Leave it at 0 for everything else, so the automatic measurement does the work.</p>
 
-    <h2 id="beep">4. Hear the beep</h2>
-    <p>Turn the media volume up. If it is muted or at zero while a string runs, the app shows a one-line notice so you don't stand there waiting for a beep that never comes.</p>
-    <p><strong>Ear protection and loud ranges.</strong> Switch on the screen flash and the vibration on the beep in Settings → Beep. They fire at the same moment as the sound, so you can start on the flash when the beep is hard to hear. With reduced motion switched on in your phone's settings, a subtle edge ring replaces the flash.</p>
-    <p><strong>Bluetooth speakers.</strong> Bluetooth adds delay, but the clock starts when the microphone hears the beep, not when the phone asks for it to play. A speaker the phone can hear is measured on every string, so its lag doesn't end up in your times.</p>
-    <p><strong>Earbuds and headphones.</strong> The microphone can't hear sound that only plays in your ears. For that case, set a beep latency offset under Settings → Shot detection. Leave it at 0 for everything else, so the automatic measurement does the work.</p>
+      <h2 id="dry-live">5. Dry fire and live fire</h2>
+      <p>A dry-fire click is much quieter than a shot. Either raise the sensitivity until the click registers, or don't rely on detection at all: Par mode gives you a start beep and a par beep, and you train to finish before the second one. The <a href="/guides/dry-fire-par-drills/">dry-fire par drills guide</a> has drills and starting par times.</p>
+      <p>For live fire, run Auto-configure on the range with the gun and ammo you're shooting that day. The levels from your living room won't match an outdoor bay or an indoor range.</p>
 
-    <h2 id="dry-live">5. Dry fire and live fire</h2>
-    <p>A dry-fire click is much quieter than a shot. Either raise the sensitivity until the click registers, or don't rely on detection at all: Par mode gives you a start beep and a par beep, and you train to finish before the second one. The <a href="/guides/dry-fire-par-drills/">dry-fire par drills guide</a> has drills and starting par times.</p>
-    <p>For live fire, run Auto-configure on the range with the gun and ammo you're shooting that day. The levels from your living room won't match an outdoor bay or an indoor range.</p>
+      <h2 id="busy-range">6. On a busy range</h2>
+      <p>A sound-based timer can't tell your shot from your neighbour's if both are equally loud. That's true for dedicated timers as well. With the phone close to you, your shots are louder than the next bay's, which helps. If a neighbour's shot still counts, or the timer misses one of yours, fix it afterwards: delete the extra shot in the review, or add a missed one by hand.</p>
 
-    <h2 id="busy-range">6. On a busy range</h2>
-    <p>A sound-based timer can't tell your shot from your neighbour's if both are equally loud. That's true for dedicated timers as well. With the phone close to you, your shots are louder than the next bay's, which helps. If a neighbour's shot still counts, or the timer misses one of yours, fix it afterwards: delete the extra shot in the review, or add a missed one by hand.</p>
+      <h2 id="after">7. Drills, history and CSV</h2>
+      <ul>
+        <li><strong>Saved drills:</strong> save the current mode, start delay and par or stage times under a name, and load any of them with a tap on the Drills tab.</li>
+        <li><strong>History:</strong> every string is saved with the drill it was shot with. Keep up to 5,000 (500 by default); the oldest go first. A run that detected no shots isn't saved unless you add a shot by hand.</li>
+        <li><strong>Review:</strong> each string shows its splits, first shot, fastest, slowest and average split. Add a label, notes and a penalty.</li>
+        <li><strong>CSV:</strong> export a single string or your whole history through the share sheet and open it in any spreadsheet.</li>
+      </ul>
+      <p>Wondering whether this replaces the timer in your range bag? <a href="/guides/shot-timer-app-vs-dedicated-timer/">Shot timer app or dedicated shot timer</a> compares the two honestly.</p>
 
-    <h2 id="after">7. Drills, history and CSV</h2>
-    <ul>
-      <li><strong>Saved drills:</strong> save the current mode, start delay and par or stage times under a name, and load any of them with a tap on the Drills tab.</li>
-      <li><strong>History:</strong> every string is saved with the drill it was shot with. Keep up to 5,000 (500 by default); the oldest go first. A run that detected no shots isn't saved unless you add a shot by hand.</li>
-      <li><strong>Review:</strong> each string shows its splits, first shot, fastest, slowest and average split. Add a label, notes and a penalty.</li>
-      <li><strong>CSV:</strong> export a single string or your whole history through the share sheet and open it in any spreadsheet.</li>
-    </ul>
-    <p>Wondering whether this replaces the timer in your range bag? <a href="/guides/shot-timer-app-vs-dedicated-timer/">Shot timer app or dedicated shot timer</a> compares the two honestly.</p>
+      <aside class="guide-cta" aria-labelledby="cta">
+        <h2 id="cta">Try it on your phone</h2>
+        <p>Simple Shot Timer is free and open source, with no ads and no account, on Google Play and the App Store.</p>
+        <div class="cta-row store-badges">
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer" rel="noopener"><img src="/google-play-badge.png" width="564" height="168" alt="Get it on Google Play"></a>
+          <a class="store-badge" href="https://apps.apple.com/app/simple-shot-timer/id6819042653" rel="noopener"><img src="/app-store-badge.svg" width="120" height="40" alt="Download on the App Store"></a>
+        </div>
+      </aside>
 
-    <aside class="guide-cta" aria-labelledby="cta">
-      <h2 id="cta">Try it on your phone</h2>
-      <p>Simple Shot Timer is free and open source, with no ads and no account, on Google Play and the App Store.</p>
-      <a class="btn btn-yellow" href="/#download">Get Simple Shot Timer</a>
-    </aside>
+      <section class="guide-more" aria-labelledby="more-title">
+        <h2 id="more-title">More guides</h2>
+        <ul>
+          <li><a href="/guides/dry-fire-par-drills/"><span class="guide-more-title">Dry-fire par drills with par times</span><span class="guide-more-text">Safety rules, how par time training works, and five classic drills with starting par times and timer settings.</span></a></li>
+          <li><a href="/guides/shot-timer-app-vs-dedicated-timer/"><span class="guide-more-title">Shot timer app or dedicated shot timer?</span><span class="guide-more-text">An honest comparison: beep, microphone and fast splits, battery, price and history, and when to buy a timer.</span></a></li>
+        </ul>
+      </section>
+    </div>
   </article>
 </main>
 

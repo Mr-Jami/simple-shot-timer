@@ -58,7 +58,8 @@ website/
 │   ├── sprite.html       # the icon sprite the homepages use
 │   └── llms-full.txt     # template for /llms-full.txt (the changelog is filled in)
 ├── src/
-│   ├── main.js           # homepage script: demo and motion (other pages need no JS)
+│   ├── main.js           # homepage script: demo and motion
+│   ├── guide.js          # guide pages: highlights the section being read
 │   ├── i18n.js           # EN/DE strings for the phones and the demo hints
 │   ├── demo.js           # the playable hero timer (Web Audio beep, simulated string)
 │   ├── screens.js        # app screens as HTML strings
@@ -92,15 +93,24 @@ in the pages and in `llms-full.txt`.
 
 ### Guides
 
-The guides use the legal pages' article layout (`main.legal.guide`) plus a few blocks in
-`site.css`: a contents list (`.guide-toc`), drill cards (`.drill` with a `.drill-setup`
-list of timer settings), a closing call to action (`.guide-cta`) and the index cards
-(`.guide-list`). Each guide carries Article JSON-LD in its `<head>`. A new guide needs
-its URL pair in `PAGES`, a card on both index pages, and a line in `public/llms.txt`
-and `build/llms-full.txt`. Keep the facts in step with the app (setting names come from
-`assets/i18n/*.json`) and write German with *du* and "Beep", like the homepage. The nav
-shows "Guides"/"Ratgeber" only from 900px wide; narrower screens reach the guides
-through the footer.
+Each guide is an `article.guide-wrap` inside `main.legal.guide`: a header (eyebrow back
+to the index, title, "Updated … · N min read", lede), the contents list `.guide-toc` and
+the text in `.guide-body`, at most 700px wide. From 1100px the contents list sits sticky
+beside the text, and `src/guide.js` (the only script on these pages) marks the section
+being read with `aria-current`; without it the links still work. The drills guide uses
+`.drill` cards: a numbered `.drill-head`, the par times as large numbers in `.drill-par`,
+and the other settings in `.drill-setup`. Every guide ends with `.guide-cta` (the
+official store badges, as on the homepage) and `.guide-more`, links to the other two
+guides. The index pages use `.guide-cards`: a halftone panel with the guide's icon,
+topic and reading time, title, summary and "Read guide".
+
+Reading times assume 220 words a minute; update them in the meta line and on the index
+cards when a guide grows. Each guide carries Article JSON-LD in its `<head>`. A new guide
+needs its URL pair in `PAGES`, a card on both index pages, a `.guide-more` link in the
+other guides, and a line in `public/llms.txt` and `build/llms-full.txt`. Keep the facts
+in step with the app (setting names come from `assets/i18n/*.json`) and write German
+with *du* and "Beep", like the homepage. The nav shows "Guides"/"Ratgeber" only from
+900px wide; narrower screens reach the guides through the footer.
 
 ## Changelog
 
