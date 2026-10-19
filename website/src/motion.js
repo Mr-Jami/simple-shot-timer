@@ -32,7 +32,7 @@ const onScreen = (el) => {
   return r.bottom > 0 && r.top < window.innerHeight;
 };
 
-// ----- Hero intro: nav, pill, headline words, copy, then the phone -----
+// ----- Hero intro: nav, headline words, copy, then the phone -----
 export function intro() {
   const root = document.documentElement;
   const h1 = document.querySelector('[data-intro-words]');
@@ -61,7 +61,6 @@ export function intro() {
   utils.set(words, { y: '105%' });
   createTimeline({ defaults: { ease: settle } })
     .add('.nav', { opacity: [0, 1], y: [-14, 0] }, 0)
-    .add('.hero .hero-pill', { opacity: [0, 1], y: [14, 0] }, 120)
     .add(words, { y: ['105%', '0%'] }, stagger(90, { start: 200 }))
     .add('.hero .lede', { opacity: [0, 1], y: [18, 0] }, 460)
     .add('.hero .cta-row', { opacity: [0, 1], y: [18, 0] }, 540)
