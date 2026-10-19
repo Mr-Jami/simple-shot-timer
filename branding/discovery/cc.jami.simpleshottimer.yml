@@ -20,9 +20,9 @@ RepoType: git
 Repo: https://github.com/Mr-Jami/simple-shot-timer.git
 
 Builds:
-  - versionName: 2.3.1
-    versionCode: 14
-    commit: ee8b89147b423657bce256c8a8c9bac21770b444
+  - versionName: 2.3.2
+    versionCode: 15
+    commit: c10ee631cc11173a458d2b37dcd6e31d4e45895d
     output: build/app/outputs/apk/release/app-release-unsigned.apk
     srclibs:
       - flutter@3.41.9
@@ -32,10 +32,6 @@ Builds:
       - ios
       - website
     prebuild:
-      # v2.3.1 still signs a key-less release build with the debug key; from
-      # the next tag on the release build is unsigned without key.properties
-      # and this line can go (it is a no-op there).
-      - sed -i -e 's/signingConfigs.getByName("debug")/null/' android/app/build.gradle.kts
       - export PUB_CACHE=$(pwd)/.pub-cache
       - $$flutter$$/bin/flutter config --no-analytics
       - $$flutter$$/bin/flutter pub get --enforce-lockfile
@@ -49,5 +45,5 @@ Builds:
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
 UpdateCheckData: pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+
-CurrentVersion: 2.3.1
-CurrentVersionCode: 14
+CurrentVersion: 2.3.2
+CurrentVersionCode: 15

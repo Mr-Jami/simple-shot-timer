@@ -73,7 +73,7 @@ stick to facts the sources show.
 | language of work or name (P407) | English, German, Spanish, Finnish, French, Polish, Brazilian Portuguese, Russian | | assets/i18n |
 | has use (P366) | practical shooting (Q2502572), dry fire (Q5309588) | | website |
 | inception (P571) | 14 May 2026 (v1.0.0) | | v1.0.0 release |
-| software version identifier (P348) | 2.3.1 | version type: stable version (Q2804309); publication date: 19 October 2026 | v2.3.1 release |
+| software version identifier (P348) | 2.3.2 | version type: stable version (Q2804309); publication date: 19 October 2026 | v2.3.2 release |
 
 Each reference is a *reference URL* (P854) with *retrieved* (P813)
 2026-10-19.

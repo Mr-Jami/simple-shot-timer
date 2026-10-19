@@ -1,0 +1,3 @@
+Fixes:
+• Dates and times now show in the app's language
+• The latency offset hint now gives Bluetooth earbuds as its example

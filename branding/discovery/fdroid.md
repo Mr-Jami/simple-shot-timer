@@ -128,31 +128,42 @@ It follows current fdroiddata Flutter recipes:
 
 ## Submitting
 
-1. Merge the branch with the unsigned-release change, ideally before the
-   next release PR. Then the next tag builds without the `sed`, and you can
-   submit that version instead.
-2. Create a GitLab account and fork
-   [fdroiddata](https://gitlab.com/fdroid/fdroiddata).
-3. Copy `cc.jami.simpleshottimer.yml` from this folder to
-   `metadata/cc.jami.simpleshottimer.yml` in the fork. To submit a newer
-   version than 2.3.1:
-   - update `versionName`, `versionCode`, `commit` (the tag's commit hash),
-     `CurrentVersion` and `CurrentVersionCode`
-   - remove the `sed` line
-4. Optional local check with fdroidserver on Linux, WSL or the
-   [fdroidserver Docker image](https://gitlab.com/fdroid/docker-executable-fdroidserver):
-   `fdroid readmeta`, `fdroid rewritemeta cc.jami.simpleshottimer`,
-   `fdroid lint cc.jami.simpleshottimer`,
-   `fdroid build -v -l cc.jami.simpleshottimer`. You can skip this, because
-   the merge request pipeline runs lint and a build too.
-5. Open a merge request, "New app: Simple Shot Timer", with the template.
-   Mention three things:
-   - you are the developer and trademark holder, and allow distribution
-     under the name and icon
-   - the app has no `INTERNET` permission
-   - the release build is unsigned without `key.properties`
-6. Answer the reviewers. Once merged, the app appears after F-Droid's next
-   build and index cycle, usually within days.
+The recipe is ready for v2.3.2 (versionCode 15), the first tag whose release
+build is unsigned without `key.properties`, so it needs no workarounds.
+
+1. Create a GitLab account and fork
+   [fdroiddata](https://gitlab.com/fdroid/fdroiddata) (*Fork* at the top
+   right). Forks of a public project are public.
+2. In your fork, create a new branch, e.g. `simple-shot-timer`
+   (*Code → Branches → New branch*, from `master`). Don't commit to
+   `master`: it is protected, and the merge request needs an unprotected
+   branch.
+3. On that branch, add the file `metadata/cc.jami.simpleshottimer.yml`
+   (*+ → New file*) with the contents of
+   [cc.jami.simpleshottimer.yml](cc.jami.simpleshottimer.yml) (copy it from
+   GitHub's *Raw* view). Commit message: `New app: Simple Shot Timer`.
+4. Open a merge request from that branch to `fdroid/fdroiddata:master`.
+   Title: `New app: Simple Shot Timer`. Choose the *App inclusion* template
+   and replace its text with
+   [fdroid-merge-request.md](fdroid-merge-request.md) (Raw view again).
+5. The merge request pipeline runs `fdroid lint` and a real build. If it
+   fails or a reviewer asks for changes, update the file on the same branch;
+   the merge request picks the change up.
+6. Once merged, the app appears after F-Droid's next build and index cycle,
+   usually within a few days.
+
+Optional local check with fdroidserver on Linux, WSL or the
+[fdroidserver Docker image](https://gitlab.com/fdroid/docker-executable-fdroidserver):
+`fdroid readmeta`, `fdroid rewritemeta cc.jami.simpleshottimer`,
+`fdroid lint cc.jami.simpleshottimer`,
+`fdroid build -v -l cc.jami.simpleshottimer`.
+
+**Signing.** F-Droid signs the app with its own key, so the F-Droid and the
+Google Play versions can't update each other; switching means uninstalling
+(and losing the history, which lives only on the phone). Reproducible builds
+would let F-Droid ship your signature instead, but they need developer-signed
+APKs to compare against, and once F-Droid has signed an app with its key it
+can't switch later. The merge request text opts out for now.
 
 The slower alternative is a
 [Request For Packaging](https://gitlab.com/fdroid/rfp/-/issues) issue, where
