@@ -1,7 +1,7 @@
 {
   ".release-please-manifest.json": {
-    "mtime": 1791146228.1223087,
-    "ast_hash": "9dff472601d285b2b9c8914d7a12a255",
+    "mtime": 1792434485.7053466,
+    "ast_hash": "3f87f2ad53ffa72d281515f663301513",
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
@@ -115,7 +115,7 @@
     "semantic_hash": ""
   },
   "lib/i18n/app_localizations.dart": {
-    "mtime": 1792419513.776193,
+    "mtime": 1792423487.0820036,
     "ast_hash": "cc703150dc7f725235bec75ecb64b2e3",
     "semantic_hash": ""
   },
@@ -200,7 +200,7 @@
     "semantic_hash": ""
   },
   "lib/screens/home_screen.dart": {
-    "mtime": 1792419941.1894467,
+    "mtime": 1792423487.0820036,
     "ast_hash": "143ee73935dcb6b57fe96c8bc061b51d",
     "semantic_hash": ""
   },
@@ -210,7 +210,7 @@
     "semantic_hash": ""
   },
   "lib/screens/review_screen.dart": {
-    "mtime": 1792419940.7438326,
+    "mtime": 1792423487.0833545,
     "ast_hash": "0712575fcbe83adde573ef7c38aed315",
     "semantic_hash": ""
   },
@@ -355,18 +355,18 @@
     "semantic_hash": "269aa4105ec2ad2b0ce69d17d9f83a0d"
   },
   "CHANGELOG.md": {
-    "mtime": 1791157595.450931,
-    "ast_hash": "cb9de7cd838a09c7314ea388d3b74af0",
+    "mtime": 1792434485.7110317,
+    "ast_hash": "601a5e4b0d416f9d861630d5fde5d3f2",
     "semantic_hash": ""
   },
   "JOIN_TESTING.md": {
-    "mtime": 1791125336.5641866,
-    "ast_hash": "228af350caa45b631a95e42c992b8a5d",
+    "mtime": 1792434794.1474476,
+    "ast_hash": "ca7eaba4f2af97cb2ccac9dc82beee97",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792419514.8578,
-    "ast_hash": "0d72d4866d7bcf1cc3dc9e6a522f57ee",
+    "mtime": 1792434868.2817752,
+    "ast_hash": "d5e31bbd10abb1642dd4b9f5b5e18ce1",
     "semantic_hash": ""
   },
   "agent-os/standards/index.yml": {
@@ -385,8 +385,8 @@
     "semantic_hash": "f7ee1b402881509d197f34963e569927"
   },
   "pubspec.yaml": {
-    "mtime": 1791855319.5062072,
-    "ast_hash": "5009efd477773b98a28632c59070f269",
+    "mtime": 1792434485.714025,
+    "ast_hash": "7102c745be21a29cb37133d7a81bdc16",
     "semantic_hash": ""
   },
   "android/app/src/main/res/mipmap-hdpi/ic_launcher.png": {
@@ -995,8 +995,8 @@
     "semantic_hash": ""
   },
   "branding/launch-video/share-copy.txt": {
-    "mtime": 1790815871.9315076,
-    "ast_hash": "6bada79430f0d8b37077941a203ab3e6",
+    "mtime": 1792434850.1605241,
+    "ast_hash": "780b34e64b79b68fee0440cf7eada072",
     "semantic_hash": ""
   },
   "branding/launch-video/storyboard.md": {
@@ -1005,8 +1005,8 @@
     "semantic_hash": ""
   },
   "branding/store-listing/README.md": {
-    "mtime": 1791141091.1052492,
-    "ast_hash": "b8d2d8f67d8ffbd5f7f5f104c8003312",
+    "mtime": 1792434831.4728425,
+    "ast_hash": "580df70cea9c18ed6d3dbb351e781c2e",
     "semantic_hash": ""
   },
   "branding/store-listing/index.html": {
@@ -1320,7 +1320,7 @@
     "semantic_hash": ""
   },
   "test/legal_test.dart": {
-    "mtime": 1792419514.4853477,
+    "mtime": 1792423487.0843606,
     "ast_hash": "25b154056414e86278f67575e0a34078",
     "semantic_hash": ""
   },
@@ -1345,7 +1345,7 @@
     "semantic_hash": ""
   },
   "website/src/motion.js": {
-    "mtime": 1792419515.2134278,
+    "mtime": 1792423487.0878448,
     "ast_hash": "bb732cbffa205873b5ff5726334a3655",
     "semantic_hash": ""
   },
@@ -1365,13 +1365,13 @@
     "semantic_hash": ""
   },
   "website/README.md": {
-    "mtime": 1791855319.5159893,
-    "ast_hash": "c7ce48ea775acd19fe289f395bb42630",
+    "mtime": 1792434903.2878125,
+    "ast_hash": "3b1401f01332a27cc43b8f5cba819e10",
     "semantic_hash": ""
   },
   "website/index.html": {
-    "mtime": 1792419516.0670438,
-    "ast_hash": "85a50bdf7e6e6b280f6f7ddce514bd35",
+    "mtime": 1792434827.3120615,
+    "ast_hash": "fd4766344a0a8e51474549eef3797cee",
     "semantic_hash": ""
   },
   "website/og-image/index.html": {
@@ -1420,8 +1420,8 @@
     "semantic_hash": ""
   },
   "website/public/llms.txt": {
-    "mtime": 1792419517.5478475,
-    "ast_hash": "746f13d6cf6b4f082a11fe7ef7f25c93",
+    "mtime": 1792434894.548178,
+    "ast_hash": "5f2d48252a6255cdf33aae49ee303fe6",
     "semantic_hash": ""
   },
   "website/src/i18n.js": {
@@ -1450,8 +1450,8 @@
     "semantic_hash": ""
   },
   "website/de/datenschutz/website/index.html": {
-    "mtime": 1791855319.5283606,
-    "ast_hash": "68e0c32cca5866de9896819d921bd101",
+    "mtime": 1792434878.0818057,
+    "ast_hash": "51fa97ec2e78242ba36f8f88a93c747a",
     "semantic_hash": ""
   },
   "website/de/impressum/index.html": {
@@ -1460,8 +1460,8 @@
     "semantic_hash": ""
   },
   "website/de/index.html": {
-    "mtime": 1792419516.6619668,
-    "ast_hash": "347e3301534a2fa88599a6bce6d15eab",
+    "mtime": 1792434971.9851072,
+    "ast_hash": "fafc052142a89b1a84c500ae749ad988",
     "semantic_hash": ""
   },
   "website/imprint/index.html": {
@@ -1470,8 +1470,8 @@
     "semantic_hash": ""
   },
   "website/privacy/website/index.html": {
-    "mtime": 1791855319.5380535,
-    "ast_hash": "eeecded247eb4d68c64805f794203fa0",
+    "mtime": 1792434878.080804,
+    "ast_hash": "6ae565ad5a2d474612ba6d54030aac9b",
     "semantic_hash": ""
   },
   "website/public/google-play-badge-de.png": {
@@ -1485,8 +1485,8 @@
     "semantic_hash": ""
   },
   "website/public/download/redirect.js": {
-    "mtime": 1791855319.5430613,
-    "ast_hash": "8bc17758b4a613a97a8209d5fe44d0f5",
+    "mtime": 1792434884.8036623,
+    "ast_hash": "bdb8b7182a1eb3a122de62ab1269aeff",
     "semantic_hash": ""
   },
   "website/public/download/index.html": {
@@ -1500,18 +1500,33 @@
     "semantic_hash": ""
   },
   "assets/i18n/fi.json": {
-    "mtime": 1792420003.9312665,
-    "ast_hash": "24f3bf166d23105d9c15136e51395bae",
+    "mtime": 1792423487.0546377,
+    "ast_hash": "e155e0a7c33c6c6013dbd9e5c63ec107",
     "semantic_hash": ""
   },
   "assets/i18n/pl.json": {
-    "mtime": 1792419496.759853,
-    "ast_hash": "cdddebde8dbb90e245983bff7d982f38",
+    "mtime": 1792423487.0546377,
+    "ast_hash": "08655f942210d3a30c708c2d22bc2879",
     "semantic_hash": ""
   },
   "assets/i18n/pt.json": {
-    "mtime": 1792419497.5851598,
-    "ast_hash": "1ba58143c4daf981b0e63d56fea3339d",
+    "mtime": 1792423487.0557458,
+    "ast_hash": "2e4302ac08f450a19c4bf6598241e936",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/listing-text.md": {
+    "mtime": 1792434816.7099524,
+    "ast_hash": "c6285d891225301f7b27df4ad23ce455",
+    "semantic_hash": ""
+  },
+  "website/public/app-store-badge-de.svg": {
+    "mtime": 1792434775.6298077,
+    "ast_hash": "b37fbda59ff4a48a379ec0f0fd7ffb1d",
+    "semantic_hash": ""
+  },
+  "website/public/app-store-badge.svg": {
+    "mtime": 1792434775.603732,
+    "ast_hash": "2928664fe1fc6aca88583a6f606d60ba",
     "semantic_hash": ""
   }
 }
