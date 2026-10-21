@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      # The F-Droid recipe reads this line to pick its Flutter version; keep the format.
       FLUTTER_VERSION: '3.41.9'
       JAVA_VERSION: '17'
       PACKAGE_NAME: cc.jami.simpleshottimer
