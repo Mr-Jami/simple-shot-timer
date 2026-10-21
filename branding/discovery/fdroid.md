@@ -86,15 +86,21 @@ release APK unsigned without key.properties`, that build is unsigned.
 - For an installable local build, use `--debug` or `--profile`.
 - Tags before that commit (`v2.3.1`) need the `sed` in the draft's `prebuild`.
 
-**Version code.** F-Droid builds with `flutter build apk`, so the APK takes
-the `+N` from `pubspec.yaml`: 2.3.1 is versionCode 14 (checked with `aapt2
-dump badging`). The Play builds use `github.run_number`, which is higher.
-That is fine because F-Droid and Play builds carry different signatures and
-are separate installs anyway. Switching between them means uninstalling, and
-the history is stored only on the phone. Users should export to CSV first.
+**Version code.** F-Droid builds one APK per ABI with `flutter build apk
+--split-per-abi`. Flutter sets each split's versionCode to ABI code × 1000
+plus the `+N` from `pubspec.yaml`. The ABI codes are 1 for armeabi-v7a, 2
+for arm64-v8a and 4 for x86_64, so 2.3.2 (`+15`) gives 1015, 2015 and
+4015. The recipe's `VercodeOperation` (`%c + 1000`, `%c + 2000`,
+`%c + 4000`) uses the same scheme, so `+N` has to stay below 1000. The
+Play builds use `github.run_number` instead. That is fine because F-Droid
+and Play builds carry different signatures and are separate installs
+anyway. Switching between them means uninstalling, and the history is
+stored only on the phone, so users should export to CSV first.
 
 **Toolchain.**
-- Flutter `3.41.9`, as in CI. The tag exists: commit `00b0c91f06`.
+- Flutter: the recipe reads `FLUTTER_VERSION` from
+  `.github/workflows/deploy-play-store.yml` at the commit it builds, so
+  F-Droid uses the same Flutter as the Play release (3.41.9 for 2.3.2).
 - NDK `r28c`. That is 28.2.13676358, Flutter 3.41.9's default, needed
   because jni compiles C code.
 - minSdk 24 (Android 7.0), targetSdk 36.
@@ -112,24 +118,42 @@ changelogs, so it is unaffected.
 
 ## How the recipe is built
 
-It follows current fdroiddata Flutter recipes:
-- **F-Droid's own Flutter srclib**, `srclibs: flutter@<tag>`, used as
-  `$$flutter$$/bin/flutter`. fdroiddata has thousands of `flutter@` srclib
-  uses, according to a
-  [feasibility review that counted them](https://github.com/simonoppowa/opennutritracker/blob/8d2420f0305c96a4f798f3a111509827260f6df7/docs/fdroid-submission-feasibility.md).
+A reviewer asked for fdroiddata's
+[Flutter template](https://gitlab.com/fdroid/fdroiddata/-/blob/master/templates/build-flutter.yml),
+so the recipe follows it:
+- **F-Droid's own Flutter srclib**, `srclibs: flutter@stable`. `prebuild`
+  checks it out at the `FLUTTER_VERSION` from the Play workflow, and the
+  build runs it as `$$flutter$$/bin/flutter`. Auto-updates then pick up
+  Flutter bumps by themselves. 260 fdroiddata recipes check out the srclib
+  this way.
 - **A pub cache inside the build tree**, removed by `scandelete`.
 - **`flutter pub get --enforce-lockfile`**.
-- **A universal unsigned APK** from the Gradle output folder, like
-  [Open Food Facts](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/openfoodfacts.github.scrachx.openfood.yml)
-  (`output: build/app/outputs/apk/release/app-release-unsigned.apk`).
+- **One APK per ABI** (armeabi-v7a, arm64-v8a, x86_64), each in its own
+  build entry with `--split-per-abi --target-platform=…`, from
+  `build/app/outputs/flutter-apk/`. Each is 16 to 20 MB; the universal APK
+  was 55 MB. `--split-per-abi` matters. With `--target-platform` alone,
+  Flutter keeps every ABI's plugin libraries (`libdartjni.so`,
+  `libdatastore_shared_counter.so`) in each APK. The arm64 APK would then
+  claim armeabi-v7a and x86_64 without the `libflutter.so` they need.
+- **Flutter's own version codes per ABI**, as in
+  [com.sunstep.travel.foss](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/com.sunstep.travel.foss.yml).
+  The usual `%c * 10 + N` would need a versionCode override in
+  `android/app/build.gradle.kts` and a new release.
 - **The `UpdateCheckData` pattern for `pubspec.yaml`** that
   [Saber](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/com.adilhanney.saber.yml)
   uses: `pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+`.
 
+The template's fixed `/upstream/path` build directory is left out, because
+it only matters for reproducible builds. `fdroid lint` wants `Changelog` to
+point at `/HEAD/` rather than `/main/`.
+
 ## Submitting
 
-The recipe is ready for v2.3.2 (versionCode 15), the first tag whose release
-build is unsigned without `key.properties`, so it needs no workarounds.
+Submitted on 2026-10-19 as
+[fdroiddata!53311](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/53311).
+The recipe builds v2.3.2 (version codes 1015, 2015 and 4015). That is the
+first tag whose release build is unsigned without `key.properties`, so it
+needs no workarounds.
 
 1. Create a GitLab account and fork
    [fdroiddata](https://gitlab.com/fdroid/fdroiddata) (*Fork* at the top
@@ -168,7 +192,9 @@ Google Play versions can't update each other; switching means uninstalling
 (and losing the history, which lives only on the phone). Reproducible builds
 would let F-Droid ship your signature instead, but they need developer-signed
 APKs to compare against, and once F-Droid has signed an app with its key it
-can't switch later. The merge request text opts out for now.
+can't switch later. Decided on 2026-10-21: F-Droid signs with its own key
+for good. The project publishes no APKs, and Play users can't switch to
+either build anyway, because Google holds the Play signing key.
 
 The slower alternative is a
 [Request For Packaging](https://gitlab.com/fdroid/rfp/-/issues) issue, where
@@ -182,10 +208,12 @@ volunteers write the recipe. See also the
   (`UpdateCheckMode: Tags` plus `UpdateCheckData`), and
   `AutoUpdateMode: Version` adds a build entry by itself. The F-Droid build
   follows in its next cycle.
-- **Flutter version bumps.** The new entry is a copy of the last one,
-  including `flutter@3.41.9`. When CI moves to a new Flutter version, send a
-  small fdroiddata merge request that bumps the srclib, or the F-Droid build
-  may fail.
+- **Flutter version bumps** need nothing on the F-Droid side. Each build
+  reads the version from the line `FLUTTER_VERSION: 'x.y.z'` in
+  `deploy-play-store.yml` at its own commit. Keep that line in this exact
+  form, single-quoted. Only if a Flutter bump needs a different NDK does
+  the `ndk:` field (copied into each new entry) need a small fdroiddata
+  merge request.
 - **"What's new" text (optional).** Add
   `fastlane/metadata/android/en-US/changelogs/<versionCode>.txt`. Without
   it, F-Droid links to the changelog. It could be generated in CI with

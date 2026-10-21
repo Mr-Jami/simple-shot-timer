@@ -65,9 +65,9 @@ What sets it apart from a basic timer app: it measures the start beep through th
 * [x] External repos are added as git submodules instead of srclibs. You can update git submodules without opening an MR in this repo and the submodule is covered by our scanner.
   - The only external dependency is the Flutter SDK, added as the `flutter` srclib like in other Flutter recipes.
 * [ ] Enable [Reproducible Builds](https://f-droid.org/docs/Reproducible_Builds). We'll use your signature for improved security/reliability, also allowing users to switch between different channels. Do note that if you don't enable reproducible build then the apk will be signed with our key so you can't enable it later. If you can't enable this, please add the reasons here.
-  - Not for now: the project publishes no developer-signed APKs to compare against (Google Play gets an AAB signed through Play App Signing). Please sign with the F-Droid key.
-* [ ] Setup abi split if the APK is large and the splitted ones can be much smaller.
-  - It's one universal APK for now. If you prefer per-ABI builds to cut the download size, I'm happy to change the recipe.
+  - Not enabled, on purpose: the project publishes no developer-signed APKs to compare against (Google Play gets an AAB signed through Play App Signing). Please sign with the F-Droid key; I understand this can't be switched to reproducible builds later.
+* [x] Setup abi split if the APK is large and the splitted ones can be much smaller.
+  - One APK each for armeabi-v7a, arm64-v8a and x86_64 (`--split-per-abi`), with Flutter's own split version codes (`%c + 1000`, `%c + 2000`, `%c + 4000`).
 * [x] Only the latest versions should be kept in the metadata before it's merged. If you update the metadata, please replace the old versions with the new ones.
 * [x] Don't add any disabled versions in the metadata.
 * [x] The `commit` field should be the full hash. Please don't use tag or branch in commit.
@@ -81,5 +81,5 @@ What sets it apart from a basic timer app: it measures the start beep through th
 ## Notes for reviewers
 
 - I am the developer and the holder of the name "Simple Shot Timer" and its icon. The NOTICE file reserves trademark rights for modified versions (GPLv3 section 7(e)); I allow F-Droid to build and distribute the unmodified app under its name and icon.
-- The release build is unsigned when `android/key.properties` is absent (CI writes that file for Google Play), so `output:` points at `app-release-unsigned.apk`.
-- The Flutter srclib matches the version CI builds with (3.41.9). When CI moves to a newer Flutter, I'll send a merge request to bump it.
+- The release build is unsigned when `android/key.properties` is absent (CI writes that file for Google Play), so F-Droid signs it.
+- The recipe follows `templates/build-flutter.yml`: `flutter@stable` is checked out at the `FLUTTER_VERSION` from `.github/workflows/deploy-play-store.yml`, the workflow that builds the Play release, so auto-updates follow Flutter bumps.

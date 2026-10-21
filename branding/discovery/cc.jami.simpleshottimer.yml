@@ -8,7 +8,7 @@ AuthorWebSite: https://jami-it.de/
 WebSite: https://simpleshottimer.com/
 SourceCode: https://github.com/Mr-Jami/simple-shot-timer
 IssueTracker: https://github.com/Mr-Jami/simple-shot-timer/issues
-Changelog: https://github.com/Mr-Jami/simple-shot-timer/blob/main/CHANGELOG.md
+Changelog: https://github.com/Mr-Jami/simple-shot-timer/blob/HEAD/CHANGELOG.md
 
 AutoName: Simple Shot Timer
 
@@ -17,17 +17,20 @@ Repo: https://github.com/Mr-Jami/simple-shot-timer.git
 
 Builds:
   - versionName: 2.3.2
-    versionCode: 15
+    versionCode: 1015
     commit: c10ee631cc11173a458d2b37dcd6e31d4e45895d
-    output: build/app/outputs/apk/release/app-release-unsigned.apk
+    output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
     srclibs:
-      - flutter@3.41.9
+      - flutter@stable
     rm:
       - branding
       - graphify-out
       - ios
       - website
     prebuild:
+      - flutterVersion=$(sed -n -E "s/.*FLUTTER_VERSION:\ '(.*)'/\1/p" .github/workflows/deploy-play-store.yml)
+      - '[[ $flutterVersion ]]'
+      - git -C $$flutter$$ checkout -f $flutterVersion
       - export PUB_CACHE=$(pwd)/.pub-cache
       - $$flutter$$/bin/flutter config --no-analytics
       - $$flutter$$/bin/flutter pub get --enforce-lockfile
@@ -35,11 +38,65 @@ Builds:
       - .pub-cache
     build:
       - export PUB_CACHE=$(pwd)/.pub-cache
-      - $$flutter$$/bin/flutter build apk --release
+      - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform=android-arm
+    ndk: r28c
+
+  - versionName: 2.3.2
+    versionCode: 2015
+    commit: c10ee631cc11173a458d2b37dcd6e31d4e45895d
+    output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+    srclibs:
+      - flutter@stable
+    rm:
+      - branding
+      - graphify-out
+      - ios
+      - website
+    prebuild:
+      - flutterVersion=$(sed -n -E "s/.*FLUTTER_VERSION:\ '(.*)'/\1/p" .github/workflows/deploy-play-store.yml)
+      - '[[ $flutterVersion ]]'
+      - git -C $$flutter$$ checkout -f $flutterVersion
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter config --no-analytics
+      - $$flutter$$/bin/flutter pub get --enforce-lockfile
+    scandelete:
+      - .pub-cache
+    build:
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform=android-arm64
+    ndk: r28c
+
+  - versionName: 2.3.2
+    versionCode: 4015
+    commit: c10ee631cc11173a458d2b37dcd6e31d4e45895d
+    output: build/app/outputs/flutter-apk/app-x86_64-release.apk
+    srclibs:
+      - flutter@stable
+    rm:
+      - branding
+      - graphify-out
+      - ios
+      - website
+    prebuild:
+      - flutterVersion=$(sed -n -E "s/.*FLUTTER_VERSION:\ '(.*)'/\1/p" .github/workflows/deploy-play-store.yml)
+      - '[[ $flutterVersion ]]'
+      - git -C $$flutter$$ checkout -f $flutterVersion
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter config --no-analytics
+      - $$flutter$$/bin/flutter pub get --enforce-lockfile
+    scandelete:
+      - .pub-cache
+    build:
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform=android-x64
     ndk: r28c
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
+VercodeOperation:
+  - '%c + 1000'
+  - '%c + 2000'
+  - '%c + 4000'
 UpdateCheckData: pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+
 CurrentVersion: 2.3.2
-CurrentVersionCode: 15
+CurrentVersionCode: 4015
