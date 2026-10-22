@@ -253,5 +253,10 @@
   "editor.discardBody": "Se poistetaan historiasta.",
   "editor.saveFailedTitle": "Tallennus epäonnistui",
   "editor.saveFailedBody": "Sarjaa ei voitu tallentaa. Yritä uudelleen tai hylkää se.",
-  "editor.retry": "Yritä uudelleen"
+  "editor.retry": "Yritä uudelleen",
+  "editor.sens.fewer": "Vähemmän",
+  "editor.sens.normal": "Normaali",
+  "editor.sens.more": "Enemmän",
+  "editor.fromStart": "lähdöstä",
+  "editor.inVideo": "videolla"
 }

@@ -253,5 +253,10 @@
   "editor.discardBody": "It will be removed from your history.",
   "editor.saveFailedTitle": "Couldn’t save",
   "editor.saveFailedBody": "This string couldn’t be saved. Try again, or discard it.",
-  "editor.retry": "Try again"
+  "editor.retry": "Try again",
+  "editor.sens.fewer": "Fewer",
+  "editor.sens.normal": "Normal",
+  "editor.sens.more": "More",
+  "editor.fromStart": "from START",
+  "editor.inVideo": "in the video"
 }

@@ -253,5 +253,10 @@
   "editor.discardBody": "Elle sera retirée de votre historique.",
   "editor.saveFailedTitle": "Échec de l’enregistrement",
   "editor.saveFailedBody": "Cette série n’a pas pu être enregistrée. Réessayez ou supprimez-la.",
-  "editor.retry": "Réessayer"
+  "editor.retry": "Réessayer",
+  "editor.sens.fewer": "Moins",
+  "editor.sens.normal": "Normal",
+  "editor.sens.more": "Plus",
+  "editor.fromStart": "depuis START",
+  "editor.inVideo": "dans la vidéo"
 }

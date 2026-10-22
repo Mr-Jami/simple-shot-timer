@@ -253,5 +253,10 @@
   "editor.discardBody": "Er wird aus deinem Verlauf entfernt.",
   "editor.saveFailedTitle": "Speichern fehlgeschlagen",
   "editor.saveFailedBody": "Dieser Durchgang konnte nicht gespeichert werden. Versuch es noch einmal oder verwirf ihn.",
-  "editor.retry": "Erneut versuchen"
+  "editor.retry": "Erneut versuchen",
+  "editor.sens.fewer": "Weniger",
+  "editor.sens.normal": "Normal",
+  "editor.sens.more": "Mehr",
+  "editor.fromStart": "ab START",
+  "editor.inVideo": "im Video"
 }

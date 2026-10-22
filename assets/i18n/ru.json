@@ -253,5 +253,10 @@
   "editor.discardBody": "Она будет удалена из истории.",
   "editor.saveFailedTitle": "Не удалось сохранить",
   "editor.saveFailedBody": "Не удалось сохранить серию. Попробуйте ещё раз или удалите её.",
-  "editor.retry": "Повторить"
+  "editor.retry": "Повторить",
+  "editor.sens.fewer": "Меньше",
+  "editor.sens.normal": "Обычно",
+  "editor.sens.more": "Больше",
+  "editor.fromStart": "от START",
+  "editor.inVideo": "в видео"
 }

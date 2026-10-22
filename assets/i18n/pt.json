@@ -253,5 +253,10 @@
   "editor.discardBody": "Ela será removida do seu histórico.",
   "editor.saveFailedTitle": "Não foi possível salvar",
   "editor.saveFailedBody": "Não foi possível salvar esta série. Tente de novo ou descarte.",
-  "editor.retry": "Tentar de novo"
+  "editor.retry": "Tentar de novo",
+  "editor.sens.fewer": "Menos",
+  "editor.sens.normal": "Normal",
+  "editor.sens.more": "Mais",
+  "editor.fromStart": "desde o INÍCIO",
+  "editor.inVideo": "no vídeo"
 }

@@ -253,5 +253,10 @@
   "editor.discardBody": "Zostanie usunięta z historii.",
   "editor.saveFailedTitle": "Nie udało się zapisać",
   "editor.saveFailedBody": "Nie udało się zapisać tej serii. Spróbuj ponownie albo ją odrzuć.",
-  "editor.retry": "Spróbuj ponownie"
+  "editor.retry": "Spróbuj ponownie",
+  "editor.sens.fewer": "Mniej",
+  "editor.sens.normal": "Normalnie",
+  "editor.sens.more": "Więcej",
+  "editor.fromStart": "od START",
+  "editor.inVideo": "w wideo"
 }

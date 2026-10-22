@@ -253,5 +253,10 @@
   "editor.discardBody": "Se quitará de tu historial.",
   "editor.saveFailedTitle": "No se pudo guardar",
   "editor.saveFailedBody": "No se pudo guardar esta serie. Inténtalo de nuevo o descártala.",
-  "editor.retry": "Reintentar"
+  "editor.retry": "Reintentar",
+  "editor.sens.fewer": "Menos",
+  "editor.sens.normal": "Normal",
+  "editor.sens.more": "Más",
+  "editor.fromStart": "desde START",
+  "editor.inVideo": "en el vídeo"
 }
