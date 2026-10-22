@@ -672,7 +672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app",
-      "community": 80,
+      "community": 136,
       "norm_label": "app.dart"
     },
     {
@@ -682,7 +682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 80,
+      "community": 136,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -702,7 +702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_build",
-      "community": 54,
+      "community": 136,
       "norm_label": "build"
     },
     {
@@ -732,7 +732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 96,
+      "community": 81,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -742,7 +742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "i18n_app_localizations_dart",
-      "community": 80,
+      "community": 124,
       "norm_label": "../i18n/app_localizations.dart"
     },
     {
@@ -752,7 +752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_enums_dart",
-      "community": 80,
+      "community": 136,
       "norm_label": "../models/enums.dart"
     },
     {
@@ -762,7 +762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 80,
+      "community": 136,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -772,7 +772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "screens_main_shell_dart",
-      "community": 80,
+      "community": 136,
       "norm_label": "screens/main_shell.dart"
     },
     {
@@ -782,7 +782,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "theme_app_theme_dart",
-      "community": 80,
+      "community": 136,
       "norm_label": "theme/app_theme.dart"
     },
     {
@@ -912,7 +912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "list",
-      "community": 91,
+      "community": 85,
       "norm_label": "list"
     },
     {
@@ -1062,7 +1062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_convert",
-      "community": 124,
+      "community": 106,
       "norm_label": "dart:convert"
     },
     {
@@ -1642,7 +1642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "enums_dart",
-      "community": 27,
+      "community": 128,
       "norm_label": "enums.dart"
     },
     {
@@ -2122,7 +2122,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_widgets_dart",
-      "community": 27,
+      "community": 129,
       "norm_label": "package:flutter/widgets.dart"
     },
     {
@@ -2132,7 +2132,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "app_settings_dart",
-      "community": 27,
+      "community": 128,
       "norm_label": "app_settings.dart"
     },
     {
@@ -2142,7 +2142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums",
-      "community": 80,
+      "community": 124,
       "norm_label": "enums.dart"
     },
     {
@@ -2152,7 +2152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_delaymode",
-      "community": 80,
+      "community": 124,
       "norm_label": "delaymode"
     },
     {
@@ -2162,7 +2162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_drillmode",
-      "community": 80,
+      "community": 124,
       "norm_label": "drillmode"
     },
     {
@@ -2172,7 +2172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_appthememode",
-      "community": 80,
+      "community": 124,
       "norm_label": "appthememode"
     },
     {
@@ -2182,7 +2182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_timerphase",
-      "community": 80,
+      "community": 124,
       "norm_label": "timerphase"
     },
     {
@@ -2192,7 +2192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_delaymodex",
-      "community": 80,
+      "community": 124,
       "norm_label": "delaymodex"
     },
     {
@@ -2202,7 +2202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_drillmodex",
-      "community": 80,
+      "community": 124,
       "norm_label": "drillmodex"
     },
     {
@@ -2212,7 +2212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_appthememodex",
-      "community": 80,
+      "community": 124,
       "norm_label": "appthememodex"
     },
     {
@@ -2222,7 +2222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_enums_labelfor",
-      "community": 80,
+      "community": 124,
       "norm_label": "labelfor"
     },
     {
@@ -2332,7 +2332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_par_schedule",
-      "community": 27,
+      "community": 128,
       "norm_label": "par_schedule.dart"
     },
     {
@@ -2342,7 +2342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_par_schedule_parbeepkind",
-      "community": 27,
+      "community": 128,
       "norm_label": "parbeepkind"
     },
     {
@@ -2352,7 +2352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_par_schedule_parbeepevent",
-      "community": 27,
+      "community": 128,
       "norm_label": "parbeepevent"
     },
     {
@@ -2362,7 +2362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_par_schedule_timems",
-      "community": 27,
+      "community": 128,
       "norm_label": "timems"
     },
     {
@@ -2372,7 +2372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_par_schedule_kind",
-      "community": 27,
+      "community": 128,
       "norm_label": "kind"
     },
     {
@@ -2382,7 +2382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_par_schedule_cycle",
-      "community": 27,
+      "community": 128,
       "norm_label": "cycle"
     },
     {
@@ -2392,7 +2392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_par_schedule_computeparschedule",
-      "community": 27,
+      "community": 128,
       "norm_label": "computeparschedule"
     },
     {
@@ -3072,7 +3072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_customdrillsprovider",
-      "community": 95,
+      "community": 131,
       "norm_label": "customdrillsprovider"
     },
     {
@@ -3082,7 +3082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_activedrillprovider",
-      "community": 54,
+      "community": 131,
       "norm_label": "activedrillprovider"
     },
     {
@@ -3212,7 +3212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_dart",
-      "community": 96,
+      "community": 81,
       "norm_label": "providers.dart"
     },
     {
@@ -3242,7 +3242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_historynotifier",
-      "community": 91,
+      "community": 85,
       "norm_label": "historynotifier"
     },
     {
@@ -3252,7 +3252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "asyncnotifier",
-      "community": 91,
+      "community": 85,
       "norm_label": "asyncnotifier"
     },
     {
@@ -3312,7 +3312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 8,
+      "community": 118,
       "norm_label": "../models/timer_string.dart"
     },
     {
@@ -3362,7 +3362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_audioserviceprovider",
-      "community": 21,
+      "community": 18,
       "norm_label": "audioserviceprovider"
     },
     {
@@ -3582,7 +3582,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 96,
+      "community": 81,
       "norm_label": "string_provider.dart"
     },
     {
@@ -3592,7 +3592,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_stringbyidprovider",
-      "community": 96,
+      "community": 3,
       "norm_label": "stringbyidprovider"
     },
     {
@@ -3602,7 +3602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 96,
+      "community": 81,
       "norm_label": "read"
     },
     {
@@ -4262,7 +4262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreen",
-      "community": 21,
+      "community": 56,
       "norm_label": "autoconfigurescreen"
     },
     {
@@ -4272,7 +4272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstatefulwidget",
-      "community": 21,
+      "community": 26,
       "norm_label": "consumerstatefulwidget"
     },
     {
@@ -4282,7 +4282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreenstate",
-      "community": 21,
+      "community": 56,
       "norm_label": "_autoconfigurescreenstate"
     },
     {
@@ -4292,7 +4292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstate",
-      "community": 21,
+      "community": 26,
       "norm_label": "consumerstate"
     },
     {
@@ -4312,7 +4312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "statelesswidget",
-      "community": 14,
+      "community": 96,
       "norm_label": "statelesswidget"
     },
     {
@@ -4322,7 +4322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_suggestioncard",
-      "community": 56,
+      "community": 96,
       "norm_label": "_suggestioncard"
     },
     {
@@ -4672,7 +4672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_savecurrentdrill",
-      "community": 95,
+      "community": 131,
       "norm_label": "savecurrentdrill"
     },
     {
@@ -4712,7 +4712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_renamedrill",
-      "community": 95,
+      "community": 131,
       "norm_label": "renamedrill"
     },
     {
@@ -4742,7 +4742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_deletedrill",
-      "community": 95,
+      "community": 131,
       "norm_label": "deletedrill"
     },
     {
@@ -4842,7 +4842,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_customdrillsscreen",
-      "community": 54,
+      "community": 131,
       "norm_label": "customdrillsscreen"
     },
     {
@@ -4872,7 +4872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_build",
-      "community": 54,
+      "community": 131,
       "norm_label": "build"
     },
     {
@@ -4912,7 +4912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 80,
+      "community": 132,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -5012,7 +5012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen",
-      "community": 80,
+      "community": 132,
       "norm_label": "history_screen.dart"
     },
     {
@@ -5032,7 +5032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen_drillsummary",
-      "community": 80,
+      "community": 132,
       "norm_label": "_drillsummary"
     },
     {
@@ -5042,7 +5042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen_fmt",
-      "community": 80,
+      "community": 132,
       "norm_label": "fmt"
     },
     {
@@ -5072,7 +5072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_history_provider_dart",
-      "community": 80,
+      "community": 132,
       "norm_label": "../providers/history_provider.dart"
     },
     {
@@ -5082,7 +5082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_export_service_dart",
-      "community": 80,
+      "community": 132,
       "norm_label": "../services/export_service.dart"
     },
     {
@@ -5092,7 +5092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_time_format_dart",
-      "community": 80,
+      "community": 132,
       "norm_label": "../utils/time_format.dart"
     },
     {
@@ -5102,7 +5102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "review_screen_dart",
-      "community": 80,
+      "community": 132,
       "norm_label": "review_screen.dart"
     },
     {
@@ -5142,7 +5142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_timerarea",
-      "community": 54,
+      "community": 131,
       "norm_label": "_timerarea"
     },
     {
@@ -5152,7 +5152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_topslot",
-      "community": 14,
+      "community": 96,
       "norm_label": "_topslot"
     },
     {
@@ -5162,7 +5162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runfooter",
-      "community": 14,
+      "community": 96,
       "norm_label": "_runfooter"
     },
     {
@@ -5182,7 +5182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_laststringline",
-      "community": 14,
+      "community": 96,
       "norm_label": "_laststringline"
     },
     {
@@ -5192,7 +5192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_countdownview",
-      "community": 14,
+      "community": 96,
       "norm_label": "_countdownview"
     },
     {
@@ -5202,7 +5202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_settingssummary",
-      "community": 14,
+      "community": 96,
       "norm_label": "_settingssummary"
     },
     {
@@ -5212,7 +5212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_activedrillchip",
-      "community": 14,
+      "community": 96,
       "norm_label": "_activedrillchip"
     },
     {
@@ -5222,7 +5222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_runningview",
-      "community": 14,
+      "community": 96,
       "norm_label": "_runningview"
     },
     {
@@ -5252,7 +5252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_statsrow",
-      "community": 14,
+      "community": 96,
       "norm_label": "_statsrow"
     },
     {
@@ -5262,7 +5262,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_stat",
-      "community": 14,
+      "community": 96,
       "norm_label": "_stat"
     },
     {
@@ -5682,7 +5682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreen",
-      "community": 21,
+      "community": 18,
       "norm_label": "mictestscreen"
     },
     {
@@ -5692,7 +5692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreenstate",
-      "community": 21,
+      "community": 18,
       "norm_label": "_mictestscreenstate"
     },
     {
@@ -5852,7 +5852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_build",
-      "community": 21,
+      "community": 18,
       "norm_label": "build"
     },
     {
@@ -5872,7 +5872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewscreen",
-      "community": 96,
+      "community": 3,
       "norm_label": "reviewscreen"
     },
     {
@@ -5882,7 +5882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbody",
-      "community": 3,
+      "community": 26,
       "norm_label": "_reviewbody"
     },
     {
@@ -5892,7 +5892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbodystate",
-      "community": 3,
+      "community": 26,
       "norm_label": "_reviewbodystate"
     },
     {
@@ -5902,7 +5902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_shotbadge",
-      "community": 14,
+      "community": 96,
       "norm_label": "_shotbadge"
     },
     {
@@ -5912,7 +5912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_summarygrid",
-      "community": 14,
+      "community": 96,
       "norm_label": "_summarygrid"
     },
     {
@@ -5932,7 +5932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 14,
+      "community": 96,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -5952,7 +5952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 14,
+      "community": 96,
       "norm_label": "_percyclesummary"
     },
     {
@@ -5962,7 +5962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 14,
+      "community": 96,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -5972,7 +5972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclestat",
-      "community": 14,
+      "community": 96,
       "norm_label": "_cyclestat"
     },
     {
@@ -6112,7 +6112,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_build",
-      "community": 96,
+      "community": 3,
       "norm_label": "build"
     },
     {
@@ -7392,7 +7392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_path_dart",
-      "community": 8,
+      "community": 134,
       "norm_label": "package:path/path.dart"
     },
     {
@@ -7402,7 +7402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_provider_path_provider_dart",
-      "community": 8,
+      "community": 118,
       "norm_label": "package:path_provider/path_provider.dart"
     },
     {
@@ -7422,7 +7422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service",
-      "community": 8,
+      "community": 118,
       "norm_label": "export_service.dart"
     },
     {
@@ -7432,7 +7432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportservice",
-      "community": 8,
+      "community": 118,
       "norm_label": "exportservice"
     },
     {
@@ -7442,7 +7442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportname",
-      "community": 8,
+      "community": 118,
       "norm_label": "_exportname"
     },
     {
@@ -7452,7 +7452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_final",
-      "community": 8,
+      "community": 118,
       "norm_label": "static final"
     },
     {
@@ -7462,7 +7462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writestringcsv",
-      "community": 8,
+      "community": 118,
       "norm_label": "writestringcsv"
     },
     {
@@ -7472,7 +7472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writeallstringscsv",
-      "community": 8,
+      "community": 118,
       "norm_label": "writeallstringscsv"
     },
     {
@@ -7482,7 +7482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_deleteexports",
-      "community": 8,
+      "community": 118,
       "norm_label": "deleteexports"
     },
     {
@@ -7492,7 +7492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_share",
-      "community": 8,
+      "community": 118,
       "norm_label": "share"
     },
     {
@@ -7502,7 +7502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_csv",
-      "community": 8,
+      "community": 118,
       "norm_label": "_csv"
     },
     {
@@ -7522,7 +7522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_share_plus_share_plus_dart",
-      "community": 8,
+      "community": 118,
       "norm_label": "package:share_plus/share_plus.dart"
     },
     {
@@ -7622,7 +7622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_foundation_dart",
-      "community": 118,
+      "community": 101,
       "norm_label": "package:flutter/foundation.dart"
     },
     {
@@ -7642,7 +7642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_settings_service_settingsservice",
-      "community": 1,
+      "community": 103,
       "norm_label": "settingsservice"
     },
     {
@@ -9382,7 +9382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion",
-      "community": 27,
+      "community": 129,
       "norm_label": "motion.dart"
     },
     {
@@ -9392,7 +9392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotionshort",
-      "community": 27,
+      "community": 129,
       "norm_label": "kmotionshort"
     },
     {
@@ -9402,7 +9402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "duration",
-      "community": 27,
+      "community": 129,
       "norm_label": "duration"
     },
     {
@@ -9412,7 +9412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotionmedium",
-      "community": 27,
+      "community": 129,
       "norm_label": "kmotionmedium"
     },
     {
@@ -9422,7 +9422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotiontick",
-      "community": 27,
+      "community": 129,
       "norm_label": "kmotiontick"
     },
     {
@@ -9432,7 +9432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_reducedmotionof",
-      "community": 27,
+      "community": 129,
       "norm_label": "reducedmotionof"
     },
     {
@@ -9442,7 +9442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_motion",
-      "community": 27,
+      "community": 129,
       "norm_label": "motion"
     },
     {
@@ -10502,7 +10502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_settingsintslider",
-      "community": 14,
+      "community": 13,
       "norm_label": "settingsintslider"
     },
     {
@@ -10512,7 +10512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_slider_settingsdoubleslider",
-      "community": 14,
+      "community": 13,
       "norm_label": "settingsdoubleslider"
     },
     {
@@ -10632,7 +10632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "valuechanged",
-      "community": 13,
+      "community": 127,
       "norm_label": "valuechanged"
     },
     {
@@ -10742,7 +10742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "t",
-      "community": 13,
+      "community": 127,
       "norm_label": "t"
     },
     {
@@ -10752,7 +10752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets",
-      "community": 13,
+      "community": 127,
       "norm_label": "settings_widgets.dart"
     },
     {
@@ -10762,7 +10762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_settingssection",
-      "community": 13,
+      "community": 127,
       "norm_label": "settingssection"
     },
     {
@@ -10772,7 +10772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_enumchoice",
-      "community": 13,
+      "community": 127,
       "norm_label": "enumchoice"
     },
     {
@@ -10782,7 +10782,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_title",
-      "community": 13,
+      "community": 127,
       "norm_label": "title"
     },
     {
@@ -10792,7 +10792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_values",
-      "community": 13,
+      "community": 127,
       "norm_label": "values"
     },
     {
@@ -10802,7 +10802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_current",
-      "community": 13,
+      "community": 127,
       "norm_label": "current"
     },
     {
@@ -10812,7 +10812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_onchanged",
-      "community": 13,
+      "community": 127,
       "norm_label": "onchanged"
     },
     {
@@ -10822,7 +10822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_build",
-      "community": 13,
+      "community": 127,
       "norm_label": "build"
     },
     {
@@ -11352,7 +11352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drills_provider_test_failingclear",
-      "community": 1,
+      "community": 103,
       "norm_label": "_failingclear"
     },
     {
@@ -11552,7 +11552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_i18n_app_localizations_dart",
-      "community": 90,
+      "community": 133,
       "norm_label": "package:simple_shot_timer/i18n/app_localizations.dart"
     },
     {
@@ -11602,7 +11602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test",
-      "community": 124,
+      "community": 106,
       "norm_label": "drill_config_test.dart"
     },
     {
@@ -11612,7 +11612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_drill",
-      "community": 124,
+      "community": 106,
       "norm_label": "_drill"
     },
     {
@@ -11622,7 +11622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_other",
-      "community": 124,
+      "community": 106,
       "norm_label": "_other"
     },
     {
@@ -11632,7 +11632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_singlefieldedits",
-      "community": 124,
+      "community": 106,
       "norm_label": "_singlefieldedits"
     },
     {
@@ -11642,7 +11642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_main",
-      "community": 124,
+      "community": 106,
       "norm_label": "main"
     },
     {
@@ -11652,7 +11652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test",
-      "community": 8,
+      "community": 134,
       "norm_label": "export_service_test.dart"
     },
     {
@@ -11662,7 +11662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_temp",
-      "community": 8,
+      "community": 134,
       "norm_label": "temp"
     },
     {
@@ -11672,7 +11672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "directory",
-      "community": 8,
+      "community": 134,
       "norm_label": "directory"
     },
     {
@@ -11682,7 +11682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_main",
-      "community": 8,
+      "community": 134,
       "norm_label": "main"
     },
     {
@@ -11692,7 +11692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_touch",
-      "community": 8,
+      "community": 134,
       "norm_label": "touch"
     },
     {
@@ -11702,7 +11702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_export_service_dart",
-      "community": 8,
+      "community": 134,
       "norm_label": "package:simple_shot_timer/services/export_service.dart"
     },
     {
@@ -11712,7 +11712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 125,
+      "community": 94,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -11722,7 +11722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 125,
+      "community": 94,
       "norm_label": "_host"
     },
     {
@@ -11732,7 +11732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 125,
+      "community": 94,
       "norm_label": "_visiblesignal"
     },
     {
@@ -11742,7 +11742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 125,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -11752,7 +11752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 125,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -11762,7 +11762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test",
-      "community": 90,
+      "community": 133,
       "norm_label": "i18n_parity_test.dart"
     },
     {
@@ -11772,8 +11772,28 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholder",
-      "community": 90,
+      "community": 133,
       "norm_label": "placeholder"
+    },
+    {
+      "label": "plist",
+      "file_type": "code",
+      "source_file": "test/i18n_parity_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_i18n_parity_test_plist",
+      "community": 133,
+      "norm_label": "plist"
+    },
+    {
+      "label": "iosLocalizations",
+      "file_type": "code",
+      "source_file": "test/i18n_parity_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_i18n_parity_test_ioslocalizations",
+      "community": 133,
+      "norm_label": "ioslocalizations"
     },
     {
       "label": "main",
@@ -11782,7 +11802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_main",
-      "community": 90,
+      "community": 133,
       "norm_label": "main"
     },
     {
@@ -11792,7 +11812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_load",
-      "community": 90,
+      "community": 133,
       "norm_label": "load"
     },
     {
@@ -11802,7 +11822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholders",
-      "community": 90,
+      "community": 133,
       "norm_label": "placeholders"
     },
     {
@@ -11922,7 +11942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test",
-      "community": 118,
+      "community": 90,
       "norm_label": "legal_test.dart"
     },
     {
@@ -11932,7 +11952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test_attribution",
-      "community": 118,
+      "community": 90,
       "norm_label": "attribution"
     },
     {
@@ -11942,7 +11962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test_originalurl",
-      "community": 118,
+      "community": 90,
       "norm_label": "originalurl"
     },
     {
@@ -11952,7 +11972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test_main",
-      "community": 118,
+      "community": 90,
       "norm_label": "main"
     },
     {
@@ -11962,7 +11982,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_legal_dart",
-      "community": 118,
+      "community": 90,
       "norm_label": "package:simple_shot_timer/utils/legal.dart"
     },
     {
@@ -12042,7 +12062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test",
-      "community": 106,
+      "community": 94,
       "norm_label": "shot_detector_test.dart"
     },
     {
@@ -12052,7 +12072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test_main",
-      "community": 106,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -13136,6 +13156,36 @@
       "norm_label": "initdemo()"
     },
     {
+      "label": "guide.js",
+      "file_type": "code",
+      "source_file": "website/src/guide.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "website_src_guide",
+      "community": 108,
+      "norm_label": "guide.js"
+    },
+    {
+      "label": "links",
+      "file_type": "code",
+      "source_file": "website/src/guide.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "website_src_guide_links",
+      "community": 108,
+      "norm_label": "links"
+    },
+    {
+      "label": "sections",
+      "file_type": "code",
+      "source_file": "website/src/guide.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "website_src_guide_sections",
+      "community": 108,
+      "norm_label": "sections"
+    },
+    {
       "label": "halftone.js",
       "file_type": "code",
       "source_file": "website/src/halftone.js",
@@ -13836,14 +13886,14 @@
       "norm_label": "changelog"
     },
     {
-      "label": "[2.3.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.0...v2.3.1) (2026-10-19)",
+      "label": "[2.3.2](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.1...v2.3.2) (2026-10-19)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
+      "id": "changelog_2_3_2_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_1_v2_3_2_2026_10_19",
       "community": 50,
-      "norm_label": "[2.3.1](https://github.com/mr-jami/simple-shot-timer/compare/v2.3.0...v2.3.1) (2026-10-19)"
+      "norm_label": "[2.3.2](https://github.com/mr-jami/simple-shot-timer/compare/v2.3.1...v2.3.2) (2026-10-19)"
     },
     {
       "label": "Bug Fixes",
@@ -13856,10 +13906,30 @@
       "norm_label": "bug fixes"
     },
     {
+      "label": "[2.3.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.0...v2.3.1) (2026-10-19)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
+      "community": 50,
+      "norm_label": "[2.3.1](https://github.com/mr-jami/simple-shot-timer/compare/v2.3.0...v2.3.1) (2026-10-19)"
+    },
+    {
+      "label": "Bug Fixes",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "changelog_bug_fixes_14",
+      "community": 50,
+      "norm_label": "bug fixes"
+    },
+    {
       "label": "[2.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.2.0...v2.3.0) (2026-10-19)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L10",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "changelog_2_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_2_0_v2_3_0_2026_10_19",
       "community": 50,
@@ -13869,7 +13939,7 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L13",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "changelog_features",
       "community": 50,
@@ -13879,7 +13949,7 @@
       "label": "[2.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.1.0...v2.2.0) (2026-10-13)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L17",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "changelog_2_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_1_0_v2_2_0_2026_10_13",
       "community": 50,
@@ -13889,9 +13959,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L20",
+      "source_location": "L28",
       "_origin": "ast",
-      "id": "changelog_features_20",
+      "id": "changelog_features_28",
       "community": 50,
       "norm_label": "features"
     },
@@ -13899,7 +13969,7 @@
       "label": "[2.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.0.0...v2.1.0) (2026-10-04)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L24",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "changelog_2_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_0_0_v2_1_0_2026_10_04",
       "community": 50,
@@ -13909,9 +13979,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L27",
+      "source_location": "L35",
       "_origin": "ast",
-      "id": "changelog_features_27",
+      "id": "changelog_features_35",
       "community": 50,
       "norm_label": "features"
     },
@@ -13919,7 +13989,7 @@
       "label": "[2.0.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.7.0...v2.0.0) (2026-10-01)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L31",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
       "community": 50,
@@ -13929,7 +13999,7 @@
       "label": "\u26a0 BREAKING CHANGES",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L34",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "changelog_breaking_changes",
       "community": 50,
@@ -13939,9 +14009,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L38",
+      "source_location": "L46",
       "_origin": "ast",
-      "id": "changelog_features_38",
+      "id": "changelog_features_46",
       "community": 50,
       "norm_label": "features"
     },
@@ -13949,7 +14019,7 @@
       "label": "[1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L42",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
       "community": 50,
@@ -13959,9 +14029,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L45",
+      "source_location": "L53",
       "_origin": "ast",
-      "id": "changelog_features_45",
+      "id": "changelog_features_53",
       "community": 50,
       "norm_label": "features"
     },
@@ -13969,31 +14039,11 @@
       "label": "[1.6.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L49",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
       "community": 50,
       "norm_label": "[1.6.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05)"
-    },
-    {
-      "label": "Features",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L52",
-      "_origin": "ast",
-      "id": "changelog_features_52",
-      "community": 50,
-      "norm_label": "features"
-    },
-    {
-      "label": "[1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L57",
-      "_origin": "ast",
-      "id": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
-      "community": 50,
-      "norm_label": "[1.5.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)"
     },
     {
       "label": "Features",
@@ -14006,10 +14056,30 @@
       "norm_label": "features"
     },
     {
+      "label": "[1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
+      "community": 50,
+      "norm_label": "[1.5.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "changelog_features_68",
+      "community": 50,
+      "norm_label": "features"
+    },
+    {
       "label": "[1.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L64",
+      "source_location": "L72",
       "_origin": "ast",
       "id": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
       "community": 50,
@@ -14019,9 +14089,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L67",
+      "source_location": "L75",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_67",
+      "id": "changelog_bug_fixes_75",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -14029,7 +14099,7 @@
       "label": "[1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L71",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
       "community": 50,
@@ -14039,9 +14109,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L74",
+      "source_location": "L82",
       "_origin": "ast",
-      "id": "changelog_features_74",
+      "id": "changelog_features_82",
       "community": 50,
       "norm_label": "features"
     },
@@ -14049,9 +14119,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L79",
+      "source_location": "L87",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_79",
+      "id": "changelog_bug_fixes_87",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -14059,7 +14129,7 @@
       "label": "[1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L83",
+      "source_location": "L91",
       "_origin": "ast",
       "id": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
       "community": 50,
@@ -14069,9 +14139,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L86",
+      "source_location": "L94",
       "_origin": "ast",
-      "id": "changelog_features_86",
+      "id": "changelog_features_94",
       "community": 50,
       "norm_label": "features"
     },
@@ -14079,7 +14149,7 @@
       "label": "[1.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.1.0...v1.2.0) (2026-05-19)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L92",
+      "source_location": "L100",
       "_origin": "ast",
       "id": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
       "community": 50,
@@ -14089,9 +14159,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L95",
+      "source_location": "L103",
       "_origin": "ast",
-      "id": "changelog_features_95",
+      "id": "changelog_features_103",
       "community": 50,
       "norm_label": "features"
     },
@@ -14099,9 +14169,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L102",
+      "source_location": "L110",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_102",
+      "id": "changelog_bug_fixes_110",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -14109,7 +14179,7 @@
       "label": "[1.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.0.0...v1.1.0) (2026-05-15)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L106",
+      "source_location": "L114",
       "_origin": "ast",
       "id": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
       "community": 50,
@@ -14119,9 +14189,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L109",
+      "source_location": "L117",
       "_origin": "ast",
-      "id": "changelog_features_109",
+      "id": "changelog_features_117",
       "community": 50,
       "norm_label": "features"
     },
@@ -14129,9 +14199,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L118",
+      "source_location": "L126",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_118",
+      "id": "changelog_bug_fixes_126",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -14319,7 +14389,7 @@
       "label": "Versioning",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L206",
+      "source_location": "L214",
       "_origin": "ast",
       "id": "readme_versioning",
       "community": 111,
@@ -14329,7 +14399,7 @@
       "label": "Commit format",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L213",
+      "source_location": "L221",
       "_origin": "ast",
       "id": "readme_commit_format",
       "community": 111,
@@ -14339,7 +14409,7 @@
       "label": "Commit messages are store release notes",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L227",
+      "source_location": "L235",
       "_origin": "ast",
       "id": "readme_commit_messages_are_store_release_notes",
       "community": 111,
@@ -14349,7 +14419,7 @@
       "label": "Release flow",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L262",
+      "source_location": "L270",
       "_origin": "ast",
       "id": "readme_release_flow",
       "community": 111,
@@ -14359,7 +14429,7 @@
       "label": "Continuous Integration",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L287",
+      "source_location": "L295",
       "_origin": "ast",
       "id": "readme_continuous_integration",
       "community": 28,
@@ -14369,7 +14439,7 @@
       "label": "Releasing to Google Play",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L297",
+      "source_location": "L305",
       "_origin": "ast",
       "id": "readme_releasing_to_google_play",
       "community": 113,
@@ -14379,7 +14449,7 @@
       "label": "Triggers",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L302",
+      "source_location": "L310",
       "_origin": "ast",
       "id": "readme_triggers",
       "community": 113,
@@ -14389,7 +14459,7 @@
       "label": "Required GitHub secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L309",
+      "source_location": "L317",
       "_origin": "ast",
       "id": "readme_required_github_secrets",
       "community": 113,
@@ -14399,7 +14469,7 @@
       "label": "One-time setup checklist",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L321",
+      "source_location": "L329",
       "_origin": "ast",
       "id": "readme_one_time_setup_checklist",
       "community": 113,
@@ -14409,7 +14479,7 @@
       "label": "Releasing to the App Store",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L343",
+      "source_location": "L353",
       "_origin": "ast",
       "id": "readme_releasing_to_the_app_store",
       "community": 115,
@@ -14419,9 +14489,9 @@
       "label": "Triggers",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L354",
+      "source_location": "L364",
       "_origin": "ast",
-      "id": "readme_triggers_354",
+      "id": "readme_triggers_364",
       "community": 115,
       "norm_label": "triggers"
     },
@@ -14429,9 +14499,9 @@
       "label": "Required GitHub secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L359",
+      "source_location": "L369",
       "_origin": "ast",
-      "id": "readme_required_github_secrets_359",
+      "id": "readme_required_github_secrets_369",
       "community": 115,
       "norm_label": "required github secrets"
     },
@@ -14439,9 +14509,9 @@
       "label": "One-time setup checklist",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L370",
+      "source_location": "L380",
       "_origin": "ast",
-      "id": "readme_one_time_setup_checklist_370",
+      "id": "readme_one_time_setup_checklist_380",
       "community": 115,
       "norm_label": "one-time setup checklist"
     },
@@ -14449,7 +14519,7 @@
       "label": "Store listings",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L392",
+      "source_location": "L402",
       "_origin": "ast",
       "id": "readme_store_listings",
       "community": 28,
@@ -14459,7 +14529,7 @@
       "label": "Website",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L422",
+      "source_location": "L436",
       "_origin": "ast",
       "id": "readme_website",
       "community": 28,
@@ -14469,7 +14539,7 @@
       "label": "Permissions",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L433",
+      "source_location": "L447",
       "_origin": "ast",
       "id": "readme_permissions",
       "community": 28,
@@ -14479,7 +14549,7 @@
       "label": "Maintainer",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L456",
+      "source_location": "L470",
       "_origin": "ast",
       "id": "readme_maintainer",
       "community": 28,
@@ -14489,7 +14559,7 @@
       "label": "License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L466",
+      "source_location": "L480",
       "_origin": "ast",
       "id": "readme_license",
       "community": 28,
@@ -15308,6 +15378,316 @@
     {
       "label": "README.md",
       "file_type": "document",
+      "source_file": "branding/discovery/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_readme",
+      "community": 21,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Discovery",
+      "file_type": "document",
+      "source_file": "branding/discovery/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_readme_discovery",
+      "community": 21,
+      "norm_label": "discovery"
+    },
+    {
+      "label": "alternativeto.md",
+      "file_type": "document",
+      "source_file": "branding/discovery/alternativeto.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_alternativeto",
+      "community": 21,
+      "norm_label": "alternativeto.md"
+    },
+    {
+      "label": "AlternativeTo listing (draft)",
+      "file_type": "document",
+      "source_file": "branding/discovery/alternativeto.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_alternativeto_alternativeto_listing_draft",
+      "community": 21,
+      "norm_label": "alternativeto listing (draft)"
+    },
+    {
+      "label": "Adding it",
+      "file_type": "document",
+      "source_file": "branding/discovery/alternativeto.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "branding_discovery_alternativeto_adding_it",
+      "community": 21,
+      "norm_label": "adding it"
+    },
+    {
+      "label": "Fields",
+      "file_type": "document",
+      "source_file": "branding/discovery/alternativeto.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "branding_discovery_alternativeto_fields",
+      "community": 21,
+      "norm_label": "fields"
+    },
+    {
+      "label": "fdroid-merge-request.md",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request",
+      "community": 21,
+      "norm_label": "fdroid-merge-request.md"
+    },
+    {
+      "label": "Abstract",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_abstract",
+      "community": 21,
+      "norm_label": "abstract"
+    },
+    {
+      "label": "Please introduce the functions and usage of your app in summary, and also attach some screenshots.",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_please_introduce_the_functions_and_usage_of_your_app_in_summary_and_also_attach_some_screenshots",
+      "community": 21,
+      "norm_label": "please introduce the functions and usage of your app in summary, and also attach some screenshots."
+    },
+    {
+      "label": "Please elaborate why you wrote this app. Please highlight the unique functions it provides over other similar apps in F-Droid.",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_please_elaborate_why_you_wrote_this_app_please_highlight_the_unique_functions_it_provides_over_other_similar_apps_in_f_droid",
+      "community": 21,
+      "norm_label": "please elaborate why you wrote this app. please highlight the unique functions it provides over other similar apps in f-droid."
+    },
+    {
+      "label": "Checklist",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_checklist",
+      "community": 21,
+      "norm_label": "checklist"
+    },
+    {
+      "label": "Policy",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_policy",
+      "community": 21,
+      "norm_label": "policy"
+    },
+    {
+      "label": "Docs",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_docs",
+      "community": 21,
+      "norm_label": "docs"
+    },
+    {
+      "label": "Merge Request Setup",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_merge_request_setup",
+      "community": 21,
+      "norm_label": "merge request setup"
+    },
+    {
+      "label": "Metadata",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_metadata",
+      "community": 21,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Pipeline",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_pipeline",
+      "community": 21,
+      "norm_label": "pipeline"
+    },
+    {
+      "label": "Notes for reviewers",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_merge_request_notes_for_reviewers",
+      "community": 21,
+      "norm_label": "notes for reviewers"
+    },
+    {
+      "label": "fdroid.md",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid",
+      "community": 21,
+      "norm_label": "fdroid.md"
+    },
+    {
+      "label": "F-Droid",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_f_droid",
+      "community": 21,
+      "norm_label": "f-droid"
+    },
+    {
+      "label": "Verdict",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_verdict",
+      "community": 21,
+      "norm_label": "verdict"
+    },
+    {
+      "label": "What was checked",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_what_was_checked",
+      "community": 21,
+      "norm_label": "what was checked"
+    },
+    {
+      "label": "How the recipe is built",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L119",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_how_the_recipe_is_built",
+      "community": 21,
+      "norm_label": "how the recipe is built"
+    },
+    {
+      "label": "Submitting",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L150",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_submitting",
+      "community": 21,
+      "norm_label": "submitting"
+    },
+    {
+      "label": "On every release",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L204",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_on_every_release",
+      "community": 21,
+      "norm_label": "on every release"
+    },
+    {
+      "label": "IzzyOnDroid, the faster route",
+      "file_type": "document",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L224",
+      "_origin": "ast",
+      "id": "branding_discovery_fdroid_izzyondroid_the_faster_route",
+      "community": 21,
+      "norm_label": "izzyondroid, the faster route"
+    },
+    {
+      "label": "wikidata.md",
+      "file_type": "document",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_wikidata",
+      "community": 21,
+      "norm_label": "wikidata.md"
+    },
+    {
+      "label": "Wikidata item (draft)",
+      "file_type": "document",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "branding_discovery_wikidata_wikidata_item_draft",
+      "community": 21,
+      "norm_label": "wikidata item (draft)"
+    },
+    {
+      "label": "Creating it",
+      "file_type": "document",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "branding_discovery_wikidata_creating_it",
+      "community": 21,
+      "norm_label": "creating it"
+    },
+    {
+      "label": "What the item says",
+      "file_type": "document",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "branding_discovery_wikidata_what_the_item_says",
+      "community": 21,
+      "norm_label": "what the item says"
+    },
+    {
+      "label": "Left out on purpose",
+      "file_type": "document",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "branding_discovery_wikidata_left_out_on_purpose",
+      "community": 21,
+      "norm_label": "left out on purpose"
+    },
+    {
+      "label": "After it exists",
+      "file_type": "document",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L97",
+      "_origin": "ast",
+      "id": "branding_discovery_wikidata_after_it_exists",
+      "community": 21,
+      "norm_label": "after it exists"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
       "source_file": "branding/launch-video/README.md",
       "source_location": "L1",
       "_origin": "ast",
@@ -15819,7 +16199,7 @@
       "label": "Languages",
       "file_type": "document",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L14",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "fastlane_metadata_readme_languages",
       "community": 100,
@@ -15829,7 +16209,7 @@
       "label": "Fields",
       "file_type": "document",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L33",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "fastlane_metadata_readme_fields",
       "community": 100,
@@ -15839,7 +16219,7 @@
       "label": "What's New",
       "file_type": "document",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L64",
+      "source_location": "L67",
       "_origin": "ast",
       "id": "fastlane_metadata_readme_what_s_new",
       "community": 100,
@@ -15849,7 +16229,7 @@
       "label": "By hand",
       "file_type": "document",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L86",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "fastlane_metadata_readme_by_hand",
       "community": 100,
@@ -15859,7 +16239,7 @@
       "label": "Writing and translating",
       "file_type": "document",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L98",
+      "source_location": "L101",
       "_origin": "ast",
       "id": "fastlane_metadata_readme_writing_and_translating",
       "community": 100,
@@ -15929,7 +16309,7 @@
       "label": "Layout",
       "file_type": "document",
       "source_file": "website/README.md",
-      "source_location": "L44",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "website_readme_layout",
       "community": 42,
@@ -15939,17 +16319,27 @@
       "label": "Adding a page",
       "file_type": "document",
       "source_file": "website/README.md",
-      "source_location": "L81",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "website_readme_adding_a_page",
       "community": 42,
       "norm_label": "adding a page"
     },
     {
+      "label": "Guides",
+      "file_type": "document",
+      "source_file": "website/README.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "id": "website_readme_guides",
+      "community": 42,
+      "norm_label": "guides"
+    },
+    {
       "label": "Changelog",
       "file_type": "document",
       "source_file": "website/README.md",
-      "source_location": "L89",
+      "source_location": "L115",
       "_origin": "ast",
       "id": "website_readme_changelog",
       "community": 42,
@@ -15959,7 +16349,7 @@
       "label": "Motion",
       "file_type": "document",
       "source_file": "website/README.md",
-      "source_location": "L105",
+      "source_location": "L131",
       "_origin": "ast",
       "id": "website_readme_motion",
       "community": 42,
@@ -15969,7 +16359,7 @@
       "label": "Deployment",
       "file_type": "document",
       "source_file": "website/README.md",
-      "source_location": "L121",
+      "source_location": "L147",
       "_origin": "ast",
       "id": "website_readme_deployment",
       "community": 42,
@@ -15979,7 +16369,7 @@
       "label": "One-time setup",
       "file_type": "document",
       "source_file": "website/README.md",
-      "source_location": "L129",
+      "source_location": "L155",
       "_origin": "ast",
       "id": "website_readme_one_time_setup",
       "community": 42,
@@ -15989,7 +16379,7 @@
       "label": "Maintenance notes",
       "file_type": "document",
       "source_file": "website/README.md",
-      "source_location": "L145",
+      "source_location": "L171",
       "_origin": "ast",
       "id": "website_readme_maintenance_notes",
       "community": 42,
@@ -16582,6 +16972,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/scripts/play_release_notes.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "github_scripts_play_release_notes_section_for",
+      "target": "website_src_guide_sections"
+    },
+    {
       "relation": "indirect_call",
       "context": "argument",
       "confidence": "INFERRED",
@@ -16602,6 +17003,17 @@
       "source": "github_scripts_play_release_notes_main",
       "target": "github_scripts_play_release_notes_parse",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/scripts/play_release_notes.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "github_scripts_play_release_notes_parse",
+      "target": "website_src_guide_sections"
     },
     {
       "relation": "rationale_for",
@@ -33225,6 +33637,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_i18n_parity_test",
+      "target": "test_i18n_parity_test_ioslocalizations"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/i18n_parity_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_i18n_parity_test",
       "target": "test_i18n_parity_test_load"
     },
     {
@@ -33256,6 +33678,16 @@
       "weight": 1.0,
       "source": "test_i18n_parity_test",
       "target": "test_i18n_parity_test_placeholders"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/i18n_parity_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_i18n_parity_test",
+      "target": "test_i18n_parity_test_plist"
     },
     {
       "relation": "imports",
@@ -34843,6 +35275,26 @@
       "weight": 1.0,
       "source": "website_src_main",
       "target": "website_src_demo_initdemo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "website/src/guide.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "website_src_guide",
+      "target": "website_src_guide_links",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "website/src/guide.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "website_src_guide",
+      "target": "website_src_guide_sections",
       "confidence_score": 1.0
     },
     {
@@ -36635,7 +37087,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L106",
+      "source_location": "L114",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
@@ -36645,7 +37097,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L92",
+      "source_location": "L100",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
@@ -36655,7 +37107,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L83",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
@@ -36665,7 +37117,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L71",
+      "source_location": "L79",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
@@ -36675,7 +37127,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L64",
+      "source_location": "L72",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
@@ -36685,7 +37137,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L65",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
@@ -36695,7 +37147,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L49",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
@@ -36705,7 +37157,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L42",
+      "source_location": "L50",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
@@ -36715,7 +37167,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L31",
+      "source_location": "L39",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
@@ -36725,7 +37177,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L24",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_0_0_v2_1_0_2026_10_04",
@@ -36735,7 +37187,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L17",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_1_0_v2_2_0_2026_10_13",
@@ -36745,7 +37197,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L10",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_2_0_v2_3_0_2026_10_19",
@@ -36755,7 +37207,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L3",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
@@ -36765,9 +37217,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "changelog_changelog",
+      "target": "changelog_2_3_2_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_1_v2_3_2_2026_10_19",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
       "source_location": "L6",
       "weight": 1.0,
-      "source": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
+      "source": "changelog_2_3_2_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_1_v2_3_2_2026_10_19",
       "target": "changelog_bug_fixes",
       "confidence_score": 1.0
     },
@@ -36775,7 +37237,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L13",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
+      "target": "changelog_bug_fixes_14",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "changelog_2_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_2_0_v2_3_0_2026_10_19",
       "target": "changelog_features",
@@ -36785,27 +37257,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L20",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "changelog_2_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_1_0_v2_2_0_2026_10_13",
-      "target": "changelog_features_20",
+      "target": "changelog_features_28",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L27",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "changelog_2_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_0_0_v2_1_0_2026_10_04",
-      "target": "changelog_features_27",
+      "target": "changelog_features_35",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L34",
+      "source_location": "L42",
       "weight": 1.0,
       "source": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
       "target": "changelog_breaking_changes",
@@ -36815,30 +37287,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L38",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
-      "target": "changelog_features_38",
+      "target": "changelog_features_46",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L45",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
-      "target": "changelog_features_45",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L52",
-      "weight": 1.0,
-      "source": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
-      "target": "changelog_features_52",
+      "target": "changelog_features_53",
       "confidence_score": 1.0
     },
     {
@@ -36847,7 +37309,7 @@
       "source_file": "CHANGELOG.md",
       "source_location": "L60",
       "weight": 1.0,
-      "source": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
+      "source": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
       "target": "changelog_features_60",
       "confidence_score": 1.0
     },
@@ -36855,80 +37317,90 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L67",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
+      "target": "changelog_features_68",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L75",
       "weight": 1.0,
       "source": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
-      "target": "changelog_bug_fixes_67",
+      "target": "changelog_bug_fixes_75",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L79",
+      "source_location": "L87",
       "weight": 1.0,
       "source": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
-      "target": "changelog_bug_fixes_79",
+      "target": "changelog_bug_fixes_87",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L74",
+      "source_location": "L82",
       "weight": 1.0,
       "source": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
-      "target": "changelog_features_74",
+      "target": "changelog_features_82",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L86",
+      "source_location": "L94",
       "weight": 1.0,
       "source": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
-      "target": "changelog_features_86",
+      "target": "changelog_features_94",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L102",
+      "source_location": "L110",
       "weight": 1.0,
       "source": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
-      "target": "changelog_bug_fixes_102",
+      "target": "changelog_bug_fixes_110",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L95",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
-      "target": "changelog_features_95",
+      "target": "changelog_features_103",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L118",
+      "source_location": "L126",
       "weight": 1.0,
       "source": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
-      "target": "changelog_bug_fixes_118",
+      "target": "changelog_bug_fixes_126",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L109",
+      "source_location": "L117",
       "weight": 1.0,
       "source": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
-      "target": "changelog_features_109",
+      "target": "changelog_features_117",
       "confidence_score": 1.0
     },
     {
@@ -36955,7 +37427,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L463",
+      "source_location": "L477",
       "weight": 1.0,
       "source": "readme",
       "target": "join_testing",
@@ -37025,7 +37497,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L204",
+      "source_location": "L212",
       "weight": 1.0,
       "source": "readme",
       "target": "fastlane_metadata_readme",
@@ -37045,7 +37517,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L430",
+      "source_location": "L444",
       "weight": 1.0,
       "source": "readme",
       "target": "website_readme",
@@ -37085,7 +37557,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L287",
+      "source_location": "L295",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_continuous_integration",
@@ -37115,7 +37587,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L466",
+      "source_location": "L480",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_license",
@@ -37125,7 +37597,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L456",
+      "source_location": "L470",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_maintainer",
@@ -37135,7 +37607,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L433",
+      "source_location": "L447",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_permissions",
@@ -37155,7 +37627,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L297",
+      "source_location": "L305",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_releasing_to_google_play",
@@ -37165,7 +37637,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L343",
+      "source_location": "L353",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_releasing_to_the_app_store",
@@ -37185,7 +37657,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L392",
+      "source_location": "L402",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_store_listings",
@@ -37195,7 +37667,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L206",
+      "source_location": "L214",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_versioning",
@@ -37205,7 +37677,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L422",
+      "source_location": "L436",
       "weight": 1.0,
       "source": "readme_simple_shot_timer",
       "target": "readme_website",
@@ -37215,7 +37687,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L213",
+      "source_location": "L221",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_commit_format",
@@ -37225,7 +37697,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L227",
+      "source_location": "L235",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_commit_messages_are_store_release_notes",
@@ -37235,7 +37707,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L262",
+      "source_location": "L270",
       "weight": 1.0,
       "source": "readme_versioning",
       "target": "readme_release_flow",
@@ -37245,7 +37717,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L321",
+      "source_location": "L329",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_one_time_setup_checklist",
@@ -37255,7 +37727,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L309",
+      "source_location": "L317",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_required_github_secrets",
@@ -37265,7 +37737,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L302",
+      "source_location": "L310",
       "weight": 1.0,
       "source": "readme_releasing_to_google_play",
       "target": "readme_triggers",
@@ -37275,30 +37747,30 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L370",
+      "source_location": "L380",
       "weight": 1.0,
       "source": "readme_releasing_to_the_app_store",
-      "target": "readme_one_time_setup_checklist_370",
+      "target": "readme_one_time_setup_checklist_380",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L359",
+      "source_location": "L369",
       "weight": 1.0,
       "source": "readme_releasing_to_the_app_store",
-      "target": "readme_required_github_secrets_359",
+      "target": "readme_required_github_secrets_369",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L354",
+      "source_location": "L364",
       "weight": 1.0,
       "source": "readme_releasing_to_the_app_store",
-      "target": "readme_triggers_354",
+      "target": "readme_triggers_364",
       "confidence_score": 1.0
     },
     {
@@ -38062,6 +38534,316 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/README.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "branding_discovery_readme",
+      "target": "branding_discovery_alternativeto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/README.md",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "branding_discovery_readme",
+      "target": "branding_discovery_fdroid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/README.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "branding_discovery_readme",
+      "target": "branding_discovery_fdroid_merge_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "branding_discovery_readme",
+      "target": "branding_discovery_readme_discovery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/README.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "branding_discovery_readme",
+      "target": "branding_discovery_wikidata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/alternativeto.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "branding_discovery_alternativeto",
+      "target": "branding_discovery_alternativeto_alternativeto_listing_draft",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/alternativeto.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "branding_discovery_alternativeto_alternativeto_listing_draft",
+      "target": "branding_discovery_alternativeto_adding_it",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/alternativeto.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "branding_discovery_alternativeto_alternativeto_listing_draft",
+      "target": "branding_discovery_alternativeto_fields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L177",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid",
+      "target": "branding_discovery_fdroid_merge_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request",
+      "target": "branding_discovery_fdroid_merge_request_abstract",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request",
+      "target": "branding_discovery_fdroid_merge_request_checklist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request",
+      "target": "branding_discovery_fdroid_merge_request_notes_for_reviewers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request_abstract",
+      "target": "branding_discovery_fdroid_merge_request_please_elaborate_why_you_wrote_this_app_please_highlight_the_unique_functions_it_provides_over_other_similar_apps_in_f_droid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request_abstract",
+      "target": "branding_discovery_fdroid_merge_request_please_introduce_the_functions_and_usage_of_your_app_in_summary_and_also_attach_some_screenshots",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request_checklist",
+      "target": "branding_discovery_fdroid_merge_request_docs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request_checklist",
+      "target": "branding_discovery_fdroid_merge_request_merge_request_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request_checklist",
+      "target": "branding_discovery_fdroid_merge_request_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request_checklist",
+      "target": "branding_discovery_fdroid_merge_request_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid-merge-request.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_merge_request_checklist",
+      "target": "branding_discovery_fdroid_merge_request_policy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid",
+      "target": "branding_discovery_fdroid_f_droid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_f_droid",
+      "target": "branding_discovery_fdroid_how_the_recipe_is_built",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L224",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_f_droid",
+      "target": "branding_discovery_fdroid_izzyondroid_the_faster_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L204",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_f_droid",
+      "target": "branding_discovery_fdroid_on_every_release",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L150",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_f_droid",
+      "target": "branding_discovery_fdroid_submitting",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_f_droid",
+      "target": "branding_discovery_fdroid_verdict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/fdroid.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "branding_discovery_fdroid_f_droid",
+      "target": "branding_discovery_fdroid_what_was_checked",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "branding_discovery_wikidata",
+      "target": "branding_discovery_wikidata_wikidata_item_draft",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "branding_discovery_wikidata_wikidata_item_draft",
+      "target": "branding_discovery_wikidata_after_it_exists",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "branding_discovery_wikidata_wikidata_item_draft",
+      "target": "branding_discovery_wikidata_creating_it",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "branding_discovery_wikidata_wikidata_item_draft",
+      "target": "branding_discovery_wikidata_left_out_on_purpose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "branding/discovery/wikidata.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "branding_discovery_wikidata_wikidata_item_draft",
+      "target": "branding_discovery_wikidata_what_the_item_says",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/launch-video/README.md",
@@ -38535,7 +39317,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L86",
+      "source_location": "L89",
       "weight": 1.0,
       "source": "fastlane_metadata_readme_store_listing_text",
       "target": "fastlane_metadata_readme_by_hand",
@@ -38545,7 +39327,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L33",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "fastlane_metadata_readme_store_listing_text",
       "target": "fastlane_metadata_readme_fields",
@@ -38555,7 +39337,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L14",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "fastlane_metadata_readme_store_listing_text",
       "target": "fastlane_metadata_readme_languages",
@@ -38565,7 +39347,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L64",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "fastlane_metadata_readme_store_listing_text",
       "target": "fastlane_metadata_readme_what_s_new",
@@ -38575,7 +39357,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "fastlane/metadata/README.md",
-      "source_location": "L98",
+      "source_location": "L101",
       "weight": 1.0,
       "source": "fastlane_metadata_readme_store_listing_text",
       "target": "fastlane_metadata_readme_writing_and_translating",
@@ -38605,7 +39387,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "website/README.md",
-      "source_location": "L89",
+      "source_location": "L115",
       "weight": 1.0,
       "source": "website_readme_simpleshottimer_com",
       "target": "website_readme_changelog",
@@ -38615,7 +39397,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "website/README.md",
-      "source_location": "L121",
+      "source_location": "L147",
       "weight": 1.0,
       "source": "website_readme_simpleshottimer_com",
       "target": "website_readme_deployment",
@@ -38625,7 +39407,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "website/README.md",
-      "source_location": "L44",
+      "source_location": "L48",
       "weight": 1.0,
       "source": "website_readme_simpleshottimer_com",
       "target": "website_readme_layout",
@@ -38645,7 +39427,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "website/README.md",
-      "source_location": "L145",
+      "source_location": "L171",
       "weight": 1.0,
       "source": "website_readme_simpleshottimer_com",
       "target": "website_readme_maintenance_notes",
@@ -38655,7 +39437,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "website/README.md",
-      "source_location": "L105",
+      "source_location": "L131",
       "weight": 1.0,
       "source": "website_readme_simpleshottimer_com",
       "target": "website_readme_motion",
@@ -38675,7 +39457,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "website/README.md",
-      "source_location": "L81",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "website_readme_layout",
       "target": "website_readme_adding_a_page",
@@ -38685,7 +39467,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "website/README.md",
-      "source_location": "L129",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "website_readme_layout",
+      "target": "website_readme_guides",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "website/README.md",
+      "source_location": "L155",
       "weight": 1.0,
       "source": "website_readme_deployment",
       "target": "website_readme_one_time_setup",
@@ -38833,5 +39625,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7303fbd4cff9da44560123dba1c8b9d5ac3f9f22"
+  "built_at_commit": "d9b65029497053d12f1de5dc866a97ce86a732a0"
 }

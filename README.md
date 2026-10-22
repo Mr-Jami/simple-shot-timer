@@ -191,11 +191,19 @@ flutter create . --platforms=android,ios,web
    AppLocale(code: 'it', displayName: 'Italiano'),
    ```
 
-3. Add the code to `CFBundleLocalizations` in `ios/Runner/Info.plist`, so
-   iOS and the App Store list the language.
-4. Run `flutter test`: `test/i18n_parity_test.dart` checks that the new file
-   has every key and `{placeholder}` of `en.json`, and that `Info.plist`
-   declares it.
+3. Add the code to `CFBundleLocalizations` in `ios/Runner/Info.plist`
+   (with the region where iOS needs one, e.g. `pt-BR`), so iOS runs the app
+   in that language.
+4. Copy `ios/Runner/en.lproj/InfoPlist.strings` to
+   `ios/Runner/<code>.lproj/InfoPlist.strings`, using the same code as in
+   `Info.plist`, and translate the microphone prompt. The App Store lists
+   only languages that have a `.lproj` folder in the app. Then add the file
+   to `ios/Runner.xcodeproj/project.pbxproj` by hand, copying the `ru` lines:
+   a `PBXFileReference`, a child of the `InfoPlist.strings` variant group,
+   and the code in `knownRegions`.
+5. Run `flutter test`: `test/i18n_parity_test.dart` checks that the new file
+   has every key and `{placeholder}` of `en.json`, that `Info.plist`
+   declares it, and that the Xcode project bundles its `InfoPlist.strings`.
 
 The Settings → Language dropdown picks the new option up automatically.
 
