@@ -48,7 +48,8 @@ function siteChrome() {
             .replaceAll('<!--site:footer-->', footer(page, version))
             .replaceAll('<!--site:changelog-->', renderChangelog(all, page.lang));
           if (out.includes('<!--site:faq-jsonld-->')) {
-            out = out.replace('<!--site:faq-jsonld-->', faqJsonLd(out, page));
+            // A function, so `$` sequences in the answers aren't read as replacement patterns.
+            out = out.replace('<!--site:faq-jsonld-->', () => faqJsonLd(out, page));
           }
         }
         return assertFilled(out, ctx.path);

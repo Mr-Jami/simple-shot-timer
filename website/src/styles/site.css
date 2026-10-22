@@ -651,6 +651,8 @@ button { font: inherit; color: inherit; }
 .guide-table tbody tr:last-child > * { border-bottom: 0; }
 .guide-table thead th { color: var(--text-3); font-size: 0.75rem; font-weight: 650; line-height: 1.35; letter-spacing: 0.08em; text-transform: uppercase; }
 .guide-table tbody th { position: sticky; left: 0; z-index: 1; min-width: 9.5rem; background: var(--card-hi); color: var(--text); font-weight: 650; }
+/* The "App" header is pinned with its column, so the other headers can't slide over the names. */
+.guide-table thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--card-hi); }
 .guide-table td { color: var(--text-2); }
 .guide-table-sub { display: block; margin-top: 2px; color: var(--text-3); font-size: 0.8125rem; font-weight: 400; }
 .guide-table-sub:not(:last-child) { margin-bottom: 8px; }

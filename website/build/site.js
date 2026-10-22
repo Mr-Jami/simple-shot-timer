@@ -170,20 +170,32 @@ export function footer(page, version) {
 }
 
 const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'", nbsp: ' ' };
+// Block tags become a space, so two paragraphs don't run into one word.
 const plainText = (html) => html
+  .replace(/<\/?(?:p|div|li|ul|ol|br)\b[^>]*>/g, ' ')
   .replace(/<[^>]+>/g, '')
   .replace(/&(amp|lt|gt|quot|#39|nbsp);/g, (_, e) => ENTITIES[e])
   .replace(/\s+/g, ' ')
   .trim();
 
+// One FAQ item: <details> holding a <summary> question and a .faq-a answer.
+// Attributes are allowed; neither part may run on into another <details>.
+const FAQ_ITEM = /<details\b[^>]*>\s*<summary\b[^>]*>((?:(?!<\/?details\b)[\s\S])*?)<\/summary>\s*<div class="(?:[^"]*\s)?faq-a(?:\s[^"]*)?"[^>]*>((?:(?!<\/?details\b)[\s\S])*?)<\/div>\s*<\/details>/g;
+
 /**
  * FAQPage JSON-LD built from the page's own FAQ (`<details>` with a `<summary>`
  * question and a `.faq-a` answer), so the structured data always matches the
- * visible text. Throws if the page has no FAQ.
+ * visible text. Commented-out markup is ignored. Throws unless every
+ * `<details>` on the page parses as an item, so an edit to the FAQ markup
+ * can't silently drop or merge questions.
  */
 export function faqJsonLd(html, page) {
-  const items = [...html.matchAll(/<details>\s*<summary>([\s\S]*?)<\/summary>\s*<div class="faq-a">([\s\S]*?)<\/div>\s*<\/details>/g)];
-  if (!items.length) throw new Error(`No FAQ found for ${page.self}`);
+  const live = html.replace(/<!--[\s\S]*?-->/g, '');
+  const items = [...live.matchAll(FAQ_ITEM)];
+  const total = (live.match(/<details\b/g) ?? []).length;
+  if (!items.length || items.length !== total) {
+    throw new Error(`FAQ on ${page.self}: parsed ${items.length} of ${total} <details>`);
+  }
   const data = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
