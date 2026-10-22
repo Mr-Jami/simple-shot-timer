@@ -70,10 +70,11 @@ button { font: inherit; color: inherit; }
 
 /* ===== Type ===== */
 .display {
-  font-size: clamp(3.75rem, 1.9rem + 7vw, 7rem);
-  line-height: 0.94;
+  font-size: clamp(2.375rem, 1.6rem + 4.2vw, 4.75rem);
+  line-height: 0.98;
   letter-spacing: -0.036em;
   font-weight: 700;
+  text-wrap: balance;
 }
 .h2 {
   font-size: clamp(2.5rem, 1.5rem + 4.2vw, 4.75rem);
@@ -182,7 +183,9 @@ button { font: inherit; color: inherit; }
 }
 .hero-grid { position: relative; display: grid; gap: 56px; align-items: center; }
 .hero-copy { display: flex; flex-direction: column; align-items: flex-start; }
-.hero-copy .lede { margin-top: 26px; }
+/* The app's slogan, under the keyword headline. */
+.hero-slogan { margin-top: 22px; color: var(--yellow); font-size: clamp(1.375rem, 1.1rem + 0.9vw, 1.875rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; }
+.hero-copy .lede { margin-top: 18px; }
 .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 34px; }
 .trust { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 30px; color: var(--text-3); font-size: 0.9375rem; font-weight: 500; }
 .trust li { display: inline-flex; align-items: center; gap: 8px; }
@@ -636,6 +639,28 @@ button { font: inherit; color: inherit; }
   .drill-par-time { font-size: 2rem; }
 }
 
+/* Comparison table: on narrow screens it scrolls sideways inside its frame,
+   with the first column pinned so each row keeps its name. */
+.guide-table {
+  margin-top: 24px; overflow-x: auto; border-radius: 20px;
+  background: var(--card-hi); border: 1px solid var(--line);
+}
+.guide-table:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.guide-table table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 0.9375rem; line-height: 1.45; }
+.guide-table th, .guide-table td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.guide-table tbody tr:last-child > * { border-bottom: 0; }
+.guide-table thead th { color: var(--text-3); font-size: 0.75rem; font-weight: 650; line-height: 1.35; letter-spacing: 0.08em; text-transform: uppercase; }
+.guide-table tbody th { position: sticky; left: 0; z-index: 1; min-width: 9.5rem; background: var(--card-hi); color: var(--text); font-weight: 650; }
+/* The "App" header is pinned with its column, so the other headers can't slide over the names. */
+.guide-table thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--card-hi); }
+.guide-table td { color: var(--text-2); }
+.guide-table-sub { display: block; margin-top: 2px; color: var(--text-3); font-size: 0.8125rem; font-weight: 400; }
+.guide-table-sub:not(:last-child) { margin-bottom: 8px; }
+/* Our own row: the summary box's yellow tint, mixed into --card-hi as an
+   opaque colour so the pinned first cell still covers what scrolls under it. */
+.guide-table .ours > * { background: #1d1b10; }
+.legal .guide-table + p { margin-top: 16px; font-size: 0.9375rem; }
+
 /* Closing call to action: the store badges, on the listing's halftone. */
 .guide-cta {
   position: relative; overflow: clip; margin-top: 72px; padding: 32px; border-radius: 24px;
@@ -694,6 +719,8 @@ button { font: inherit; color: inherit; }
 }
 .guide-cards li:nth-child(2) .guide-card-art { --art-angle: 200deg; }
 .guide-cards li:nth-child(3) .guide-card-art { --art-angle: 60deg; }
+.guide-cards li:nth-child(4) .guide-card-art { --art-angle: 300deg; }
+.guide-cards li:nth-child(5) .guide-card-art { --art-angle: 160deg; }
 .guide-card-art svg { position: relative; }
 .guide-card-body { display: flex; flex-direction: column; flex: 1; gap: 8px; padding: 22px 24px 24px; }
 .guide-card-meta { color: var(--text-3); font-size: 0.75rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; }

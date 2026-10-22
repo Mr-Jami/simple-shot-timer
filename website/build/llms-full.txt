@@ -1,6 +1,6 @@
 # Simple Shot Timer
 
-> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android and iPhone (iOS). It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
+> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android and iPhone (iOS). It turns a phone into a shot timer for dry-fire and live-fire practice: a par timer that also hears your shots. It detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
 
 Website: https://simpleshottimer.com/
 Google Play: https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer
@@ -28,7 +28,7 @@ Founder and maintainer: Tareq Jami (Jami IT), Hamburg, Germany
 
 ### Start: Stand by. Beep. Go.
 
-Choose an instant, fixed or random start delay. The clock starts when the beep is heard, not when the phone asks for it: the app measures the beep through the microphone, so speaker lag never ends up in your time. The beep is a 2,325 Hz tone, the pitch range used by most club shot timers; the start beep is short and the par beep is longer.
+Choose an instant, fixed or random start delay. The screen shows STAND BY, like a range officer after "make ready", then the beep. The clock starts when the beep is heard, not when the phone asks for it: the app measures the beep through the microphone, so speaker lag never ends up in your time. The beep is a 2,325 Hz tone, the pitch range used by most club shot timers; the start beep is short and the par beep is longer.
 
 ### Detection: Hears every shot.
 
@@ -40,7 +40,7 @@ Total time, first shot and last split are on screen the moment you press STOP. T
 
 ### Drills: Standard, Par or Stage.
 
-Run an open string (Standard), beat a par time with repeat cycles and a rest between them (Par), or time a whole stage of up to 200 seconds (Stage). Save the drills you run often under a name and load any of them with one tap from the Drills tab; each saved drill can be renamed, overwritten or deleted.
+Run an open string (Standard), use it as a par timer with repeat cycles and a rest between them (Par), or time a whole IPSC, USPSA or IDPA stage of up to 200 seconds (Stage). Shots are detected in every mode, so Par mode also shows the splits of every cycle. Save the drills you run often under a name and load any of them with one tap from the Drills tab; each saved drill can be renamed, overwritten or deleted.
 
 ### History: Every string, kept.
 
@@ -50,7 +50,7 @@ Each run is saved on your phone together with the drill it was shot with. Keep u
 
 - Auto-configure: fire a few shots with your usual gun and stance, and the app suggests a sensitivity and frequency band tuned to what it heard on that range. Both can also be set by hand.
 - Live mic test: a level meter with the threshold line, to dial in sensitivity before going hot.
-- Flash and buzz on the beep: each beep comes with a screen flash and a haptic, timed to land with the sound. With the system's reduced-motion setting on, a gentle edge ring replaces the flash.
+- Flash and buzz on the beep: each beep comes with a screen flash and a haptic, timed to land with the sound. Turn the beep volume to 0 to train silently on the flash. With the system's reduced-motion setting on, a gentle edge ring replaces the flash.
 - Keeps running in the background: switch apps or lock the screen mid-string; detection and par beeps carry on.
 - Honest times on any speaker: for a Bluetooth speaker or earbuds the mic can't hear, a manual latency offset keeps the clock starting on the sound.
 - Never miss a beep: if the media volume is muted while a string runs, a one-line notice says so. On Android, tapping it opens the volume panel.
@@ -72,13 +72,21 @@ Your strings stay on your phone.
 
 ## FAQ
 
-### Is it really free?
+### Is there a free shot timer app?
 
-Yes. There are no ads, no subscriptions and no in-app purchases. The app is open source under GPLv3.
+Yes, Simple Shot Timer is free on iPhone and Android, with no ads, no subscriptions and no in-app purchases. It's open source under GPLv3, and there is no account to create.
+
+### Can I use my phone as a shot timer?
+
+Yes. With a shot timer app, your phone gives the start beep, hears your shots through the microphone and shows every split. Tune the detection once for each range, keep the mic uncovered, and turn on the screen flash if the beep is hard to hear through ear protection. How to use your phone as a shot timer (https://simpleshottimer.com/guides/phone-shot-timer/) walks you through it.
 
 ### Will it replace a real shot timer?
 
-Not completely. The app is limited by your phone's hardware, so it can't reach the level of a decent dedicated timer. It's a solid alternative if you don't want to spend $100 or more on a timer, or if you left yours at home.
+Not completely. The app is limited by your phone's hardware, so it can't reach the level of a decent dedicated timer. It's a solid alternative if you don't want to spend $100 or more on a range timer, or if you left yours at home. Shot timer app or dedicated shot timer? (https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/) compares the two honestly.
+
+### What's the difference between a par timer and a shot timer?
+
+A par timer only beeps: a start beep, and a par beep when your time is up. A shot timer also listens for your shots and times every split. Simple Shot Timer does both, so you can train against a par and still see your splits. Par timer vs. shot timer (https://simpleshottimer.com/guides/par-timer-vs-shot-timer/) explains when each one is enough.
 
 ### Does it work for live fire?
 
@@ -86,7 +94,7 @@ Yes. Fire a few shots with Auto-configure and the app suggests a sensitivity and
 
 ### Can I use it for dry fire?
 
-Yes. Par mode gives you a start beep and a par beep to beat, with repeat cycles and a rest between them. A dry-fire click is quiet, so either raise the sensitivity until it registers or simply shoot against the par time.
+Yes. Par mode gives you a start beep and a par beep to beat, with repeat cycles and a rest between them, so it also works as an interval timer for dry-fire reps. A dry-fire click is quiet, so either raise the sensitivity until it registers or simply shoot against the par time.
 
 ### Will a Bluetooth speaker throw off my times?
 
@@ -102,13 +110,15 @@ No. While the app listens (during a string, the mic test or auto-configure), the
 
 ### Can I get my data out?
 
-Yes. Export a single string or your whole history as CSV through the share sheet and open it in any spreadsheet.
+Yes. Export a single string or your whole history as CSV through the share sheet and open it in any spreadsheet, to track your progress or to share with your firearms instructor.
 
 ## Guides
 
 - How to use your phone as a shot timer: microphone permission, Auto-configure and the mic test, the frequency band filter, where to put the phone, hearing the beep through ear protection (screen flash, vibration), Bluetooth speakers and the latency offset for earbuds, busy ranges, saved drills, history and CSV. https://simpleshottimer.com/guides/phone-shot-timer/
 - Dry-fire par drills with par times: dry-fire safety rules, how par time training works and how to pick a par, and five classic drills (draw to first shot, ready to first shot, reload, target transitions, strong hand and weak hand only) with starting par times and Par mode settings. https://simpleshottimer.com/guides/dry-fire-par-drills/
-- Shot timer app or dedicated shot timer?: an honest comparison of beep loudness, microphone and fast splits, neighbouring bays, battery, price and history, and when a dedicated timer is worth buying. https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/
+- Shot timer app or dedicated shot timer?: an honest comparison of beep loudness, microphone and fast splits, neighbouring bays, battery, price and history, when a dedicated timer is worth buying, and which one to buy (CED7000 GEN-2, PACT Club Timer III, Competition Electronics ProTimer and ProTimer BT, AMG Lab Commander, Shooters Global SG Timer GO and SG Timer 2). https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/
+- Par timer vs. shot timer: what's the difference?: a par timer gives a start beep and a par beep and doesn't listen; a shot timer hears your shots and records every split. A par timer is enough for dry fire; on the range, shot detection shows where the time went. Simple Shot Timer does both. https://simpleshottimer.com/guides/par-timer-vs-shot-timer/
+- Free shot timer apps compared: eight free and freemium shot timer and par timer apps for iPhone and Android (Simple Shot Timer, ShootOnTime: Par Timer, Par Timer Pro, IPSC Shot Timer, PlinkPal, Shot Timer – Range Trainer, Range Buddy, Shot Timer – Measure & Improve), compared on whether they hear your shots, platforms, price, Google Play's ads label and the stores' privacy labels, from the store listings on 22 October 2026. https://simpleshottimer.com/guides/free-shot-timer-apps/
 
 All guides are also in German: https://simpleshottimer.com/de/ratgeber/
 

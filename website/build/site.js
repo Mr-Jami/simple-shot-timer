@@ -20,6 +20,8 @@ export const PAGES = [
   { en: '/guides/phone-shot-timer/', de: '/de/ratgeber/handy-als-shot-timer/' },
   { en: '/guides/dry-fire-par-drills/', de: '/de/ratgeber/par-drills-trockentraining/' },
   { en: '/guides/shot-timer-app-vs-dedicated-timer/', de: '/de/ratgeber/app-oder-shot-timer/' },
+  { en: '/guides/par-timer-vs-shot-timer/', de: '/de/ratgeber/par-timer-oder-shot-timer/' },
+  { en: '/guides/free-shot-timer-apps/', de: '/de/ratgeber/kostenlose-shot-timer-apps/' },
   { en: '/changelog/', de: '/de/changelog/' },
   { en: '/privacy/', de: '/de/datenschutz/' },
   { en: '/privacy/website/', de: '/de/datenschutz/website/' },
@@ -165,6 +167,49 @@ export function footer(page, version) {
     <p>${t.trademark}</p>
   </div>
 </footer>`;
+}
+
+const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'", nbsp: ' ' };
+// Block tags become a space, so two paragraphs don't run into one word.
+const plainText = (html) => html
+  .replace(/<\/?(?:p|div|li|ul|ol|br)\b[^>]*>/g, ' ')
+  .replace(/<[^>]+>/g, '')
+  .replace(/&(amp|lt|gt|quot|#39|nbsp);/g, (_, e) => ENTITIES[e])
+  .replace(/\s+/g, ' ')
+  .trim();
+
+// One FAQ item: <details> holding a <summary> question and a .faq-a answer.
+// Attributes are allowed; neither part may run on into another <details>.
+const FAQ_ITEM = /<details\b[^>]*>\s*<summary\b[^>]*>((?:(?!<\/?details\b)[\s\S])*?)<\/summary>\s*<div class="(?:[^"]*\s)?faq-a(?:\s[^"]*)?"[^>]*>((?:(?!<\/?details\b)[\s\S])*?)<\/div>\s*<\/details>/g;
+
+/**
+ * FAQPage JSON-LD built from the page's own FAQ (`<details>` with a `<summary>`
+ * question and a `.faq-a` answer), so the structured data always matches the
+ * visible text. Commented-out markup is ignored. Throws unless every
+ * `<details>` on the page parses as an item, so an edit to the FAQ markup
+ * can't silently drop or merge questions.
+ */
+export function faqJsonLd(html, page) {
+  const live = html.replace(/<!--[\s\S]*?-->/g, '');
+  const items = [...live.matchAll(FAQ_ITEM)];
+  const total = (live.match(/<details\b/g) ?? []).length;
+  if (!items.length || items.length !== total) {
+    throw new Error(`FAQ on ${page.self}: parsed ${items.length} of ${total} <details>`);
+  }
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: page.lang,
+    url: `${ORIGIN}${page.self}`,
+    mainEntity: items.map(([, q, a]) => ({
+      '@type': 'Question',
+      name: plainText(q),
+      acceptedAnswer: { '@type': 'Answer', text: plainText(a) },
+    })),
+  };
+  // `<` escaped so no answer text can close the script element.
+  const json = JSON.stringify(data, null, 2).replace(/</g, '\\u003c').replace(/\n/g, '\n  ');
+  return `<script type="application/ld+json">\n  ${json}\n  </script>`;
 }
 
 let spriteCache;

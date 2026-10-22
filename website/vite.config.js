@@ -4,7 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
-import { PAGES, pageFor, alternates, nav, footer, sprite, sitemap } from './build/site.js';
+import { PAGES, pageFor, alternates, nav, footer, sprite, sitemap, faqJsonLd } from './build/site.js';
 import { parseChangelog, renderChangelog, renderChangelogText } from './build/changelog.js';
 
 const root = import.meta.dirname;
@@ -47,6 +47,10 @@ function siteChrome() {
             .replaceAll('<!--site:nav-->', nav(page))
             .replaceAll('<!--site:footer-->', footer(page, version))
             .replaceAll('<!--site:changelog-->', renderChangelog(all, page.lang));
+          if (out.includes('<!--site:faq-jsonld-->')) {
+            // A function, so `$` sequences in the answers aren't read as replacement patterns.
+            out = out.replace('<!--site:faq-jsonld-->', () => faqJsonLd(out, page));
+          }
         }
         return assertFilled(out, ctx.path);
       },
