@@ -34,8 +34,9 @@ class Spectrogram {
 
   /// Frames per second the way the reference counts them (frames over the
   /// clip's duration), about 375 at 48 kHz. Every time window in the analyzer
-  /// is converted to frames with this rate.
-  double get framesPerSecond => frameCount / durationSeconds;
+  /// is converted to frames with this rate. 0 for a clip without samples.
+  double get framesPerSecond =>
+      sampleCount == 0 ? 0 : frameCount / durationSeconds;
 
   double get binHz => sampleRate / fftSize;
 

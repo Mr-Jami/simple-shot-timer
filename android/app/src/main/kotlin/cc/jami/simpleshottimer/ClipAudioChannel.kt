@@ -61,7 +61,8 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
                 main.post { result.success(value) }
             } catch (e: ClipAudioFailure) {
                 main.post { result.error(e.code, e.message, null) }
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
+                // Anything, even running out of memory: Dart waits for a reply.
                 main.post { result.error("decode_failed", e.toString(), null) }
             }
         }
@@ -126,12 +127,19 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
             extractor.selectTrack(track)
             val format = extractor.getTrackFormat(track)
             val mime = format.getString(MediaFormat.KEY_MIME) ?: ""
-            codec = try {
-                MediaCodec.createDecoderByType(mime).also { it.configure(format, null, null, 0) }
+            val decoder = try {
+                MediaCodec.createDecoderByType(mime)
             } catch (e: Exception) {
                 throw ClipAudioFailure("unsupported_codec", mime)
             }
-            codec.start()
+            // Before configure, so finally releases it if configure throws.
+            codec = decoder
+            try {
+                decoder.configure(format, null, null, 0)
+            } catch (e: Exception) {
+                throw ClipAudioFailure("unsupported_codec", mime)
+            }
+            decoder.start()
 
             var sampleRate = format.getInteger(MediaFormat.KEY_SAMPLE_RATE)
             var channels = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
@@ -144,34 +152,34 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
             BufferedOutputStream(FileOutputStream(out), 1 shl 16).use { stream ->
                 while (true) {
                     if (!inputDone) {
-                        val inIndex = codec.dequeueInputBuffer(TIMEOUT_US)
+                        val inIndex = decoder.dequeueInputBuffer(TIMEOUT_US)
                         if (inIndex >= 0) {
-                            val buffer = codec.getInputBuffer(inIndex)!!
+                            val buffer = decoder.getInputBuffer(inIndex)!!
                             val size = extractor.readSampleData(buffer, 0)
                             if (size < 0) {
-                                codec.queueInputBuffer(inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
+                                decoder.queueInputBuffer(inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
                                 inputDone = true
                             } else {
-                                codec.queueInputBuffer(inIndex, 0, size, extractor.sampleTime, 0)
+                                decoder.queueInputBuffer(inIndex, 0, size, extractor.sampleTime, 0)
                                 extractor.advance()
                             }
                         }
                     }
-                    val outIndex = codec.dequeueOutputBuffer(info, TIMEOUT_US)
+                    val outIndex = decoder.dequeueOutputBuffer(info, TIMEOUT_US)
                     if (outIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-                        val changed = codec.outputFormat
+                        val changed = decoder.outputFormat
                         sampleRate = changed.getInteger(MediaFormat.KEY_SAMPLE_RATE)
                         channels = changed.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
                         floatPcm = changed.containsKey(MediaFormat.KEY_PCM_ENCODING) &&
                             changed.getInteger(MediaFormat.KEY_PCM_ENCODING) == AudioFormat.ENCODING_PCM_FLOAT
                     } else if (outIndex >= 0) {
                         idleSinceInputDone = 0
-                        val buffer = codec.getOutputBuffer(outIndex)!!
+                        val buffer = decoder.getOutputBuffer(outIndex)!!
                         if (info.size > 0) {
                             if (firstTimeUs == null) firstTimeUs = info.presentationTimeUs
                             written += writeFirstChannel(buffer, info, channels, floatPcm, stream)
                         }
-                        codec.releaseOutputBuffer(outIndex, false)
+                        decoder.releaseOutputBuffer(outIndex, false)
                         if (info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) break
                     } else if (inputDone && ++idleSinceInputDone > MAX_IDLE_POLLS) {
                         // A decoder that never signals the end; keep what it gave.
@@ -179,6 +187,7 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
                     }
                 }
             }
+            if (written == 0L) throw ClipAudioFailure("no_audio_track", "the audio track is empty")
             finished = true
             return mapOf(
                 "sampleRate" to sampleRate,

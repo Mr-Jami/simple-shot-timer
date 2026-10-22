@@ -119,6 +119,10 @@ void main() {
       expect(chooseStart([beep(1.0, 1.4)], [0.9, 2.2, 2.6]), isNull);
     });
 
+    test('a beep whose only "shot" is its own stop click is not START', () {
+      expect(chooseStart([beep(1.0, 1.4)], [1.42]), isNull);
+    });
+
     test('the click as the START beep stops is not a shot of the string', () {
       final spectrogram =
           Spectrogram.compute(Int16List(clipSampleRate * 7), clipSampleRate);
@@ -137,8 +141,8 @@ void main() {
           for (final t in [0.963, 1.251, 2.036]) ShotHit((t * rate).round()),
         ], gate: 0),
         sensitivity: ShotSensitivity.normal,
-        start: tone,
       );
+      expect(analysis.start, same(tone));
       expect(analysis.stringShotSeconds, hasLength(2));
       expect(analysis.stringShotSeconds.first, closeTo(1.251, 0.003));
     });
@@ -154,6 +158,14 @@ void main() {
     expect(analysis.stringShotSeconds, hasLength(3));
     expect(analysis.stringShotSeconds.first, closeTo(1.6, 0.005));
   });
+
+  for (final samples in [0, 100]) {
+    test('a clip with $samples samples has no START and no shots', () {
+      final analysis = analyzePcm(Int16List(samples), clipSampleRate);
+      expect(analysis.startSeconds, isNull);
+      expect(analysis.shotSeconds, isEmpty);
+    });
+  }
 
   test('changing sensitivity reuses the analysis and keeps START', () {
     final analysis = analyzePcm(

@@ -12,11 +12,11 @@ import 'spectrogram.dart';
 import 'start_finder.dart';
 import 'tone_finder.dart';
 
-/// Offline beep and shot detection for a recorded clip (the video feature).
-///
-/// Everything here is pure Dart so it runs in a background isolate:
-/// [analyzePcmFile] reads the decoder's PCM file and analyses it in one, so
-/// the samples never cross isolates.
+// Offline beep and shot detection for a recorded clip (the video feature).
+//
+// Everything here is pure Dart so it runs in a background isolate:
+// analyzePcmFile reads the decoder's PCM file and analyses it in one, so the
+// samples never cross isolates.
 
 /// How eagerly shots are taken. Scales the adaptive loudness gate, so it can
 /// change after analysis without the audio (see [ClipAnalysis.withSensitivity]).
@@ -34,13 +34,22 @@ enum ShotSensitivity {
 /// What the analyzer found in one clip. Times are seconds from the start of
 /// the clip's audio.
 class ClipAnalysis {
-  const ClipAnalysis({
-    required this.spectrogram,
-    required this.tones,
-    required this.scan,
-    required this.sensitivity,
-    required this.start,
-  });
+  /// Takes the tones and shots found in [spectrogram] and picks START.
+  factory ClipAnalysis({
+    required Spectrogram spectrogram,
+    required List<ToneRun> tones,
+    required ShotScan scan,
+    required ShotSensitivity sensitivity,
+  }) {
+    final shotSeconds = [
+      for (final s in scan.shots) spectrogram.secondsAt(s.frame),
+    ];
+    return ClipAnalysis._(spectrogram, tones, scan, sensitivity, shotSeconds,
+        chooseStart(tones, shotSeconds));
+  }
+
+  const ClipAnalysis._(this.spectrogram, this.tones, this.scan,
+      this.sensitivity, this.shotSeconds, this.start);
 
   /// Kept so [withSensitivity] needs no audio.
   final Spectrogram spectrogram;
@@ -52,27 +61,24 @@ class ClipAnalysis {
   final ShotScan scan;
   final ShotSensitivity sensitivity;
 
+  /// The times of [scan]'s shots.
+  final List<double> shotSeconds;
+
   /// The start beep, or null when no tone is convincing. The editor then
   /// asks for START instead of guessing.
   final ToneRun? start;
 
   double? get startSeconds => start?.onsetSeconds;
 
-  List<double> get shotSeconds =>
-      [for (final s in scan.shots) spectrogram.secondsAt(s.frame)];
-
-  /// The string's shots: those after START, past the shortest possible draw.
-  /// A piezo beep that stops abruptly clicks, and that click right at the
-  /// beep's end is not a shot.
+  /// The string's shots: those after START, past the shortest possible draw,
+  /// without the beep's stop click.
   List<double> get stringShotSeconds {
     final beep = start;
     if (beep == null) return const [];
     final t0 = beep.onsetSeconds;
-    final stopClickFrom = beep.endSeconds - 0.01;
-    final stopClickTo = beep.endSeconds + 0.05;
     return [
       for (final t in shotSeconds)
-        if (t > t0 + _minDraw && (t < stopClickFrom || t > stopClickTo)) t,
+        if (t > t0 + minDrawSeconds && !isStopClick(beep, t)) t,
     ];
   }
 
@@ -81,8 +87,6 @@ class ClipAnalysis {
   ClipAnalysis withSensitivity(ShotSensitivity sensitivity) =>
       _decide(spectrogram, tones, sensitivity);
 }
-
-const double _minDraw = 0.1;
 
 /// Analyses mono 16-bit [pcm] at [sampleRate].
 ClipAnalysis analyzePcm(
@@ -125,19 +129,13 @@ ClipAnalysis _decide(
   Spectrogram spectrogram,
   List<ToneRun> tones,
   ShotSensitivity sensitivity,
-) {
-  final scan = findShots(spectrogram, gateScale: sensitivity.gateScale);
-  final shotSeconds = [
-    for (final s in scan.shots) spectrogram.secondsAt(s.frame),
-  ];
-  return ClipAnalysis(
-    spectrogram: spectrogram,
-    tones: tones,
-    scan: scan,
-    sensitivity: sensitivity,
-    start: chooseStart(tones, shotSeconds, minDraw: _minDraw),
-  );
-}
+) =>
+    ClipAnalysis(
+      spectrogram: spectrogram,
+      tones: tones,
+      scan: findShots(spectrogram, gateScale: sensitivity.gateScale),
+      sensitivity: sensitivity,
+    );
 
 /// This app's own beep, measured to within a bin and a half of its pitch.
 bool _isOwnBeep(ToneRun tone, double binHz) =>

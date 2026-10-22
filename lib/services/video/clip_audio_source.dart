@@ -6,7 +6,8 @@ import 'package:flutter/services.dart';
 
 /// Why a clip's sound could not be read.
 enum ClipAudioError {
-  /// The file has no audio track: a screen recording, some time-lapses.
+  /// The file has no audio track (a screen recording, some time-lapses), or
+  /// one that decodes to nothing.
   noAudioTrack,
 
   /// The phone has no decoder for the clip's sound (e.g. Dolby Digital on
@@ -23,6 +24,7 @@ enum ClipAudioError {
   unavailable,
 }
 
+/// Thrown when a clip's sound cannot be read; [error] says why.
 class ClipAudioException implements Exception {
   const ClipAudioException(this.error, [this.message]);
 
@@ -34,7 +36,9 @@ class ClipAudioException implements Exception {
       'ClipAudioException(${error.name}${message == null ? '' : ': $message'})';
 }
 
-/// What the platform knows about a clip before decoding it.
+/// What the platform knows about a clip before decoding it. The analyzer
+/// needs only the audio fields; the rest is for the editor and the export
+/// (orientation, HDR, stepping by frame, the history entry's date).
 class ClipInfo {
   const ClipInfo({
     required this.hasAudio,
@@ -91,13 +95,17 @@ class DecodedAudio {
 /// Reads a clip's sound for the analyzer. Implemented by the platform in
 /// `android/.../ClipAudioChannel.kt`; iOS follows the same contract later.
 abstract interface class ClipAudioSource {
+  /// Reads [path]'s container metadata without decoding anything.
   Future<ClipInfo> probe(String path);
 
-  /// Decodes [path]'s audio track (the stereo AAC one when there are several)
-  /// to [outputPath].
+  /// Decodes [path]'s audio track to [outputPath]. Of several tracks it takes
+  /// the mono or stereo AAC one (iPhone spatial-audio clips add a
+  /// four-channel track), else the first.
   Future<DecodedAudio> decode(String path, {required String outputPath});
 }
 
+/// [ClipAudioSource] over the `cc.jami.simpleshottimer/clip_audio` channel
+/// (Android: `ClipAudioChannel.kt`).
 class ChannelClipAudioSource implements ClipAudioSource {
   ChannelClipAudioSource({MethodChannel? channel})
       : _channel = channel ??

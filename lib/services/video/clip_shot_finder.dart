@@ -163,20 +163,30 @@ ShotScan findShots(
   return ShotScan(shots: shots, gate: gate);
 }
 
+// Thresholds of _softShots, on the spectrogram's byte scale.
+const double _minRise = 40;
+const double _minRisingBins = 0.65;
+const double _gateMargin = 12;
+const double _loudMinRise = 15;
+const double _loudMinRisingBins = 0.45;
+const double _echoSeconds = 0.3;
+const double _echoMargin = 15;
+
 /// Shots the reference test misses because their onset is smeared: a broad
 /// rise of the whole spectrum that reaches nearly the loudness gate.
 ///
-/// A frame qualifies where the frame mean rises by at least [minRise] units
-/// (about 18 dB) across four frames, at least [minRisingBins] of the bins rise
-/// by 10 units (4.4 dB), and the loudest of the next five frames comes within
-/// [gateMargin] units (about 5 dB) of [gate]. Footsteps and movement are
-/// steep enough but tens of units too quiet.
+/// A frame qualifies where the frame mean rises by at least [_minRise] units
+/// (about 18 dB) across four frames, at least [_minRisingBins] of the bins
+/// rise by 10 units (4.4 dB), and the loudest of the next five frames comes
+/// within [_gateMargin] units (about 5 dB) of [gate]. Footsteps and movement
+/// are steep enough but tens of units too quiet.
 ///
-/// It only adds shots more than 100 ms from every [strict] one, so a clip the
-/// reference test handles keeps exactly its frames. Within [echoSeconds]
-/// after a shot, a rise must also come within [echoMargin] units of that
-/// shot's level: an echo off the berm or a wall arrives about 0.2 s later and
-/// at least 18 units quieter, while real fast splits stay within about 11.
+/// It only adds shots more than [minSplit] frames (100 ms) from every
+/// [strict] one, so a clip the reference test handles keeps exactly its
+/// frames. Within [_echoSeconds] after a shot, a rise must also come within
+/// [_echoMargin] units of that shot's level: an echo off the berm or a wall
+/// arrives about 0.2 s later and at least 18 units quieter, while real fast
+/// splits stay within about 11.
 ///
 /// The thresholds are set on hand-checked range clips whose timers showed
 /// every shot (see the video feature's issue draft).
@@ -185,14 +195,7 @@ List<ShotHit> _softShots(
   Int32List rowSum,
   double gate,
   List<ShotHit> strict, {
-  int minSplit = 0,
-  double minRise = 40,
-  double minRisingBins = 0.65,
-  double gateMargin = 12,
-  double loudMinRise = 15,
-  double loudMinRisingBins = 0.45,
-  double echoSeconds = 0.3,
-  double echoMargin = 15,
+  required int minSplit,
 }) {
   const bins = Spectrogram.bins;
   final v = s.values;
@@ -207,30 +210,33 @@ List<ShotHit> _softShots(
     return best;
   }
 
-  final echoFrames = (echoSeconds * fps).round();
+  final echoFrames = (_echoSeconds * fps).round();
   final accepted = <int>[for (final h in strict) h.frame];
   final soft = <ShotHit>[];
   for (var m = 3; m < s.frameCount - 5; m++) {
     final r = rise(m);
     // The middle of the steepest rise, where the onset is.
-    if (r < loudMinRise || r < rise(m - 1) || r <= rise(m + 1)) continue;
+    if (r < _loudMinRise || r < rise(m - 1) || r <= rise(m + 1)) continue;
     final level = peak(m);
-    if (level < gate - gateMargin) continue;
+    if (level < gate - _gateMargin) continue;
     if (accepted.any((a) => (a - m).abs() <= minSplit)) continue;
     var risingBins = 0;
     for (var k = 0; k < bins; k++) {
       if (v[(m + 2) * bins + k] - v[(m - 2) * bins + k] >= 10) risingBins++;
     }
-    final steep = r >= minRise && risingBins / bins >= minRisingBins;
+    final rising = risingBins / bins;
+    final steep = r >= _minRise && rising >= _minRisingBins;
     // A shot that lands while the previous one still rings rises less, but
     // is as loud as the gate.
-    final loud = level >= gate && risingBins / bins >= loudMinRisingBins;
+    final loud = level >= gate && rising >= _loudMinRisingBins;
     if (!steep && !loud) continue;
-    final previous = accepted.where((a) => a < m).fold<int?>(
-        null, (latest, a) => latest == null || a > latest ? a : latest);
+    int? previous;
+    for (final a in accepted) {
+      if (a < m && (previous == null || a > previous)) previous = a;
+    }
     if (previous != null &&
         m - previous <= echoFrames &&
-        level < peak(previous) - echoMargin) {
+        level < peak(previous) - _echoMargin) {
       continue;
     }
     soft.add(ShotHit(m, soft: true));
