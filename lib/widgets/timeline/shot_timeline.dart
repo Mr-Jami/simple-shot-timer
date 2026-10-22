@@ -232,16 +232,16 @@ class _TimelinePainter extends CustomPainter {
       _paintMarker(canvas, m, x, top, bottom);
     }
 
-    // The playhead.
+    // The playhead, from below the badges so the one on it stays legible.
     final playhead = Paint()
       ..color = ink
       ..strokeWidth = 2;
-    canvas.drawLine(Offset(centre, 0), Offset(centre, size.height), playhead);
+    canvas.drawLine(Offset(centre, top), Offset(centre, size.height), playhead);
     canvas.drawPath(
       Path()
-        ..moveTo(centre - 6, 0)
-        ..lineTo(centre + 6, 0)
-        ..lineTo(centre, 7)
+        ..moveTo(centre - 6, top)
+        ..lineTo(centre + 6, top)
+        ..lineTo(centre, top + 7)
         ..close(),
       Paint()..color = ink,
     );

@@ -112,6 +112,19 @@ void main() {
     });
   }
 
+  testWidgets('centring glides and lands exactly on the marker',
+      (tester) async {
+    await pumpTimeline(tester);
+    controller.centreOn(6789);
+    // A ticker's first frame is at zero elapsed time.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(controller.playheadMs, inExclusiveRange(5000, 6789));
+    await tester.pumpAndSettle();
+    expect(controller.playheadMs, closeTo(6789, 1e-6));
+    expect(settled.last, 6789);
+  });
+
   testWidgets('pinching zooms around the fingers', (tester) async {
     await pumpTimeline(tester);
     controller.startDrag();

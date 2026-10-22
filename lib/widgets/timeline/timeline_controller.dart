@@ -39,6 +39,10 @@ class TimelineController extends ChangeNotifier {
 
   late final Ticker _ticker;
   Simulation? _simulation;
+
+  /// Where a running spring ends: it stops within its tolerance, then the
+  /// playhead lands exactly here.
+  double? _springTarget;
   var _motion = TimelineMotion.idle;
   double _pxPerSecond;
 
@@ -129,7 +133,7 @@ class TimelineController extends ChangeNotifier {
     final max = _maxPx;
     final v = -velocityPxPerSecond;
     if (_px < 0 || _px > max) {
-      _run(_springTo(_px < 0 ? 0 : max, v), TimelineMotion.settle);
+      _runSpring(_px < 0 ? 0 : max, v);
     } else if (fling && v.abs() > 50) {
       _run(
         _bounces
@@ -163,17 +167,24 @@ class TimelineController extends ChangeNotifier {
       _settled();
       return;
     }
-    _run(_springTo(target, 0), TimelineMotion.settle);
+    _runSpring(target, 0);
   }
 
-  /// A critically damped spring: no overshoot, about a third of a second.
-  Simulation _springTo(double px, double velocity) => SpringSimulation(
+  /// A critically damped spring to [px]: no overshoot, about a third of a
+  /// second.
+  void _runSpring(double px, double velocity) {
+    _run(
+      SpringSimulation(
         SpringDescription.withDampingRatio(mass: 1, stiffness: 320, ratio: 1),
         _px,
         px,
         velocity,
         tolerance: const Tolerance(distance: 0.5, velocity: 5),
-      );
+      ),
+      TimelineMotion.settle,
+    );
+    _springTarget = px;
+  }
 
   void _run(Simulation simulation, TimelineMotion motion) {
     _stop();
@@ -192,6 +203,7 @@ class TimelineController extends ChangeNotifier {
     final clamping = !_bounces && _motion == TimelineMotion.fling;
     final hitEnd = clamping && (px <= 0 || px >= max);
     if (hitEnd) px = px.clamp(0, max).toDouble();
+    if (done && _springTarget != null) px = _springTarget!;
     _setPx(px, user: true);
     if (done || hitEnd) {
       _stop();
@@ -215,6 +227,7 @@ class TimelineController extends ChangeNotifier {
   void _stop() {
     _ticker.stop();
     _simulation = null;
+    _springTarget = null;
   }
 
   @override
