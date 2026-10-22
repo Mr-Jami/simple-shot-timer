@@ -135,5 +135,17 @@
   "133": "i18n_parity_test.dart",
   "134": "export_service_test.dart",
   "135": "README.md",
-  "136": "app.dart"
+  "136": "app.dart",
+  "137": "clip_analyzer_test.dart",
+  "138": "clip_audio_source_test.dart",
+  "139": "drill_config_test.dart",
+  "140": "static const int",
+  "141": "BeepPlayer",
+  "142": "RunEnvironment",
+  "143": "ChannelClipAudioSource",
+  "144": "double?",
+  "145": "Exception",
+  "146": "int?",
+  "147": "Map",
+  "148": "MethodChannel"
 }
