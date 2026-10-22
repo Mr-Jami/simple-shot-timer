@@ -15,6 +15,9 @@ import '../providers/providers.dart';
 import '../providers/string_provider.dart';
 import '../services/export_service.dart';
 import '../utils/time_format.dart';
+import '../widgets/shot_badge.dart';
+import '../widgets/string_summary_grid.dart';
+import 'video_flows.dart';
 
 class ReviewScreen extends ConsumerWidget {
   const ReviewScreen({super.key, required this.stringId});
@@ -122,7 +125,7 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
         onDismissed: (_) => _deleteShot(i),
         child: ListTile(
           dense: true,
-          leading: _ShotBadge(ordinal: cycleOrdinal, manual: shot.manual),
+          leading: ShotBadge(ordinal: cycleOrdinal, manual: shot.manual),
           title: Text(
             '${formatSeconds(shot.timeMs)}s',
             style: const TextStyle(
@@ -254,22 +257,38 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
           ),
           const SizedBox(height: 4),
           Text(
-            context.tr('review.headerLine', args: {
-              'drill': s.drillMode.labelFor(context),
-              'delay': s.delayMode.labelFor(context),
-              'seconds': (s.delayUsedMs / 1000).toStringAsFixed(2),
-            }),
+            s.isVideo
+                ? s.videoRecordedAt == null
+                    ? context.tr('review.videoLine')
+                    : context.tr('review.filmed', args: {
+                        'date': dateFmt.format(s.videoRecordedAt!.toLocal()),
+                      })
+                : context.tr('review.headerLine', args: {
+                    'drill': s.drillMode.labelFor(context),
+                    'delay': s.delayMode.labelFor(context),
+                    'seconds': (s.delayUsedMs / 1000).toStringAsFixed(2),
+                  }),
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 12),
-          _DrillConfigChips(string: s),
+          if (s.isVideo)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: OutlinedButton.icon(
+                icon: const Icon(Icons.video_library_outlined),
+                label: Text(context.tr('review.chooseVideoAgain')),
+                onPressed: () => chooseVideoAgain(context, s),
+              ),
+            )
+          else
+            _DrillConfigChips(string: s),
           const SizedBox(height: 16),
           if (s.cyclesWithShots.length > 1)
             _PerCycleSummary(string: s)
           else
-            _SummaryGrid(string: s),
+            StringSummaryGrid(string: s),
           const SizedBox(height: 16),
           TextField(
             controller: _labelCtrl,
@@ -348,120 +367,6 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
   }
 }
 
-/// Shot number in a circle. Detected shots are filled; a shot the user added
-/// by hand is outlined, which is the whole "manual" marker.
-class _ShotBadge extends StatelessWidget {
-  const _ShotBadge({required this.ordinal, required this.manual});
-  final int ordinal;
-  final bool manual;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return Container(
-      width: 28,
-      height: 28,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: manual ? null : scheme.surfaceContainerHighest,
-        border: manual ? Border.all(color: scheme.outline) : null,
-      ),
-      child: Text(
-        '$ordinal',
-        style: TextStyle(fontSize: 12, color: scheme.onSurface),
-      ),
-    );
-  }
-}
-
-class _SummaryGrid extends StatelessWidget {
-  const _SummaryGrid({required this.string});
-  final TimerString string;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final items = <_SummaryItem>[
-      _SummaryItem(
-        context.tr('review.summary.total'),
-        '${formatSeconds(string.totalTimeMs)}s',
-      ),
-      _SummaryItem(
-        context.tr('review.summary.first'),
-        string.firstShotMs == null
-            ? '--'
-            : '${formatSeconds(string.firstShotMs!)}s',
-      ),
-      _SummaryItem(
-        context.tr('review.summary.fastest'),
-        string.fastestSplitMs == null
-            ? '--'
-            : '${formatSeconds(string.fastestSplitMs!)}s',
-      ),
-      _SummaryItem(
-        context.tr('review.summary.slowest'),
-        string.slowestSplitMs == null
-            ? '--'
-            : '${formatSeconds(string.slowestSplitMs!)}s',
-      ),
-      _SummaryItem(
-        context.tr('review.summary.average'),
-        string.averageSplitMs == null
-            ? '--'
-            : '${formatSeconds(string.averageSplitMs!)}s',
-      ),
-      _SummaryItem(context.tr('review.summary.shots'), '${string.shotCount}'),
-    ];
-    return GridView.count(
-      crossAxisCount: 3,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 8,
-      crossAxisSpacing: 8,
-      childAspectRatio: 1.6,
-      children: [
-        for (final i in items)
-          Container(
-            decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Long translations (DURCHSCHNITT, ENSIMMÄINEN) shrink to
-                // one line instead of wrapping out of the fixed-height tile.
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    i.label,
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      letterSpacing: 2,
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ),
-                Text(
-                  i.value,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                  ),
-                ),
-              ],
-            ),
-          ),
-      ],
-    );
-  }
-}
-
-class _SummaryItem {
-  const _SummaryItem(this.label, this.value);
-  final String label;
-  final String value;
-}
 
 /// Drill configuration recap shown under the date header. Renders one chip
 /// per relevant config field for the drill mode the string was recorded

@@ -13,6 +13,7 @@ import '../models/enums.dart';
 import '../providers/custom_drills_provider.dart';
 import '../providers/history_provider.dart';
 import '../providers/settings_provider.dart';
+import '../providers/video_providers.dart';
 import '../services/export_service.dart';
 import '../utils/legal.dart';
 import '../utils/slider_units.dart';
@@ -342,6 +343,7 @@ class SettingsScreen extends ConsumerWidget {
         try {
           await ref.read(historyProvider.notifier).deleteAll();
           await ExportService().deleteExports();
+          await ref.read(videoWorkDirProvider).deleteAll();
           deleted = await ref.read(settingsProvider.notifier).deleteAll();
         } on Exception {
           // Reported below; a partial wipe must not pass for a full one.

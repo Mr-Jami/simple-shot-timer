@@ -16,8 +16,9 @@ import 'custom_drills_screen.dart';
 import 'history_screen.dart';
 import 'home_screen.dart';
 import 'settings_screen.dart';
+import 'video_screen.dart';
 
-/// Four-tab shell: Timer, Drills, History, Settings.
+/// Five-tab shell: Timer, Drills, Video, History, Settings.
 ///
 /// The bar is inert while a string is in progress (greyed, not hidden) so a
 /// stray tap near STOP does nothing and nothing on screen moves. Leaving the
@@ -85,6 +86,7 @@ class _MainShellState extends ConsumerState<MainShell> {
               children: const [
                 HomeScreen(),
                 CustomDrillsScreen(),
+                VideoScreen(),
                 HistoryScreen(),
                 SettingsScreen(),
               ],
@@ -107,6 +109,11 @@ class _MainShellState extends ConsumerState<MainShell> {
                       icon: const Icon(Icons.bookmarks_outlined),
                       selectedIcon: const Icon(Icons.bookmarks),
                       label: context.tr('nav.drills'),
+                    ),
+                    NavigationDestination(
+                      icon: const Icon(Icons.videocam_outlined),
+                      selectedIcon: const Icon(Icons.videocam),
+                      label: context.tr('nav.video'),
                     ),
                     NavigationDestination(
                       icon: const Icon(Icons.history),

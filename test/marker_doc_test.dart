@@ -172,6 +172,45 @@ void main() {
           [for (final t in referenceShotTimes) closeTo(t - 1.0, 0.005)]);
     });
 
+    test('recognises the clip a saved string was made from', () {
+      final clip = AnalyzedClip(
+        info: ClipInfo(
+          hasAudio: true,
+          durationMs: 7000,
+          creationTime: DateTime.utc(2026, 10, 20, 9, 15, 30),
+        ),
+        analysis: analyzePcm(
+          syntheticClip(extra: (x) => addBeep(x, 1.0, 300)),
+          clipSampleRate,
+        ),
+        audioOriginMs: 0,
+      );
+      TimerString saved({int? duration, DateTime? recorded, int? start}) =>
+          TimerString(
+            createdAt: DateTime(2026, 10, 23),
+            drillMode: DrillMode.standard,
+            delayMode: DelayMode.instant,
+            delayUsedMs: 0,
+            pars: const [],
+            shots: const [],
+            source: StringSource.video,
+            videoDurationMs: duration,
+            videoRecordedAt: recorded,
+            videoStartMs: start,
+          );
+      expect(
+          clip.matches(saved(
+              duration: 7400,
+              recorded: DateTime.utc(2026, 10, 20, 9, 15, 31),
+              start: 1050)),
+          isTrue);
+      expect(clip.matches(saved()), isTrue);
+      expect(clip.matches(saved(duration: 9000)), isFalse);
+      expect(
+          clip.matches(saved(recorded: DateTime.utc(2026, 10, 21))), isFalse);
+      expect(clip.matches(saved(start: 1400)), isFalse);
+    });
+
     test('leaves out the start beep\'s attack and stop click', () {
       final spectrogram =
           Spectrogram.compute(Int16List(clipSampleRate * 7), clipSampleRate);

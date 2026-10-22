@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import '../../models/timer_string.dart';
 import 'clip_analyzer.dart';
 import 'clip_audio_source.dart';
 import 'marker_doc.dart';
@@ -44,6 +45,32 @@ class AnalyzedClip {
                 isStopClick(beep, s)))
           toClipMs(s),
     ];
+  }
+
+  /// Whether this looks like the clip [saved] was made from: the same
+  /// length (±1 s), recording date (±2 s) and beep (±100 ms), each checked
+  /// when both sides know it. A messenger re-encode can fail it, so the
+  /// caller asks rather than refuses.
+  bool matches(TimerString saved) {
+    final duration = saved.videoDurationMs;
+    if (duration != null && (duration - info.durationMs).abs() > 1000) {
+      return false;
+    }
+    final recorded = saved.videoRecordedAt;
+    final created = info.creationTime;
+    if (recorded != null &&
+        created != null &&
+        recorded.difference(created).abs() > const Duration(seconds: 2)) {
+      return false;
+    }
+    final savedStart = saved.videoStartMs;
+    final start = startMs;
+    if (savedStart != null &&
+        start != null &&
+        (savedStart - start).abs() > 100) {
+      return false;
+    }
+    return true;
   }
 
   MarkerDoc toDoc() => MarkerDoc.detected(
