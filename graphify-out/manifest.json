@@ -5,18 +5,18 @@
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
-    "mtime": 1792450944.0896199,
+    "mtime": 1792707795.8780088,
     "ast_hash": "44b5cca194e3ffd995b9bf534194fb38",
     "semantic_hash": ""
   },
   "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java": {
-    "mtime": 1791851381.8442845,
-    "ast_hash": "52a9e724a44901e8bce1bce58290af39",
+    "mtime": 1792707618.8461895,
+    "ast_hash": "74d83cadc8d26265911e7819bd8ec881",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/MainActivity.kt": {
-    "mtime": 1791145913.1957848,
-    "ast_hash": "afc15c60844d1ee4b54ee45c3927fe0a",
+    "mtime": 1792707795.8790197,
+    "ast_hash": "05e394ed28a77d7332793f8bdb4eedcf",
     "semantic_hash": ""
   },
   "android/build.gradle.kts": {
@@ -95,8 +95,8 @@
     "semantic_hash": "decb9041b5e91a07e66f4664e5dac408"
   },
   "ios/Runner/GeneratedPluginRegistrant.m": {
-    "mtime": 1791851381.8549795,
-    "ast_hash": "dba94dc84961b1e43e9129675539d58c",
+    "mtime": 1792704953.811125,
+    "ast_hash": "e2d94a3f89bc8beaa6055acc22468d7d",
     "semantic_hash": ""
   },
   "ios/Runner/Runner-Bridging-Header.h": {
@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "lib/services/audio_service.dart": {
-    "mtime": 1791145913.274387,
-    "ast_hash": "56fe20502767c87fa9b2f33c001ebf4d",
+    "mtime": 1792700234.0714872,
+    "ast_hash": "30ff35f5bcd04b6742e97a0ac1ddc197",
     "semantic_hash": ""
   },
   "lib/services/auto_configure.dart": {
@@ -345,7 +345,7 @@
     "semantic_hash": "055041055ece4d9e8e6009d7b87a6b24"
   },
   ".github/workflows/deploy-play-store.yml": {
-    "mtime": 1792596593.7806509,
+    "mtime": 1792688633.9577892,
     "ast_hash": "bc830155dae1690b4857fa73294feac5",
     "semantic_hash": ""
   },
@@ -365,7 +365,7 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792686866.8248298,
+    "mtime": 1792688633.9592595,
     "ast_hash": "f19a56bd939d9e54c77db02b575eb80f",
     "semantic_hash": ""
   },
@@ -385,8 +385,8 @@
     "semantic_hash": "f7ee1b402881509d197f34963e569927"
   },
   "pubspec.yaml": {
-    "mtime": 1792450944.1354916,
-    "ast_hash": "35b4221e00ffaf03af2186ff8a62bdec",
+    "mtime": 1792707795.88154,
+    "ast_hash": "da36d512dac430035db683aa6bca0382",
     "semantic_hash": ""
   },
   "android/app/src/main/res/mipmap-hdpi/ic_launcher.png": {
@@ -720,7 +720,7 @@
     "semantic_hash": ""
   },
   "test/i18n_parity_test.dart": {
-    "mtime": 1792686932.4275105,
+    "mtime": 1792688633.9958124,
     "ast_hash": "a2befeb252a09d083f9861ff90a56261",
     "semantic_hash": ""
   },
@@ -1345,8 +1345,8 @@
     "semantic_hash": ""
   },
   "website/src/motion.js": {
-    "mtime": 1792442405.9778173,
-    "ast_hash": "02b0650f9e4986f3e99c5187ae7fedf3",
+    "mtime": 1792692393.935119,
+    "ast_hash": "ec77b037133f65f8ab87eb5db467ad6e",
     "semantic_hash": ""
   },
   "website/src/screens.js": {
@@ -1355,8 +1355,8 @@
     "semantic_hash": ""
   },
   "website/vite.config.js": {
-    "mtime": 1791855319.5684364,
-    "ast_hash": "74180e64ab39511bea1c0152e55d3576",
+    "mtime": 1792692393.9371107,
+    "ast_hash": "590cfadf23748d2e5439ca9812402c59",
     "semantic_hash": ""
   },
   "website/404.html": {
@@ -1365,13 +1365,13 @@
     "semantic_hash": ""
   },
   "website/README.md": {
-    "mtime": 1792451567.3157966,
-    "ast_hash": "7567462d1ca7a202482a625924f6c2f1",
+    "mtime": 1792692393.9166884,
+    "ast_hash": "3ae76221fcd93e9e540fdd4c12b7a7a8",
     "semantic_hash": ""
   },
   "website/index.html": {
-    "mtime": 1792450944.1389098,
-    "ast_hash": "04013f6f2c1e2bc49097285a073ed310",
+    "mtime": 1792692393.933111,
+    "ast_hash": "d1a11185c87bd2cb89eb898ad5094ca9",
     "semantic_hash": ""
   },
   "website/og-image/index.html": {
@@ -1420,8 +1420,8 @@
     "semantic_hash": ""
   },
   "website/public/llms.txt": {
-    "mtime": 1792451567.3238518,
-    "ast_hash": "0a8884de599b5ae4f3d877d16356d115",
+    "mtime": 1792692393.9341152,
+    "ast_hash": "22a994d0a8f0778cd7bb408f6e22e69c",
     "semantic_hash": ""
   },
   "website/src/i18n.js": {
@@ -1460,8 +1460,8 @@
     "semantic_hash": ""
   },
   "website/de/index.html": {
-    "mtime": 1792450944.1389098,
-    "ast_hash": "8f0d3609192359c32a2dd45319bbff6b",
+    "mtime": 1792692393.919214,
+    "ast_hash": "768ac1924cb1eab22289159ed67f3607",
     "semantic_hash": ""
   },
   "website/imprint/index.html": {
@@ -1985,7 +1985,7 @@
     "semantic_hash": ""
   },
   "branding/discovery/README.md": {
-    "mtime": 1792453579.1054316,
+    "mtime": 1792692649.7275205,
     "ast_hash": "9583c1726b232824f54b684d3933f2a6",
     "semantic_hash": ""
   },
@@ -1995,17 +1995,17 @@
     "semantic_hash": ""
   },
   "branding/discovery/cc.jami.simpleshottimer.yml": {
-    "mtime": 1792596532.660762,
+    "mtime": 1792688633.960769,
     "ast_hash": "8f1dbf406af4e4d6b655899b2b8d7b4e",
     "semantic_hash": ""
   },
   "branding/discovery/fdroid-merge-request.md": {
-    "mtime": 1792596593.4807575,
+    "mtime": 1792688633.960769,
     "ast_hash": "ecd39058a51a55fe78b413c9944f16ae",
     "semantic_hash": ""
   },
   "branding/discovery/fdroid.md": {
-    "mtime": 1792596709.8636858,
+    "mtime": 1792688633.9617755,
     "ast_hash": "ab11781f0ab549b1ab5bb268e42c4b8f",
     "semantic_hash": ""
   },
@@ -2025,43 +2025,43 @@
     "semantic_hash": ""
   },
   "website/de/ratgeber/app-oder-shot-timer/index.html": {
-    "mtime": 1792451567.3188567,
-    "ast_hash": "2fa33e1d1fe4988788ec7e280f8ec555",
+    "mtime": 1792692393.9207776,
+    "ast_hash": "9a9fcb81f3815b7a535873f7f6a8af9b",
     "semantic_hash": ""
   },
   "website/de/ratgeber/handy-als-shot-timer/index.html": {
-    "mtime": 1792451567.3188567,
-    "ast_hash": "7d734d00a6da9bf725427aefe524f894",
+    "mtime": 1792692393.9213202,
+    "ast_hash": "ff26973ac8d3676f68b6185aaf150d0f",
     "semantic_hash": ""
   },
   "website/de/ratgeber/index.html": {
-    "mtime": 1792451567.3188567,
-    "ast_hash": "cd45f9bd35177d791b6069fabcfb9249",
+    "mtime": 1792692393.9213202,
+    "ast_hash": "88eb068473ff55aae404e641d09356bb",
     "semantic_hash": ""
   },
   "website/de/ratgeber/par-drills-trockentraining/index.html": {
-    "mtime": 1792451567.3203118,
-    "ast_hash": "cd825f5eb304223078f87170fde05d20",
+    "mtime": 1792692393.925099,
+    "ast_hash": "da6943777b2b6b9ee8d86a714e0d103f",
     "semantic_hash": ""
   },
   "website/guides/dry-fire-par-drills/index.html": {
-    "mtime": 1792451567.3213332,
-    "ast_hash": "0eb5a7edd6e70710d7419b06fc03d51a",
+    "mtime": 1792692393.927098,
+    "ast_hash": "409c8dc46d155b510c2149474758df39",
     "semantic_hash": ""
   },
   "website/guides/index.html": {
-    "mtime": 1792451567.322331,
-    "ast_hash": "8db2e3f0f8204938c86f27c69e524120",
+    "mtime": 1792692393.9291167,
+    "ast_hash": "80f0fa94dd12abffee6b3a15c93387ce",
     "semantic_hash": ""
   },
   "website/guides/phone-shot-timer/index.html": {
-    "mtime": 1792451567.322331,
-    "ast_hash": "643301db216fdae86bc88420c14fb1a2",
+    "mtime": 1792692393.9311154,
+    "ast_hash": "7eaf09b51657e68233b9da1dd86d1794",
     "semantic_hash": ""
   },
   "website/guides/shot-timer-app-vs-dedicated-timer/index.html": {
-    "mtime": 1792451567.322331,
-    "ast_hash": "630d60a08d37e4b602a409ec3ff7d509",
+    "mtime": 1792692393.933111,
+    "ast_hash": "de6ef4528a662857cdcaace8c8f49ede",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/images/featureGraphic.png": {
@@ -2112,6 +2112,96 @@
   "fastlane/metadata/android/en-US/images/phoneScreenshots/8.png": {
     "mtime": 1792450944.1339784,
     "ast_hash": "fec402c89b6b30e5e170bf3a1c25f2ac",
+    "semantic_hash": ""
+  },
+  "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt": {
+    "mtime": 1792703637.824538,
+    "ast_hash": "905fdbaba12c5e9e1c32c540475589a0",
+    "semantic_hash": ""
+  },
+  "integration_test/clip_analysis_test.dart": {
+    "mtime": 1792702990.2552946,
+    "ast_hash": "9713e69652b9bc7d3e66268084d61e98",
+    "semantic_hash": ""
+  },
+  "lib/services/beep_constants.dart": {
+    "mtime": 1792700233.2906437,
+    "ast_hash": "80641d74a98a811aee68a1df1cfefae3",
+    "semantic_hash": ""
+  },
+  "lib/services/video/clip_analyzer.dart": {
+    "mtime": 1792703579.3825984,
+    "ast_hash": "87c0b3be6595bcbcef8675540aafece7",
+    "semantic_hash": ""
+  },
+  "lib/services/video/clip_audio_source.dart": {
+    "mtime": 1792703622.0427234,
+    "ast_hash": "24391790ae28d7fc68653820e6e8144c",
+    "semantic_hash": ""
+  },
+  "lib/services/video/clip_shot_finder.dart": {
+    "mtime": 1792703613.465999,
+    "ast_hash": "a72d9bcffc4a2a55a0ecde6b3ac086e3",
+    "semantic_hash": ""
+  },
+  "lib/services/video/spectrogram.dart": {
+    "mtime": 1792703676.7332003,
+    "ast_hash": "9257356aab0957447be2c943bd3f4903",
+    "semantic_hash": ""
+  },
+  "lib/services/video/start_finder.dart": {
+    "mtime": 1792703670.4265993,
+    "ast_hash": "c8c98db6449fe1a56cc2488743545b18",
+    "semantic_hash": ""
+  },
+  "lib/services/video/tone_finder.dart": {
+    "mtime": 1792700452.1392977,
+    "ast_hash": "fa984e9ea84297774ffe2f583973da74",
+    "semantic_hash": ""
+  },
+  "test/clip_analyzer_test.dart": {
+    "mtime": 1792703652.1929588,
+    "ast_hash": "333e360927d9706d7e4a8fba02e900a9",
+    "semantic_hash": ""
+  },
+  "test/clip_audio_source_test.dart": {
+    "mtime": 1792701831.4852912,
+    "ast_hash": "e2b799f42fc27e319b3b3e4dec1153e8",
+    "semantic_hash": ""
+  },
+  "test/clip_fixtures.dart": {
+    "mtime": 1792701686.5146277,
+    "ast_hash": "1ef9958751d727f15d43621054264702",
+    "semantic_hash": ""
+  },
+  "test/clip_shot_finder_test.dart": {
+    "mtime": 1792701701.84837,
+    "ast_hash": "6595078f20515b97baf76c7981bbaa7a",
+    "semantic_hash": ""
+  },
+  "test_driver/integration_test.dart": {
+    "mtime": 1792701944.4022563,
+    "ast_hash": "9e50c9803de01b47edb5b7dd981ce832",
+    "semantic_hash": ""
+  },
+  "website/de/ratgeber/kostenlose-shot-timer-apps/index.html": {
+    "mtime": 1792692393.9231198,
+    "ast_hash": "d7cbfe7c0559061c450d3c13c6765b09",
+    "semantic_hash": ""
+  },
+  "website/de/ratgeber/par-timer-oder-shot-timer/index.html": {
+    "mtime": 1792692393.9256122,
+    "ast_hash": "40b401f6b22ffbc2c44975bc50c1a5e3",
+    "semantic_hash": ""
+  },
+  "website/guides/free-shot-timer-apps/index.html": {
+    "mtime": 1792692393.928116,
+    "ast_hash": "244b0602791f680105a76fda0a04d515",
+    "semantic_hash": ""
+  },
+  "website/guides/par-timer-vs-shot-timer/index.html": {
+    "mtime": 1792692393.9301083,
+    "ast_hash": "a0e6ae518a4b1979ad58c4e5e4dccb78",
     "semantic_hash": ""
   }
 }
