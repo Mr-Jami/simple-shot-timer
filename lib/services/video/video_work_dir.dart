@@ -72,6 +72,15 @@ class VideoSession {
     return _clipPath = target;
   }
 
+  /// The decoded sound is only needed while it is analysed.
+  Future<void> deletePcm() async {
+    try {
+      await File(pcmPath).delete();
+    } on FileSystemException {
+      // Already gone.
+    }
+  }
+
   /// Deletes the folder. Safe to call more than once.
   Future<void> dispose() async {
     if (_disposed) return;
