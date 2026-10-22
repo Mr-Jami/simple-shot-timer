@@ -111,6 +111,11 @@ class ClipEditorNotifier
   var _sensitivityRequest = 0;
   var _discarded = false;
 
+  /// Open while a finger drags a shot or holds a nudge button: all its
+  /// edits are one undo step.
+  var _gesture = false;
+  var _gestureRecorded = false;
+
   @override
   ClipEditorState build(ClipEditorArgs arg) {
     ref.onDispose(() {
@@ -251,9 +256,21 @@ class ClipEditorNotifier
     }
   }
 
+  /// Starts a gesture (dragging a shot, holding a nudge button): its edits
+  /// become one undo step, recorded with its first change.
+  void beginGesture() {
+    _gesture = true;
+    _gestureRecorded = false;
+  }
+
+  void endGesture() => _gesture = false;
+
   void _edit(MarkerDoc doc, {int? Function()? selectedId}) {
-    _undo.add(state.doc);
-    if (_undo.length > _undoLimit) _undo.removeAt(0);
+    if (!_gesture || !_gestureRecorded) {
+      _undo.add(state.doc);
+      if (_undo.length > _undoLimit) _undo.removeAt(0);
+      _gestureRecorded = _gesture;
+    }
     state = state.copyWith(doc: doc, canUndo: true, selectedId: selectedId);
     _changed();
   }

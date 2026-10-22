@@ -247,6 +247,30 @@ void main() {
       });
     });
 
+    test('a held nudge or a drag is one undo step', () {
+      run(args(withBeep), (async, editor, state) {
+        final shot = state().doc.activeShots[2];
+        editor.beginGesture();
+        editor.endGesture();
+        expect(state().canUndo, isFalse, reason: 'nothing changed');
+        editor.beginGesture();
+        for (var i = 0; i < 12; i++) {
+          editor.nudge(shot.id, 1);
+        }
+        editor.endGesture();
+        editor.beginGesture();
+        editor.moveShot(shot.id, shot.ms + 40);
+        editor.moveShot(shot.id, shot.ms + 55);
+        editor.endGesture();
+        expect(state().doc.shotById(shot.id)!.ms, shot.ms + 55);
+        editor.undo();
+        expect(state().doc.shotById(shot.id)!.ms, shot.ms + 12);
+        editor.undo();
+        expect(state().doc.shotById(shot.id)!.ms, shot.ms);
+        expect(state().canUndo, isFalse);
+      });
+    });
+
     test('an added shot is selected and nudges by a millisecond', () {
       run(args(withBeep), (async, editor, state) {
         editor.addShot(6000);

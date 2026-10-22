@@ -5,6 +5,7 @@
 import '../../models/timer_string.dart';
 import 'clip_analyzer.dart';
 import 'clip_audio_source.dart';
+import 'clip_signal.dart';
 import 'marker_doc.dart';
 import 'start_finder.dart';
 
@@ -71,6 +72,18 @@ class AnalyzedClip {
       return false;
     }
     return true;
+  }
+
+  /// Where a shot dropped at [ms] really starts: the sharpest onset within
+  /// [radiusMs], in clip time, or null when nothing there rises like a shot.
+  int? snapToOnset(int ms, {int radiusMs = 8}) {
+    final s = analysis.spectrogram;
+    final fps = s.framesPerSecond;
+    if (fps <= 0) return null;
+    final frame = ((ms - audioOriginMs) / 1000 * fps).round();
+    final onset =
+        strongestOnset(s, frame, radiusFrames: (radiusMs / 1000 * fps).ceil());
+    return onset == null ? null : toClipMs(s.secondsAt(onset));
   }
 
   MarkerDoc toDoc() => MarkerDoc.detected(
