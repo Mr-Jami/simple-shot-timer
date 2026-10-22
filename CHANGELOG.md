@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.3](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.2...v2.3.3) (2026-10-22)
+
+
+### Bug Fixes
+
+* **ios:** microphone permission prompt in your language ([#49](https://github.com/Mr-Jami/simple-shot-timer/issues/49)) ([05386e1](https://github.com/Mr-Jami/simple-shot-timer/commit/05386e172fc96dd947e64c6b5e037a4416c6dd56))
+
 ## [2.3.2](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.1...v2.3.2) (2026-10-19)
 
 
