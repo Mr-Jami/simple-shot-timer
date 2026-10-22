@@ -2,7 +2,6 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
-import 'dart:async';
 import 'dart:io';
 
 import 'package:fake_async/fake_async.dart';
