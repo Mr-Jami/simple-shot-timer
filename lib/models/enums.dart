@@ -18,6 +18,13 @@ enum DrillMode {
   stage,
 }
 
+/// Where a string's shots came from: the live timer, or a recorded video
+/// whose beep and shots were found afterwards (the video is never kept).
+enum StringSource {
+  live,
+  video,
+}
+
 enum AppThemeMode {
   system,
   light,

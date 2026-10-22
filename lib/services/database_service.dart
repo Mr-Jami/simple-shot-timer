@@ -9,23 +9,36 @@ import 'package:sqflite/sqflite.dart';
 import '../models/shot.dart';
 import '../models/timer_string.dart';
 import 'timer_ports.dart';
+import 'video/video_string_store.dart';
 
-class DatabaseService implements StringStore {
+class DatabaseService implements StringStore, VideoStringStore {
   DatabaseService._(this._db);
 
   final Database _db;
 
+  static const int schemaVersion = 4;
+
   static Future<DatabaseService> open() async {
     final dir = await getApplicationDocumentsDirectory();
-    final path = p.join(dir.path, 'simple_shot_timer.db');
-    final db = await openDatabase(
+    return openAt(p.join(dir.path, 'simple_shot_timer.db'));
+  }
+
+  /// Opens (creating or upgrading) the database at [path]. Tests pass an
+  /// FFI [factory] to run the real schema and migrations on the desktop.
+  static Future<DatabaseService> openAt(
+    String path, {
+    DatabaseFactory? factory,
+  }) async {
+    final db = await (factory ?? databaseFactory).openDatabase(
       path,
-      version: 3,
-      onConfigure: (db) async {
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: _createSchema,
-      onUpgrade: _onUpgrade,
+      options: OpenDatabaseOptions(
+        version: schemaVersion,
+        onConfigure: (db) async {
+          await db.execute('PRAGMA foreign_keys = ON');
+        },
+        onCreate: _createSchema,
+        onUpgrade: _onUpgrade,
+      ),
     );
     return DatabaseService._(db);
   }
@@ -43,7 +56,11 @@ class DatabaseService implements StringStore {
         notes TEXT,
         penalty_ms INTEGER NOT NULL DEFAULT 0,
         par_repeat_count INTEGER,
-        par_interval_ms INTEGER
+        par_interval_ms INTEGER,
+        source TEXT NOT NULL DEFAULT 'live',
+        video_start_ms INTEGER,
+        video_duration_ms INTEGER,
+        video_recorded_at TEXT
       )
     ''');
     await db.execute('''
@@ -78,6 +95,17 @@ class DatabaseService implements StringStore {
       // NULL — they're rendered without the new chips in the review header.
       await db.execute('ALTER TABLE strings ADD COLUMN par_repeat_count INTEGER');
       await db.execute('ALTER TABLE strings ADD COLUMN par_interval_ms INTEGER');
+    }
+    if (oldVersion < 4) {
+      // Strings made from a video. The clip itself is never stored: keep where
+      // START sits in it, its length and its recording date, to recognise it
+      // when it is chosen again. Existing rows are live strings.
+      await db.execute(
+        "ALTER TABLE strings ADD COLUMN source TEXT NOT NULL DEFAULT 'live'",
+      );
+      await db.execute('ALTER TABLE strings ADD COLUMN video_start_ms INTEGER');
+      await db.execute('ALTER TABLE strings ADD COLUMN video_duration_ms INTEGER');
+      await db.execute('ALTER TABLE strings ADD COLUMN video_recorded_at TEXT');
     }
   }
 
@@ -138,6 +166,29 @@ class DatabaseService implements StringStore {
     return (result.first['c'] as int?) ?? 0;
   }
 
+  @override
+  Future<void> updateVideoString(TimerString s) async {
+    final id = s.id!;
+    await _db.transaction((txn) async {
+      await txn.update(
+        'strings',
+        {
+          'label': s.label,
+          'notes': s.notes,
+          'penalty_ms': s.penaltyMs,
+          'video_start_ms': s.videoStartMs,
+        },
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+      await txn.delete('shots', where: 'string_id = ?', whereArgs: [id]);
+      for (final shot in s.shots) {
+        await txn.insert('shots', shot.copyWith(stringId: id).toMap()..remove('id'));
+      }
+    });
+  }
+
+  @override
   Future<void> deleteString(int id) async {
     await _db.delete('strings', where: 'id = ?', whereArgs: [id]);
   }
