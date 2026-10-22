@@ -11,8 +11,13 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
+    private var clipAudio: ClipAudioChannel? = null
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Reads a video clip's sound for the video feature's analyzer.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_audio")
+            .setMethodCallHandler(ClipAudioChannel().also { clipAudio = it })
         // The beep plays on the media stream (see AudioService). A muted or
         // zeroed stream means a silent start signal, so the Dart side asks
         // before every string and shows a one-line notice if needed.
@@ -36,5 +41,11 @@ class MainActivity : FlutterActivity() {
                     else -> result.notImplemented()
                 }
             }
+    }
+
+    override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
+        clipAudio?.dispose()
+        clipAudio = null
+        super.cleanUpFlutterEngine(flutterEngine)
     }
 }
