@@ -67,6 +67,20 @@ void main() {
       expect(
           checkClip(info(durationMs: maxClipPartMs + 1)), ClipProblem.tooLong);
     });
+    test('knows slow motion and time-lapse by their capture rate', () {
+      ClipInfo recorded(double capture, double playback) => ClipInfo(
+            hasAudio: true,
+            durationMs: 10000,
+            videoMime: 'video/hevc',
+            frameRate: playback,
+            captureFrameRate: capture,
+          );
+      expect(checkClip(recorded(240, 30)), ClipProblem.slowMotion);
+      expect(checkClip(recorded(4, 30)), ClipProblem.timeLapse);
+      expect(checkClip(recorded(30, 30)), isNull);
+      expect(checkClip(recorded(60, 59.94)), isNull);
+    });
+
     test('maps every decoder error to a problem', () {
       expect(problemFor(ClipAudioError.noAudioTrack), ClipProblem.noSound);
       expect(problemFor(ClipAudioError.unsupportedCodec),

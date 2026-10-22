@@ -11,6 +11,7 @@ import android.media.MediaFormat
 import android.media.MediaMetadataRetriever
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import java.io.BufferedOutputStream
@@ -21,6 +22,7 @@ import java.nio.ByteOrder
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import kotlin.math.roundToInt
 
@@ -32,19 +34,32 @@ import kotlin.math.roundToInt
  *
  * Decoding a minute of audio takes a while, so both run on one background
  * thread; the replies go back on the main thread, as MethodChannel requires.
- * Failures carry the codes the Dart side maps: no_audio_track,
- * unsupported_codec, unreadable_file, decode_failed.
+ * A decode with a jobId reports progress (0..1) back on [channel] and stops
+ * when cancel names its job. Failures carry the codes the Dart side maps:
+ * no_audio_track, unsupported_codec, unreadable_file, decode_failed,
+ * cancelled.
  */
-class ClipAudioChannel : MethodChannel.MethodCallHandler {
+class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.MethodCallHandler {
     private val worker = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
+    private val cancelled = ConcurrentHashMap.newKeySet<Int>()
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         val path = call.argument<String>("path")
         when (call.method) {
             "probe" -> reply(result) { probe(required(path, "path")) }
             "decode" -> reply(result) {
-                decode(required(path, "path"), required(call.argument("outputPath"), "outputPath"))
+                decode(
+                    required(path, "path"),
+                    required(call.argument("outputPath"), "outputPath"),
+                    call.argument<Int>("jobId"),
+                )
+            }
+            // Answered here, not on the worker: it must not wait behind the
+            // decode it stops. A job cancelled before it starts never runs.
+            "cancel" -> {
+                call.argument<Int>("jobId")?.let(cancelled::add)
+                result.success(null)
             }
             else -> result.notImplemented()
         }
@@ -96,7 +111,8 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
                     }
                 }
             }
-            val (rotation, created) = metadata(path)
+            val meta = metadata(path)
+            val (width, height) = videoSize(extractor, meta.rotation)
             return mapOf(
                 "hasAudio" to (audio >= 0),
                 "durationMs" to durationUs / 1000,
@@ -106,17 +122,21 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
                     null
                 },
                 "videoMime" to videoMime,
-                "rotation" to rotation,
+                "rotation" to meta.rotation,
+                "width" to width,
+                "height" to height,
                 "colorTransfer" to transfer,
                 "frameRate" to frameRate,
-                "creationTimeMs" to created,
+                "captureFrameRate" to meta.captureFrameRate,
+                "creationTimeMs" to meta.created,
             )
         } finally {
             extractor.release()
         }
     }
 
-    private fun decode(path: String, outputPath: String): Map<String, Any?> {
+    private fun decode(path: String, outputPath: String, jobId: Int?): Map<String, Any?> {
+        if (jobId != null && cancelled.remove(jobId)) throw ClipAudioFailure("cancelled", null)
         val extractor = open(path)
         val out = File(outputPath)
         var codec: MediaCodec? = null
@@ -141,6 +161,12 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
             }
             decoder.start()
 
+            val durationUs = if (format.containsKey(MediaFormat.KEY_DURATION)) {
+                format.getLong(MediaFormat.KEY_DURATION)
+            } else {
+                0L
+            }
+            var lastProgressAt = 0L
             var sampleRate = format.getInteger(MediaFormat.KEY_SAMPLE_RATE)
             var channels = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
             var floatPcm = false
@@ -151,6 +177,9 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
             val info = MediaCodec.BufferInfo()
             BufferedOutputStream(FileOutputStream(out), 1 shl 16).use { stream ->
                 while (true) {
+                    if (jobId != null && cancelled.remove(jobId)) {
+                        throw ClipAudioFailure("cancelled", null)
+                    }
                     if (!inputDone) {
                         val inIndex = decoder.dequeueInputBuffer(TIMEOUT_US)
                         if (inIndex >= 0) {
@@ -160,8 +189,20 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
                                 decoder.queueInputBuffer(inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
                                 inputDone = true
                             } else {
-                                decoder.queueInputBuffer(inIndex, 0, size, extractor.sampleTime, 0)
+                                val timeUs = extractor.sampleTime
+                                decoder.queueInputBuffer(inIndex, 0, size, timeUs, 0)
                                 extractor.advance()
+                                val now = SystemClock.elapsedRealtime()
+                                if (jobId != null && durationUs > 0 && now - lastProgressAt >= 100) {
+                                    lastProgressAt = now
+                                    val fraction = (timeUs.toDouble() / durationUs).coerceIn(0.0, 1.0)
+                                    main.post {
+                                        channel.invokeMethod(
+                                            "progress",
+                                            mapOf("jobId" to jobId, "fraction" to fraction),
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -268,7 +309,9 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
     }
 
     /** Rotation in degrees and recording time (ms since epoch, UTC), if known. */
-    private fun metadata(path: String): Pair<Int, Long?> {
+    private class Metadata(val rotation: Int, val created: Long?, val captureFrameRate: Double?)
+
+    private fun metadata(path: String): Metadata {
         val retriever = MediaMetadataRetriever()
         return try {
             retriever.setDataSource(path)
@@ -276,12 +319,31 @@ class ClipAudioChannel : MethodChannel.MethodCallHandler {
                 .extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION)
                 ?.toIntOrNull() ?: 0
             val date = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DATE)
-            Pair(rotation, date?.let(::parseDate))
+            // Slow-motion and time-lapse clips record at another rate than
+            // they play back at.
+            val capture = retriever
+                .extractMetadata(MediaMetadataRetriever.METADATA_KEY_CAPTURE_FRAMERATE)
+                ?.toDoubleOrNull()
+            Metadata(rotation, date?.let(::parseDate), capture)
         } catch (_: Exception) {
-            Pair(0, null)
+            Metadata(0, null, null)
         } finally {
             retriever.release()
         }
+    }
+
+    /** The first video track's size as displayed (rotation applied). */
+    private fun videoSize(extractor: MediaExtractor, rotation: Int): Pair<Int?, Int?> {
+        for (i in 0 until extractor.trackCount) {
+            val format = extractor.getTrackFormat(i)
+            val mime = format.getString(MediaFormat.KEY_MIME) ?: continue
+            if (!mime.startsWith("video/")) continue
+            if (!format.containsKey(MediaFormat.KEY_WIDTH) || !format.containsKey(MediaFormat.KEY_HEIGHT)) break
+            val w = format.getInteger(MediaFormat.KEY_WIDTH)
+            val h = format.getInteger(MediaFormat.KEY_HEIGHT)
+            return if (rotation % 180 == 0) Pair(w, h) else Pair(h, w)
+        }
+        return Pair(null, null)
     }
 
     /** MP4 dates come back like 20260921T123456.000Z. */

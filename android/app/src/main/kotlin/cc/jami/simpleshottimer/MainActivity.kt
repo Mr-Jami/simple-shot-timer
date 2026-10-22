@@ -16,8 +16,8 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         // Reads a video clip's sound for the video feature's analyzer.
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_audio")
-            .setMethodCallHandler(ClipAudioChannel().also { clipAudio = it })
+        val clipChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_audio")
+        clipChannel.setMethodCallHandler(ClipAudioChannel(clipChannel).also { clipAudio = it })
         // The beep plays on the media stream (see AudioService). A muted or
         // zeroed stream means a silent start signal, so the Dart side asks
         // before every string and shows a one-line notice if needed.

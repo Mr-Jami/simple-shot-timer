@@ -2,7 +2,11 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:async';
+
 import 'package:flutter/services.dart';
+
+import '../../utils/cancel_token.dart';
 
 /// Why a clip's sound could not be read.
 enum ClipAudioError {
@@ -22,6 +26,9 @@ enum ClipAudioError {
 
   /// No decoder on this platform yet (iOS until its pass).
   unavailable,
+
+  /// The caller cancelled the decode.
+  cancelled,
 }
 
 /// Thrown when a clip's sound cannot be read; [error] says why.
@@ -46,8 +53,11 @@ class ClipInfo {
     this.audioMime,
     this.videoMime,
     this.rotationDegrees = 0,
+    this.width,
+    this.height,
     this.colorTransfer,
     this.frameRate,
+    this.captureFrameRate,
     this.creationTime,
   });
 
@@ -57,9 +67,18 @@ class ClipInfo {
   final String? videoMime;
   final int rotationDegrees;
 
+  /// The picture's size as displayed (rotation applied), to size the video
+  /// box before the first frame decodes.
+  final int? width;
+  final int? height;
+
   /// 'sdr', 'pq' (HDR10, Dolby Vision) or 'hlg'; null when unknown.
   final String? colorTransfer;
   final double? frameRate;
+
+  /// The rate the camera recorded at, when it differs in kind from
+  /// [frameRate]: slow motion records faster, time-lapse slower.
+  final double? captureFrameRate;
 
   /// When the clip was recorded, if the file says.
   final DateTime? creationTime;
@@ -100,8 +119,15 @@ abstract interface class ClipAudioSource {
 
   /// Decodes [path]'s audio track to [outputPath]. Of several tracks it takes
   /// the mono or stereo AAC one (iPhone spatial-audio clips add a
-  /// four-channel track), else the first.
-  Future<DecodedAudio> decode(String path, {required String outputPath});
+  /// four-channel track), else the first. [onProgress] gets 0..1 while it
+  /// runs; [cancel] stops it, and it then throws
+  /// [ClipAudioError.cancelled] and leaves no file.
+  Future<DecodedAudio> decode(
+    String path, {
+    required String outputPath,
+    void Function(double fraction)? onProgress,
+    CancelToken? cancel,
+  });
 }
 
 /// [ClipAudioSource] over the `cc.jami.simpleshottimer/clip_audio` channel
@@ -109,9 +135,20 @@ abstract interface class ClipAudioSource {
 class ChannelClipAudioSource implements ClipAudioSource {
   ChannelClipAudioSource({MethodChannel? channel})
       : _channel = channel ??
-            const MethodChannel('cc.jami.simpleshottimer/clip_audio');
+            const MethodChannel('cc.jami.simpleshottimer/clip_audio') {
+    _channel.setMethodCallHandler(_onPlatformCall);
+  }
 
   final MethodChannel _channel;
+  final _progress = <int, void Function(double)>{};
+  static var _nextJobId = 1;
+
+  Future<void> _onPlatformCall(MethodCall call) async {
+    if (call.method != 'progress') return;
+    final args = call.arguments as Map<Object?, Object?>;
+    final fraction = (args['fraction'] as num).toDouble();
+    _progress[args['jobId'] as int]?.call(fraction);
+  }
 
   @override
   Future<ClipInfo> probe(String path) async {
@@ -123,8 +160,11 @@ class ChannelClipAudioSource implements ClipAudioSource {
       audioMime: m['audioMime'] as String?,
       videoMime: m['videoMime'] as String?,
       rotationDegrees: m['rotation'] as int? ?? 0,
+      width: m['width'] as int?,
+      height: m['height'] as int?,
       colorTransfer: m['colorTransfer'] as String?,
       frameRate: (m['frameRate'] as num?)?.toDouble(),
+      captureFrameRate: (m['captureFrameRate'] as num?)?.toDouble(),
       creationTime: created == null
           ? null
           : DateTime.fromMillisecondsSinceEpoch(created, isUtc: true),
@@ -132,9 +172,34 @@ class ChannelClipAudioSource implements ClipAudioSource {
   }
 
   @override
-  Future<DecodedAudio> decode(String path, {required String outputPath}) async {
-    final m =
-        await _invoke('decode', {'path': path, 'outputPath': outputPath});
+  Future<DecodedAudio> decode(
+    String path, {
+    required String outputPath,
+    void Function(double fraction)? onProgress,
+    CancelToken? cancel,
+  }) async {
+    if (cancel?.isCancelled ?? false) {
+      throw const ClipAudioException(ClipAudioError.cancelled);
+    }
+    final jobId = _nextJobId++;
+    if (onProgress != null) _progress[jobId] = onProgress;
+    unawaited(cancel?.whenCancelled.then((_) async {
+      try {
+        await _channel.invokeMethod<void>('cancel', {'jobId': jobId});
+      } on Exception {
+        // The decode reports its own end.
+      }
+    }));
+    final Map<Object?, Object?> m;
+    try {
+      m = await _invoke('decode', {
+        'path': path,
+        'outputPath': outputPath,
+        'jobId': jobId,
+      });
+    } finally {
+      _progress.remove(jobId);
+    }
     return DecodedAudio(
       pcmPath: outputPath,
       sampleRate: m['sampleRate'] as int,
@@ -156,8 +221,8 @@ class ChannelClipAudioSource implements ClipAudioSource {
       }
       return result;
     } on PlatformException catch (e) {
-      throw ClipAudioException(_errors[e.code] ?? ClipAudioError.decodeFailed,
-          e.message);
+      throw ClipAudioException(
+          _errors[e.code] ?? ClipAudioError.decodeFailed, e.message);
     } on MissingPluginException {
       throw const ClipAudioException(ClipAudioError.unavailable);
     }
@@ -168,5 +233,6 @@ class ChannelClipAudioSource implements ClipAudioSource {
     'unsupported_codec': ClipAudioError.unsupportedCodec,
     'unreadable_file': ClipAudioError.unreadableFile,
     'decode_failed': ClipAudioError.decodeFailed,
+    'cancelled': ClipAudioError.cancelled,
   };
 }

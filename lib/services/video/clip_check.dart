@@ -9,6 +9,12 @@ enum ClipProblem {
   /// No audio track, or one without sound in it.
   noSound,
 
+  /// Recorded in slow motion: the sound is missing or slowed down.
+  slowMotion,
+
+  /// A time-lapse or hyperlapse: no usable sound.
+  timeLapse,
+
   /// The phone can't decode the sound (e.g. Dolby Digital on some Androids).
   unreadableSound,
 
@@ -37,6 +43,12 @@ const int _minClipMs = 1000;
 /// analysed.
 ClipProblem? checkClip(ClipInfo info) {
   if (info.videoMime == null) return ClipProblem.unsupportedVideo;
+  final capture = info.captureFrameRate;
+  final playback = info.frameRate;
+  if (capture != null && playback != null && playback > 0) {
+    if (capture > playback * 1.5) return ClipProblem.slowMotion;
+    if (capture < playback / 2) return ClipProblem.timeLapse;
+  }
   if (!info.hasAudio) return ClipProblem.noSound;
   if (info.durationMs < _minClipMs) return ClipProblem.tooShort;
   if (info.durationMs > maxClipPartMs) return ClipProblem.tooLong;
@@ -48,6 +60,7 @@ ClipProblem problemFor(ClipAudioError error) => switch (error) {
       ClipAudioError.unsupportedCodec => ClipProblem.unreadableSound,
       ClipAudioError.unreadableFile => ClipProblem.unreadableFile,
       ClipAudioError.decodeFailed ||
-      ClipAudioError.unavailable =>
+      ClipAudioError.unavailable ||
+      ClipAudioError.cancelled =>
         ClipProblem.failed,
     };
