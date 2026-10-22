@@ -54,11 +54,15 @@ class VideoSession {
   String get pcmPath => '${dir.path}/audio.pcm';
 
   /// Moves the picker's copy at [pickedPath] into this folder (a rename on
-  /// the same disk, else a copy and delete) and returns its new path.
+  /// the same disk, else a copy and delete) and returns its new path. A file
+  /// already in the folder just becomes the clip.
   Future<String> adopt(String pickedPath) async {
     final source = File(pickedPath);
     final name = pickedPath.split(RegExp(r'[/\\]')).last;
     final target = '${dir.path}/$name';
+    if (source.absolute.path == File(target).absolute.path) {
+      return _clipPath = target;
+    }
     try {
       await source.rename(target);
     } on FileSystemException {
