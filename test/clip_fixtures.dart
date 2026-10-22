@@ -25,17 +25,22 @@ double Function() referenceNoise() {
 
 /// Adds one synthetic shot at [at] seconds: a sharp noise blast, a low boom
 /// and a reverb tail, as the reference's test clip does. [gain] scales it.
+/// A longer [attackSeconds] smears the onset the way re-encoding and a
+/// camera's gain control do; a longer [blastSeconds] keeps it loud, like a
+/// shot in a reverberant range.
 void addShot(
   Float32List x,
   double at,
   double Function() rand, {
   double gain = 1,
+  double attackSeconds = 0.0005,
+  double blastSeconds = 0.015,
 }) {
   final s0 = (at * clipSampleRate).round();
   for (var i = 0; i < 0.4 * clipSampleRate && s0 + i < x.length; i++) {
     final t = i / clipSampleRate;
-    final attack = math.min(1.0, t / 0.0005);
-    final blast = 0.9 * math.exp(-t / 0.015) * rand();
+    final attack = math.min(1.0, t / attackSeconds);
+    final blast = 0.9 * math.exp(-t / blastSeconds) * rand();
     final boom = 0.4 * math.exp(-t / 0.03) * math.sin(2 * math.pi * 120 * t);
     final tail = 0.08 * math.exp(-t / 0.08) * rand();
     x[s0 + i] += gain * attack * (blast + boom + tail);
@@ -51,6 +56,30 @@ Int16List toPcm(Float32List x) {
     out[i] = (clipped * 32767 + 0.5).floor();
   }
   return out;
+}
+
+/// A shot as a phone camera with automatic gain control records it: the noise
+/// rises over [riseSeconds] and then holds its level for [holdSeconds]
+/// instead of decaying like a crack.
+void addHeldBurst(
+  Float32List x,
+  double at,
+  double Function() rand, {
+  double gain = 0.6,
+  double riseSeconds = 0.01,
+  double holdSeconds = 0.1,
+}) {
+  final s0 = (at * clipSampleRate).round();
+  final n = ((riseSeconds + holdSeconds + 0.03) * clipSampleRate).round();
+  for (var i = 0; i < n && s0 + i < x.length; i++) {
+    final t = i / clipSampleRate;
+    final envelope = t < riseSeconds
+        ? t / riseSeconds
+        : t < riseSeconds + holdSeconds
+            ? 1.0
+            : math.exp(-(t - riseSeconds - holdSeconds) / 0.01);
+    x[s0 + i] += gain * envelope * rand();
+  }
 }
 
 /// The reference's `test/synthetic.wav`: noise, a 500 ms 2900 Hz beep at
@@ -101,12 +130,14 @@ void addBeep(
   }
 }
 
-/// A noise floor plus [shots], with whatever [extra] adds (beeps, tones),
-/// quantized to 16-bit PCM.
+/// A noise floor plus [shots], with whatever [extra] adds (beeps, tones,
+/// other sounds), quantized to 16-bit PCM. [shot] adds each shot; the
+/// default is the reference's.
 Int16List syntheticClip({
   double seconds = 7,
   List<double> shots = referenceShotTimes,
   void Function(Float32List x)? extra,
+  void Function(Float32List x, double at, double Function() rand)? shot,
 }) {
   final rand = referenceNoise();
   final x = Float32List((clipSampleRate * seconds).round());
@@ -115,7 +146,7 @@ Int16List syntheticClip({
   }
   extra?.call(x);
   for (final at in shots) {
-    addShot(x, at, rand);
+    (shot ?? addShot)(x, at, rand);
   }
   return toPcm(x);
 }
