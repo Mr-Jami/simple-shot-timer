@@ -1,6 +1,6 @@
 # Simple Shot Timer
 
-> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android and iPhone (iOS). It turns a phone into a shot timer for dry-fire and live-fire practice: it detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
+> Simple Shot Timer is the free and open-source shot timer app, with no ads and no data tracking. It is available on Android and iPhone (iOS). It turns a phone into a shot timer for dry-fire and live-fire practice: a par timer that also hears your shots. It detects shots through the microphone, shows splits live, runs Standard, Par and Stage drills, saves the drills you run often and keeps every string on the phone.
 
 - The free and open-source shot timer app. No ads, no data tracking.
 - Price: free. No ads, subscriptions or in-app purchases, and no data tracking: the app sends nothing off the phone.
@@ -16,7 +16,9 @@
 - [Guides](https://simpleshottimer.com/guides/): practical guides for training with a shot timer
 - [How to use your phone as a shot timer](https://simpleshottimer.com/guides/phone-shot-timer/): microphone, sensitivity and Auto-configure, the beep with ear protection, Bluetooth speakers, busy ranges, history and CSV
 - [Dry-fire par drills with par times](https://simpleshottimer.com/guides/dry-fire-par-drills/): dry-fire safety, how par time training works, five classic drills with starting par times and timer settings
-- [Shot timer app or dedicated shot timer?](https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/): an honest comparison and when a dedicated timer is worth buying
+- [Shot timer app or dedicated shot timer?](https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/): an honest comparison, when a dedicated timer is worth buying, and which one to buy
+- [Par timer vs. shot timer](https://simpleshottimer.com/guides/par-timer-vs-shot-timer/): a par timer only beeps, a shot timer also hears your shots; when each one is enough
+- [Free shot timer apps compared](https://simpleshottimer.com/guides/free-shot-timer-apps/): eight free shot timer and par timer apps for iPhone and Android, compared on shot detection, price, ads and data collection (checked October 2026)
 - [What's new](https://simpleshottimer.com/changelog/): every release, newest first, in plain language
 - [App privacy policy](https://simpleshottimer.com/privacy/): what the app stores and processes (everything stays on the device)
 - [Website privacy policy](https://simpleshottimer.com/privacy/website/): what happens when you visit this site (hosting by Netlify, no cookies or tracking)
@@ -26,7 +28,7 @@
 ## German
 
 - [Startseite](https://simpleshottimer.com/de/): the homepage in German
-- [Ratgeber](https://simpleshottimer.com/de/ratgeber/): the guides in German ([Handy als Shot Timer](https://simpleshottimer.com/de/ratgeber/handy-als-shot-timer/), [Par-Drills fürs Trockentraining](https://simpleshottimer.com/de/ratgeber/par-drills-trockentraining/), [App oder Shot Timer](https://simpleshottimer.com/de/ratgeber/app-oder-shot-timer/))
+- [Ratgeber](https://simpleshottimer.com/de/ratgeber/): the guides in German ([Handy als Shot Timer](https://simpleshottimer.com/de/ratgeber/handy-als-shot-timer/), [Par-Drills fürs Trockentraining](https://simpleshottimer.com/de/ratgeber/par-drills-trockentraining/), [App oder Shot Timer](https://simpleshottimer.com/de/ratgeber/app-oder-shot-timer/), [Par Timer oder Shot Timer](https://simpleshottimer.com/de/ratgeber/par-timer-oder-shot-timer/), [Kostenlose Shot-Timer-Apps im Vergleich](https://simpleshottimer.com/de/ratgeber/kostenlose-shot-timer-apps/))
 - [Neuerungen](https://simpleshottimer.com/de/changelog/), [Datenschutz der App](https://simpleshottimer.com/de/datenschutz/) (legally binding), [Datenschutz der Website](https://simpleshottimer.com/de/datenschutz/website/), [Impressum](https://simpleshottimer.com/de/impressum/)
 
 ## Get the app

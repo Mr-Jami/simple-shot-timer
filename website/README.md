@@ -31,7 +31,9 @@ npm run preview   # serves dist/
 | `/guides/` | `/de/ratgeber/` | index of the guides |
 | `/guides/phone-shot-timer/` | `/de/ratgeber/handy-als-shot-timer/` | guide: setting up a phone as a shot timer |
 | `/guides/dry-fire-par-drills/` | `/de/ratgeber/par-drills-trockentraining/` | guide: dry-fire safety, par times, five drills |
-| `/guides/shot-timer-app-vs-dedicated-timer/` | `/de/ratgeber/app-oder-shot-timer/` | guide: app or dedicated timer, compared honestly |
+| `/guides/shot-timer-app-vs-dedicated-timer/` | `/de/ratgeber/app-oder-shot-timer/` | guide: app or dedicated timer, compared honestly, and which timer to buy |
+| `/guides/par-timer-vs-shot-timer/` | `/de/ratgeber/par-timer-oder-shot-timer/` | guide: what a par timer does, what a shot timer adds |
+| `/guides/free-shot-timer-apps/` | `/de/ratgeber/kostenlose-shot-timer-apps/` | guide: free shot timer apps compared (store listings, dated) |
 | `/changelog/` | `/de/changelog/` | built from the repository's `CHANGELOG.md` |
 | `/privacy/` (app) | `/de/datenschutz/` | the app's privacy policy |
 | `/privacy/website/` | `/de/datenschutz/website/` | the website's privacy policy |
@@ -78,10 +80,11 @@ shows one unstyled frame on every load. Inline SVGs also carry `width`/`height`
 attributes, so they stay small even before CSS applies.
 
 Pages hold `<!--site:...-->` placeholders (`nav`, `footer`, `alternates`, `sprite`,
-`changelog`) that the plugin in `vite.config.js` fills in from `build/`. So the
+`changelog`, `faq-jsonld`) that the plugin in `vite.config.js` fills in from `build/`. So the
 navigation, the language switch, the footer and the canonical/hreflang links are
-written once for both languages. The build fails if a placeholder is left unfilled,
-in the pages and in `llms-full.txt`.
+written once for both languages. The homepages' FAQPage JSON-LD is built from their
+own `<details>` FAQ, so editing a question or answer updates the structured data too.
+The build fails if a placeholder is left unfilled, in the pages and in `llms-full.txt`.
 
 ### Adding a page
 
@@ -99,9 +102,10 @@ the text in `.guide-body`, at most 700px wide. From 1100px the contents list sit
 beside the text, and `src/guide.js` (the only script on these pages) marks the section
 being read with `aria-current`; without it the links still work. The drills guide uses
 `.drill` cards: a numbered `.drill-head`, the par times as large numbers in `.drill-par`,
-and the other settings in `.drill-setup`. Every guide ends with `.guide-cta` (the
-official store badges, as on the homepage) and `.guide-more`, links to the other two
-guides. The index pages use `.guide-cards`: a halftone panel with the guide's icon,
+and the other settings in `.drill-setup`. The app comparison uses `.guide-table`, a
+table that scrolls sideways inside its frame on phones with the first column pinned.
+Every guide ends with `.guide-cta` (the official store badges, as on the homepage) and
+`.guide-more`, links to the other guides. The index pages use `.guide-cards`: a halftone panel with the guide's icon,
 topic and reading time, title, summary and "Read guide".
 
 Reading times assume 220 words a minute; update them in the meta line and on the index
@@ -109,7 +113,9 @@ cards when a guide grows. Each guide carries Article JSON-LD in its `<head>`. A 
 needs its URL pair in `PAGES`, a card on both index pages, a `.guide-more` link in the
 other guides, and a line in `public/llms.txt` and `build/llms-full.txt`. Keep the facts
 in step with the app (setting names come from `assets/i18n/*.json`) and write German
-with *du* and "Beep", like the homepage. The nav shows "Guides"/"Ratgeber" only from
+with *du* and "Beep", like the homepage. The app comparison and the dedicated-timer
+list in the app-vs-timer guide describe other people's products: state only what their
+store listings or makers say, keep the date on them, and recheck before changing it. The nav shows "Guides"/"Ratgeber" only from
 900px wide; narrower screens reach the guides through the footer.
 
 ## Changelog

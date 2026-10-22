@@ -61,10 +61,11 @@ export function intro() {
   utils.set(words, { y: '105%' });
   createTimeline({ defaults: { ease: settle } })
     .add('.nav', { opacity: [0, 1], y: [-14, 0] }, 0)
-    .add(words, { y: ['105%', '0%'] }, stagger(90, { start: 200 }))
-    .add('.hero .lede', { opacity: [0, 1], y: [18, 0] }, 460)
-    .add('.hero .cta-row', { opacity: [0, 1], y: [18, 0] }, 540)
-    .add('.hero .trust', { opacity: [0, 1], y: [18, 0] }, 620)
+    .add(words, { y: ['105%', '0%'] }, stagger(45, { start: 200 }))
+    .add('.hero .hero-slogan', { opacity: [0, 1], y: [18, 0] }, 460)
+    .add('.hero .lede', { opacity: [0, 1], y: [18, 0] }, 540)
+    .add('.hero .cta-row', { opacity: [0, 1], y: [18, 0] }, 620)
+    .add('.hero .trust', { opacity: [0, 1], y: [18, 0] }, 700)
     .add(phone, { opacity: [0, 1], y: [72, 0], ease: spring({ bounce: 0, duration: 1100 }) }, 260);
 }
 
