@@ -62,10 +62,18 @@ class ClipAnalysis {
       [for (final s in scan.shots) spectrogram.secondsAt(s.frame)];
 
   /// The string's shots: those after START, past the shortest possible draw.
+  /// A piezo beep that stops abruptly clicks, and that click right at the
+  /// beep's end is not a shot.
   List<double> get stringShotSeconds {
-    final t0 = startSeconds;
-    if (t0 == null) return const [];
-    return [for (final t in shotSeconds) if (t > t0 + _minDraw) t];
+    final beep = start;
+    if (beep == null) return const [];
+    final t0 = beep.onsetSeconds;
+    final stopClickFrom = beep.endSeconds - 0.01;
+    final stopClickTo = beep.endSeconds + 0.05;
+    return [
+      for (final t in shotSeconds)
+        if (t > t0 + _minDraw && (t < stopClickFrom || t > stopClickTo)) t,
+    ];
   }
 
   /// The same clip analysed at another [sensitivity]. Only the shot test and

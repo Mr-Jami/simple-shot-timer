@@ -8,7 +8,9 @@ import 'tone_finder.dart';
 /// (ascending). START is the last real tone before a string of shots:
 ///
 /// * a tone that starts within [quietBefore] after a shot is steel ringing
-///   after a hit or an end beep, never START;
+///   after a hit or an end beep, never START. A "shot" in the last
+///   [attackSeconds] before the onset doesn't count: that is the click of a
+///   piezo beep switching on, measured a hair early;
 /// * a shot must follow the tone within [maxDraw], and no sooner than
 ///   [minDraw] (nobody reacts that fast, so an earlier "shot" is the beep's
 ///   own attack);
@@ -24,12 +26,14 @@ ToneRun? chooseStart(
   double minDraw = 0.1,
   double maxDraw = 8,
   double quietBefore = 1.0,
+  double attackSeconds = 0.03,
   double windowSeconds = 10,
 }) {
   final candidates = [
     for (final t in tones)
-      if (!shotSeconds.any(
-          (s) => s <= t.onsetSeconds && s >= t.onsetSeconds - quietBefore))
+      if (!shotSeconds.any((s) =>
+          s < t.onsetSeconds - attackSeconds &&
+          s >= t.onsetSeconds - quietBefore))
         t,
   ];
   ToneRun? best;

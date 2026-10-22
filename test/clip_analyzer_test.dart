@@ -7,6 +7,10 @@ import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer.dart';
+import 'package:simple_shot_timer/services/video/clip_shot_finder.dart';
+import 'package:simple_shot_timer/services/video/spectrogram.dart';
+import 'package:simple_shot_timer/services/video/start_finder.dart';
+import 'package:simple_shot_timer/services/video/tone_finder.dart';
 
 import 'clip_fixtures.dart';
 
@@ -93,6 +97,50 @@ void main() {
         extra: (x) => addBeep(x, 2.67, 600, frequencyHz: 1500, gain: 0.5),
       );
       expect(startOf(clip), isNull);
+    });
+  });
+
+  group('the clicks of a piezo beep', () {
+    const fps = 374.67;
+    ToneRun beep(double onset, double end) => ToneRun(
+          startFrame: (onset * fps).round(),
+          endFrame: (end * fps).round() - 1,
+          frequencyHz: 3000,
+          onsetSeconds: onset,
+          framesPerSecond: fps,
+        );
+
+    test('a click just before the onset does not disqualify the beep', () {
+      final tone = beep(1.0, 1.4);
+      expect(chooseStart([tone], [0.985, 2.2, 2.6]), same(tone));
+    });
+
+    test('a real shot shortly before a tone still disqualifies it', () {
+      expect(chooseStart([beep(1.0, 1.4)], [0.9, 2.2, 2.6]), isNull);
+    });
+
+    test('the click as the START beep stops is not a shot of the string', () {
+      final spectrogram =
+          Spectrogram.compute(Int16List(clipSampleRate * 7), clipSampleRate);
+      final rate = spectrogram.framesPerSecond;
+      final tone = ToneRun(
+        startFrame: (0.505 * rate).round(),
+        endFrame: (0.934 * rate).round() - 1,
+        frequencyHz: 3000,
+        onsetSeconds: 0.505,
+        framesPerSecond: rate,
+      );
+      final analysis = ClipAnalysis(
+        spectrogram: spectrogram,
+        tones: [tone],
+        scan: ShotScan(shots: [
+          for (final t in [0.963, 1.251, 2.036]) ShotHit((t * rate).round()),
+        ], gate: 0),
+        sensitivity: ShotSensitivity.normal,
+        start: tone,
+      );
+      expect(analysis.stringShotSeconds, hasLength(2));
+      expect(analysis.stringShotSeconds.first, closeTo(1.251, 0.003));
     });
   });
 
