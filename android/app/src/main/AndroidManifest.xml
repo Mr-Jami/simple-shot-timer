@@ -22,6 +22,9 @@
          to Android 10; newer versions write there without a permission. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29"/>
+    <!-- Media3 (video player, export) declares this for streaming; the app only
+         plays and exports files on the phone, so drop the permission. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove"/>
     <!-- Declare microphone hardware feature, non-required so app still installs on devices without one -->
     <uses-feature android:name="android.hardware.microphone" android:required="false"/>
 
