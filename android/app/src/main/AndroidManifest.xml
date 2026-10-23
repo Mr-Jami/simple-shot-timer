@@ -18,6 +18,10 @@
     <!-- flutter_foreground_task declares this for restarting the service after
          a reboot. We run it with autoRunOnBoot: false, so drop the permission. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" tools:node="remove"/>
+    <!-- Saving an exported video to the phone's videos (gal) needs this up
+         to Android 10; newer versions write there without a permission. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29"/>
     <!-- Declare microphone hardware feature, non-required so app still installs on devices without one -->
     <uses-feature android:name="android.hardware.microphone" android:required="false"/>
 

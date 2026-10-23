@@ -25,6 +25,7 @@ void main() {
       touch('string_draft_1760000000000.csv'),
       touch('simple_shot_timer_export_1760000000000.csv'),
       touch(p.join('share_plus', 'simple_shot_timer_export_1760000000000.csv')),
+      touch(p.join('share_plus', 'SimpleShotTimer_2026-10-23_21.47s.mp4')),
     ];
     final others = [
       touch('notes.csv'),
@@ -42,6 +43,19 @@ void main() {
     for (final f in others) {
       expect(f.existsSync(), isTrue, reason: f.path);
     }
+  });
+
+  test('deleteVideoShares removes only shared videos', () async {
+    final video =
+        touch(p.join('share_plus', 'SimpleShotTimer_2026-10-23_21.47s.mp4'));
+    final csv = touch(p.join('share_plus', 'string_12_1760000000000.csv'));
+    final other = touch(p.join('share_plus', 'holiday.mp4'));
+
+    await ExportService().deleteVideoShares(tempDir: temp);
+
+    expect(video.existsSync(), isFalse);
+    expect(csv.existsSync(), isTrue);
+    expect(other.existsSync(), isTrue);
   });
 
   test('deleteExports copes with an empty or missing directory', () async {

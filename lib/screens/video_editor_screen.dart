@@ -13,9 +13,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../i18n/app_localizations.dart';
 import '../providers/clip_editor_provider.dart';
 import '../providers/settings_provider.dart';
+import '../providers/video_export_provider.dart';
 import '../providers/video_providers.dart';
 import '../services/video/clip_player.dart';
 import '../services/video/clip_signal.dart';
+import '../services/video/export_plan.dart';
 import '../services/video/hud.dart';
 import '../services/video/marker_doc.dart';
 import '../utils/motion.dart';
@@ -34,6 +36,8 @@ import '../widgets/timeline/timeline_controller.dart';
 import '../widgets/timeline/timeline_minimap.dart';
 import '../widgets/video/hud_overlay.dart';
 import '../widgets/video/hud_painter.dart';
+import 'video_export_dialog.dart';
+import 'video_export_sheet.dart';
 
 /// The video editor: the clip pinned on top, the time readout and
 /// transport, the timeline (the spectrogram scrolling under a fixed
@@ -81,6 +85,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   /// The overlay preview over the video (the eye button).
   var _showHud = true;
+
+  /// While the Export sheet is open, the exported range plays in a loop.
+  (int, int)? _loop;
 
   /// Haptic ticks at most every 50 ms while the timeline passes markers.
   final _clock = Stopwatch()..start();
@@ -177,8 +184,20 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     final clip = widget.args.clip;
     final ms =
         _reportedMs + _sinceReport.elapsedMilliseconds * value.playbackSpeed;
+    final loop = _loop;
+    if (loop != null && ms >= loop.$2) return _playFrom(loop.$1);
     if (ms >= clip.toMs) _player.pause();
     _timeline.follow(ms.round().clamp(clip.fromMs, clip.toMs));
+  }
+
+  /// Plays from [ms]: the timeline jumps there and follows from it.
+  void _playFrom(int ms) {
+    _timeline.centreOn(ms, animate: false);
+    _reportedMs = ms;
+    _sinceReport
+      ..reset()
+      ..start();
+    _player.play();
   }
 
   void _togglePlay() {
@@ -320,6 +339,49 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
           onPressed: _editor.undo,
         ),
       ));
+  }
+
+  // Export ----------------------------------------------------------------
+
+  /// The Export sheet over the playing export, then the export itself. The
+  /// string is saved first: exporting counts as keeping it.
+  Future<void> _export() async {
+    final start = ref.read(_provider).doc.startMs;
+    if (start == null) return;
+    final clip = widget.args.clip;
+    final plan = ExportPlan(
+      HudString(_editor.draft, startMs: start),
+      clip.info,
+      fromMs: clip.fromMs,
+      toMs: clip.toMs,
+    );
+    _editor.select(null);
+    setState(() => _showHud = true);
+    _loop = (plan.startMs, plan.endMs);
+    _playFrom(plan.startMs);
+    final target = await showExportSheet(context);
+    _loop = null;
+    await _player.pause();
+    if (target == null || !mounted) return;
+    await _editor.flush();
+    if (!mounted) return;
+    final settings = ref.read(settingsProvider);
+    await showExportDialog(
+      context,
+      ExportJob(
+        clip: clip,
+        session: widget.args.session,
+        string: HudString(_editor.draft, startMs: start),
+        options: HudOptions(
+          style: settings.hudStyle,
+          corner: settings.hudCorner,
+          endCard: settings.hudEndCard,
+        ),
+        labels: HudLabels.of(context),
+        logo: ref.read(hudLogoProvider).valueOrNull,
+        target: target,
+      ),
+    );
   }
 
   // Leaving ---------------------------------------------------------------
@@ -470,6 +532,20 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
               ),
               const Divider(height: 1),
               Expanded(child: _details(context, state)),
+              SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  child: FilledButton.icon(
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(52),
+                    ),
+                    icon: const Icon(Icons.movie_outlined),
+                    label: Text(context.tr('editor.export')),
+                    onPressed: state.doc.isComplete ? _export : null,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

@@ -14,6 +14,7 @@ import io.flutter.plugin.common.MethodChannel
 class MainActivity : FlutterActivity() {
     private var clipAudio: ClipAudioChannel? = null
     private var clipFiles: ClipFilesChannel? = null
+    private var clipExport: ClipExportChannel? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -23,6 +24,9 @@ class MainActivity : FlutterActivity() {
         // "Or choose from Files": the document picker, copied into the clip's folder.
         val filesChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_files")
         filesChannel.setMethodCallHandler(ClipFilesChannel(this, filesChannel).also { clipFiles = it })
+        // Exports a corrected clip with the shot timer overlay.
+        val exportChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_export")
+        exportChannel.setMethodCallHandler(ClipExportChannel(applicationContext, exportChannel).also { clipExport = it })
         // The beep plays on the media stream (see AudioService). A muted or
         // zeroed stream means a silent start signal, so the Dart side asks
         // before every string and shows a one-line notice if needed.
@@ -58,6 +62,8 @@ class MainActivity : FlutterActivity() {
         clipAudio = null
         clipFiles?.dispose()
         clipFiles = null
+        clipExport?.dispose()
+        clipExport = null
         super.cleanUpFlutterEngine(flutterEngine)
     }
 }

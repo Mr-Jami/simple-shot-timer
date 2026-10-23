@@ -76,17 +76,36 @@ class ExportService {
   static final _exportName =
       RegExp(r'^(string_(\d+|draft)_\d+|simple_shot_timer_export_\d+)\.csv$');
 
+  /// Exported videos (`SimpleShotTimer_2026-10-23_21.47s.mp4`); share_plus
+  /// keeps a copy of a shared one.
+  static final _videoName =
+      RegExp(r'^SimpleShotTimer_\d{4}-\d{2}-\d{2}_\d+\.\d{2}s\.mp4$');
+
   /// Part of "Delete all data and settings": removes every CSV export still
   /// in temporary storage, including the copy share_plus keeps in
-  /// `share_plus/` on Android until the next share. [tempDir] is for tests.
+  /// `share_plus/` on Android until the next share, and its copies of shared
+  /// videos. [tempDir] is for tests.
   Future<void> deleteExports({Directory? tempDir}) async {
     final root = tempDir ?? await getTemporaryDirectory();
     for (final dir in [root, Directory(p.join(root.path, 'share_plus'))]) {
-      if (!await dir.exists()) continue;
-      await for (final entity in dir.list(followLinks: false)) {
-        if (entity is File && _exportName.hasMatch(p.basename(entity.path))) {
-          await entity.delete();
-        }
+      await _delete(dir, (name) =>
+          _exportName.hasMatch(name) || _videoName.hasMatch(name));
+    }
+  }
+
+  /// At start-up: share_plus's copies of shared videos, which can be large
+  /// (the share finished long ago). [tempDir] is for tests.
+  Future<void> deleteVideoShares({Directory? tempDir}) async {
+    final root = tempDir ?? await getTemporaryDirectory();
+    final shares = Directory(p.join(root.path, 'share_plus'));
+    await _delete(shares, _videoName.hasMatch);
+  }
+
+  Future<void> _delete(Directory dir, bool Function(String name) match) async {
+    if (!await dir.exists()) return;
+    await for (final entity in dir.list(followLinks: false)) {
+      if (entity is File && match(p.basename(entity.path))) {
+        await entity.delete();
       }
     }
   }

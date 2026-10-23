@@ -66,3 +66,10 @@ android {
 flutter {
     source = "../.."
 }
+
+dependencies {
+    // The video export (ClipExportChannel.kt): the same Media3 version that
+    // video_player_android 2.9.5 brings for its player.
+    implementation("androidx.media3:media3-transformer:1.9.2")
+    implementation("androidx.media3:media3-effect:1.9.2")
+}

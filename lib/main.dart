@@ -12,6 +12,7 @@ import 'providers/providers.dart';
 import 'services/audio_service.dart';
 import 'services/background_service.dart';
 import 'services/database_service.dart';
+import 'services/export_service.dart';
 import 'services/video/video_work_dir.dart';
 import 'utils/legal.dart';
 
@@ -33,6 +34,7 @@ Future<void> main() async {
   // outlives its editor.
   try {
     await VideoWorkDir().sweep();
+    await ExportService().deleteVideoShares();
   } on Exception {
     // Tried again next start.
   }

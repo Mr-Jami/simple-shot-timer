@@ -44,6 +44,9 @@ class SettingsService {
   /// keys. Not part of [AppSettings]; survives [reset].
   static const _kCustomDrills = 'custom_drills';
 
+  /// Not a setting either: what this phone's encoder does to colours.
+  static const _kEncoderColorFix = 'video_encoder_color_fix';
+
   AppSettings load() {
     const defaults = AppSettings();
     return AppSettings(
@@ -117,6 +120,14 @@ class SettingsService {
       _prefs.setBool(_kHudEndCard, s.hudEndCard),
     ]);
   }
+
+  /// Whether this phone's video encoder needs the colour fix (see
+  /// `ClipExporter.encoderNeedsColorFix`): found by encoding a frame once,
+  /// then kept. Null until checked; a reset checks again.
+  bool? get encoderColorFix => _prefs.getBool(_kEncoderColorFix);
+
+  Future<void> setEncoderColorFix(bool value) =>
+      _prefs.setBool(_kEncoderColorFix, value);
 
   List<CustomDrill> loadDrills() =>
       CustomDrill.decodeList(_prefs.getString(_kCustomDrills));

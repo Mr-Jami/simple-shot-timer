@@ -90,6 +90,15 @@ void main() {
       expect(l.card.bottom, lessThanOrEqualTo(1920 * 4 / 5));
     });
 
+    test('the end card never covers the corner overlay', () {
+      for (final frame in const [landscape, portrait, Size(480, 854)]) {
+        for (final corner in HudCorner.values) {
+          final l = HudLayout(frame, HudOptions(corner: corner));
+          expect(l.card.overlaps(l.box), isFalse, reason: '$frame $corner');
+        }
+      }
+    });
+
     test('more style, taller box; the end card in the middle', () {
       double height(HudStyle s) =>
           HudLayout(landscape, HudOptions(style: s)).box.height;

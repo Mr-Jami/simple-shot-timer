@@ -51,6 +51,9 @@ dependencies:
   url_launcher: ^6.3.3
   video_player: ^2.11.1
   image_picker: ^1.2.4
+  # Saves an exported video to the phone's videos. 2.3.3: the newest that
+  # builds with Flutter 3.41.
+  gal: 2.3.3
 
 dev_dependencies:
   flutter_test:

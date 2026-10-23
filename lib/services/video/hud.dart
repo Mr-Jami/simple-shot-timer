@@ -132,20 +132,29 @@ class HudLayout {
     final top = bottom ? frame.height - bottomInset - size.height : margin;
 
     // The end card in the middle; on tall frames, of the part above the
-    // bottom fifth.
+    // bottom fifth. Where that would cover the corner overlay (narrow
+    // frames), it moves into the room beside it, above or below.
+    final box = Rect.fromLTWH(left, top, size.width, size.height);
     final cardWidth = math.min(cardUnits.width * unit, frame.width * 0.9);
     final cardHeight = cardUnits.height * unit;
     final usable = tall ? frame.height * 4 / 5 : frame.height;
+    var card = Rect.fromLTWH(
+      (frame.width - cardWidth) / 2,
+      (usable - cardHeight) / 2,
+      cardWidth,
+      cardHeight,
+    );
+    if (card.overlaps(box)) {
+      final cardTop = bottom
+          ? math.max(margin, box.top - margin - cardHeight)
+          : math.min(box.bottom + margin, usable - margin - cardHeight);
+      card = Rect.fromLTWH(card.left, cardTop, cardWidth, cardHeight);
+    }
     return HudLayout._(
       frame: frame,
       unit: unit,
-      box: Rect.fromLTWH(left, top, size.width, size.height),
-      card: Rect.fromLTWH(
-        (frame.width - cardWidth) / 2,
-        (usable - cardHeight) / 2,
-        cardWidth,
-        cardHeight,
-      ),
+      box: box,
+      card: card,
       alignRight: right,
     );
   }
