@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../i18n/app_localizations.dart';
 import '../models/enums.dart';
 import '../providers/settings_provider.dart';
 import '../providers/timer_provider.dart';
 import '../utils/motion.dart';
+import '../widgets/app_navigation_bar.dart';
 import '../widgets/flash_overlay.dart';
 import 'custom_drills_screen.dart';
 import 'history_screen.dart';
@@ -96,35 +96,9 @@ class _MainShellState extends ConsumerState<MainShell> {
               child: AnimatedOpacity(
                 opacity: inProgress ? 0.38 : 1,
                 duration: motion(context, kMotionMedium),
-                child: NavigationBar(
+                child: AppNavigationBar(
                   selectedIndex: _index,
                   onDestinationSelected: _select,
-                  destinations: [
-                    NavigationDestination(
-                      icon: const Icon(Icons.timer_outlined),
-                      selectedIcon: const Icon(Icons.timer),
-                      label: context.tr('nav.timer'),
-                    ),
-                    NavigationDestination(
-                      icon: const Icon(Icons.bookmarks_outlined),
-                      selectedIcon: const Icon(Icons.bookmarks),
-                      label: context.tr('nav.drills'),
-                    ),
-                    NavigationDestination(
-                      icon: const Icon(Icons.videocam_outlined),
-                      selectedIcon: const Icon(Icons.videocam),
-                      label: context.tr('nav.video'),
-                    ),
-                    NavigationDestination(
-                      icon: const Icon(Icons.history),
-                      label: context.tr('nav.history'),
-                    ),
-                    NavigationDestination(
-                      icon: const Icon(Icons.settings_outlined),
-                      selectedIcon: const Icon(Icons.settings),
-                      label: context.tr('nav.settings'),
-                    ),
-                  ],
                 ),
               ),
             ),
