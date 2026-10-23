@@ -26,6 +26,17 @@ class ReviewScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stringAsync = ref.watch(stringByIdProvider(stringId));
+    // A string discarded in the video editor (Choose video again) takes its
+    // Review with it. The editor is still on top then, so this route is
+    // removed rather than popped.
+    ref.listen(stringByIdProvider(stringId), (previous, next) {
+      if (previous?.value != null && next.hasValue && next.value == null) {
+        final route = ModalRoute.of(context);
+        if (route != null && route.isActive) {
+          Navigator.of(context).removeRoute(route);
+        }
+      }
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text(context.tr('review.title')),
