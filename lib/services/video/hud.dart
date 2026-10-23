@@ -65,16 +65,30 @@ class HudMoment {
     this.endCard = 0,
   });
 
+  /// The shot tick: the clock grows by [tickGrowth] and back over 120 ms,
+  /// the timing of the timer's big number (`kMotionTick`), twice its size
+  /// because it is seen small, over a video.
+  static const int tickMs = 120;
+  static const double tickGrowth = 0.06;
+  static const int endCardDelayMs = 500;
+  static const int endCardFadeMs = 300;
+
   /// At clip time [ms]: the clock reads 0 before START, runs, and stops on
-  /// the last shot; each shot pulses it for [tickMs]; the end card fades in
+  /// the last shot; each shot pulses it for [tickMs] unless [pulse] is off
+  /// (the preview under reduced motion); the end card fades in
   /// [endCardDelayMs] after the last shot.
-  factory HudMoment.at(HudString s, int ms, {bool endCard = true}) {
+  factory HudMoment.at(
+    HudString s,
+    int ms, {
+    bool endCard = true,
+    bool pulse = true,
+  }) {
     var fired = 0;
     while (fired < s.shotCount && s.shotMs(fired) <= ms) {
       fired++;
     }
     var tick = 1.0;
-    if (fired > 0) {
+    if (pulse && fired > 0) {
       final since = ms - s.shotMs(fired - 1);
       if (since < tickMs) {
         tick = 1 + tickGrowth * math.sin(math.pi * since / tickMs);
@@ -92,13 +106,6 @@ class HudMoment {
       endCard: card,
     );
   }
-
-  /// The shot tick: the clock grows by [tickGrowth] and back, the same
-  /// pulse as the timer's big number.
-  static const int tickMs = 120;
-  static const double tickGrowth = 0.06;
-  static const int endCardDelayMs = 500;
-  static const int endCardFadeMs = 300;
 
   final int clockMs;
 
@@ -174,6 +181,8 @@ class HudLayout {
   static const double badgeUnits = 1.2;
   static const double gapUnits = 0.3;
   static const double clockUnits = 2.8;
+  static const double clockFontUnits = 2.4;
+  static const double chipWidthUnits = 5.6;
   static const double lineUnits = 0.9;
   static const double chipUnits = 1.0;
   static const double chipPitchUnits = 1.2;

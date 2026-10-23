@@ -12,7 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../i18n/app_localizations.dart';
 import '../providers/clip_editor_provider.dart';
-import '../providers/settings_provider.dart';
 import '../providers/video_export_provider.dart';
 import '../providers/video_providers.dart';
 import '../services/video/clip_player.dart';
@@ -35,7 +34,6 @@ import '../widgets/timeline/spectrogram_tiles.dart';
 import '../widgets/timeline/timeline_controller.dart';
 import '../widgets/timeline/timeline_minimap.dart';
 import '../widgets/video/hud_overlay.dart';
-import '../widgets/video/hud_painter.dart';
 import 'video_export_dialog.dart';
 import 'video_export_sheet.dart';
 
@@ -174,17 +172,19 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   /// While the video plays, the timeline follows it, running on between
   /// the player's position reports (every 100 ms). Playback stops at the
-  /// end of the analysed part.
+  /// end of the analysed part, or loops while the Export sheet is open (also
+  /// when the video itself ends first).
   void _followPlayback(Duration elapsed) {
     final value = _player.value;
+    final loop = _loop;
     if (!value.isPlaying) {
+      if (loop != null && value.isCompleted) return _playFrom(loop.$1);
       _timeline.stopFollowing();
       return;
     }
     final clip = widget.args.clip;
     final ms =
         _reportedMs + _sinceReport.elapsedMilliseconds * value.playbackSpeed;
-    final loop = _loop;
     if (loop != null && ms >= loop.$2) return _playFrom(loop.$1);
     if (ms >= clip.toMs) _player.pause();
     _timeline.follow(ms.round().clamp(clip.fromMs, clip.toMs));
@@ -237,19 +237,15 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
         ? Size(info.width!.toDouble(), info.height!.toDouble())
         : _player.value.size;
     if (!_showHud || start == null || frame.isEmpty) return null;
-    final settings = ref.watch(settingsProvider);
     return HudOverlay(
       frame: frame,
       string: HudString(_editor.draft, startMs: start),
-      options: HudOptions(
-        style: settings.hudStyle,
-        corner: settings.hudCorner,
-        endCard: settings.hudEndCard,
-      ),
-      labels: HudLabels.of(context),
+      options: ref.watch(hudOptionsProvider),
+      labels: context.hudLabels,
       timeMs: _hudTimeMs,
       repaint: _timeline,
       logo: ref.watch(hudLogoProvider).valueOrNull,
+      reduceMotion: _reduced,
     );
   }
 
@@ -349,8 +345,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     final start = ref.read(_provider).doc.startMs;
     if (start == null) return;
     final clip = widget.args.clip;
+    final string = HudString(_editor.draft, startMs: start);
     final plan = ExportPlan(
-      HudString(_editor.draft, startMs: start),
+      string,
       clip.info,
       fromMs: clip.fromMs,
       toMs: clip.toMs,
@@ -365,19 +362,15 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     if (target == null || !mounted) return;
     await _editor.flush();
     if (!mounted) return;
-    final settings = ref.read(settingsProvider);
     await showExportDialog(
       context,
       ExportJob(
         clip: clip,
         session: widget.args.session,
-        string: HudString(_editor.draft, startMs: start),
-        options: HudOptions(
-          style: settings.hudStyle,
-          corner: settings.hudCorner,
-          endCard: settings.hudEndCard,
-        ),
-        labels: HudLabels.of(context),
+        string: string,
+        plan: plan,
+        options: ref.read(hudOptionsProvider),
+        labels: context.hudLabels,
         logo: ref.read(hudLogoProvider).valueOrNull,
         target: target,
       ),

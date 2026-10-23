@@ -66,8 +66,13 @@ void main() {
     final text =
         entries.expand((e) => e.paragraphs).map((p) => p.text).join('\n');
     expect(text, contains('SIL Open Font License'));
-    expect(File('pubspec.yaml').readAsStringSync(),
-        contains('assets/fonts/Montserrat-ExtraBoldItalic.ttf'));
+    // Declared as the Montserrat family, and the file is there.
+    const font = 'assets/fonts/Montserrat-ExtraBoldItalic.ttf';
+    expect(
+        File('pubspec.yaml').readAsStringSync(),
+        matches(RegExp(r'family: Montserrat\s+fonts:\s+- asset: ' +
+            RegExp.escape(font))));
+    expect(File(font).existsSync(), isTrue);
   });
 
   test('every source file points to the license and NOTICE', () {

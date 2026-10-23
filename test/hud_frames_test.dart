@@ -12,8 +12,8 @@ import 'package:simple_shot_timer/models/timer_string.dart';
 import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
 import 'package:simple_shot_timer/services/video/export_plan.dart';
 import 'package:simple_shot_timer/services/video/hud.dart';
-import 'package:simple_shot_timer/widgets/video/hud_frames.dart';
-import 'package:simple_shot_timer/widgets/video/hud_painter.dart';
+import 'package:simple_shot_timer/services/video/hud_frames.dart';
+import 'package:simple_shot_timer/services/video/hud_painter.dart';
 
 void main() {
   // START at 10 s; shots 1.0 and 1.5 s after it; a 640x360 clip at 10 fps

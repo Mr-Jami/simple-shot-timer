@@ -261,6 +261,7 @@
   "export.saved": "Tallennettu kuviin",
   "export.ready": "Videosi on valmis.",
   "export.noAccess": "Simple Shot Timer ei saa tallentaa videoita. Voit silti jakaa sen.",
+  "export.saveFailed": "Videota ei voitu tallentaa kuviin. Voit silti jakaa sen.",
   "export.failed": "Videota ei voitu viedä.",
   "export.done": "Valmis",
 

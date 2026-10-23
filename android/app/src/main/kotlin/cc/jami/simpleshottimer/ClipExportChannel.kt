@@ -11,7 +11,6 @@ import android.media.MediaCodec
 import android.media.MediaExtractor
 import android.media.MediaFormat
 import android.net.Uri
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.OptIn
@@ -60,11 +59,11 @@ import kotlin.math.abs
  *   `timesUs[i]` (output time) on, placed with its top left at (`x`, `y`)
  *   in fractions of the frame. Progress (0..1) comes back as `progress`
  *   messages; `cancel` names the job to stop. Fails with `cancelled` or
- *   `export_failed`.
+ *   `export_failed`, leaving no file.
  * - `checkEncoderColors` encodes one green frame and reads its luma back:
  *   some encoders (the Galaxy S21 FE's) convert RGB with the BT.601 matrix
- *   while the file says BT.709, which shifts saturated colours; the answer
- *   ("bt601" or "bt709") tells Dart whether to send `colorFix`.
+ *   while the file says BT.709, which shifts saturated colours; `needsFix`
+ *   tells Dart whether to send `colorFix`.
  */
 @OptIn(UnstableApi::class)
 class ClipExportChannel(
@@ -75,7 +74,7 @@ class ClipExportChannel(
     private val worker = Executors.newSingleThreadExecutor()
     private var job: Job? = null
 
-    /** The colour check's encode, held while it runs. */
+    /** The colour check's encode, held so dispose can stop it. */
     private var checking: Transformer? = null
 
     private class Job(
@@ -83,7 +82,6 @@ class ClipExportChannel(
         val transformer: Transformer,
         val result: MethodChannel.Result,
         val output: File,
-        val overlays: List<FrameSequenceOverlay>,
     )
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
@@ -114,20 +112,22 @@ class ClipExportChannel(
             it.transformer.cancel()
             finish(it) { r -> r.error("cancelled", null, null) }
         }
+        checking?.cancel()
+        checking = null
         worker.shutdown()
     }
 
     private fun start(call: MethodCall, result: MethodChannel.Result) {
-        val jobId = call.argument<Int>("jobId") ?: 0
+        val jobId = call.argument<Int>("jobId")!!
         val input = File(call.argument<String>("input")!!)
         val output = File(call.argument<String>("output")!!)
         val startMs = call.argument<Number>("startMs")!!.toLong()
         val endMs = call.argument<Number>("endMs")!!.toLong()
-        val shortSide = call.argument<Int>("shortSide") ?: 0
+        val shortSide = call.argument<Int>("shortSide")
         val maxFps = call.argument<Double>("maxFps")
-        val bitrate = call.argument<Int>("bitrate") ?: 12_000_000
-        val colorFix = call.argument<Boolean>("colorFix") == true
-        val overlays = (call.argument<List<Map<String, Any?>>>("overlays") ?: emptyList()).map {
+        val bitrate = call.argument<Int>("bitrate")!!
+        val colorFix = call.argument<Boolean>("colorFix")!!
+        val overlays = call.argument<List<Map<String, Any?>>>("overlays")!!.map {
             FrameSequenceOverlay(
                 dir = File(it["dir"] as String),
                 timesUs = (it["timesUs"] as List<*>).map { t -> (t as Number).toLong() }.toLongArray(),
@@ -140,7 +140,7 @@ class ClipExportChannel(
 
         val effects = buildList<Effect> {
             if (maxFps != null) add(FrameDropEffect.createDefaultFrameDropEffect(maxFps.toFloat()))
-            if (shortSide > 0) add(Presentation.createForShortSide(shortSide))
+            if (shortSide != null) add(Presentation.createForShortSide(shortSide))
             if (overlays.isNotEmpty()) add(OverlayEffect(ImmutableList.copyOf<TextureOverlay>(overlays)))
             if (colorFix) add(RgbMatrix { _, _ -> BT601_TO_709_FIX })
         }
@@ -158,23 +158,15 @@ class ClipExportChannel(
             .setHdrMode(Composition.HDR_MODE_TONE_MAP_HDR_TO_SDR_USING_OPEN_GL)
             .build()
         output.delete()
+        // The listener finishes its own job only: a cancelled export's late
+        // callback must not end the next one.
+        lateinit var mine: Job
         val transformer = Transformer.Builder(context)
             .setVideoMimeType(MimeTypes.VIDEO_H264)
             .setEncoderFactory(encoders(bitrate))
             .addListener(object : Transformer.Listener {
                 override fun onCompleted(composition: Composition, exportResult: ExportResult) {
-                    val running = job ?: return
-                    finish(running) {
-                        it.success(
-                            mapOf(
-                                "fileSizeBytes" to exportResult.fileSizeBytes,
-                                "durationMs" to exportResult.approximateDurationMs,
-                                "width" to exportResult.width,
-                                "height" to exportResult.height,
-                                "firstOverlayUs" to running.overlays.firstOrNull()?.firstUs,
-                            ),
-                        )
-                    }
+                    finish(mine, made = true) { it.success(null) }
                 }
 
                 override fun onError(
@@ -182,15 +174,21 @@ class ClipExportChannel(
                     exportResult: ExportResult,
                     exportException: ExportException,
                 ) {
-                    val running = job ?: return
-                    finish(running) {
+                    finish(mine) {
                         it.error("export_failed", "${exportException.errorCodeName}: ${exportException.message}", null)
                     }
                 }
             })
             .build()
-        job = Job(jobId, transformer, result, output, overlays)
-        transformer.start(composition, output.path)
+        mine = Job(jobId, transformer, result, output)
+        job = mine
+        try {
+            transformer.start(composition, output.path)
+        } catch (e: Exception) {
+            // Not started: free the channel for the next export.
+            job = null
+            throw e
+        }
         main.post(progress)
     }
 
@@ -205,15 +203,15 @@ class ClipExportChannel(
         }
     }
 
-    /** Ends [running]: replies through [reply], and leaves no partial file on failure. */
-    private fun finish(running: Job, reply: (MethodChannel.Result) -> Unit) {
+    /** Ends [running] once: replies through [reply]; unless [made], deletes what was written. */
+    private fun finish(running: Job, made: Boolean = false, reply: (MethodChannel.Result) -> Unit) {
         if (job !== running) return
         job = null
         main.removeCallbacks(progress)
         try {
             reply(running.result)
         } finally {
-            if (!running.output.exists() || running.output.length() == 0L) running.output.delete()
+            if (!made) running.output.delete()
         }
     }
 
@@ -242,7 +240,11 @@ class ClipExportChannel(
             .addListener(object : Transformer.Listener {
                 override fun onCompleted(composition: Composition, exportResult: ExportResult) {
                     checking = null
-                    val encoder = exportResult.videoEncoderName
+                    // The engine went away meanwhile: nobody waits for the answer.
+                    if (worker.isShutdown) {
+                        dir.deleteRecursively()
+                        return
+                    }
                     worker.execute {
                         val luma = try {
                             centreLuma(video)
@@ -255,14 +257,7 @@ class ClipExportChannel(
                             if (luma == null) {
                                 result.error("check_failed", "no frame", null)
                             } else {
-                                result.success(
-                                    mapOf(
-                                        "matrix" to matrixFor(luma),
-                                        "luma" to luma,
-                                        "encoder" to encoder,
-                                        "build" to Build.FINGERPRINT,
-                                    ),
-                                )
+                                result.success(mapOf("needsFix" to needsColorFix(luma)))
                             }
                         }
                     }
@@ -347,9 +342,9 @@ class ClipExportChannel(
          * 145 (and full range at 182 and 150). Only BT.601 limited, the
          * mismatch seen on Samsung, is corrected.
          */
-        fun matrixFor(luma: Int): String {
+        fun needsColorFix(luma: Int): Boolean {
             val candidates = mapOf("bt709" to 173, "bt601" to 145, "bt709full" to 182, "bt601full" to 150)
-            return candidates.minByOrNull { abs(it.value - luma) }!!.key
+            return candidates.minByOrNull { abs(it.value - luma) }!!.key == "bt601"
         }
 
         /**
@@ -379,8 +374,6 @@ private class FrameSequenceOverlay(
     private val x: Float,
     private val y: Float,
 ) : BitmapOverlay() {
-    /** The first frame time asked for, to check which time base Media3 uses. */
-    var firstUs: Long? = null
     private var current = -1
     private var shown = 0
     private val bitmaps = arrayOfNulls<Bitmap>(2)
@@ -398,7 +391,6 @@ private class FrameSequenceOverlay(
     override fun getOverlaySettings(presentationTimeUs: Long): OverlaySettings = settings
 
     override fun getBitmap(presentationTimeUs: Long): Bitmap {
-        if (firstUs == null) firstUs = presentationTimeUs
         var i = timesUs.binarySearch(presentationTimeUs)
         if (i < 0) i = -i - 2
         i = i.coerceIn(0, timesUs.size - 1)
@@ -424,5 +416,4 @@ private class FrameSequenceOverlay(
         }
         return bitmaps[shown]!!
     }
-
 }

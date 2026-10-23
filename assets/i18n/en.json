@@ -261,6 +261,7 @@
   "export.saved": "Saved to Photos",
   "export.ready": "Your video is ready.",
   "export.noAccess": "Simple Shot Timer isn’t allowed to save videos. You can still share it.",
+  "export.saveFailed": "The video couldn’t be saved to Photos. You can still share it.",
   "export.failed": "The video couldn’t be exported.",
   "export.done": "Done",
 

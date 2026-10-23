@@ -261,6 +261,7 @@
   "export.saved": "Zapisano w Zdjęciach",
   "export.ready": "Twoje wideo jest gotowe.",
   "export.noAccess": "Simple Shot Timer nie może zapisywać wideo. Możesz je jednak udostępnić.",
+  "export.saveFailed": "Nie udało się zapisać wideo w Zdjęciach. Możesz je jednak udostępnić.",
   "export.failed": "Nie udało się wyeksportować wideo.",
   "export.done": "Gotowe",
 

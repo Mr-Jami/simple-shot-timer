@@ -6,12 +6,28 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
+import '../../i18n/app_localizations.dart';
 import '../../services/video/hud.dart';
-import 'hud_painter.dart';
+import '../../services/video/hud_painter.dart';
+
+/// The overlay's words in the app's language.
+extension HudLabelsOf on BuildContext {
+  HudLabels get hudLabels => HudLabels(
+        total: tr('review.summary.total'),
+        first: tr('review.summary.first'),
+        average: tr('review.summary.average'),
+        fastest: tr('review.summary.fastest'),
+        shots: tr('review.summary.shots'),
+        penaltyTemplate:
+            tr('review.penalty', args: {'seconds': HudLabels.placeholder}),
+        locale: dateLocale,
+      );
+}
 
 /// The overlay over a clip, laid out in the clip's own pixels ([frame])
 /// and scaled to the box it fills, so the preview matches the export.
-/// [timeMs] is read on every paint, which [repaint] triggers.
+/// [timeMs] is read on every paint, which [repaint] triggers. With
+/// [reduceMotion] the clock doesn't pulse (the export still does).
 class HudOverlay extends StatelessWidget {
   const HudOverlay({
     super.key,
@@ -22,6 +38,7 @@ class HudOverlay extends StatelessWidget {
     required this.timeMs,
     this.repaint,
     this.logo,
+    this.reduceMotion = false,
   });
 
   final Size frame;
@@ -31,48 +48,67 @@ class HudOverlay extends StatelessWidget {
   final int Function() timeMs;
   final Listenable? repaint;
   final ui.Image? logo;
+  final bool reduceMotion;
 
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
       child: CustomPaint(
         size: Size.infinite,
-        painter: _HudPainter(this),
+        painter: _HudPainter(
+          frame: frame,
+          string: string,
+          options: options,
+          labels: labels,
+          timeMs: timeMs,
+          logo: logo,
+          pulse: !reduceMotion,
+          repaint: repaint,
+        ),
       ),
     );
   }
 }
 
 class _HudPainter extends CustomPainter {
-  _HudPainter(this.overlay) : super(repaint: overlay.repaint);
+  _HudPainter({
+    required this.frame,
+    required this.string,
+    required this.options,
+    required this.labels,
+    required this.timeMs,
+    required this.logo,
+    required this.pulse,
+    super.repaint,
+  });
 
-  final HudOverlay overlay;
+  final Size frame;
+  final HudString string;
+  final HudOptions options;
+  final HudLabels labels;
+  final int Function() timeMs;
+  final ui.Image? logo;
+  final bool pulse;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final o = overlay;
-    if (o.frame.isEmpty || size.isEmpty) return;
-    final layout = HudLayout(o.frame, o.options);
-    final m = HudMoment.at(o.string, o.timeMs(), endCard: o.options.endCard);
+    if (frame.isEmpty || size.isEmpty) return;
+    final layout = HudLayout(frame, options);
+    final m =
+        HudMoment.at(string, timeMs(), endCard: options.endCard, pulse: pulse);
+    canvas.scale(size.width / frame.width);
     canvas
       ..save()
-      ..scale(size.width / o.frame.width)
-      ..save()
       ..translate(layout.box.left, layout.box.top);
-    paintHudBox(canvas, layout, o.string, o.options, m, o.labels, logo: o.logo);
+    paintHudBox(canvas, layout, string, options, m, labels, logo: logo);
     canvas.restore();
     if (m.endCard > 0) {
       canvas.translate(layout.card.left, layout.card.top);
-      paintEndCard(canvas, layout, o.string, o.labels, m.endCard);
+      paintEndCard(canvas, layout, string, labels, m.endCard);
     }
-    canvas.restore();
   }
 
+  // Cheap, and the string and labels are rebuilt with the page anyway.
   @override
-  bool shouldRepaint(_HudPainter old) =>
-      old.overlay.frame != overlay.frame ||
-      old.overlay.string != overlay.string ||
-      old.overlay.options != overlay.options ||
-      old.overlay.labels != overlay.labels ||
-      old.overlay.logo != overlay.logo;
+  bool shouldRepaint(_HudPainter old) => true;
 }

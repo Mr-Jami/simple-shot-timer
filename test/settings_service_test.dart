@@ -94,6 +94,7 @@ void main() {
         localeCode: 'fr',
       ));
       await service.saveDrills(_drills);
+      await service.setEncoderColorFix(true);
 
       await service.reset();
 
@@ -104,6 +105,7 @@ void main() {
       expect(loaded.parRepeatCount, defaults.parRepeatCount);
       expect(loaded.themeMode, defaults.themeMode);
       expect(loaded.localeCode, isNull);
+      expect(service.encoderColorFix, isNull);
       // Only the drills key is left, proving every settings key was removed.
       expect(prefs.getKeys(), {'custom_drills'});
       expect(service.loadDrills().map((d) => d.name), ['Bill Drill', 'Stage 60']);

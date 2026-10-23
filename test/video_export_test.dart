@@ -22,10 +22,10 @@ import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
 import 'package:simple_shot_timer/services/video/clip_exporter.dart';
 import 'package:simple_shot_timer/services/video/export_plan.dart';
 import 'package:simple_shot_timer/services/video/hud.dart';
+import 'package:simple_shot_timer/services/video/hud_painter.dart';
 import 'package:simple_shot_timer/services/video/video_gallery.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 import 'package:simple_shot_timer/utils/cancel_token.dart';
-import 'package:simple_shot_timer/widgets/video/hud_painter.dart';
 
 import 'clip_fixtures.dart';
 
@@ -40,7 +40,7 @@ class _FakeExporter implements ClipExporter {
   Completer<void>? running;
 
   @override
-  Future<ExportedClip> export(
+  Future<void> export(
     ExportRequest request, {
     void Function(double fraction)? onProgress,
     CancelToken? cancel,
@@ -56,8 +56,6 @@ class _FakeExporter implements ClipExporter {
     }
     if (error != null) throw error!;
     await File(request.output).writeAsString('mp4');
-    return ExportedClip(
-        path: request.output, fileSizeBytes: 3, width: 1920, height: 1080);
   }
 
   @override
@@ -69,11 +67,13 @@ class _FakeExporter implements ClipExporter {
 
 class _FakeGallery implements VideoGallery {
   bool allowed = true;
+  bool broken = false;
   final saved = <String>[];
   final shared = <String>[];
 
   @override
   Future<bool> save(String path) async {
+    if (broken) throw Exception('disk full');
     if (allowed) saved.add(path);
     return allowed;
   }
@@ -199,6 +199,7 @@ void main() {
         clip: clip,
         session: session,
         string: string,
+        plan: ExportPlan(string, clip.info, fromMs: 0, toMs: 30000),
         options: const HudOptions(),
         labels: labels,
         target: target,
@@ -228,7 +229,7 @@ void main() {
     expect(gallery.saved, [r.output]);
     expect(env.awake, [true, false]);
     // The overlay images are gone; the video stays for Share.
-    expect(Directory('${temp.path}/overlay').existsSync(), isFalse);
+    expect(Directory('${session.dir.path}/overlay_1').existsSync(), isFalse);
     expect(File(r.output).existsSync(), isTrue);
   });
 
@@ -261,9 +262,41 @@ void main() {
     gallery.allowed = false;
     final controller = export(c, 1);
     await controller.start(job(ExportTarget.photos));
-    expect(c.read(videoExportProvider(1)), isA<ExportNoAccess>());
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportNotSaved>().having((s) => s.denied, 'denied', isTrue));
     await controller.deliver(ExportTarget.share);
     expect(gallery.shared, [exporter.request!.output]);
+  });
+
+  test('a save that fails says so and still leaves the video to share',
+      () async {
+    final c = await container();
+    gallery.broken = true;
+    final controller = export(c, 1);
+    await controller.start(job(ExportTarget.photos));
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportNotSaved>().having((s) => s.denied, 'denied', isFalse));
+    await controller.deliver(ExportTarget.share);
+    expect(gallery.shared, [exporter.request!.output]);
+    expect(c.read(videoExportProvider(1)), isA<ExportDone>());
+  });
+
+  test('a cancelled export tidying up never lets a new one sleep', () async {
+    final c = await container();
+    exporter.running = Completer();
+    final first = export(c, 1);
+    final firstRun = first.start(job(ExportTarget.photos));
+    await pumpEventQueue();
+    first.cancel();
+    exporter.running = Completer();
+    final secondRun = export(c, 2).start(job(ExportTarget.photos));
+    await firstRun;
+    await pumpEventQueue();
+    expect(env.awake, [true, false, true]);
+    exporter.running!.complete();
+    await secondRun;
+    expect(env.awake, [true, false, true, false]);
+    expect(c.read(videoExportProvider(2)), isA<ExportDone>());
   });
 
   test('a failed export says so and cleans up', () async {
@@ -272,7 +305,7 @@ void main() {
     await export(c, 1).start(job(ExportTarget.photos));
     expect(c.read(videoExportProvider(1)), isA<ExportFailed>());
     expect(env.awake, [true, false]);
-    expect(Directory('${temp.path}/overlay').existsSync(), isFalse);
+    expect(Directory('${session.dir.path}/overlay_1').existsSync(), isFalse);
   });
 
   group('the plan', () {

@@ -10,8 +10,8 @@ import '../../models/enums.dart';
 import '../../models/shot.dart';
 import '../../models/timer_string.dart';
 import '../../services/video/hud.dart';
+import '../../services/video/hud_painter.dart';
 import 'hud_overlay.dart';
-import 'hud_painter.dart';
 
 /// What a shared video looks like: a dark 16:9 frame with the overlay in
 /// [options], mid-string, for the Video tab.

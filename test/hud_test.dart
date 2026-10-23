@@ -11,7 +11,7 @@ import 'package:simple_shot_timer/models/enums.dart';
 import 'package:simple_shot_timer/models/shot.dart';
 import 'package:simple_shot_timer/models/timer_string.dart';
 import 'package:simple_shot_timer/services/video/hud.dart';
-import 'package:simple_shot_timer/widgets/video/hud_painter.dart';
+import 'package:simple_shot_timer/services/video/hud_painter.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 import '../../utils/cancel_token.dart';
+import 'export_plan.dart';
 
 /// A folder of overlay images for the exporter: image `i` (`i.z`,
 /// [width] x [height] premultiplied RGBA compressed with zlib) shows from
@@ -49,11 +50,24 @@ class ExportRequest {
     required this.startMs,
     required this.endMs,
     required this.overlays,
-    this.shortSide,
-    this.maxFps,
-    this.bitrate = 12000000,
-    this.colorFix = false,
+    required this.shortSide,
+    required this.maxFps,
+    required this.bitrate,
+    required this.colorFix,
   });
+
+  /// [plan] made from [input] into [output].
+  ExportRequest.fromPlan(
+    ExportPlan plan, {
+    required this.input,
+    required this.output,
+    required this.overlays,
+    required this.colorFix,
+  })  : startMs = plan.startMs,
+        endMs = plan.endMs,
+        shortSide = plan.shortSide,
+        maxFps = plan.maxFps,
+        bitrate = plan.bitrate;
 
   final String input;
   final String output;
@@ -70,25 +84,6 @@ class ExportRequest {
 
   /// Undo an encoder that converts with BT.601 while tagging BT.709.
   final bool colorFix;
-}
-
-class ExportedClip {
-  const ExportedClip({
-    required this.path,
-    required this.fileSizeBytes,
-    required this.width,
-    required this.height,
-    this.firstOverlayUs,
-  });
-
-  final String path;
-  final int fileSizeBytes;
-  final int width;
-  final int height;
-
-  /// The first frame time the overlay saw: 0 when Media3 counts from the
-  /// trimmed start.
-  final int? firstOverlayUs;
 }
 
 /// Why an export failed.
@@ -110,7 +105,7 @@ class ExportException implements Exception {
 abstract interface class ClipExporter {
   /// [onProgress] gets 0..1; [cancel] stops it, and it then throws
   /// [ExportError.cancelled] and leaves no file.
-  Future<ExportedClip> export(
+  Future<void> export(
     ExportRequest request, {
     void Function(double fraction)? onProgress,
     CancelToken? cancel,
@@ -138,7 +133,7 @@ class ChannelClipExporter implements ClipExporter {
   static var _nextJobId = 1;
 
   @override
-  Future<ExportedClip> export(
+  Future<void> export(
     ExportRequest request, {
     void Function(double fraction)? onProgress,
     CancelToken? cancel,
@@ -156,7 +151,7 @@ class ChannelClipExporter implements ClipExporter {
       }
     }));
     try {
-      final m = await _invoke('export', {
+      await _channel.invokeMethod<void>('export', {
         'jobId': jobId,
         'input': request.input,
         'output': request.output,
@@ -168,13 +163,10 @@ class ChannelClipExporter implements ClipExporter {
         'colorFix': request.colorFix,
         'overlays': [for (final o in request.overlays) o.toMap()],
       });
-      return ExportedClip(
-        path: request.output,
-        fileSizeBytes: m['fileSizeBytes'] as int? ?? 0,
-        width: m['width'] as int? ?? 0,
-        height: m['height'] as int? ?? 0,
-        firstOverlayUs: m['firstOverlayUs'] as int?,
-      );
+    } on PlatformException catch (e) {
+      throw _exception(e);
+    } on MissingPluginException {
+      throw const ExportException(ExportError.unavailable);
     } finally {
       _progress.remove(jobId);
     }
@@ -182,28 +174,19 @@ class ChannelClipExporter implements ClipExporter {
 
   @override
   Future<bool> encoderNeedsColorFix() async {
-    final m = await _invoke('checkEncoderColors', const {});
-    return m['matrix'] == 'bt601';
-  }
-
-  Future<Map<Object?, Object?>> _invoke(
-    String method,
-    Map<String, Object?> arguments,
-  ) async {
     try {
-      final result =
-          await _channel.invokeMethod<Map<Object?, Object?>>(method, arguments);
-      if (result == null) {
-        throw const ExportException(ExportError.failed, 'no result');
-      }
-      return result;
+      final m = await _channel
+          .invokeMethod<Map<Object?, Object?>>('checkEncoderColors');
+      return m?['needsFix'] == true;
     } on PlatformException catch (e) {
-      throw ExportException(
-        e.code == 'cancelled' ? ExportError.cancelled : ExportError.failed,
-        e.message,
-      );
+      throw _exception(e);
     } on MissingPluginException {
       throw const ExportException(ExportError.unavailable);
     }
   }
+
+  static ExportException _exception(PlatformException e) => ExportException(
+        e.code == 'cancelled' ? ExportError.cancelled : ExportError.failed,
+        e.message,
+      );
 }

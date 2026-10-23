@@ -89,7 +89,7 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
                     ),
                     Center(
                       child: Text(
-                        '${(progress * 100).floor()} %',
+                        '${(progress * 100).floor()}%',
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontFeatures: const [FontFeature.tabularFigures()],
                         ),
@@ -131,8 +131,11 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
           result(Icons.check_circle_outline, context.tr('export.ready')),
           [shareButton, doneButton],
         ),
-      ExportNoAccess() => (
-          result(Icons.no_photography_outlined, context.tr('export.noAccess')),
+      ExportNotSaved(:final denied) => (
+          result(
+            denied ? Icons.no_photography_outlined : Icons.error_outline,
+            context.tr(denied ? 'export.noAccess' : 'export.saveFailed'),
+          ),
           [shareButton, doneButton],
         ),
       ExportFailed() => (

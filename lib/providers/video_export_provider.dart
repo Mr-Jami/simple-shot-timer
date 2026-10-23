@@ -9,13 +9,14 @@ import 'dart:ui' as ui;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
 
+import '../services/timer_ports.dart';
 import '../services/video/analyzed_clip.dart';
 import '../services/video/clip_exporter.dart';
 import '../services/video/export_plan.dart';
 import '../services/video/hud.dart';
+import '../services/video/hud_painter.dart';
 import '../services/video/video_work_dir.dart';
 import '../utils/cancel_token.dart';
-import '../widgets/video/hud_painter.dart';
 import 'providers.dart';
 import 'video_providers.dart';
 
@@ -28,6 +29,7 @@ class ExportJob {
     required this.clip,
     required this.session,
     required this.string,
+    required this.plan,
     required this.options,
     required this.labels,
     required this.target,
@@ -39,6 +41,7 @@ class ExportJob {
   /// The clip's work folder: the export is made there and goes with it.
   final VideoSession session;
   final HudString string;
+  final ExportPlan plan;
   final HudOptions options;
   final HudLabels labels;
   final ExportTarget target;
@@ -69,12 +72,13 @@ class ExportDone extends ExportState {
   final bool saved;
 }
 
-/// The phone wouldn't let the video be saved; the file is still there to
-/// share.
-class ExportNoAccess extends ExportState {
-  const ExportNoAccess(this.path);
+/// The video is made but couldn't go to the phone's videos: not allowed
+/// ([denied]), or the save failed. It can still be shared.
+class ExportNotSaved extends ExportState {
+  const ExportNotSaved(this.path, {required this.denied});
 
   final String path;
+  final bool denied;
 }
 
 class ExportFailed extends ExportState {
@@ -95,30 +99,31 @@ class VideoExportController
 
   final _cancel = CancelToken();
   final _clock = Stopwatch();
+  late final RunEnvironment _env;
+  var _awake = false;
+  var _disposed = false;
 
   @override
   ExportState build(int arg) {
-    ref.onDispose(_cancel.cancel);
+    _env = ref.read(runEnvironmentProvider);
+    ref.onDispose(() {
+      _disposed = true;
+      _cancel.cancel();
+      unawaited(_keepAwake(false));
+    });
     return const ExportRunning(0);
   }
 
   Future<void> start(ExportJob job) async {
-    final env = ref.read(runEnvironmentProvider);
-    final overlayDir = Directory(p.join(job.session.dir.path, 'overlay'));
+    // Its own folder: a cancelled export still tidying up can't touch it.
+    final overlayDir = Directory(p.join(job.session.dir.path, 'overlay_$arg'));
     _clock.start();
-    await env.setKeepAwake(true);
+    await _keepAwake(true);
     try {
       final colorFix = await _colorFix();
-      final plan = ExportPlan(
-        job.string,
-        job.clip.info,
-        fromMs: job.clip.fromMs,
-        toMs: job.clip.toMs,
-      );
-      if (await overlayDir.exists()) await overlayDir.delete(recursive: true);
       final overlays = await ref.read(hudFrameRendererProvider)(
         dir: overlayDir,
-        plan: plan,
+        plan: job.plan,
         string: job.string,
         options: job.options,
         labels: job.labels,
@@ -131,42 +136,31 @@ class VideoExportController
         ExportPlan.fileName(job.string.date, job.string.string.totalTimeMs),
       );
       await ref.read(clipExporterProvider).export(
-            ExportRequest(
+            ExportRequest.fromPlan(
+              job.plan,
               input: job.session.clipPath,
               output: output,
-              startMs: plan.startMs,
-              endMs: plan.endMs,
               overlays: overlays,
-              shortSide: plan.shortSide,
-              maxFps: plan.maxFps,
-              bitrate: plan.bitrate,
               colorFix: colorFix,
             ),
             onProgress: (f) => _progress(overlayShare + (1 - overlayShare) * f),
             cancel: _cancel,
           );
-      if (_cancel.isCancelled) return;
-      state = ExportDone(output, target: job.target);
-      await _deliver(output, job.target);
-    } on ExportException catch (e) {
-      if (_cancel.isCancelled || e.error == ExportError.cancelled) {
-        state = const ExportCancelled();
-      } else {
-        state = const ExportFailed();
-      }
-    } on Exception {
-      state =
-          _cancel.isCancelled ? const ExportCancelled() : const ExportFailed();
+      if (!_cancel.isCancelled) await _deliver(output, job.target);
+    } on Exception catch (e) {
+      final cancelled = _cancel.isCancelled ||
+          (e is ExportException && e.error == ExportError.cancelled);
+      _emit(cancelled ? const ExportCancelled() : const ExportFailed());
     } finally {
-      await env.setKeepAwake(false);
+      await _keepAwake(false);
       if (await overlayDir.exists()) await overlayDir.delete(recursive: true);
     }
   }
 
-  /// Saves or shares the exported video again (the Done view's buttons).
+  /// Saves or shares the exported video again (the result's buttons).
   Future<void> deliver(ExportTarget target) async {
     final path = switch (state) {
-      ExportDone(:final path) || ExportNoAccess(:final path) => path,
+      ExportDone(:final path) || ExportNotSaved(:final path) => path,
       _ => null,
     };
     if (path != null) await _deliver(path, target);
@@ -176,19 +170,27 @@ class VideoExportController
   void cancel() {
     if (state is! ExportRunning) return;
     _cancel.cancel();
-    state = const ExportCancelled();
+    unawaited(_keepAwake(false));
+    _emit(const ExportCancelled());
   }
 
+  /// Saves or shares [path]. A save that fails leaves the video to share.
   Future<void> _deliver(String path, ExportTarget target) async {
     final gallery = ref.read(videoGalleryProvider);
-    switch (target) {
-      case ExportTarget.photos:
-        final saved = await gallery.save(path);
-        state = saved
-            ? ExportDone(path, target: target, saved: true)
-            : ExportNoAccess(path);
-      case ExportTarget.share:
-        await gallery.share(path);
+    try {
+      switch (target) {
+        case ExportTarget.photos:
+          _emit(await gallery.save(path)
+              ? ExportDone(path, target: target, saved: true)
+              : ExportNotSaved(path, denied: true));
+        case ExportTarget.share:
+          await gallery.share(path);
+          _emit(ExportDone(path, target: target));
+      }
+    } on Exception {
+      _emit(target == ExportTarget.photos
+          ? ExportNotSaved(path, denied: false)
+          : ExportDone(path, target: target));
     }
   }
 
@@ -207,6 +209,14 @@ class VideoExportController
     }
   }
 
+  /// The screen stays on while this export runs; released once, and at
+  /// once on cancel, so a newer export's keep-awake is never undone.
+  Future<void> _keepAwake(bool on) async {
+    if (_awake == on) return;
+    _awake = on;
+    await _env.setKeepAwake(on);
+  }
+
   void _progress(double progress) {
     if (_cancel.isCancelled || state is! ExportRunning) return;
     final elapsed = _clock.elapsed;
@@ -214,7 +224,13 @@ class VideoExportController
     final remaining = progress > 0.05 && elapsed > const Duration(seconds: 2)
         ? elapsed * ((1 - progress) / progress)
         : null;
-    state = ExportRunning(progress, remaining: remaining);
+    _emit(ExportRunning(progress, remaining: remaining));
+  }
+
+  /// The dialog may have closed (and this controller with it) while work
+  /// was still finishing.
+  void _emit(ExportState next) {
+    if (!_disposed) state = next;
   }
 }
 

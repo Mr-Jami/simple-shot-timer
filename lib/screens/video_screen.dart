@@ -7,14 +7,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../i18n/app_localizations.dart';
 import '../providers/history_provider.dart';
-import '../providers/settings_provider.dart';
 import '../providers/video_providers.dart';
 import '../services/video/clip_picker.dart';
-import '../services/video/hud.dart';
 import '../widgets/pill_button.dart';
 import '../widgets/string_tile.dart';
 import '../widgets/tab_header.dart';
-import '../widgets/video/hud_painter.dart';
+import '../widgets/video/hud_overlay.dart';
 import '../widgets/video/hud_sample.dart';
 import 'review_screen.dart';
 import 'video_flows.dart';
@@ -97,10 +95,9 @@ class _Sample extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
     return HudSample(
-      options: HudOptions(style: settings.hudStyle, corner: settings.hudCorner),
-      labels: HudLabels.of(context),
+      options: ref.watch(hudOptionsProvider),
+      labels: context.hudLabels,
       logo: ref.watch(hudLogoProvider).valueOrNull,
     );
   }

@@ -16,7 +16,6 @@ import '../providers/video_export_provider.dart';
 Future<ExportTarget?> showExportSheet(BuildContext context) =>
     showModalBottomSheet<ExportTarget>(
       context: context,
-      showDragHandle: true,
       // As tall as its content: the default 9/16 cap cut off Share.
       isScrollControlled: true,
       // Light, so the preview above stays clear.

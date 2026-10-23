@@ -55,7 +55,7 @@ void main() {
     ],
   );
 
-  test('export sends the whole request and reads the result', () async {
+  test('export sends the whole request and passes on its progress', () async {
     final done = Completer<Object?>();
     installHandler((call) => done.future);
     final seen = <double>[];
@@ -74,16 +74,9 @@ void main() {
     await fromPlatform('progress', {'jobId': args['jobId'], 'fraction': 0.4});
     await fromPlatform(
         'progress', {'jobId': (args['jobId'] as int) + 1, 'fraction': 0.9});
-    done.complete({
-      'fileSizeBytes': 1234,
-      'width': 1920,
-      'height': 1080,
-      'firstOverlayUs': 0,
-    });
-    final clip = await exporting;
+    done.complete(null);
+    await exporting;
     expect(seen, [0.4]);
-    expect([clip.path, clip.fileSizeBytes, clip.firstOverlayUs],
-        ['/work/out.mp4', 1234, 0]);
   });
 
   test('cancel names the job; a cancelled export says so', () async {
@@ -127,9 +120,9 @@ void main() {
   });
 
   test('only a BT.601 encoder needs the colour fix', () async {
-    installHandler((_) => {'matrix': 'bt601', 'luma': 145});
+    installHandler((_) => {'needsFix': true});
     expect(await exporter.encoderNeedsColorFix(), isTrue);
-    installHandler((_) => {'matrix': 'bt709', 'luma': 173});
+    installHandler((_) => {'needsFix': false});
     expect(await exporter.encoderNeedsColorFix(), isFalse);
   });
 }
