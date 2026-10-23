@@ -25,6 +25,7 @@ import 'package:simple_shot_timer/widgets/shot_badge.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
 
 import 'clip_fixtures.dart';
+import 'roboto.dart';
 
 class _MemoryStore implements VideoStringStore {
   final saved = <TimerString>[];
@@ -65,16 +66,7 @@ class _Session extends VideoSession {
 void main() {
   // Roboto from the Flutter SDK: the test font's square glyphs overflow the
   // marker panel and the stats on a 360 dp screen.
-  setUpAll(() async {
-    final fonts =
-        '${Platform.environment['FLUTTER_ROOT']}/bin/cache/artifacts/material_fonts';
-    final roboto = FontLoader('Roboto');
-    for (final weight in ['regular', 'medium', 'bold']) {
-      final bytes = File('$fonts/roboto-$weight.ttf').readAsBytesSync();
-      roboto.addFont(Future.value(ByteData.sublistView(bytes)));
-    }
-    await roboto.load();
-  });
+  setUpAll(loadRoboto);
 
   setUp(rootBundle.clear);
 

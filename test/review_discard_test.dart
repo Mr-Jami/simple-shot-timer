@@ -2,8 +2,6 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,6 +15,8 @@ import 'package:simple_shot_timer/providers/providers.dart';
 import 'package:simple_shot_timer/providers/string_provider.dart';
 import 'package:simple_shot_timer/screens/review_screen.dart';
 import 'package:simple_shot_timer/services/database_service.dart';
+
+import 'roboto.dart';
 
 /// Records Review's own writes; nothing else is called.
 class _MetaWrites implements DatabaseService {
@@ -38,16 +38,7 @@ class _MetaWrites implements DatabaseService {
 void main() {
   // Roboto from the Flutter SDK: the test font's square glyphs overflow the
   // stats on a 360 dp screen.
-  setUpAll(() async {
-    final fonts =
-        '${Platform.environment['FLUTTER_ROOT']}/bin/cache/artifacts/material_fonts';
-    final roboto = FontLoader('Roboto');
-    for (final weight in ['regular', 'medium', 'bold']) {
-      final bytes = File('$fonts/roboto-$weight.ttf').readAsBytesSync();
-      roboto.addFont(Future.value(ByteData.sublistView(bytes)));
-    }
-    await roboto.load();
-  });
+  setUpAll(loadRoboto);
 
   setUp(rootBundle.clear);
 

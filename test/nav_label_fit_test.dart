@@ -2,8 +2,6 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -14,21 +12,14 @@ import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
 import 'package:simple_shot_timer/theme/app_theme.dart';
 import 'package:simple_shot_timer/widgets/app_navigation_bar.dart';
 
+import 'roboto.dart';
+
 /// Five tabs on a small phone with large text: every label in every
 /// language must sit on one line inside its tab. Measured in Roboto (the
 /// Android font, from the Flutter SDK) rather than the test font, whose
 /// square glyphs are far wider than real text.
 void main() {
-  setUpAll(() async {
-    final fonts =
-        '${Platform.environment['FLUTTER_ROOT']}/bin/cache/artifacts/material_fonts';
-    final roboto = FontLoader('Roboto');
-    for (final weight in ['regular', 'medium', 'bold']) {
-      final bytes = File('$fonts/roboto-$weight.ttf').readAsBytesSync();
-      roboto.addFont(Future.value(ByteData.sublistView(bytes)));
-    }
-    await roboto.load();
-  });
+  setUpAll(loadRoboto);
 
   // rootBundle caches each loaded string as a future that belongs to the
   // test that loaded it; a later test awaiting it never resumes.
