@@ -35,28 +35,28 @@
     "semantic_hash": "f276a44edd917afd836899357fdae60e"
   },
   "assets/i18n/de.json": {
-    "mtime": 1792712428.9190633,
-    "ast_hash": "96c5104253dbfa336b02a629b4268849",
+    "mtime": 1792714134.4773133,
+    "ast_hash": "cd3425e1fa19dff6217a0cb02c3f143c",
     "semantic_hash": ""
   },
   "assets/i18n/en.json": {
-    "mtime": 1792712428.9180636,
-    "ast_hash": "bcc28d982d934d613444f426c2ccb843",
+    "mtime": 1792714134.4763124,
+    "ast_hash": "6c1b736c45b0e3add96a7176a21d2dc1",
     "semantic_hash": ""
   },
   "assets/i18n/es.json": {
-    "mtime": 1792712428.9200637,
-    "ast_hash": "9d81b0aa32160a5a9705380c7083a129",
+    "mtime": 1792714134.4773133,
+    "ast_hash": "b663026738bc231d0ec44dd0ddf28527",
     "semantic_hash": ""
   },
   "assets/i18n/fr.json": {
-    "mtime": 1792712428.921316,
-    "ast_hash": "cd2be65645169b429b997bb31e905c38",
+    "mtime": 1792714134.4783711,
+    "ast_hash": "94afe9a0bc6dd46b65b268de163d1d27",
     "semantic_hash": ""
   },
   "assets/i18n/ru.json": {
-    "mtime": 1792712428.9218435,
-    "ast_hash": "a6b3a80e1946740effe33501e9dbb39e",
+    "mtime": 1792714134.4803152,
+    "ast_hash": "54c4c41cfa14ec16e2bdc7db12e80b26",
     "semantic_hash": ""
   },
   "ios/Flutter/ephemeral/flutter_lldb_helper.py": {
@@ -125,7 +125,7 @@
     "semantic_hash": ""
   },
   "lib/models/app_settings.dart": {
-    "mtime": 1791145913.2618456,
+    "mtime": 1792714246.439589,
     "ast_hash": "3da5ce8a4794256e6994f8f2d1e260b7",
     "semantic_hash": ""
   },
@@ -155,13 +155,13 @@
     "semantic_hash": ""
   },
   "lib/models/timer_state.dart": {
-    "mtime": 1791145913.2638457,
+    "mtime": 1792714246.4405913,
     "ast_hash": "9f24d040e14893f98657a1ab4cfebd23",
     "semantic_hash": ""
   },
   "lib/models/timer_string.dart": {
-    "mtime": 1792709187.7309334,
-    "ast_hash": "03abf2c698397454a9563dcc8ecd83f2",
+    "mtime": 1792714246.4415884,
+    "ast_hash": "9133fec369e43f654dc896052b846926",
     "semantic_hash": ""
   },
   "lib/providers/history_provider.dart": {
@@ -185,12 +185,12 @@
     "semantic_hash": ""
   },
   "lib/providers/timer_provider.dart": {
-    "mtime": 1791145913.267358,
+    "mtime": 1792714246.4425888,
     "ast_hash": "1f9f4809a9dafb65e96dcb60981b79c3",
     "semantic_hash": ""
   },
   "lib/screens/auto_configure_screen.dart": {
-    "mtime": 1791145913.2683578,
+    "mtime": 1792714246.4425888,
     "ast_hash": "49760f7fa49a93bec2ceba835ba91e8c",
     "semantic_hash": ""
   },
@@ -200,8 +200,8 @@
     "semantic_hash": ""
   },
   "lib/screens/home_screen.dart": {
-    "mtime": 1792710755.1201224,
-    "ast_hash": "ac69d7f0e3d2b5a32f0226fe001a6f6c",
+    "mtime": 1792714246.4445896,
+    "ast_hash": "755d4050cd98a1b4f88ca47513901ec8",
     "semantic_hash": ""
   },
   "lib/screens/mic_test_screen.dart": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "lib/screens/review_screen.dart": {
-    "mtime": 1792711087.2525833,
-    "ast_hash": "e7d14580af1f3c6eb04447994f545044",
+    "mtime": 1792715976.7347677,
+    "ast_hash": "620f926895f3c779a8ac60e88d75998f",
     "semantic_hash": ""
   },
   "lib/screens/settings_screen.dart": {
@@ -220,12 +220,12 @@
     "semantic_hash": ""
   },
   "lib/services/audio_service.dart": {
-    "mtime": 1792700234.0714872,
+    "mtime": 1792714246.4465892,
     "ast_hash": "30ff35f5bcd04b6742e97a0ac1ddc197",
     "semantic_hash": ""
   },
   "lib/services/auto_configure.dart": {
-    "mtime": 1791145913.2748923,
+    "mtime": 1792714246.4465892,
     "ast_hash": "c0ef0a4bfd9312b0c71d85d15b27e3a2",
     "semantic_hash": ""
   },
@@ -235,7 +235,7 @@
     "semantic_hash": ""
   },
   "lib/services/beep_onset_detector.dart": {
-    "mtime": 1791145913.2748923,
+    "mtime": 1792714246.4465892,
     "ast_hash": "752e49699cc154df2d4ad0a28b1c1e04",
     "semantic_hash": ""
   },
@@ -245,17 +245,17 @@
     "semantic_hash": ""
   },
   "lib/services/database_service.dart": {
-    "mtime": 1792709277.0751672,
-    "ast_hash": "23f30f1cfd1289c69159064df8f3c1b2",
+    "mtime": 1792714246.4483497,
+    "ast_hash": "6e75bf4a664b8a1708b9b271baea7506",
     "semantic_hash": ""
   },
   "lib/services/export_service.dart": {
-    "mtime": 1791855319.5016813,
+    "mtime": 1792714246.4483497,
     "ast_hash": "cbef4b616d54e3ad6bc0eccc5284e22e",
     "semantic_hash": ""
   },
   "lib/services/settings_service.dart": {
-    "mtime": 1791855319.5021904,
+    "mtime": 1792714246.449359,
     "ast_hash": "9e3adfe061dd33d29a279ca6ea0ec440",
     "semantic_hash": ""
   },
@@ -265,7 +265,7 @@
     "semantic_hash": ""
   },
   "lib/utils/fft.dart": {
-    "mtime": 1791145913.2799382,
+    "mtime": 1792714246.4508643,
     "ast_hash": "340929489858f44f853d2eb3d3d16278",
     "semantic_hash": ""
   },
@@ -295,17 +295,17 @@
     "semantic_hash": ""
   },
   "test/auto_configure_test.dart": {
-    "mtime": 1791145913.285451,
+    "mtime": 1792714246.4536352,
     "ast_hash": "b8bcfc522b74eb7a47e7ebfec010e694",
     "semantic_hash": ""
   },
   "test/beep_onset_detector_test.dart": {
-    "mtime": 1791145913.285451,
+    "mtime": 1792714246.4536352,
     "ast_hash": "6d5291756f661a6f24b5aaa7a8909b7e",
     "semantic_hash": ""
   },
   "test/biquad_test.dart": {
-    "mtime": 1791145913.2864568,
+    "mtime": 1792714246.4546337,
     "ast_hash": "8577ac061facc245790ff28de67faa29",
     "semantic_hash": ""
   },
@@ -320,7 +320,7 @@
     "semantic_hash": ""
   },
   "test/par_schedule_test.dart": {
-    "mtime": 1791145913.2912002,
+    "mtime": 1792714246.455992,
     "ast_hash": "439ce453624459e8939a0545994659ff",
     "semantic_hash": ""
   },
@@ -635,17 +635,17 @@
     "semantic_hash": ""
   },
   "lib/utils/slider_math.dart": {
-    "mtime": 1791145913.2809384,
+    "mtime": 1792714246.4508643,
     "ast_hash": "00f8d2169e786559eca75b327a23f17d",
     "semantic_hash": ""
   },
   "lib/utils/slider_units.dart": {
-    "mtime": 1791145913.2809384,
+    "mtime": 1792714246.4508643,
     "ast_hash": "cc3d826ff1993e4dca029bc158b21150",
     "semantic_hash": ""
   },
   "lib/widgets/settings_slider.dart": {
-    "mtime": 1792712618.6766765,
+    "mtime": 1792714246.4526258,
     "ast_hash": "e139d1ff935cd607a505401f9571a55a",
     "semantic_hash": ""
   },
@@ -675,17 +675,17 @@
     "semantic_hash": ""
   },
   "lib/models/drill_config.dart": {
-    "mtime": 1791145913.2628455,
+    "mtime": 1792714246.439589,
     "ast_hash": "a6d7e7a6b9609e6abf759e635db5d1b6",
     "semantic_hash": ""
   },
   "lib/providers/custom_drills_provider.dart": {
-    "mtime": 1791145913.2653515,
+    "mtime": 1792714246.4415884,
     "ast_hash": "84d2cb59bd2eeb938e3d64112e6f953f",
     "semantic_hash": ""
   },
   "lib/screens/custom_drill_flows.dart": {
-    "mtime": 1791145913.2688632,
+    "mtime": 1792714246.4435883,
     "ast_hash": "7e1b90f6f6eeebe90eaa71c9833661ae",
     "semantic_hash": ""
   },
@@ -725,7 +725,7 @@
     "semantic_hash": ""
   },
   "test/settings_service_test.dart": {
-    "mtime": 1791855319.5117192,
+    "mtime": 1792714246.4569986,
     "ast_hash": "29feb906e3d2c2d49ed4de9602a3ade7",
     "semantic_hash": ""
   },
@@ -885,8 +885,8 @@
     "semantic_hash": ""
   },
   "lib/screens/main_shell.dart": {
-    "mtime": 1792711074.5883205,
-    "ast_hash": "dee54754d7fffa6eea8c2b9bb4a222e4",
+    "mtime": 1792714447.8279717,
+    "ast_hash": "90656a0c8744bdc9599b5dee3bf33433",
     "semantic_hash": ""
   },
   "lib/widgets/tab_header.dart": {
@@ -900,7 +900,7 @@
     "semantic_hash": ""
   },
   "test/timer_notifier_test.dart": {
-    "mtime": 1791145913.2942133,
+    "mtime": 1792714246.4569986,
     "ast_hash": "e28e4c65441b35cdb4242c4cd79043a6",
     "semantic_hash": ""
   },
@@ -1500,18 +1500,18 @@
     "semantic_hash": ""
   },
   "assets/i18n/fi.json": {
-    "mtime": 1792712428.9207437,
-    "ast_hash": "97d7636e2e2244247d9ed1d450d953e7",
+    "mtime": 1792714134.4783711,
+    "ast_hash": "4f28d84cfc2daf3737cbdc8ee742733e",
     "semantic_hash": ""
   },
   "assets/i18n/pl.json": {
-    "mtime": 1792712428.9218435,
-    "ast_hash": "abb1e47960e9516da108463b2fe02aca",
+    "mtime": 1792714134.4793265,
+    "ast_hash": "4d1f9f253d20b20da8c45e83810e4577",
     "semantic_hash": ""
   },
   "assets/i18n/pt.json": {
-    "mtime": 1792712428.9218435,
-    "ast_hash": "f6597f5551823d41e9f9481c51c7eb19",
+    "mtime": 1792714134.4793265,
+    "ast_hash": "4b5f86ba8f0cbac1cc3b8fa03cd7ffd4",
     "semantic_hash": ""
   },
   "website/public/app-store-badge-de.svg": {
@@ -2115,8 +2115,8 @@
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt": {
-    "mtime": 1792709745.63065,
-    "ast_hash": "46827f34029027dc75442c4587c39d2b",
+    "mtime": 1792713563.6245675,
+    "ast_hash": "fb2e269aa578f59ee74c4ee00be3b935",
     "semantic_hash": ""
   },
   "integration_test/clip_analysis_test.dart": {
@@ -2135,8 +2135,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_audio_source.dart": {
-    "mtime": 1792709912.2513895,
-    "ast_hash": "657b54fc5227cc82179f3e50d3b4ec2d",
+    "mtime": 1792714205.2632263,
+    "ast_hash": "c7655f4e5a80590adbe72bab6c5a0981",
     "semantic_hash": ""
   },
   "lib/services/video/clip_shot_finder.dart": {
@@ -2145,13 +2145,13 @@
     "semantic_hash": ""
   },
   "lib/services/video/spectrogram.dart": {
-    "mtime": 1792703676.7332003,
+    "mtime": 1792714246.449359,
     "ast_hash": "9257356aab0957447be2c943bd3f4903",
     "semantic_hash": ""
   },
   "lib/services/video/start_finder.dart": {
-    "mtime": 1792703670.4265993,
-    "ast_hash": "c8c98db6449fe1a56cc2488743545b18",
+    "mtime": 1792714246.4508643,
+    "ast_hash": "a1826d9d85167be06d69fe9d771f8aca",
     "semantic_hash": ""
   },
   "lib/services/video/tone_finder.dart": {
@@ -2160,13 +2160,13 @@
     "semantic_hash": ""
   },
   "test/clip_analyzer_test.dart": {
-    "mtime": 1792703652.1929588,
-    "ast_hash": "333e360927d9706d7e4a8fba02e900a9",
+    "mtime": 1792714246.4546337,
+    "ast_hash": "6ae1bd041809ea865b8ad4c80be93347",
     "semantic_hash": ""
   },
   "test/clip_audio_source_test.dart": {
-    "mtime": 1792709912.270496,
-    "ast_hash": "5482bbc9a13fea016a26671ebc04c1a7",
+    "mtime": 1792714564.5726013,
+    "ast_hash": "a579f2715f47c5a20834f8702363d5c4",
     "semantic_hash": ""
   },
   "test/clip_fixtures.dart": {
@@ -2210,13 +2210,13 @@
     "semantic_hash": ""
   },
   "lib/providers/clip_editor_provider.dart": {
-    "mtime": 1792712048.5492764,
-    "ast_hash": "bed29bccb5237af34cd387e4ff95ba53",
+    "mtime": 1792713818.2236886,
+    "ast_hash": "7c5b4e3c0b88ce0331013a8a8b00b8ef",
     "semantic_hash": ""
   },
   "lib/providers/video_import_provider.dart": {
-    "mtime": 1792710371.867687,
-    "ast_hash": "f0c2969763b37390c7e3497efbdd7faa",
+    "mtime": 1792714205.2032306,
+    "ast_hash": "f3bbdaa8dc5cbf3ca67dd67a3fc78af7",
     "semantic_hash": ""
   },
   "lib/providers/video_providers.dart": {
@@ -2225,8 +2225,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1792712428.7883804,
-    "ast_hash": "6e4757953b0cc63c86ab10a69eff7aa7",
+    "mtime": 1792714535.600183,
+    "ast_hash": "b44d3c5da635eee1d645aafb0c20086b",
     "semantic_hash": ""
   },
   "lib/screens/video_flows.dart": {
@@ -2235,8 +2235,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_import_screen.dart": {
-    "mtime": 1792711221.9893599,
-    "ast_hash": "ac335ba20ea1716cb6ab68de5cc7a1ce",
+    "mtime": 1792714047.4648092,
+    "ast_hash": "957cf0a60ce38eaf4dd4a89b9cd218ae",
     "semantic_hash": ""
   },
   "lib/screens/video_screen.dart": {
@@ -2245,8 +2245,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/analyzed_clip.dart": {
-    "mtime": 1792712062.3823855,
-    "ast_hash": "5c028f31550d97db27c25ce4c244b459",
+    "mtime": 1792713818.2236886,
+    "ast_hash": "8fa90c89655e3ea3f2054655ec1a49a8",
     "semantic_hash": ""
   },
   "lib/services/video/clip_analyzer_runner.dart": {
@@ -2255,8 +2255,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_check.dart": {
-    "mtime": 1792709785.5562017,
-    "ast_hash": "f2bb431e302f9c6aee846c0ca7f4df92",
+    "mtime": 1792713781.1905234,
+    "ast_hash": "02dd473bb90108d6da175cd0041306d3",
     "semantic_hash": ""
   },
   "lib/services/video/clip_picker.dart": {
@@ -2265,8 +2265,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/marker_doc.dart": {
-    "mtime": 1792709640.8280144,
-    "ast_hash": "4bc6a12f0d698609db0452ad953b44db",
+    "mtime": 1792713818.2227926,
+    "ast_hash": "626021fd1cb4aa296d64590d9bd98500",
     "semantic_hash": ""
   },
   "lib/services/video/throttled_seeker.dart": {
@@ -2315,13 +2315,13 @@
     "semantic_hash": ""
   },
   "test/database_migration_test.dart": {
-    "mtime": 1792709250.6332517,
-    "ast_hash": "63c71e877f43e4677ae80ad25963882d",
+    "mtime": 1792714246.455992,
+    "ast_hash": "9212c24aa6c3a2f727de64a9442ac82c",
     "semantic_hash": ""
   },
   "test/marker_doc_test.dart": {
-    "mtime": 1792711222.0060537,
-    "ast_hash": "2f6fbacd76e5005a4b4886cbee34c3c7",
+    "mtime": 1792714288.174323,
+    "ast_hash": "4b5a62b24777b80fc14677f702b5e914",
     "semantic_hash": ""
   },
   "test/throttled_seeker_test.dart": {
@@ -2330,13 +2330,13 @@
     "semantic_hash": ""
   },
   "test/video_import_test.dart": {
-    "mtime": 1792710371.891971,
-    "ast_hash": "e9c7f7e82eb1f2158c3f145234165825",
+    "mtime": 1792714171.1295278,
+    "ast_hash": "de595554153c6c3f58b9a2fd5df6e86a",
     "semantic_hash": ""
   },
   "test/video_work_dir_test.dart": {
-    "mtime": 1792709836.9262135,
-    "ast_hash": "03d1d6e2e042336d2d3bda6b715e819c",
+    "mtime": 1792713781.1905234,
+    "ast_hash": "b6bd861924a5387d5a9ab3e8d0a137de",
     "semantic_hash": ""
   },
   "lib/services/video/clip_signal.dart": {
@@ -2365,23 +2365,63 @@
     "semantic_hash": ""
   },
   "lib/widgets/timeline/timeline_controller.dart": {
-    "mtime": 1792712982.3973517,
-    "ast_hash": "95403265a2acee23701029c4be9570d6",
+    "mtime": 1792713818.2247393,
+    "ast_hash": "3907790fea1bd75dd882fa0cd820b900",
     "semantic_hash": ""
   },
   "lib/widgets/timeline/timeline_minimap.dart": {
-    "mtime": 1792712400.7008412,
-    "ast_hash": "a2b94ae5b90e65b9ffb58a915a9b5de8",
+    "mtime": 1792714535.600183,
+    "ast_hash": "50c2205895d3cb5e5ed92988ceb4db10",
     "semantic_hash": ""
   },
   "test/shot_timeline_test.dart": {
-    "mtime": 1792713059.4952302,
-    "ast_hash": "c47685529c62ddfb4c5aaeb6e0c4ab9f",
+    "mtime": 1792714288.174323,
+    "ast_hash": "2e90d76a20d3046d5e63a2760c6be769",
     "semantic_hash": ""
   },
   "test/timeline_math_test.dart": {
     "mtime": 1792711996.0877354,
     "ast_hash": "7bd96724ef4fce84a409c1edb1f91f0e",
+    "semantic_hash": ""
+  },
+  "lib/screens/video_part_view.dart": {
+    "mtime": 1792714205.237522,
+    "ast_hash": "31fbab3de20d728357da7e8a68ac1e42",
+    "semantic_hash": ""
+  },
+  "lib/services/video/part_window.dart": {
+    "mtime": 1792714742.6842573,
+    "ast_hash": "061a162325669de5fa170b18297646f3",
+    "semantic_hash": ""
+  },
+  "lib/widgets/app_navigation_bar.dart": {
+    "mtime": 1792714505.0772867,
+    "ast_hash": "799830eef6f92c76f63bbac7c986d34d",
+    "semantic_hash": ""
+  },
+  "lib/widgets/part_strip.dart": {
+    "mtime": 1792714205.299263,
+    "ast_hash": "511898f04393dca1be450d10e14c63ee",
+    "semantic_hash": ""
+  },
+  "test/nav_label_fit_test.dart": {
+    "mtime": 1792714564.5654275,
+    "ast_hash": "b2f4394755f974ed8048535325ff3ed9",
+    "semantic_hash": ""
+  },
+  "test/part_strip_test.dart": {
+    "mtime": 1792714324.9726272,
+    "ast_hash": "48480a2cf4e3760e0abb04216c6fe2b8",
+    "semantic_hash": ""
+  },
+  "test/part_window_test.dart": {
+    "mtime": 1792714742.6858287,
+    "ast_hash": "ceec76c2cf1f285d2e504cdc4ca2aef6",
+    "semantic_hash": ""
+  },
+  "test/review_discard_test.dart": {
+    "mtime": 1792715763.8264265,
+    "ast_hash": "a3704ea6e07ee5b86ba002b7d6466533",
     "semantic_hash": ""
   }
 }
