@@ -46,7 +46,8 @@ class PartStrip extends StatefulWidget {
   final int bucketMs;
   final List<Uint8List?> thumbnails;
 
-  /// The window as the user drags it, and which part of it they hold.
+  /// The window as the user drags it, and which part of it they hold;
+  /// [onChangeEnd] follows once a gesture that changed it ends.
   final void Function(PartWindow window, PartEdge edge) onChanged;
   final VoidCallback? onChangeEnd;
   final bool reduceMotion;
@@ -69,6 +70,21 @@ class _PartStripState extends State<PartStrip>
   PartEdge? _held;
   late PartWindow _grabbed;
   double _downX = 0;
+
+  /// The gesture under way has moved the window.
+  var _moved = false;
+
+  void _change(PartWindow window, PartEdge edge) {
+    _moved = true;
+    widget.onChanged(window, edge);
+  }
+
+  /// Screen readers move the window ten seconds at a time.
+  void _step(int ms) {
+    widget.onChanged(
+        widget.window.movedBy(ms, widget.durationMs), PartEdge.whole);
+    widget.onChangeEnd?.call();
+  }
 
   /// The window as drawn: gliding from [_from] to the widget's while
   /// [_glide] runs.
@@ -126,7 +142,7 @@ class _PartStripState extends State<PartStrip>
               centre - (_grabbed.startMs + _grabbed.lengthMs ~/ 2),
               widget.durationMs);
           _held = PartEdge.whole;
-          widget.onChanged(_grabbed, PartEdge.whole);
+          _change(_grabbed, PartEdge.whole);
         }
       }
 
@@ -138,15 +154,14 @@ class _PartStripState extends State<PartStrip>
             _grabbed.withEnd(_grabbed.endMs + delta, widget.durationMs),
           PartEdge.whole || null => _grabbed.movedBy(delta, widget.durationMs),
         };
-        if (next != widget.window) {
-          widget.onChanged(next, _held ?? PartEdge.whole);
-        }
+        if (next != widget.window) _change(next, _held ?? PartEdge.whole);
       }
 
       void up() {
         if (_held == null) return;
         _held = null;
-        widget.onChangeEnd?.call();
+        if (_moved) widget.onChangeEnd?.call();
+        _moved = false;
       }
 
       final strip = Stack(
@@ -192,10 +207,8 @@ class _PartStripState extends State<PartStrip>
 
       return Semantics(
         label: widget.semanticLabel,
-        onIncrease: () => widget.onChanged(
-            widget.window.movedBy(10000, widget.durationMs), PartEdge.whole),
-        onDecrease: () => widget.onChanged(
-            widget.window.movedBy(-10000, widget.durationMs), PartEdge.whole),
+        onIncrease: () => _step(10000),
+        onDecrease: () => _step(-10000),
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           // Down, not start: the drag then counts from where the finger

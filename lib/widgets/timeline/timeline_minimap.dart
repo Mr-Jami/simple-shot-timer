@@ -22,6 +22,7 @@ class TimelineMinimap extends StatelessWidget {
     required this.markers,
     required this.onJump,
     required this.onScrub,
+    required this.onScrubEnd,
   });
 
   static const double height = 28;
@@ -39,8 +40,10 @@ class TimelineMinimap extends StatelessWidget {
   /// The user tapped this clip time.
   final ValueChanged<int> onJump;
 
-  /// The user's finger is dragging along at this clip time.
+  /// The user's finger is dragging along at this clip time, until
+  /// [onScrubEnd].
   final ValueChanged<int> onScrub;
+  final VoidCallback onScrubEnd;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +58,8 @@ class TimelineMinimap extends StatelessWidget {
         behavior: HitTestBehavior.opaque,
         onTapUp: (d) => onJump(msAt(d.localPosition.dx)),
         onHorizontalDragUpdate: (d) => onScrub(msAt(d.localPosition.dx)),
+        onHorizontalDragEnd: (_) => onScrubEnd(),
+        onHorizontalDragCancel: onScrubEnd,
         child: CustomPaint(
           size: Size(width, height),
           painter: _MinimapPainter(

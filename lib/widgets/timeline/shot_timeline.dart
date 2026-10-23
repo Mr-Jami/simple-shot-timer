@@ -48,6 +48,7 @@ class ShotTimeline extends StatefulWidget {
     required this.tiles,
     required this.originMs,
     required this.markers,
+    required this.startLabel,
     required this.onTouch,
     required this.onRelease,
     required this.onTapMarker,
@@ -67,6 +68,9 @@ class ShotTimeline extends StatefulWidget {
   /// Clip time of the spectrogram's first frame.
   final int originMs;
   final List<TimelineMarker> markers;
+
+  /// The START marker's badge, in the app's language.
+  final String startLabel;
   final VoidCallback onTouch;
   final VoidCallback onRelease;
   final ValueChanged<TimelineMarker> onTapMarker;
@@ -147,6 +151,7 @@ class _ShotTimelineState extends State<ShotTimeline> {
               tiles: widget.tiles,
               originMs: widget.originMs,
               markers: widget.markers,
+              startLabel: widget.startLabel,
               ink: scheme.onSurface,
               paper: scheme.surface,
               dim: scheme.onSurfaceVariant,
@@ -183,6 +188,7 @@ class _TimelinePainter extends CustomPainter {
     required this.tiles,
     required this.originMs,
     required this.markers,
+    required this.startLabel,
     required this.ink,
     required this.paper,
     required this.dim,
@@ -193,6 +199,7 @@ class _TimelinePainter extends CustomPainter {
   final SpectrogramTiles tiles;
   final int originMs;
   final List<TimelineMarker> markers;
+  final String startLabel;
   final Color ink;
   final Color paper;
   final Color dim;
@@ -295,7 +302,7 @@ class _TimelinePainter extends CustomPainter {
     const r = 11.0;
     final c = Offset(x, ShotTimeline.badgeHeight / 2);
     if (m.kind == TimelineMarkerKind.start) {
-      _text(canvas, 'START', c,
+      _text(canvas, startLabel, c,
           textStyle.copyWith(color: ink, fontWeight: FontWeight.w700));
       return;
     }
@@ -362,6 +369,7 @@ class _TimelinePainter extends CustomPainter {
   @override
   bool shouldRepaint(_TimelinePainter old) =>
       old.markers != markers ||
+      old.startLabel != startLabel ||
       old.tiles != tiles ||
       old.ink != ink ||
       old.paper != paper ||

@@ -78,6 +78,8 @@
   "review.label": "Label",
   "review.notes": "Notes",
   "review.penalty": "Penalty: {seconds}s",
+  "review.penaltyLess": "Remove 1 s of penalty",
+  "review.penaltyMore": "Add 1 s of penalty",
   "review.shotsHeader": "Shots ({count})",
   "review.noShots": "No shots recorded.",
   "review.splitFirst": "first",

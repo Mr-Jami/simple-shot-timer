@@ -94,16 +94,24 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     final state = ref.read(_provider);
     _label = TextEditingController(text: state.label ?? '');
     _notes = TextEditingController(text: state.notes ?? '');
+    // Open just before START, so the beep and first shot are a tap away.
+    final start = state.doc.startMs;
+    final from = widget.args.clip.fromMs;
+    _timeline.centreOn(
+      start == null ? from : (start - 1500).clamp(from, start),
+      animate: false,
+    );
     _player.initialize().then((_) {
       if (!mounted) return;
       _player.addListener(_onPlayer);
-      // Open just before START, so the beep and first shot are a tap away.
-      final start = ref.read(_provider).doc.startMs;
-      final from = widget.args.clip.fromMs;
-      final at = start == null ? from : (start - 1500).clamp(from, start);
-      _timeline.centreOn(at, animate: false);
+      final at = _timeline.playheadMs.round();
+      _reportedMs = at;
+      unawaited(_seeker.release(Duration(milliseconds: at)));
       _playback.start();
       setState(() {});
+    }, onError: (Object _) {
+      // A video this phone can't play: the markers can still be checked on
+      // the timeline, over a black picture.
     });
   }
 
@@ -178,10 +186,15 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     } else {
       _editor.select(null);
       final clip = widget.args.clip;
-      // At the end of a part, play it again from its start.
-      if (clip.part != null && _timeline.playheadMs >= clip.toMs - 100) {
+      // At the end, play the clip (or part) again from its start.
+      if (_timeline.playheadMs >= clip.toMs - 100) {
         _timeline.centreOn(clip.fromMs, animate: false);
       }
+      // Follow from where the video is now, not from its last report.
+      _reportedMs = _timeline.playheadMs.round();
+      _sinceReport
+        ..reset()
+        ..start();
       _player.play();
     }
   }
@@ -454,6 +467,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                 onRelease: _onRelease,
                 onTapMarker: _tapMarker,
                 onTapEmpty: () => _editor.select(null),
+                startLabel: context.tr('editor.start'),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
@@ -466,11 +480,11 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                       : 0,
                   markers: _markerTimes(state.doc),
                   onJump: _centre,
-                  // Follows the finger: a glide per move would trail it.
                   onScrub: (ms) {
                     _player.pause();
-                    _timeline.centreOn(ms, animate: false);
+                    _timeline.scrubTo(ms);
                   },
+                  onScrubEnd: _timeline.endScrub,
                 ),
               ),
               _MarkerPanel(
@@ -533,11 +547,13 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                         IconButton(
                           onPressed: () =>
                               _editor.setPenalty(state.penaltyMs - 1000),
+                          tooltip: context.tr('review.penaltyLess'),
                           icon: const Icon(Icons.remove),
                         ),
                         IconButton(
                           onPressed: () =>
                               _editor.setPenalty(state.penaltyMs + 1000),
+                          tooltip: context.tr('review.penaltyMore'),
                           icon: const Icon(Icons.add),
                         ),
                       ],

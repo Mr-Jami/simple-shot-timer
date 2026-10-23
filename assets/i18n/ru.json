@@ -78,6 +78,8 @@
   "review.label": "Метка",
   "review.notes": "Заметки",
   "review.penalty": "Штраф: {seconds}с",
+  "review.penaltyLess": "Убрать 1 с штрафа",
+  "review.penaltyMore": "Добавить 1 с штрафа",
   "review.shotsHeader": "Выстрелы ({count})",
   "review.noShots": "Выстрелы не записаны.",
   "review.splitFirst": "первый",

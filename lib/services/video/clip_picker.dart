@@ -2,9 +2,12 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:async';
+
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../utils/cancel_token.dart';
 import 'clip_audio_source.dart';
 import 'video_work_dir.dart';
 
@@ -19,12 +22,15 @@ enum ClipSource {
 /// Lets the user choose one video and brings it into a session folder.
 abstract interface class ClipPicker {
   /// The chosen video's path inside [session], or null when the user backs
-  /// out. [onCopyProgress] gets 0..1 while a Files pick copies the video.
-  /// Throws a [ClipAudioException] when the video can't be read.
+  /// out. [onCopyProgress] gets 0..1 while a Files pick copies the video,
+  /// and [cancel] stops that copy (it then throws
+  /// [ClipAudioError.cancelled]). Throws a [ClipAudioException] when the
+  /// video can't be read.
   Future<String?> pick(
     ClipSource source,
     VideoSession session, {
     void Function(double fraction)? onCopyProgress,
+    CancelToken? cancel,
   });
 }
 
@@ -52,6 +58,7 @@ class PluginClipPicker implements ClipPicker {
     ClipSource source,
     VideoSession session, {
     void Function(double fraction)? onCopyProgress,
+    CancelToken? cancel,
   }) async {
     try {
       switch (source) {
@@ -60,6 +67,13 @@ class PluginClipPicker implements ClipPicker {
           return file == null ? null : await session.adopt(file.path);
         case ClipSource.files:
           _onCopyProgress = onCopyProgress;
+          unawaited(cancel?.whenCancelled.then((_) async {
+            try {
+              await _files.invokeMethod<void>('cancel');
+            } on Exception {
+              // The pick reports its own end.
+            }
+          }));
           final path = await _files.invokeMethod<String>(
             'pickVideo',
             {'targetDir': session.dir.path},
@@ -68,9 +82,11 @@ class PluginClipPicker implements ClipPicker {
       }
     } on PlatformException catch (e) {
       throw ClipAudioException(
-        e.code == 'copy_failed'
-            ? ClipAudioError.unreadableFile
-            : ClipAudioError.unavailable,
+        switch (e.code) {
+          'copy_failed' => ClipAudioError.unreadableFile,
+          'cancelled' => ClipAudioError.cancelled,
+          _ => ClipAudioError.unavailable,
+        },
         e.message,
       );
     } on MissingPluginException {

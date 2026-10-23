@@ -78,6 +78,8 @@
   "review.label": "Etiqueta",
   "review.notes": "Notas",
   "review.penalty": "Penalización: {seconds}s",
+  "review.penaltyLess": "Quitar 1 s de penalización",
+  "review.penaltyMore": "Añadir 1 s de penalización",
   "review.shotsHeader": "Disparos ({count})",
   "review.noShots": "Sin disparos registrados.",
   "review.splitFirst": "primero",

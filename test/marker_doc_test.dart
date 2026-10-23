@@ -89,6 +89,14 @@ void main() {
       expect(active(cut.addShot(3100)), [2200, 2620, 2950, 3100]);
     });
 
+    test('the shot marked Last shot keeps the end when it moves', () {
+      final d = doc().setLastShot(1);
+      expect(active(d.moveShot(1, 2700)), [2200, 2700]);
+      expect(active(d.moveShot(1, 2400)), [2200, 2400]);
+      // Another shot moved past the end is left outside it.
+      expect(active(d.moveShot(0, 2800)), [2620]);
+    });
+
     test('deleting the last shot leaves nothing to save', () {
       var d = doc(shots: [2200]);
       d = d.deleteShot(d.shots.single.id);

@@ -66,6 +66,9 @@ class _VideoPartViewState extends State<VideoPartView> {
       _player.addListener(_onPlayer);
       unawaited(_seeker.release(Duration(milliseconds: _window.startMs)));
       setState(() {});
+    }, onError: (Object _) {
+      // A video this phone can't play: the part can still be chosen by its
+      // filmstrip and loudness, over a black preview.
     });
   }
 

@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -10,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
 import 'package:simple_shot_timer/services/video/clip_picker.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
+import 'package:simple_shot_timer/utils/cancel_token.dart';
 
 class _FakePhotos extends ImagePicker {
   _FakePhotos(this.path);
@@ -89,6 +91,30 @@ void main() {
       throwsA(isA<ClipAudioException>()
           .having((e) => e.error, 'error', ClipAudioError.unreadableFile)),
     );
+  });
+
+  test('cancel stops a Files copy', () async {
+    final copying = Completer<Object?>();
+    final calls = <String>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call.method);
+      if (call.method == 'cancel') {
+        copying.completeError(PlatformException(code: 'cancelled'));
+        return null;
+      }
+      return copying.future;
+    });
+    final token = CancelToken();
+    final picking = PluginClipPicker(files: channel)
+        .pick(ClipSource.files, session, cancel: token);
+    await pumpEventQueue();
+    token.cancel();
+    await expectLater(
+      picking,
+      throwsA(isA<ClipAudioException>()
+          .having((e) => e.error, 'error', ClipAudioError.cancelled)),
+    );
+    expect(calls, ['pickVideo', 'cancel']);
   });
 
   test('Photos moves the picker\'s cache copy into the session', () async {

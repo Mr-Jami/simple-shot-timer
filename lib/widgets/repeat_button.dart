@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 /// An outlined icon button that repeats while held: once on touch, then
 /// after [delay] every [interval], twice as fast after [speedUpAfter].
 /// [onStart] and [onEnd] bracket a hold, so its steps can be one undo.
+/// Pressed by a screen reader, a switch or a keyboard, it steps once.
 class RepeatButton extends StatefulWidget {
   const RepeatButton({
     super.key,
@@ -39,7 +40,12 @@ class _RepeatButtonState extends State<RepeatButton> {
   Timer? _timer;
   var _held = Duration.zero;
 
+  /// A finger is on the button, or just lifted: its press is the
+  /// Listener's, not the button's.
+  var _touched = false;
+
   void _down() {
+    _touched = true;
     widget.onStart?.call();
     widget.onStep();
     _held = Duration.zero;
@@ -55,6 +61,8 @@ class _RepeatButtonState extends State<RepeatButton> {
   }
 
   void _up() {
+    // The button reports its press after this, in the same event.
+    scheduleMicrotask(() => _touched = false);
     if (_timer == null) return;
     _timer!.cancel();
     _timer = null;
@@ -76,8 +84,12 @@ class _RepeatButtonState extends State<RepeatButton> {
       child: IconButton.outlined(
         tooltip: widget.tooltip,
         icon: Icon(widget.icon),
-        // The Listener does the work; the button only shows the press.
-        onPressed: () {},
+        onPressed: () {
+          if (_touched) return;
+          widget.onStart?.call();
+          widget.onStep();
+          widget.onEnd?.call();
+        },
       ),
     );
   }

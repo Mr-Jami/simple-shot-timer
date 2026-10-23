@@ -78,6 +78,8 @@
   "review.label": "Rótulo",
   "review.notes": "Anotações",
   "review.penalty": "Penalidade: {seconds}s",
+  "review.penaltyLess": "Tirar 1 s de penalidade",
+  "review.penaltyMore": "Somar 1 s de penalidade",
   "review.shotsHeader": "Disparos ({count})",
   "review.noShots": "Nenhum disparo registrado.",
   "review.splitFirst": "primeiro",

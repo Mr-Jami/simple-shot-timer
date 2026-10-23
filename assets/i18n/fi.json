@@ -78,6 +78,8 @@
   "review.label": "Otsikko",
   "review.notes": "Muistiinpanot",
   "review.penalty": "Sakko: {seconds}s",
+  "review.penaltyLess": "1 s vähemmän sakkoa",
+  "review.penaltyMore": "1 s lisää sakkoa",
   "review.shotsHeader": "Laukaukset ({count})",
   "review.noShots": "Ei kirjattuja laukauksia.",
   "review.splitFirst": "ensimmäinen",

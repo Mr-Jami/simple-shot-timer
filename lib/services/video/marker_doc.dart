@@ -190,11 +190,15 @@ class MarkerDoc {
     );
   }
 
-  MarkerDoc moveShot(int id, int ms) => _copy(
-        shots: _sorted([
-          for (final s in shots) s.id == id ? s._at(_clamp(ms)) : s,
-        ]),
-      );
+  /// Moves a shot; the end of the string goes with the shot marked Last
+  /// shot.
+  MarkerDoc moveShot(int id, int ms) {
+    final at = _clamp(ms);
+    return _copy(
+      shots: _sorted([for (final s in shots) s.id == id ? s._at(at) : s]),
+      endMs: endMs != null && shotById(id)?.ms == endMs ? at : null,
+    );
+  }
 
   MarkerDoc deleteShot(int id) {
     final shot = shotById(id);

@@ -105,7 +105,12 @@ class ImportReady extends ImportState {
 /// long one, decode its sound and analyse it. Owns the clip's work folder
 /// until [ImportReady] hands it to the editor; cancelling or leaving the
 /// screen before that deletes it.
-class VideoImportController extends AutoDisposeNotifier<ImportState> {
+///
+/// One controller per import (the family argument): Riverpod keeps a
+/// notifier's fields across a rebuild, so "Choose another" starts a new
+/// import rather than invalidating this one with its cancelled token.
+class VideoImportController
+    extends AutoDisposeFamilyNotifier<ImportState, int> {
   static const showAfter = Duration(milliseconds: 300);
   static const minVisible = Duration(milliseconds: 500);
   static const loudnessBucketMs = 250;
@@ -128,7 +133,7 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
   var _handedOver = false;
 
   @override
-  ImportState build() {
+  ImportState build(int arg) {
     ref.onDispose(() {
       _showTimer?.cancel();
       _holdTimer?.cancel();
@@ -148,20 +153,23 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
     await _guard(() async {
       final session =
           _session = await ref.read(videoWorkDirProvider).createSession();
+      // Left while the folder was being made: dispose found no session.
+      if (_cancel.isCancelled) return session.dispose();
       _importedAt = DateTime.now();
       final path = await ref.read(clipPickerProvider).pick(
-            source,
-            session,
-            onCopyProgress: (f) => _step(ImportStep.reading, progress: f),
-          );
-      if (_cancel.isCancelled) return;
+        source,
+        session,
+        onCopyProgress: (f) {
+          // A Files pick copies the video before it returns; that wait
+          // counts as work, so the Analyzing view can show it.
+          _armAnalyzingView();
+          _step(ImportStep.reading, progress: f);
+        },
+        cancel: _cancel,
+      );
+      if (_cancel.isCancelled) return session.dispose();
       if (path == null) return _finish(const ImportCancelled());
-      _showTimer = Timer(showAfter, () {
-        _holdTimer = Timer(minVisible, _held.complete);
-        if (state case ImportWorking(:final step, :final progress)) {
-          state = ImportWorking(step, progress: progress, visible: true);
-        }
-      });
+      _armAnalyzingView();
 
       _step(ImportStep.reading);
       final info = await audio.probe(path);
@@ -210,6 +218,17 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
     if (_handedOver || _cancel.isCancelled) return;
     _cancel.cancel();
     _finish(const ImportCancelled());
+  }
+
+  /// The Analyzing view shows once the work after the picker has taken
+  /// [showAfter], then stays at least [minVisible].
+  void _armAnalyzingView() {
+    _showTimer ??= Timer(showAfter, () {
+      _holdTimer = Timer(minVisible, _held.complete);
+      if (state case ImportWorking(:final step, :final progress)) {
+        state = ImportWorking(step, progress: progress, visible: true);
+      }
+    });
   }
 
   void _choosePart(String path, ClipInfo info) {
@@ -335,7 +354,8 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
   }
 }
 
-final videoImportProvider =
-    NotifierProvider.autoDispose<VideoImportController, ImportState>(
+/// Keyed by an id per import screen (see [VideoImportController]).
+final videoImportProvider = NotifierProvider.autoDispose
+    .family<VideoImportController, ImportState, int>(
   VideoImportController.new,
 );

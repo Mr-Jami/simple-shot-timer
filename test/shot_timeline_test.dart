@@ -54,6 +54,7 @@ void main() {
               tiles: tiles,
               originMs: 0,
               markers: markers,
+              startLabel: 'START',
               flingEnabled: fling,
               onTouch: () {},
               onRelease: () {},
@@ -136,6 +137,19 @@ void main() {
     expect(part.playheadMs, 240000);
   });
 
+  testWidgets('a minimap scrub moves at once and settles when it ends',
+      (tester) async {
+    await pumpTimeline(tester);
+    settled.clear();
+    controller.scrubTo(2000);
+    controller.scrubTo(2500);
+    expect(controller.playheadMs, 2500);
+    // The video follows with light seeks until the finger lifts.
+    expect(settled, isEmpty);
+    controller.endScrub();
+    expect(settled, [2500]);
+  });
+
   testWidgets('centring glides and lands exactly on the marker',
       (tester) async {
     await pumpTimeline(tester);
@@ -168,6 +182,32 @@ void main() {
     await tester.tapAt(centre(tester) + const Offset(100, 0));
     await tester.pump(const Duration(milliseconds: 500));
     expect(tapped.single.id, 3);
+  });
+
+  testWidgets('a nudge button steps once for a tap, a screen reader or a key',
+      (tester) async {
+    var steps = 0;
+    var holds = 0;
+    var ends = 0;
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: RepeatButton(
+            icon: Icons.chevron_right,
+            tooltip: 'later',
+            onStart: () => holds++,
+            onStep: () => steps++,
+            onEnd: () => ends++,
+          ),
+        ),
+      ),
+    ));
+    await tester.tap(find.byType(RepeatButton));
+    await tester.pump(const Duration(milliseconds: 500));
+    expect((steps, holds, ends), (1, 1, 1));
+    // TalkBack, switch access and Enter all press the button itself.
+    tester.widget<IconButton>(find.byType(IconButton)).onPressed!();
+    expect((steps, holds, ends), (2, 2, 2));
   });
 
   testWidgets('holding a nudge button repeats, then speeds up', (tester) async {

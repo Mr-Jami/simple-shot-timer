@@ -337,6 +337,7 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
                   });
                   _persistMeta();
                 },
+                tooltip: context.tr('review.penaltyLess'),
                 icon: const Icon(Icons.remove),
               ),
               IconButton(
@@ -344,6 +345,7 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
                   setState(() => _penaltyMs += 1000);
                   _persistMeta();
                 },
+                tooltip: context.tr('review.penaltyMore'),
                 icon: const Icon(Icons.add),
               ),
             ],

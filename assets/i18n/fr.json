@@ -78,6 +78,8 @@
   "review.label": "Étiquette",
   "review.notes": "Notes",
   "review.penalty": "Pénalité : {seconds}s",
+  "review.penaltyLess": "Retirer 1 s de pénalité",
+  "review.penaltyMore": "Ajouter 1 s de pénalité",
   "review.shotsHeader": "Tirs ({count})",
   "review.noShots": "Aucun tir enregistré.",
   "review.splitFirst": "premier",

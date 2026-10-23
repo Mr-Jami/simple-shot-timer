@@ -78,6 +78,8 @@
   "review.label": "Bezeichnung",
   "review.notes": "Notizen",
   "review.penalty": "Strafzeit: {seconds}s",
+  "review.penaltyLess": "1 s Strafzeit weniger",
+  "review.penaltyMore": "1 s Strafzeit mehr",
   "review.shotsHeader": "Schüsse ({count})",
   "review.noShots": "Keine Schüsse erfasst.",
   "review.splitFirst": "erster",

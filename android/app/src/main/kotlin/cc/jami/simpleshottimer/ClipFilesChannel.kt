@@ -22,7 +22,9 @@ import java.util.concurrent.Executors
  * "Or choose from Files" for the video feature: the system document picker
  * for one video, copied straight into the folder Dart names (the clip's work
  * folder), with `copyProgress` (0..1) on [channel] while it copies. The
- * document picker needs no storage permission. Cancelling replies null.
+ * document picker needs no storage permission. Backing out of the picker
+ * replies null; `cancel` stops a copy, which then fails with `cancelled`
+ * and leaves no file.
  */
 class ClipFilesChannel(
     private val activity: Activity,
@@ -32,7 +34,14 @@ class ClipFilesChannel(
     private val main = Handler(Looper.getMainLooper())
     private var pending: Pair<MethodChannel.Result, File>? = null
 
+    @Volatile
+    private var cancelled = false
+
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
+        if (call.method == "cancel") {
+            cancelled = true
+            return result.success(null)
+        }
         if (call.method != "pickVideo") return result.notImplemented()
         val dir = call.argument<String>("targetDir")
             ?: return result.error("copy_failed", "missing targetDir", null)
@@ -41,6 +50,7 @@ class ClipFilesChannel(
             .addCategory(Intent.CATEGORY_OPENABLE)
             .setType("video/*")
         pending = Pair(result, File(dir))
+        cancelled = false
         try {
             activity.startActivityForResult(intent, REQUEST_CODE)
         } catch (e: ActivityNotFoundException) {
@@ -63,6 +73,8 @@ class ClipFilesChannel(
             try {
                 val path = copy(uri, dir)
                 main.post { result.success(path) }
+            } catch (e: CopyCancelled) {
+                main.post { result.error("cancelled", null, null) }
             } catch (e: Throwable) {
                 main.post { result.error("copy_failed", e.toString(), null) }
             }
@@ -94,6 +106,7 @@ class ClipFilesChannel(
                     var copied = 0L
                     var lastReport = 0L
                     while (true) {
+                        if (cancelled) throw CopyCancelled()
                         val n = input.read(buffer)
                         if (n < 0) break
                         out.write(buffer, 0, n)
@@ -113,6 +126,8 @@ class ClipFilesChannel(
         }
         return target.path
     }
+
+    private class CopyCancelled : Exception()
 
     companion object {
         private const val REQUEST_CODE = 0x5371

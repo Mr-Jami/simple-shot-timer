@@ -4,16 +4,20 @@
 
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:fake_async/fake_async.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:simple_shot_timer/i18n/app_localizations.dart';
 import 'package:simple_shot_timer/models/enums.dart';
 import 'package:simple_shot_timer/models/shot.dart';
 import 'package:simple_shot_timer/models/timer_string.dart';
 import 'package:simple_shot_timer/providers/video_import_provider.dart';
 import 'package:simple_shot_timer/providers/video_providers.dart';
+import 'package:simple_shot_timer/screens/video_import_screen.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer_runner.dart';
 import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
@@ -44,10 +48,13 @@ class _FakeSession extends VideoSession {
 
 class _FakeWorkDir extends VideoWorkDir {
   final sessions = <_FakeSession>[];
+  Duration createTime = Duration.zero;
 
   @override
-  Future<VideoSession> createSession() async =>
-      _FakeSession()..also(sessions.add);
+  Future<VideoSession> createSession() async {
+    await Future<void>.delayed(createTime);
+    return _FakeSession()..also(sessions.add);
+  }
 }
 
 extension<T> on T {
@@ -61,16 +68,28 @@ class _FakePicker implements ClipPicker {
   String? path = 'session/clip.mp4';
   ClipAudioException? error;
 
+  /// A Files pick copying for this long, reporting every 100 ms.
+  Duration copyTime = Duration.zero;
+  CancelToken? lastCancel;
+
   @override
   Future<String?> pick(
     ClipSource source,
     VideoSession session, {
     void Function(double fraction)? onCopyProgress,
+    CancelToken? cancel,
   }) async {
+    lastCancel = cancel;
+    for (var t = Duration.zero; t < copyTime; t += _copyStep) {
+      onCopyProgress?.call(t.inMilliseconds / copyTime.inMilliseconds);
+      await Future<void>.delayed(_copyStep);
+    }
     if (error != null) throw error!;
     return path;
   }
 }
+
+const _copyStep = Duration(milliseconds: 100);
 
 class _FakeAudio implements ClipAudioSource {
   ClipInfo info = const ClipInfo(
@@ -217,10 +236,10 @@ void main() {
         clipAnalyzerProvider.overrideWithValue(analyzer),
       ]);
       final seen = <ImportState>[];
-      container.listen(videoImportProvider, (_, next) => seen.add(next),
+      container.listen(videoImportProvider(0), (_, next) => seen.add(next),
           fireImmediately: true);
       container
-          .read(videoImportProvider.notifier)
+          .read(videoImportProvider(0).notifier)
           .start(ClipSource.photos, reopen: reopen);
       script(async, container, seen);
       container.dispose();
@@ -254,6 +273,42 @@ void main() {
       expect(seen.last, isA<ImportWorking>());
       async.elapse(const Duration(milliseconds: 100));
       expect(seen.last, isA<ImportReady>());
+    });
+  });
+
+  test('a Files copy that takes a while shows Analyzing with its progress', () {
+    picker.copyTime = const Duration(seconds: 1);
+    run((async, c, seen) {
+      async.elapse(const Duration(milliseconds: 450));
+      final working = seen.last as ImportWorking;
+      expect(working.visible, isTrue);
+      expect(working.step, ImportStep.reading);
+      expect(working.progress, closeTo(0.4, 0.01));
+      async.elapse(const Duration(seconds: 1));
+      expect(seen.last, isA<ImportReady>());
+    });
+  });
+
+  test('Cancel during a Files copy stops it and deletes the folder', () {
+    picker.copyTime = const Duration(seconds: 2);
+    run((async, c, seen) {
+      async.elapse(const Duration(milliseconds: 500));
+      c.read(videoImportProvider(0).notifier).cancel();
+      async.elapse(const Duration(seconds: 3));
+      expect(picker.lastCancel!.isCancelled, isTrue);
+      expect(seen.last, isA<ImportCancelled>());
+      expect(audio.probes, 0);
+      expect(work.sessions.single.disposed, isTrue);
+    });
+  });
+
+  test('leaving while the work folder is made deletes it once made', () {
+    work.createTime = const Duration(milliseconds: 100);
+    run((async, c, seen) {
+      async.elapse(const Duration(milliseconds: 50));
+      c.dispose();
+      async.elapse(const Duration(milliseconds: 100));
+      expect(work.sessions.single.disposed, isTrue);
     });
   });
 
@@ -295,7 +350,7 @@ void main() {
     audio.decodeTime = const Duration(seconds: 5);
     run((async, c, seen) {
       async.elapse(const Duration(milliseconds: 500));
-      c.read(videoImportProvider.notifier).cancel();
+      c.read(videoImportProvider(0).notifier).cancel();
       async.elapse(const Duration(seconds: 6));
       expect(audio.lastCancel!.isCancelled, isTrue);
       expect(seen.last, isA<ImportCancelled>());
@@ -349,7 +404,7 @@ void main() {
       run((async, c, seen) {
         async.elapse(const Duration(milliseconds: 10));
         const mine = PartWindow(30000, 90000);
-        c.read(videoImportProvider.notifier).moveWindow(mine);
+        c.read(videoImportProvider(0).notifier).moveWindow(mine);
         async.elapse(const Duration(seconds: 3));
         final part = seen.last as ImportChoosePart;
         expect(part.scanned, isTrue);
@@ -361,7 +416,7 @@ void main() {
       run((async, c, seen) {
         async.elapse(const Duration(milliseconds: 10));
         const mine = PartWindow(30000, 90000);
-        final import = c.read(videoImportProvider.notifier);
+        final import = c.read(videoImportProvider(0).notifier);
         import.moveWindow(mine);
         import.analysePart();
         async.flushMicrotasks();
@@ -405,7 +460,7 @@ void main() {
     test('closing it stops the scan and deletes the folder', () {
       run((async, c, seen) {
         async.elapse(const Duration(milliseconds: 10));
-        c.read(videoImportProvider.notifier).cancel();
+        c.read(videoImportProvider(0).notifier).cancel();
         async.flushMicrotasks();
         expect(seen.last, isA<ImportCancelled>());
         expect(audio.scanCancel!.isCancelled, isTrue);
@@ -425,5 +480,57 @@ void main() {
       expect(audio.lastCancel!.isCancelled, isTrue);
       expect(work.sessions.single.disposed, isTrue);
     });
+  });
+
+  testWidgets('Choose another after a problem starts a new import',
+      (tester) async {
+    // rootBundle caches each string as a future owned by the test that
+    // loaded it.
+    rootBundle.clear();
+    audio.info = const ClipInfo(
+      hasAudio: false,
+      durationMs: 7000,
+      videoMime: 'video/hevc',
+    );
+    await tester.pumpWidget(ProviderScope(
+      overrides: [
+        videoWorkDirProvider.overrideWithValue(work),
+        clipPickerProvider.overrideWithValue(picker),
+        clipAudioSourceProvider.overrideWithValue(audio),
+        clipAnalyzerProvider.overrideWithValue(analyzer),
+      ],
+      child: const MaterialApp(
+        locale: Locale('en'),
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        home: VideoImportScreen(source: ClipSource.photos),
+      ),
+    ));
+    final noSound = find.textContaining('has no sound');
+    // AppLocalizations reads its JSON from the asset bundle: real I/O. The
+    // import's own timers run on the test clock.
+    for (var i = 0; noSound.evaluate().isEmpty && i < 200; i++) {
+      await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 10)));
+      await tester.pump(const Duration(milliseconds: 10));
+    }
+    expect(noSound, findsOneWidget);
+
+    audio.info = const ClipInfo(
+      hasAudio: true,
+      durationMs: 400,
+      videoMime: 'video/hevc',
+    );
+    await tester.tap(find.text('Choose another video'));
+    await tester.pumpAndSettle();
+    // The second clip was picked and checked, not dropped.
+    expect(find.textContaining('too short'), findsOneWidget);
+    expect(audio.probes, 2);
+    expect(work.sessions, hasLength(2));
+    expect(work.sessions.every((s) => s.disposed), isTrue);
   });
 }

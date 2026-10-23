@@ -78,6 +78,8 @@
   "review.label": "Etykieta",
   "review.notes": "Notatki",
   "review.penalty": "Kara: {seconds}s",
+  "review.penaltyLess": "Odejmij 1 s kary",
+  "review.penaltyMore": "Dodaj 1 s kary",
   "review.shotsHeader": "Strzały ({count})",
   "review.noShots": "Brak zarejestrowanych strzałów.",
   "review.splitFirst": "pierwszy",
@@ -234,8 +236,8 @@
   "video.problem.failed": "Nie udało się odczytać dźwięku tego wideo.",
 
   "part.title": "Wybierz fragment",
-  "part.scanning": "Filmy dłuższe niż 3 minuty są sprawdzane po 3 minuty. Szukanie najgłośniejszego fragmentu…",
-  "part.hint": "Filmy dłuższe niż 3 minuty są sprawdzane po 3 minuty. Przesuń ramkę na swoją serię.",
+  "part.scanning": "Wideo dłuższe niż 3 minuty jest sprawdzane fragmentami po 3 minuty. Szukanie najgłośniejszego fragmentu…",
+  "part.hint": "Wideo dłuższe niż 3 minuty jest sprawdzane fragmentami po 3 minuty. Przesuń ramkę na swoją serię.",
   "part.analyze": "Analizuj ten fragment",
   "part.semantics": "Fragment od {from} do {to}",
 

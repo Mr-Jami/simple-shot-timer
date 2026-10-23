@@ -77,6 +77,16 @@ void main() {
     expect(window.startMs, 120000);
   });
 
+  testWidgets('a tap that moves nothing reports nothing', (tester) async {
+    final left = await pumpStrip(tester);
+    await tester.tapAt(left + const Offset(120, 0));
+    await tester.tapAt(left + const Offset(87, 0));
+    await tester.pumpAndSettle();
+    expect(window, const PartWindow(120000, 240000));
+    expect(edges, isEmpty);
+    expect(ends, 0);
+  });
+
   testWidgets('a tap outside centres the window there', (tester) async {
     final left = await pumpStrip(tester);
     await tester.tapAt(left + const Offset(300, 0));

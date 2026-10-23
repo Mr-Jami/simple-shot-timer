@@ -166,6 +166,19 @@ class TimelineController extends ChangeNotifier {
     }
   }
 
+  /// Puts [ms] under the playhead at once while a finger drags along the
+  /// minimap: [onUserMove] lets the video follow with light seeks, and
+  /// [endScrub] settles where the finger lifted.
+  void scrubTo(int ms) {
+    _stop();
+    _motion = TimelineMotion.drag;
+    _setPx(ms.clamp(startMs, endMs) * _pxPerSecond / 1000, user: true);
+  }
+
+  void endScrub() {
+    if (_motion == TimelineMotion.drag) _settled();
+  }
+
   /// Brings [ms] under the playhead, gliding there unless [animate] is off
   /// (reduced motion) or it is already close.
   void centreOn(int ms, {bool animate = true}) {

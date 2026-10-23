@@ -30,6 +30,11 @@ class VideoImportScreen extends ConsumerStatefulWidget {
 }
 
 class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
+  static var _imports = 0;
+
+  /// This screen's current import; "Choose another" starts a new one.
+  var _import = _imports++;
+
   @override
   void initState() {
     super.initState();
@@ -39,12 +44,12 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
   void _start() {
     if (!mounted) return;
     ref
-        .read(videoImportProvider.notifier)
+        .read(videoImportProvider(_import).notifier)
         .start(widget.source, reopen: widget.reopen);
   }
 
   void _chooseAnother() {
-    ref.invalidate(videoImportProvider);
+    setState(() => _import = _imports++);
     WidgetsBinding.instance.addPostFrameCallback((_) => _start());
   }
 
@@ -89,7 +94,7 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(videoImportProvider, (_, next) {
+    ref.listen(videoImportProvider(_import), (_, next) {
       switch (next) {
         case ImportCancelled():
           Navigator.of(context).pop();
@@ -98,8 +103,8 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
         default:
       }
     });
-    final state = ref.watch(videoImportProvider);
-    final import = ref.read(videoImportProvider.notifier);
+    final state = ref.watch(videoImportProvider(_import));
+    final import = ref.read(videoImportProvider(_import).notifier);
     return PopScope(
       canPop: state is! ImportWorking,
       onPopInvokedWithResult: (didPop, _) {
