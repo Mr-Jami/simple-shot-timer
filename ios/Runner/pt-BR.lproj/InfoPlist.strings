@@ -1,1 +1,2 @@
 "NSMicrophoneUsageDescription" = "O Simple Shot Timer escuta pelo microfone para detectar seus disparos e medir seus splits. O som é analisado no seu iPhone e nunca é gravado nem enviado para lugar nenhum.";
+"NSPhotoLibraryAddUsageDescription" = "O Simple Shot Timer salva nas suas fotos os vídeos que você exporta com seus tempos. Ele nunca lê a sua biblioteca.";

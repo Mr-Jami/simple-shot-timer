@@ -1,1 +1,2 @@
 "NSMicrophoneUsageDescription" = "Simple Shot Timer kuuntelee mikrofonia tunnistaakseen laukauksesi ja mitatakseen split-aikasi. Ääni analysoidaan iPhonessasi, eikä sitä koskaan tallenneta tai lähetetä minnekään.";
+"NSPhotoLibraryAddUsageDescription" = "Simple Shot Timer tallentaa aikojesi kanssa viemäsi videot kuviisi. Se ei koskaan lue kirjastoasi.";

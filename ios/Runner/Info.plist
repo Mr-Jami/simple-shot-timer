@@ -41,6 +41,8 @@
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Simple Shot Timer listens through the microphone to detect your shots and time your splits. The sound is analysed on your phone and never recorded or sent anywhere.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Simple Shot Timer saves the videos you export with your times to your photos. It never reads your library.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

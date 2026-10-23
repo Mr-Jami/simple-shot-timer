@@ -27,7 +27,7 @@
   <article class="wrap legal-wrap">
     <p class="eyebrow">Privacy</p>
     <h1 class="h2">App privacy policy</h1>
-    <p class="legal-meta">Last updated: 13 October 2026</p>
+    <p class="legal-meta">Last updated: 23 October 2026</p>
     <p class="legal-lede">This policy covers the Simple Shot Timer app for Android and iPhone (iOS). What happens when you visit this website is explained in the <a href="/privacy/website/">website privacy policy</a>. The <a href="/de/datenschutz/" hreflang="de">German version</a> is the legally binding one.</p>
 
     <section class="legal-summary" aria-labelledby="summary">
@@ -51,6 +51,7 @@
       <li>Shot timings: position in the session, time in milliseconds, whether added manually</li>
       <li>Settings such as language, history cap and audio thresholds</li>
       <li>Custom drills you save: name and drill settings</li>
+      <li>For sessions made from a video: where the start beep sits in it, its length and when it was recorded, never the video itself</li>
     </ul>
     <p>This lives in a local SQLite database and a preferences file in the app's private storage. I never receive it. If your phone's own backup is switched on (iCloud Backup on iPhone, Google backup on Android), the operating system may include this data in that backup, which stays between you and Apple or Google.</p>
     <p><strong>Microphone:</strong></p>
@@ -58,11 +59,14 @@
     <p>You can grant or revoke the permission at any time in your system settings. Without it the app can't time a string; your history, saved drills and settings stay available.</p>
     <p><strong>CSV export:</strong></p>
     <p>When you export a session as CSV, the app writes the file to temporary storage and hands it to your system's share dialog. Where it goes from there (e-mail, messaging, cloud storage) is up to the app you pick; I have no involvement in or visibility into that transfer.</p>
+    <p><strong>Videos (Android):</strong></p>
+    <p>In the Video tab you can choose a video from your phone. The app copies it into its private storage, reads its sound on your phone to find the start beep and the shots, and shows it so you can correct them. Only the times are saved, like any other session. The copy and its sound are deleted when you leave the editor, or at the next start if the app was closed before. <strong>No video is uploaded or transmitted.</strong> When you export a video with your times, the app makes the new video in the same private folder and, as you choose, saves it to your phone's videos or hands it to the share dialog, as with the CSV export.</p>
 
     <h2 id="legal-basis">Legal basis</h2>
     <ul>
       <li>Local storage of sessions and settings: Art. 6(1)(b) GDPR, as it is needed to provide the feature you use when you start and save a session.</li>
       <li>Microphone access: Art. 6(1)(a) GDPR, your consent given via the system permission prompt. You can withdraw it at any time in system settings; processing before that remains lawful.</li>
+      <li>Processing a video you choose, on your device: Art. 6(1)(b) GDPR, as it is needed to provide the feature you use.</li>
     </ul>
 
     <h2 id="retention">Retention</h2>
@@ -75,6 +79,7 @@
       <li>you uninstall the app.</li>
     </ul>
     <p>Temporary export files sit in the system's temp directory and may be removed by the OS at any time; "Delete all data and settings" removes them too.</p>
+    <p>A video you choose is kept only as a temporary copy while you correct its times; the app deletes it when you leave the editor. Videos you save to your phone's videos stay there until you delete them.</p>
 
     <h2 id="recipients">Recipients and international transfers</h2>
     <p>I do not receive, host or transmit any of your data. There are no recipients, and because the app itself sends nothing off your device, I make no transfer to third countries under Art. 44 ff. GDPR. A device backup with Apple or Google is something you set up yourself, and their privacy terms apply to it.</p>
@@ -90,6 +95,7 @@
       <li><strong>Foreground service</strong> (<code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_MICROPHONE</code>) and <strong>notifications</strong> (<code>POST_NOTIFICATIONS</code>): keep detection and beeps running while a session runs in the background, with the notification Android shows during that time.</li>
       <li><strong>Vibration</strong> (<code>VIBRATE</code>): haptic feedback on beeps.</li>
       <li><strong>Wake lock</strong> (<code>WAKE_LOCK</code>): keeps the processor awake while a session runs in the background, so detection and beeps don't stop.</li>
+      <li><strong>Storage</strong> (<code>WRITE_EXTERNAL_STORAGE</code>, Android 10 and older only): saves a video you export to your phone's videos. Choosing a video uses the system's photo or file picker and needs no permission.</li>
     </ul>
     <p>Keeping the screen on during a session needs no permission.</p>
     <p><strong>iPhone:</strong></p>

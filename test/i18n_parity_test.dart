@@ -62,23 +62,30 @@ void main() {
     // The App Store lists the languages of the <lang>.lproj folders in the
     // bundle, not CFBundleLocalizations or the Flutter assets: a language
     // without its folder is missing from the App Store page.
-    const micKey = 'NSMicrophoneUsageDescription';
-    String? micText(String source, RegExp pattern) =>
+    // The microphone, and saving an exported video to Photos (gal).
+    const keys = [
+      'NSMicrophoneUsageDescription',
+      'NSPhotoLibraryAddUsageDescription',
+    ];
+    String? text(String source, RegExp pattern) =>
         pattern.firstMatch(source)?.group(1);
-    final stringsEntry = RegExp('"$micKey"\\s*=\\s*"((?:[^"\\\\]|\\\\.)*)";');
-    for (final lang in iosLocalizations) {
-      final path = '$lang.lproj/InfoPlist.strings';
-      final file = File('ios/Runner/$path');
-      expect(file.existsSync(), isTrue, reason: 'missing ios/Runner/$path');
-      expect(micText(file.readAsStringSync(), stringsEntry), isNotEmpty,
-          reason: '$path has no $micKey');
+    for (final key in keys) {
+      final stringsEntry =
+          RegExp('"$key"\\s*=\\s*"((?:[^"\\\\]|\\\\.)*)";');
+      for (final lang in iosLocalizations) {
+        final path = '$lang.lproj/InfoPlist.strings';
+        final file = File('ios/Runner/$path');
+        expect(file.existsSync(), isTrue, reason: 'missing ios/Runner/$path');
+        expect(text(file.readAsStringSync(), stringsEntry), isNotEmpty,
+            reason: '$path has no $key');
+      }
+      expect(
+        text(File('ios/Runner/en.lproj/InfoPlist.strings').readAsStringSync(),
+            stringsEntry),
+        text(plist, RegExp('<key>$key</key>\\s*<string>([^<]*)</string>')),
+        reason: 'en.lproj overrides Info.plist and must say the same ($key)',
+      );
     }
-    expect(
-      micText(File('ios/Runner/en.lproj/InfoPlist.strings').readAsStringSync(),
-          stringsEntry),
-      micText(plist, RegExp('<key>$micKey</key>\\s*<string>([^<]*)</string>')),
-      reason: 'en.lproj overrides Info.plist and must say the same',
-    );
   });
 
   test('the Runner target bundles the InfoPlist.strings of every language', () {
