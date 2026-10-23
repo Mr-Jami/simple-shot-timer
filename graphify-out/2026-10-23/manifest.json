@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "lib/utils/time_format.dart": {
-    "mtime": 1791145913.2809384,
-    "ast_hash": "6145e7f894de8468e6a0ab8406851781",
+    "mtime": 1792720598.7363572,
+    "ast_hash": "ab3e5f516dd623406e3660fc8ce54633",
     "semantic_hash": ""
   },
   "lib/widgets/big_time_display.dart": {
@@ -685,8 +685,8 @@
     "semantic_hash": ""
   },
   "lib/screens/custom_drill_flows.dart": {
-    "mtime": 1792714246.4435883,
-    "ast_hash": "7e1b90f6f6eeebe90eaa71c9833661ae",
+    "mtime": 1792720812.0829184,
+    "ast_hash": "d409e1b149ee9c21e193364e9e2c15df",
     "semantic_hash": ""
   },
   "lib/screens/custom_drills_screen.dart": {
@@ -2135,8 +2135,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_audio_source.dart": {
-    "mtime": 1792717272.437447,
-    "ast_hash": "0dfe10babd3062da71a19c6e1359b35b",
+    "mtime": 1792720782.644937,
+    "ast_hash": "2ef61da7dae816c53a3db3fa67542c9a",
     "semantic_hash": ""
   },
   "lib/services/video/clip_shot_finder.dart": {
@@ -2210,13 +2210,13 @@
     "semantic_hash": ""
   },
   "lib/providers/clip_editor_provider.dart": {
-    "mtime": 1792713818.2236886,
-    "ast_hash": "7c5b4e3c0b88ce0331013a8a8b00b8ef",
+    "mtime": 1792720598.7402532,
+    "ast_hash": "2a87d57380c2202572b305c1712af748",
     "semantic_hash": ""
   },
   "lib/providers/video_import_provider.dart": {
-    "mtime": 1792716904.6872852,
-    "ast_hash": "e85bdc2c5aa52c5d8401c138b2d22342",
+    "mtime": 1792720782.622848,
+    "ast_hash": "fce01723aa25d446fe1625264a0d8c9c",
     "semantic_hash": ""
   },
   "lib/providers/video_providers.dart": {
@@ -2225,8 +2225,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1792717191.2754555,
-    "ast_hash": "0fda5eca2a79c9ab7e33eb1dee304d4e",
+    "mtime": 1792720782.6339538,
+    "ast_hash": "5465f639601a01883861a8b4ff937f4c",
     "semantic_hash": ""
   },
   "lib/screens/video_flows.dart": {
@@ -2235,8 +2235,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_import_screen.dart": {
-    "mtime": 1792717015.0783236,
-    "ast_hash": "93598851f2c51f080a4281f7858d198d",
+    "mtime": 1792720598.7384064,
+    "ast_hash": "d625092c1df826a3b7041859350c4ef2",
     "semantic_hash": ""
   },
   "lib/screens/video_screen.dart": {
@@ -2385,8 +2385,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_part_view.dart": {
-    "mtime": 1792717076.6751113,
-    "ast_hash": "7ee1b74489e12792457919036cf8db34",
+    "mtime": 1792720739.2849028,
+    "ast_hash": "72e8a678787846df7a16f1428b49ba69",
     "semantic_hash": ""
   },
   "lib/services/video/part_window.dart": {
@@ -2422,6 +2422,36 @@
   "test/review_discard_test.dart": {
     "mtime": 1792715763.8264265,
     "ast_hash": "a3704ea6e07ee5b86ba002b7d6466533",
+    "semantic_hash": ""
+  },
+  "lib/services/video/clip_player.dart": {
+    "mtime": 1792720461.6409137,
+    "ast_hash": "3fa6c6d7306b5d2c1c755ba1e795ddc1",
+    "semantic_hash": ""
+  },
+  "lib/widgets/clip_video.dart": {
+    "mtime": 1792720461.9131963,
+    "ast_hash": "43d7152307f7d45014e76d55d8720817",
+    "semantic_hash": ""
+  },
+  "lib/widgets/confirm_dialog.dart": {
+    "mtime": 1792720462.1716578,
+    "ast_hash": "641b606a5fd356cf65b83e32a114268d",
+    "semantic_hash": ""
+  },
+  "lib/widgets/editor/editor_transport.dart": {
+    "mtime": 1792720494.5934217,
+    "ast_hash": "c7009aac431f708bfc6cb085e0d8e579",
+    "semantic_hash": ""
+  },
+  "lib/widgets/editor/marker_panel.dart": {
+    "mtime": 1792720782.657488,
+    "ast_hash": "57cf67a1ab78fd8a44a1760355201c07",
+    "semantic_hash": ""
+  },
+  "lib/widgets/editor/sensitivity_selector.dart": {
+    "mtime": 1792720494.878151,
+    "ast_hash": "11eed2c0f82f72c9019414e421194e85",
     "semantic_hash": ""
   }
 }
