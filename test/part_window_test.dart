@@ -23,13 +23,30 @@ void main() {
           for (var i = 0; i < minutes * 240; i++) loud[i ~/ 240] ?? 0.02,
         ];
 
-    test('holds the burst of shots', () {
+    test('holds the burst of shots in its middle', () {
       // Minute 6 is loud.
       final w = PartWindow.loudest(levels(10, {6: 0.4}),
           bucketMs: 250, durationMs: tenMinutes);
       expect(w.lengthMs, maxClipPartMs);
-      expect(w.startMs, lessThanOrEqualTo(6 * minute));
-      expect(w.endMs, greaterThanOrEqualTo(7 * minute));
+      expect(w.startMs + w.lengthMs ~/ 2, closeTo(6 * minute + 30000, 250));
+    });
+
+    test('talk next to a string does not push it to an edge', () {
+      // Two minutes of talk, then the string (beep, shots), then quiet.
+      final scan = [
+        for (var i = 0; i < 10 * 240; i++)
+          i < 2 * 240
+              ? 0.08
+              : i >= 2 * 240 + 8 && i < 2 * 240 + 12
+                  ? 0.15 // the beep, 2 s after the talk
+                  : i >= 2 * 240 + 20 && i < 2 * 240 + 100
+                      ? 0.45 // 20 s of shots
+                      : 0.005,
+      ];
+      final w = PartWindow.loudest(scan, bucketMs: 250, durationMs: tenMinutes);
+      // The beep at 2:02 and the last shot at 2:30 have a minute of room.
+      expect(w.startMs, lessThan(2 * minute + 2000 - minute));
+      expect(w.endMs, greaterThan(2 * minute + 30000 + minute));
     });
 
     test('prefers shots over longer, steadier noise', () {

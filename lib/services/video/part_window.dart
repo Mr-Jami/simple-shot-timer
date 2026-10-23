@@ -20,9 +20,12 @@ class PartWindow {
   factory PartWindow.first(int durationMs) =>
       PartWindow(0, math.min(durationMs, maxClipPartMs));
 
-  /// The [lengthMs] stretch with the most sound energy in the loudness scan
-  /// ([bucketMs] per value): squaring favours bursts of shots over steady
-  /// wind or talk of the same average level. Ties go to the earliest.
+  /// A [lengthMs] stretch around the loudest burst in the loudness scan
+  /// ([bucketMs] per value). First the stretch with the most sound energy
+  /// (squaring favours bursts of shots over steady wind or talk of the same
+  /// average level; ties go to the earliest), then centred on where its
+  /// energy peaks: talk before or after a string would otherwise pull the
+  /// string to an edge, or the beep out.
   factory PartWindow.loudest(
     List<double> loudness, {
     required int bucketMs,
@@ -46,7 +49,18 @@ class PartWindow {
         bestAt = i - n + 1;
       }
     }
-    final start = math.min(bestAt * bucketMs, durationMs - length);
+    // Weighted by energy squared, so the shots outweigh the noise.
+    var weight = 0.0;
+    var moment = 0.0;
+    for (var i = bestAt; i < bestAt + n; i++) {
+      final e = loudness[i] * loudness[i];
+      weight += e * e;
+      moment += e * e * i;
+    }
+    final centre = weight > 0 ? moment / weight : bestAt + (n - 1) / 2;
+    final start = ((centre + 0.5) * bucketMs - length / 2)
+        .round()
+        .clamp(0, durationMs - length);
     return PartWindow(start, start + length);
   }
 
