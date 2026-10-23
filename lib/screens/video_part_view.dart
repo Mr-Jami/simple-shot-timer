@@ -3,26 +3,17 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
 import '../i18n/app_localizations.dart';
 import '../providers/video_import_provider.dart';
+import '../services/video/clip_player.dart';
 import '../services/video/part_window.dart';
-import '../services/video/throttled_seeker.dart';
 import '../utils/motion.dart';
+import '../utils/time_format.dart';
+import '../widgets/clip_video.dart';
 import '../widgets/part_strip.dart';
-
-/// "1:05" or, past an hour, "1:02:05".
-String partClock(int ms) {
-  final s = ms ~/ 1000;
-  String two(int n) => n.toString().padLeft(2, '0');
-  return s >= 3600
-      ? '${s ~/ 3600}:${two(s ~/ 60 % 60)}:${two(s % 60)}'
-      : '${s ~/ 60}:${two(s % 60)}';
-}
 
 /// Choose the part, for clips over three minutes: a preview that shows the
 /// frame under the edge being dragged and plays the window, the
@@ -46,13 +37,7 @@ class VideoPartView extends StatefulWidget {
 }
 
 class _VideoPartViewState extends State<VideoPartView> {
-  late final VideoPlayerController _player = VideoPlayerController.file(
-    File(widget.part.clipPath),
-    // The texture view washes out HDR and garbles 4K 10-bit clips.
-    viewType: VideoViewType.platformView,
-  );
-  late final ThrottledSeeker _seeker =
-      ThrottledSeeker((d) => _player.seekTo(d));
+  late final _player = ClipPlayer(widget.part.clipPath);
   var _dragging = false;
   var _previewMs = 0;
 
@@ -64,8 +49,7 @@ class _VideoPartViewState extends State<VideoPartView> {
     _player.initialize().then((_) {
       if (!mounted) return;
       _player.addListener(_onPlayer);
-      unawaited(_seeker.release(Duration(milliseconds: _window.startMs)));
-      setState(() {});
+      unawaited(_player.settle(_window.startMs));
     }, onError: (Object _) {
       // A video this phone can't play: the part can still be chosen by its
       // filmstrip and loudness, over a black preview.
@@ -80,7 +64,7 @@ class _VideoPartViewState extends State<VideoPartView> {
         old.part.window != _window &&
         _player.value.isInitialized) {
       _player.pause();
-      unawaited(_seeker.release(Duration(milliseconds: _window.startMs)));
+      unawaited(_player.settle(_window.startMs));
     }
   }
 
@@ -106,7 +90,7 @@ class _VideoPartViewState extends State<VideoPartView> {
     }
     final at = value.position.inMilliseconds;
     if (at < _window.startMs || at >= _window.endMs - 100) {
-      unawaited(_seeker.release(Duration(milliseconds: _window.startMs)));
+      unawaited(_player.settle(_window.startMs));
     }
     _player.play();
   }
@@ -115,13 +99,13 @@ class _VideoPartViewState extends State<VideoPartView> {
     _dragging = true;
     _player.pause();
     _previewMs = edge == PartEdge.end ? window.endMs : window.startMs;
-    _seeker.scrub(Duration(milliseconds: _previewMs));
+    _player.scrub(_previewMs);
     widget.onChanged(window);
   }
 
   void _changeEnd() {
     _dragging = false;
-    unawaited(_seeker.release(Duration(milliseconds: _previewMs)));
+    unawaited(_player.settle(_previewMs));
   }
 
   @override
@@ -130,9 +114,6 @@ class _VideoPartViewState extends State<VideoPartView> {
     final scheme = theme.colorScheme;
     final part = widget.part;
     final info = part.info;
-    final aspect = info.width != null && info.height != null && info.height! > 0
-        ? info.width! / info.height!
-        : 16 / 9;
     final window = _window;
     final figures = theme.textTheme.titleMedium
         ?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]);
@@ -159,40 +140,34 @@ class _VideoPartViewState extends State<VideoPartView> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
             child: Center(
-              child: AspectRatio(
-                aspectRatio: aspect,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: ColoredBox(
-                    color: Colors.black,
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        if (_player.value.isInitialized)
-                          VideoPlayer(_player, key: ObjectKey(_player)),
-                        Center(
-                          child: ValueListenableBuilder(
-                            valueListenable: _player,
-                            builder: (context, value, _) => IconButton.filled(
-                              tooltip: context.tr(value.isPlaying
-                                  ? 'editor.pause'
-                                  : 'editor.play'),
-                              style: IconButton.styleFrom(
-                                backgroundColor:
-                                    Colors.black.withValues(alpha: 0.5),
-                                foregroundColor: Colors.white,
-                              ),
-                              iconSize: 32,
-                              onPressed:
-                                  value.isInitialized ? _togglePlay : null,
-                              icon: Icon(value.isPlaying
-                                  ? Icons.pause
-                                  : Icons.play_arrow),
-                            ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: ColoredBox(
+                  color: Colors.black,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      ClipVideo(
+                        player: _player,
+                        aspectRatio: info.aspectRatio ?? 16 / 9,
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: _player,
+                        builder: (context, value, _) => IconButton.filled(
+                          tooltip: context.tr(
+                              value.isPlaying ? 'editor.pause' : 'editor.play'),
+                          style: IconButton.styleFrom(
+                            backgroundColor:
+                                Colors.black.withValues(alpha: 0.5),
+                            foregroundColor: Colors.white,
                           ),
+                          iconSize: 32,
+                          onPressed: value.isInitialized ? _togglePlay : null,
+                          icon: Icon(
+                              value.isPlaying ? Icons.pause : Icons.play_arrow),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -213,12 +188,12 @@ class _VideoPartViewState extends State<VideoPartView> {
               Row(
                 children: [
                   Text(
-                    '${partClock(window.startMs)} – ${partClock(window.endMs)}',
+                    '${formatMinutes(window.startMs)} – ${formatMinutes(window.endMs)}',
                     style: figures,
                   ),
                   const Spacer(),
                   Text(
-                    partClock(window.lengthMs),
+                    formatMinutes(window.lengthMs),
                     style: figures?.copyWith(color: scheme.onSurfaceVariant),
                   ),
                 ],
@@ -234,8 +209,8 @@ class _VideoPartViewState extends State<VideoPartView> {
                 onChangeEnd: _changeEnd,
                 reduceMotion: reducedMotionOf(context),
                 semanticLabel: context.tr('part.semantics', args: {
-                  'from': partClock(window.startMs),
-                  'to': partClock(window.endMs),
+                  'from': formatMinutes(window.startMs),
+                  'to': formatMinutes(window.endMs),
                 }),
               ),
               const SizedBox(height: 24),

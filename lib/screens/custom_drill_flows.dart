@@ -10,6 +10,7 @@ import '../models/custom_drill.dart';
 import '../models/drill_config.dart';
 import '../providers/custom_drills_provider.dart';
 import '../providers/settings_provider.dart';
+import '../widgets/confirm_dialog.dart';
 import '../widgets/drill_name_dialog.dart';
 
 // User flows around custom drills (issue #24), kept apart from the Drills
@@ -102,7 +103,7 @@ Future<void> deleteDrill(
   CustomDrill drill,
 ) async {
   final drills = ref.read(customDrillsProvider.notifier);
-  final confirmed = await _confirm(
+  final confirmed = await confirmDialog(
     context,
     title: context.tr('drills.deleteTitle'),
     body: context.tr('drills.deleteBody', args: {'name': drill.name}),
@@ -120,7 +121,7 @@ Future<void> _confirmAndOverwrite(
   required String body,
 }) async {
   final drills = ref.read(customDrillsProvider.notifier);
-  final confirmed = await _confirm(
+  final confirmed = await confirmDialog(
     context,
     title: context.tr('drills.overwriteTitle'),
     body: body,
@@ -133,32 +134,6 @@ Future<void> _confirmAndOverwrite(
     context,
     context.tr('drills.overwrittenSnack', args: {'name': drill.name}),
   );
-}
-
-Future<bool> _confirm(
-  BuildContext context, {
-  required String title,
-  required String body,
-  required String confirmLabel,
-}) async {
-  final result = await showDialog<bool>(
-    context: context,
-    builder: (ctx) => AlertDialog(
-      title: Text(title),
-      content: Text(body),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(ctx, false),
-          child: Text(ctx.tr('common.cancel')),
-        ),
-        FilledButton(
-          onPressed: () => Navigator.pop(ctx, true),
-          child: Text(confirmLabel),
-        ),
-      ],
-    ),
-  );
-  return result ?? false;
 }
 
 void _snack(BuildContext context, String text) =>

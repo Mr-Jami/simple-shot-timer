@@ -245,6 +245,11 @@ class ClipEditorNotifier
     return _enqueueSave();
   }
 
+  void _scheduleAutosave() {
+    _autosave?.cancel();
+    _autosave = Timer(autosaveDelay, _enqueueSave);
+  }
+
   /// Deletes the saved string, if any, and stops saving.
   Future<void> discard() async {
     _discarded = true;
@@ -282,9 +287,7 @@ class ClipEditorNotifier
     if (state.saveStatus != SaveStatus.unsaved) {
       state = state.copyWith(saveStatus: SaveStatus.unsaved);
     }
-    if (state.savedId == null) return;
-    _autosave?.cancel();
-    _autosave = Timer(autosaveDelay, _enqueueSave);
+    if (state.savedId != null) _scheduleAutosave();
   }
 
   Future<void> _enqueueSave() => _saving = _saving.then((_) => _persist());
@@ -297,13 +300,13 @@ class ClipEditorNotifier
     final store = ref.read(videoStringStoreProvider);
     state = state.copyWith(saveStatus: SaveStatus.saving);
     try {
-      final draft = this.draft;
+      final string = draft;
       int id;
       if (savedId == null) {
         final cap = ref.read(settingsProvider).historyCap;
-        id = (await store.insertString(draft, historyCap: cap)).id!;
+        id = (await store.insertString(string, historyCap: cap)).id!;
       } else {
-        await store.updateVideoString(draft);
+        await store.updateVideoString(string);
         id = savedId;
       }
       // An edit during the write leaves it unsaved for the next save.
@@ -313,10 +316,7 @@ class ClipEditorNotifier
         saveStatus: edited ? SaveStatus.unsaved : SaveStatus.saved,
       );
       _invalidate(id);
-      if (edited) {
-        _autosave?.cancel();
-        _autosave = Timer(autosaveDelay, _enqueueSave);
-      }
+      if (edited) _scheduleAutosave();
     } on Exception {
       state = state.copyWith(saveStatus: SaveStatus.failed);
     }

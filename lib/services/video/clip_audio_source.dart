@@ -89,6 +89,10 @@ class ClipInfo {
   final DateTime? creationTime;
 
   bool get isHdr => colorTransfer == 'pq' || colorTransfer == 'hlg';
+
+  /// Width over height as displayed, when the file says.
+  double? get aspectRatio =>
+      width != null && height != null && height! > 0 ? width! / height! : null;
 }
 
 /// The decoded sound of a clip: raw little-endian 16-bit mono PCM (the first

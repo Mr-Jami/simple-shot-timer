@@ -11,6 +11,7 @@ import '../providers/clip_editor_provider.dart';
 import '../providers/video_import_provider.dart';
 import '../services/video/clip_check.dart';
 import '../services/video/clip_picker.dart';
+import '../widgets/confirm_dialog.dart';
 import 'video_editor_screen.dart';
 import 'video_flows.dart';
 import 'video_part_view.dart';
@@ -56,24 +57,13 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
   Future<void> _open(ImportReady ready) async {
     final saved = widget.reopen;
     if (saved != null && !ready.clip.matches(saved)) {
-      final open = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(context.tr('review.differentVideoTitle')),
-          content: Text(context.tr('review.differentVideoBody')),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(context.tr('common.cancel')),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(context.tr('review.openAnyway')),
-            ),
-          ],
-        ),
+      final open = await confirmDialog(
+        context,
+        title: context.tr('review.differentVideoTitle'),
+        body: context.tr('review.differentVideoBody'),
+        confirmLabel: context.tr('review.openAnyway'),
       );
-      if (open != true) {
+      if (!open) {
         await ready.session.dispose();
         if (mounted) Navigator.of(context).pop();
         return;

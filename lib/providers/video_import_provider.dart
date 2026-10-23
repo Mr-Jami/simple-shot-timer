@@ -178,13 +178,8 @@ class VideoImportController
       if (problem != null) return _finish(ImportProblem(problem));
       if (!needsPart(info.durationMs)) return _analyse(path, info, null);
 
-      final start = reopen?.videoStartMs;
-      if (start != null) {
-        final last = reopen!.shots.map((s) => s.timeMs).fold(0, math.max);
-        final part =
-            PartWindow.around(start, start + last, durationMs: info.durationMs);
-        return _analyse(path, info, part);
-      }
+      final saved = reopen == null ? null : _around(reopen, info.durationMs);
+      if (saved != null) return _analyse(path, info, saved);
       _choosePart(path, info);
     });
   }
@@ -192,10 +187,8 @@ class VideoImportController
   /// Moves the Choose-the-part window; the loudness scan no longer places
   /// it once the user has.
   void moveWindow(PartWindow window) {
-    if (state case final ImportChoosePart s) {
-      _windowMoved = true;
-      state = s.copyWith(window: window);
-    }
+    _windowMoved = true;
+    _updatePart((s) => s.copyWith(window: window));
   }
 
   /// "Analyze this part": stops the scan and analyses the chosen window,
@@ -231,61 +224,77 @@ class VideoImportController
     });
   }
 
+  /// The part of a long clip around a [saved] string's START and last
+  /// shot, or null when it has no START.
+  static PartWindow? _around(TimerString saved, int durationMs) {
+    final start = saved.videoStartMs;
+    if (start == null) return null;
+    final last = saved.shots.map((s) => s.timeMs).fold(0, math.max);
+    return PartWindow.around(start, start + last, durationMs: durationMs);
+  }
+
   void _choosePart(String path, ClipInfo info) {
     _showTimer?.cancel();
-    final duration = info.durationMs;
     state = ImportChoosePart(
       info: info,
       clipPath: path,
-      window: PartWindow.first(duration),
+      window: PartWindow.first(info.durationMs),
       thumbnails: List.filled(filmstripFrames, null),
     );
-    final audio = ref.read(clipAudioSourceProvider);
+    _loadFilmstrip(path, info.durationMs);
+    _scanLoudness(path, info.durationMs);
+  }
 
-    // Frames at the middle of each filmstrip cell.
-    unawaited(audio.thumbnails(
-      path,
-      timesMs: [
-        for (var i = 0; i < filmstripFrames; i++)
-          ((i + 0.5) * duration / filmstripFrames).round(),
-      ],
-      onFrame: (index, jpeg) {
-        if (state case final ImportChoosePart s) {
-          state = s.copyWith(thumbnails: [...s.thumbnails]..[index] = jpeg);
-        }
-      },
-      cancel: _partJobs,
-    ).catchError((Object _) {
+  /// Changes Choose the part, unless the import has moved on.
+  void _updatePart(ImportChoosePart Function(ImportChoosePart) change) {
+    if (state case final ImportChoosePart s) state = change(s);
+  }
+
+  /// A frame from the middle of each filmstrip cell, as each is ready.
+  void _loadFilmstrip(String path, int durationMs) {
+    unawaited(ref
+        .read(clipAudioSourceProvider)
+        .thumbnails(
+          path,
+          timesMs: [
+            for (var i = 0; i < filmstripFrames; i++)
+              ((i + 0.5) * durationMs / filmstripFrames).round(),
+          ],
+          onFrame: (index, jpeg) => _updatePart(
+              (s) => s.copyWith(thumbnails: [...s.thumbnails]..[index] = jpeg)),
+          cancel: _partJobs,
+        )
+        .catchError((Object _) {
       // The filmstrip stays empty; the part can still be chosen.
     }));
+  }
 
-    unawaited(audio.scanLoudness(
-      path,
-      bucketMs: loudnessBucketMs,
-      onValues: (from, values) {
-        if (state case final ImportChoosePart s) {
-          state = s.copyWith(loudness: [...s.loudness.take(from), ...values]);
-        }
-      },
-      cancel: _partJobs,
-    ).then<void>((_) {
-      if (state case final ImportChoosePart s) {
-        state = s.copyWith(
-          scanned: true,
-          window: _windowMoved
-              ? null
-              : PartWindow.loudest(
-                  s.loudness,
-                  bucketMs: loudnessBucketMs,
-                  durationMs: duration,
-                ),
-        );
-      }
+  /// The whole clip's loudness, batch by batch; once it's all in, the
+  /// window moves to the loudest stretch unless the user moved it.
+  void _scanLoudness(String path, int durationMs) {
+    unawaited(ref
+        .read(clipAudioSourceProvider)
+        .scanLoudness(
+          path,
+          bucketMs: loudnessBucketMs,
+          onValues: (from, values) => _updatePart((s) =>
+              s.copyWith(loudness: [...s.loudness.take(from), ...values])),
+          cancel: _partJobs,
+        )
+        .then<void>((_) {
+      _updatePart((s) => s.copyWith(
+            scanned: true,
+            window: _windowMoved
+                ? null
+                : PartWindow.loudest(
+                    s.loudness,
+                    bucketMs: loudnessBucketMs,
+                    durationMs: durationMs,
+                  ),
+          ));
     }).catchError((Object _) {
       // The strip stays partial; the part can still be chosen by eye.
-      if (state case final ImportChoosePart s) {
-        state = s.copyWith(scanned: true);
-      }
+      _updatePart((s) => s.copyWith(scanned: true));
     }));
   }
 

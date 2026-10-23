@@ -3,32 +3,32 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:video_player/video_player.dart';
 
 import '../i18n/app_localizations.dart';
 import '../providers/clip_editor_provider.dart';
-import '../services/video/clip_analyzer.dart';
+import '../services/video/clip_player.dart';
 import '../services/video/clip_signal.dart';
 import '../services/video/marker_doc.dart';
-import '../services/video/throttled_seeker.dart';
 import '../utils/motion.dart';
+import '../utils/time_format.dart';
 import '../utils/timeline_math.dart';
-import '../widgets/repeat_button.dart';
+import '../widgets/clip_video.dart';
+import '../widgets/confirm_dialog.dart';
+import '../widgets/editor/editor_transport.dart';
+import '../widgets/editor/marker_panel.dart';
+import '../widgets/editor/sensitivity_selector.dart';
 import '../widgets/shot_badge.dart';
 import '../widgets/string_summary_grid.dart';
 import '../widgets/timeline/shot_timeline.dart';
 import '../widgets/timeline/spectrogram_tiles.dart';
 import '../widgets/timeline/timeline_controller.dart';
 import '../widgets/timeline/timeline_minimap.dart';
-
-String _seconds(num ms) => (ms / 1000).toStringAsFixed(3);
 
 /// The video editor: the clip pinned on top, the time readout and
 /// transport, the timeline (the spectrogram scrolling under a fixed
@@ -50,13 +50,7 @@ class VideoEditorScreen extends ConsumerStatefulWidget {
 
 class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     with TickerProviderStateMixin, WidgetsBindingObserver {
-  late final VideoPlayerController _player = VideoPlayerController.file(
-    File(widget.args.session.clipPath),
-    // The texture view washes out HDR and garbles 4K 10-bit clips.
-    viewType: VideoViewType.platformView,
-  );
-  late final ThrottledSeeker _seeker =
-      ThrottledSeeker((d) => _player.seekTo(d));
+  late final _player = ClipPlayer(widget.args.session.clipPath);
   late final Ticker _playback = createTicker(_followPlayback);
   late final TimelineController _timeline = TimelineController(
     vsync: this,
@@ -106,9 +100,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       _player.addListener(_onPlayer);
       final at = _timeline.playheadMs.round();
       _reportedMs = at;
-      unawaited(_seeker.release(Duration(milliseconds: at)));
+      unawaited(_player.settle(at));
       _playback.start();
-      setState(() {});
     }, onError: (Object _) {
       // A video this phone can't play: the markers can still be checked on
       // the timeline, over a black picture.
@@ -208,7 +201,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   void _onUserMove(double fromMs, double toMs) {
     final ms = _timeline.playheadMs.round();
-    _seeker.scrub(Duration(milliseconds: ms));
+    _player.scrub(ms);
     final state = ref.read(_provider);
     final selected = state.selectedId;
     if (_dragging && selected != null) {
@@ -223,7 +216,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   void _onSettle(int ms) {
     _reportedMs = ms;
-    unawaited(_seeker.release(Duration(milliseconds: ms)));
+    unawaited(_player.settle(ms));
   }
 
   void _onTouch() {
@@ -297,48 +290,27 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       await _editor.flush();
       if (!mounted) return;
       if (ref.read(_provider).saveStatus != SaveStatus.failed) break;
-      final retry = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(context.tr('editor.saveFailedTitle')),
-          content: Text(context.tr('editor.saveFailedBody')),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(context.tr('common.discard')),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(context.tr('editor.retry')),
-            ),
-          ],
-        ),
+      final retry = await confirmDialog(
+        context,
+        title: context.tr('editor.saveFailedTitle'),
+        body: context.tr('editor.saveFailedBody'),
+        cancelLabel: context.tr('common.discard'),
+        confirmLabel: context.tr('editor.retry'),
       );
-      if (retry != true) break;
+      if (!retry) break;
     }
     if (mounted) Navigator.of(context).pop();
   }
 
   Future<void> _discard() async {
     if (ref.read(_provider).savedId != null) {
-      final sure = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(context.tr('editor.discardTitle')),
-          content: Text(context.tr('editor.discardBody')),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(context.tr('common.cancel')),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(context.tr('common.discard')),
-            ),
-          ],
-        ),
+      final sure = await confirmDialog(
+        context,
+        title: context.tr('editor.discardTitle'),
+        body: context.tr('editor.discardBody'),
+        confirmLabel: context.tr('common.discard'),
       );
-      if (sure != true) return;
+      if (!sure || !mounted) return;
     }
     _leaving = true;
     await _editor.discard();
@@ -370,14 +342,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(_provider);
-    final info = widget.args.clip.info;
-    final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
-    final aspect = info.width != null && info.height != null && info.height! > 0
-        ? info.width! / info.height!
-        : _player.value.isInitialized
-            ? _player.value.aspectRatio
-            : 16 / 9;
+    final scheme = Theme.of(context).colorScheme;
     final spectrogram = widget.args.clip.analysis.spectrogram;
     return PopScope(
       canPop: false,
@@ -400,56 +365,13 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
         child: Scaffold(
           body: Column(
             children: [
-              ColoredBox(
-                color: Colors.black,
-                child: SafeArea(
-                  bottom: false,
-                  child: SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.3,
-                    child: Stack(
-                      children: [
-                        Center(
-                          child: AspectRatio(
-                            aspectRatio: aspect,
-                            child: _player.value.isInitialized
-                                ? VideoPlayer(_player, key: ObjectKey(_player))
-                                : const SizedBox.expand(),
-                          ),
-                        ),
-                        Positioned(
-                          left: 4,
-                          top: 4,
-                          child: IconButton(
-                            tooltip: MaterialLocalizations.of(context)
-                                .backButtonTooltip,
-                            color: Colors.white,
-                            icon: const Icon(Icons.arrow_back),
-                            onPressed: _leave,
-                          ),
-                        ),
-                        Positioned(
-                          right: 4,
-                          top: 4,
-                          child: PopupMenuButton<bool>(
-                            iconColor: Colors.white,
-                            onSelected: (_) => _discard(),
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                value: true,
-                                child: Text(
-                                  context.tr('common.discard'),
-                                  style: TextStyle(color: scheme.error),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              _VideoPane(
+                player: _player,
+                aspectRatio: widget.args.clip.info.aspectRatio,
+                onBack: _leave,
+                onDiscard: _discard,
               ),
-              _Transport(
+              EditorTransport(
                 player: _player,
                 timeline: _timeline,
                 startMs: state.doc.startMs,
@@ -487,8 +409,10 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                   onScrubEnd: _timeline.endScrub,
                 ),
               ),
-              _MarkerPanel(
-                state: state,
+              MarkerPanel(
+                selected: state.selected,
+                shots: state.doc.activeShots,
+                startMs: state.doc.startMs,
                 onSetStart: () =>
                     _editor.setStart(_timeline.playheadMs.round()),
                 onAddShot: _addShot,
@@ -500,71 +424,72 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                 onDeselect: () => _editor.select(null),
               ),
               const Divider(height: 1),
-              Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.all(16),
-                  children: [
-                    if (!state.reopened) ...[
-                      _SensitivitySelector(
-                        value: state.sensitivity,
-                        busy: state.sensitivityBusy,
-                        onChanged: _editor.setSensitivity,
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                    StringSummaryGrid(string: _editor.draft),
-                    const SizedBox(height: 8),
-                    ..._shotRows(context, state),
-                    const SizedBox(height: 16),
-                    TextField(
-                      controller: _label,
-                      decoration: InputDecoration(
-                        labelText: context.tr('review.label'),
-                        border: const OutlineInputBorder(),
-                      ),
-                      onChanged: _editor.setLabel,
-                    ),
-                    const SizedBox(height: 12),
-                    TextField(
-                      controller: _notes,
-                      minLines: 2,
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                        labelText: context.tr('review.notes'),
-                        border: const OutlineInputBorder(),
-                      ),
-                      onChanged: _editor.setNotes,
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(context.tr('review.penalty', args: {
-                            'seconds':
-                                (state.penaltyMs / 1000).toStringAsFixed(2),
-                          })),
-                        ),
-                        IconButton(
-                          onPressed: () =>
-                              _editor.setPenalty(state.penaltyMs - 1000),
-                          tooltip: context.tr('review.penaltyLess'),
-                          icon: const Icon(Icons.remove),
-                        ),
-                        IconButton(
-                          onPressed: () =>
-                              _editor.setPenalty(state.penaltyMs + 1000),
-                          tooltip: context.tr('review.penaltyMore'),
-                          icon: const Icon(Icons.add),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              Expanded(child: _details(context, state)),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  /// Below the marker panel: sensitivity (fresh clips only), stats, the
+  /// shots, then label, notes and penalty.
+  Widget _details(BuildContext context, ClipEditorState state) {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        if (!state.reopened) ...[
+          SensitivitySelector(
+            value: state.sensitivity,
+            busy: state.sensitivityBusy,
+            onChanged: _editor.setSensitivity,
+          ),
+          const SizedBox(height: 16),
+        ],
+        StringSummaryGrid(string: _editor.draft),
+        const SizedBox(height: 8),
+        ..._shotRows(context, state),
+        const SizedBox(height: 16),
+        TextField(
+          controller: _label,
+          decoration: InputDecoration(
+            labelText: context.tr('review.label'),
+            border: const OutlineInputBorder(),
+          ),
+          onChanged: _editor.setLabel,
+        ),
+        const SizedBox(height: 12),
+        TextField(
+          controller: _notes,
+          minLines: 2,
+          maxLines: 4,
+          decoration: InputDecoration(
+            labelText: context.tr('review.notes'),
+            border: const OutlineInputBorder(),
+          ),
+          onChanged: _editor.setNotes,
+        ),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(
+              child: Text(context.tr('review.penalty', args: {
+                'seconds': formatSeconds(state.penaltyMs),
+              })),
+            ),
+            IconButton(
+              onPressed: () => _editor.setPenalty(state.penaltyMs - 1000),
+              tooltip: context.tr('review.penaltyLess'),
+              icon: const Icon(Icons.remove),
+            ),
+            IconButton(
+              onPressed: () => _editor.setPenalty(state.penaltyMs + 1000),
+              tooltip: context.tr('review.penaltyMore'),
+              icon: const Icon(Icons.add),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -580,7 +505,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
           leading: const Icon(Icons.flag_outlined),
           title: Text(context.tr('editor.start')),
           subtitle: Text(context.tr('editor.startAt', args: {
-            'seconds': _seconds(start),
+            'seconds': formatSeconds(start, decimals: 3),
           })),
           onTap: () {
             _editor.select(null);
@@ -596,14 +521,15 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
             manual: shots[i].origin != ShotOrigin.detected,
           ),
           title: Text(
-            '${_seconds(shots[i].ms - (start ?? 0))}s',
+            '${formatSeconds(shots[i].ms - (start ?? 0), decimals: 3)}s',
             style: theme.textTheme.titleMedium?.copyWith(fontFeatures: tabular),
           ),
           subtitle: Text(
             i == 0
                 ? context.tr('review.splitFirst')
                 : context.tr('review.splitOther', args: {
-                    'seconds': _seconds(shots[i].ms - shots[i - 1].ms),
+                    'seconds': formatSeconds(shots[i].ms - shots[i - 1].ms,
+                        decimals: 3),
                   }),
             style: const TextStyle(fontFeatures: tabular),
           ),
@@ -616,291 +542,65 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 }
 
-/// Time from START (or in the video, before START is set), and the
-/// transport buttons.
-class _Transport extends StatelessWidget {
-  const _Transport({
+/// The clip on black under the status bar, a third of the screen high,
+/// with back and the ⋮ menu (Discard) over it.
+class _VideoPane extends StatelessWidget {
+  const _VideoPane({
     required this.player,
-    required this.timeline,
-    required this.startMs,
-    required this.onPlay,
-    required this.onPrevious,
-    required this.onNext,
+    required this.aspectRatio,
+    required this.onBack,
+    required this.onDiscard,
   });
 
-  final VideoPlayerController player;
-  final TimelineController timeline;
-  final int? startMs;
-  final VoidCallback onPlay;
-  final VoidCallback onPrevious;
-  final VoidCallback onNext;
+  final ClipPlayer player;
+  final double? aspectRatio;
+  final VoidCallback onBack;
+  final VoidCallback onDiscard;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final start = startMs;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 4, 8, 0),
-      child: Row(
-        children: [
-          Expanded(
-            child: ListenableBuilder(
-              listenable: timeline,
-              builder: (context, _) {
-                final ms = timeline.playheadMs - (start ?? 0);
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '${ms < 0 ? '−' : ''}${_seconds(ms.abs())}s',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontFeatures: const [FontFeature.tabularFigures()],
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      context.tr(start == null
-                          ? 'editor.inVideo'
-                          : 'editor.fromStart'),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
+    return ColoredBox(
+      color: Colors.black,
+      child: SafeArea(
+        bottom: false,
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.3,
+          child: Stack(
+            children: [
+              Center(
+                child: ClipVideo(player: player, aspectRatio: aspectRatio),
+              ),
+              Positioned(
+                left: 4,
+                top: 4,
+                child: IconButton(
+                  tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                  color: Colors.white,
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: onBack,
+                ),
+              ),
+              Positioned(
+                right: 4,
+                top: 4,
+                child: PopupMenuButton<bool>(
+                  iconColor: Colors.white,
+                  onSelected: (_) => onDiscard(),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: true,
+                      child: Text(
+                        context.tr('common.discard'),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.error),
                       ),
                     ),
                   ],
-                );
-              },
-            ),
-          ),
-          IconButton(
-            tooltip: context.tr('editor.previous'),
-            icon: const Icon(Icons.skip_previous_outlined),
-            onPressed: onPrevious,
-          ),
-          ValueListenableBuilder(
-            valueListenable: player,
-            builder: (context, value, _) => IconButton.filled(
-              tooltip:
-                  context.tr(value.isPlaying ? 'editor.pause' : 'editor.play'),
-              icon: Icon(value.isPlaying ? Icons.pause : Icons.play_arrow),
-              onPressed: value.isInitialized ? onPlay : null,
-            ),
-          ),
-          IconButton(
-            tooltip: context.tr('editor.next'),
-            icon: const Icon(Icons.skip_next_outlined),
-            onPressed: onNext,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SensitivitySelector extends StatelessWidget {
-  const _SensitivitySelector({
-    required this.value,
-    required this.busy,
-    required this.onChanged,
-  });
-
-  final ShotSensitivity value;
-  final bool busy;
-  final ValueChanged<ShotSensitivity> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Row(
-          children: [
-            Text(context.tr('settings.sensitivity'),
-                style: theme.textTheme.titleSmall),
-            const SizedBox(width: 8),
-            SizedBox(
-              width: 14,
-              height: 14,
-              child:
-                  busy ? const CircularProgressIndicator(strokeWidth: 2) : null,
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        SegmentedButton<ShotSensitivity>(
-          showSelectedIcon: false,
-          segments: [
-            for (final s in ShotSensitivity.values)
-              ButtonSegment(
-                value: s,
-                label: Text(
-                  context.tr('editor.sens.${s.name}'),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-          ],
-          selected: {value},
-          onSelectionChanged: (s) => onChanged(s.single),
-        ),
-      ],
-    );
-  }
-}
-
-class _MarkerPanel extends StatelessWidget {
-  const _MarkerPanel({
-    required this.state,
-    required this.onSetStart,
-    required this.onAddShot,
-    required this.onNudgeStart,
-    required this.onNudge,
-    required this.onNudgeEnd,
-    required this.onDelete,
-    required this.onLastShot,
-    required this.onDeselect,
-  });
-
-  final ClipEditorState state;
-  final VoidCallback onSetStart;
-  final VoidCallback onAddShot;
-  final VoidCallback onNudgeStart;
-  final void Function(EditShot shot, int ms) onNudge;
-  final VoidCallback onNudgeEnd;
-  final ValueChanged<EditShot> onDelete;
-  final ValueChanged<EditShot> onLastShot;
-  final VoidCallback onDeselect;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
-    final selected = state.selected;
-    final shots = state.doc.activeShots;
-    final start = state.doc.startMs;
-    if (selected != null) {
-      final index = shots.indexWhere((s) => s.id == selected.id);
-      final split = index > 0 ? selected.ms - shots[index - 1].ms : null;
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(16, 4, 8, 8),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                if (index >= 0)
-                  ShotBadge(
-                    ordinal: index + 1,
-                    manual: selected.origin != ShotOrigin.detected,
-                  ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    [
-                      '${_seconds(selected.ms - (start ?? 0))}s',
-                      if (split != null)
-                        context.tr('review.splitOther',
-                            args: {'seconds': _seconds(split)}),
-                    ].join(' · '),
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontFeatures: const [FontFeature.tabularFigures()],
-                    ),
-                  ),
-                ),
-                IconButton(
-                  tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-                  icon: const Icon(Icons.close),
-                  onPressed: onDeselect,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RepeatButton(
-                  tooltip: context.tr('editor.nudgeEarlier'),
-                  icon: Icons.chevron_left,
-                  onStart: onNudgeStart,
-                  onStep: () => onNudge(selected, -1),
-                  onEnd: onNudgeEnd,
-                ),
-                TextButton.icon(
-                  icon: const Icon(Icons.delete_outline),
-                  label: Text(context.tr('common.delete')),
-                  onPressed: () => onDelete(selected),
-                ),
-                TextButton.icon(
-                  icon: const Icon(Icons.last_page),
-                  label: Text(context.tr('editor.lastShot')),
-                  onPressed: () => onLastShot(selected),
-                ),
-                RepeatButton(
-                  tooltip: context.tr('editor.nudgeLater'),
-                  icon: Icons.chevron_right,
-                  onStart: onNudgeStart,
-                  onStep: () => onNudge(selected, 1),
-                  onEnd: onNudgeEnd,
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    }
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-      child: Column(
-        children: [
-          if (start == null)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                children: [
-                  Icon(Icons.info_outline,
-                      size: 18, color: scheme.onSurfaceVariant),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      context.tr('editor.noStart'),
-                      style: theme.textTheme.bodySmall
-                          ?.copyWith(color: scheme.onSurfaceVariant),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          Row(
-            children: [
-              Expanded(
-                child: start == null
-                    ? FilledButton.icon(
-                        icon: const Icon(Icons.flag_outlined),
-                        label: Text(context.tr('editor.setStart')),
-                        onPressed: onSetStart,
-                      )
-                    : OutlinedButton.icon(
-                        icon: const Icon(Icons.flag_outlined),
-                        label: Text(context.tr('editor.setStart')),
-                        onPressed: onSetStart,
-                      ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: start == null
-                    ? OutlinedButton.icon(
-                        icon: const Icon(Icons.add),
-                        label: Text(context.tr('editor.addShot')),
-                        onPressed: onAddShot,
-                      )
-                    : FilledButton.icon(
-                        icon: const Icon(Icons.add),
-                        label: Text(context.tr('editor.addShot')),
-                        onPressed: onAddShot,
-                      ),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
