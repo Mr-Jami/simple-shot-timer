@@ -3,13 +3,17 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:async';
+import 'dart:math' as math;
+import 'dart:typed_data';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../models/timer_string.dart';
 import '../services/video/analyzed_clip.dart';
 import '../services/video/clip_audio_source.dart';
 import '../services/video/clip_check.dart';
 import '../services/video/clip_picker.dart';
+import '../services/video/part_window.dart';
 import '../services/video/video_work_dir.dart';
 import '../utils/cancel_token.dart';
 import 'video_providers.dart';
@@ -34,6 +38,48 @@ class ImportWorking extends ImportState {
   final bool visible;
 }
 
+/// A clip over three minutes: the user picks the part to analyse while its
+/// whole sound is scanned for loudness and the filmstrip loads.
+class ImportChoosePart extends ImportState {
+  const ImportChoosePart({
+    required this.info,
+    required this.clipPath,
+    required this.window,
+    this.loudness = const [],
+    this.thumbnails = const [],
+    this.scanned = false,
+  });
+
+  final ClipInfo info;
+  final String clipPath;
+  final PartWindow window;
+
+  /// The RMS of every [VideoImportController.loudnessBucketMs], filled in
+  /// as the scan goes.
+  final List<double> loudness;
+
+  /// [VideoImportController.filmstripFrames] JPEGs, null until loaded.
+  final List<Uint8List?> thumbnails;
+
+  /// The loudness scan is done (or gave up).
+  final bool scanned;
+
+  ImportChoosePart copyWith({
+    PartWindow? window,
+    List<double>? loudness,
+    List<Uint8List?>? thumbnails,
+    bool? scanned,
+  }) =>
+      ImportChoosePart(
+        info: info,
+        clipPath: clipPath,
+        window: window ?? this.window,
+        loudness: loudness ?? this.loudness,
+        thumbnails: thumbnails ?? this.thumbnails,
+        scanned: scanned ?? this.scanned,
+      );
+}
+
 class ImportProblem extends ImportState {
   const ImportProblem(this.problem);
 
@@ -55,21 +101,30 @@ class ImportReady extends ImportState {
   final DateTime importedAt;
 }
 
-/// One import: pick a video, check it, decode its sound and analyse it.
-/// Owns the clip's work folder until [ImportReady] hands it to the editor;
-/// cancelling or leaving the screen before that deletes it.
+/// One import: pick a video, check it, let the user choose the part of a
+/// long one, decode its sound and analyse it. Owns the clip's work folder
+/// until [ImportReady] hands it to the editor; cancelling or leaving the
+/// screen before that deletes it.
 class VideoImportController extends AutoDisposeNotifier<ImportState> {
   static const showAfter = Duration(milliseconds: 300);
   static const minVisible = Duration(milliseconds: 500);
+  static const loudnessBucketMs = 250;
+  static const filmstripFrames = 10;
 
   VideoSession? _session;
+  DateTime? _importedAt;
   final _cancel = CancelToken();
+
+  /// Stops the loudness scan and the filmstrip, which only Choose the part
+  /// needs.
+  final _partJobs = CancelToken();
+  var _windowMoved = false;
   Timer? _showTimer;
   Timer? _holdTimer;
 
   /// Completes once the Analyzing view, if it appeared, has shown long
   /// enough. Timers only, so tests can drive it with a fake clock.
-  final _held = Completer<void>();
+  var _held = Completer<void>();
   var _handedOver = false;
 
   @override
@@ -77,6 +132,7 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
     ref.onDispose(() {
       _showTimer?.cancel();
       _holdTimer?.cancel();
+      _partJobs.cancel();
       if (!_handedOver) {
         _cancel.cancel();
         unawaited(_session?.dispose());
@@ -85,12 +141,14 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
     return const ImportWorking(ImportStep.picking);
   }
 
-  Future<void> start(ClipSource source) async {
+  /// Picks a clip from [source] and analyses it. Reopening [reopen] from a
+  /// long clip analyses the part around its markers without asking.
+  Future<void> start(ClipSource source, {TimerString? reopen}) async {
     final audio = ref.read(clipAudioSourceProvider);
-    try {
+    await _guard(() async {
       final session =
           _session = await ref.read(videoWorkDirProvider).createSession();
-      final importedAt = DateTime.now();
+      _importedAt = DateTime.now();
       final path = await ref.read(clipPickerProvider).pick(
             source,
             session,
@@ -110,40 +168,41 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
       if (_cancel.isCancelled) return;
       final problem = checkClip(info);
       if (problem != null) return _finish(ImportProblem(problem));
+      if (!needsPart(info.durationMs)) return _analyse(path, info, null);
 
-      _step(ImportStep.decoding, progress: 0);
-      final decoded = await audio.decode(
-        path,
-        outputPath: session.pcmPath,
-        onProgress: (f) => _step(ImportStep.decoding, progress: f),
-        cancel: _cancel,
-      );
-      _step(ImportStep.analyzing);
-      final analysis = await ref
-          .read(clipAnalyzerProvider)
-          .analyze(session.pcmPath, decoded.sampleRate);
-      await session.deletePcm();
-      if (_cancel.isCancelled) return;
-
-      final clip = AnalyzedClip(
-        info: info,
-        analysis: analysis,
-        audioOriginMs: (decoded.firstSampleTimeUs / 1000).round(),
-      );
-      if (_holdTimer != null) {
-        await _held.future;
-        if (_cancel.isCancelled) return;
+      final start = reopen?.videoStartMs;
+      if (start != null) {
+        final last = reopen!.shots.map((s) => s.timeMs).fold(0, math.max);
+        final part =
+            PartWindow.around(start, start + last, durationMs: info.durationMs);
+        return _analyse(path, info, part);
       }
-      _showTimer?.cancel();
-      _handedOver = true;
-      state = ImportReady(clip, session, importedAt);
-    } on ClipAudioException catch (e) {
-      if (_cancel.isCancelled) return;
-      _finish(ImportProblem(problemFor(e.error)));
-    } on Exception {
-      if (_cancel.isCancelled) return;
-      _finish(const ImportProblem(ClipProblem.failed));
+      _choosePart(path, info);
+    });
+  }
+
+  /// Moves the Choose-the-part window; the loudness scan no longer places
+  /// it once the user has.
+  void moveWindow(PartWindow window) {
+    if (state case final ImportChoosePart s) {
+      _windowMoved = true;
+      state = s.copyWith(window: window);
     }
+  }
+
+  /// "Analyze this part": stops the scan and analyses the chosen window,
+  /// with the Analyzing view up at once.
+  Future<void> analysePart() async {
+    final s = state;
+    if (s is! ImportChoosePart) return;
+    _partJobs.cancel();
+    _showTimer?.cancel();
+    _holdTimer?.cancel();
+    _held = Completer<void>();
+    _holdTimer = Timer(minVisible, _held.complete);
+    state =
+        const ImportWorking(ImportStep.decoding, progress: 0, visible: true);
+    await _guard(() => _analyse(s.clipPath, s.info, s.window));
   }
 
   /// Stops the import and deletes everything it made so far.
@@ -151,6 +210,111 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
     if (_handedOver || _cancel.isCancelled) return;
     _cancel.cancel();
     _finish(const ImportCancelled());
+  }
+
+  void _choosePart(String path, ClipInfo info) {
+    _showTimer?.cancel();
+    final duration = info.durationMs;
+    state = ImportChoosePart(
+      info: info,
+      clipPath: path,
+      window: PartWindow.first(duration),
+      thumbnails: List.filled(filmstripFrames, null),
+    );
+    final audio = ref.read(clipAudioSourceProvider);
+
+    // Frames at the middle of each filmstrip cell.
+    unawaited(audio.thumbnails(
+      path,
+      timesMs: [
+        for (var i = 0; i < filmstripFrames; i++)
+          ((i + 0.5) * duration / filmstripFrames).round(),
+      ],
+      onFrame: (index, jpeg) {
+        if (state case final ImportChoosePart s) {
+          state = s.copyWith(thumbnails: [...s.thumbnails]..[index] = jpeg);
+        }
+      },
+      cancel: _partJobs,
+    ).catchError((Object _) {
+      // The filmstrip stays empty; the part can still be chosen.
+    }));
+
+    unawaited(audio.scanLoudness(
+      path,
+      bucketMs: loudnessBucketMs,
+      onValues: (from, values) {
+        if (state case final ImportChoosePart s) {
+          state = s.copyWith(loudness: [...s.loudness.take(from), ...values]);
+        }
+      },
+      cancel: _partJobs,
+    ).then<void>((_) {
+      if (state case final ImportChoosePart s) {
+        state = s.copyWith(
+          scanned: true,
+          window: _windowMoved
+              ? null
+              : PartWindow.loudest(
+                  s.loudness,
+                  bucketMs: loudnessBucketMs,
+                  durationMs: duration,
+                ),
+        );
+      }
+    }).catchError((Object _) {
+      // The strip stays partial; the part can still be chosen by eye.
+      if (state case final ImportChoosePart s) {
+        state = s.copyWith(scanned: true);
+      }
+    }));
+  }
+
+  Future<void> _analyse(String path, ClipInfo info, PartWindow? part) async {
+    final session = _session!;
+    final audio = ref.read(clipAudioSourceProvider);
+    _step(ImportStep.decoding, progress: 0);
+    final decoded = await audio.decode(
+      path,
+      outputPath: session.pcmPath,
+      startMs: part?.startMs ?? 0,
+      endMs: part?.endMs,
+      onProgress: (f) => _step(ImportStep.decoding, progress: f),
+      cancel: _cancel,
+    );
+    _step(ImportStep.analyzing);
+    final analysis = await ref
+        .read(clipAnalyzerProvider)
+        .analyze(session.pcmPath, decoded.sampleRate);
+    await session.deletePcm();
+    if (_cancel.isCancelled) return;
+
+    final clip = AnalyzedClip(
+      info: info,
+      analysis: analysis,
+      audioOriginMs: (decoded.firstSampleTimeUs / 1000).round(),
+      part: part,
+    );
+    if (_holdTimer != null) {
+      await _held.future;
+      if (_cancel.isCancelled) return;
+    }
+    _showTimer?.cancel();
+    _handedOver = true;
+    state = ImportReady(clip, session, _importedAt!);
+  }
+
+  /// Runs [work], turning its failures into the problem the user sees.
+  Future<void> _guard(Future<void> Function() work) async {
+    try {
+      await work();
+    } on ClipAudioException catch (e) {
+      if (_cancel.isCancelled) return;
+      _finish(ImportProblem(problemFor(e.error)));
+    } on Exception {
+      if (_cancel.isCancelled) return;
+      _finish(const ImportProblem(ClipProblem.failed));
+    }
   }
 
   void _step(ImportStep step, {double? progress}) {
@@ -165,6 +329,7 @@ class VideoImportController extends AutoDisposeNotifier<ImportState> {
   void _finish(ImportState end) {
     _showTimer?.cancel();
     _holdTimer?.cancel();
+    _partJobs.cancel();
     unawaited(_session?.dispose());
     state = end;
   }

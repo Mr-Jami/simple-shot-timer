@@ -13,10 +13,12 @@ import '../services/video/clip_check.dart';
 import '../services/video/clip_picker.dart';
 import 'video_editor_screen.dart';
 import 'video_flows.dart';
+import 'video_part_view.dart';
 
 /// Hosts one import (see [VideoImportController]): opens the picker on its
-/// first frame, shows the Analyzing view only when the work takes long
-/// enough to notice, names a problem, and hands a ready clip to the editor.
+/// first frame, lets the user choose the part of a long clip, shows the
+/// Analyzing view only when the work takes long enough to notice, names a
+/// problem, and hands a ready clip to the editor.
 class VideoImportScreen extends ConsumerStatefulWidget {
   const VideoImportScreen({super.key, required this.source, this.reopen});
 
@@ -36,7 +38,9 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
 
   void _start() {
     if (!mounted) return;
-    ref.read(videoImportProvider.notifier).start(widget.source);
+    ref
+        .read(videoImportProvider.notifier)
+        .start(widget.source, reopen: widget.reopen);
   }
 
   void _chooseAnother() {
@@ -95,10 +99,11 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
       }
     });
     final state = ref.watch(videoImportProvider);
+    final import = ref.read(videoImportProvider.notifier);
     return PopScope(
       canPop: state is! ImportWorking,
       onPopInvokedWithResult: (didPop, _) {
-        if (!didPop) ref.read(videoImportProvider.notifier).cancel();
+        if (!didPop) import.cancel();
       },
       child: Scaffold(
         body: SafeArea(
@@ -107,7 +112,13 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
               _AnalyzingView(
                 step: step,
                 progress: progress,
-                onCancel: ref.read(videoImportProvider.notifier).cancel,
+                onCancel: import.cancel,
+              ),
+            ImportChoosePart() => VideoPartView(
+                part: state,
+                onChanged: import.moveWindow,
+                onAnalyse: import.analysePart,
+                onClose: import.cancel,
               ),
             ImportProblem(:final problem) => _ProblemView(
                 problem: problem,

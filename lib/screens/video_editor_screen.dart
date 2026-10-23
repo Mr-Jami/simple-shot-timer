@@ -60,7 +60,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   late final Ticker _playback = createTicker(_followPlayback);
   late final TimelineController _timeline = TimelineController(
     vsync: this,
-    durationMs: widget.args.clip.info.durationMs,
+    startMs: widget.args.clip.fromMs,
+    endMs: widget.args.clip.toMs,
     platform: defaultTargetPlatform,
     onUserMove: _onUserMove,
     onSettle: _onSettle,
@@ -98,7 +99,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       _player.addListener(_onPlayer);
       // Open just before START, so the beep and first shot are a tap away.
       final start = ref.read(_provider).doc.startMs;
-      final at = start == null ? 0 : (start - 1500).clamp(0, start);
+      final from = widget.args.clip.fromMs;
+      final at = start == null ? from : (start - 1500).clamp(from, start);
       _timeline.centreOn(at, animate: false);
       _playback.start();
       setState(() {});
@@ -155,16 +157,19 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 
   /// While the video plays, the timeline follows it, running on between
-  /// the player's position reports (every 100 ms).
+  /// the player's position reports (every 100 ms). Playback stops at the
+  /// end of the analysed part.
   void _followPlayback(Duration elapsed) {
     final value = _player.value;
     if (!value.isPlaying) {
       _timeline.stopFollowing();
       return;
     }
+    final clip = widget.args.clip;
     final ms =
         _reportedMs + _sinceReport.elapsedMilliseconds * value.playbackSpeed;
-    _timeline.follow(ms.round().clamp(0, value.duration.inMilliseconds));
+    if (ms >= clip.toMs) _player.pause();
+    _timeline.follow(ms.round().clamp(clip.fromMs, clip.toMs));
   }
 
   void _togglePlay() {
@@ -172,6 +177,11 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       _player.pause();
     } else {
       _editor.select(null);
+      final clip = widget.args.clip;
+      // At the end of a part, play it again from its start.
+      if (clip.part != null && _timeline.playheadMs >= clip.toMs - 100) {
+        _timeline.centreOn(clip.fromMs, animate: false);
+      }
       _player.play();
     }
   }
@@ -456,6 +466,11 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                       : 0,
                   markers: _markerTimes(state.doc),
                   onJump: _centre,
+                  // Follows the finger: a glide per move would trail it.
+                  onScrub: (ms) {
+                    _player.pause();
+                    _timeline.centreOn(ms, animate: false);
+                  },
                 ),
               ),
               _MarkerPanel(

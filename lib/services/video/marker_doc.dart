@@ -54,7 +54,8 @@ class EditShot {
 /// sensitivity change never brings it back (see [reconcile]).
 class MarkerDoc {
   const MarkerDoc({
-    required this.durationMs,
+    this.fromMs = 0,
+    required this.toMs,
     this.startMs,
     this.startEdited = false,
     this.shots = const [],
@@ -66,13 +67,15 @@ class MarkerDoc {
   /// A fresh document from the analyzer: START (null when no beep was found)
   /// and the detected shots, in clip milliseconds.
   factory MarkerDoc.detected({
-    required int durationMs,
+    int fromMs = 0,
+    required int toMs,
     required int? startMs,
     required List<int> shotMs,
   }) {
     final sorted = [...shotMs]..sort();
     return MarkerDoc(
-      durationMs: durationMs,
+      fromMs: fromMs,
+      toMs: toMs,
       startMs: startMs,
       shots: [
         for (var i = 0; i < sorted.length; i++)
@@ -89,7 +92,11 @@ class MarkerDoc {
 
   /// A saved video string, reopened with "Choose video again". Shots added
   /// or moved by hand come back as added; the rest as detected.
-  factory MarkerDoc.fromSaved(TimerString string, {required int durationMs}) {
+  factory MarkerDoc.fromSaved(
+    TimerString string, {
+    int fromMs = 0,
+    required int toMs,
+  }) {
     final start = string.videoStartMs ?? 0;
     final shots = <EditShot>[];
     for (final s in string.shots) {
@@ -103,7 +110,8 @@ class MarkerDoc {
     }
     shots.sort((a, b) => a.ms.compareTo(b.ms));
     return MarkerDoc(
-      durationMs: durationMs,
+      fromMs: fromMs,
+      toMs: toMs,
       startMs: start,
       startEdited: true,
       shots: shots,
@@ -111,7 +119,10 @@ class MarkerDoc {
     );
   }
 
-  final int durationMs;
+  /// The stretch markers can be placed in: the whole clip, or the part of
+  /// a long one that was analysed.
+  final int fromMs;
+  final int toMs;
 
   /// START in clip milliseconds; null until the analyzer or the user sets it.
   final int? startMs;
@@ -236,7 +247,7 @@ class MarkerDoc {
     );
   }
 
-  int _clamp(int ms) => ms.clamp(0, durationMs);
+  int _clamp(int ms) => ms.clamp(fromMs, toMs);
 
   static List<EditShot> _sorted(List<EditShot> shots) =>
       shots..sort((a, b) => a.ms.compareTo(b.ms));
@@ -250,7 +261,8 @@ class MarkerDoc {
     int? nextId,
   }) =>
       MarkerDoc(
-        durationMs: durationMs,
+        fromMs: fromMs,
+        toMs: toMs,
         startMs: startMs ?? this.startMs,
         startEdited: startEdited ?? this.startEdited,
         shots: shots ?? this.shots,

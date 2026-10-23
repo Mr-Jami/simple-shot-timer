@@ -231,8 +231,13 @@
   "video.problem.unsupportedVideo": "This file isn’t a video this phone can play.",
   "video.problem.unreadableFile": "The video couldn’t be read. It may have been moved or deleted.",
   "video.problem.tooShort": "This video is too short for a string.",
-  "video.problem.tooLong": "Videos over 3 minutes can’t be analyzed yet. Trim it in your gallery first.",
   "video.problem.failed": "The sound of this video couldn’t be read.",
+
+  "part.title": "Choose the part",
+  "part.scanning": "Videos over 3 minutes are checked 3 minutes at a time. Finding the loudest part…",
+  "part.hint": "Videos over 3 minutes are checked 3 minutes at a time. Move the frame over your string.",
+  "part.analyze": "Analyze this part",
+  "part.semantics": "Part from {from} to {to}",
 
   "editor.title": "Check shots",
   "editor.noStart": "No beep found. Play to the beep and tap Set START.",

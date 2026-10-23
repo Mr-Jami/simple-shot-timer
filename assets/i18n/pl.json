@@ -231,8 +231,13 @@
   "video.problem.unsupportedVideo": "Ten plik nie jest wideo, które ten telefon może odtworzyć.",
   "video.problem.unreadableFile": "Nie udało się odczytać wideo. Mogło zostać przeniesione lub usunięte.",
   "video.problem.tooShort": "To wideo jest za krótkie na serię.",
-  "video.problem.tooLong": "Wideo dłuższe niż 3 minuty nie są jeszcze obsługiwane. Najpierw przytnij je w galerii.",
   "video.problem.failed": "Nie udało się odczytać dźwięku tego wideo.",
+
+  "part.title": "Wybierz fragment",
+  "part.scanning": "Filmy dłuższe niż 3 minuty są sprawdzane po 3 minuty. Szukanie najgłośniejszego fragmentu…",
+  "part.hint": "Filmy dłuższe niż 3 minuty są sprawdzane po 3 minuty. Przesuń ramkę na swoją serię.",
+  "part.analyze": "Analizuj ten fragment",
+  "part.semantics": "Fragment od {from} do {to}",
 
   "editor.title": "Sprawdź strzały",
   "editor.noStart": "Nie znaleziono sygnału. Odtwórz do sygnału i dotknij Ustaw START.",

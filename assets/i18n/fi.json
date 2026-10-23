@@ -231,8 +231,13 @@
   "video.problem.unsupportedVideo": "Tiedosto ei ole video, jota tämä puhelin voi toistaa.",
   "video.problem.unreadableFile": "Videota ei voitu lukea. Se on ehkä siirretty tai poistettu.",
   "video.problem.tooShort": "Video on liian lyhyt sarjaksi.",
-  "video.problem.tooLong": "Yli 3 minuutin videoita ei voi vielä analysoida. Lyhennä video ensin galleriassa.",
   "video.problem.failed": "Videon ääntä ei voitu lukea.",
+
+  "part.title": "Valitse osa",
+  "part.scanning": "Yli 3 minuutin videot tarkistetaan 3 minuutin osina. Etsitään äänekkäintä osaa…",
+  "part.hint": "Yli 3 minuutin videot tarkistetaan 3 minuutin osina. Siirrä kehys sarjasi kohdalle.",
+  "part.analyze": "Analysoi tämä osa",
+  "part.semantics": "Osa {from}–{to}",
 
   "editor.title": "Tarkista laukaukset",
   "editor.noStart": "Äänimerkkiä ei löytynyt. Toista äänimerkkiin asti ja napauta Merkitse lähtö.",

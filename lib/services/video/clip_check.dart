@@ -27,20 +27,14 @@ enum ClipProblem {
   /// Too short to hold a beep and a shot.
   tooShort,
 
-  /// Longer than one analysed part (until Choose the part exists).
-  tooLong,
-
   /// Anything else that failed while reading the sound.
   failed,
 }
 
-/// The longest stretch of a clip that is analysed at once.
-const int maxClipPartMs = 3 * 60 * 1000;
-
 const int _minClipMs = 1000;
 
 /// What's wrong with [info] before any decoding, or null when it can be
-/// analysed.
+/// analysed (clips over three minutes a part at a time).
 ClipProblem? checkClip(ClipInfo info) {
   if (info.videoMime == null) return ClipProblem.unsupportedVideo;
   final capture = info.captureFrameRate;
@@ -51,7 +45,6 @@ ClipProblem? checkClip(ClipInfo info) {
   }
   if (!info.hasAudio) return ClipProblem.noSound;
   if (info.durationMs < _minClipMs) return ClipProblem.tooShort;
-  if (info.durationMs > maxClipPartMs) return ClipProblem.tooLong;
   return null;
 }
 

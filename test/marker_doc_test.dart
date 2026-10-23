@@ -20,7 +20,7 @@ import 'clip_fixtures.dart';
 
 MarkerDoc doc(
         {int? start = 1000, List<int> shots = const [2200, 2620, 2950]}) =>
-    MarkerDoc.detected(durationMs: 10000, startMs: start, shotMs: shots);
+    MarkerDoc.detected(toMs: 10000, startMs: start, shotMs: shots);
 
 List<int> active(MarkerDoc d) => [for (final s in d.activeShots) s.ms];
 
@@ -53,6 +53,14 @@ void main() {
     test('is clamped to the clip', () {
       expect(doc().setStart(-50).startMs, 0);
       expect(doc().setStart(20000).startMs, 10000);
+    });
+
+    test('and shots to the analysed part of a long clip', () {
+      final part = MarkerDoc.detected(
+          fromMs: 60000, toMs: 240000, startMs: 61000, shotMs: [62000]);
+      expect(part.setStart(1000).startMs, 60000);
+      expect(part.addShot(500000).shots.last.ms, 240000);
+      expect(part.moveShot(0, 0).shots.first.ms, 60000);
     });
   });
 
@@ -148,7 +156,7 @@ void main() {
       source: StringSource.video,
       videoStartMs: 4788,
     );
-    final d = MarkerDoc.fromSaved(saved, durationMs: 24634);
+    final d = MarkerDoc.fromSaved(saved, toMs: 24634);
     expect(d.startMs, 4788);
     expect(d.startEdited, isTrue);
     expect(d.toShots().map((s) => (s.timeMs, s.manual)),

@@ -125,7 +125,8 @@ class ClipEditorNotifier
     final saved = arg.saved;
     if (saved != null) {
       return ClipEditorState(
-        doc: MarkerDoc.fromSaved(saved, durationMs: arg.clip.info.durationMs),
+        doc: MarkerDoc.fromSaved(saved,
+            fromMs: arg.clip.fromMs, toMs: arg.clip.toMs),
         sensitivity: arg.clip.analysis.sensitivity,
         label: saved.label,
         notes: saved.notes,

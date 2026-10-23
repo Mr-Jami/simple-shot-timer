@@ -7,6 +7,7 @@ import 'clip_analyzer.dart';
 import 'clip_audio_source.dart';
 import 'clip_signal.dart';
 import 'marker_doc.dart';
+import 'part_window.dart';
 import 'start_finder.dart';
 
 /// A clip and what the analyzer found in it, in clip milliseconds: the one
@@ -17,6 +18,7 @@ class AnalyzedClip {
     required this.info,
     required this.analysis,
     required this.audioOriginMs,
+    this.part,
   });
 
   final ClipInfo info;
@@ -24,6 +26,13 @@ class AnalyzedClip {
 
   /// Clip time of the first decoded audio sample.
   final int audioOriginMs;
+
+  /// The part of a long clip that was analysed; null for the whole clip.
+  final PartWindow? part;
+
+  /// The stretch the editor shows and markers stay in.
+  int get fromMs => part?.startMs ?? 0;
+  int get toMs => part?.endMs ?? info.durationMs;
 
   int toClipMs(double seconds) => audioOriginMs + (seconds * 1000).round();
 
@@ -87,7 +96,8 @@ class AnalyzedClip {
   }
 
   MarkerDoc toDoc() => MarkerDoc.detected(
-        durationMs: info.durationMs,
+        fromMs: fromMs,
+        toMs: toMs,
         startMs: startMs,
         shotMs: shotMs,
       );
@@ -96,5 +106,6 @@ class AnalyzedClip {
         info: info,
         analysis: analysis.withSensitivity(sensitivity),
         audioOriginMs: audioOriginMs,
+        part: part,
       );
 }

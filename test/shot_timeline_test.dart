@@ -32,7 +32,7 @@ void main() {
     settled = [];
     controller = TimelineController(
       vsync: tester,
-      durationMs: 10000,
+      endMs: 10000,
       platform: platform,
       pxPerSecond: 150,
       onSettle: settled.add,
@@ -111,6 +111,30 @@ void main() {
       expect(controller.displayMs, closeTo(0, 1));
     });
   }
+
+  testWidgets('a part of a long clip bounds the timeline', (tester) async {
+    await pumpTimeline(tester);
+    final part = TimelineController(
+      vsync: tester,
+      startMs: 60000,
+      endMs: 240000,
+      platform: TargetPlatform.android,
+      pxPerSecond: 150,
+    );
+    addTearDown(part.dispose);
+    part.centreOn(0, animate: false);
+    expect(part.playheadMs, 60000);
+    part.startDrag();
+    part.dragTo(300);
+    // Pulled before the part: it resists, and the video stays at its start.
+    expect(part.displayMs, inExclusiveRange(58000, 60000));
+    expect(part.playheadMs, 60000);
+    part.endDrag(0);
+    await tester.pumpAndSettle();
+    expect(part.displayMs, closeTo(60000, 1));
+    part.centreOn(999999, animate: false);
+    expect(part.playheadMs, 240000);
+  });
 
   testWidgets('centring glides and lands exactly on the marker',
       (tester) async {

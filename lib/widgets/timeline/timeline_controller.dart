@@ -18,12 +18,16 @@ enum TimelineMotion { idle, playback, drag, fling, settle }
 /// springs back, and centring on a marker is a critically damped spring.
 /// Touching the timeline stops whatever was moving.
 ///
+/// It covers [startMs] to [endMs] of the clip: all of it, or the analysed
+/// part of a long one.
+///
 /// [onUserMove] reports every move the user caused (to seek the video and
 /// tick the haptics), [onSettle] where it came to rest (the exact seek).
 class TimelineController extends ChangeNotifier {
   TimelineController({
     required TickerProvider vsync,
-    required this.durationMs,
+    this.startMs = 0,
+    required this.endMs,
     required this.platform,
     double pxPerSecond = 150,
     this.onUserMove,
@@ -32,7 +36,8 @@ class TimelineController extends ChangeNotifier {
     _ticker = vsync.createTicker(_tick);
   }
 
-  final int durationMs;
+  final int startMs;
+  final int endMs;
   final TargetPlatform platform;
   final void Function(double fromMs, double toMs)? onUserMove;
   final ValueChanged<int>? onSettle;
@@ -57,13 +62,15 @@ class TimelineController extends ChangeNotifier {
 
   TimelineMotion get motion => _motion;
   double get pxPerSecond => _pxPerSecond;
-  double get _maxPx => durationMs * _pxPerSecond / 1000;
+  double get _minPx => startMs * _pxPerSecond / 1000;
+  double get _maxPx => endMs * _pxPerSecond / 1000;
 
   /// Where the timeline is drawn, past an end while stretching.
   double get displayMs => _px / _pxPerSecond * 1000;
 
-  /// Where the video is: [displayMs] kept inside the clip.
-  double get playheadMs => displayMs.clamp(0, durationMs.toDouble()).toDouble();
+  /// Where the video is: [displayMs] kept inside the range.
+  double get playheadMs =>
+      displayMs.clamp(startMs.toDouble(), endMs.toDouble()).toDouble();
 
   bool get _bounces =>
       platform == TargetPlatform.iOS || platform == TargetPlatform.macOS;
@@ -96,10 +103,11 @@ class TimelineController extends ChangeNotifier {
   /// point it was grabbed at.
   void dragTo(double dxPx) {
     if (_motion != TimelineMotion.drag) startDrag();
+    final min = _minPx;
     final max = _maxPx;
     final raw = _dragStartPx - dxPx;
-    final shown = raw < 0
-        ? rubberBand(raw, viewportWidth)
+    final shown = raw < min
+        ? min + rubberBand(raw - min, viewportWidth)
         : raw > max
             ? max + rubberBand(raw - max, viewportWidth)
             : raw;
@@ -117,7 +125,7 @@ class TimelineController extends ChangeNotifier {
       focalPx: focalPx,
       oldPxPerSecond: _pxPerSecond,
       newPxPerSecond: next,
-    ).clamp(0, durationMs.toDouble()).toDouble();
+    ).clamp(startMs.toDouble(), endMs.toDouble()).toDouble();
     final before = displayMs;
     _pxPerSecond = next;
     _px = ms * next / 1000;
@@ -130,17 +138,18 @@ class TimelineController extends ChangeNotifier {
   /// riding under the playhead) the timeline stops where it is.
   void endDrag(double velocityPxPerSecond, {bool fling = true}) {
     if (_motion != TimelineMotion.drag) return;
+    final min = _minPx;
     final max = _maxPx;
     final v = -velocityPxPerSecond;
-    if (_px < 0 || _px > max) {
-      _runSpring(_px < 0 ? 0 : max, v);
+    if (_px < min || _px > max) {
+      _runSpring(_px < min ? min : max, v);
     } else if (fling && v.abs() > 50) {
       _run(
         _bounces
             ? BouncingScrollSimulation(
                 position: _px,
                 velocity: v,
-                leadingExtent: 0,
+                leadingExtent: min,
                 trailingExtent: max,
                 spring: SpringDescription.withDampingRatio(
                   mass: 0.5,
@@ -161,7 +170,7 @@ class TimelineController extends ChangeNotifier {
   /// (reduced motion) or it is already close.
   void centreOn(int ms, {bool animate = true}) {
     _stop();
-    final target = ms.clamp(0, durationMs) * _pxPerSecond / 1000;
+    final target = ms.clamp(startMs, endMs) * _pxPerSecond / 1000;
     if (!animate || (target - _px).abs() < 1) {
       _setPx(target, user: true);
       _settled();
@@ -199,10 +208,11 @@ class TimelineController extends ChangeNotifier {
     final t = elapsed.inMicroseconds / 1e6;
     var px = simulation.x(t);
     final done = simulation.isDone(t);
+    final min = _minPx;
     final max = _maxPx;
     final clamping = !_bounces && _motion == TimelineMotion.fling;
-    final hitEnd = clamping && (px <= 0 || px >= max);
-    if (hitEnd) px = px.clamp(0, max).toDouble();
+    final hitEnd = clamping && (px <= min || px >= max);
+    if (hitEnd) px = px.clamp(min, max).toDouble();
     if (done && _springTarget != null) px = _springTarget!;
     _setPx(px, user: true);
     if (done || hitEnd) {

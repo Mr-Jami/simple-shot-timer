@@ -29,30 +29,53 @@ import kotlin.math.roundToInt
 /**
  * Reads a video clip's sound for the offline clip analyzer
  * (lib/services/video/clip_audio_source.dart): `probe` describes the clip,
- * `decode` writes its audio as raw little-endian 16-bit mono PCM (the first
- * channel) to a file the Dart side owns and deletes.
+ * `decode` writes its audio (or a window of it) as raw little-endian 16-bit
+ * mono PCM (the first channel) to a file the Dart side owns and deletes, and
+ * for clips too long to analyse whole, `loudness` and `thumbnails` feed the
+ * Choose-the-part screen.
  *
- * Decoding a minute of audio takes a while, so both run on one background
- * thread; the replies go back on the main thread, as MethodChannel requires.
- * A decode with a jobId reports progress (0..1) back on [channel] and stops
- * when cancel names its job. Failures carry the codes the Dart side maps:
+ * Decoding takes a while, so decode and loudness share one background
+ * thread, and probe and thumbnails run on a second one so they never wait
+ * behind them; the replies go back on the main thread, as MethodChannel
+ * requires. A job reports progress back on [channel] and stops when cancel
+ * names it. Failures carry the codes the Dart side maps:
  * no_audio_track, unsupported_codec, unreadable_file, decode_failed,
  * cancelled.
  */
 class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.MethodCallHandler {
     private val worker = Executors.newSingleThreadExecutor()
+
+    /** Probes and thumbnails: quick work that must not wait behind a decode. */
+    private val light = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
     private val cancelled = ConcurrentHashMap.newKeySet<Int>()
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         val path = call.argument<String>("path")
         when (call.method) {
-            "probe" -> reply(result) { probe(required(path, "path")) }
+            "probe" -> reply(result, light) { probe(required(path, "path")) }
             "decode" -> reply(result) {
                 decode(
                     required(path, "path"),
                     required(call.argument("outputPath"), "outputPath"),
                     call.argument<Int>("jobId"),
+                    (call.argument<Number>("startMs")?.toLong() ?: 0L) * 1000,
+                    call.argument<Number>("endMs")?.toLong()?.times(1000),
+                )
+            }
+            "loudness" -> reply(result) {
+                loudness(
+                    required(path, "path"),
+                    call.argument<Int>("jobId") ?: 0,
+                    call.argument<Int>("bucketMs") ?: 250,
+                )
+            }
+            "thumbnails" -> reply(result, light) {
+                thumbnails(
+                    required(path, "path"),
+                    call.argument<Int>("jobId") ?: 0,
+                    call.argument<List<Number>>("timesMs")?.map { it.toLong() } ?: emptyList(),
+                    call.argument<Int>("width") ?: 160,
                 )
             }
             // Answered here, not on the worker: it must not wait behind the
@@ -67,10 +90,15 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
 
     fun dispose() {
         worker.shutdown()
+        light.shutdown()
     }
 
-    private fun reply(result: MethodChannel.Result, work: () -> Any?) {
-        worker.execute {
+    private fun reply(
+        result: MethodChannel.Result,
+        executor: java.util.concurrent.Executor = worker,
+        work: () -> Any?,
+    ) {
+        executor.execute {
             try {
                 val value = work()
                 main.post { result.success(value) }
@@ -135,16 +163,113 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
         }
     }
 
-    private fun decode(path: String, outputPath: String, jobId: Int?): Map<String, Any?> {
+    /**
+     * Writes [path]'s sound from [startUs] to [endUs] (null: to the end) as
+     * 16-bit little-endian mono PCM. firstSampleTimeUs is the media time of
+     * the first sample written, so the window stays in step with the video.
+     */
+    private fun decode(path: String, outputPath: String, jobId: Int?, startUs: Long, endUs: Long?): Map<String, Any?> {
+        val out = File(outputPath)
+        var finished = false
+        try {
+            var firstTimeUs: Long? = null
+            var written = 0L
+            val bytes = ByteArray(1 shl 14)
+            val result = BufferedOutputStream(FileOutputStream(out), 1 shl 16).use { stream ->
+                decodeLoop(path, jobId, startUs, endUs, reportProgress = true) { samples, count, timeUs, _ ->
+                    if (firstTimeUs == null) firstTimeUs = timeUs
+                    var i = 0
+                    while (i < count) {
+                        val n = minOf(count - i, bytes.size / 2)
+                        for (j in 0 until n) {
+                            val sample = samples[i + j].toInt()
+                            bytes[2 * j] = (sample and 0xFF).toByte()
+                            bytes[2 * j + 1] = ((sample shr 8) and 0xFF).toByte()
+                        }
+                        stream.write(bytes, 0, 2 * n)
+                        i += n
+                    }
+                    written += count
+                }
+            }
+            if (written == 0L) throw ClipAudioFailure("no_audio_track", "the audio track is empty")
+            finished = true
+            return mapOf(
+                "sampleRate" to result.sampleRate,
+                "channelCount" to result.channels,
+                "sampleCount" to written,
+                "firstSampleTimeUs" to (firstTimeUs ?: 0L),
+            )
+        } finally {
+            if (!finished) out.delete()
+        }
+    }
+
+    /**
+     * The whole track's loudness for Choose the part: the RMS of the first
+     * channel over every [bucketMs], sent as `loudness` batches
+     * ({jobId, from, values}) about every 200 ms while it runs. Returns the
+     * bucket count.
+     */
+    private fun loudness(path: String, jobId: Int, bucketMs: Int): Map<String, Any?> {
+        val pending = ArrayList<Double>()
+        var sent = 0
+        var sum = 0.0
+        var inBucket = 0
+        var lastSend = SystemClock.elapsedRealtime()
+        fun send(force: Boolean) {
+            val now = SystemClock.elapsedRealtime()
+            if (pending.isEmpty() || (!force && now - lastSend < 200)) return
+            lastSend = now
+            val batch = pending.toList()
+            val from = sent
+            sent += batch.size
+            pending.clear()
+            main.post {
+                channel.invokeMethod("loudness", mapOf("jobId" to jobId, "from" to from, "values" to batch))
+            }
+        }
+        val result = decodeLoop(path, jobId, 0L, null, reportProgress = false) { samples, count, _, rate ->
+            val bucketSamples = maxOf(1, rate * bucketMs / 1000)
+            for (i in 0 until count) {
+                val v = samples[i] / 32768.0
+                sum += v * v
+                if (++inBucket >= bucketSamples) {
+                    pending.add(Math.sqrt(sum / inBucket))
+                    sum = 0.0
+                    inBucket = 0
+                }
+            }
+            send(force = false)
+        }
+        if (inBucket > 0) pending.add(Math.sqrt(sum / inBucket))
+        send(force = true)
+        return mapOf("buckets" to sent, "sampleRate" to result.sampleRate)
+    }
+
+    private class LoopResult(val sampleRate: Int, val channels: Int)
+
+    /**
+     * Decodes the audio track and hands [sink] the first channel as 16-bit
+     * samples with the media time of the first one, cut to [startUs]..[endUs]
+     * sample-accurately. Stops when [jobId] is cancelled.
+     */
+    private fun decodeLoop(
+        path: String,
+        jobId: Int?,
+        startUs: Long,
+        endUs: Long?,
+        reportProgress: Boolean,
+        sink: (samples: ShortArray, count: Int, timeUs: Long, sampleRate: Int) -> Unit,
+    ): LoopResult {
         if (jobId != null && cancelled.remove(jobId)) throw ClipAudioFailure("cancelled", null)
         val extractor = open(path)
-        val out = File(outputPath)
         var codec: MediaCodec? = null
-        var finished = false
         try {
             val track = audioTrack(extractor)
             if (track < 0) throw ClipAudioFailure("no_audio_track", null)
             extractor.selectTrack(track)
+            if (startUs > 0) extractor.seekTo(startUs, MediaExtractor.SEEK_TO_PREVIOUS_SYNC)
             val format = extractor.getTrackFormat(track)
             val mime = format.getString(MediaFormat.KEY_MIME) ?: ""
             val decoder = try {
@@ -166,76 +291,79 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
             } else {
                 0L
             }
+            val spanUs = (endUs ?: durationUs) - startUs
             var lastProgressAt = 0L
             var sampleRate = format.getInteger(MediaFormat.KEY_SAMPLE_RATE)
             var channels = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
             var floatPcm = false
-            var written = 0L
-            var firstTimeUs: Long? = null
+            var samples = ShortArray(4096)
             var inputDone = false
             var idleSinceInputDone = 0
             val info = MediaCodec.BufferInfo()
-            BufferedOutputStream(FileOutputStream(out), 1 shl 16).use { stream ->
-                while (true) {
-                    if (jobId != null && cancelled.remove(jobId)) {
-                        throw ClipAudioFailure("cancelled", null)
-                    }
-                    if (!inputDone) {
-                        val inIndex = decoder.dequeueInputBuffer(TIMEOUT_US)
-                        if (inIndex >= 0) {
-                            val buffer = decoder.getInputBuffer(inIndex)!!
-                            val size = extractor.readSampleData(buffer, 0)
-                            if (size < 0) {
-                                decoder.queueInputBuffer(inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
-                                inputDone = true
-                            } else {
-                                val timeUs = extractor.sampleTime
-                                decoder.queueInputBuffer(inIndex, 0, size, timeUs, 0)
-                                extractor.advance()
-                                val now = SystemClock.elapsedRealtime()
-                                if (jobId != null && durationUs > 0 && now - lastProgressAt >= 100) {
-                                    lastProgressAt = now
-                                    val fraction = (timeUs.toDouble() / durationUs).coerceIn(0.0, 1.0)
-                                    main.post {
-                                        channel.invokeMethod(
-                                            "progress",
-                                            mapOf("jobId" to jobId, "fraction" to fraction),
-                                        )
-                                    }
+            while (true) {
+                if (jobId != null && cancelled.remove(jobId)) throw ClipAudioFailure("cancelled", null)
+                if (!inputDone) {
+                    val inIndex = decoder.dequeueInputBuffer(TIMEOUT_US)
+                    if (inIndex >= 0) {
+                        val buffer = decoder.getInputBuffer(inIndex)!!
+                        val size = extractor.readSampleData(buffer, 0)
+                        val timeUs = extractor.sampleTime
+                        if (size < 0 || (endUs != null && timeUs > endUs)) {
+                            decoder.queueInputBuffer(inIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
+                            inputDone = true
+                        } else {
+                            decoder.queueInputBuffer(inIndex, 0, size, timeUs, 0)
+                            extractor.advance()
+                            val now = SystemClock.elapsedRealtime()
+                            if (reportProgress && jobId != null && spanUs > 0 && now - lastProgressAt >= 100) {
+                                lastProgressAt = now
+                                val fraction = ((timeUs - startUs).toDouble() / spanUs).coerceIn(0.0, 1.0)
+                                main.post {
+                                    channel.invokeMethod("progress", mapOf("jobId" to jobId, "fraction" to fraction))
                                 }
                             }
                         }
                     }
-                    val outIndex = decoder.dequeueOutputBuffer(info, TIMEOUT_US)
-                    if (outIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-                        val changed = decoder.outputFormat
-                        sampleRate = changed.getInteger(MediaFormat.KEY_SAMPLE_RATE)
-                        channels = changed.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
-                        floatPcm = changed.containsKey(MediaFormat.KEY_PCM_ENCODING) &&
-                            changed.getInteger(MediaFormat.KEY_PCM_ENCODING) == AudioFormat.ENCODING_PCM_FLOAT
-                    } else if (outIndex >= 0) {
-                        idleSinceInputDone = 0
-                        val buffer = decoder.getOutputBuffer(outIndex)!!
-                        if (info.size > 0) {
-                            if (firstTimeUs == null) firstTimeUs = info.presentationTimeUs
-                            written += writeFirstChannel(buffer, info, channels, floatPcm, stream)
+                }
+                val outIndex = decoder.dequeueOutputBuffer(info, TIMEOUT_US)
+                if (outIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
+                    val changed = decoder.outputFormat
+                    sampleRate = changed.getInteger(MediaFormat.KEY_SAMPLE_RATE)
+                    channels = changed.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
+                    floatPcm = changed.containsKey(MediaFormat.KEY_PCM_ENCODING) &&
+                        changed.getInteger(MediaFormat.KEY_PCM_ENCODING) == AudioFormat.ENCODING_PCM_FLOAT
+                } else if (outIndex >= 0) {
+                    idleSinceInputDone = 0
+                    val buffer = decoder.getOutputBuffer(outIndex)!!
+                    if (info.size > 0) {
+                        val frames = info.size / ((if (floatPcm) 4 else 2) * channels)
+                        if (samples.size < frames) samples = ShortArray(frames)
+                        firstChannel(buffer, info, channels, floatPcm, samples, frames)
+                        // Cut to the window, sample-accurately.
+                        val t0 = info.presentationTimeUs
+                        val skip = if (t0 < startUs) {
+                            ((startUs - t0) * sampleRate / 1_000_000L).toInt().coerceIn(0, frames)
+                        } else {
+                            0
                         }
-                        decoder.releaseOutputBuffer(outIndex, false)
-                        if (info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) break
-                    } else if (inputDone && ++idleSinceInputDone > MAX_IDLE_POLLS) {
-                        // A decoder that never signals the end; keep what it gave.
-                        break
+                        var end = frames
+                        if (endUs != null) {
+                            val keep = ((endUs - t0) * sampleRate / 1_000_000L).toInt()
+                            end = keep.coerceIn(0, frames)
+                        }
+                        if (end > skip) {
+                            val first = if (skip > 0) samples.copyOfRange(skip, end) else samples
+                            sink(first, end - skip, t0 + skip * 1_000_000L / sampleRate, sampleRate)
+                        }
                     }
+                    decoder.releaseOutputBuffer(outIndex, false)
+                    if (info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) break
+                } else if (inputDone && ++idleSinceInputDone > MAX_IDLE_POLLS) {
+                    // A decoder that never signals the end; keep what it gave.
+                    break
                 }
             }
-            if (written == 0L) throw ClipAudioFailure("no_audio_track", "the audio track is empty")
-            finished = true
-            return mapOf(
-                "sampleRate" to sampleRate,
-                "channelCount" to channels,
-                "sampleCount" to written,
-                "firstSampleTimeUs" to (firstTimeUs ?: 0L),
-            )
+            return LoopResult(sampleRate, channels)
         } finally {
             try {
                 codec?.stop()
@@ -243,35 +371,67 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
             }
             codec?.release()
             extractor.release()
-            if (!finished) out.delete()
         }
     }
 
-    /** Writes the first channel of one decoded buffer as 16-bit little-endian. */
-    private fun writeFirstChannel(
+    /** The first channel of one decoded buffer, as 16-bit samples. */
+    private fun firstChannel(
         buffer: ByteBuffer,
         info: MediaCodec.BufferInfo,
         channels: Int,
         floatPcm: Boolean,
-        stream: BufferedOutputStream,
-    ): Long {
+        out: ShortArray,
+        frames: Int,
+    ) {
         buffer.position(info.offset)
         buffer.limit(info.offset + info.size)
         val pcm = buffer.slice().order(ByteOrder.nativeOrder())
-        val bytesPerSample = if (floatPcm) 4 else 2
-        val frames = info.size / (bytesPerSample * channels)
-        val bytes = ByteArray(frames * 2)
         for (i in 0 until frames) {
-            val sample = if (floatPcm) {
-                (pcm.getFloat(i * channels * 4) * 32767f).roundToInt().coerceIn(-32768, 32767)
+            out[i] = if (floatPcm) {
+                (pcm.getFloat(i * channels * 4) * 32767f).roundToInt().coerceIn(-32768, 32767).toShort()
             } else {
-                pcm.getShort(i * channels * 2).toInt()
+                pcm.getShort(i * channels * 2)
             }
-            bytes[2 * i] = (sample and 0xFF).toByte()
-            bytes[2 * i + 1] = ((sample shr 8) and 0xFF).toByte()
         }
-        stream.write(bytes)
-        return frames.toLong()
+    }
+
+    /**
+     * Preview frames for the Choose-the-part filmstrip, nearest keyframe to
+     * each time, sent one by one as `thumbnail` ({jobId, index, bytes}: a
+     * JPEG [width] wide) so the strip fills from the left.
+     */
+    private fun thumbnails(path: String, jobId: Int, timesMs: List<Long>, width: Int): Map<String, Any?> {
+        val retriever = MediaMetadataRetriever()
+        try {
+            retriever.setDataSource(path)
+            for ((index, ms) in timesMs.withIndex()) {
+                if (cancelled.remove(jobId)) throw ClipAudioFailure("cancelled", null)
+                val frame = if (android.os.Build.VERSION.SDK_INT >= 27) {
+                    retriever.getScaledFrameAtTime(ms * 1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC, width, width * 2)
+                } else {
+                    retriever.getFrameAtTime(ms * 1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)?.let {
+                        val scaled = android.graphics.Bitmap.createScaledBitmap(it, width, it.height * width / it.width, true)
+                        if (scaled !== it) it.recycle()
+                        scaled
+                    }
+                } ?: continue
+                val bytes = java.io.ByteArrayOutputStream().use { stream ->
+                    frame.compress(android.graphics.Bitmap.CompressFormat.JPEG, 75, stream)
+                    stream.toByteArray()
+                }
+                frame.recycle()
+                main.post {
+                    channel.invokeMethod("thumbnail", mapOf("jobId" to jobId, "index" to index, "bytes" to bytes))
+                }
+            }
+        } catch (e: ClipAudioFailure) {
+            throw e
+        } catch (e: Exception) {
+            throw ClipAudioFailure("unreadable_file", e.message)
+        } finally {
+            retriever.release()
+        }
+        return mapOf("count" to timesMs.size)
     }
 
     private fun open(path: String): MediaExtractor {

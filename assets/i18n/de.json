@@ -231,8 +231,13 @@
   "video.problem.unsupportedVideo": "Diese Datei ist kein Video, das dieses Handy abspielen kann.",
   "video.problem.unreadableFile": "Das Video konnte nicht gelesen werden. Vielleicht wurde es verschoben oder gelöscht.",
   "video.problem.tooShort": "Dieses Video ist zu kurz für einen Durchgang.",
-  "video.problem.tooLong": "Videos über 3 Minuten gehen noch nicht. Kürze es zuerst in deiner Galerie.",
   "video.problem.failed": "Der Ton dieses Videos konnte nicht gelesen werden.",
+
+  "part.title": "Teil wählen",
+  "part.scanning": "Videos über 3 Minuten werden in 3-Minuten-Teilen geprüft. Der lauteste Teil wird gesucht …",
+  "part.hint": "Videos über 3 Minuten werden in 3-Minuten-Teilen geprüft. Schieb den Rahmen über deinen Durchgang.",
+  "part.analyze": "Diesen Teil analysieren",
+  "part.semantics": "Teil von {from} bis {to}",
 
   "editor.title": "Schüsse prüfen",
   "editor.noStart": "Kein Piep gefunden. Spiel bis zum Piep und tippe auf START setzen.",

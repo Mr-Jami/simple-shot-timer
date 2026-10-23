@@ -171,6 +171,82 @@ void main() {
           (calls[0].arguments as Map)['jobId']);
     });
 
+    test('a window goes to the platform; its sound keeps clip time', () async {
+      installHandler((_) => {...decoded, 'firstSampleTimeUs': 60001000});
+      final audio = await source.decode('/clips/a.mp4',
+          outputPath: '/tmp/a.pcm', startMs: 60000, endMs: 240000);
+      final args = calls.single.arguments as Map<Object?, Object?>;
+      expect((args['startMs'], args['endMs']), (60000, 240000));
+      expect(audio.firstSampleTimeUs, 60001000);
+    });
+
+    test('the loudness scan hands over its batches in order', () async {
+      final done = Completer<Object?>();
+      installHandler((call) => done.future);
+      final seen = <(int, List<double>)>[];
+      final scanning = source.scanLoudness('/clips/long.mp4',
+          onValues: (from, values) => seen.add((from, values)));
+      await pumpEventQueue();
+      final args = calls.single.arguments as Map<Object?, Object?>;
+      expect(calls.single.method, 'loudness');
+      expect(args['bucketMs'], 250);
+      final jobId = args['jobId'] as int;
+      await fromPlatform('loudness', {
+        'jobId': jobId,
+        'from': 0,
+        'values': [0.1, 0.5],
+      });
+      await fromPlatform('progress', {'jobId': jobId, 'fraction': 0.5});
+      await fromPlatform('loudness', {
+        'jobId': jobId,
+        'from': 2,
+        'values': [0.25],
+      });
+      done.complete({'buckets': 3, 'sampleRate': 48000});
+      expect(await scanning, 3);
+      expect([
+        for (final (from, values) in seen) [from, ...values]
+      ], [
+        [0, 0.1, 0.5],
+        [2, 0.25],
+      ]);
+    });
+
+    test('filmstrip frames arrive one by one; cancel stops them', () async {
+      final done = Completer<Object?>();
+      installHandler((call) {
+        if (call.method == 'cancel') {
+          done.completeError(PlatformException(code: 'cancelled'));
+          return null;
+        }
+        return done.future;
+      });
+      final frames = <int, Uint8List>{};
+      final token = CancelToken();
+      final loading = source.thumbnails('/clips/long.mp4',
+          timesMs: [30000, 90000],
+          width: 120,
+          onFrame: (i, jpeg) => frames[i] = jpeg,
+          cancel: token);
+      await pumpEventQueue();
+      final args = calls.single.arguments as Map<Object?, Object?>;
+      expect(args['timesMs'], [30000, 90000]);
+      expect(args['width'], 120);
+      await fromPlatform('thumbnail', {
+        'jobId': args['jobId'],
+        'index': 1,
+        'bytes': Uint8List.fromList([0xFF, 0xD8]),
+      });
+      token.cancel();
+      await expectLater(
+        loading,
+        throwsA(isA<ClipAudioException>()
+            .having((e) => e.error, 'error', ClipAudioError.cancelled)),
+      );
+      expect(frames.keys, [1]);
+      expect(frames[1], [0xFF, 0xD8]);
+    });
+
     test('an already cancelled token never starts it', () async {
       installHandler((_) => decoded);
       await expectLater(

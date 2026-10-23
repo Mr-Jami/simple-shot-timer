@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import '../../services/video/clip_signal.dart';
 import 'timeline_controller.dart';
 
-/// The whole clip at a glance under the timeline: its loudness (shots stand
-/// out), a tick per marker, and the stretch the timeline shows. Tapping or
-/// dragging along it jumps there.
+/// The whole timeline (the clip, or the analysed part of a long one) at a
+/// glance: its loudness (shots stand out), a tick per marker, and the
+/// stretch the timeline shows. A tap jumps there; a drag along it scrubs.
 class TimelineMinimap extends StatelessWidget {
   const TimelineMinimap({
     super.key,
@@ -21,6 +21,7 @@ class TimelineMinimap extends StatelessWidget {
     required this.frameMs,
     required this.markers,
     required this.onJump,
+    required this.onScrub,
   });
 
   static const double height = 28;
@@ -35,21 +36,25 @@ class TimelineMinimap extends StatelessWidget {
   final double frameMs;
   final List<int> markers;
 
-  /// The user tapped or dragged to this clip time.
+  /// The user tapped this clip time.
   final ValueChanged<int> onJump;
+
+  /// The user's finger is dragging along at this clip time.
+  final ValueChanged<int> onScrub;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: (context, box) {
       final width = box.maxWidth;
-      int msAt(double x) => (x / width * controller.durationMs)
-          .clamp(0, controller.durationMs)
-          .round();
+      final from = controller.startMs;
+      final to = controller.endMs;
+      int msAt(double x) =>
+          (from + x / width * (to - from)).clamp(from, to).round();
       return GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTapUp: (d) => onJump(msAt(d.localPosition.dx)),
-        onHorizontalDragUpdate: (d) => onJump(msAt(d.localPosition.dx)),
+        onHorizontalDragUpdate: (d) => onScrub(msAt(d.localPosition.dx)),
         child: CustomPaint(
           size: Size(width, height),
           painter: _MinimapPainter(
@@ -94,9 +99,10 @@ class _MinimapPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final duration = controller.durationMs.toDouble();
-    if (duration <= 0) return;
-    double xOf(num ms) => ms / duration * size.width;
+    final from = controller.startMs;
+    final span = (controller.endMs - from).toDouble();
+    if (span <= 0) return;
+    double xOf(num ms) => (ms - from) / span * size.width;
     canvas.drawRRect(
       RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(6)),
       Paint()..color = track,

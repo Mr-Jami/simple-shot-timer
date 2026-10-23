@@ -231,8 +231,13 @@
   "video.problem.unsupportedVideo": "Este archivo no es un vídeo que este móvil pueda reproducir.",
   "video.problem.unreadableFile": "No se pudo leer el vídeo. Puede que se haya movido o borrado.",
   "video.problem.tooShort": "Este vídeo es demasiado corto para una serie.",
-  "video.problem.tooLong": "Aún no se pueden analizar vídeos de más de 3 minutos. Recórtalo primero en tu galería.",
   "video.problem.failed": "No se pudo leer el sonido de este vídeo.",
+
+  "part.title": "Elige la parte",
+  "part.scanning": "Los vídeos de más de 3 minutos se revisan por partes de 3 minutos. Buscando la parte más ruidosa…",
+  "part.hint": "Los vídeos de más de 3 minutos se revisan por partes de 3 minutos. Mueve el marco sobre tu serie.",
+  "part.analyze": "Analizar esta parte",
+  "part.semantics": "Parte de {from} a {to}",
 
   "editor.title": "Revisar disparos",
   "editor.noStart": "No se encontró el pitido. Reproduce hasta el pitido y toca Marcar START.",

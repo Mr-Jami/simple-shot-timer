@@ -231,8 +231,13 @@
   "video.problem.unsupportedVideo": "Este arquivo não é um vídeo que este celular consiga reproduzir.",
   "video.problem.unreadableFile": "Não foi possível ler o vídeo. Ele pode ter sido movido ou excluído.",
   "video.problem.tooShort": "Este vídeo é curto demais para uma série.",
-  "video.problem.tooLong": "Vídeos com mais de 3 minutos ainda não podem ser analisados. Corte-o antes na galeria.",
   "video.problem.failed": "Não foi possível ler o som deste vídeo.",
+
+  "part.title": "Escolha o trecho",
+  "part.scanning": "Vídeos com mais de 3 minutos são conferidos em trechos de 3 minutos. Procurando o trecho mais alto…",
+  "part.hint": "Vídeos com mais de 3 minutos são conferidos em trechos de 3 minutos. Mova o quadro para a sua série.",
+  "part.analyze": "Analisar este trecho",
+  "part.semantics": "Trecho de {from} a {to}",
 
   "editor.title": "Conferir disparos",
   "editor.noStart": "Bipe não encontrado. Reproduza até o bipe e toque em Marcar INÍCIO.",

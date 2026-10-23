@@ -64,8 +64,8 @@ void main() {
       expect(checkClip(info(videoMime: null)), ClipProblem.unsupportedVideo);
       expect(checkClip(info(hasAudio: false)), ClipProblem.noSound);
       expect(checkClip(info(durationMs: 400)), ClipProblem.tooShort);
-      expect(
-          checkClip(info(durationMs: maxClipPartMs + 1)), ClipProblem.tooLong);
+      // Long clips go through Choose the part instead.
+      expect(checkClip(info(durationMs: 60 * 60 * 1000)), isNull);
     });
     test('knows slow motion and time-lapse by their capture rate', () {
       ClipInfo recorded(double capture, double playback) => ClipInfo(

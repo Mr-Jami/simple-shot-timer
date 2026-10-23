@@ -105,7 +105,7 @@ class DecodedAudio {
   final int sampleCount;
 
   /// Media time of the first PCM sample, to place the sound against the
-  /// picture.
+  /// picture (of a window too: it counts from the clip's start).
   final int firstSampleTimeUs;
 
   double get durationSeconds => sampleCount / sampleRate;
@@ -117,15 +117,38 @@ abstract interface class ClipAudioSource {
   /// Reads [path]'s container metadata without decoding anything.
   Future<ClipInfo> probe(String path);
 
-  /// Decodes [path]'s audio track to [outputPath]. Of several tracks it takes
-  /// the mono or stereo AAC one (iPhone spatial-audio clips add a
-  /// four-channel track), else the first. [onProgress] gets 0..1 while it
-  /// runs; [cancel] stops it, and it then throws
-  /// [ClipAudioError.cancelled] and leaves no file.
+  /// Decodes [path]'s audio track to [outputPath], from [startMs] to [endMs]
+  /// (null: the end) of the clip. Of several tracks it takes the mono or
+  /// stereo AAC one (iPhone spatial-audio clips add a four-channel track),
+  /// else the first. [onProgress] gets 0..1 while it runs; [cancel] stops
+  /// it, and it then throws [ClipAudioError.cancelled] and leaves no file.
   Future<DecodedAudio> decode(
     String path, {
     required String outputPath,
+    int startMs = 0,
+    int? endMs,
     void Function(double fraction)? onProgress,
+    CancelToken? cancel,
+  });
+
+  /// The loudness of [path]'s whole sound for Choose the part: the RMS
+  /// (0..1) of every [bucketMs], handed to [onValues] in batches as the scan
+  /// goes, the first at index [from]. Returns how many buckets there were.
+  Future<int> scanLoudness(
+    String path, {
+    int bucketMs = 250,
+    required void Function(int from, List<double> values) onValues,
+    CancelToken? cancel,
+  });
+
+  /// Frames at [timesMs] for the Choose-the-part filmstrip, as JPEGs about
+  /// [width] pixels wide, each handed to [onFrame] once ready. Frames the
+  /// phone can't read are skipped.
+  Future<void> thumbnails(
+    String path, {
+    required List<int> timesMs,
+    int width = 160,
+    required void Function(int index, Uint8List jpeg) onFrame,
     CancelToken? cancel,
   });
 }
@@ -140,14 +163,15 @@ class ChannelClipAudioSource implements ClipAudioSource {
   }
 
   final MethodChannel _channel;
-  final _progress = <int, void Function(double)>{};
+
+  /// What each running job does with the messages it sends back
+  /// (`progress`, `loudness`, `thumbnail`).
+  final _jobs = <int, void Function(String method, Map<Object?, Object?>)>{};
   static var _nextJobId = 1;
 
   Future<void> _onPlatformCall(MethodCall call) async {
-    if (call.method != 'progress') return;
     final args = call.arguments as Map<Object?, Object?>;
-    final fraction = (args['fraction'] as num).toDouble();
-    _progress[args['jobId'] as int]?.call(fraction);
+    _jobs[args['jobId']]?.call(call.method, args);
   }
 
   @override
@@ -175,31 +199,26 @@ class ChannelClipAudioSource implements ClipAudioSource {
   Future<DecodedAudio> decode(
     String path, {
     required String outputPath,
+    int startMs = 0,
+    int? endMs,
     void Function(double fraction)? onProgress,
     CancelToken? cancel,
   }) async {
-    if (cancel?.isCancelled ?? false) {
-      throw const ClipAudioException(ClipAudioError.cancelled);
-    }
-    final jobId = _nextJobId++;
-    if (onProgress != null) _progress[jobId] = onProgress;
-    unawaited(cancel?.whenCancelled.then((_) async {
-      try {
-        await _channel.invokeMethod<void>('cancel', {'jobId': jobId});
-      } on Exception {
-        // The decode reports its own end.
-      }
-    }));
-    final Map<Object?, Object?> m;
-    try {
-      m = await _invoke('decode', {
+    final m = await _job(
+      'decode',
+      {
         'path': path,
         'outputPath': outputPath,
-        'jobId': jobId,
-      });
-    } finally {
-      _progress.remove(jobId);
-    }
+        'startMs': startMs,
+        'endMs': endMs,
+      },
+      cancel: cancel,
+      onMessage: (method, args) {
+        if (method == 'progress') {
+          onProgress?.call((args['fraction'] as num).toDouble());
+        }
+      },
+    );
     return DecodedAudio(
       pcmPath: outputPath,
       sampleRate: m['sampleRate'] as int,
@@ -207,6 +226,74 @@ class ChannelClipAudioSource implements ClipAudioSource {
       sampleCount: m['sampleCount'] as int,
       firstSampleTimeUs: m['firstSampleTimeUs'] as int? ?? 0,
     );
+  }
+
+  @override
+  Future<int> scanLoudness(
+    String path, {
+    int bucketMs = 250,
+    required void Function(int from, List<double> values) onValues,
+    CancelToken? cancel,
+  }) async {
+    final m = await _job(
+      'loudness',
+      {'path': path, 'bucketMs': bucketMs},
+      cancel: cancel,
+      onMessage: (method, args) {
+        if (method != 'loudness') return;
+        onValues(args['from'] as int, [
+          for (final v in args['values'] as List<Object?>)
+            (v as num).toDouble(),
+        ]);
+      },
+    );
+    return m['buckets'] as int? ?? 0;
+  }
+
+  @override
+  Future<void> thumbnails(
+    String path, {
+    required List<int> timesMs,
+    int width = 160,
+    required void Function(int index, Uint8List jpeg) onFrame,
+    CancelToken? cancel,
+  }) =>
+      _job(
+        'thumbnails',
+        {'path': path, 'timesMs': timesMs, 'width': width},
+        cancel: cancel,
+        onMessage: (method, args) {
+          if (method == 'thumbnail') {
+            onFrame(args['index'] as int, args['bytes'] as Uint8List);
+          }
+        },
+      );
+
+  /// Runs [method] as a job the platform reports on and [cancel] can stop;
+  /// a token already cancelled never starts it.
+  Future<Map<Object?, Object?>> _job(
+    String method,
+    Map<String, Object?> arguments, {
+    required void Function(String method, Map<Object?, Object?> args) onMessage,
+    CancelToken? cancel,
+  }) async {
+    if (cancel?.isCancelled ?? false) {
+      throw const ClipAudioException(ClipAudioError.cancelled);
+    }
+    final jobId = _nextJobId++;
+    _jobs[jobId] = onMessage;
+    unawaited(cancel?.whenCancelled.then((_) async {
+      try {
+        await _channel.invokeMethod<void>('cancel', {'jobId': jobId});
+      } on Exception {
+        // The job reports its own end.
+      }
+    }));
+    try {
+      return await _invoke(method, {...arguments, 'jobId': jobId});
+    } finally {
+      _jobs.remove(jobId);
+    }
   }
 
   Future<Map<Object?, Object?>> _invoke(

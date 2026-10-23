@@ -4,10 +4,14 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:simple_shot_timer/models/enums.dart';
+import 'package:simple_shot_timer/models/shot.dart';
+import 'package:simple_shot_timer/models/timer_string.dart';
 import 'package:simple_shot_timer/providers/video_import_provider.dart';
 import 'package:simple_shot_timer/providers/video_providers.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer.dart';
@@ -15,6 +19,7 @@ import 'package:simple_shot_timer/services/video/clip_analyzer_runner.dart';
 import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
 import 'package:simple_shot_timer/services/video/clip_check.dart';
 import 'package:simple_shot_timer/services/video/clip_picker.dart';
+import 'package:simple_shot_timer/services/video/part_window.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 import 'package:simple_shot_timer/utils/cancel_token.dart';
 
@@ -78,6 +83,12 @@ class _FakeAudio implements ClipAudioSource {
   var probes = 0;
   var decodes = 0;
   CancelToken? lastCancel;
+  (int, int?)? lastWindow;
+
+  /// The loudness scan: these values, in two batches 1 s apart.
+  List<double> loudness = const [];
+  CancelToken? scanCancel;
+  var thumbnailCalls = 0;
 
   @override
   Future<ClipInfo> probe(String path) async {
@@ -89,11 +100,14 @@ class _FakeAudio implements ClipAudioSource {
   Future<DecodedAudio> decode(
     String path, {
     required String outputPath,
+    int startMs = 0,
+    int? endMs,
     void Function(double fraction)? onProgress,
     CancelToken? cancel,
   }) {
     decodes++;
     lastCancel = cancel;
+    lastWindow = (startMs, endMs);
     final done = Completer<DecodedAudio>();
     final timer = Timer(decodeTime, () {
       if (decodeError != null) {
@@ -104,7 +118,7 @@ class _FakeAudio implements ClipAudioSource {
           sampleRate: clipSampleRate,
           channelCount: 1,
           sampleCount: clipSampleRate * 7,
-          firstSampleTimeUs: 20000,
+          firstSampleTimeUs: startMs * 1000 + 20000,
         ));
       }
     });
@@ -115,6 +129,39 @@ class _FakeAudio implements ClipAudioSource {
       }
     });
     return done.future;
+  }
+
+  @override
+  Future<int> scanLoudness(
+    String path, {
+    int bucketMs = 250,
+    required void Function(int from, List<double> values) onValues,
+    CancelToken? cancel,
+  }) async {
+    scanCancel = cancel;
+    final half = loudness.length ~/ 2;
+    for (final (from, to) in [(0, half), (half, loudness.length)]) {
+      await Future<void>.delayed(const Duration(seconds: 1));
+      if (cancel?.isCancelled ?? false) {
+        throw const ClipAudioException(ClipAudioError.cancelled);
+      }
+      onValues(from, loudness.sublist(from, to));
+    }
+    return loudness.length;
+  }
+
+  @override
+  Future<void> thumbnails(
+    String path, {
+    required List<int> timesMs,
+    int width = 160,
+    required void Function(int index, Uint8List jpeg) onFrame,
+    CancelToken? cancel,
+  }) async {
+    thumbnailCalls++;
+    for (var i = 0; i < timesMs.length; i++) {
+      onFrame(i, Uint8List(1));
+    }
   }
 }
 
@@ -160,7 +207,8 @@ void main() {
   void run(
       void Function(
               FakeAsync async, ProviderContainer c, List<ImportState> seen)
-          script) {
+          script,
+      {TimerString? reopen}) {
     fakeAsync((async) {
       final container = ProviderContainer(overrides: [
         videoWorkDirProvider.overrideWithValue(work),
@@ -171,7 +219,9 @@ void main() {
       final seen = <ImportState>[];
       container.listen(videoImportProvider, (_, next) => seen.add(next),
           fireImmediately: true);
-      container.read(videoImportProvider.notifier).start(ClipSource.photos);
+      container
+          .read(videoImportProvider.notifier)
+          .start(ClipSource.photos, reopen: reopen);
       script(async, container, seen);
       container.dispose();
       async.flushMicrotasks();
@@ -251,6 +301,118 @@ void main() {
       expect(seen.last, isA<ImportCancelled>());
       expect(analyzer.runs, 0);
       expect(work.sessions.single.disposed, isTrue);
+    });
+  });
+
+  group('a clip over three minutes', () {
+    const tenMinutes = 10 * 60 * 1000;
+    // Quiet, with a loud burst from 6:00 to 6:30 (250 ms buckets).
+    final loud = [
+      for (var i = 0; i < tenMinutes ~/ 250; i++)
+        i >= 1440 && i < 1560 ? 0.5 : 0.01,
+    ];
+
+    setUp(() {
+      audio.info = const ClipInfo(
+        hasAudio: true,
+        durationMs: tenMinutes,
+        videoMime: 'video/hevc',
+      );
+      audio.loudness = loud;
+    });
+
+    test('opens Choose the part and fills it in as the scan goes', () {
+      run((async, c, seen) {
+        async.elapse(const Duration(milliseconds: 10));
+        var part = seen.last as ImportChoosePart;
+        expect(part.window, const PartWindow(0, maxClipPartMs));
+        expect(part.thumbnails.every((t) => t != null), isTrue);
+        expect(audio.decodes, 0);
+
+        async.elapse(const Duration(seconds: 1));
+        part = seen.last as ImportChoosePart;
+        expect(part.loudness, hasLength(loud.length ~/ 2));
+        expect(part.scanned, isFalse);
+
+        async.elapse(const Duration(seconds: 1));
+        part = seen.last as ImportChoosePart;
+        expect(part.loudness, hasLength(loud.length));
+        expect(part.scanned, isTrue);
+        // Placed on the loudest three minutes, which hold the burst.
+        expect(part.window.startMs, lessThanOrEqualTo(6 * 60 * 1000));
+        expect(part.window.endMs, greaterThanOrEqualTo(6 * 60 * 1000 + 30000));
+        expect(part.window.lengthMs, maxClipPartMs);
+      });
+    });
+
+    test('a window the user moved stays where they put it', () {
+      run((async, c, seen) {
+        async.elapse(const Duration(milliseconds: 10));
+        const mine = PartWindow(30000, 90000);
+        c.read(videoImportProvider.notifier).moveWindow(mine);
+        async.elapse(const Duration(seconds: 3));
+        final part = seen.last as ImportChoosePart;
+        expect(part.scanned, isTrue);
+        expect(part.window, mine);
+      });
+    });
+
+    test('Analyze this part stops the scan and analyses only the window', () {
+      run((async, c, seen) {
+        async.elapse(const Duration(milliseconds: 10));
+        const mine = PartWindow(30000, 90000);
+        final import = c.read(videoImportProvider.notifier);
+        import.moveWindow(mine);
+        import.analysePart();
+        async.flushMicrotasks();
+        expect(audio.scanCancel!.isCancelled, isTrue);
+        // Analyzing shows at once: the user just asked for it.
+        expect((seen.last as ImportWorking).visible, isTrue);
+        expect(audio.lastWindow, (30000, 90000));
+
+        async.elapse(const Duration(milliseconds: 600));
+        final ready = seen.last as ImportReady;
+        expect(ready.clip.part, mine);
+        expect((ready.clip.fromMs, ready.clip.toMs), (30000, 90000));
+        // Clip time: the beep is 1 s into the decoded window.
+        expect(ready.clip.startMs, closeTo(31020, 5));
+        expect(ready.clip.toDoc().fromMs, 30000);
+      });
+    });
+
+    test('reopening a saved string analyses the part around it', () {
+      final saved = TimerString(
+        createdAt: DateTime(2026, 10, 21),
+        drillMode: DrillMode.standard,
+        delayMode: DelayMode.instant,
+        delayUsedMs: 0,
+        pars: const [],
+        shots: [Shot(index: 0, timeMs: 1500), Shot(index: 1, timeMs: 4000)],
+        source: StringSource.video,
+        videoStartMs: 400000,
+      );
+      run(reopen: saved, (async, c, seen) {
+        async.elapse(const Duration(milliseconds: 200));
+        expect(seen.whereType<ImportChoosePart>(), isEmpty);
+        expect(audio.thumbnailCalls, 0);
+        final part = (seen.last as ImportReady).clip.part!;
+        expect(part.lengthMs, maxClipPartMs);
+        expect(part.startMs, lessThan(400000));
+        expect(part.endMs, greaterThan(404000));
+      });
+    });
+
+    test('closing it stops the scan and deletes the folder', () {
+      run((async, c, seen) {
+        async.elapse(const Duration(milliseconds: 10));
+        c.read(videoImportProvider.notifier).cancel();
+        async.flushMicrotasks();
+        expect(seen.last, isA<ImportCancelled>());
+        expect(audio.scanCancel!.isCancelled, isTrue);
+        expect(work.sessions.single.disposed, isTrue);
+        async.elapse(const Duration(seconds: 3));
+        expect(seen.last, isA<ImportCancelled>());
+      });
     });
   });
 

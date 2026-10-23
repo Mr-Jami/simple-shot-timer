@@ -231,8 +231,13 @@
   "video.problem.unsupportedVideo": "Ce fichier n’est pas une vidéo lisible sur ce téléphone.",
   "video.problem.unreadableFile": "Impossible de lire la vidéo. Elle a peut-être été déplacée ou supprimée.",
   "video.problem.tooShort": "Cette vidéo est trop courte pour une série.",
-  "video.problem.tooLong": "Les vidéos de plus de 3 minutes ne sont pas encore prises en charge. Coupez-la d’abord dans votre galerie.",
   "video.problem.failed": "Impossible de lire le son de cette vidéo.",
+
+  "part.title": "Choisir la partie",
+  "part.scanning": "Les vidéos de plus de 3 minutes sont vérifiées par tranches de 3 minutes. Recherche de la partie la plus forte…",
+  "part.hint": "Les vidéos de plus de 3 minutes sont vérifiées par tranches de 3 minutes. Placez le cadre sur votre série.",
+  "part.analyze": "Analyser cette partie",
+  "part.semantics": "Partie de {from} à {to}",
 
   "editor.title": "Vérifier les tirs",
   "editor.noStart": "Aucun bip trouvé. Lisez jusqu’au bip et touchez Placer START.",
