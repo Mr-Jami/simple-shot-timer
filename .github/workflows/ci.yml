@@ -33,9 +33,12 @@ jobs:
 
       - name: Fetch the Material fonts
         # Some widget tests measure text in Roboto from the SDK's cache
-        # (bin/cache/artifacts/material_fonts), which flutter test alone
-        # never downloads.
-        run: flutter precache --universal
+        # (bin/cache/artifacts/material_fonts). The SDK restored from the
+        # action's cache can keep the stamp without the fonts, so start fresh.
+        run: |
+          rm -rf "$FLUTTER_ROOT/bin/cache/artifacts/material_fonts" "$FLUTTER_ROOT/bin/cache/material_fonts.stamp"
+          flutter precache --universal
+          ls "$FLUTTER_ROOT/bin/cache/artifacts/material_fonts" | grep -i roboto-regular
 
       - name: Analyze
         run: flutter analyze
