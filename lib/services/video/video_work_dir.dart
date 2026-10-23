@@ -4,20 +4,32 @@
 
 import 'dart:io';
 
+import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-/// The only place the video feature keeps files: one folder per imported
+/// Where the video feature keeps its working files: one folder per imported
 /// clip under `<app support>/video_work/`. Not the cache folder, which
 /// Android empties under storage pressure, even mid-edit.
 ///
-/// Nothing in it outlives the editor: a session deletes its folder when it
-/// closes, [sweep] removes leftovers at app start (after a crash or a kill),
-/// and "Delete all data and settings" calls [deleteAll].
+/// No clip outlives its editor: a session deletes its folder when it closes,
+/// [sweep] removes leftovers at app start (after a crash or a kill), and
+/// "Delete all data and settings" calls [deleteAll]. Both also remove what
+/// the photo picker (image_picker) left in the cache: it copies the video
+/// to `<cache>/<uuid>/` before handing it over, so a pick given up during
+/// that copy, or cut short by a kill, leaves a full copy there.
 class VideoWorkDir {
-  VideoWorkDir({Future<Directory> Function()? root})
-      : _root = root ?? _defaultRoot;
+  VideoWorkDir({
+    Future<Directory> Function()? root,
+    Future<Directory> Function()? cache,
+  })  : _root = root ?? _defaultRoot,
+        _cache = cache ?? getTemporaryDirectory;
 
   final Future<Directory> Function() _root;
+  final Future<Directory> Function() _cache;
+
+  /// The folder image_picker copies a picked file into.
+  static final _pickerCopy =
+      RegExp(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$');
 
   static Future<Directory> _defaultRoot() async =>
       Directory('${(await getApplicationSupportDirectory()).path}/video_work');
@@ -31,10 +43,19 @@ class VideoWorkDir {
     return VideoSession(dir);
   }
 
-  /// Removes every session folder. Only call it when no editor is open.
+  /// Removes every session folder and the photo picker's copies. Only call
+  /// it when no import or editor is open.
   Future<void> sweep() async {
     final root = await _root();
     if (await root.exists()) await root.delete(recursive: true);
+    final cache = await _cache();
+    if (!await cache.exists()) return;
+    await for (final entity in cache.list(followLinks: false)) {
+      if (entity is Directory &&
+          _pickerCopy.hasMatch(p.basename(entity.path))) {
+        await entity.delete(recursive: true);
+      }
+    }
   }
 
   Future<void> deleteAll() => sweep();
@@ -66,8 +87,17 @@ class VideoSession {
     try {
       await source.rename(target);
     } on FileSystemException {
-      await source.copy(target);
-      await source.delete();
+      try {
+        await source.copy(target);
+      } finally {
+        // Never leave the picker's copy behind, also when this folder is
+        // already gone (the import was cancelled while the picker copied).
+        try {
+          await source.delete();
+        } on FileSystemException {
+          // Already gone.
+        }
+      }
     }
     return _clipPath = target;
   }

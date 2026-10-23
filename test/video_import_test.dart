@@ -50,10 +50,12 @@ class _FakeSession extends VideoSession {
 class _FakeWorkDir extends VideoWorkDir {
   final sessions = <_FakeSession>[];
   Duration createTime = Duration.zero;
+  Exception? createError;
 
   @override
   Future<VideoSession> createSession() async {
     await Future<void>.delayed(createTime);
+    if (createError != null) throw createError!;
     return _FakeSession()..also(sessions.add);
   }
 }
@@ -71,6 +73,9 @@ class _FakePicker implements ClipPicker {
 
   /// A Files pick copying for this long, reporting every 100 ms.
   Duration copyTime = Duration.zero;
+
+  /// A Photos pick copying for this long, without progress.
+  Duration pickTime = Duration.zero;
   CancelToken? lastCancel;
 
   @override
@@ -85,6 +90,7 @@ class _FakePicker implements ClipPicker {
       onCopyProgress?.call(t.inMilliseconds / copyTime.inMilliseconds);
       await Future<void>.delayed(_copyStep);
     }
+    await Future<void>.delayed(pickTime);
     if (error != null) throw error!;
     return path;
   }
@@ -191,11 +197,13 @@ class _FakeAnalyzer implements ClipAnalyzerRunner {
   ClipAnalysis result;
   Duration time = const Duration(milliseconds: 50);
   var runs = 0;
+  Object? error;
 
   @override
   Future<ClipAnalysis> analyze(String pcmPath, int sampleRate) async {
     runs++;
     await Future<void>.delayed(time);
+    if (error != null) throw error!;
     return result;
   }
 
@@ -321,6 +329,55 @@ void main() {
       expect(audio.probes, 0);
       expect(work.sessions.single.disposed, isTrue);
     });
+  });
+
+  test("the photo picker's copy shows Analyzing once the app is back", () {
+    picker.pickTime = const Duration(seconds: 2);
+    run((async, c, seen) {
+      async.elapse(const Duration(milliseconds: 100));
+      expect(everVisible(seen), isFalse);
+      c.read(videoImportProvider(0).notifier).resumedFromPicker();
+      async.elapse(const Duration(milliseconds: 350));
+      final working = seen.last as ImportWorking;
+      expect(working.visible, isTrue);
+      expect(working.step, ImportStep.reading);
+      async.elapse(const Duration(seconds: 2));
+      expect(seen.last, isA<ImportReady>());
+    });
+  });
+
+  test('backing out of the picker never flashes Analyzing', () {
+    picker.path = null;
+    picker.pickTime = const Duration(milliseconds: 50);
+    run((async, c, seen) {
+      c.read(videoImportProvider(0).notifier).resumedFromPicker();
+      async.elapse(const Duration(seconds: 1));
+      expect(seen.last, isA<ImportCancelled>());
+      expect(everVisible(seen), isFalse);
+    });
+  });
+
+  test('a full storage has its own message', () {
+    work.createError = const FileSystemException('Creation failed',
+        'video_work', OSError('No space left on device', 28));
+    run((async, c, seen) {
+      async.elapse(const Duration(milliseconds: 10));
+      expect((seen.last as ImportProblem).problem, ClipProblem.noSpace);
+    });
+  });
+
+  test('an error in the analysis ends the import, not Analyzing for good', () {
+    final reported = <FlutterErrorDetails>[];
+    final previous = FlutterError.onError;
+    FlutterError.onError = reported.add;
+    addTearDown(() => FlutterError.onError = previous);
+    analyzer.error = StateError('a bug');
+    run((async, c, seen) {
+      async.elapse(const Duration(milliseconds: 500));
+      expect((seen.last as ImportProblem).problem, ClipProblem.failed);
+      expect(work.sessions.single.disposed, isTrue);
+    });
+    expect(reported.single.exception, isA<StateError>());
   });
 
   test('a clip without sound is named before any decoding', () {

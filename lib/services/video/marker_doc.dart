@@ -193,6 +193,7 @@ class MarkerDoc {
   /// Moves a shot; the end of the string goes with the shot marked Last
   /// shot.
   MarkerDoc moveShot(int id, int ms) {
+    if (shotById(id) == null) return this;
     final at = _clamp(ms);
     return _copy(
       shots: _sorted([for (final s in shots) s.id == id ? s._at(at) : s]),

@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
 import 'package:simple_shot_timer/services/export_service.dart';
+import 'package:simple_shot_timer/services/video/export_plan.dart';
 
 /// Exports hold labels and notes, so "Delete all data and settings" has to
 /// remove them, and only them, from temporary storage.
@@ -25,7 +26,8 @@ void main() {
       touch('string_draft_1760000000000.csv'),
       touch('simple_shot_timer_export_1760000000000.csv'),
       touch(p.join('share_plus', 'simple_shot_timer_export_1760000000000.csv')),
-      touch(p.join('share_plus', 'SimpleShotTimer_2026-10-23_21.47s.mp4')),
+      // Named by the export itself, so the two can't drift apart.
+      touch(p.join('share_plus', ExportPlan.fileName(DateTime(2026), 21470))),
     ];
     final others = [
       touch('notes.csv'),
@@ -47,7 +49,7 @@ void main() {
 
   test('deleteVideoShares removes only shared videos', () async {
     final video =
-        touch(p.join('share_plus', 'SimpleShotTimer_2026-10-23_21.47s.mp4'));
+        touch(p.join('share_plus', ExportPlan.fileName(DateTime(2026), 21470)));
     final csv = touch(p.join('share_plus', 'string_12_1760000000000.csv'));
     final other = touch(p.join('share_plus', 'holiday.mp4'));
 

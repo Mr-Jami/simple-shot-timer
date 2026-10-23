@@ -10,8 +10,8 @@ import '../../utils/fft.dart';
 /// The spectrogram the clip analyzer reads: 256-point Hann-windowed FFT,
 /// 128-sample hop, 128 bins per frame.
 ///
-/// Each bin is one byte on the scale of the video shot timer reference
-/// (`video-shot-timer/src/shot-detector.mjs`), 256 + 45·log10(magnitude): about
+/// Each bin is one byte on the scale of the feature's web prototype
+/// (`shot-detector.mjs`, not in this repository), 256 + 45·log10(magnitude): about
 /// 1 is the silence floor, 255 is close to full scale, and one unit is about
 /// 0.44 dB. The shot test's thresholds are tuned on that scale, so it is kept
 /// exactly, with one fix (see [byteFor]).

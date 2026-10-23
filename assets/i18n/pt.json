@@ -233,7 +233,8 @@
   "video.problem.unsupportedVideo": "Este arquivo não é um vídeo que este celular consiga reproduzir.",
   "video.problem.unreadableFile": "Não foi possível ler o vídeo. Ele pode ter sido movido ou excluído.",
   "video.problem.tooShort": "Este vídeo é curto demais para uma série.",
-  "video.problem.failed": "Não foi possível ler o som deste vídeo.",
+  "video.problem.noSpace": "O armazenamento do celular está cheio. Libere espaço e tente de novo.",
+  "video.problem.failed": "Algo deu errado ao abrir este vídeo. Tente de novo.",
 
   "part.title": "Escolha o trecho",
   "part.scanning": "Vídeos com mais de 3 minutos são conferidos em trechos de 3 minutos. Procurando o trecho mais alto…",
@@ -255,6 +256,7 @@
   "export.save": "Salvar em Fotos",
   "export.share": "Compartilhar",
   "export.working": "Exportando vídeo",
+  "export.saving": "Salvando em Fotos…",
   "export.remainingSeconds": "Faltam uns {seconds} s",
   "export.remainingMinutes": "Faltam uns {minutes} min",
   "export.keepOpen": "Mantenha o Simple Shot Timer aberto até terminar.",
@@ -263,6 +265,7 @@
   "export.noAccess": "O Simple Shot Timer não pode salvar vídeos. Você ainda pode compartilhá-lo.",
   "export.saveFailed": "Não foi possível salvar o vídeo em Fotos. Você ainda pode compartilhá-lo.",
   "export.failed": "Não foi possível exportar o vídeo.",
+  "export.noSpace": "Não há espaço livre suficiente para exportar o vídeo. Libere espaço e tente de novo.",
   "export.done": "Pronto",
 
   "editor.title": "Conferir disparos",

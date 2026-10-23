@@ -4,6 +4,7 @@
 
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/enums.dart';
@@ -96,10 +97,11 @@ class ClipEditorState {
 }
 
 /// The video editor's state and rules. The markers live in an immutable
-/// [MarkerDoc]; undo keeps earlier documents. Nothing is saved until the
-/// user leaves with START and at least one shot; after that first save
-/// every change autosaves [autosaveDelay] after the last edit. Saves run one
-/// at a time, so two quick ones never insert twice.
+/// [MarkerDoc]; undo keeps earlier documents. Nothing is saved until a
+/// [flush] (leaving, exporting, or the app going to the background) finds
+/// START and at least one shot; after that first save every change
+/// autosaves [autosaveDelay] after the last edit. Saves run one at a time,
+/// so two quick ones never insert twice.
 class ClipEditorNotifier
     extends AutoDisposeFamilyNotifier<ClipEditorState, ClipEditorArgs> {
   static const autosaveDelay = Duration(milliseconds: 600);
@@ -110,6 +112,7 @@ class ClipEditorNotifier
   Future<void> _saving = Future.value();
   var _sensitivityRequest = 0;
   var _discarded = false;
+  var _disposed = false;
 
   /// Open while a finger drags a shot or holds a nudge button: all its
   /// edits are one undo step.
@@ -119,6 +122,7 @@ class ClipEditorNotifier
   @override
   ClipEditorState build(ClipEditorArgs arg) {
     ref.onDispose(() {
+      _disposed = true;
       _autosave?.cancel();
       unawaited(arg.session.dispose());
     });
@@ -213,12 +217,9 @@ class ClipEditorNotifier
       }
       return;
     }
-    if (request != _sensitivityRequest) return;
-    final clip = AnalyzedClip(
-      info: arg.clip.info,
-      analysis: analysis,
-      audioOriginMs: arg.clip.audioOriginMs,
-    );
+    // Not when the editor closed meanwhile: it saved what the user saw.
+    if (_disposed || request != _sensitivityRequest) return;
+    final clip = arg.clip.withAnalysis(analysis);
     _edit(state.doc.reconcile(startMs: clip.startMs, shotMs: clip.shotMs));
     state = state.copyWith(sensitivityBusy: false);
   }
@@ -238,8 +239,9 @@ class ClipEditorNotifier
     _changed();
   }
 
-  /// Saves what there is to save; the editor calls it before it closes and
-  /// when the app goes to the background. Completes when written.
+  /// Saves what there is to save; the editor calls it before it closes,
+  /// before an export and when the app goes to the background. Completes
+  /// when written.
   Future<void> flush() {
     _autosave?.cancel();
     return _enqueueSave();
@@ -272,12 +274,21 @@ class ClipEditorNotifier
   void endGesture() => _gesture = false;
 
   void _edit(MarkerDoc doc, {int? Function()? selectedId}) {
+    if (identical(doc, state.doc)) return;
     if (!_gesture || !_gestureRecorded) {
       _undo.add(state.doc);
       if (_undo.length > _undoLimit) _undo.removeAt(0);
       _gestureRecorded = _gesture;
     }
-    state = state.copyWith(doc: doc, canUndo: true, selectedId: selectedId);
+    // A new detection replaces untouched shots, so the selected one may be
+    // gone.
+    final selected = selectedId == null ? state.selectedId : selectedId();
+    state = state.copyWith(
+      doc: doc,
+      canUndo: true,
+      selectedId: () =>
+          selected != null && doc.shotById(selected) != null ? selected : null,
+    );
     _changed();
   }
 
@@ -317,7 +328,15 @@ class ClipEditorNotifier
       );
       _invalidate(id);
       if (edited) _scheduleAutosave();
-    } on Exception {
+    } catch (e, stack) {
+      // Errors too: a failed future here would stop every later save.
+      if (e is! Exception) {
+        FlutterError.reportError(FlutterErrorDetails(
+          exception: e,
+          stack: stack,
+          library: 'video editor',
+        ));
+      }
       state = state.copyWith(saveStatus: SaveStatus.failed);
     }
   }

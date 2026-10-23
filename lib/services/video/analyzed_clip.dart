@@ -102,9 +102,10 @@ class AnalyzedClip {
         shotMs: shotMs,
       );
 
-  AnalyzedClip withSensitivity(ShotSensitivity sensitivity) => AnalyzedClip(
+  /// The same clip and part with [analysis] (another sensitivity).
+  AnalyzedClip withAnalysis(ClipAnalysis analysis) => AnalyzedClip(
         info: info,
-        analysis: analysis.withSensitivity(sensitivity),
+        analysis: analysis,
         audioOriginMs: audioOriginMs,
         part: part,
       );

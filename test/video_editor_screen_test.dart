@@ -22,15 +22,23 @@ import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
 import 'package:simple_shot_timer/services/video/video_string_store.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 import 'package:simple_shot_timer/widgets/shot_badge.dart';
+import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
 
 import 'clip_fixtures.dart';
 
 class _MemoryStore implements VideoStringStore {
   final saved = <TimerString>[];
 
+  /// Fails the next write, as a full disk would.
+  var failNext = false;
+
   @override
   Future<TimerString> insertString(TimerString s,
       {required int historyCap}) async {
+    if (failNext) {
+      failNext = false;
+      throw Exception('disk full');
+    }
     saved.add(s);
     return s.copyWith(id: saved.length);
   }
@@ -70,6 +78,8 @@ void main() {
 
   setUp(rootBundle.clear);
 
+  late _MemoryStore store;
+
   final analysis = analyzePcm(
     syntheticClip(extra: (x) => addBeep(x, 1.0, 300)),
     clipSampleRate,
@@ -82,9 +92,10 @@ void main() {
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
+    store = _MemoryStore();
     final container = ProviderContainer(overrides: [
       sharedPreferencesProvider.overrideWithValue(prefs),
-      videoStringStoreProvider.overrideWithValue(_MemoryStore()),
+      videoStringStoreProvider.overrideWithValue(store),
     ]);
     addTearDown(container.dispose);
     final args = ClipEditorArgs(
@@ -194,5 +205,59 @@ void main() {
     await tester.pumpAndSettle();
     expect(state().doc.activeShots, hasLength(shots));
     expect(undoBar, findsNothing);
+  });
+
+  testWidgets('Back saves the string once', (tester) async {
+    await openEditor(tester);
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsOneWidget);
+    expect(store.saved, hasLength(1));
+  });
+
+  testWidgets('a failed save asks until a button is picked', (tester) async {
+    await openEditor(tester);
+    store.failNext = true;
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    final asking = find.text('Couldn’t save');
+    expect(asking, findsOneWidget);
+    await tester.tapAt(const Offset(8, 8));
+    await tester.pumpAndSettle();
+    expect(asking, findsOneWidget);
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(asking, findsOneWidget);
+    await tester.tap(find.text('Try again'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsOneWidget);
+    expect(store.saved, hasLength(1));
+  });
+
+  testWidgets('going to the background saves the string', (tester) async {
+    await openEditor(tester);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump();
+    expect(store.saved, hasLength(1));
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+  });
+
+  testWidgets('Next takes the selection along; a drag moves that shot',
+      (tester) async {
+    final state = await openEditor(tester);
+    final before = state().doc.activeShots;
+    await selectFirstShot(tester);
+    expect(state().selectedId, before[0].id);
+    await tester.tap(find.byTooltip('Next marker'));
+    await tester.pumpAndSettle();
+    expect(state().selectedId, before[1].id);
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pumpAndSettle();
+    expect(state().doc.shotById(before[0].id)!.ms, before[0].ms);
+    expect(state().doc.shotById(before[1].id)!.ms, isNot(before[1].ms));
   });
 }

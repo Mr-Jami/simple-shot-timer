@@ -233,7 +233,8 @@
   "video.problem.unsupportedVideo": "This file isn’t a video this phone can play.",
   "video.problem.unreadableFile": "The video couldn’t be read. It may have been moved or deleted.",
   "video.problem.tooShort": "This video is too short for a string.",
-  "video.problem.failed": "The sound of this video couldn’t be read.",
+  "video.problem.noSpace": "Your phone’s storage is full. Free up some space and try again.",
+  "video.problem.failed": "Something went wrong while opening this video. Try again.",
 
   "part.title": "Choose the part",
   "part.scanning": "Videos over 3 minutes are checked 3 minutes at a time. Finding the loudest part…",
@@ -255,6 +256,7 @@
   "export.save": "Save to Photos",
   "export.share": "Share",
   "export.working": "Exporting video",
+  "export.saving": "Saving to Photos…",
   "export.remainingSeconds": "About {seconds} s left",
   "export.remainingMinutes": "About {minutes} min left",
   "export.keepOpen": "Keep Simple Shot Timer open until it finishes.",
@@ -263,6 +265,7 @@
   "export.noAccess": "Simple Shot Timer isn’t allowed to save videos. You can still share it.",
   "export.saveFailed": "The video couldn’t be saved to Photos. You can still share it.",
   "export.failed": "The video couldn’t be exported.",
+  "export.noSpace": "There isn’t enough free space to export the video. Free up some space and try again.",
   "export.done": "Done",
 
   "editor.title": "Check shots",

@@ -53,6 +53,11 @@ class PluginClipPicker implements ClipPicker {
   final MethodChannel _files;
   void Function(double)? _onCopyProgress;
 
+  /// Names each Files pick, so a late cancel of an earlier one (its import
+  /// is disposed a frame after "Choose another" starts the next) can't stop
+  /// this copy.
+  static var _nextPickId = 1;
+
   @override
   Future<String?> pick(
     ClipSource source,
@@ -67,16 +72,17 @@ class PluginClipPicker implements ClipPicker {
           return file == null ? null : await session.adopt(file.path);
         case ClipSource.files:
           _onCopyProgress = onCopyProgress;
+          final pickId = _nextPickId++;
           unawaited(cancel?.whenCancelled.then((_) async {
             try {
-              await _files.invokeMethod<void>('cancel');
+              await _files.invokeMethod<void>('cancel', {'pickId': pickId});
             } on Exception {
               // The pick reports its own end.
             }
           }));
           final path = await _files.invokeMethod<String>(
             'pickVideo',
-            {'targetDir': session.dir.path},
+            {'targetDir': session.dir.path, 'pickId': pickId},
           );
           return path == null ? null : await session.adopt(path);
       }
@@ -84,6 +90,7 @@ class PluginClipPicker implements ClipPicker {
       throw ClipAudioException(
         switch (e.code) {
           'copy_failed' => ClipAudioError.unreadableFile,
+          'no_space' => ClipAudioError.noSpace,
           'cancelled' => ClipAudioError.cancelled,
           _ => ClipAudioError.unavailable,
         },

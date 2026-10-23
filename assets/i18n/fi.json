@@ -233,7 +233,8 @@
   "video.problem.unsupportedVideo": "Tiedosto ei ole video, jota tämä puhelin voi toistaa.",
   "video.problem.unreadableFile": "Videota ei voitu lukea. Se on ehkä siirretty tai poistettu.",
   "video.problem.tooShort": "Video on liian lyhyt sarjaksi.",
-  "video.problem.failed": "Videon ääntä ei voitu lukea.",
+  "video.problem.noSpace": "Puhelimen tallennustila on täynnä. Vapauta tilaa ja yritä uudelleen.",
+  "video.problem.failed": "Videon avaamisessa tapahtui virhe. Yritä uudelleen.",
 
   "part.title": "Valitse osa",
   "part.scanning": "Yli 3 minuutin videot tarkistetaan 3 minuutin osina. Etsitään äänekkäintä osaa…",
@@ -255,6 +256,7 @@
   "export.save": "Tallenna kuviin",
   "export.share": "Jaa",
   "export.working": "Videota viedään",
+  "export.saving": "Tallennetaan kuviin…",
   "export.remainingSeconds": "Noin {seconds} s jäljellä",
   "export.remainingMinutes": "Noin {minutes} min jäljellä",
   "export.keepOpen": "Pidä Simple Shot Timer auki, kunnes se on valmis.",
@@ -263,6 +265,7 @@
   "export.noAccess": "Simple Shot Timer ei saa tallentaa videoita. Voit silti jakaa sen.",
   "export.saveFailed": "Videota ei voitu tallentaa kuviin. Voit silti jakaa sen.",
   "export.failed": "Videota ei voitu viedä.",
+  "export.noSpace": "Tilaa ei ole tarpeeksi videon viemiseen. Vapauta tilaa ja yritä uudelleen.",
   "export.done": "Valmis",
 
   "editor.title": "Tarkista laukaukset",

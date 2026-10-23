@@ -93,11 +93,22 @@ void main() {
     );
   });
 
-  test('cancel stops a Files copy', () async {
+  test('a full storage is its own error', () async {
+    messenger.setMockMethodCallHandler(channel, (_) async {
+      throw PlatformException(code: 'no_space', message: 'ENOSPC');
+    });
+    await expectLater(
+      PluginClipPicker(files: channel).pick(ClipSource.files, session),
+      throwsA(isA<ClipAudioException>()
+          .having((e) => e.error, 'error', ClipAudioError.noSpace)),
+    );
+  });
+
+  test('cancel stops a Files copy, naming its pick', () async {
     final copying = Completer<Object?>();
-    final calls = <String>[];
+    final calls = <MethodCall>[];
     messenger.setMockMethodCallHandler(channel, (call) async {
-      calls.add(call.method);
+      calls.add(call);
       if (call.method == 'cancel') {
         copying.completeError(PlatformException(code: 'cancelled'));
         return null;
@@ -114,7 +125,30 @@ void main() {
       throwsA(isA<ClipAudioException>()
           .having((e) => e.error, 'error', ClipAudioError.cancelled)),
     );
-    expect(calls, ['pickVideo', 'cancel']);
+    expect(calls.map((c) => c.method), ['pickVideo', 'cancel']);
+    final pickId = (calls.first.arguments as Map)['pickId'];
+    expect(pickId, isA<int>());
+    expect((calls.last.arguments as Map)['pickId'], pickId);
+  });
+
+  test('a late cancel of an earlier pick names that pick, not the next',
+      () async {
+    final picks = <int>[];
+    final cancels = <int>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      final id = (call.arguments as Map)['pickId'] as int;
+      (call.method == 'cancel' ? cancels : picks).add(id);
+      return call.method == 'cancel' ? null : '${session.dir.path}/clip.mp4';
+    });
+    final picker = PluginClipPicker(files: channel);
+    final first = CancelToken();
+    await picker.pick(ClipSource.files, session, cancel: first);
+    await picker.pick(ClipSource.files, session, cancel: CancelToken());
+    // "Choose another": the first import is disposed after the next began.
+    first.cancel();
+    await pumpEventQueue();
+    expect(picks, hasLength(2));
+    expect(cancels, [picks.first]);
   });
 
   test('Photos moves the picker\'s cache copy into the session', () async {

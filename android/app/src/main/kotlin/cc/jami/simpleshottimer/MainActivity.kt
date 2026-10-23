@@ -18,13 +18,10 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        // Reads a video clip's sound for the video feature's analyzer.
         val clipChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_audio")
         clipChannel.setMethodCallHandler(ClipAudioChannel(clipChannel).also { clipAudio = it })
-        // "Or choose from Files": the document picker, copied into the clip's folder.
         val filesChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_files")
         filesChannel.setMethodCallHandler(ClipFilesChannel(this, filesChannel).also { clipFiles = it })
-        // Exports a corrected clip with the shot timer overlay.
         val exportChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_export")
         exportChannel.setMethodCallHandler(ClipExportChannel(applicationContext, exportChannel).also { clipExport = it })
         // The beep plays on the media stream (see AudioService). A muted or

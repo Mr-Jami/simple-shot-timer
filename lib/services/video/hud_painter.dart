@@ -136,7 +136,8 @@ void paintEndCard(
   canvas.restore();
 }
 
-// The box's rows, top down. Each returns where the next row starts.
+// The box's rows, top down; each but the splits returns where the next row
+// starts. [_x] places a row left or right.
 
 /// Left in left corners, right in right corners.
 double _x(HudLayout layout, double width) =>
@@ -175,7 +176,8 @@ double _paintBadge(Canvas canvas, HudLayout layout, ui.Image? logo) {
   return (height + HudLayout.gapUnits) * u;
 }
 
-/// The clock, pulsing on each shot around its leading edge.
+/// The clock, pulsing on each shot around its outer edge (the side the box
+/// hugs) at the baseline.
 double _paintClock(Canvas canvas, HudLayout layout, HudMoment m, double y) {
   final u = layout.unit;
   final style = _numberStyle(HudLayout.clockFontUnits * u);

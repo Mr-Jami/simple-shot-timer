@@ -233,7 +233,8 @@
   "video.problem.unsupportedVideo": "Diese Datei ist kein Video, das dieses Handy abspielen kann.",
   "video.problem.unreadableFile": "Das Video konnte nicht gelesen werden. Vielleicht wurde es verschoben oder gelöscht.",
   "video.problem.tooShort": "Dieses Video ist zu kurz für einen Durchgang.",
-  "video.problem.failed": "Der Ton dieses Videos konnte nicht gelesen werden.",
+  "video.problem.noSpace": "Der Speicher deines Handys ist voll. Gib etwas Speicher frei und versuch es noch einmal.",
+  "video.problem.failed": "Beim Öffnen dieses Videos ist etwas schiefgegangen. Versuch es noch einmal.",
 
   "part.title": "Teil wählen",
   "part.scanning": "Videos über 3 Minuten werden in 3-Minuten-Teilen geprüft. Der lauteste Teil wird gesucht …",
@@ -255,6 +256,7 @@
   "export.save": "In Fotos sichern",
   "export.share": "Teilen",
   "export.working": "Video wird exportiert",
+  "export.saving": "Wird in Fotos gesichert…",
   "export.remainingSeconds": "Noch etwa {seconds} s",
   "export.remainingMinutes": "Noch etwa {minutes} min",
   "export.keepOpen": "Lass Simple Shot Timer offen, bis es fertig ist.",
@@ -263,6 +265,7 @@
   "export.noAccess": "Simple Shot Timer darf keine Videos sichern. Teilen geht trotzdem.",
   "export.saveFailed": "Das Video konnte nicht in Fotos gesichert werden. Teilen geht trotzdem.",
   "export.failed": "Das Video konnte nicht exportiert werden.",
+  "export.noSpace": "Für den Export ist nicht genug Speicher frei. Gib etwas Speicher frei und versuch es noch einmal.",
   "export.done": "Fertig",
 
   "editor.title": "Schüsse prüfen",

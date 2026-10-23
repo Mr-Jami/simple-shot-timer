@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,8 +72,12 @@ class _FakeGallery implements VideoGallery {
   final saved = <String>[];
   final shared = <String>[];
 
+  /// Holds a save until completed.
+  Completer<void>? saving;
+
   @override
   Future<bool> save(String path) async {
+    if (saving != null) await saving!.future;
     if (broken) throw Exception('disk full');
     if (allowed) saved.add(path);
     return allowed;
@@ -100,6 +105,7 @@ void main() {
   late _FakeGallery gallery;
   late _FakeEnvironment env;
   late ExportPlan? renderedPlan;
+  Object? renderError;
 
   final analysis = analyzePcm(
     syntheticClip(extra: (x) => addBeep(x, 1.0, 300)),
@@ -148,6 +154,7 @@ void main() {
     gallery = _FakeGallery();
     env = _FakeEnvironment();
     renderedPlan = null;
+    renderError = null;
     SharedPreferences.setMockInitialValues({});
   });
 
@@ -173,6 +180,7 @@ void main() {
           CancelToken? cancel}) async {
         renderedPlan = plan;
         await Directory('${dir.path}/box').create(recursive: true);
+        if (renderError != null) throw renderError!;
         onProgress?.call(1);
         return [
           OverlaySequence(
@@ -255,6 +263,73 @@ void main() {
     expect(c.read(videoExportProvider(1)), isA<ExportCancelled>());
     expect(gallery.saved, isEmpty);
     expect(env.awake, [true, false]);
+    expect(Directory('${session.dir.path}/overlay_1').existsSync(), isFalse);
+  });
+
+  test('once the video goes to Photos, Cancel no longer cancels', () async {
+    final c = await container();
+    gallery.saving = Completer();
+    final controller = export(c, 1);
+    final running = controller.start(job(ExportTarget.photos));
+    for (var i = 0;
+        c.read(videoExportProvider(1)) is! ExportSaving && i < 200;
+        i++) {
+      await Future<void>.delayed(const Duration(milliseconds: 5));
+    }
+    expect(c.read(videoExportProvider(1)), isA<ExportSaving>());
+    controller.cancel();
+    gallery.saving!.complete();
+    await running;
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportDone>().having((s) => s.saved, 'saved', isTrue));
+    expect(gallery.saved, hasLength(1));
+  });
+
+  test('sharing after a save keeps it saved', () async {
+    final c = await container();
+    final controller = export(c, 1);
+    await controller.start(job(ExportTarget.photos));
+    await controller.deliver(ExportTarget.share);
+    expect(gallery.shared, [exporter.request!.output]);
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportDone>().having((s) => s.saved, 'saved', isTrue));
+  });
+
+  test('a full storage says so', () async {
+    final c = await container();
+    exporter.error = const ExportException(ExportError.noSpace, 'ENOSPC');
+    await export(c, 1).start(job(ExportTarget.photos));
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportFailed>().having((s) => s.noSpace, 'noSpace', isTrue));
+  });
+
+  test('an error drawing the overlay ends the export and lets it sleep',
+      () async {
+    final reported = <FlutterErrorDetails>[];
+    final previous = FlutterError.onError;
+    FlutterError.onError = reported.add;
+    addTearDown(() => FlutterError.onError = previous);
+    final c = await container();
+    renderError = StateError('a bug');
+    await export(c, 1).start(job(ExportTarget.photos));
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportFailed>().having((s) => s.noSpace, 'noSpace', isFalse));
+    expect(env.awake, [true, false]);
+    expect(reported.single.exception, isA<StateError>());
+  });
+
+  test('the video never replaces a clip of the same name', () async {
+    // An earlier export picked again on the same day, same total.
+    final name = ExportPlan.fileName(string.date, string.string.totalTimeMs);
+    session = VideoSession(Directory('${temp.path}/again')..createSync());
+    final picked = File('${temp.path}/$name')..writeAsStringSync('clip');
+    await session.adopt(picked.path);
+    final c = await container();
+    await export(c, 1).start(job(ExportTarget.photos));
+    final r = exporter.request!;
+    expect(r.output, isNot(r.input));
+    expect(File(r.input).readAsStringSync(), 'clip');
+    expect(File(r.output).readAsStringSync(), 'mp4');
   });
 
   test('a refused save still leaves the video to share', () async {

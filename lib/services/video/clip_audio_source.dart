@@ -23,13 +23,21 @@ enum ClipAudioError {
   /// some Android phones).
   unsupportedCodec,
 
-  /// The file is missing, unreadable or not a video.
+  /// The file is missing or can't be read.
   unreadableFile,
+
+  /// The file is there but won't open: cut short (no index) or a container
+  /// this phone can't read.
+  unsupportedFile,
+
+  /// The phone's storage ran full while copying or decoding.
+  noSpace,
 
   /// The platform decoder failed part-way.
   decodeFailed,
 
-  /// No decoder on this platform yet (iOS until its pass).
+  /// No decoder or picker on this platform (iOS for now), or the platform
+  /// side refused the call.
   unavailable,
 
   /// The caller cancelled the decode.
@@ -48,9 +56,11 @@ class ClipAudioException implements Exception {
       'ClipAudioException(${error.name}${message == null ? '' : ': $message'})';
 }
 
-/// What the platform knows about a clip before decoding it. The analyzer
-/// needs only the audio fields; the rest is for the editor and the export
-/// (orientation, HDR, stepping by frame, the history entry's date).
+/// What the platform knows about a clip before decoding it. `checkClip`
+/// reads the audio, video and frame-rate fields; the editor and the export
+/// read the displayed size, the frame rate and the recording date. The
+/// audio codec, rotation and colour transfer are diagnostics for the
+/// on-device analysis report (`integration_test/clip_analysis_test.dart`).
 class ClipInfo {
   const ClipInfo({
     required this.hasAudio,
@@ -328,6 +338,8 @@ class ChannelClipAudioSource implements ClipAudioSource {
     'no_audio_track': ClipAudioError.noAudioTrack,
     'unsupported_codec': ClipAudioError.unsupportedCodec,
     'unreadable_file': ClipAudioError.unreadableFile,
+    'unsupported_file': ClipAudioError.unsupportedFile,
+    'no_space': ClipAudioError.noSpace,
     'decode_failed': ClipAudioError.decodeFailed,
     'cancelled': ClipAudioError.cancelled,
   };

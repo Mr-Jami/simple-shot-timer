@@ -30,8 +30,9 @@ Future<void> main() async {
   BackgroundService.init();
   final prefs = await SharedPreferences.getInstance();
   final db = await DatabaseService.open();
-  // A clip left behind by a crash or a kill mid-edit: nothing of a video
-  // outlives its editor.
+  // Leftovers of a crash or a kill mid-import or mid-edit (work folders and
+  // the photo picker's copies), and share_plus's copies of shared videos,
+  // which can be large.
   try {
     await VideoWorkDir().sweep();
     await ExportService().deleteVideoShares();

@@ -39,8 +39,9 @@ class TimelineMarker {
 /// The editor's timeline: shot badges on top, the spectrogram in the
 /// middle, splits underneath, and a fixed playhead the clip scrolls under.
 /// One finger drags it 1:1, two fingers zoom around themselves, a flick
-/// flings it (unless [flingEnabled] is off), and a tap picks the nearest
-/// marker.
+/// flings it, and a tap picks the nearest marker. While [carryingShot] (a
+/// selected shot rides under the playhead) it never flings and zooms around
+/// the playhead, so only a drag moves the shot.
 class ShotTimeline extends StatefulWidget {
   const ShotTimeline({
     super.key,
@@ -53,7 +54,7 @@ class ShotTimeline extends StatefulWidget {
     required this.onRelease,
     required this.onTapMarker,
     required this.onTapEmpty,
-    this.flingEnabled = true,
+    this.carryingShot = false,
   });
 
   static const double badgeHeight = 28;
@@ -75,7 +76,7 @@ class ShotTimeline extends StatefulWidget {
   final VoidCallback onRelease;
   final ValueChanged<TimelineMarker> onTapMarker;
   final VoidCallback onTapEmpty;
-  final bool flingEnabled;
+  final bool carryingShot;
 
   @override
   State<ShotTimeline> createState() => _ShotTimelineState();
@@ -123,7 +124,11 @@ class _ShotTimelineState extends State<ShotTimeline> {
             }
             if (details.pointerCount >= 2) {
               controller.zoom(
-                  details.scale, details.localFocalPoint.dx - width / 2);
+                details.scale,
+                widget.carryingShot
+                    ? 0
+                    : details.localFocalPoint.dx - width / 2,
+              );
             } else {
               controller.dragTo(details.localFocalPoint.dx - _anchorX);
             }
@@ -131,7 +136,7 @@ class _ShotTimelineState extends State<ShotTimeline> {
           onScaleEnd: (details) {
             controller.endDrag(
               details.velocity.pixelsPerSecond.dx,
-              fling: widget.flingEnabled && _maxPointers < 2,
+              fling: !widget.carryingShot && _maxPointers < 2,
             );
             _pointers = _maxPointers = 0;
             widget.onRelease();

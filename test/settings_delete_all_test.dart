@@ -16,6 +16,7 @@ import 'package:simple_shot_timer/providers/history_provider.dart';
 import 'package:simple_shot_timer/providers/providers.dart';
 import 'package:simple_shot_timer/providers/video_providers.dart';
 import 'package:simple_shot_timer/screens/settings_screen.dart';
+import 'package:simple_shot_timer/services/video/export_plan.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 
 class _History extends HistoryNotifier {
@@ -39,8 +40,11 @@ void main() {
     final temp = Directory('${root.path}/tmp');
     final gone = [
       File('${root.path}/video_work/1792744218314177/1000055566.mp4'),
-      File('${temp.path}/SimpleShotTimer_2026-10-23_21.46s.mp4'),
-      File('${temp.path}/share_plus/SimpleShotTimer_2026-10-23_9.31s.mp4'),
+      File('${temp.path}/${ExportPlan.fileName(DateTime(2026), 21460)}'),
+      File(
+          '${temp.path}/share_plus/${ExportPlan.fileName(DateTime(2026), 9310)}'),
+      // A copy the photo picker left behind.
+      File('${temp.path}/506b8b0f-c91a-4a9b-838c-1194a79dbd78/1000055609.mp4'),
       File('${temp.path}/string_42_1761220000000.csv'),
     ];
     final kept = File('${temp.path}/someone_else.txt');
@@ -108,7 +112,7 @@ void main() {
     final exists = await tester.runAsync(() async => [
           for (final f in [...gone, kept]) await f.exists()
         ]);
-    expect(exists, [false, false, false, false, true]);
+    expect(exists, [false, false, false, false, false, true]);
     await tester.runAsync(() => root.delete(recursive: true));
   });
 }

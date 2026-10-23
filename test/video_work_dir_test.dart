@@ -15,7 +15,10 @@ void main() {
 
   setUp(() async {
     temp = await Directory.systemTemp.createTemp('video_work_dir_test');
-    work = VideoWorkDir(root: () async => Directory('${temp.path}/video_work'));
+    work = VideoWorkDir(
+      root: () async => Directory('${temp.path}/video_work'),
+      cache: () async => Directory('${temp.path}/cache'),
+    );
   });
   tearDown(() => temp.delete(recursive: true));
 
@@ -30,6 +33,19 @@ void main() {
     expect(File(path).readAsStringSync(), 'video');
     expect(path, startsWith(session.dir.path));
     expect(session.clipPath, path);
+  });
+
+  test("a pick given up during the picker's copy leaves no copy behind",
+      () async {
+    final picked = File('${temp.path}/cache/abc/clip.mp4')
+      ..createSync(recursive: true)
+      ..writeAsStringSync('video');
+    final session = await work.createSession();
+    // Cancelled while the picker copied: the folder is gone when it returns.
+    await session.dispose();
+
+    await expectLater(session.adopt(picked.path), throwsA(anything));
+    expect(picked.existsSync(), isFalse);
   });
 
   test('closing a session deletes its files, twice is fine', () async {
@@ -48,6 +64,20 @@ void main() {
     expect(a.dir.existsSync(), isFalse);
     expect(b.dir.existsSync(), isFalse);
     await work.sweep();
+  });
+
+  test('the sweep also removes copies the photo picker left in the cache',
+      () async {
+    final copy = File(
+        '${temp.path}/cache/506b8b0f-c91a-4a9b-838c-1194a79dbd78/1000055609.mp4')
+      ..createSync(recursive: true);
+    final shares = Directory('${temp.path}/cache/share_plus')..createSync();
+    final csv = File('${temp.path}/cache/string_42_1761220000000.csv')
+      ..createSync();
+    await work.sweep();
+    expect(copy.parent.existsSync(), isFalse);
+    expect(shares.existsSync(), isTrue);
+    expect(csv.existsSync(), isTrue);
   });
 
   group('checking a clip', () {
@@ -85,6 +115,12 @@ void main() {
       expect(problemFor(ClipAudioError.noAudioTrack), ClipProblem.noSound);
       expect(problemFor(ClipAudioError.unsupportedCodec),
           ClipProblem.unreadableSound);
+      expect(
+          problemFor(ClipAudioError.decodeFailed), ClipProblem.unreadableSound);
+      expect(problemFor(ClipAudioError.unsupportedFile),
+          ClipProblem.unsupportedVideo);
+      expect(problemFor(ClipAudioError.noSpace), ClipProblem.noSpace);
+      expect(problemFor(ClipAudioError.unavailable), ClipProblem.failed);
       for (final e in ClipAudioError.values) {
         expect(problemFor(e), isA<ClipProblem>());
       }

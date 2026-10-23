@@ -5,6 +5,7 @@
 import 'dart:io';
 
 import 'package:fake_async/fake_async.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,12 +29,16 @@ class _MemoryStore implements VideoStringStore {
   final updated = <TimerString>[];
   final deleted = <int>[];
   var failNext = false;
+
+  /// Thrown by every write while set.
+  Object? failWith;
   Duration writeTime = Duration.zero;
 
   @override
   Future<TimerString> insertString(TimerString s,
       {required int historyCap}) async {
     if (writeTime > Duration.zero) await Future<void>.delayed(writeTime);
+    if (failWith != null) throw failWith!;
     if (failNext) {
       failNext = false;
       throw Exception('disk full');
@@ -45,6 +50,7 @@ class _MemoryStore implements VideoStringStore {
   @override
   Future<void> updateVideoString(TimerString s) async {
     if (writeTime > Duration.zero) await Future<void>.delayed(writeTime);
+    if (failWith != null) throw failWith!;
     updated.add(s);
   }
 
@@ -226,6 +232,47 @@ void main() {
       });
     });
 
+    test('a flush after Discard saves nothing', () {
+      run(args(withBeep), (async, editor, state) {
+        editor.discard();
+        editor.flush();
+        async.elapse(const Duration(seconds: 1));
+        expect(store.inserted, isEmpty);
+        expect(store.updated, isEmpty);
+      });
+    });
+
+    test('Discard during the first save deletes what it wrote', () {
+      store.writeTime = const Duration(milliseconds: 200);
+      run(args(withBeep), (async, editor, state) {
+        editor.flush();
+        async.elapse(const Duration(milliseconds: 100));
+        editor.discard();
+        async.elapse(const Duration(seconds: 1));
+        expect(store.inserted, hasLength(1));
+        expect(store.deleted, [42]);
+      });
+    });
+
+    test('an error in a save marks it failed; the next save still runs', () {
+      final reported = <FlutterErrorDetails>[];
+      final previous = FlutterError.onError;
+      FlutterError.onError = reported.add;
+      addTearDown(() => FlutterError.onError = previous);
+      store.failWith = StateError('a bug');
+      run(args(withBeep), (async, editor, state) {
+        editor.flush();
+        async.flushMicrotasks();
+        expect(state().saveStatus, SaveStatus.failed);
+        store.failWith = null;
+        editor.flush();
+        async.flushMicrotasks();
+        expect(store.inserted, hasLength(1));
+        expect(state().saveStatus, SaveStatus.saved);
+      });
+      expect(reported.single.exception, isA<StateError>());
+    });
+
     test('closing the editor deletes the clip\'s folder', () {
       run(args(withBeep), (async, editor, state) {});
       expect(session.disposed, isTrue);
@@ -296,6 +343,40 @@ void main() {
         expect(times, contains(6000));
       });
     });
+
+    test('a new sensitivity drops a selection whose shot it replaced', () {
+      run(args(withBeep), (async, editor, state) {
+        editor.select(state().doc.activeShots[1].id);
+        editor.setSensitivity(ShotSensitivity.more);
+        async.elapse(const Duration(seconds: 1));
+        expect(state().selectedId, isNull);
+      });
+    });
+
+    test('a new sensitivity that lands after the editor closed changes nothing',
+        () {
+      analyzer.delays[ShotSensitivity.more] = const Duration(seconds: 1);
+      fakeAsync((async) {
+        final container = ProviderContainer(overrides: [
+          sharedPreferencesProvider.overrideWithValue(prefs),
+          videoStringStoreProvider.overrideWithValue(store),
+          clipAnalyzerProvider.overrideWithValue(analyzer),
+        ]);
+        final a = args(withBeep);
+        final sub = container.listen(clipEditorProvider(a), (_, __) {});
+        final editor = container.read(clipEditorProvider(a).notifier);
+        editor.flush();
+        async.flushMicrotasks();
+        editor.setSensitivity(ShotSensitivity.more);
+        async.elapse(const Duration(milliseconds: 100));
+        // The user left: the editor saved and closed.
+        sub.close();
+        container.dispose();
+        async.elapse(const Duration(seconds: 3));
+        expect(store.inserted, hasLength(1));
+        expect(store.updated, isEmpty);
+      });
+    });
   });
 
   test('a reopened string shows its saved markers and updates it', () {
@@ -315,7 +396,7 @@ void main() {
       expect(state().reopened, isTrue);
       expect([for (final s in state().doc.activeShots) s.ms], [2500]);
       editor.setSensitivity(ShotSensitivity.more);
-      async.flushMicrotasks();
+      async.elapse(const Duration(seconds: 1));
       expect(state().doc.activeShots, hasLength(1));
       editor.flush();
       async.flushMicrotasks();
@@ -324,8 +405,12 @@ void main() {
       editor.flush();
       async.flushMicrotasks();
       expect(store.inserted, isEmpty);
-      expect(store.updated.single.id, 7);
-      expect(store.updated.single.label, 'Bill drill');
+      final s = store.updated.single;
+      expect(s.id, 7);
+      expect(s.label, 'Bill drill');
+      expect(s.videoStartMs, 1000);
+      expect(s.shots.map((x) => x.timeMs), [1500, 2000]);
+      expect(s.shots.map((x) => x.manual), [true, true]);
     });
   });
 }

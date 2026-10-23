@@ -88,6 +88,22 @@ class _ReviewBodyState extends ConsumerState<_ReviewBody> {
       TextEditingController(text: widget.string.notes ?? '');
   late int _penaltyMs = widget.string.penaltyMs;
 
+  /// The string was saved elsewhere meanwhile (the editor, through "Choose
+  /// video again"): show what was saved, or the next edit here would write
+  /// the old label, notes and penalty back.
+  @override
+  void didUpdateWidget(_ReviewBody old) {
+    super.didUpdateWidget(old);
+    final s = widget.string;
+    if (s.label != old.string.label && _labelCtrl.text != (s.label ?? '')) {
+      _labelCtrl.text = s.label ?? '';
+    }
+    if (s.notes != old.string.notes && _notesCtrl.text != (s.notes ?? '')) {
+      _notesCtrl.text = s.notes ?? '';
+    }
+    if (s.penaltyMs != old.string.penaltyMs) _penaltyMs = s.penaltyMs;
+  }
+
   @override
   void dispose() {
     _labelCtrl.dispose();

@@ -45,7 +45,8 @@ import 'video_export_sheet.dart';
 /// The markers live in [ClipEditorNotifier]; the playhead lives in a
 /// [TimelineController], so playback and scrolling never rebuild the page.
 /// A selected shot rides under the playhead while the timeline is dragged
-/// and snaps to the nearest onset (±8 ms) when the finger lifts.
+/// and, when the finger lifts, snaps to the sharpest onset within 8 ms if
+/// one rises like a shot ([AnalyzedClip.snapToOnset]).
 class VideoEditorScreen extends ConsumerStatefulWidget {
   const VideoEditorScreen({super.key, required this.args});
 
@@ -86,6 +87,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   /// While the Export sheet is open, the exported range plays in a loop.
   (int, int)? _loop;
+
+  /// A loop restart waiting for its seek.
+  var _restarting = false;
 
   /// The editor's own snack bars: "Shot deleted · Undo" goes with the
   /// editor and never shows, or acts, on the tab below.
@@ -185,26 +189,41 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     final value = _player.value;
     final loop = _loop;
     if (!value.isPlaying) {
-      if (loop != null && value.isCompleted) return _playFrom(loop.$1);
+      if (loop != null && value.isCompleted) {
+        unawaited(_playFrom(loop.$1));
+        return;
+      }
       _timeline.stopFollowing();
       return;
     }
     final clip = widget.args.clip;
     final ms =
         _reportedMs + _sinceReport.elapsedMilliseconds * value.playbackSpeed;
-    if (loop != null && ms >= loop.$2) return _playFrom(loop.$1);
+    if (loop != null && ms >= loop.$2) {
+      unawaited(_playFrom(loop.$1));
+      return;
+    }
     if (ms >= clip.toMs) _player.pause();
     _timeline.follow(ms.round().clamp(clip.fromMs, clip.toMs));
   }
 
-  /// Plays from [ms]: the timeline jumps there and follows from it.
-  void _playFrom(int ms) {
+  /// Plays from [ms]: the timeline jumps there and follows from it. Plays
+  /// once the seek has landed: at the end of the video, play() would start
+  /// over at 0 instead.
+  Future<void> _playFrom(int ms) async {
+    if (_restarting) return;
+    _restarting = true;
     _timeline.centreOn(ms, animate: false);
     _reportedMs = ms;
     _sinceReport
       ..reset()
       ..start();
-    _player.play();
+    try {
+      await _player.settle(ms);
+    } finally {
+      _restarting = false;
+    }
+    if (mounted) await _player.play();
   }
 
   void _togglePlay() {
@@ -286,7 +305,16 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   void _onTouch() {
     _player.pause();
     _dragging = true;
-    if (ref.read(_provider).selectedId != null) _editor.beginGesture();
+    final selected = ref.read(_provider).selected;
+    if (selected == null) return;
+    // A shot rides along only from under the playhead. Should the playhead
+    // have got away from it, the drag scrolls instead of fetching the shot.
+    if (_timeline.motion == TimelineMotion.idle &&
+        (selected.ms - _timeline.playheadMs).abs() > 1) {
+      _editor.select(null);
+    } else {
+      _editor.beginGesture();
+    }
   }
 
   void _onRelease() {
@@ -316,7 +344,15 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     final target = forward
         ? markers.where((m) => m > now + 5).firstOrNull
         : markers.reversed.where((m) => m < now - 5).firstOrNull;
-    if (target != null) _centre(target);
+    if (target == null) return;
+    // A selected shot rides under the playhead, so the selection goes along
+    // to the shot there (none at START) instead of staying behind.
+    final state = ref.read(_provider);
+    if (state.selectedId != null) {
+      _editor.select(
+          state.doc.activeShots.where((s) => s.ms == target).firstOrNull?.id);
+    }
+    _centre(target);
   }
 
   void _nudge(EditShot shot, int deltaMs) {
@@ -369,7 +405,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     _editor.select(null);
     setState(() => _showHud = true);
     _loop = (plan.startMs, plan.endMs);
-    _playFrom(plan.startMs);
+    unawaited(_playFrom(plan.startMs));
     final target = await showExportSheet(context);
     _loop = null;
     await _player.pause();
@@ -407,6 +443,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
         body: context.tr('editor.saveFailedBody'),
         cancelLabel: context.tr('common.discard'),
         confirmLabel: context.tr('editor.retry'),
+        // Only the buttons: a stray tap must not discard the string.
+        dismissible: false,
       );
       if (!retry) break;
     }
@@ -507,7 +545,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                   tiles: _tiles,
                   originMs: widget.args.clip.audioOriginMs,
                   markers: _timelineMarkers(state),
-                  flingEnabled: state.selectedId == null,
+                  carryingShot: state.selectedId != null,
                   onTouch: _onTouch,
                   onRelease: _onRelease,
                   onTapMarker: _tapMarker,
@@ -524,8 +562,12 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                         ? 1000 / spectrogram.framesPerSecond
                         : 0,
                     markers: _markerTimes(state.doc),
-                    onJump: _centre,
+                    onJump: (ms) {
+                      _editor.select(null);
+                      _centre(ms);
+                    },
                     onScrub: (ms) {
+                      _editor.select(null);
                       _player.pause();
                       _timeline.scrubTo(ms);
                     },
@@ -680,7 +722,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 }
 
-/// The clip on black under the status bar, a third of the screen high,
+/// The clip on black under the status bar, 30 % of the screen high,
 /// with the [overlay] preview on it, and back, the eye (the preview on or
 /// off) and the ⋮ menu (Discard) over it.
 class _VideoPane extends StatelessWidget {

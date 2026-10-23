@@ -39,8 +39,8 @@ import kotlin.math.roundToInt
  * behind them; the replies go back on the main thread, as MethodChannel
  * requires. A job reports progress back on [channel] and stops when cancel
  * names it. Failures carry the codes the Dart side maps:
- * no_audio_track, unsupported_codec, unreadable_file, decode_failed,
- * cancelled.
+ * no_audio_track, unsupported_codec, unreadable_file, unsupported_file,
+ * no_space, decode_failed, cancelled.
  */
 class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.MethodCallHandler {
     private val worker = Executors.newSingleThreadExecutor()
@@ -106,7 +106,8 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
                 main.post { result.error(e.code, e.message, null) }
             } catch (e: Throwable) {
                 // Anything, even running out of memory: Dart waits for a reply.
-                main.post { result.error("decode_failed", e.toString(), null) }
+                val code = if (e.isNoSpace()) "no_space" else "decode_failed"
+                main.post { result.error(code, e.toString(), null) }
             }
         }
     }
@@ -440,8 +441,10 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
         try {
             extractor.setDataSource(path)
         } catch (e: Exception) {
+            // The file is there: it is cut short (no index) or a container
+            // this phone can't open.
             extractor.release()
-            throw ClipAudioFailure("unreadable_file", e.message)
+            throw ClipAudioFailure("unsupported_file", e.message)
         }
         return extractor
     }
@@ -468,7 +471,10 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
         return first
     }
 
-    /** Rotation in degrees and recording time (ms since epoch, UTC), if known. */
+    /**
+     * Rotation in degrees, recording time (ms since epoch, UTC) and the
+     * capture frame rate (slow motion, time-lapse), if known.
+     */
     private class Metadata(val rotation: Int, val created: Long?, val captureFrameRate: Double?)
 
     private fun metadata(path: String): Metadata {

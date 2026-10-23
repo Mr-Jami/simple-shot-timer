@@ -21,8 +21,9 @@ enum TimelineMotion { idle, playback, drag, fling, settle }
 /// It covers [startMs] to [endMs] of the clip: all of it, or the analysed
 /// part of a long one.
 ///
-/// [onUserMove] reports every move the user caused (to seek the video and
-/// tick the haptics), [onSettle] where it came to rest (the exact seek).
+/// [onUserMove] reports every move except following playback (gestures,
+/// springs, [centreOn], [scrubTo]), so the video seeks along and the haptics
+/// tick; [onSettle] where it came to rest (the exact seek).
 class TimelineController extends ChangeNotifier {
   TimelineController({
     required TickerProvider vsync,

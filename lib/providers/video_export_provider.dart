@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
 
@@ -22,6 +23,9 @@ import 'video_providers.dart';
 
 /// Where the exported video goes once it's made.
 enum ExportTarget { photos, share }
+
+/// ENOSPC on Android and iOS: the storage is full.
+const _noSpaceErrno = 28;
 
 /// Everything an export needs from the editor.
 class ExportJob {
@@ -62,13 +66,17 @@ class ExportRunning extends ExportState {
   final Duration? remaining;
 }
 
+/// The video is made and going to Photos: past the point of cancelling.
+class ExportSaving extends ExportState {
+  const ExportSaving();
+}
+
 class ExportDone extends ExportState {
-  const ExportDone(this.path, {required this.target, this.saved = false});
+  const ExportDone(this.path, {this.saved = false});
 
   final String path;
-  final ExportTarget target;
 
-  /// In the phone's videos.
+  /// In the phone's videos (a later Share keeps it so).
   final bool saved;
 }
 
@@ -82,7 +90,10 @@ class ExportNotSaved extends ExportState {
 }
 
 class ExportFailed extends ExportState {
-  const ExportFailed();
+  const ExportFailed({this.noSpace = false});
+
+  /// The phone's storage ran full.
+  final bool noSpace;
 }
 
 class ExportCancelled extends ExportState {
@@ -115,11 +126,14 @@ class VideoExportController
   }
 
   Future<void> start(ExportJob job) async {
-    // Its own folder: a cancelled export still tidying up can't touch it.
+    // Its own folders: a cancelled export still tidying up can't touch them,
+    // and the video can't replace the clip, which may carry the same name
+    // (an earlier export picked again).
     final overlayDir = Directory(p.join(job.session.dir.path, 'overlay_$arg'));
+    final exportDir = Directory(p.join(job.session.dir.path, 'export_$arg'));
     _clock.start();
-    await _keepAwake(true);
     try {
+      await _keepAwake(true);
       final colorFix = await _colorFix();
       final overlays = await ref.read(hudFrameRendererProvider)(
         dir: overlayDir,
@@ -131,8 +145,9 @@ class VideoExportController
         onProgress: (f) => _progress(overlayShare * f),
         cancel: _cancel,
       );
+      await exportDir.create(recursive: true);
       final output = p.join(
-        job.session.dir.path,
+        exportDir.path,
         ExportPlan.fileName(job.string.date, job.string.string.totalTimeMs),
       );
       await ref.read(clipExporterProvider).export(
@@ -147,10 +162,25 @@ class VideoExportController
             cancel: _cancel,
           );
       if (!_cancel.isCancelled) await _deliver(output, job.target);
-    } on Exception catch (e) {
-      final cancelled = _cancel.isCancelled ||
-          (e is ExportException && e.error == ExportError.cancelled);
-      _emit(cancelled ? const ExportCancelled() : const ExportFailed());
+    } catch (e, stack) {
+      // Errors too: the dialog never stays on Exporting for good.
+      if (_cancel.isCancelled ||
+          (e is ExportException && e.error == ExportError.cancelled)) {
+        _emit(const ExportCancelled());
+      } else {
+        if (e is! Exception) {
+          FlutterError.reportError(FlutterErrorDetails(
+            exception: e,
+            stack: stack,
+            library: 'video export',
+          ));
+        }
+        _emit(ExportFailed(
+          noSpace: (e is ExportException && e.error == ExportError.noSpace) ||
+              (e is FileSystemException &&
+                  e.osError?.errorCode == _noSpaceErrno),
+        ));
+      }
     } finally {
       await _keepAwake(false);
       if (await overlayDir.exists()) await overlayDir.delete(recursive: true);
@@ -177,20 +207,25 @@ class VideoExportController
   /// Saves or shares [path]. A save that fails leaves the video to share.
   Future<void> _deliver(String path, ExportTarget target) async {
     final gallery = ref.read(videoGalleryProvider);
+    final saved = switch (state) {
+      ExportDone(:final saved) => saved,
+      _ => false,
+    };
     try {
       switch (target) {
         case ExportTarget.photos:
+          _emit(const ExportSaving());
           _emit(await gallery.save(path)
-              ? ExportDone(path, target: target, saved: true)
+              ? ExportDone(path, saved: true)
               : ExportNotSaved(path, denied: true));
         case ExportTarget.share:
           await gallery.share(path);
-          _emit(ExportDone(path, target: target));
+          _emit(ExportDone(path, saved: saved));
       }
     } on Exception {
       _emit(target == ExportTarget.photos
           ? ExportNotSaved(path, denied: false)
-          : ExportDone(path, target: target));
+          : ExportDone(path, saved: saved));
     }
   }
 

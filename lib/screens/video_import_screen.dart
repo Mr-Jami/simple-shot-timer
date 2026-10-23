@@ -36,10 +36,23 @@ class _VideoImportScreenState extends ConsumerState<VideoImportScreen> {
   /// This screen's current import; "Choose another" starts a new one.
   var _import = _imports++;
 
+  /// Back from a picker that is still handing the video over.
+  late final AppLifecycleListener _lifecycle;
+
   @override
   void initState() {
     super.initState();
+    _lifecycle = AppLifecycleListener(
+      onResume: () =>
+          ref.read(videoImportProvider(_import).notifier).resumedFromPicker(),
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) => _start());
+  }
+
+  @override
+  void dispose() {
+    _lifecycle.dispose();
+    super.dispose();
   }
 
   void _start() {

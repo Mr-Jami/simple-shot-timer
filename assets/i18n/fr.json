@@ -233,7 +233,8 @@
   "video.problem.unsupportedVideo": "Ce fichier n’est pas une vidéo lisible sur ce téléphone.",
   "video.problem.unreadableFile": "Impossible de lire la vidéo. Elle a peut-être été déplacée ou supprimée.",
   "video.problem.tooShort": "Cette vidéo est trop courte pour une série.",
-  "video.problem.failed": "Impossible de lire le son de cette vidéo.",
+  "video.problem.noSpace": "Le stockage du téléphone est plein. Libérez de l’espace et réessayez.",
+  "video.problem.failed": "Un problème est survenu à l’ouverture de cette vidéo. Réessayez.",
 
   "part.title": "Choisir la partie",
   "part.scanning": "Les vidéos de plus de 3 minutes sont vérifiées par tranches de 3 minutes. Recherche de la partie la plus forte…",
@@ -255,6 +256,7 @@
   "export.save": "Enregistrer dans Photos",
   "export.share": "Partager",
   "export.working": "Export de la vidéo",
+  "export.saving": "Enregistrement dans Photos…",
   "export.remainingSeconds": "Encore environ {seconds} s",
   "export.remainingMinutes": "Encore environ {minutes} min",
   "export.keepOpen": "Gardez Simple Shot Timer ouverte jusqu’à la fin.",
@@ -263,6 +265,7 @@
   "export.noAccess": "Simple Shot Timer n’a pas le droit d’enregistrer des vidéos. Vous pouvez quand même la partager.",
   "export.saveFailed": "Impossible d’enregistrer la vidéo dans Photos. Vous pouvez quand même la partager.",
   "export.failed": "Impossible d’exporter la vidéo.",
+  "export.noSpace": "Pas assez d’espace libre pour exporter la vidéo. Libérez de l’espace et réessayez.",
   "export.done": "Terminé",
 
   "editor.title": "Vérifier les tirs",

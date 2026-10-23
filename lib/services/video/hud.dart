@@ -174,8 +174,9 @@ class HudLayout {
     required this.alignRight,
   });
 
-  // The box's rows, in units, top down: the badge, the clock, the Full
-  // style's line, then five split chips.
+  // In units: the box's margin and width, then its rows top down (the
+  // badge, the clock, the Full style's line, five split chips), then the
+  // end card.
   static const double marginUnits = 0.8;
   static const double widthUnits = 9;
   static const double badgeUnits = 1.2;

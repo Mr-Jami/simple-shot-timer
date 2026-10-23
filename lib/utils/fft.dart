@@ -12,7 +12,7 @@ import 'dart:typed_data';
 ///
 /// Used by the mic-test screen to estimate the dominant mic frequency so we
 /// can verify what the beep actually looks like coming back through the
-/// speaker → air → microphone path.
+/// speaker → air → microphone path, and by the video feature's spectrogram.
 void fftRadix2(Float64List real, Float64List imag) {
   final n = real.length;
   assert(imag.length == n, 'real/imag must have equal length');

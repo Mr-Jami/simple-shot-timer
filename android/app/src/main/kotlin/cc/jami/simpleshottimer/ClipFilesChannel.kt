@@ -23,8 +23,9 @@ import java.util.concurrent.Executors
  * for one video, copied straight into the folder Dart names (the clip's work
  * folder), with `copyProgress` (0..1) on [channel] while it copies. The
  * document picker needs no storage permission. Backing out of the picker
- * replies null; `cancel` stops a copy, which then fails with `cancelled`
- * and leaves no file.
+ * replies null; `cancel` with the pick's `pickId` stops its copy, which then
+ * fails with `cancelled` and leaves no file (a late cancel for an earlier
+ * pick is ignored). A full storage fails with `no_space`.
  */
 class ClipFilesChannel(
     private val activity: Activity,
@@ -36,10 +37,11 @@ class ClipFilesChannel(
 
     @Volatile
     private var cancelled = false
+    private var pickId: Int? = null
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         if (call.method == "cancel") {
-            cancelled = true
+            if (call.argument<Int>("pickId") == pickId) cancelled = true
             return result.success(null)
         }
         if (call.method != "pickVideo") return result.notImplemented()
@@ -50,6 +52,7 @@ class ClipFilesChannel(
             .addCategory(Intent.CATEGORY_OPENABLE)
             .setType("video/*")
         pending = Pair(result, File(dir))
+        pickId = call.argument<Int>("pickId")
         cancelled = false
         try {
             activity.startActivityForResult(intent, REQUEST_CODE)
@@ -76,7 +79,8 @@ class ClipFilesChannel(
             } catch (e: CopyCancelled) {
                 main.post { result.error("cancelled", null, null) }
             } catch (e: Throwable) {
-                main.post { result.error("copy_failed", e.toString(), null) }
+                val code = if (e.isNoSpace()) "no_space" else "copy_failed"
+                main.post { result.error(code, e.toString(), null) }
             }
         }
         return true

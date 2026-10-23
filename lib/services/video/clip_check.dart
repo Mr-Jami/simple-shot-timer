@@ -15,7 +15,8 @@ enum ClipProblem {
   /// A time-lapse or hyperlapse: no usable sound.
   timeLapse,
 
-  /// The phone can't decode the sound (e.g. Dolby Digital on some Androids).
+  /// The phone can't decode the sound (e.g. Dolby Digital on some Androids),
+  /// or its decoder failed part-way.
   unreadableSound,
 
   /// Not a video the phone can play.
@@ -27,7 +28,10 @@ enum ClipProblem {
   /// Too short to hold a beep and a shot.
   tooShort,
 
-  /// Anything else that failed while reading the sound.
+  /// The phone's storage is full.
+  noSpace,
+
+  /// Anything else, such as no document picker on the phone.
   failed,
 }
 
@@ -50,9 +54,12 @@ ClipProblem? checkClip(ClipInfo info) {
 
 ClipProblem problemFor(ClipAudioError error) => switch (error) {
       ClipAudioError.noAudioTrack => ClipProblem.noSound,
-      ClipAudioError.unsupportedCodec => ClipProblem.unreadableSound,
+      ClipAudioError.unsupportedCodec ||
+      ClipAudioError.decodeFailed =>
+        ClipProblem.unreadableSound,
       ClipAudioError.unreadableFile => ClipProblem.unreadableFile,
-      ClipAudioError.decodeFailed ||
+      ClipAudioError.unsupportedFile => ClipProblem.unsupportedVideo,
+      ClipAudioError.noSpace => ClipProblem.noSpace,
       ClipAudioError.unavailable ||
       ClipAudioError.cancelled =>
         ClipProblem.failed,

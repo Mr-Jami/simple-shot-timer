@@ -3,9 +3,10 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:async';
+import 'dart:io';
 import 'dart:math' as math;
-import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/timer_string.dart';
@@ -21,6 +22,9 @@ import 'video_providers.dart';
 /// The steps of the Analyzing view.
 enum ImportStep { picking, reading, decoding, analyzing }
 
+/// ENOSPC on Android and iOS: the storage is full.
+const _noSpaceErrno = 28;
+
 sealed class ImportState {
   const ImportState();
 }
@@ -33,8 +37,10 @@ class ImportWorking extends ImportState {
   /// 0..1 when the step reports it.
   final double? progress;
 
-  /// Whether the Analyzing view shows. It appears only when the work after
-  /// the picker takes more than 300 ms, then stays at least 500 ms.
+  /// Whether the Analyzing view shows. It appears once the work after the
+  /// picker has taken [VideoImportController.showAfter], or at once after
+  /// "Analyze this part", then stays at least
+  /// [VideoImportController.minVisible].
   final bool visible;
 }
 
@@ -206,6 +212,17 @@ class VideoImportController
     await _guard(() => _analyse(s.clipPath, s.info, s.window));
   }
 
+  /// The app is back in front while the pick is still running: the photo
+  /// picker hands the video over only once it has copied it, seconds for a
+  /// long clip, so that wait shows as Analyzing (with Cancel) like a Files
+  /// copy. Backing out of the picker returns before the view would show.
+  void resumedFromPicker() {
+    if (state case ImportWorking(step: ImportStep.picking)) {
+      _armAnalyzingView();
+      _step(ImportStep.reading);
+    }
+  }
+
   /// Stops the import and deletes everything it made so far.
   void cancel() {
     if (_handedOver || _cancel.isCancelled) return;
@@ -336,15 +353,26 @@ class VideoImportController
     state = ImportReady(clip, session, _importedAt!);
   }
 
-  /// Runs [work], turning its failures into the problem the user sees.
+  /// Runs [work], turning its failures into the problem the user sees. Any
+  /// error ends the import too: Analyzing never stays up for good.
   Future<void> _guard(Future<void> Function() work) async {
     try {
       await work();
     } on ClipAudioException catch (e) {
       if (_cancel.isCancelled) return;
       _finish(ImportProblem(problemFor(e.error)));
-    } on Exception {
+    } on FileSystemException catch (e) {
       if (_cancel.isCancelled) return;
+      _finish(ImportProblem(e.osError?.errorCode == _noSpaceErrno
+          ? ClipProblem.noSpace
+          : ClipProblem.failed));
+    } catch (e, stack) {
+      if (_cancel.isCancelled) return;
+      FlutterError.reportError(FlutterErrorDetails(
+        exception: e,
+        stack: stack,
+        library: 'video import',
+      ));
       _finish(const ImportProblem(ClipProblem.failed));
     }
   }

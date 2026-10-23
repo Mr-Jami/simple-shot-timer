@@ -37,9 +37,9 @@ class ShotScan {
   final double gate;
 }
 
-/// Finds shots in a whole clip with the transient test of the video shot
-/// timer reference (`shot-detector.mjs`). On the reference's own synthetic
-/// clip it returns the same frames.
+/// Finds shots in a whole clip with the transient test of the feature's web
+/// prototype (`shot-detector.mjs`, not in this repository). On the
+/// prototype's own synthetic clip it returns the same frames.
 ///
 /// Per frame m, for each of the 128 bins: +1 when the level rises sharply at
 /// m, falls again within two frames and decays over the next 100 ms; −1 when
@@ -179,7 +179,9 @@ const double _echoMargin = 15;
 /// (about 18 dB) across four frames, at least [_minRisingBins] of the bins
 /// rise by 10 units (4.4 dB), and the loudest of the next five frames comes
 /// within [_gateMargin] units (about 5 dB) of [gate]. Footsteps and movement
-/// are steep enough but tens of units too quiet.
+/// are steep enough but tens of units too quiet. A shot that lands while the
+/// last one still rings rises less: it also qualifies at or above [gate]
+/// with a rise of [_loudMinRise] units and [_loudMinRisingBins] of the bins.
 ///
 /// It only adds shots more than [minSplit] frames (100 ms) from every
 /// [strict] one, so a clip the reference test handles keeps exactly its
@@ -189,7 +191,8 @@ const double _echoMargin = 15;
 /// splits stay within about 11.
 ///
 /// The thresholds are set on hand-checked range clips whose timers showed
-/// every shot (see the video feature's issue draft).
+/// every shot; `test/clip_shot_finder_test.dart` pins them on synthetic
+/// clips.
 List<ShotHit> _softShots(
   Spectrogram s,
   Int32List rowSum,

@@ -82,17 +82,20 @@ class _VideoPartViewState extends State<VideoPartView> {
     }
   }
 
-  void _togglePlay() {
+  Future<void> _togglePlay() async {
     final value = _player.value;
     if (value.isPlaying) {
       _player.pause();
       return;
     }
     final at = value.position.inMilliseconds;
+    // The seek lands first: at the end of the video, play() would start
+    // over at 0 instead.
     if (at < _window.startMs || at >= _window.endMs - 100) {
-      unawaited(_player.settle(_window.startMs));
+      await _player.settle(_window.startMs);
+      if (!mounted) return;
     }
-    _player.play();
+    await _player.play();
   }
 
   void _changed(PartWindow window, PartEdge edge) {

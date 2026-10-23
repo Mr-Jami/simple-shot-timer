@@ -91,6 +91,8 @@ void main() {
       'no_audio_track': ClipAudioError.noAudioTrack,
       'unsupported_codec': ClipAudioError.unsupportedCodec,
       'unreadable_file': ClipAudioError.unreadableFile,
+      'unsupported_file': ClipAudioError.unsupportedFile,
+      'no_space': ClipAudioError.noSpace,
       'decode_failed': ClipAudioError.decodeFailed,
       'cancelled': ClipAudioError.cancelled,
       'something_new': ClipAudioError.decodeFailed,

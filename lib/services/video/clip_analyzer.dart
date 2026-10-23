@@ -31,8 +31,9 @@ enum ShotSensitivity {
   final double gateScale;
 }
 
-/// What the analyzer found in one clip. Times are seconds from the start of
-/// the clip's audio.
+/// What the analyzer found in one clip. Times are seconds from the first
+/// decoded sample (for a long clip, its part's start); [AnalyzedClip] turns
+/// them into clip time.
 class ClipAnalysis {
   /// Takes the tones and shots found in [spectrogram] and picks START.
   factory ClipAnalysis({

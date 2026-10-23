@@ -55,7 +55,7 @@ void main() {
               originMs: 0,
               markers: markers,
               startLabel: 'START',
-              flingEnabled: fling,
+              carryingShot: !fling,
               onTouch: () {},
               onRelease: () {},
               onTapMarker: tapped.add,
@@ -172,6 +172,32 @@ void main() {
     expect(controller.playheadMs + 100 / 600 * 1000, closeTo(focalMs, 1e-6));
     controller.zoom(100, 0);
     expect(controller.pxPerSecond, 2000);
+  });
+
+  testWidgets('with a shot riding along, a pinch zooms around the playhead',
+      (tester) async {
+    Future<double> pinch(bool carrying) async {
+      await pumpTimeline(tester, fling: !carrying);
+      final at = controller.playheadMs;
+      final c = centre(tester);
+      // Two fingers right of the playhead, spreading apart.
+      final a = await tester.startGesture(c + const Offset(60, 0));
+      final b = await tester.startGesture(c + const Offset(140, 0));
+      await tester.pump();
+      for (var i = 0; i < 4; i++) {
+        await a.moveBy(const Offset(-10, 0));
+        await b.moveBy(const Offset(10, 0));
+        await tester.pump();
+      }
+      await a.up();
+      await b.up();
+      await tester.pumpAndSettle();
+      expect(controller.pxPerSecond, greaterThan(150));
+      return controller.playheadMs - at;
+    }
+
+    expect(await pinch(false), isNot(closeTo(0, 50)));
+    expect(await pinch(true), closeTo(0, 1));
   });
 
   testWidgets('a tap picks the nearest marker', (tester) async {

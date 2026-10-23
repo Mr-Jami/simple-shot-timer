@@ -87,7 +87,14 @@ class ExportRequest {
 }
 
 /// Why an export failed.
-enum ExportError { cancelled, failed, unavailable }
+enum ExportError {
+  cancelled,
+  failed,
+
+  /// The phone's storage ran full.
+  noSpace,
+  unavailable,
+}
 
 class ExportException implements Exception {
   const ExportException(this.error, [this.message]);
@@ -186,7 +193,11 @@ class ChannelClipExporter implements ClipExporter {
   }
 
   static ExportException _exception(PlatformException e) => ExportException(
-        e.code == 'cancelled' ? ExportError.cancelled : ExportError.failed,
+        switch (e.code) {
+          'cancelled' => ExportError.cancelled,
+          'no_space' => ExportError.noSpace,
+          _ => ExportError.failed,
+        },
         e.message,
       );
 }

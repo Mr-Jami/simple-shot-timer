@@ -10,7 +10,8 @@ import '../providers/video_export_provider.dart';
 
 /// Runs [job] and shows how it goes: a progress ring with the time left,
 /// and a line asking to keep the app open (the screen stays on). Then the
-/// result, with Share; or what went wrong. Back cancels while it runs.
+/// result, with Share; or what went wrong. Back cancels while it runs; once
+/// the video goes to Photos it can no longer be cancelled.
 Future<void> showExportDialog(BuildContext context, ExportJob job) =>
     showDialog<void>(
       context: context,
@@ -123,12 +124,24 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
             ),
           ],
         ),
-      ExportDone(saved: true) => (
-          result(Icons.check_circle_outline, context.tr('export.saved')),
-          [shareButton, doneButton],
+      ExportSaving() => (
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox.square(
+                dimension: 96,
+                child: CircularProgressIndicator(strokeWidth: 6),
+              ),
+              const SizedBox(height: 16),
+              Text(context.tr('export.saving'),
+                  style: theme.textTheme.titleMedium),
+            ],
+          ),
+          const <Widget>[],
         ),
-      ExportDone() => (
-          result(Icons.check_circle_outline, context.tr('export.ready')),
+      ExportDone(:final saved) => (
+          result(Icons.check_circle_outline,
+              context.tr(saved ? 'export.saved' : 'export.ready')),
           [shareButton, doneButton],
         ),
       ExportNotSaved(:final denied) => (
@@ -138,15 +151,16 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
           ),
           [shareButton, doneButton],
         ),
-      ExportFailed() => (
-          result(Icons.error_outline, context.tr('export.failed')),
+      ExportFailed(:final noSpace) => (
+          result(Icons.error_outline,
+              context.tr(noSpace ? 'export.noSpace' : 'export.failed')),
           [doneButton],
         ),
       ExportCancelled() => (const SizedBox.shrink(), const <Widget>[]),
     };
 
     return PopScope(
-      canPop: state is! ExportRunning,
+      canPop: state is! ExportRunning && state is! ExportSaving,
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop) _export.cancel();
       },

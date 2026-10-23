@@ -7,7 +7,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 /// An outlined icon button that repeats while held: once on touch, then
-/// after [delay] every [interval], twice as fast after [speedUpAfter].
+/// after [delay] every [interval], twice as fast once it has repeated for
+/// [speedUpAfter].
 /// [onStart] and [onEnd] bracket a hold, so its steps can be one undo.
 /// Pressed by a screen reader, a switch or a keyboard, it steps once.
 class RepeatButton extends StatefulWidget {

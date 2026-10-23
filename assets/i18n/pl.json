@@ -233,7 +233,8 @@
   "video.problem.unsupportedVideo": "Ten plik nie jest wideo, które ten telefon może odtworzyć.",
   "video.problem.unreadableFile": "Nie udało się odczytać wideo. Mogło zostać przeniesione lub usunięte.",
   "video.problem.tooShort": "To wideo jest za krótkie na serię.",
-  "video.problem.failed": "Nie udało się odczytać dźwięku tego wideo.",
+  "video.problem.noSpace": "Pamięć telefonu jest pełna. Zwolnij trochę miejsca i spróbuj ponownie.",
+  "video.problem.failed": "Coś poszło nie tak podczas otwierania tego wideo. Spróbuj ponownie.",
 
   "part.title": "Wybierz fragment",
   "part.scanning": "Wideo dłuższe niż 3 minuty jest sprawdzane fragmentami po 3 minuty. Szukanie najgłośniejszego fragmentu…",
@@ -255,6 +256,7 @@
   "export.save": "Zapisz w Zdjęciach",
   "export.share": "Udostępnij",
   "export.working": "Eksport wideo",
+  "export.saving": "Zapisywanie w Zdjęciach…",
   "export.remainingSeconds": "Zostało ok. {seconds} s",
   "export.remainingMinutes": "Zostało ok. {minutes} min",
   "export.keepOpen": "Nie zamykaj Simple Shot Timer, dopóki nie skończy.",
@@ -263,6 +265,7 @@
   "export.noAccess": "Simple Shot Timer nie może zapisywać wideo. Możesz je jednak udostępnić.",
   "export.saveFailed": "Nie udało się zapisać wideo w Zdjęciach. Możesz je jednak udostępnić.",
   "export.failed": "Nie udało się wyeksportować wideo.",
+  "export.noSpace": "Za mało wolnego miejsca, by wyeksportować wideo. Zwolnij trochę miejsca i spróbuj ponownie.",
   "export.done": "Gotowe",
 
   "editor.title": "Sprawdź strzały",

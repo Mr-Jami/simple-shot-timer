@@ -111,6 +111,13 @@ void main() {
           .having((e) => e.error, 'error', ExportError.failed)
           .having((e) => e.message, 'message', 'codec')),
     );
+    installHandler(
+        (_) => throw PlatformException(code: 'no_space', message: 'ENOSPC'));
+    await expectLater(
+      exporter.export(request),
+      throwsA(isA<ExportException>()
+          .having((e) => e.error, 'error', ExportError.noSpace)),
+    );
     messenger.setMockMethodCallHandler(channel, null);
     await expectLater(
       exporter.export(request),

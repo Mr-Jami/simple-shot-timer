@@ -58,8 +58,9 @@ import kotlin.math.abs
  *   (`i.z`: premultiplied RGBA, zlib) that Dart drew, image `i` showing from
  *   `timesUs[i]` (output time) on, placed with its top left at (`x`, `y`)
  *   in fractions of the frame. Progress (0..1) comes back as `progress`
- *   messages; `cancel` names the job to stop. Fails with `cancelled` or
- *   `export_failed`, leaving no file.
+ *   messages; `cancel` names the job to stop. Fails with `cancelled`,
+ *   `no_space` or `export_failed`, leaving no file, or with `busy` while
+ *   another export runs.
  * - `checkEncoderColors` encodes one green frame and reads its luma back:
  *   some encoders (the Galaxy S21 FE's) convert RGB with the BT.601 matrix
  *   while the file says BT.709, which shifts saturated colours; `needsFix`
@@ -91,7 +92,7 @@ class ClipExportChannel(
                 try {
                     start(call, result)
                 } catch (e: Exception) {
-                    result.error("export_failed", e.toString(), null)
+                    result.error(if (e.isNoSpace()) "no_space" else "export_failed", e.toString(), null)
                 }
             }
             "cancel" -> {
@@ -174,8 +175,9 @@ class ClipExportChannel(
                     exportResult: ExportResult,
                     exportException: ExportException,
                 ) {
+                    val code = if (exportException.isNoSpace()) "no_space" else "export_failed"
                     finish(mine) {
-                        it.error("export_failed", "${exportException.errorCodeName}: ${exportException.message}", null)
+                        it.error(code, "${exportException.errorCodeName}: ${exportException.message}", null)
                     }
                 }
             })

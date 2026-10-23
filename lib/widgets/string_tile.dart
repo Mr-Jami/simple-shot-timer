@@ -10,8 +10,8 @@ import '../models/enums.dart';
 import '../models/timer_string.dart';
 import '../utils/time_format.dart';
 
-/// One-line drill summary for a string's row, e.g. "Par 2.0s ×4 / 5s rest",
-/// "Stage 60s", "Standard", "Video". Keeps the user from having to open
+/// One-line drill summary for a string's row, e.g. "Par 2.0s ×4 /5.0s",
+/// "Stage 60.0s", "Standard", "Video". Keeps the user from having to open
 /// every entry to know which drill produced it.
 String drillSummary(BuildContext context, TimerString s) {
   if (s.isVideo) return context.tr('history.video');

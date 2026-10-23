@@ -7,29 +7,35 @@ import 'package:flutter/material.dart';
 import '../i18n/app_localizations.dart';
 
 /// Asks [title] with [body]; true only when the user picks [confirmLabel].
-/// The other button says [cancelLabel], or Cancel.
+/// The other button says [cancelLabel], or Cancel. Unless [dismissible], a
+/// tap outside or Back does nothing: the user has to pick a button.
 Future<bool> confirmDialog(
   BuildContext context, {
   required String title,
   required String body,
   required String confirmLabel,
   String? cancelLabel,
+  bool dismissible = true,
 }) async {
   final result = await showDialog<bool>(
     context: context,
-    builder: (ctx) => AlertDialog(
-      title: Text(title),
-      content: Text(body),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(ctx, false),
-          child: Text(cancelLabel ?? ctx.tr('common.cancel')),
-        ),
-        FilledButton(
-          onPressed: () => Navigator.pop(ctx, true),
-          child: Text(confirmLabel),
-        ),
-      ],
+    barrierDismissible: dismissible,
+    builder: (ctx) => PopScope(
+      canPop: dismissible,
+      child: AlertDialog(
+        title: Text(title),
+        content: Text(body),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(cancelLabel ?? ctx.tr('common.cancel')),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(confirmLabel),
+          ),
+        ],
+      ),
     ),
   );
   return result ?? false;
