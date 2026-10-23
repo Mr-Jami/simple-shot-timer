@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:io';
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -166,6 +167,24 @@ void main() {
       expect(analysis.shotSeconds, isEmpty);
     });
   }
+
+  test('a muted sound track is silent; faint noise and a range clip are not',
+      () {
+    Spectrogram of(Int16List pcm) => Spectrogram.compute(pcm, clipSampleRate);
+    Int16List noise(int amplitude) {
+      final random = math.Random(1);
+      return Int16List.fromList([
+        for (var i = 0; i < clipSampleRate * 2; i++)
+          random.nextInt(2 * amplitude + 1) - amplitude,
+      ]);
+    }
+
+    expect(of(Int16List(clipSampleRate * 2)).isSilent, isTrue);
+    // The decoder's rounding on a muted track.
+    expect(of(noise(3)).isSilent, isTrue);
+    expect(of(noise(10)).isSilent, isFalse);
+    expect(of(syntheticClip()).isSilent, isFalse);
+  });
 
   test('changing sensitivity reuses the analysis and keeps START', () {
     final analysis = analyzePcm(

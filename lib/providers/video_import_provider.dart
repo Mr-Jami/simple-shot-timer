@@ -316,6 +316,10 @@ class VideoImportController
         .analyze(session.pcmPath, decoded.sampleRate);
     await session.deletePcm();
     if (_cancel.isCancelled) return;
+    // A sound track with nothing in it: say so rather than ask for START.
+    if (analysis.spectrogram.isSilent) {
+      return _finish(const ImportProblem(ClipProblem.noSound));
+    }
 
     final clip = AnalyzedClip(
       info: info,

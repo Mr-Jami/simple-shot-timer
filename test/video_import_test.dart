@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter/material.dart';
@@ -187,7 +188,7 @@ class _FakeAudio implements ClipAudioSource {
 class _FakeAnalyzer implements ClipAnalyzerRunner {
   _FakeAnalyzer(this.result);
 
-  final ClipAnalysis result;
+  ClipAnalysis result;
   Duration time = const Duration(milliseconds: 50);
   var runs = 0;
 
@@ -332,6 +333,16 @@ void main() {
       async.elapse(const Duration(milliseconds: 10));
       expect((seen.last as ImportProblem).problem, ClipProblem.noSound);
       expect(audio.decodes, 0);
+      expect(work.sessions.single.disposed, isTrue);
+    });
+  });
+
+  test('a sound track with nothing in it is named once decoded', () {
+    analyzer.result = analyzePcm(Int16List(clipSampleRate * 7), clipSampleRate);
+    run((async, c, seen) {
+      async.elapse(const Duration(milliseconds: 500));
+      expect((seen.last as ImportProblem).problem, ClipProblem.noSound);
+      expect(analyzer.runs, 1);
       expect(work.sessions.single.disposed, isTrue);
     });
   });

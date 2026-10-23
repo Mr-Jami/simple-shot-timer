@@ -87,6 +87,13 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   /// While the Export sheet is open, the exported range plays in a loop.
   (int, int)? _loop;
 
+  /// The editor's own snack bars: "Shot deleted · Undo" goes with the
+  /// editor and never shows, or acts, on the tab below.
+  final _messenger = GlobalKey<ScaffoldMessengerState>();
+
+  /// The markers right after the last delete, while its Undo is offered.
+  MarkerDoc? _undoable;
+
   /// Haptic ticks at most every 50 ms while the timeline passes markers.
   final _clock = Stopwatch()..start();
   var _lastTick = Duration.zero;
@@ -326,13 +333,20 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   void _delete(EditShot shot) {
     _editor.deleteShot(shot.id);
-    ScaffoldMessenger.of(context)
+    _undoable = ref.read(_provider).doc;
+    _messenger.currentState!
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
         content: Text(context.tr('editor.deleted')),
+        // One with an action stays until dismissed by default; this one
+        // times out, except with a screen reader.
+        persist: MediaQuery.accessibleNavigationOf(context),
         action: SnackBarAction(
           label: context.tr('editor.undo'),
-          onPressed: _editor.undo,
+          onPressed: () {
+            _undoable = null;
+            _editor.undo();
+          },
         ),
       ));
   }
@@ -441,6 +455,13 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     final state = ref.watch(_provider);
     final scheme = Theme.of(context).colorScheme;
     final spectrogram = widget.args.clip.analysis.spectrogram;
+    ref.listen(_provider.select((s) => s.doc), (_, doc) {
+      // After any later edit, Undo would revert that, not the delete.
+      if (_undoable != null && !identical(doc, _undoable)) {
+        _undoable = null;
+        _messenger.currentState?.hideCurrentSnackBar();
+      }
+    });
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) {
@@ -459,87 +480,90 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                   ? Brightness.light
                   : Brightness.dark,
         ),
-        child: Scaffold(
-          body: Column(
-            children: [
-              _VideoPane(
-                player: _player,
-                aspectRatio: widget.args.clip.info.aspectRatio,
-                overlay: _hud(state),
-                showOverlay: _showHud,
-                onToggleOverlay: () => setState(() => _showHud = !_showHud),
-                onBack: _leave,
-                onDiscard: _discard,
-              ),
-              EditorTransport(
-                player: _player,
-                timeline: _timeline,
-                startMs: state.doc.startMs,
-                onPlay: _togglePlay,
-                onPrevious: () => _jump(forward: false),
-                onNext: () => _jump(forward: true),
-              ),
-              ShotTimeline(
-                controller: _timeline,
-                tiles: _tiles,
-                originMs: widget.args.clip.audioOriginMs,
-                markers: _timelineMarkers(state),
-                flingEnabled: state.selectedId == null,
-                onTouch: _onTouch,
-                onRelease: _onRelease,
-                onTapMarker: _tapMarker,
-                onTapEmpty: () => _editor.select(null),
-                startLabel: context.tr('editor.start'),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
-                child: TimelineMinimap(
-                  controller: _timeline,
-                  levels: _levels,
-                  originMs: widget.args.clip.audioOriginMs,
-                  frameMs: spectrogram.framesPerSecond > 0
-                      ? 1000 / spectrogram.framesPerSecond
-                      : 0,
-                  markers: _markerTimes(state.doc),
-                  onJump: _centre,
-                  onScrub: (ms) {
-                    _player.pause();
-                    _timeline.scrubTo(ms);
-                  },
-                  onScrubEnd: _timeline.endScrub,
+        child: ScaffoldMessenger(
+          key: _messenger,
+          child: Scaffold(
+            body: Column(
+              children: [
+                _VideoPane(
+                  player: _player,
+                  aspectRatio: widget.args.clip.info.aspectRatio,
+                  overlay: _hud(state),
+                  showOverlay: _showHud,
+                  onToggleOverlay: () => setState(() => _showHud = !_showHud),
+                  onBack: _leave,
+                  onDiscard: _discard,
                 ),
-              ),
-              MarkerPanel(
-                selected: state.selected,
-                shots: state.doc.activeShots,
-                startMs: state.doc.startMs,
-                onSetStart: () =>
-                    _editor.setStart(_timeline.playheadMs.round()),
-                onAddShot: _addShot,
-                onNudgeStart: _editor.beginGesture,
-                onNudge: _nudge,
-                onNudgeEnd: _editor.endGesture,
-                onDelete: _delete,
-                onLastShot: (shot) => _editor.setLastShot(shot.id),
-                onDeselect: () => _editor.select(null),
-              ),
-              const Divider(height: 1),
-              Expanded(child: _details(context, state)),
-              SafeArea(
-                top: false,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                  child: FilledButton.icon(
-                    style: FilledButton.styleFrom(
-                      minimumSize: const Size.fromHeight(52),
-                    ),
-                    icon: const Icon(Icons.movie_outlined),
-                    label: Text(context.tr('editor.export')),
-                    onPressed: state.doc.isComplete ? _export : null,
+                EditorTransport(
+                  player: _player,
+                  timeline: _timeline,
+                  startMs: state.doc.startMs,
+                  onPlay: _togglePlay,
+                  onPrevious: () => _jump(forward: false),
+                  onNext: () => _jump(forward: true),
+                ),
+                ShotTimeline(
+                  controller: _timeline,
+                  tiles: _tiles,
+                  originMs: widget.args.clip.audioOriginMs,
+                  markers: _timelineMarkers(state),
+                  flingEnabled: state.selectedId == null,
+                  onTouch: _onTouch,
+                  onRelease: _onRelease,
+                  onTapMarker: _tapMarker,
+                  onTapEmpty: () => _editor.select(null),
+                  startLabel: context.tr('editor.start'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
+                  child: TimelineMinimap(
+                    controller: _timeline,
+                    levels: _levels,
+                    originMs: widget.args.clip.audioOriginMs,
+                    frameMs: spectrogram.framesPerSecond > 0
+                        ? 1000 / spectrogram.framesPerSecond
+                        : 0,
+                    markers: _markerTimes(state.doc),
+                    onJump: _centre,
+                    onScrub: (ms) {
+                      _player.pause();
+                      _timeline.scrubTo(ms);
+                    },
+                    onScrubEnd: _timeline.endScrub,
                   ),
                 ),
-              ),
-            ],
+                MarkerPanel(
+                  selected: state.selected,
+                  shots: state.doc.activeShots,
+                  startMs: state.doc.startMs,
+                  onSetStart: () =>
+                      _editor.setStart(_timeline.playheadMs.round()),
+                  onAddShot: _addShot,
+                  onNudgeStart: _editor.beginGesture,
+                  onNudge: _nudge,
+                  onNudgeEnd: _editor.endGesture,
+                  onDelete: _delete,
+                  onLastShot: (shot) => _editor.setLastShot(shot.id),
+                  onDeselect: () => _editor.select(null),
+                ),
+                const Divider(height: 1),
+                Expanded(child: _details(context, state)),
+                SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: FilledButton.icon(
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size.fromHeight(52),
+                      ),
+                      icon: const Icon(Icons.movie_outlined),
+                      label: Text(context.tr('editor.export')),
+                      onPressed: state.doc.isComplete ? _export : null,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

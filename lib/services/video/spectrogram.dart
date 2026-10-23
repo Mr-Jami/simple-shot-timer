@@ -40,6 +40,15 @@ class Spectrogram {
 
   double get binHz => sampleRate / fftSize;
 
+  /// No value reaches this in a silent clip: about ±4 of 32768 (−78 dBFS).
+  /// A muted or empty sound track decodes to zeros (1 here), or to ±1–3
+  /// from the decoder (26–41); a real recording's room noise alone reads
+  /// 100 or more.
+  static const silenceCeiling = 50;
+
+  /// No sound at all: a muted or empty sound track.
+  bool get isSilent => !values.any((v) => v >= silenceCeiling);
+
   int value(int frame, int bin) => values[frame * bins + bin];
 
   double secondsAt(int frame) => frame / framesPerSecond;
