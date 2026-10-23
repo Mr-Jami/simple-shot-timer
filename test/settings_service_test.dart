@@ -63,6 +63,25 @@ void main() {
     });
   });
 
+  group('SettingsService video overlay choices', () {
+    test('default to splits, top left, end card; round-trip when saved',
+        () async {
+      final service = SettingsService(prefs);
+      final loaded = service.load();
+      expect(
+          (loaded.hudStyle, loaded.hudCorner, loaded.hudEndCard),
+          (HudStyle.splits, HudCorner.topLeft, true));
+      await service.save(const AppSettings(
+        hudStyle: HudStyle.full,
+        hudCorner: HudCorner.bottomRight,
+        hudEndCard: false,
+      ));
+      final again = SettingsService(prefs).load();
+      expect((again.hudStyle, again.hudCorner, again.hudEndCard),
+          (HudStyle.full, HudCorner.bottomRight, false));
+    });
+  });
+
   group('SettingsService.reset', () {
     test('restores every setting to its default but keeps the drills',
         () async {

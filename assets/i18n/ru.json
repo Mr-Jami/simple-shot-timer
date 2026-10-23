@@ -265,5 +265,7 @@
   "editor.sens.normal": "Обычно",
   "editor.sens.more": "Больше",
   "editor.fromStart": "от START",
+  "editor.hideOverlay": "Скрыть наложение",
+  "editor.showOverlay": "Показать наложение",
   "editor.inVideo": "в видео"
 }

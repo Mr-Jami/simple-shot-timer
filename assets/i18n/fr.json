@@ -265,5 +265,7 @@
   "editor.sens.normal": "Normal",
   "editor.sens.more": "Plus",
   "editor.fromStart": "depuis START",
+  "editor.hideOverlay": "Masquer l’incrustation",
+  "editor.showOverlay": "Afficher l’incrustation",
   "editor.inVideo": "dans la vidéo"
 }

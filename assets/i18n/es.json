@@ -265,5 +265,7 @@
   "editor.sens.normal": "Normal",
   "editor.sens.more": "Más",
   "editor.fromStart": "desde START",
+  "editor.hideOverlay": "Ocultar superposición",
+  "editor.showOverlay": "Mostrar superposición",
   "editor.inVideo": "en el vídeo"
 }

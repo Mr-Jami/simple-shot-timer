@@ -75,3 +75,13 @@ flutter:
     - assets/branding/
     # Section-7 license terms, shown on the in-app licenses page.
     - NOTICE
+    # The video overlay's badge font and its licence (OFL), also shown there.
+    - assets/fonts/Montserrat-OFL.txt
+
+  fonts:
+    # Basic Latin only (pyftsubset U+0020-007E): the badge is the one user.
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic

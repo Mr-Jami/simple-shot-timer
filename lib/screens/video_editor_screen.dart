@@ -12,8 +12,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../i18n/app_localizations.dart';
 import '../providers/clip_editor_provider.dart';
+import '../providers/settings_provider.dart';
+import '../providers/video_providers.dart';
 import '../services/video/clip_player.dart';
 import '../services/video/clip_signal.dart';
+import '../services/video/hud.dart';
 import '../services/video/marker_doc.dart';
 import '../utils/motion.dart';
 import '../utils/time_format.dart';
@@ -29,6 +32,8 @@ import '../widgets/timeline/shot_timeline.dart';
 import '../widgets/timeline/spectrogram_tiles.dart';
 import '../widgets/timeline/timeline_controller.dart';
 import '../widgets/timeline/timeline_minimap.dart';
+import '../widgets/video/hud_overlay.dart';
+import '../widgets/video/hud_painter.dart';
 
 /// The video editor: the clip pinned on top, the time readout and
 /// transport, the timeline (the spectrogram scrolling under a fixed
@@ -73,6 +78,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   var _reportedMs = 0;
   var _dragging = false;
   var _leaving = false;
+
+  /// The overlay preview over the video (the eye button).
+  var _showHud = true;
 
   /// Haptic ticks at most every 50 ms while the timeline passes markers.
   final _clock = Stopwatch()..start();
@@ -190,6 +198,40 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
         ..start();
       _player.play();
     }
+  }
+
+  /// The clip time the overlay shows: the frame on screen. While playing
+  /// the picture runs about a frame behind the playhead's estimate, so the
+  /// overlay goes one frame ahead; either way it snaps to frame times.
+  int _hudTimeMs() {
+    final frameMs = 1000 / (widget.args.clip.info.frameRate ?? 30);
+    var ms = _timeline.playheadMs;
+    if (_player.value.isPlaying) ms += frameMs;
+    return ((ms / frameMs).floor() * frameMs).round();
+  }
+
+  /// The overlay over the video, once START is set and its size is known.
+  Widget? _hud(ClipEditorState state) {
+    final start = state.doc.startMs;
+    final info = widget.args.clip.info;
+    final frame = info.width != null && info.height != null
+        ? Size(info.width!.toDouble(), info.height!.toDouble())
+        : _player.value.size;
+    if (!_showHud || start == null || frame.isEmpty) return null;
+    final settings = ref.watch(settingsProvider);
+    return HudOverlay(
+      frame: frame,
+      string: HudString(_editor.draft, startMs: start),
+      options: HudOptions(
+        style: settings.hudStyle,
+        corner: settings.hudCorner,
+        endCard: settings.hudEndCard,
+      ),
+      labels: HudLabels.of(context),
+      timeMs: _hudTimeMs,
+      repaint: _timeline,
+      logo: ref.watch(hudLogoProvider).valueOrNull,
+    );
   }
 
   // The user moving the timeline -----------------------------------------
@@ -368,6 +410,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
               _VideoPane(
                 player: _player,
                 aspectRatio: widget.args.clip.info.aspectRatio,
+                overlay: _hud(state),
+                showOverlay: _showHud,
+                onToggleOverlay: () => setState(() => _showHud = !_showHud),
                 onBack: _leave,
                 onDiscard: _discard,
               ),
@@ -543,17 +588,24 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 }
 
 /// The clip on black under the status bar, a third of the screen high,
-/// with back and the ⋮ menu (Discard) over it.
+/// with the [overlay] preview on it, and back, the eye (the preview on or
+/// off) and the ⋮ menu (Discard) over it.
 class _VideoPane extends StatelessWidget {
   const _VideoPane({
     required this.player,
     required this.aspectRatio,
+    required this.overlay,
+    required this.showOverlay,
+    required this.onToggleOverlay,
     required this.onBack,
     required this.onDiscard,
   });
 
   final ClipPlayer player;
   final double? aspectRatio;
+  final Widget? overlay;
+  final bool showOverlay;
+  final VoidCallback onToggleOverlay;
   final VoidCallback onBack;
   final VoidCallback onDiscard;
 
@@ -568,7 +620,11 @@ class _VideoPane extends StatelessWidget {
           child: Stack(
             children: [
               Center(
-                child: ClipVideo(player: player, aspectRatio: aspectRatio),
+                child: ClipVideo(
+                  player: player,
+                  aspectRatio: aspectRatio,
+                  foreground: overlay,
+                ),
               ),
               Positioned(
                 left: 4,
@@ -578,6 +634,20 @@ class _VideoPane extends StatelessWidget {
                   color: Colors.white,
                   icon: const Icon(Icons.arrow_back),
                   onPressed: onBack,
+                ),
+              ),
+              Positioned(
+                right: 52,
+                top: 4,
+                child: IconButton(
+                  tooltip: context.tr(showOverlay
+                      ? 'editor.hideOverlay'
+                      : 'editor.showOverlay'),
+                  color: Colors.white,
+                  icon: Icon(showOverlay
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined),
+                  onPressed: onToggleOverlay,
                 ),
               ),
               Positioned(

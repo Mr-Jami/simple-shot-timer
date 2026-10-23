@@ -29,6 +29,9 @@ class AppSettings {
     this.themeMode = AppThemeMode.system,
     this.historyCap = 500,
     this.localeCode,
+    this.hudStyle = HudStyle.splits,
+    this.hudCorner = HudCorner.topLeft,
+    this.hudEndCard = true,
   });
 
   /// 0–100 user-facing sensitivity. Higher = more sensitive.
@@ -89,6 +92,11 @@ class AppSettings {
   /// Two-letter language code (e.g. `en`, `de`). `null` follows the device.
   final String? localeCode;
 
+  /// The video overlay's last choices in the export sheet.
+  final HudStyle hudStyle;
+  final HudCorner hudCorner;
+  final bool hudEndCard;
+
   static const int historyCapMin = 50;
   static const int historyCapMax = 5000;
   static const int parRepeatMin = 1;
@@ -134,6 +142,9 @@ class AppSettings {
     int? historyCap,
     String? localeCode,
     bool clearLocaleCode = false,
+    HudStyle? hudStyle,
+    HudCorner? hudCorner,
+    bool? hudEndCard,
   }) =>
       AppSettings(
         sensitivityPercent: sensitivityPercent ?? this.sensitivityPercent,
@@ -162,5 +173,8 @@ class AppSettings {
         historyCap: historyCap ?? this.historyCap,
         localeCode:
             clearLocaleCode ? null : (localeCode ?? this.localeCode),
+        hudStyle: hudStyle ?? this.hudStyle,
+        hudCorner: hudCorner ?? this.hudCorner,
+        hudEndCard: hudEndCard ?? this.hudEndCard,
       );
 }

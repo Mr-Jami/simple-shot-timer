@@ -265,5 +265,7 @@
   "editor.sens.normal": "Normal",
   "editor.sens.more": "More",
   "editor.fromStart": "from START",
+  "editor.hideOverlay": "Hide overlay",
+  "editor.showOverlay": "Show overlay",
   "editor.inVideo": "in the video"
 }

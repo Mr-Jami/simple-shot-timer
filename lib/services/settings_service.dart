@@ -36,6 +36,9 @@ class SettingsService {
   static const _kTheme = 'theme_mode';
   static const _kHistoryCap = 'history_cap';
   static const _kLocale = 'locale_code';
+  static const _kHudStyle = 'video_hud_style';
+  static const _kHudCorner = 'video_hud_corner';
+  static const _kHudEndCard = 'video_hud_end_card';
 
   /// Saved custom drills (issue #24), one JSON list next to the settings
   /// keys. Not part of [AppSettings]; survives [reset].
@@ -75,6 +78,9 @@ class SettingsService {
       themeMode: _readEnum(_kTheme, AppThemeMode.values, defaults.themeMode),
       historyCap: _prefs.getInt(_kHistoryCap) ?? defaults.historyCap,
       localeCode: _prefs.getString(_kLocale),
+      hudStyle: _readEnum(_kHudStyle, HudStyle.values, defaults.hudStyle),
+      hudCorner: _readEnum(_kHudCorner, HudCorner.values, defaults.hudCorner),
+      hudEndCard: _prefs.getBool(_kHudEndCard) ?? defaults.hudEndCard,
     );
   }
 
@@ -106,6 +112,9 @@ class SettingsService {
         _prefs.remove(_kLocale)
       else
         _prefs.setString(_kLocale, s.localeCode!),
+      _prefs.setString(_kHudStyle, s.hudStyle.name),
+      _prefs.setString(_kHudCorner, s.hudCorner.name),
+      _prefs.setBool(_kHudEndCard, s.hudEndCard),
     ]);
   }
 

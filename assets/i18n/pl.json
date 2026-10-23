@@ -265,5 +265,7 @@
   "editor.sens.normal": "Normalnie",
   "editor.sens.more": "Więcej",
   "editor.fromStart": "od START",
+  "editor.hideOverlay": "Ukryj nakładkę",
+  "editor.showOverlay": "Pokaż nakładkę",
   "editor.inVideo": "w wideo"
 }

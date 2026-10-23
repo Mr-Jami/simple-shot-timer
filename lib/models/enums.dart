@@ -25,6 +25,26 @@ enum StringSource {
   video,
 }
 
+/// What the video overlay shows besides the badge and the clock.
+enum HudStyle {
+  /// The clock only.
+  clock,
+
+  /// The clock and the five newest splits.
+  splits,
+
+  /// The splits, and a line with the shot count and the first shot.
+  full,
+}
+
+/// Where the video overlay sits.
+enum HudCorner {
+  topLeft,
+  topRight,
+  bottomLeft,
+  bottomRight,
+}
+
 enum AppThemeMode {
   system,
   light,

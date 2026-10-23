@@ -265,5 +265,7 @@
   "editor.sens.normal": "Normaali",
   "editor.sens.more": "Enemmän",
   "editor.fromStart": "lähdöstä",
+  "editor.hideOverlay": "Piilota tekstit",
+  "editor.showOverlay": "Näytä tekstit",
   "editor.inVideo": "videolla"
 }
