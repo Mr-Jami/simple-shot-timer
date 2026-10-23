@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_shot_timer/i18n/app_localizations.dart';
+import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
 import 'package:simple_shot_timer/theme/app_theme.dart';
 import 'package:simple_shot_timer/widgets/app_navigation_bar.dart';
 
@@ -40,6 +41,7 @@ void main() {
     String code, {
     double width = 360,
     double textScale = 1.3,
+    bool showVideo = true,
   }) async {
     tester.view.devicePixelRatio = 3;
     tester.view.physicalSize = Size(width * 3, 800 * 3);
@@ -74,8 +76,9 @@ void main() {
         }
         return Scaffold(
           bottomNavigationBar: AppNavigationBar(
-            selectedIndex: 4,
+            selectedIndex: showVideo ? 4 : 3,
             onDestinationSelected: (_) {},
+            showVideo: showVideo,
           ),
         );
       }),
@@ -115,6 +118,14 @@ void main() {
             reason: '${locale.code}: "$label" is wider than its tab');
       }
     }
+  });
+
+  testWidgets('no Video tab where clips cannot be read yet', (tester) async {
+    expect(clipAudioAvailableOn(TargetPlatform.android), isTrue);
+    await pumpBar(tester, 'en',
+        showVideo: clipAudioAvailableOn(TargetPlatform.iOS));
+    expect(find.byType(NavigationDestination), findsNWidgets(4));
+    expect(find.text('Video'), findsNothing);
   });
 
   testWidgets('labels keep the theme size when they fit', (tester) async {

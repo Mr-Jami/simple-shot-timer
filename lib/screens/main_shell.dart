@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/enums.dart';
 import '../providers/settings_provider.dart';
 import '../providers/timer_provider.dart';
+import '../services/video/clip_audio_source.dart';
 import '../utils/motion.dart';
 import '../widgets/app_navigation_bar.dart';
 import '../widgets/flash_overlay.dart';
@@ -18,7 +20,8 @@ import 'home_screen.dart';
 import 'settings_screen.dart';
 import 'video_screen.dart';
 
-/// Five-tab shell: Timer, Drills, Video, History, Settings.
+/// Five-tab shell: Timer, Drills, Video, History, Settings. Video shows
+/// only where clips can be read (Android, until the iOS decoder exists).
 ///
 /// The bar is inert while a string is in progress (greyed, not hidden) so a
 /// stray tap near STOP does nothing and nothing on screen moves. Leaving the
@@ -49,6 +52,7 @@ class _MainShellState extends ConsumerState<MainShell> {
         ref.watch(settingsProvider.select((s) => s.visualFlash));
     final inProgress =
         phase == TimerPhase.running || phase == TimerPhase.countdown;
+    final showVideo = clipAudioAvailableOn(defaultTargetPlatform);
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     // With no app bar on the Timer tab nothing else styles the system bars,
@@ -83,12 +87,12 @@ class _MainShellState extends ConsumerState<MainShell> {
           child: Scaffold(
             body: IndexedStack(
               index: _index,
-              children: const [
-                HomeScreen(),
-                CustomDrillsScreen(),
-                VideoScreen(),
-                HistoryScreen(),
-                SettingsScreen(),
+              children: [
+                const HomeScreen(),
+                const CustomDrillsScreen(),
+                if (showVideo) const VideoScreen(),
+                const HistoryScreen(),
+                const SettingsScreen(),
               ],
             ),
             bottomNavigationBar: AbsorbPointer(
@@ -99,6 +103,7 @@ class _MainShellState extends ConsumerState<MainShell> {
                 child: AppNavigationBar(
                   selectedIndex: _index,
                   onDestinationSelected: _select,
+                  showVideo: showVideo,
                 ),
               ),
             ),

@@ -8,6 +8,11 @@ import 'package:flutter/services.dart';
 
 import '../../utils/cancel_token.dart';
 
+/// Whether [platform] can read a clip's sound yet: Android only until the
+/// iOS decoder exists. Elsewhere the Video tab stays hidden.
+bool clipAudioAvailableOn(TargetPlatform platform) =>
+    platform == TargetPlatform.android;
+
 /// Why a clip's sound could not be read.
 enum ClipAudioError {
   /// The file has no audio track (a screen recording, some time-lapses), or

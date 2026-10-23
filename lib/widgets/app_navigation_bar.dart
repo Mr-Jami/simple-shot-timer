@@ -34,32 +34,34 @@ double fittedLabelSize(
   return size;
 }
 
-/// The bottom tabs: Timer, Drills, Video, History, Settings. Five
-/// translated labels don't all fit a phone at the theme's size, so they
-/// shrink together, just enough for the longest to fit its tab on one line
-/// at the user's text size (which the bar caps at 1.3x).
+/// The bottom tabs: Timer, Drills, Video (unless [showVideo] is off),
+/// History, Settings. Five translated labels don't all fit a phone at the
+/// theme's size, so they shrink together, just enough for the longest to
+/// fit its tab on one line at the user's text size (which the bar caps at
+/// 1.3x).
 class AppNavigationBar extends StatelessWidget {
   const AppNavigationBar({
     super.key,
     required this.selectedIndex,
     required this.onDestinationSelected,
+    this.showVideo = true,
   });
 
   final int selectedIndex;
   final ValueChanged<int> onDestinationSelected;
+  final bool showVideo;
 
   /// Room left and right of a label inside its tab.
   static const double _labelInset = 4;
 
   @override
   Widget build(BuildContext context) {
-    final labels = [
-      context.tr('nav.timer'),
-      context.tr('nav.drills'),
-      context.tr('nav.video'),
-      context.tr('nav.history'),
-      context.tr('nav.settings'),
-    ];
+    final timer = context.tr('nav.timer');
+    final drills = context.tr('nav.drills');
+    final video = context.tr('nav.video');
+    final history = context.tr('nav.history');
+    final settings = context.tr('nav.settings');
+    final labels = [timer, drills, if (showVideo) video, history, settings];
     final theme = Theme.of(context);
     final barTheme = NavigationBarTheme.of(context);
     final base = barTheme.labelTextStyle;
@@ -89,26 +91,27 @@ class AppNavigationBar extends StatelessWidget {
             NavigationDestination(
               icon: const Icon(Icons.timer_outlined),
               selectedIcon: const Icon(Icons.timer),
-              label: labels[0],
+              label: timer,
             ),
             NavigationDestination(
               icon: const Icon(Icons.bookmarks_outlined),
               selectedIcon: const Icon(Icons.bookmarks),
-              label: labels[1],
+              label: drills,
             ),
-            NavigationDestination(
-              icon: const Icon(Icons.videocam_outlined),
-              selectedIcon: const Icon(Icons.videocam),
-              label: labels[2],
-            ),
+            if (showVideo)
+              NavigationDestination(
+                icon: const Icon(Icons.videocam_outlined),
+                selectedIcon: const Icon(Icons.videocam),
+                label: video,
+              ),
             NavigationDestination(
               icon: const Icon(Icons.history),
-              label: labels[3],
+              label: history,
             ),
             NavigationDestination(
               icon: const Icon(Icons.settings_outlined),
               selectedIcon: const Icon(Icons.settings),
-              label: labels[4],
+              label: settings,
             ),
           ],
         ),
