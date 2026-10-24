@@ -243,6 +243,9 @@
   "part.semantics": "Teil von {from} bis {to}",
 
   "export.title": "Video exportieren",
+  "export.length": "Länge",
+  "export.length.string": "Durchgang",
+  "export.length.whole": "Ganzes Video",
   "export.style": "Overlay",
   "export.style.clock": "Uhr",
   "export.style.splits": "Splits",

@@ -10,6 +10,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:simple_shot_timer/models/enums.dart';
 import 'package:simple_shot_timer/models/shot.dart';
 import 'package:simple_shot_timer/models/timer_string.dart';
+import 'package:simple_shot_timer/services/video/export_plan.dart';
 import 'package:simple_shot_timer/services/video/hud.dart';
 import 'package:simple_shot_timer/services/video/hud_painter.dart';
 
@@ -60,6 +61,15 @@ void main() {
       expect(HudMoment.at(string, 12600 + 650).endCard, closeTo(0.5, 1e-9));
       expect(HudMoment.at(string, 12600 + 800).endCard, 1);
       expect(HudMoment.at(string, 20000, endCard: false).endCard, 0);
+    });
+
+    test('fades the end card out 4 s after it came, past a string export',
+        () {
+      expect(HudMoment.at(string, 12600 + ExportPlan.tailMs).endCard, 1);
+      expect(HudMoment.at(string, 12600 + 4500).endCard, 1);
+      expect(HudMoment.at(string, 12600 + 4650).endCard, closeTo(0.5, 1e-9));
+      expect(HudMoment.at(string, 12600 + 4800).endCard, 0);
+      expect(HudMoment.at(string, 60000).endCard, 0);
     });
 
     test('splits run from START, then shot to shot', () {

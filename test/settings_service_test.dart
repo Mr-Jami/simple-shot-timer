@@ -63,22 +63,34 @@ void main() {
     });
   });
 
-  group('SettingsService video overlay choices', () {
-    test('default to splits, top left, end card; round-trip when saved',
+  group('SettingsService video export choices', () {
+    test('default to splits, top left, end card, the string; round-trip',
         () async {
       final service = SettingsService(prefs);
       final loaded = service.load();
       expect(
-          (loaded.hudStyle, loaded.hudCorner, loaded.hudEndCard),
-          (HudStyle.splits, HudCorner.topLeft, true));
+          (
+            loaded.hudStyle,
+            loaded.hudCorner,
+            loaded.hudEndCard,
+            loaded.exportWholeVideo
+          ),
+          (HudStyle.splits, HudCorner.topLeft, true, false));
       await service.save(const AppSettings(
         hudStyle: HudStyle.full,
         hudCorner: HudCorner.bottomRight,
         hudEndCard: false,
+        exportWholeVideo: true,
       ));
       final again = SettingsService(prefs).load();
-      expect((again.hudStyle, again.hudCorner, again.hudEndCard),
-          (HudStyle.full, HudCorner.bottomRight, false));
+      expect(
+          (
+            again.hudStyle,
+            again.hudCorner,
+            again.hudEndCard,
+            again.exportWholeVideo
+          ),
+          (HudStyle.full, HudCorner.bottomRight, false, true));
     });
   });
 

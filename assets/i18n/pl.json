@@ -243,6 +243,9 @@
   "part.semantics": "Fragment od {from} do {to}",
 
   "export.title": "Eksportuj wideo",
+  "export.length": "Długość",
+  "export.length.string": "Seria",
+  "export.length.whole": "Całe wideo",
   "export.style": "Nakładka",
   "export.style.clock": "Zegar",
   "export.style.splits": "Splity",

@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,11 +17,17 @@ import 'package:simple_shot_timer/providers/clip_editor_provider.dart';
 import 'package:simple_shot_timer/providers/providers.dart';
 import 'package:simple_shot_timer/providers/video_providers.dart';
 import 'package:simple_shot_timer/screens/video_editor_screen.dart';
+import 'package:simple_shot_timer/services/timer_ports.dart';
 import 'package:simple_shot_timer/services/video/analyzed_clip.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer.dart';
 import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
+import 'package:simple_shot_timer/services/video/clip_exporter.dart';
+import 'package:simple_shot_timer/services/video/export_plan.dart';
+import 'package:simple_shot_timer/services/video/hud.dart';
+import 'package:simple_shot_timer/services/video/hud_painter.dart';
 import 'package:simple_shot_timer/services/video/video_string_store.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
+import 'package:simple_shot_timer/utils/cancel_token.dart';
 import 'package:simple_shot_timer/widgets/shot_badge.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
 
@@ -63,6 +70,29 @@ class _Session extends VideoSession {
   Future<void> dispose() async {}
 }
 
+/// Export just far enough to reach the overlay images.
+class _Awake implements RunEnvironment {
+  @override
+  Future<void> setKeepAwake(bool on) async {}
+  @override
+  Future<void> setForeground(bool on) async {}
+  @override
+  Future<void> vibrate() async {}
+}
+
+class _NoExporter implements ClipExporter {
+  @override
+  Future<void> export(
+    ExportRequest request, {
+    void Function(double fraction)? onProgress,
+    CancelToken? cancel,
+  }) =>
+      throw UnimplementedError();
+
+  @override
+  Future<bool> encoderNeedsColorFix() async => false;
+}
+
 void main() {
   // Roboto from the Flutter SDK: the test font's square glyphs overflow the
   // marker panel and the stats on a 360 dp screen.
@@ -77,8 +107,13 @@ void main() {
     clipSampleRate,
   );
 
-  /// The editor over a page standing in for the Video tab.
-  Future<ClipEditorState Function()> openEditor(WidgetTester tester) async {
+  /// The editor over a page standing in for the Video tab, on the 7 s clip
+  /// unless [seconds] asks for a longer one.
+  Future<ClipEditorState Function()> openEditor(
+    WidgetTester tester, {
+    int seconds = 7,
+    List<Override> overrides = const [],
+  }) async {
     tester.view.devicePixelRatio = 3;
     tester.view.physicalSize = const Size(360 * 3, 1400 * 3);
     addTearDown(tester.view.reset);
@@ -88,16 +123,25 @@ void main() {
     final container = ProviderContainer(overrides: [
       sharedPreferencesProvider.overrideWithValue(prefs),
       videoStringStoreProvider.overrideWithValue(store),
+      ...overrides,
     ]);
     addTearDown(container.dispose);
     final args = ClipEditorArgs(
       clip: AnalyzedClip(
-        info: const ClipInfo(
+        info: ClipInfo(
           hasAudio: true,
-          durationMs: 7000,
+          durationMs: seconds * 1000,
           videoMime: 'video/avc',
         ),
-        analysis: analysis,
+        analysis: seconds == 7
+            ? analysis
+            : analyzePcm(
+                syntheticClip(
+                  seconds: seconds.toDouble(),
+                  extra: (x) => addBeep(x, 1.0, 300),
+                ),
+                clipSampleRate,
+              ),
         audioOriginMs: 0,
       ),
       session: _Session(),
@@ -197,6 +241,37 @@ void main() {
     await tester.pumpAndSettle();
     expect(state().doc.activeShots, hasLength(shots));
     expect(undoBar, findsNothing);
+  });
+
+  testWidgets('Whole video exports the clip from its first frame to its last',
+      (tester) async {
+    ExportPlan? exported;
+    // Long enough that the string (to 4 s after the last shot, 8.1 s) isn't
+    // the whole clip.
+    await openEditor(tester, seconds: 12, overrides: [
+      runEnvironmentProvider.overrideWithValue(_Awake()),
+      clipExporterProvider.overrideWithValue(_NoExporter()),
+      hudFrameRendererProvider.overrideWithValue((
+          {required Directory dir,
+          required ExportPlan plan,
+          required HudString string,
+          required HudOptions options,
+          required HudLabels labels,
+          ui.Image? logo,
+          void Function(double fraction)? onProgress,
+          CancelToken? cancel}) async {
+        exported = plan;
+        throw const ExportException(ExportError.cancelled);
+      }),
+    ]);
+    await tester.tap(find.text('Export video'));
+    await tester.pumpAndSettle();
+    expect(find.text('String · 0:08'), findsOneWidget);
+    await tester.tap(find.text('Whole video · 0:12'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Save to Photos'));
+    await tester.pumpAndSettle();
+    expect((exported!.startMs, exported!.endMs), (0, 12000));
   });
 
   testWidgets('Back saves the string once', (tester) async {

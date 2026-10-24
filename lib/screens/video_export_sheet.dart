@@ -9,22 +9,31 @@ import '../i18n/app_localizations.dart';
 import '../models/enums.dart';
 import '../providers/settings_provider.dart';
 import '../providers/video_export_provider.dart';
+import '../utils/time_format.dart';
 
-/// The Export sheet: the overlay's style and corner and the end card, then
-/// Save to Photos or Share. It leaves the editor's video in view, where the
-/// export plays with the overlay as chosen; the choices are kept.
-Future<ExportTarget?> showExportSheet(BuildContext context) =>
+/// The Export sheet: the string ([stringMs] long with the seconds around
+/// it) or the whole video ([wholeMs]), the overlay's style and corner and
+/// the end card, then Save to Photos or Share. It leaves the editor's video
+/// in view, where the export plays as chosen; the choices are kept.
+Future<ExportTarget?> showExportSheet(
+  BuildContext context, {
+  required int stringMs,
+  required int wholeMs,
+}) =>
     showModalBottomSheet<ExportTarget>(
       context: context,
       // As tall as its content: the default 9/16 cap cut off Share.
       isScrollControlled: true,
       // Light, so the preview above stays clear.
       barrierColor: Colors.black12,
-      builder: (_) => const _ExportSheet(),
+      builder: (_) => _ExportSheet(stringMs: stringMs, wholeMs: wholeMs),
     );
 
 class _ExportSheet extends ConsumerWidget {
-  const _ExportSheet();
+  const _ExportSheet({required this.stringMs, required this.wholeMs});
+
+  final int stringMs;
+  final int wholeMs;
 
   static const _corners = {
     HudCorner.topLeft: Icons.north_west,
@@ -50,6 +59,27 @@ class _ExportSheet extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(context.tr('export.title'), style: theme.textTheme.titleLarge),
+            label('export.length'),
+            SegmentedButton<bool>(
+              showSelectedIcon: false,
+              segments: [
+                for (final (whole, key, ms) in [
+                  (false, 'export.length.string', stringMs),
+                  (true, 'export.length.whole', wholeMs),
+                ])
+                  ButtonSegment(
+                    value: whole,
+                    label: Text(
+                      '${context.tr(key)} · ${formatMinutes(ms)}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+              ],
+              selected: {settings.exportWholeVideo},
+              onSelectionChanged: (s) =>
+                  update((a) => a.copyWith(exportWholeVideo: s.single)),
+            ),
             label('export.style'),
             SegmentedButton<HudStyle>(
               showSelectedIcon: false,

@@ -39,8 +39,9 @@ typedef _Sequence = ({
 ///
 /// - `box/`: the corner overlay; a still before START, then one image per
 ///   video frame while the clock runs and the last shot ticks;
-/// - `card/` (when the end card shows): nothing, then its fade, one image
-///   per frame, until it is fully there.
+/// - `card/` (when the end card shows): nothing, then its fade in, one
+///   image per frame, until it is fully there; and its fade out when the
+///   export runs that long (the whole video).
 ///
 /// Each image starts half a frame early: frame times arrive rounded, and a
 /// frame must never pick up the previous image. Raw RGBA with zlib, not
@@ -68,6 +69,7 @@ Future<List<OverlaySequence>> renderHudFrames({
   // A little room around the box for the clock's outline.
   final bleed = (0.2 * layout.unit).ceilToDouble();
   final cardFrom = string.endMs + HudMoment.endCardDelayMs;
+  final cardOut = cardFrom + HudMoment.endCardShowMs;
   final sequences = <_Sequence>[
     (
       folder: 'box',
@@ -88,6 +90,8 @@ Future<List<OverlaySequence>> renderHudFrames({
         times: [
           plan.startMs,
           ...frames(cardFrom, cardFrom + HudMoment.endCardFadeMs),
+          if (cardOut < plan.endMs)
+            ...frames(cardOut, cardOut + HudMoment.endCardFadeMs),
         ],
         paint: (canvas, m) =>
             paintEndCard(canvas, layout, string, labels, m.endCard),

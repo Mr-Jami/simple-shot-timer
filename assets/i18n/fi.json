@@ -243,6 +243,9 @@
   "part.semantics": "Osa {from}–{to}",
 
   "export.title": "Vie video",
+  "export.length": "Pituus",
+  "export.length.string": "Sarja",
+  "export.length.whole": "Koko video",
   "export.style": "Tekstit",
   "export.style.clock": "Kello",
   "export.style.splits": "Splitit",

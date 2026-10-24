@@ -410,5 +410,14 @@ void main() {
       final plan = ExportPlan(string, clip.info, fromMs: 9000, toMs: 13000);
       expect((plan.startMs, plan.endMs), (9000, 13000));
     });
+
+    test('the whole video: first frame to last, sized the same', () {
+      final around = ExportPlan(string, clip.info, fromMs: 0, toMs: 30000);
+      final whole = ExportPlan.whole(clip.info);
+      expect((around.startMs, around.endMs), (7000, 16000));
+      expect((whole.startMs, whole.endMs), (0, 30000));
+      expect((whole.frame, whole.shortSide, whole.fps, whole.bitrate),
+          (around.frame, around.shortSide, around.fps, around.bitrate));
+    });
   });
 }

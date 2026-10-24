@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../i18n/app_localizations.dart';
 import '../providers/clip_editor_provider.dart';
+import '../providers/settings_provider.dart';
 import '../providers/video_export_provider.dart';
 import '../providers/video_providers.dart';
 import '../services/video/clip_player.dart';
@@ -88,8 +90,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   /// While the Export sheet is open, the exported range plays in a loop.
   (int, int)? _loop;
 
-  /// A loop restart waiting for its seek.
-  var _restarting = false;
+  /// Where a loop restart waiting for its seek lands.
+  int? _restartAt;
 
   /// The editor's own snack bars: "Shot deleted · Undo" goes with the
   /// editor and never shows, or acts, on the tab below.
@@ -209,19 +211,24 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   /// Plays from [ms]: the timeline jumps there and follows from it. Plays
   /// once the seek has landed: at the end of the video, play() would start
-  /// over at 0 instead.
+  /// over at 0 instead. Another [ms] while that seek runs (the length
+  /// changed in the Export sheet) takes it over.
   Future<void> _playFrom(int ms) async {
-    if (_restarting) return;
-    _restarting = true;
+    if (_restartAt == ms) return;
+    final restarting = _restartAt != null;
+    _restartAt = ms;
     _timeline.centreOn(ms, animate: false);
     _reportedMs = ms;
     _sinceReport
       ..reset()
       ..start();
+    // The seeker lands on the newest position, then completes for both.
+    final landed = _player.settle(ms);
+    if (restarting) return;
     try {
-      await _player.settle(ms);
+      await landed;
     } finally {
-      _restarting = false;
+      _restartAt = null;
     }
     if (mounted) await _player.play();
   }
@@ -396,20 +403,38 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     if (start == null) return;
     final clip = widget.args.clip;
     final string = HudString(_editor.draft, startMs: start);
-    final plan = ExportPlan(
-      string,
-      clip.info,
-      fromMs: clip.fromMs,
-      toMs: clip.toMs,
-    );
+    ExportPlan planFor(bool whole) => whole
+        ? ExportPlan.whole(clip.info)
+        : ExportPlan(string, clip.info, fromMs: clip.fromMs, toMs: clip.toMs);
+    final wholeVideo = settingsProvider.select((s) => s.exportWholeVideo);
+
+    // The chosen export plays in a loop; of a long video's whole length only
+    // the analysed part, which is all the timeline has.
+    void loop(bool whole) {
+      final plan = planFor(whole);
+      final range = (
+        math.max(plan.startMs, clip.fromMs),
+        math.min(plan.endMs, clip.toMs),
+      );
+      _loop = range;
+      unawaited(_playFrom(range.$1));
+    }
+
     _editor.select(null);
     setState(() => _showHud = true);
-    _loop = (plan.startMs, plan.endMs);
-    unawaited(_playFrom(plan.startMs));
-    final target = await showExportSheet(context);
+    loop(ref.read(wholeVideo));
+    final length = ref.listenManual(wholeVideo, (_, whole) => loop(whole));
+    final around = planFor(false);
+    final target = await showExportSheet(
+      context,
+      stringMs: around.endMs - around.startMs,
+      wholeMs: clip.info.durationMs,
+    );
+    length.close();
     _loop = null;
     await _player.pause();
     if (target == null || !mounted) return;
+    final plan = planFor(ref.read(wholeVideo));
     await _editor.flush();
     if (!mounted) return;
     await showExportDialog(

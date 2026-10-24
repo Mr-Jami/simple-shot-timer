@@ -42,7 +42,8 @@ void main() {
         home: Builder(
           builder: (context) => Scaffold(
             body: TextButton(
-              onPressed: () async => chosen = await showExportSheet(context),
+              onPressed: () async => chosen = await showExportSheet(context,
+                  stringMs: 12400, wholeMs: 161000),
               child: const Text('open'),
             ),
           ),
@@ -60,6 +61,8 @@ void main() {
 
     final share = find.widgetWithText(OutlinedButton, 'Share');
     expect(tester.getRect(share).bottom, lessThanOrEqualTo(780));
+    expect(find.text('String · 0:12'), findsOneWidget);
+    await tester.tap(find.text('Whole video · 2:41'));
     await tester.tap(find.byTooltip('Bottom right'));
     await tester.tap(find.text('Full'));
     await tester.tap(find.byType(Switch));
@@ -68,6 +71,7 @@ void main() {
     expect(settings.hudCorner, HudCorner.bottomRight);
     expect(settings.hudStyle, HudStyle.full);
     expect(settings.hudEndCard, isFalse);
+    expect(settings.exportWholeVideo, isTrue);
 
     await tester.tap(share);
     await tester.pumpAndSettle();

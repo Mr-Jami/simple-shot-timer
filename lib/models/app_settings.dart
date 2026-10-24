@@ -32,6 +32,7 @@ class AppSettings {
     this.hudStyle = HudStyle.splits,
     this.hudCorner = HudCorner.topLeft,
     this.hudEndCard = true,
+    this.exportWholeVideo = false,
   });
 
   /// 0–100 user-facing sensitivity. Higher = more sensitive.
@@ -97,6 +98,10 @@ class AppSettings {
   final HudCorner hudCorner;
   final bool hudEndCard;
 
+  /// The export sheet's last length: the whole video, or the string with a
+  /// few seconds around it.
+  final bool exportWholeVideo;
+
   static const int historyCapMin = 50;
   static const int historyCapMax = 5000;
   static const int parRepeatMin = 1;
@@ -145,6 +150,7 @@ class AppSettings {
     HudStyle? hudStyle,
     HudCorner? hudCorner,
     bool? hudEndCard,
+    bool? exportWholeVideo,
   }) =>
       AppSettings(
         sensitivityPercent: sensitivityPercent ?? this.sensitivityPercent,
@@ -176,5 +182,6 @@ class AppSettings {
         hudStyle: hudStyle ?? this.hudStyle,
         hudCorner: hudCorner ?? this.hudCorner,
         hudEndCard: hudEndCard ?? this.hudEndCard,
+        exportWholeVideo: exportWholeVideo ?? this.exportWholeVideo,
       );
 }

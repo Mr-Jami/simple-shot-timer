@@ -73,10 +73,14 @@ class HudMoment {
   static const int endCardDelayMs = 500;
   static const int endCardFadeMs = 300;
 
+  /// From the end card's first frame to its fade out: past the end of a
+  /// string's export, so only the whole video shows it go.
+  static const int endCardShowMs = 4000;
+
   /// At clip time [ms]: the clock reads 0 before START, runs, and stops on
   /// the last shot; each shot pulses it for [tickMs] unless [pulse] is off
   /// (the preview under reduced motion); the end card fades in
-  /// [endCardDelayMs] after the last shot.
+  /// [endCardDelayMs] after the last shot and out [endCardShowMs] later.
   factory HudMoment.at(
     HudString s,
     int ms, {
@@ -97,7 +101,10 @@ class HudMoment {
     var card = 0.0;
     if (endCard && s.shotCount > 0) {
       final shown = ms - s.endMs - endCardDelayMs;
-      card = (shown / endCardFadeMs).clamp(0.0, 1.0).toDouble();
+      card = (math.min(shown, endCardShowMs + endCardFadeMs - shown) /
+              endCardFadeMs)
+          .clamp(0.0, 1.0)
+          .toDouble();
     }
     return HudMoment(
       clockMs: (ms.clamp(s.startMs, s.endMs) - s.startMs).toInt(),

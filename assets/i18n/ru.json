@@ -243,6 +243,9 @@
   "part.semantics": "Часть с {from} до {to}",
 
   "export.title": "Экспорт видео",
+  "export.length": "Длительность",
+  "export.length.string": "Серия",
+  "export.length.whole": "Всё видео",
   "export.style": "Наложение",
   "export.style.clock": "Часы",
   "export.style.splits": "Сплиты",

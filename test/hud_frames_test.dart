@@ -29,17 +29,13 @@ void main() {
     ),
     startMs: 10000,
   );
-  final plan = ExportPlan(
-    string,
-    const ClipInfo(
-        hasAudio: true,
-        durationMs: 30000,
-        width: 640,
-        height: 360,
-        frameRate: 10),
-    fromMs: 0,
-    toMs: 30000,
-  );
+  const info = ClipInfo(
+      hasAudio: true,
+      durationMs: 30000,
+      width: 640,
+      height: 360,
+      frameRate: 10);
+  final plan = ExportPlan(string, info, fromMs: 0, toMs: 30000);
   const labels = HudLabels(
     total: 'TOTAL',
     first: 'FIRST',
@@ -88,6 +84,35 @@ void main() {
       expect(box.x, greaterThan(0));
       expect(card.x * 640 + card.width / 2, closeTo(320, 1));
       expect(progress.last, 1);
+    });
+  });
+
+  testWidgets('the whole video also fades the card out, to nothing',
+      (tester) async {
+    await tester.runAsync(() async {
+      await initializeDateFormatting('en');
+      final dir = await Directory.systemTemp.createTemp('hud_frames');
+      addTearDown(() => dir.delete(recursive: true));
+      final [box, card] = await renderHudFrames(
+        dir: dir,
+        plan: ExportPlan.whole(info),
+        string: string,
+        options: const HudOptions(),
+        labels: labels,
+      );
+
+      // Clip time is output time: the still from 0, START at 10 s.
+      expect(box.timesUs[1], (10000 - 50) * 1000);
+      expect(box.timesUs, hasLength(1 + 18));
+      // Nothing, the fade in, then the fade out from 16.0 s to 16.3 s and
+      // one more.
+      expect(card.timesUs, hasLength(1 + 5 + 5));
+      expect(card.timesUs[6], (16000 - 50) * 1000);
+      final last = card.timesUs.length - 1;
+      final pixels = zlib.decode(File('${card.dir}/$last.z').readAsBytesSync());
+      expect(pixels.every((b) => b == 0), isTrue);
+      final shown = zlib.decode(File('${card.dir}/5.z').readAsBytesSync());
+      expect(shown.any((b) => b != 0), isTrue);
     });
   });
 }

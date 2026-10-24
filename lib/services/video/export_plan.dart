@@ -8,15 +8,31 @@ import 'dart:ui' show Size;
 import 'clip_audio_source.dart';
 import 'hud.dart';
 
-/// What an export covers and how big it is: the string from [leadInMs]
-/// before START to [tailMs] after the last shot (inside the analysed
-/// range), at most 1080 on its short side and 60 frames a second, H.264.
+/// What an export covers and how big it is: the string or the whole video,
+/// at most 1080 on its short side and 60 frames a second, H.264.
 class ExportPlan {
+  /// The string, from [leadInMs] before START to [tailMs] after the last
+  /// shot, inside [fromMs]..[toMs] (the analysed range).
   factory ExportPlan(
     HudString s,
     ClipInfo info, {
     required int fromMs,
     required int toMs,
+  }) =>
+      ExportPlan._sized(
+        info,
+        startMs: math.max(fromMs, s.startMs - leadInMs),
+        endMs: math.min(toMs, s.endMs + tailMs),
+      );
+
+  /// The whole video, also past the analysed part of a long one.
+  factory ExportPlan.whole(ClipInfo info) =>
+      ExportPlan._sized(info, startMs: 0, endMs: info.durationMs);
+
+  factory ExportPlan._sized(
+    ClipInfo info, {
+    required int startMs,
+    required int endMs,
   }) {
     final width = (info.width ?? 1920).toDouble();
     final height = (info.height ?? 1080).toDouble();
@@ -30,8 +46,8 @@ class ExportPlan {
     final bitrate =
         (12e6 * pixels * (fps > 40 ? 4 / 3 : 1)).clamp(2e6, 16e6).round();
     return ExportPlan._(
-      startMs: math.max(fromMs, s.startMs - leadInMs),
-      endMs: math.min(toMs, s.endMs + tailMs),
+      startMs: startMs,
+      endMs: endMs,
       frame: frame,
       shortSide: scale < 1 ? maxShortSide : null,
       fps: fps,

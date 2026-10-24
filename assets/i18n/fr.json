@@ -243,6 +243,9 @@
   "part.semantics": "Partie de {from} à {to}",
 
   "export.title": "Exporter la vidéo",
+  "export.length": "Durée",
+  "export.length.string": "Série",
+  "export.length.whole": "Vidéo entière",
   "export.style": "Incrustation",
   "export.style.clock": "Chrono",
   "export.style.splits": "Splits",
