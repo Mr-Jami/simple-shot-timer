@@ -2130,8 +2130,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_analyzer.dart": {
-    "mtime": 1792923151.6418314,
-    "ast_hash": "3cc534cbabaf0a865bcc2c08b4b78b02",
+    "mtime": 1792932319.11859,
+    "ast_hash": "4763245a3f8b110d03614a4d1576f807",
     "semantic_hash": ""
   },
   "lib/services/video/clip_audio_source.dart": {
@@ -2570,8 +2570,8 @@
     "semantic_hash": ""
   },
   "test/shot_filter_test.dart": {
-    "mtime": 1792923168.9720726,
-    "ast_hash": "4f7679676f04151e5165ae4db667152d",
+    "mtime": 1792932288.768487,
+    "ast_hash": "730ae42ef6df3cb73d988080980a3c75",
     "semantic_hash": ""
   },
   "test/timeline_minimap_test.dart": {

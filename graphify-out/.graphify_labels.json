@@ -184,7 +184,6 @@
   "182": "dart:math",
   "183": "video_export_dialog.dart",
   "184": "ClipFilesChannel",
-  "185": "main.dart",
   "186": "settings_provider.dart",
   "187": ".decodeLoop",
   "188": "custom_drills_provider.dart",
@@ -200,9 +199,6 @@
   "198": "custom_drills_provider.dart",
   "199": "isNoSpace",
   "200": "drill_tile.dart",
-  "201": "ClipExporter",
   "202": "ios_audio_session.dart",
-  "203": "settings_widgets.dart",
-  "204": "DatabaseService",
   "205": "drill_config_test.dart"
 }

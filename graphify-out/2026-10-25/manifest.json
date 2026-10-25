@@ -2130,8 +2130,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_analyzer.dart": {
-    "mtime": 1792892969.055343,
-    "ast_hash": "a0b51290a5840bf66a2330a7b9b6f712",
+    "mtime": 1792923151.6418314,
+    "ast_hash": "3cc534cbabaf0a865bcc2c08b4b78b02",
     "semantic_hash": ""
   },
   "lib/services/video/clip_audio_source.dart": {
@@ -2140,8 +2140,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_shot_finder.dart": {
-    "mtime": 1792752218.7882197,
-    "ast_hash": "028beb6c600db1ea8a6925c6f7d3d4e0",
+    "mtime": 1792923151.6418314,
+    "ast_hash": "3c668e61f5a2ab258351add1124e796f",
     "semantic_hash": ""
   },
   "lib/services/video/spectrogram.dart": {
@@ -2225,8 +2225,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1792895506.5202508,
-    "ast_hash": "4dff162ca6c8df43538aabb4aa046482",
+    "mtime": 1792923151.642922,
+    "ast_hash": "e0f22ff0f8116660dafbb2acccc12da4",
     "semantic_hash": ""
   },
   "lib/screens/video_flows.dart": {
@@ -2565,13 +2565,13 @@
     "semantic_hash": ""
   },
   "lib/services/video/shot_filter.dart": {
-    "mtime": 1792893008.0578892,
-    "ast_hash": "54883c9368cfd5cb851708b706e75db1",
+    "mtime": 1792923251.2339106,
+    "ast_hash": "149dc554f8aa376b79d05e436b5f13e2",
     "semantic_hash": ""
   },
   "test/shot_filter_test.dart": {
-    "mtime": 1792892873.988726,
-    "ast_hash": "ff1b41e6ae44fc23625a7a2f96e14329",
+    "mtime": 1792923168.9720726,
+    "ast_hash": "4f7679676f04151e5165ae4db667152d",
     "semantic_hash": ""
   },
   "test/timeline_minimap_test.dart": {
