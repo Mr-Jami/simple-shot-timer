@@ -77,6 +77,7 @@ Int16List _clip({
   List<double> ringing = const [],
   List<double> quiet = const [],
   List<double> echoes = const [],
+  List<double> rings = const [],
   bool beep = false,
 }) =>
     syntheticClip(
@@ -102,6 +103,9 @@ Int16List _clip({
         }
         for (final at in echoes) {
           _muffledShot(x, at, rand, gain: 0.6, riseSeconds: 0.002);
+        }
+        for (final at in rings) {
+          addBeep(x, at, 300, frequencyHz: 1500, gain: 0.5);
         }
       },
     );
@@ -239,6 +243,23 @@ void main() {
     final hits = findShots(s).shots;
     expect(hits, hasLength(2));
     expect(keepShotLike(s, hits), hits);
+  });
+
+  test('a ring after a hit the filter drops is still not START', () {
+    // Something hit between the beep and the first shot, ringing after it.
+    // The ring is never START, even though the hit is not a shot.
+    final normal = analyzePcm(
+      _clip(
+        beep: true,
+        handling: [(2.0, 3000.0), ..._handling],
+        rings: [2.05],
+      ),
+      clipSampleRate,
+    );
+    expect([for (final t in normal.tones) t.onsetSeconds].take(2),
+        [closeTo(1.0, 0.01), closeTo(2.05, 0.01)]);
+    expect(normal.startSeconds, closeTo(1.0, 0.01));
+    expect(normal.stringShotSeconds, _near(_shots));
   });
 
   test('Normal and Fewer drop the handling, More keeps it', () {
