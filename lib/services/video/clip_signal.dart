@@ -2,13 +2,15 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'spectrogram.dart';
 
 // What the editor reads from a clip's spectrogram besides the analyzer's
-// verdict: a loudness envelope for the minimap and onsets to snap a moved
-// shot to. Times are frames here; AnalyzedClip turns them into clip time.
+// verdict: the loudness its timeline and minimap draw and onsets to snap a
+// moved shot to. Times are frames here; AnalyzedClip turns them into clip
+// time.
 
 /// Mean level of every frame, on the spectrogram's byte scale.
 Float32List frameLevels(Spectrogram s) {
@@ -24,6 +26,45 @@ Float32List frameLevels(Spectrogram s) {
     levels[m] = sum / bins;
   }
   return levels;
+}
+
+/// [levels] as loudness from 0 to 1, the way a voice recorder draws sound:
+/// the amplitude against the clip's loud end, its 40th loudest frame (about
+/// a tenth of a second), so a few clipped frames don't flatten the rest and
+/// a long clip draws as tall as a short one. 45 units of the byte scale are
+/// a factor of ten, so shots stand tall and room noise stays near 0.
+Float32List loudness(Float32List levels) {
+  final out = Float32List(levels.length);
+  if (levels.isEmpty) return out;
+  final sorted = Float32List.fromList(levels)..sort();
+  final loud = sorted[math.max(0, sorted.length - 40)];
+  for (var m = 0; m < levels.length; m++) {
+    out[m] = math.min(1, math.pow(10, (levels[m] - loud) / 45).toDouble());
+  }
+  return out;
+}
+
+/// The loudest of [values] in each of [columns] columns, the first starting
+/// at frame [first] and each [perColumn] frames wide (both may be
+/// fractions): a column takes every frame it touches, so a one-frame shot
+/// shows at any zoom. 0 where there are no frames.
+Float32List columnPeaks(
+  Float32List values, {
+  required double first,
+  required double perColumn,
+  required int columns,
+}) {
+  final out = Float32List(math.max(0, columns));
+  for (var c = 0; c < out.length; c++) {
+    final from = (first + c * perColumn).floor();
+    final to = math.max(from + 1, (first + (c + 1) * perColumn).ceil());
+    var best = 0.0;
+    for (var m = math.max(0, from); m < math.min(to, values.length); m++) {
+      if (values[m] > best) best = values[m];
+    }
+    out[c] = best;
+  }
+  return out;
 }
 
 /// [levels] squeezed into [buckets] by keeping each bucket's loudest frame,

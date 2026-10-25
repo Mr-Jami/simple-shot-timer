@@ -2,9 +2,12 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:math' as math;
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
-import 'spectrogram_tiles.dart';
+import '../../services/video/clip_signal.dart';
 import 'timeline_controller.dart';
 
 enum TimelineMarkerKind { start, shot }
@@ -36,8 +39,9 @@ class TimelineMarker {
   final bool selected;
 }
 
-/// The editor's timeline: shot badges on top, the spectrogram in the
-/// middle, splits underneath, and a fixed playhead the clip scrolls under.
+/// The editor's timeline: shot badges on top, the clip's loudness as a
+/// waveform in the middle (shots are the tall spikes), splits underneath,
+/// and a fixed playhead the clip scrolls under.
 /// One finger drags it 1:1, two fingers zoom around themselves, a flick
 /// flings it, and a tap picks the nearest marker. While [carryingShot] (a
 /// selected shot rides under the playhead) it never flings and zooms around
@@ -46,8 +50,9 @@ class ShotTimeline extends StatefulWidget {
   const ShotTimeline({
     super.key,
     required this.controller,
-    required this.tiles,
+    required this.loudness,
     required this.originMs,
+    required this.frameMs,
     required this.markers,
     required this.startLabel,
     required this.onTouch,
@@ -64,10 +69,13 @@ class ShotTimeline extends StatefulWidget {
   static const double _tapSlop = 24;
 
   final TimelineController controller;
-  final SpectrogramTiles tiles;
 
-  /// Clip time of the spectrogram's first frame.
+  /// Loudness of every spectrogram frame, 0 to 1 ([loudness]).
+  final Float32List loudness;
+
+  /// Clip time of the first frame, and how long one frame lasts.
   final int originMs;
+  final double frameMs;
   final List<TimelineMarker> markers;
 
   /// The START marker's badge, in the app's language.
@@ -153,8 +161,9 @@ class _ShotTimelineState extends State<ShotTimeline> {
             size: Size(width, ShotTimeline.height),
             painter: _TimelinePainter(
               controller: controller,
-              tiles: widget.tiles,
+              loudness: widget.loudness,
               originMs: widget.originMs,
+              frameMs: widget.frameMs,
               markers: widget.markers,
               startLabel: widget.startLabel,
               ink: scheme.onSurface,
@@ -190,19 +199,21 @@ class _ShotTimelineState extends State<ShotTimeline> {
 class _TimelinePainter extends CustomPainter {
   _TimelinePainter({
     required this.controller,
-    required this.tiles,
+    required this.loudness,
     required this.originMs,
+    required this.frameMs,
     required this.markers,
     required this.startLabel,
     required this.ink,
     required this.paper,
     required this.dim,
     required this.textStyle,
-  }) : super(repaint: Listenable.merge([controller, tiles]));
+  }) : super(repaint: controller);
 
   final TimelineController controller;
-  final SpectrogramTiles tiles;
+  final Float32List loudness;
   final int originMs;
+  final double frameMs;
   final List<TimelineMarker> markers;
   final String startLabel;
   final Color ink;
@@ -221,7 +232,7 @@ class _TimelinePainter extends CustomPainter {
     final band = Rect.fromLTRB(0, top, size.width, bottom);
 
     canvas.drawRect(Offset.zero & size, Paint()..color = paper);
-    _paintSpectrogram(canvas, band, xOf);
+    _paintWaveform(canvas, band, xOf);
 
     // Outside the string (before START, after the last shot) is dimmed.
     final active = [
@@ -230,7 +241,7 @@ class _TimelinePainter extends CustomPainter {
     ]..sort();
     final start =
         markers.where((m) => m.kind == TimelineMarkerKind.start).firstOrNull;
-    final shade = Paint()..color = paper.withValues(alpha: 0.55);
+    final shade = Paint()..color = paper.withValues(alpha: 0.7);
     if (start != null) {
       canvas.drawRect(Rect.fromLTRB(0, top, xOf(start.ms), bottom), shade);
       final end = active.isEmpty ? start.ms : active.last;
@@ -259,50 +270,51 @@ class _TimelinePainter extends CustomPainter {
     );
   }
 
-  void _paintSpectrogram(Canvas canvas, Rect band, double Function(num) xOf) {
-    final s = tiles.spectrogram;
-    final fps = s.framesPerSecond;
-    if (fps <= 0 || s.frameCount == 0) return;
-    double msOfFrame(num frame) => originMs + frame / fps * 1000;
-    final firstVisible = ((controller.displayMs -
-                band.width / 2 / controller.pxPerSecond * 1000 -
-                originMs) /
-            1000 *
-            fps)
-        .floor();
-    final lastVisible =
-        firstVisible + (band.width / controller.pxPerSecond * fps).ceil() + 1;
-    canvas.save();
-    canvas.clipRect(band);
-    final paint = Paint()..filterQuality = FilterQuality.medium;
-    final firstTile =
-        (firstVisible ~/ tiles.tileFrames).clamp(0, tiles.tileCount);
-    final lastTile =
-        (lastVisible ~/ tiles.tileFrames).clamp(0, tiles.tileCount - 1);
-    for (var i = firstTile; i <= lastTile; i++) {
-      final image = tiles.tile(i);
-      if (image == null) continue;
-      final from = i * tiles.tileFrames;
-      canvas.drawImageRect(
-        image,
-        Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()),
-        Rect.fromLTRB(xOf(msOfFrame(from)), band.top,
-            xOf(msOfFrame(from + image.width)), band.bottom),
-        paint,
-      );
+  /// The loudness mirrored around the band's middle, the loudest frame per
+  /// pixel column, at least a hairline where there are frames.
+  void _paintWaveform(Canvas canvas, Rect band, double Function(num) xOf) {
+    if (frameMs <= 0 || loudness.isEmpty) return;
+    final columns = band.width.ceil();
+    final leftMs =
+        controller.displayMs - band.width / 2 / controller.pxPerSecond * 1000;
+    final peaks = columnPeaks(
+      loudness,
+      first: (leftMs - originMs) / frameMs,
+      perColumn: 1000 / controller.pxPerSecond / frameMs,
+      columns: columns,
+    );
+    final mid = band.center.dy;
+    final reach = band.height / 2 - 2;
+    double half(int c) => math.max(0.5, peaks[c] * reach);
+    final wave = Path()..moveTo(0, mid - half(0));
+    for (var c = 0; c < columns; c++) {
+      wave.lineTo(c + 0.5, mid - half(c));
     }
+    for (var c = columns - 1; c >= 0; c--) {
+      wave.lineTo(c + 0.5, mid + half(c));
+    }
+    wave.close();
+    canvas.save();
+    canvas.clipRect(Rect.fromLTRB(
+      xOf(originMs),
+      band.top,
+      xOf(originMs + loudness.length * frameMs),
+      band.bottom,
+    ));
+    canvas.drawPath(wave, Paint()..color = ink);
     canvas.restore();
   }
 
   void _paintMarker(
       Canvas canvas, TimelineMarker m, double x, double top, double bottom) {
     final colour = m.active || m.kind == TimelineMarkerKind.start ? ink : dim;
+    // Light, so the shot's spike under it still reads.
     canvas.drawLine(
       Offset(x, top),
       Offset(x, bottom),
       Paint()
-        ..color = colour.withValues(alpha: m.selected ? 1 : 0.7)
-        ..strokeWidth = m.selected ? 2.5 : 1.25,
+        ..color = colour.withValues(alpha: m.selected ? 1 : 0.4)
+        ..strokeWidth = m.selected ? 2.5 : 1,
     );
     const r = 11.0;
     final c = Offset(x, ShotTimeline.badgeHeight / 2);
@@ -375,7 +387,8 @@ class _TimelinePainter extends CustomPainter {
   bool shouldRepaint(_TimelinePainter old) =>
       old.markers != markers ||
       old.startLabel != startLabel ||
-      old.tiles != tiles ||
+      old.loudness != loudness ||
+      old.frameMs != frameMs ||
       old.ink != ink ||
       old.paper != paper ||
       old.originMs != originMs;

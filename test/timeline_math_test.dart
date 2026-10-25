@@ -70,6 +70,53 @@ void main() {
       expect(clip.snapToOnset(1500), isNull);
     });
 
+    test('loudness: amplitude against the loud end, clipped frames aside',
+        () {
+      // 45 units are a factor of ten; the 40th loudest frame is the top,
+      // so a few clipped frames don't make the rest look quiet.
+      final levels = Float32List(1000)..fillRange(0, 1000, 150);
+      levels[3] = 105;
+      levels.fillRange(10, 49, 255);
+      final out = loudness(levels);
+      expect(out[0], 1);
+      expect(out[3], closeTo(0.1, 1e-6));
+      expect(out[10], 1);
+      expect(loudness(Float32List(0)), isEmpty);
+    });
+
+    test('loudness: a long clip draws as tall as a short one', () {
+      // The same 0.4 s string (150 frames at 150, its loud end at 200) in
+      // 10 s and in 3 minutes of quiet.
+      Float32List clip(int frames) {
+        final levels = Float32List(frames)..fillRange(0, frames, 60);
+        levels.fillRange(100, 250, 150);
+        levels.fillRange(100, 140, 200);
+        return levels;
+      }
+
+      expect(loudness(clip(3750))[200],
+          closeTo(loudness(clip(67500))[200], 1e-6));
+      expect(loudness(clip(67500))[200], closeTo(0.077, 0.001));
+    });
+
+    test('column peaks keep a one-frame shot at every zoom', () {
+      final values = Float32List(1000)..[617] = 1;
+      // Zoomed out: 7.5 frames a column, the shot in column 82.
+      final wide = columnPeaks(values, first: 0, perColumn: 7.5, columns: 133);
+      expect(wide[82], 1);
+      expect(wide.where((v) => v > 0), hasLength(1));
+      // Zoomed in: 5 columns a frame, all five show it.
+      final narrow =
+          columnPeaks(values, first: 616, perColumn: 0.2, columns: 15);
+      expect([for (final v in narrow) v], [
+        for (var c = 0; c < 15; c++) c >= 5 && c < 10 ? 1.0 : 0.0,
+      ]);
+      // Before the first frame and past the last: nothing.
+      expect(columnPeaks(values, first: -20, perColumn: 1, columns: 10),
+          everyElement(0));
+      expect(columnPeaks(values, first: 995, perColumn: 1, columns: 10)[8], 0);
+    });
+
     test('keeps a short loud frame in the minimap', () {
       final levels = Float32List(1000)..[617] = 200;
       final buckets = bucketMax(levels, 50);

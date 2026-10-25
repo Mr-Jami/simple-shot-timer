@@ -6,17 +6,15 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:simple_shot_timer/services/video/spectrogram.dart';
 import 'package:simple_shot_timer/widgets/repeat_button.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
-import 'package:simple_shot_timer/widgets/timeline/spectrogram_tiles.dart';
 import 'package:simple_shot_timer/widgets/timeline/timeline_controller.dart';
 
-import 'clip_fixtures.dart';
-
 void main() {
-  final spectrogram =
-      Spectrogram.compute(Int16List(clipSampleRate * 10), clipSampleRate);
+  // 10 s of frames, quiet but for one loud frame at 6 s.
+  const frameMs = 1000 / 375;
+  final quiet = Float32List(3750);
+  final spike = Float32List(3750)..[(6000 / frameMs).floor()] = 1;
 
   late TimelineController controller;
   late List<TimelineMarker> tapped;
@@ -27,6 +25,8 @@ void main() {
     bool fling = true,
     List<TimelineMarker> markers = const [],
     TargetPlatform platform = TargetPlatform.android,
+    Float32List? loudness,
+    int originMs = 0,
   }) async {
     tapped = [];
     settled = [];
@@ -38,12 +38,6 @@ void main() {
       onSettle: settled.add,
     );
     addTearDown(controller.dispose);
-    final tiles = SpectrogramTiles(
-      spectrogram,
-      quiet: Colors.white,
-      loud: Colors.black,
-    );
-    addTearDown(tiles.dispose);
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
         body: Center(
@@ -51,8 +45,9 @@ void main() {
             width: 400,
             child: ShotTimeline(
               controller: controller,
-              tiles: tiles,
-              originMs: 0,
+              loudness: loudness ?? quiet,
+              originMs: originMs,
+              frameMs: frameMs,
               markers: markers,
               startLabel: 'START',
               carryingShot: !fling,
@@ -70,6 +65,45 @@ void main() {
 
   Offset centre(WidgetTester tester) =>
       tester.getCenter(find.byType(ShotTimeline));
+
+  testWidgets("a long clip's part: its frames start at its own time",
+      (tester) async {
+    // Frames from 2 s on: the loud frame 1500 is at 6 s in the clip.
+    final late = Float32List(3750)..[(4000 / frameMs).floor()] = 1;
+    await pumpTimeline(tester, loudness: late, originMs: 2000);
+    controller.centreOn(6000, animate: false);
+    await tester.pump();
+    expect(
+      find.descendant(
+          of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
+      paints
+        ..clipRect(rect: const Rect.fromLTRB(-400, 28, 1100, 112))
+        ..path(
+          includes: const [Offset(200, 34), Offset(200, 106)],
+          excludes: const [Offset(300, 66)],
+        ),
+    );
+  });
+
+  testWidgets('draws the loudness: a tall spike at the shot, flat in quiet',
+      (tester) async {
+    await pumpTimeline(tester, loudness: spike);
+    controller.centreOn(6000, animate: false);
+    await tester.pump();
+    // The band is 84 px from y 28: middle 70, 40 px either way. The spike
+    // sits under the playhead (x 200); 100 px on is quiet.
+    expect(
+      find.descendant(
+          of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
+      paints
+        // Only where the clip has frames: 0 to 10 s.
+        ..clipRect(rect: const Rect.fromLTRB(-700, 28, 800, 112))
+        ..path(
+          includes: const [Offset(200, 34), Offset(200, 106)],
+          excludes: const [Offset(300, 66), Offset(300, 74)],
+        ),
+    );
+  });
 
   testWidgets('a drag moves the clip 1:1 under the finger', (tester) async {
     await pumpTimeline(tester, fling: false);

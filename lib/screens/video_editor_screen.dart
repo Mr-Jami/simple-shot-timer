@@ -32,7 +32,6 @@ import '../widgets/editor/sensitivity_selector.dart';
 import '../widgets/shot_badge.dart';
 import '../widgets/string_summary_grid.dart';
 import '../widgets/timeline/shot_timeline.dart';
-import '../widgets/timeline/spectrogram_tiles.dart';
 import '../widgets/timeline/timeline_controller.dart';
 import '../widgets/timeline/timeline_minimap.dart';
 import '../widgets/video/hud_overlay.dart';
@@ -40,7 +39,7 @@ import 'video_export_dialog.dart';
 import 'video_export_sheet.dart';
 
 /// The video editor: the clip pinned on top, the time readout and
-/// transport, the timeline (the spectrogram scrolling under a fixed
+/// transport, the timeline (the clip's waveform scrolling under a fixed
 /// playhead, shot badges and splits), the minimap and the marker panel;
 /// sensitivity, stats, shots and notes below.
 ///
@@ -70,11 +69,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     onUserMove: _onUserMove,
     onSettle: _onSettle,
   );
-  late SpectrogramTiles _tiles;
-  var _tilesReady = false;
-  Brightness? _tilesTheme;
-  late final Float32List _levels =
-      frameLevels(widget.args.clip.analysis.spectrogram);
+  late final Float32List _loudness =
+      loudness(frameLevels(widget.args.clip.analysis.spectrogram));
   late final _provider = clipEditorProvider(widget.args);
   late final TextEditingController _label;
   late final TextEditingController _notes;
@@ -135,28 +131,10 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final scheme = Theme.of(context).colorScheme;
-    // Built once per theme: quiet in the paper colour, loud in the ink.
-    if (!_tilesReady || _tilesTheme != scheme.brightness) {
-      if (_tilesReady) _tiles.dispose();
-      _tiles = SpectrogramTiles(
-        widget.args.clip.analysis.spectrogram,
-        quiet: scheme.surface,
-        loud: scheme.onSurface,
-      );
-      _tilesReady = true;
-      _tilesTheme = scheme.brightness;
-    }
-  }
-
-  @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _playback.dispose();
     _timeline.dispose();
-    if (_tilesReady) _tiles.dispose();
     _player.dispose();
     _label.dispose();
     _notes.dispose();
@@ -517,7 +495,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   Widget build(BuildContext context) {
     final state = ref.watch(_provider);
     final scheme = Theme.of(context).colorScheme;
-    final spectrogram = widget.args.clip.analysis.spectrogram;
+    final fps = widget.args.clip.analysis.spectrogram.framesPerSecond;
+    final frameMs = fps > 0 ? 1000 / fps : 0.0;
     ref.listen(_provider.select((s) => s.doc), (_, doc) {
       // After any later edit, Undo would revert that, not the delete.
       if (_undoable != null && !identical(doc, _undoable)) {
@@ -567,8 +546,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                 ),
                 ShotTimeline(
                   controller: _timeline,
-                  tiles: _tiles,
+                  loudness: _loudness,
                   originMs: widget.args.clip.audioOriginMs,
+                  frameMs: frameMs,
                   markers: _timelineMarkers(state),
                   carryingShot: state.selectedId != null,
                   onTouch: _onTouch,
@@ -581,11 +561,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
                   padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
                   child: TimelineMinimap(
                     controller: _timeline,
-                    levels: _levels,
+                    loudness: _loudness,
                     originMs: widget.args.clip.audioOriginMs,
-                    frameMs: spectrogram.framesPerSecond > 0
-                        ? 1000 / spectrogram.framesPerSecond
-                        : 0,
+                    frameMs: frameMs,
                     markers: _markerTimes(state.doc),
                     onJump: (ms) {
                       _editor.select(null);

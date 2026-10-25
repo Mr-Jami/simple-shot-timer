@@ -10,13 +10,14 @@ import '../../services/video/clip_signal.dart';
 import 'timeline_controller.dart';
 
 /// The whole timeline (the clip, or the analysed part of a long one) at a
-/// glance: its loudness (shots stand out), a tick per marker, and the
-/// stretch the timeline shows. A tap jumps there; a drag along it scrubs.
+/// glance: its loudness as the timeline draws it (shots stand out), a tick
+/// per marker, and the stretch the timeline shows. A tap jumps there; a
+/// drag along it scrubs.
 class TimelineMinimap extends StatelessWidget {
   const TimelineMinimap({
     super.key,
     required this.controller,
-    required this.levels,
+    required this.loudness,
     required this.originMs,
     required this.frameMs,
     required this.markers,
@@ -29,8 +30,8 @@ class TimelineMinimap extends StatelessWidget {
 
   final TimelineController controller;
 
-  /// Loudness of every spectrogram frame.
-  final Float32List levels;
+  /// Loudness of every spectrogram frame, 0 to 1 ([loudness]).
+  final Float32List loudness;
 
   /// Clip time of the first frame, and how long one frame lasts.
   final int originMs;
@@ -64,10 +65,10 @@ class TimelineMinimap extends StatelessWidget {
           size: Size(width, height),
           painter: _MinimapPainter(
             controller: controller,
-            buckets: bucketMax(levels, width.floor().clamp(1, 4096)),
+            buckets: bucketMax(loudness, width.floor().clamp(1, 4096)),
             originMs: originMs,
             frameMs: frameMs,
-            frames: levels.length,
+            frames: loudness.length,
             markers: markers,
             ink: scheme.onSurface,
             dim: scheme.onSurfaceVariant,
@@ -115,19 +116,12 @@ class _MinimapPainter extends CustomPainter {
 
     // Loudness: the buckets cover the frames, which start at originMs.
     if (buckets.isNotEmpty) {
-      var low = buckets.first;
-      var high = buckets.first;
-      for (final b in buckets) {
-        if (b < low) low = b;
-        if (b > high) high = b;
-      }
-      final span = (high - low) == 0 ? 1 : high - low;
       final x0 = xOf(originMs);
       final x1 = xOf(originMs + frames * frameMs);
       final step = (x1 - x0) / buckets.length;
       final bar = Paint()..color = dim.withValues(alpha: 0.6);
       for (var i = 0; i < buckets.length; i++) {
-        final h = (buckets[i] - low) / span * (size.height - 6);
+        final h = buckets[i] * (size.height - 6);
         canvas.drawRect(
           Rect.fromLTWH(
               x0 + i * step, size.height - 3 - h, step.clamp(1, 4), h),
