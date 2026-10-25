@@ -1140,7 +1140,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "integration_test_clip_analysis_test",
-      "community": 93,
+      "community": 137,
       "norm_label": "clip_analysis_test.dart"
     },
     {
@@ -1150,7 +1150,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "integration_test_clip_analysis_test_binding",
-      "community": 93,
+      "community": 137,
       "norm_label": "binding"
     },
     {
@@ -1160,7 +1160,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "integration_test_clip_analysis_test_main",
-      "community": 93,
+      "community": 137,
       "norm_label": "main"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 138,
+      "community": 195,
       "norm_label": "dart:io"
     },
     {
@@ -1200,7 +1200,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_integration_test_integration_test_dart",
-      "community": 93,
+      "community": 137,
       "norm_label": "package:integration_test/integration_test.dart"
     },
     {
@@ -1210,7 +1210,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_provider_path_provider_dart",
-      "community": 93,
+      "community": 137,
       "norm_label": "package:path_provider/path_provider.dart"
     },
     {
@@ -1230,7 +1230,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_audio_source_dart",
-      "community": 93,
+      "community": 137,
       "norm_label": "package:simple_shot_timer/services/video/clip_audio_source.dart"
     },
     {
@@ -1642,7 +1642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app",
-      "community": 182,
+      "community": 52,
       "norm_label": "app.dart"
     },
     {
@@ -1652,7 +1652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 182,
+      "community": 54,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -1672,7 +1672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_build",
-      "community": 182,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -1712,7 +1712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "i18n_app_localizations_dart",
-      "community": 80,
+      "community": 52,
       "norm_label": "../../i18n/app_localizations.dart"
     },
     {
@@ -1722,7 +1722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_enums_dart",
-      "community": 182,
+      "community": 52,
       "norm_label": "../../models/enums.dart"
     },
     {
@@ -1732,7 +1732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 182,
+      "community": 52,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -1742,7 +1742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "screens_main_shell_dart",
-      "community": 182,
+      "community": 52,
       "norm_label": "screens/main_shell.dart"
     },
     {
@@ -1752,7 +1752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "theme_app_theme_dart",
-      "community": 182,
+      "community": 52,
       "norm_label": "theme/app_theme.dart"
     },
     {
@@ -2032,7 +2032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_convert",
-      "community": 86,
+      "community": 203,
       "norm_label": "dart:convert"
     },
     {
@@ -2172,7 +2172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_export_service_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../services/export_service.dart"
     },
     {
@@ -2486,6 +2486,16 @@
       "norm_label": "hudendcard"
     },
     {
+      "label": "exportWholeVideo",
+      "file_type": "code",
+      "source_file": "lib/models/app_settings.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_models_app_settings_exportwholevideo",
+      "community": 2,
+      "norm_label": "exportwholevideo"
+    },
+    {
       "label": "historyCapMin",
       "file_type": "code",
       "source_file": "lib/models/app_settings.dart",
@@ -2742,7 +2752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_custom_drill_customdrill",
-      "community": 17,
+      "community": 182,
       "norm_label": "customdrill"
     },
     {
@@ -3452,7 +3462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_math",
-      "community": 22,
+      "community": 93,
       "norm_label": "dart:math"
     },
     {
@@ -4362,7 +4372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const",
-      "community": 182,
+      "community": 52,
       "norm_label": "static const"
     },
     {
@@ -4752,7 +4762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 52,
+      "community": 3,
       "norm_label": "../../models/timer_string.dart"
     },
     {
@@ -4992,7 +5002,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_custom_drill_dart",
-      "community": 158,
+      "community": 182,
       "norm_label": "../models/custom_drill.dart"
     },
     {
@@ -5002,7 +5012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_drill_config_dart",
-      "community": 158,
+      "community": 186,
       "norm_label": "../models/drill_config.dart"
     },
     {
@@ -5292,7 +5302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_settings_provider_settingsprovider",
-      "community": 182,
+      "community": 54,
       "norm_label": "settingsprovider"
     },
     {
@@ -5652,7 +5662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timerprovider",
-      "community": 26,
+      "community": 54,
       "norm_label": "timerprovider"
     },
     {
@@ -6012,7 +6022,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_export_provider_exporttarget",
-      "community": 182,
+      "community": 52,
       "norm_label": "exporttarget"
     },
     {
@@ -6452,7 +6462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_hud_dart",
-      "community": 172,
+      "community": 150,
       "norm_label": "../../services/video/hud.dart"
     },
     {
@@ -6562,7 +6572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_videoimportcontroller",
-      "community": 198,
+      "community": 177,
       "norm_label": "videoimportcontroller"
     },
     {
@@ -6962,7 +6972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_analyse",
-      "community": 198,
+      "community": 177,
       "norm_label": "_analyse"
     },
     {
@@ -7002,7 +7012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_check_dart",
-      "community": 126,
+      "community": 196,
       "norm_label": "../services/video/clip_check.dart"
     },
     {
@@ -7012,7 +7022,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_picker_dart",
-      "community": 126,
+      "community": 196,
       "norm_label": "../services/video/clip_picker.dart"
     },
     {
@@ -7042,7 +7052,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_clipaudiosourceprovider",
-      "community": 198,
+      "community": 177,
       "norm_label": "clipaudiosourceprovider"
     },
     {
@@ -7052,7 +7062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_clippickerprovider",
-      "community": 198,
+      "community": 177,
       "norm_label": "clippickerprovider"
     },
     {
@@ -7212,7 +7222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstatefulwidget",
-      "community": 183,
+      "community": 18,
       "norm_label": "consumerstatefulwidget"
     },
     {
@@ -7232,7 +7242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstate",
-      "community": 183,
+      "community": 18,
       "norm_label": "consumerstate"
     },
     {
@@ -7362,7 +7372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "voidcallback",
-      "community": 158,
+      "community": 159,
       "norm_label": "voidcallback"
     },
     {
@@ -7452,7 +7462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_apply",
-      "community": 182,
+      "community": 54,
       "norm_label": "_apply"
     },
     {
@@ -7602,7 +7612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_applydrill",
-      "community": 182,
+      "community": 54,
       "norm_label": "applydrill"
     },
     {
@@ -7822,7 +7832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -7852,7 +7862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_detectionsettingsscreen",
-      "community": 175,
+      "community": 54,
       "norm_label": "detectionsettingsscreen"
     },
     {
@@ -7862,7 +7872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_build",
-      "community": 196,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -7872,7 +7882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "materialpageroute",
-      "community": 196,
+      "community": 54,
       "norm_label": "materialpageroute"
     },
     {
@@ -7922,7 +7932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen",
-      "community": 80,
+      "community": 175,
       "norm_label": "history_screen.dart"
     },
     {
@@ -7942,7 +7952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen_build",
-      "community": 196,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -7952,7 +7962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_history_provider_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../providers/history_provider.dart"
     },
     {
@@ -7962,7 +7972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_string_tile_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../widgets/string_tile.dart"
     },
     {
@@ -7972,7 +7982,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "review_screen_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "review_screen.dart"
     },
     {
@@ -7992,7 +8002,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_homescreen",
-      "community": 26,
+      "community": 54,
       "norm_label": "homescreen"
     },
     {
@@ -8002,7 +8012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_bigbutton",
-      "community": 26,
+      "community": 54,
       "norm_label": "_bigbutton"
     },
     {
@@ -8112,7 +8122,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_finishedview",
-      "community": 26,
+      "community": 54,
       "norm_label": "_finishedview"
     },
     {
@@ -8192,7 +8202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widget",
-      "community": 159,
+      "community": 13,
       "norm_label": "widget"
     },
     {
@@ -8352,7 +8362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_intl_intl_dart",
-      "community": 52,
+      "community": 138,
       "norm_label": "package:intl/intl.dart"
     },
     {
@@ -8372,7 +8382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_motion_dart",
-      "community": 151,
+      "community": 104,
       "norm_label": "../utils/motion.dart"
     },
     {
@@ -8412,7 +8422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_pill_button_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../widgets/pill_button.dart"
     },
     {
@@ -8472,7 +8482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_select",
-      "community": 26,
+      "community": 54,
       "norm_label": "_select"
     },
     {
@@ -8482,7 +8492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_build",
-      "community": 26,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -8812,7 +8822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 3,
+      "community": 14,
       "norm_label": "_percyclesummary"
     },
     {
@@ -9092,7 +9102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_flows_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "video_flows.dart"
     },
     {
@@ -9162,7 +9172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_settings_screen_build",
-      "community": 196,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -9212,7 +9222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_providers_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../providers/video_providers.dart"
     },
     {
@@ -9262,7 +9272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_videoeditorscreen",
-      "community": 183,
+      "community": 18,
       "norm_label": "videoeditorscreen"
     },
     {
@@ -9294,6 +9304,16 @@
       "id": "widgetsbindingobserver",
       "community": 178,
       "norm_label": "widgetsbindingobserver"
+    },
+    {
+      "label": "wholeVideo",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "wholevideo",
+      "community": 178,
+      "norm_label": "wholevideo"
     },
     {
       "label": "_VideoPane",
@@ -9496,14 +9516,14 @@
       "norm_label": "_showhud"
     },
     {
-      "label": "_restarting",
+      "label": "_restartAt",
       "file_type": "code",
       "source_file": "lib/screens/video_editor_screen.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_screens_video_editor_screen_restarting",
+      "id": "lib_screens_video_editor_screen_restartat",
       "community": 90,
-      "norm_label": "_restarting"
+      "norm_label": "_restartat"
     },
     {
       "label": "_messenger",
@@ -9952,7 +9972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_export_provider_dart",
-      "community": 182,
+      "community": 52,
       "norm_label": "../providers/video_export_provider.dart"
     },
     {
@@ -10072,7 +10092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_overlay_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../widgets/video/hud_overlay.dart"
     },
     {
@@ -10162,7 +10182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_var",
-      "community": 183,
+      "community": 156,
       "norm_label": "static var"
     },
     {
@@ -10252,7 +10272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet",
-      "community": 182,
+      "community": 52,
       "norm_label": "video_export_sheet.dart"
     },
     {
@@ -10262,8 +10282,28 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_exportsheet",
-      "community": 182,
+      "community": 54,
       "norm_label": "_exportsheet"
+    },
+    {
+      "label": "stringMs",
+      "file_type": "code",
+      "source_file": "lib/screens/video_export_sheet.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_video_export_sheet_stringms",
+      "community": 52,
+      "norm_label": "stringms"
+    },
+    {
+      "label": "wholeMs",
+      "file_type": "code",
+      "source_file": "lib/screens/video_export_sheet.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_video_export_sheet_wholems",
+      "community": 52,
+      "norm_label": "wholems"
     },
     {
       "label": "_corners",
@@ -10272,7 +10312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_corners",
-      "community": 182,
+      "community": 52,
       "norm_label": "_corners"
     },
     {
@@ -10282,7 +10322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_showexportsheet",
-      "community": 182,
+      "community": 52,
       "norm_label": "showexportsheet"
     },
     {
@@ -10292,7 +10332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_build",
-      "community": 182,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -10302,7 +10342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows",
-      "community": 126,
+      "community": 196,
       "norm_label": "video_flows.dart"
     },
     {
@@ -10312,7 +10352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_startvideoimport",
-      "community": 126,
+      "community": 196,
       "norm_label": "startvideoimport"
     },
     {
@@ -10322,7 +10362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_choosevideoagain",
-      "community": 126,
+      "community": 196,
       "norm_label": "choosevideoagain"
     },
     {
@@ -10332,7 +10372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_clipproblemkey",
-      "community": 126,
+      "community": 196,
       "norm_label": "clipproblemkey"
     },
     {
@@ -10342,7 +10382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_import_screen_dart",
-      "community": 126,
+      "community": 196,
       "norm_label": "video_import_screen.dart"
     },
     {
@@ -10382,7 +10422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_analyzingview",
-      "community": 14,
+      "community": 126,
       "norm_label": "_analyzingview"
     },
     {
@@ -10912,7 +10952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen",
-      "community": 80,
+      "community": 175,
       "norm_label": "video_screen.dart"
     },
     {
@@ -10942,7 +10982,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_emptystate",
-      "community": 80,
+      "community": 175,
       "norm_label": "_emptystate"
     },
     {
@@ -10952,7 +10992,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_recentcount",
-      "community": 80,
+      "community": 175,
       "norm_label": "_recentcount"
     },
     {
@@ -10972,7 +11012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_sample_dart",
-      "community": 80,
+      "community": 175,
       "norm_label": "../widgets/video/hud_sample.dart"
     },
     {
@@ -11142,7 +11182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_typed_data",
-      "community": 137,
+      "community": 93,
       "norm_label": "dart:typed_data"
     },
     {
@@ -11812,7 +11852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad",
-      "community": 22,
+      "community": 93,
       "norm_label": "biquad.dart"
     },
     {
@@ -11822,7 +11862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_biquad",
-      "community": 22,
+      "community": 93,
       "norm_label": "biquad"
     },
     {
@@ -11832,7 +11872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_x1",
-      "community": 22,
+      "community": 93,
       "norm_label": "_x1"
     },
     {
@@ -11842,7 +11882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_notch",
-      "community": 22,
+      "community": 93,
       "norm_label": "notch"
     },
     {
@@ -11852,7 +11892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_highpass",
-      "community": 22,
+      "community": 93,
       "norm_label": "highpass"
     },
     {
@@ -11862,7 +11902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_lowpass",
-      "community": 22,
+      "community": 93,
       "norm_label": "lowpass"
     },
     {
@@ -11872,7 +11912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_processint16inplace",
-      "community": 22,
+      "community": 93,
       "norm_label": "processint16inplace"
     },
     {
@@ -11882,7 +11922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_reset",
-      "community": 22,
+      "community": 93,
       "norm_label": "reset"
     },
     {
@@ -11902,7 +11942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_database_service_databaseservice",
-      "community": 103,
+      "community": 198,
       "norm_label": "databaseservice"
     },
     {
@@ -12352,7 +12392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_settings_service_settingsservice",
-      "community": 1,
+      "community": 204,
       "norm_label": "settingsservice"
     },
     {
@@ -12624,6 +12664,16 @@
       "id": "lib_services_settings_service_khudendcard",
       "community": 1,
       "norm_label": "_khudendcard"
+    },
+    {
+      "label": "_kExportWhole",
+      "file_type": "code",
+      "source_file": "lib/services/settings_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_settings_service_kexportwhole",
+      "community": 1,
+      "norm_label": "_kexportwhole"
     },
     {
       "label": "_kCustomDrills",
@@ -13412,7 +13462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_stringstore",
-      "community": 103,
+      "community": 198,
       "norm_label": "stringstore"
     },
     {
@@ -13822,7 +13872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "start_finder_dart",
-      "community": 153,
+      "community": 131,
       "norm_label": "start_finder.dart"
     },
     {
@@ -13852,7 +13902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_clipanalysis",
-      "community": 131,
+      "community": 153,
       "norm_label": "clipanalysis"
     },
     {
@@ -14982,7 +15032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "imagepicker",
-      "community": 191,
+      "community": 156,
       "norm_label": "imagepicker"
     },
     {
@@ -15022,7 +15072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_image_picker_image_picker_dart",
-      "community": 156,
+      "community": 155,
       "norm_label": "package:image_picker/image_picker.dart"
     },
     {
@@ -15916,6 +15966,26 @@
       "norm_label": "bitrate"
     },
     {
+      "label": "whole",
+      "file_type": "code",
+      "source_file": "lib/services/video/export_plan.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_export_plan_whole",
+      "community": 180,
+      "norm_label": "whole"
+    },
+    {
+      "label": "_sized",
+      "file_type": "code",
+      "source_file": "lib/services/video/export_plan.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_export_plan_sized",
+      "community": 180,
+      "norm_label": "_sized"
+    },
+    {
       "label": "_",
       "file_type": "code",
       "source_file": "lib/services/video/export_plan.dart",
@@ -15972,7 +16042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_hud_hudoptions",
-      "community": 150,
+      "community": 172,
       "norm_label": "hudoptions"
     },
     {
@@ -16164,6 +16234,16 @@
       "id": "lib_services_video_hud_endcardfadems",
       "community": 139,
       "norm_label": "endcardfadems"
+    },
+    {
+      "label": "endCardShowMs",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_endcardshowms",
+      "community": 139,
+      "norm_label": "endcardshowms"
     },
     {
       "label": "clockMs",
@@ -16504,6 +16584,16 @@
       "id": "lib_services_video_hud_frames_cardfrom",
       "community": 125,
       "norm_label": "cardfrom"
+    },
+    {
+      "label": "cardOut",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_frames.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_frames_cardout",
+      "community": 125,
+      "norm_label": "cardout"
     },
     {
       "label": "sequences",
@@ -17792,7 +17882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_spectrogram_spectrogram",
-      "community": 132,
+      "community": 102,
       "norm_label": "spectrogram"
     },
     {
@@ -18782,7 +18872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store",
-      "community": 52,
+      "community": 3,
       "norm_label": "video_string_store.dart"
     },
     {
@@ -18792,7 +18882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_videostringstore",
-      "community": 142,
+      "community": 198,
       "norm_label": "videostringstore"
     },
     {
@@ -18802,7 +18892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_insertstring",
-      "community": 52,
+      "community": 3,
       "norm_label": "insertstring"
     },
     {
@@ -18812,7 +18902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_updatevideostring",
-      "community": 52,
+      "community": 3,
       "norm_label": "updatevideostring"
     },
     {
@@ -18822,7 +18912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_deletestring",
-      "community": 52,
+      "community": 3,
       "norm_label": "deletestring"
     },
     {
@@ -18842,7 +18932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videoworkdir",
-      "community": 93,
+      "community": 154,
       "norm_label": "videoworkdir"
     },
     {
@@ -18852,7 +18942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videosession",
-      "community": 142,
+      "community": 154,
       "norm_label": "videosession"
     },
     {
@@ -19002,7 +19092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_volumeservice",
-      "community": 103,
+      "community": 205,
       "norm_label": "volumeservice"
     },
     {
@@ -20342,7 +20432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video",
-      "community": 159,
+      "community": 13,
       "norm_label": "clip_video.dart"
     },
     {
@@ -20352,7 +20442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_clipvideo",
-      "community": 159,
+      "community": 13,
       "norm_label": "clipvideo"
     },
     {
@@ -20362,7 +20452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_player",
-      "community": 159,
+      "community": 13,
       "norm_label": "player"
     },
     {
@@ -20372,7 +20462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_aspectratio",
-      "community": 159,
+      "community": 13,
       "norm_label": "aspectratio"
     },
     {
@@ -20382,7 +20472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_foreground",
-      "community": 159,
+      "community": 13,
       "norm_label": "foreground"
     },
     {
@@ -20392,7 +20482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_build",
-      "community": 159,
+      "community": 13,
       "norm_label": "build"
     },
     {
@@ -20402,7 +20492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog",
-      "community": 80,
+      "community": 52,
       "norm_label": "confirm_dialog.dart"
     },
     {
@@ -20412,7 +20502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_dismissible",
-      "community": 80,
+      "community": 52,
       "norm_label": "dismissible"
     },
     {
@@ -20422,7 +20512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "string_cancellabel_bool",
-      "community": 80,
+      "community": 52,
       "norm_label": "string? cancellabel,\n  bool"
     },
     {
@@ -20432,7 +20522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_result",
-      "community": 80,
+      "community": 52,
       "norm_label": "result"
     },
     {
@@ -20442,7 +20532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_false",
-      "community": 80,
+      "community": 52,
       "norm_label": "false"
     },
     {
@@ -20452,7 +20542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return_result",
-      "community": 80,
+      "community": 52,
       "norm_label": "return result ??"
     },
     {
@@ -20462,7 +20552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_confirmdialog",
-      "community": 80,
+      "community": 52,
       "norm_label": "confirmdialog"
     },
     {
@@ -20652,7 +20742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile",
-      "community": 158,
+      "community": 182,
       "norm_label": "drill_tile.dart"
     },
     {
@@ -20662,7 +20752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drilltile",
-      "community": 158,
+      "community": 182,
       "norm_label": "drilltile"
     },
     {
@@ -20672,7 +20762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drill",
-      "community": 158,
+      "community": 182,
       "norm_label": "drill"
     },
     {
@@ -20682,7 +20772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_active",
-      "community": 158,
+      "community": 182,
       "norm_label": "active"
     },
     {
@@ -20692,7 +20782,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_ontap",
-      "community": 158,
+      "community": 182,
       "norm_label": "ontap"
     },
     {
@@ -20702,7 +20792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_trailing",
-      "community": 158,
+      "community": 182,
       "norm_label": "trailing"
     },
     {
@@ -20712,7 +20802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_build",
-      "community": 158,
+      "community": 182,
       "norm_label": "build"
     },
     {
@@ -22292,7 +22382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "t",
-      "community": 32,
+      "community": 191,
       "norm_label": "t"
     },
     {
@@ -22302,7 +22392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets",
-      "community": 32,
+      "community": 191,
       "norm_label": "settings_widgets.dart"
     },
     {
@@ -22312,7 +22402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_settingssection",
-      "community": 32,
+      "community": 191,
       "norm_label": "settingssection"
     },
     {
@@ -22322,7 +22412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_enumchoice",
-      "community": 32,
+      "community": 191,
       "norm_label": "enumchoice"
     },
     {
@@ -22332,7 +22422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_title",
-      "community": 32,
+      "community": 191,
       "norm_label": "title"
     },
     {
@@ -22342,7 +22432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_values",
-      "community": 32,
+      "community": 191,
       "norm_label": "values"
     },
     {
@@ -22352,7 +22442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_current",
-      "community": 32,
+      "community": 191,
       "norm_label": "current"
     },
     {
@@ -22362,7 +22452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_onchanged",
-      "community": 32,
+      "community": 191,
       "norm_label": "onchanged"
     },
     {
@@ -22372,7 +22462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_build",
-      "community": 32,
+      "community": 191,
       "norm_label": "build"
     },
     {
@@ -23132,7 +23222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_spectrogram_tiles_spectrogramtiles",
-      "community": 166,
+      "community": 159,
       "norm_label": "spectrogramtiles"
     },
     {
@@ -23142,7 +23232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "changenotifier",
-      "community": 166,
+      "community": 159,
       "norm_label": "changenotifier"
     },
     {
@@ -23322,7 +23412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_timeline_controller_timelinecontroller",
-      "community": 166,
+      "community": 159,
       "norm_label": "timelinecontroller"
     },
     {
@@ -24292,7 +24382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test",
-      "community": 137,
+      "community": 93,
       "norm_label": "auto_configure_test.dart"
     },
     {
@@ -24302,7 +24392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test_shot",
-      "community": 137,
+      "community": 93,
       "norm_label": "shot"
     },
     {
@@ -24312,7 +24402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test_main",
-      "community": 137,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -24322,7 +24412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_calibration_shot_dart",
-      "community": 137,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/models/calibration_shot.dart"
     },
     {
@@ -24332,7 +24422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_auto_configure_dart",
-      "community": 137,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/services/auto_configure.dart"
     },
     {
@@ -24342,7 +24432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_fft_dart",
-      "community": 137,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/utils/fft.dart"
     },
     {
@@ -24502,7 +24592,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test",
-      "community": 22,
+      "community": 202,
       "norm_label": "biquad_test.dart"
     },
     {
@@ -24512,7 +24602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_samplerate",
-      "community": 22,
+      "community": 202,
       "norm_label": "samplerate"
     },
     {
@@ -24522,7 +24612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_beephz",
-      "community": 22,
+      "community": 202,
       "norm_label": "beephz"
     },
     {
@@ -24532,7 +24622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_main",
-      "community": 22,
+      "community": 202,
       "norm_label": "main"
     },
     {
@@ -24542,7 +24632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_sine",
-      "community": 22,
+      "community": 202,
       "norm_label": "sine"
     },
     {
@@ -24552,7 +24642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_peakabs",
-      "community": 22,
+      "community": 202,
       "norm_label": "peakabs"
     },
     {
@@ -24562,7 +24652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_biquad_dart",
-      "community": 22,
+      "community": 202,
       "norm_label": "package:simple_shot_timer/services/biquad.dart"
     },
     {
@@ -24742,7 +24832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_memorystore",
-      "community": 142,
+      "community": 198,
       "norm_label": "_memorystore"
     },
     {
@@ -24752,7 +24842,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_fakesession",
-      "community": 142,
+      "community": 154,
       "norm_label": "_fakesession"
     },
     {
@@ -24912,7 +25002,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "memorystore",
-      "community": 142,
+      "community": 80,
       "norm_label": "_memorystore"
     },
     {
@@ -25082,7 +25172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_clip_editor_provider_dart",
-      "community": 142,
+      "community": 80,
       "norm_label": "package:simple_shot_timer/providers/clip_editor_provider.dart"
     },
     {
@@ -25102,7 +25192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_video_providers_dart",
-      "community": 138,
+      "community": 195,
       "norm_label": "package:simple_shot_timer/providers/video_providers.dart"
     },
     {
@@ -25132,7 +25222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_video_string_store_dart",
-      "community": 142,
+      "community": 80,
       "norm_label": "package:simple_shot_timer/services/video/video_string_store.dart"
     },
     {
@@ -25142,7 +25232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_video_work_dir_dart",
-      "community": 93,
+      "community": 195,
       "norm_label": "package:simple_shot_timer/services/video/video_work_dir.dart"
     },
     {
@@ -25542,7 +25632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test",
-      "community": 191,
+      "community": 155,
       "norm_label": "clip_picker_test.dart"
     },
     {
@@ -25552,7 +25642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_fakephotos",
-      "community": 191,
+      "community": 156,
       "norm_label": "_fakephotos"
     },
     {
@@ -25562,7 +25652,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_path",
-      "community": 191,
+      "community": 155,
       "norm_label": "path"
     },
     {
@@ -25572,7 +25662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_channel",
-      "community": 191,
+      "community": 155,
       "norm_label": "channel"
     },
     {
@@ -25582,7 +25672,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_messenger",
-      "community": 191,
+      "community": 155,
       "norm_label": "messenger"
     },
     {
@@ -25592,7 +25682,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_temp",
-      "community": 191,
+      "community": 155,
       "norm_label": "temp"
     },
     {
@@ -25602,7 +25692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_session",
-      "community": 191,
+      "community": 155,
       "norm_label": "session"
     },
     {
@@ -25612,7 +25702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_pickvideo",
-      "community": 191,
+      "community": 155,
       "norm_label": "pickvideo"
     },
     {
@@ -25622,7 +25712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_main",
-      "community": 191,
+      "community": 155,
       "norm_label": "main"
     },
     {
@@ -25632,7 +25722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_fromplatform",
-      "community": 191,
+      "community": 155,
       "norm_label": "fromplatform"
     },
     {
@@ -25642,7 +25732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_picker_dart",
-      "community": 191,
+      "community": 155,
       "norm_label": "package:simple_shot_timer/services/video/clip_picker.dart"
     },
     {
@@ -25742,7 +25832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drills_provider_test_failingclear",
-      "community": 1,
+      "community": 204,
       "norm_label": "_failingclear"
     },
     {
@@ -25992,7 +26082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_database_service_dart",
-      "community": 138,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/services/database_service.dart"
     },
     {
@@ -26062,7 +26152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 22,
+      "community": 93,
       "norm_label": "delay_test.dart"
     },
     {
@@ -26072,7 +26162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 22,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -26092,7 +26182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test",
-      "community": 86,
+      "community": 203,
       "norm_label": "drill_config_test.dart"
     },
     {
@@ -26102,7 +26192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_drill",
-      "community": 86,
+      "community": 203,
       "norm_label": "_drill"
     },
     {
@@ -26112,7 +26202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_other",
-      "community": 86,
+      "community": 203,
       "norm_label": "_other"
     },
     {
@@ -26122,7 +26212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_singlefieldedits",
-      "community": 86,
+      "community": 203,
       "norm_label": "_singlefieldedits"
     },
     {
@@ -26132,7 +26222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_main",
-      "community": 86,
+      "community": 203,
       "norm_label": "main"
     },
     {
@@ -26192,7 +26282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_export_plan_dart",
-      "community": 41,
+      "community": 195,
       "norm_label": "package:simple_shot_timer/services/video/export_plan.dart"
     },
     {
@@ -26202,7 +26292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 94,
+      "community": 141,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -26212,7 +26302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 94,
+      "community": 141,
       "norm_label": "_host"
     },
     {
@@ -26222,7 +26312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 94,
+      "community": 141,
       "norm_label": "_visiblesignal"
     },
     {
@@ -26232,7 +26322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 94,
+      "community": 141,
       "norm_label": "main"
     },
     {
@@ -26242,7 +26332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 94,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -26264,6 +26354,16 @@
       "id": "test_hud_frames_test_string",
       "community": 41,
       "norm_label": "string"
+    },
+    {
+      "label": "info",
+      "file_type": "code",
+      "source_file": "test/hud_frames_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_hud_frames_test_info",
+      "community": 41,
+      "norm_label": "info"
     },
     {
       "label": "plan",
@@ -26652,7 +26752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test",
-      "community": 94,
+      "community": 138,
       "norm_label": "nav_label_fit_test.dart"
     },
     {
@@ -26662,7 +26762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_main",
-      "community": 94,
+      "community": 138,
       "norm_label": "main"
     },
     {
@@ -26672,7 +26772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_pumpbar",
-      "community": 94,
+      "community": 138,
       "norm_label": "pumpbar"
     },
     {
@@ -26682,7 +26782,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_paragraph",
-      "community": 94,
+      "community": 138,
       "norm_label": "paragraph"
     },
     {
@@ -26692,7 +26792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_lines",
-      "community": 94,
+      "community": 138,
       "norm_label": "lines"
     },
     {
@@ -26702,7 +26802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_rendering_dart",
-      "community": 94,
+      "community": 138,
       "norm_label": "package:flutter/rendering.dart"
     },
     {
@@ -26712,7 +26812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_theme_app_theme_dart",
-      "community": 94,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/theme/app_theme.dart"
     },
     {
@@ -26722,8 +26822,18 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_app_navigation_bar_dart",
-      "community": 94,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/widgets/app_navigation_bar.dart"
+    },
+    {
+      "label": "roboto.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "roboto_dart",
+      "community": 138,
+      "norm_label": "roboto.dart"
     },
     {
       "label": "RenderParagraph",
@@ -26732,7 +26842,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "renderparagraph",
-      "community": 94,
+      "community": 138,
       "norm_label": "renderparagraph"
     },
     {
@@ -26902,7 +27012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test",
-      "community": 138,
+      "community": 41,
       "norm_label": "review_discard_test.dart"
     },
     {
@@ -26912,7 +27022,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_metawrites",
-      "community": 103,
+      "community": 198,
       "norm_label": "_metawrites"
     },
     {
@@ -26922,7 +27032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_writes",
-      "community": 138,
+      "community": 41,
       "norm_label": "writes"
     },
     {
@@ -26932,7 +27042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_updatestringmeta",
-      "community": 138,
+      "community": 41,
       "norm_label": "updatestringmeta"
     },
     {
@@ -26942,7 +27052,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_nosuchmethod",
-      "community": 138,
+      "community": 41,
       "norm_label": "nosuchmethod"
     },
     {
@@ -26952,7 +27062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_main",
-      "community": 196,
+      "community": 54,
       "norm_label": "main"
     },
     {
@@ -26962,7 +27072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_string_provider_dart",
-      "community": 138,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/providers/string_provider.dart"
     },
     {
@@ -26972,7 +27082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_review_screen_dart",
-      "community": 138,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/screens/review_screen.dart"
     },
     {
@@ -26982,8 +27092,58 @@
       "source_location": null,
       "_origin": "ast",
       "id": "navigatorstate",
-      "community": 138,
+      "community": 41,
       "norm_label": "navigatorstate"
+    },
+    {
+      "label": "roboto.dart",
+      "file_type": "code",
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_roboto",
+      "community": 195,
+      "norm_label": "roboto.dart"
+    },
+    {
+      "label": "fonts",
+      "file_type": "code",
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_roboto_fonts",
+      "community": 195,
+      "norm_label": "fonts"
+    },
+    {
+      "label": "roboto",
+      "file_type": "code",
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_roboto_roboto",
+      "community": 195,
+      "norm_label": "roboto"
+    },
+    {
+      "label": "loadRoboto",
+      "file_type": "code",
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_roboto_loadroboto",
+      "community": 195,
+      "norm_label": "loadroboto"
+    },
+    {
+      "label": "load",
+      "file_type": "code",
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_roboto_load",
+      "community": 195,
+      "norm_label": "load"
     },
     {
       "label": "settings_delete_all_test.dart",
@@ -26992,7 +27152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test",
-      "community": 138,
+      "community": 195,
       "norm_label": "settings_delete_all_test.dart"
     },
     {
@@ -27012,7 +27172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleted",
-      "community": 138,
+      "community": 195,
       "norm_label": "deleted"
     },
     {
@@ -27022,7 +27182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_build",
-      "community": 138,
+      "community": 195,
       "norm_label": "build"
     },
     {
@@ -27032,7 +27192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleteall",
-      "community": 138,
+      "community": 195,
       "norm_label": "deleteall"
     },
     {
@@ -27042,7 +27202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_main",
-      "community": 138,
+      "community": 195,
       "norm_label": "main"
     },
     {
@@ -27052,7 +27212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_history_provider_dart",
-      "community": 138,
+      "community": 195,
       "norm_label": "package:simple_shot_timer/providers/history_provider.dart"
     },
     {
@@ -27062,7 +27222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_settings_screen_dart",
-      "community": 138,
+      "community": 195,
       "norm_label": "package:simple_shot_timer/screens/settings_screen.dart"
     },
     {
@@ -27132,7 +27292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test",
-      "community": 137,
+      "community": 166,
       "norm_label": "shot_timeline_test.dart"
     },
     {
@@ -27142,7 +27302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test_spectrogram",
-      "community": 137,
+      "community": 166,
       "norm_label": "spectrogram"
     },
     {
@@ -27152,7 +27312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test_controller",
-      "community": 137,
+      "community": 166,
       "norm_label": "controller"
     },
     {
@@ -27162,7 +27322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test_tapped",
-      "community": 137,
+      "community": 166,
       "norm_label": "tapped"
     },
     {
@@ -27172,7 +27332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test_settled",
-      "community": 137,
+      "community": 166,
       "norm_label": "settled"
     },
     {
@@ -27182,7 +27342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test_main",
-      "community": 137,
+      "community": 166,
       "norm_label": "main"
     },
     {
@@ -27192,7 +27352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test_pumptimeline",
-      "community": 137,
+      "community": 166,
       "norm_label": "pumptimeline"
     },
     {
@@ -27202,7 +27362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_timeline_test_centre",
-      "community": 137,
+      "community": 166,
       "norm_label": "centre"
     },
     {
@@ -27212,7 +27372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_repeat_button_dart",
-      "community": 137,
+      "community": 166,
       "norm_label": "package:simple_shot_timer/widgets/repeat_button.dart"
     },
     {
@@ -27222,7 +27382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_timeline_shot_timeline_dart",
-      "community": 137,
+      "community": 166,
       "norm_label": "package:simple_shot_timer/widgets/timeline/shot_timeline.dart"
     },
     {
@@ -27232,7 +27392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_timeline_spectrogram_tiles_dart",
-      "community": 137,
+      "community": 166,
       "norm_label": "package:simple_shot_timer/widgets/timeline/spectrogram_tiles.dart"
     },
     {
@@ -27242,7 +27402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_timeline_timeline_controller_dart",
-      "community": 137,
+      "community": 166,
       "norm_label": "package:simple_shot_timer/widgets/timeline/timeline_controller.dart"
     },
     {
@@ -27252,7 +27412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "iconbutton",
-      "community": 137,
+      "community": 166,
       "norm_label": "iconbutton"
     },
     {
@@ -27462,7 +27622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test",
-      "community": 94,
+      "community": 141,
       "norm_label": "theme_monochrome_test.dart"
     },
     {
@@ -27472,7 +27632,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_main",
-      "community": 94,
+      "community": 141,
       "norm_label": "main"
     },
     {
@@ -27482,7 +27642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_roles",
-      "community": 94,
+      "community": 141,
       "norm_label": "roles"
     },
     {
@@ -27602,7 +27762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_memorystore",
-      "community": 103,
+      "community": 198,
       "norm_label": "_memorystore"
     },
     {
@@ -27612,7 +27772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_audiblevolume",
-      "community": 103,
+      "community": 205,
       "norm_label": "_audiblevolume"
     },
     {
@@ -28072,7 +28232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_timer_ports_dart",
-      "community": 160,
+      "community": 80,
       "norm_label": "package:simple_shot_timer/services/timer_ports.dart"
     },
     {
@@ -28122,7 +28282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test",
-      "community": 142,
+      "community": 80,
       "norm_label": "video_editor_screen_test.dart"
     },
     {
@@ -28132,7 +28292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_memorystore",
-      "community": 142,
+      "community": 198,
       "norm_label": "_memorystore"
     },
     {
@@ -28142,8 +28302,28 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_session",
-      "community": 142,
+      "community": 154,
       "norm_label": "_session"
+    },
+    {
+      "label": "_Awake",
+      "file_type": "code",
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_editor_screen_test_awake",
+      "community": 31,
+      "norm_label": "_awake"
+    },
+    {
+      "label": "_NoExporter",
+      "file_type": "code",
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_editor_screen_test_noexporter",
+      "community": 201,
+      "norm_label": "_noexporter"
     },
     {
       "label": "saved",
@@ -28152,7 +28332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_saved",
-      "community": 142,
+      "community": 80,
       "norm_label": "saved"
     },
     {
@@ -28162,7 +28342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_failnext",
-      "community": 142,
+      "community": 80,
       "norm_label": "failnext"
     },
     {
@@ -28172,7 +28352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_clippath",
-      "community": 142,
+      "community": 80,
       "norm_label": "clippath"
     },
     {
@@ -28182,7 +28362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_store",
-      "community": 142,
+      "community": 80,
       "norm_label": "store"
     },
     {
@@ -28192,7 +28372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_analysis",
-      "community": 142,
+      "community": 80,
       "norm_label": "analysis"
     },
     {
@@ -28202,7 +28382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_undobar",
-      "community": 142,
+      "community": 80,
       "norm_label": "undobar"
     },
     {
@@ -28212,7 +28392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_insertstring",
-      "community": 142,
+      "community": 80,
       "norm_label": "insertstring"
     },
     {
@@ -28222,7 +28402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_updatevideostring",
-      "community": 142,
+      "community": 80,
       "norm_label": "updatevideostring"
     },
     {
@@ -28232,7 +28412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_deletestring",
-      "community": 142,
+      "community": 80,
       "norm_label": "deletestring"
     },
     {
@@ -28242,8 +28422,58 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_dispose",
-      "community": 142,
+      "community": 80,
       "norm_label": "dispose"
+    },
+    {
+      "label": "setKeepAwake",
+      "file_type": "code",
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_editor_screen_test_setkeepawake",
+      "community": 80,
+      "norm_label": "setkeepawake"
+    },
+    {
+      "label": "setForeground",
+      "file_type": "code",
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_editor_screen_test_setforeground",
+      "community": 80,
+      "norm_label": "setforeground"
+    },
+    {
+      "label": "vibrate",
+      "file_type": "code",
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_editor_screen_test_vibrate",
+      "community": 80,
+      "norm_label": "vibrate"
+    },
+    {
+      "label": "export",
+      "file_type": "code",
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_editor_screen_test_export",
+      "community": 80,
+      "norm_label": "export"
+    },
+    {
+      "label": "encoderNeedsColorFix",
+      "file_type": "code",
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_editor_screen_test_encoderneedscolorfix",
+      "community": 80,
+      "norm_label": "encoderneedscolorfix"
     },
     {
       "label": "main",
@@ -28252,7 +28482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_main",
-      "community": 196,
+      "community": 54,
       "norm_label": "main"
     },
     {
@@ -28262,7 +28492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_selectfirstshot",
-      "community": 142,
+      "community": 80,
       "norm_label": "selectfirstshot"
     },
     {
@@ -28272,7 +28502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_deletefirstshot",
-      "community": 142,
+      "community": 80,
       "norm_label": "deletefirstshot"
     },
     {
@@ -28282,7 +28512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_video_editor_screen_dart",
-      "community": 142,
+      "community": 80,
       "norm_label": "package:simple_shot_timer/screens/video_editor_screen.dart"
     },
     {
@@ -28292,7 +28522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_shot_badge_dart",
-      "community": 142,
+      "community": 80,
       "norm_label": "package:simple_shot_timer/widgets/shot_badge.dart"
     },
     {
@@ -28752,7 +28982,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakesession",
-      "community": 142,
+      "community": 154,
       "norm_label": "_fakesession"
     },
     {
@@ -28762,7 +28992,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakeworkdir",
-      "community": 93,
+      "community": 154,
       "norm_label": "_fakeworkdir"
     },
     {
@@ -29242,7 +29472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_check_dart",
-      "community": 93,
+      "community": 195,
       "norm_label": "package:simple_shot_timer/services/video/clip_check.dart"
     },
     {
@@ -29252,7 +29482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test",
-      "community": 93,
+      "community": 195,
       "norm_label": "video_work_dir_test.dart"
     },
     {
@@ -29262,7 +29492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_temp",
-      "community": 93,
+      "community": 195,
       "norm_label": "temp"
     },
     {
@@ -29272,7 +29502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_work",
-      "community": 93,
+      "community": 195,
       "norm_label": "work"
     },
     {
@@ -29282,7 +29512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_main",
-      "community": 93,
+      "community": 195,
       "norm_label": "main"
     },
     {
@@ -35789,20 +36019,10 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "test/nav_label_fit_test.dart",
+      "source_file": "test/roboto.dart",
       "source_location": null,
       "weight": 1.0,
-      "source": "test_nav_label_fit_test",
-      "target": "dart_io"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "test/review_discard_test.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "test_review_discard_test",
+      "source": "test_roboto",
       "target": "dart_io"
     },
     {
@@ -38823,6 +39043,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/screens/video_editor_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_video_editor_screen",
+      "target": "providers_settings_provider_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/screens/video_export_sheet.dart",
       "source_location": null,
       "weight": 1.0,
@@ -39459,6 +39689,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_roboto",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/settings_delete_all_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -40085,6 +40325,16 @@
       "weight": 1.0,
       "source": "lib_models_app_settings",
       "target": "lib_models_app_settings_echofilterms"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/models/app_settings.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_models_app_settings",
+      "target": "lib_models_app_settings_exportwholevideo"
     },
     {
       "relation": "defines",
@@ -41812,6 +42062,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_providers_video_import_provider",
+      "target": "dart_math"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/video_editor_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_video_editor_screen",
       "target": "dart_math"
     },
     {
@@ -48326,6 +48586,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "dart_ui"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_export_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -52181,6 +52451,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/screens/video_export_sheet.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_video_export_sheet",
+      "target": "utils_time_format_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/screens/video_part_view.dart",
       "source_location": null,
       "weight": 1.0,
@@ -53698,7 +53978,7 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_screens_video_editor_screen",
-      "target": "lib_screens_video_editor_screen_restarting"
+      "target": "lib_screens_video_editor_screen_restartat"
     },
     {
       "relation": "defines",
@@ -54118,6 +54398,17 @@
       "target": "tickerproviderstatemixin"
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/video_editor_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "riverpod_reference",
+      "source": "lib_screens_video_editor_screen_videoeditorscreenstate",
+      "target": "wholevideo"
+    },
+    {
       "relation": "mixes_in",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -54126,6 +54417,17 @@
       "weight": 1.0,
       "source": "lib_screens_video_editor_screen_videoeditorscreenstate",
       "target": "widgetsbindingobserver"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/video_editor_screen.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "riverpod_reference",
+      "source": "lib_screens_video_editor_screen_export",
+      "target": "wholevideo"
     },
     {
       "relation": "references",
@@ -54584,6 +54886,26 @@
       "weight": 1.0,
       "source": "lib_screens_video_export_sheet",
       "target": "lib_screens_video_export_sheet_showexportsheet"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/video_export_sheet.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_video_export_sheet",
+      "target": "lib_screens_video_export_sheet_stringms"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/video_export_sheet.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_video_export_sheet",
+      "target": "lib_screens_video_export_sheet_wholems"
     },
     {
       "relation": "defines",
@@ -57268,6 +57590,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_settings_service",
+      "target": "lib_services_settings_service_kexportwhole"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/settings_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_settings_service",
       "target": "lib_services_settings_service_kfixeddelay"
     },
     {
@@ -58495,6 +58827,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_timer_notifier_test_fakeenvironment",
+      "target": "lib_services_timer_ports_runenvironment"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test_awake",
       "target": "lib_services_timer_ports_runenvironment"
     },
     {
@@ -60092,6 +60434,16 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test_noexporter",
+      "target": "lib_services_video_clip_exporter_clipexporter"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_export_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -61150,6 +61502,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_export_plan",
+      "target": "lib_services_video_export_plan_sized"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/export_plan.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_export_plan",
       "target": "lib_services_video_export_plan_startms"
     },
     {
@@ -61161,6 +61523,16 @@
       "weight": 1.0,
       "source": "lib_services_video_export_plan",
       "target": "lib_services_video_export_plan_tailms"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/export_plan.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_export_plan",
+      "target": "lib_services_video_export_plan_whole"
     },
     {
       "relation": "references",
@@ -61403,6 +61775,16 @@
       "weight": 1.0,
       "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_endcardfadems"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_endcardshowms"
     },
     {
       "relation": "defines",
@@ -61805,6 +62187,16 @@
       "weight": 1.0,
       "source": "lib_services_video_hud_frames",
       "target": "lib_services_video_hud_frames_cardfrom"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_frames.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_frames",
+      "target": "lib_services_video_hud_frames_cardout"
     },
     {
       "relation": "defines",
@@ -70329,6 +70721,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "package_simple_shot_timer_utils_cancel_token_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_export_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -71546,6 +71948,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "package_simple_shot_timer_services_video_clip_exporter_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_export_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -72698,10 +73110,30 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/hud_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_hud_test",
+      "target": "package_simple_shot_timer_services_video_export_plan_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/settings_delete_all_test.dart",
       "source_location": null,
       "weight": 1.0,
       "source": "test_settings_delete_all_test",
+      "target": "package_simple_shot_timer_services_video_export_plan_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
       "target": "package_simple_shot_timer_services_video_export_plan_dart"
     },
     {
@@ -72802,6 +73234,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_hud_frames_test",
+      "target": "test_hud_frames_test_info"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/hud_frames_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_hud_frames_test",
       "target": "test_hud_frames_test_labels"
     },
     {
@@ -72858,6 +73300,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "package_simple_shot_timer_services_video_hud_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_export_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -72872,6 +73324,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_hud_test",
+      "target": "package_simple_shot_timer_services_video_hud_painter_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
       "target": "package_simple_shot_timer_services_video_hud_painter_dart"
     },
     {
@@ -73166,6 +73628,16 @@
       "target": "renderparagraph"
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/nav_label_fit_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_nav_label_fit_test",
+      "target": "roboto_dart"
+    },
+    {
       "relation": "defines",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -73214,6 +73686,26 @@
       "weight": 1.0,
       "source": "test_theme_monochrome_test",
       "target": "package_simple_shot_timer_theme_app_theme_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/review_discard_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_review_discard_test",
+      "target": "roboto_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "roboto_dart"
     },
     {
       "relation": "imports",
@@ -73445,6 +73937,46 @@
       "weight": 1.0,
       "source": "test_review_discard_test",
       "target": "test_review_discard_test_writes"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_roboto",
+      "target": "test_roboto_fonts"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_roboto",
+      "target": "test_roboto_load"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_roboto",
+      "target": "test_roboto_loadroboto"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/roboto.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_roboto",
+      "target": "test_roboto_roboto"
     },
     {
       "relation": "imports",
@@ -74443,6 +74975,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "package_simple_shot_timer_services_timer_ports_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_export_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -74507,6 +75049,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_video_editor_screen_test",
+      "target": "test_video_editor_screen_test_awake"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
       "target": "test_video_editor_screen_test_clippath"
     },
     {
@@ -74538,6 +75090,26 @@
       "weight": 1.0,
       "source": "test_video_editor_screen_test",
       "target": "test_video_editor_screen_test_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "test_video_editor_screen_test_encoderneedscolorfix"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "test_video_editor_screen_test_export"
     },
     {
       "relation": "defines",
@@ -74587,6 +75159,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_video_editor_screen_test",
+      "target": "test_video_editor_screen_test_noexporter"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
       "target": "test_video_editor_screen_test_saved"
     },
     {
@@ -74617,6 +75199,26 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_video_editor_screen_test",
+      "target": "test_video_editor_screen_test_setforeground"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "test_video_editor_screen_test_setkeepawake"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
       "target": "test_video_editor_screen_test_store"
     },
     {
@@ -74638,6 +75240,16 @@
       "weight": 1.0,
       "source": "test_video_editor_screen_test",
       "target": "test_video_editor_screen_test_updatevideostring"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_editor_screen_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_editor_screen_test",
+      "target": "test_video_editor_screen_test_vibrate"
     },
     {
       "relation": "imports",
@@ -80612,5 +81224,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "65d411c69ec7fd1a96b448f3d88f40e06dbba97e"
+  "built_at_commit": "ef8a2437db7db9175f7ccffdc6554af238570363"
 }

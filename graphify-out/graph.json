@@ -1170,7 +1170,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 195,
+      "community": 118,
       "norm_label": "dart:io"
     },
     {
@@ -1642,7 +1642,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app",
-      "community": 52,
+      "community": 175,
       "norm_label": "app.dart"
     },
     {
@@ -1702,7 +1702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 3,
+      "community": 185,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -1712,7 +1712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "i18n_app_localizations_dart",
-      "community": 52,
+      "community": 175,
       "norm_label": "../../i18n/app_localizations.dart"
     },
     {
@@ -1722,7 +1722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_enums_dart",
-      "community": 52,
+      "community": 175,
       "norm_label": "../../models/enums.dart"
     },
     {
@@ -1732,7 +1732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 52,
+      "community": 175,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -1742,7 +1742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "screens_main_shell_dart",
-      "community": 52,
+      "community": 175,
       "norm_label": "screens/main_shell.dart"
     },
     {
@@ -1752,7 +1752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "theme_app_theme_dart",
-      "community": 52,
+      "community": 175,
       "norm_label": "theme/app_theme.dart"
     },
     {
@@ -1812,7 +1812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_applocalizationsx",
-      "community": 200,
+      "community": 4,
       "norm_label": "applocalizationsx"
     },
     {
@@ -1822,7 +1822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "buildcontext",
-      "community": 200,
+      "community": 4,
       "norm_label": "buildcontext"
     },
     {
@@ -2032,7 +2032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_convert",
-      "community": 203,
+      "community": 17,
       "norm_label": "dart:convert"
     },
     {
@@ -2042,7 +2042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_services_dart",
-      "community": 173,
+      "community": 138,
       "norm_label": "package:flutter/services.dart"
     },
     {
@@ -2142,7 +2142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_audio_service_dart",
-      "community": 103,
+      "community": 185,
       "norm_label": "../services/audio_service.dart"
     },
     {
@@ -2162,7 +2162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_database_service_dart",
-      "community": 185,
+      "community": 103,
       "norm_label": "../services/database_service.dart"
     },
     {
@@ -2172,7 +2172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_export_service_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../services/export_service.dart"
     },
     {
@@ -2752,7 +2752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_custom_drill_customdrill",
-      "community": 182,
+      "community": 17,
       "norm_label": "customdrill"
     },
     {
@@ -3612,7 +3612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_timer_state_timerstate",
-      "community": 57,
+      "community": 29,
       "norm_label": "timerstate"
     },
     {
@@ -4372,7 +4372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const",
-      "community": 52,
+      "community": 57,
       "norm_label": "static const"
     },
     {
@@ -4762,7 +4762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 3,
+      "community": 52,
       "norm_label": "../../models/timer_string.dart"
     },
     {
@@ -4892,7 +4892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_activedrillprovider",
-      "community": 54,
+      "community": 158,
       "norm_label": "activedrillprovider"
     },
     {
@@ -4922,7 +4922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return",
-      "community": 82,
+      "community": 157,
       "norm_label": "return"
     },
     {
@@ -5002,7 +5002,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_custom_drill_dart",
-      "community": 182,
+      "community": 158,
       "norm_label": "../models/custom_drill.dart"
     },
     {
@@ -5012,7 +5012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_drill_config_dart",
-      "community": 186,
+      "community": 159,
       "norm_label": "../models/drill_config.dart"
     },
     {
@@ -5182,7 +5182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_beepplayerprovider",
-      "community": 57,
+      "community": 29,
       "norm_label": "beepplayerprovider"
     },
     {
@@ -5192,7 +5192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_stringstoreprovider",
-      "community": 57,
+      "community": 5,
       "norm_label": "stringstoreprovider"
     },
     {
@@ -5212,7 +5212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_shotdetectorprovider",
-      "community": 84,
+      "community": 18,
       "norm_label": "shotdetectorprovider"
     },
     {
@@ -5372,7 +5372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 3,
+      "community": 185,
       "norm_label": "string_provider.dart"
     },
     {
@@ -5392,7 +5392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 3,
+      "community": 185,
       "norm_label": "read"
     },
     {
@@ -5412,7 +5412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timernotifier",
-      "community": 57,
+      "community": 29,
       "norm_label": "timernotifier"
     },
     {
@@ -5662,7 +5662,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timerprovider",
-      "community": 54,
+      "community": 26,
       "norm_label": "timerprovider"
     },
     {
@@ -5742,7 +5742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_addmanualshot",
-      "community": 57,
+      "community": 5,
       "norm_label": "addmanualshot"
     },
     {
@@ -5762,7 +5762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_updatenotes",
-      "community": 57,
+      "community": 5,
       "norm_label": "updatenotes"
     },
     {
@@ -5772,7 +5772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_updatelabel",
-      "community": 57,
+      "community": 5,
       "norm_label": "updatelabel"
     },
     {
@@ -5892,7 +5892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playstartbeep",
-      "community": 57,
+      "community": 29,
       "norm_label": "_playstartbeep"
     },
     {
@@ -5902,7 +5902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playparbeep",
-      "community": 57,
+      "community": 29,
       "norm_label": "_playparbeep"
     },
     {
@@ -6022,7 +6022,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_export_provider_exporttarget",
-      "community": 52,
+      "community": 57,
       "norm_label": "exporttarget"
     },
     {
@@ -6432,7 +6432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_path_dart",
-      "community": 195,
+      "community": 154,
       "norm_label": "package:path/path.dart"
     },
     {
@@ -6462,7 +6462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_hud_dart",
-      "community": 150,
+      "community": 172,
       "norm_label": "../../services/video/hud.dart"
     },
     {
@@ -7202,7 +7202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen",
-      "community": 56,
+      "community": 18,
       "norm_label": "auto_configure_screen.dart"
     },
     {
@@ -7212,7 +7212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreen",
-      "community": 84,
+      "community": 18,
       "norm_label": "autoconfigurescreen"
     },
     {
@@ -7232,7 +7232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreenstate",
-      "community": 84,
+      "community": 18,
       "norm_label": "_autoconfigurescreenstate"
     },
     {
@@ -7252,7 +7252,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_shotlist",
-      "community": 56,
+      "community": 18,
       "norm_label": "_shotlist"
     },
     {
@@ -7272,7 +7272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_suggestioncard",
-      "community": 56,
+      "community": 18,
       "norm_label": "_suggestioncard"
     },
     {
@@ -7282,7 +7282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_suggestionrow",
-      "community": 56,
+      "community": 18,
       "norm_label": "_suggestionrow"
     },
     {
@@ -7292,7 +7292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_shots",
-      "community": 56,
+      "community": 18,
       "norm_label": "_shots"
     },
     {
@@ -7302,7 +7302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_sub",
-      "community": 56,
+      "community": 18,
       "norm_label": "_sub"
     },
     {
@@ -7312,7 +7312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_running",
-      "community": 56,
+      "community": 18,
       "norm_label": "_running"
     },
     {
@@ -7322,7 +7322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_error",
-      "community": 56,
+      "community": 18,
       "norm_label": "_error"
     },
     {
@@ -7332,7 +7332,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_suggestion",
-      "community": 56,
+      "community": 18,
       "norm_label": "_suggestion"
     },
     {
@@ -7342,7 +7342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_usedshots",
-      "community": 56,
+      "community": 18,
       "norm_label": "_usedshots"
     },
     {
@@ -7352,7 +7352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "set",
-      "community": 56,
+      "community": 18,
       "norm_label": "set"
     },
     {
@@ -7362,7 +7362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_onapply",
-      "community": 56,
+      "community": 18,
       "norm_label": "onapply"
     },
     {
@@ -7382,7 +7382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_ondiscard",
-      "community": 56,
+      "community": 18,
       "norm_label": "ondiscard"
     },
     {
@@ -7392,7 +7392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_label",
-      "community": 56,
+      "community": 18,
       "norm_label": "label"
     },
     {
@@ -7402,7 +7402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_value",
-      "community": 56,
+      "community": 18,
       "norm_label": "value"
     },
     {
@@ -7412,7 +7412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_createstate",
-      "community": 56,
+      "community": 18,
       "norm_label": "createstate"
     },
     {
@@ -7422,7 +7422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_start",
-      "community": 84,
+      "community": 18,
       "norm_label": "_start"
     },
     {
@@ -7432,7 +7432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_stop",
-      "community": 84,
+      "community": 18,
       "norm_label": "_stop"
     },
     {
@@ -7442,7 +7442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_toggleshot",
-      "community": 56,
+      "community": 18,
       "norm_label": "_toggleshot"
     },
     {
@@ -7452,7 +7452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_recomputesuggestion",
-      "community": 56,
+      "community": 18,
       "norm_label": "_recomputesuggestion"
     },
     {
@@ -7472,7 +7472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_dispose",
-      "community": 84,
+      "community": 18,
       "norm_label": "dispose"
     },
     {
@@ -7482,7 +7482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_build",
-      "community": 56,
+      "community": 18,
       "norm_label": "build"
     },
     {
@@ -7492,7 +7492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_formathz",
-      "community": 56,
+      "community": 18,
       "norm_label": "_formathz"
     },
     {
@@ -7502,7 +7502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_calibration_shot_dart",
-      "community": 56,
+      "community": 9,
       "norm_label": "../models/calibration_shot.dart"
     },
     {
@@ -7512,7 +7512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_auto_configure_dart",
-      "community": 56,
+      "community": 18,
       "norm_label": "../services/auto_configure.dart"
     },
     {
@@ -7762,7 +7762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_customdrillsscreen",
-      "community": 54,
+      "community": 158,
       "norm_label": "customdrillsscreen"
     },
     {
@@ -7792,7 +7792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_build",
-      "community": 54,
+      "community": 158,
       "norm_label": "build"
     },
     {
@@ -7832,7 +7832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -7932,7 +7932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen",
-      "community": 175,
+      "community": 185,
       "norm_label": "history_screen.dart"
     },
     {
@@ -7962,7 +7962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_history_provider_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../providers/history_provider.dart"
     },
     {
@@ -7972,7 +7972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_string_tile_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../widgets/string_tile.dart"
     },
     {
@@ -7982,7 +7982,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "review_screen_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "review_screen.dart"
     },
     {
@@ -8002,7 +8002,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_homescreen",
-      "community": 54,
+      "community": 26,
       "norm_label": "homescreen"
     },
     {
@@ -8012,7 +8012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_bigbutton",
-      "community": 54,
+      "community": 26,
       "norm_label": "_bigbutton"
     },
     {
@@ -8022,7 +8022,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_timerarea",
-      "community": 54,
+      "community": 158,
       "norm_label": "_timerarea"
     },
     {
@@ -8122,7 +8122,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_finishedview",
-      "community": 54,
+      "community": 26,
       "norm_label": "_finishedview"
     },
     {
@@ -8202,7 +8202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widget",
-      "community": 13,
+      "community": 159,
       "norm_label": "widget"
     },
     {
@@ -8382,7 +8382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_motion_dart",
-      "community": 104,
+      "community": 151,
       "norm_label": "../utils/motion.dart"
     },
     {
@@ -8422,7 +8422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_pill_button_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../widgets/pill_button.dart"
     },
     {
@@ -8482,7 +8482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_select",
-      "community": 54,
+      "community": 26,
       "norm_label": "_select"
     },
     {
@@ -8492,7 +8492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_build",
-      "community": 54,
+      "community": 26,
       "norm_label": "build"
     },
     {
@@ -8732,7 +8732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_start",
-      "community": 84,
+      "community": 18,
       "norm_label": "_start"
     },
     {
@@ -8742,7 +8742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dispose",
-      "community": 84,
+      "community": 18,
       "norm_label": "dispose"
     },
     {
@@ -8822,7 +8822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 14,
+      "community": 3,
       "norm_label": "_percyclesummary"
     },
     {
@@ -8832,7 +8832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 14,
+      "community": 3,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -9102,7 +9102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_flows_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "video_flows.dart"
     },
     {
@@ -9222,7 +9222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_providers_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../providers/video_providers.dart"
     },
     {
@@ -9972,7 +9972,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_export_provider_dart",
-      "community": 52,
+      "community": 57,
       "norm_label": "../providers/video_export_provider.dart"
     },
     {
@@ -10092,7 +10092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_overlay_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../widgets/video/hud_overlay.dart"
     },
     {
@@ -10272,7 +10272,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet",
-      "community": 52,
+      "community": 57,
       "norm_label": "video_export_sheet.dart"
     },
     {
@@ -10292,7 +10292,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_stringms",
-      "community": 52,
+      "community": 57,
       "norm_label": "stringms"
     },
     {
@@ -10302,7 +10302,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_wholems",
-      "community": 52,
+      "community": 57,
       "norm_label": "wholems"
     },
     {
@@ -10312,7 +10312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_corners",
-      "community": 52,
+      "community": 57,
       "norm_label": "_corners"
     },
     {
@@ -10322,7 +10322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_showexportsheet",
-      "community": 52,
+      "community": 57,
       "norm_label": "showexportsheet"
     },
     {
@@ -10952,7 +10952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen",
-      "community": 175,
+      "community": 185,
       "norm_label": "video_screen.dart"
     },
     {
@@ -10982,7 +10982,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_emptystate",
-      "community": 175,
+      "community": 185,
       "norm_label": "_emptystate"
     },
     {
@@ -10992,7 +10992,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_recentcount",
-      "community": 175,
+      "community": 185,
       "norm_label": "_recentcount"
     },
     {
@@ -11012,7 +11012,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_sample_dart",
-      "community": 175,
+      "community": 185,
       "norm_label": "../widgets/video/hud_sample.dart"
     },
     {
@@ -11232,7 +11232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_auto_configure_calibrationsuggestion",
-      "community": 56,
+      "community": 18,
       "norm_label": "calibrationsuggestion"
     },
     {
@@ -11852,7 +11852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad",
-      "community": 93,
+      "community": 84,
       "norm_label": "biquad.dart"
     },
     {
@@ -11862,7 +11862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_biquad",
-      "community": 93,
+      "community": 84,
       "norm_label": "biquad"
     },
     {
@@ -11872,7 +11872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_x1",
-      "community": 93,
+      "community": 84,
       "norm_label": "_x1"
     },
     {
@@ -11882,7 +11882,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_notch",
-      "community": 93,
+      "community": 84,
       "norm_label": "notch"
     },
     {
@@ -11892,7 +11892,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_highpass",
-      "community": 93,
+      "community": 84,
       "norm_label": "highpass"
     },
     {
@@ -11902,7 +11902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_lowpass",
-      "community": 93,
+      "community": 84,
       "norm_label": "lowpass"
     },
     {
@@ -11912,7 +11912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_processint16inplace",
-      "community": 93,
+      "community": 84,
       "norm_label": "processint16inplace"
     },
     {
@@ -11922,7 +11922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_reset",
-      "community": 93,
+      "community": 84,
       "norm_label": "reset"
     },
     {
@@ -11942,7 +11942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_database_service_databaseservice",
-      "community": 198,
+      "community": 103,
       "norm_label": "databaseservice"
     },
     {
@@ -12282,7 +12282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_share_plus_share_plus_dart",
-      "community": 194,
+      "community": 164,
       "norm_label": "package:share_plus/share_plus.dart"
     },
     {
@@ -12392,7 +12392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_settings_service_settingsservice",
-      "community": 204,
+      "community": 103,
       "norm_label": "settingsservice"
     },
     {
@@ -13462,7 +13462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_stringstore",
-      "community": 198,
+      "community": 103,
       "norm_label": "stringstore"
     },
     {
@@ -13872,7 +13872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "start_finder_dart",
-      "community": 131,
+      "community": 153,
       "norm_label": "start_finder.dart"
     },
     {
@@ -13914,6 +13914,16 @@
       "id": "lib_services_video_clip_analyzer_gatescale",
       "community": 131,
       "norm_label": "gatescale"
+    },
+    {
+      "label": "shotLikeOnly",
+      "file_type": "code",
+      "source_file": "lib/services/video/clip_analyzer.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_clip_analyzer_shotlikeonly",
+      "community": 131,
+      "norm_label": "shotlikeonly"
     },
     {
       "label": "spectrogram",
@@ -14064,6 +14074,16 @@
       "id": "clip_shot_finder_dart",
       "community": 131,
       "norm_label": "clip_shot_finder.dart"
+    },
+    {
+      "label": "shot_filter.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "shot_filter_dart",
+      "community": 131,
+      "norm_label": "shot_filter.dart"
     },
     {
       "label": "spectrogram.dart",
@@ -14582,7 +14602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_clipproblem",
-      "community": 157,
+      "community": 127,
       "norm_label": "clipproblem"
     },
     {
@@ -16042,7 +16062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_hud_hudoptions",
-      "community": 172,
+      "community": 150,
       "norm_label": "hudoptions"
     },
     {
@@ -17866,6 +17886,296 @@
       "norm_label": "tostring"
     },
     {
+      "label": "shot_filter.dart",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter",
+      "community": 56,
+      "norm_label": "shot_filter.dart"
+    },
+    {
+      "label": "_minHits",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_minhits",
+      "community": 56,
+      "norm_label": "_minhits"
+    },
+    {
+      "label": "_isolationFactor",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_isolationfactor",
+      "community": 56,
+      "norm_label": "_isolationfactor"
+    },
+    {
+      "label": "_minIsolationLimit",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_minisolationlimit",
+      "community": 56,
+      "norm_label": "_minisolationlimit"
+    },
+    {
+      "label": "_minBoom",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_minboom",
+      "community": 56,
+      "norm_label": "_minboom"
+    },
+    {
+      "label": "_echoSeconds",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_echoseconds",
+      "community": 56,
+      "norm_label": "_echoseconds"
+    },
+    {
+      "label": "_echoMargin",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_echomargin",
+      "community": 56,
+      "norm_label": "_echomargin"
+    },
+    {
+      "label": "sounds",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_sounds",
+      "community": 56,
+      "norm_label": "sounds"
+    },
+    {
+      "label": "isolation",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_isolation",
+      "community": 56,
+      "norm_label": "isolation"
+    },
+    {
+      "label": "sorted",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_sorted",
+      "community": 56,
+      "norm_label": "sorted"
+    },
+    {
+      "label": "alike",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_alike",
+      "community": 56,
+      "norm_label": "alike"
+    },
+    {
+      "label": "limit",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_limit",
+      "community": 56,
+      "norm_label": "limit"
+    },
+    {
+      "label": "shotLike",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_shotlike",
+      "community": 56,
+      "norm_label": "shotlike"
+    },
+    {
+      "label": "level",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_level",
+      "community": 56,
+      "norm_label": "level"
+    },
+    {
+      "label": "echoFrames",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_echoframes",
+      "community": 56,
+      "norm_label": "echoframes"
+    },
+    {
+      "label": "row",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_row",
+      "community": 56,
+      "norm_label": "row"
+    },
+    {
+      "label": "sum",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_sum",
+      "community": 56,
+      "norm_label": "sum"
+    },
+    {
+      "label": "span",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_span",
+      "community": 56,
+      "norm_label": "span"
+    },
+    {
+      "label": "peak",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_peak",
+      "community": 56,
+      "norm_label": "peak"
+    },
+    {
+      "label": "p",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_p",
+      "community": 56,
+      "norm_label": "p"
+    },
+    {
+      "label": "shape",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_shape",
+      "community": 56,
+      "norm_label": "shape"
+    },
+    {
+      "label": "mean",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_mean",
+      "community": 56,
+      "norm_label": "mean"
+    },
+    {
+      "label": "keepShotLike",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_keepshotlike",
+      "community": 56,
+      "norm_label": "keepshotlike"
+    },
+    {
+      "label": "echo",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_echo",
+      "community": 56,
+      "norm_label": "echo"
+    },
+    {
+      "label": "_band",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_band",
+      "community": 56,
+      "norm_label": "_band"
+    },
+    {
+      "label": "_sound",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_sound",
+      "community": 56,
+      "norm_label": "_sound"
+    },
+    {
+      "label": "_distance",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_distance",
+      "community": 56,
+      "norm_label": "_distance"
+    },
+    {
+      "label": "sqrt",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_sqrt",
+      "community": 56,
+      "norm_label": "sqrt"
+    },
+    {
+      "label": "_boom",
+      "file_type": "code",
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_shot_filter_boom",
+      "community": 56,
+      "norm_label": "_boom"
+    },
+    {
       "label": "spectrogram.dart",
       "file_type": "code",
       "source_file": "lib/services/video/spectrogram.dart",
@@ -17882,7 +18192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_spectrogram_spectrogram",
-      "community": 102,
+      "community": 132,
       "norm_label": "spectrogram"
     },
     {
@@ -18812,7 +19122,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_gallery",
-      "community": 194,
+      "community": 164,
       "norm_label": "video_gallery.dart"
     },
     {
@@ -18822,7 +19132,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_gallery_videogallery",
-      "community": 194,
+      "community": 164,
       "norm_label": "videogallery"
     },
     {
@@ -18832,7 +19142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_gallery_pluginvideogallery",
-      "community": 194,
+      "community": 164,
       "norm_label": "pluginvideogallery"
     },
     {
@@ -18842,7 +19152,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_gallery_save",
-      "community": 194,
+      "community": 164,
       "norm_label": "save"
     },
     {
@@ -18852,7 +19162,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_gallery_share",
-      "community": 194,
+      "community": 164,
       "norm_label": "share"
     },
     {
@@ -18862,7 +19172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_gal_gal_dart",
-      "community": 194,
+      "community": 164,
       "norm_label": "package:gal/gal.dart"
     },
     {
@@ -18872,7 +19182,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store",
-      "community": 3,
+      "community": 52,
       "norm_label": "video_string_store.dart"
     },
     {
@@ -18882,7 +19192,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_videostringstore",
-      "community": 198,
+      "community": 80,
       "norm_label": "videostringstore"
     },
     {
@@ -18892,7 +19202,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_insertstring",
-      "community": 3,
+      "community": 52,
       "norm_label": "insertstring"
     },
     {
@@ -18902,7 +19212,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_updatevideostring",
-      "community": 3,
+      "community": 52,
       "norm_label": "updatevideostring"
     },
     {
@@ -18912,7 +19222,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_deletestring",
-      "community": 3,
+      "community": 52,
       "norm_label": "deletestring"
     },
     {
@@ -18932,7 +19242,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videoworkdir",
-      "community": 154,
+      "community": 127,
       "norm_label": "videoworkdir"
     },
     {
@@ -18972,7 +19282,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "directory",
-      "community": 195,
+      "community": 154,
       "norm_label": "directory"
     },
     {
@@ -19082,7 +19392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service",
-      "community": 173,
+      "community": 138,
       "norm_label": "volume_service.dart"
     },
     {
@@ -19092,7 +19402,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_volumeservice",
-      "community": 205,
+      "community": 103,
       "norm_label": "volumeservice"
     },
     {
@@ -19102,7 +19412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_channel",
-      "community": 173,
+      "community": 138,
       "norm_label": "_channel"
     },
     {
@@ -19112,7 +19422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_ismediaaudible",
-      "community": 173,
+      "community": 138,
       "norm_label": "ismediaaudible"
     },
     {
@@ -19122,7 +19432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_showvolumepanel",
-      "community": 173,
+      "community": 138,
       "norm_label": "showvolumepanel"
     },
     {
@@ -20432,7 +20742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video",
-      "community": 13,
+      "community": 159,
       "norm_label": "clip_video.dart"
     },
     {
@@ -20442,7 +20752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_clipvideo",
-      "community": 13,
+      "community": 159,
       "norm_label": "clipvideo"
     },
     {
@@ -20452,7 +20762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_player",
-      "community": 13,
+      "community": 159,
       "norm_label": "player"
     },
     {
@@ -20462,7 +20772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_aspectratio",
-      "community": 13,
+      "community": 159,
       "norm_label": "aspectratio"
     },
     {
@@ -20472,7 +20782,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_foreground",
-      "community": 13,
+      "community": 159,
       "norm_label": "foreground"
     },
     {
@@ -20482,7 +20792,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_clip_video_build",
-      "community": 13,
+      "community": 159,
       "norm_label": "build"
     },
     {
@@ -20492,7 +20802,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog",
-      "community": 52,
+      "community": 175,
       "norm_label": "confirm_dialog.dart"
     },
     {
@@ -20502,7 +20812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_dismissible",
-      "community": 52,
+      "community": 175,
       "norm_label": "dismissible"
     },
     {
@@ -20512,7 +20822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "string_cancellabel_bool",
-      "community": 52,
+      "community": 175,
       "norm_label": "string? cancellabel,\n  bool"
     },
     {
@@ -20522,7 +20832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_result",
-      "community": 52,
+      "community": 175,
       "norm_label": "result"
     },
     {
@@ -20532,7 +20842,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_false",
-      "community": 52,
+      "community": 175,
       "norm_label": "false"
     },
     {
@@ -20542,7 +20852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return_result",
-      "community": 52,
+      "community": 175,
       "norm_label": "return result ??"
     },
     {
@@ -20552,7 +20862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_confirmdialog",
-      "community": 52,
+      "community": 175,
       "norm_label": "confirmdialog"
     },
     {
@@ -20742,7 +21052,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile",
-      "community": 182,
+      "community": 159,
       "norm_label": "drill_tile.dart"
     },
     {
@@ -20752,7 +21062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drilltile",
-      "community": 182,
+      "community": 159,
       "norm_label": "drilltile"
     },
     {
@@ -20762,7 +21072,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drill",
-      "community": 182,
+      "community": 159,
       "norm_label": "drill"
     },
     {
@@ -20772,7 +21082,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_active",
-      "community": 182,
+      "community": 159,
       "norm_label": "active"
     },
     {
@@ -20782,7 +21092,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_ontap",
-      "community": 182,
+      "community": 159,
       "norm_label": "ontap"
     },
     {
@@ -20792,7 +21102,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_trailing",
-      "community": 182,
+      "community": 159,
       "norm_label": "trailing"
     },
     {
@@ -20802,7 +21112,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_build",
-      "community": 182,
+      "community": 159,
       "norm_label": "build"
     },
     {
@@ -22382,7 +22692,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "t",
-      "community": 191,
+      "community": 32,
       "norm_label": "t"
     },
     {
@@ -22392,7 +22702,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets",
-      "community": 191,
+      "community": 32,
       "norm_label": "settings_widgets.dart"
     },
     {
@@ -22402,7 +22712,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_settingssection",
-      "community": 191,
+      "community": 32,
       "norm_label": "settingssection"
     },
     {
@@ -22412,7 +22722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_enumchoice",
-      "community": 191,
+      "community": 32,
       "norm_label": "enumchoice"
     },
     {
@@ -22422,7 +22732,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_title",
-      "community": 191,
+      "community": 32,
       "norm_label": "title"
     },
     {
@@ -22432,7 +22742,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_values",
-      "community": 191,
+      "community": 32,
       "norm_label": "values"
     },
     {
@@ -22442,7 +22752,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_current",
-      "community": 191,
+      "community": 32,
       "norm_label": "current"
     },
     {
@@ -22452,7 +22762,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_onchanged",
-      "community": 191,
+      "community": 32,
       "norm_label": "onchanged"
     },
     {
@@ -22462,7 +22772,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_build",
-      "community": 191,
+      "community": 32,
       "norm_label": "build"
     },
     {
@@ -22742,7 +23052,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_shot_timeline_shottimeline",
-      "community": 130,
+      "community": 98,
       "norm_label": "shottimeline"
     },
     {
@@ -22752,7 +23062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_shot_timeline_shottimelinestate",
-      "community": 130,
+      "community": 98,
       "norm_label": "_shottimelinestate"
     },
     {
@@ -23222,7 +23532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_spectrogram_tiles_spectrogramtiles",
-      "community": 159,
+      "community": 182,
       "norm_label": "spectrogramtiles"
     },
     {
@@ -23232,7 +23542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "changenotifier",
-      "community": 159,
+      "community": 182,
       "norm_label": "changenotifier"
     },
     {
@@ -23412,7 +23722,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_timeline_controller_timelinecontroller",
-      "community": 159,
+      "community": 182,
       "norm_label": "timelinecontroller"
     },
     {
@@ -24032,7 +24342,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_overlay_hudlabelsof",
-      "community": 200,
+      "community": 4,
       "norm_label": "hudlabelsof"
     },
     {
@@ -24592,7 +24902,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test",
-      "community": 202,
+      "community": 93,
       "norm_label": "biquad_test.dart"
     },
     {
@@ -24602,7 +24912,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_samplerate",
-      "community": 202,
+      "community": 93,
       "norm_label": "samplerate"
     },
     {
@@ -24612,7 +24922,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_beephz",
-      "community": 202,
+      "community": 93,
       "norm_label": "beephz"
     },
     {
@@ -24622,7 +24932,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_main",
-      "community": 202,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -24632,7 +24942,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_sine",
-      "community": 202,
+      "community": 93,
       "norm_label": "sine"
     },
     {
@@ -24642,7 +24952,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_peakabs",
-      "community": 202,
+      "community": 93,
       "norm_label": "peakabs"
     },
     {
@@ -24652,7 +24962,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_biquad_dart",
-      "community": 202,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/services/biquad.dart"
     },
     {
@@ -24832,7 +25142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_memorystore",
-      "community": 198,
+      "community": 80,
       "norm_label": "_memorystore"
     },
     {
@@ -25192,7 +25502,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_video_providers_dart",
-      "community": 195,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/providers/video_providers.dart"
     },
     {
@@ -25232,7 +25542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_video_work_dir_dart",
-      "community": 195,
+      "community": 127,
       "norm_label": "package:simple_shot_timer/services/video/video_work_dir.dart"
     },
     {
@@ -25426,6 +25736,26 @@
       "norm_label": "s0"
     },
     {
+      "label": "ringHz",
+      "file_type": "code",
+      "source_file": "test/clip_fixtures.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_clip_fixtures_ringhz",
+      "community": 129,
+      "norm_label": "ringhz"
+    },
+    {
+      "label": "previous",
+      "file_type": "code",
+      "source_file": "test/clip_fixtures.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_clip_fixtures_previous",
+      "community": 129,
+      "norm_label": "previous"
+    },
+    {
       "label": "out",
       "file_type": "code",
       "source_file": "test/clip_fixtures.dart",
@@ -25574,6 +25904,16 @@
       "id": "test_clip_fixtures_addshot",
       "community": 129,
       "norm_label": "addshot"
+    },
+    {
+      "label": "addClick",
+      "file_type": "code",
+      "source_file": "test/clip_fixtures.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_clip_fixtures_addclick",
+      "community": 129,
+      "norm_label": "addclick"
     },
     {
       "label": "toPcm",
@@ -25832,7 +26172,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drills_provider_test_failingclear",
-      "community": 204,
+      "community": 103,
       "norm_label": "_failingclear"
     },
     {
@@ -26082,7 +26422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_database_service_dart",
-      "community": 41,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/services/database_service.dart"
     },
     {
@@ -26182,7 +26522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test",
-      "community": 203,
+      "community": 17,
       "norm_label": "drill_config_test.dart"
     },
     {
@@ -26192,7 +26532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_drill",
-      "community": 203,
+      "community": 17,
       "norm_label": "_drill"
     },
     {
@@ -26202,7 +26542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_other",
-      "community": 203,
+      "community": 17,
       "norm_label": "_other"
     },
     {
@@ -26212,7 +26552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_singlefieldedits",
-      "community": 203,
+      "community": 17,
       "norm_label": "_singlefieldedits"
     },
     {
@@ -26222,7 +26562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_main",
-      "community": 203,
+      "community": 17,
       "norm_label": "main"
     },
     {
@@ -26232,7 +26572,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test",
-      "community": 195,
+      "community": 154,
       "norm_label": "export_service_test.dart"
     },
     {
@@ -26242,7 +26582,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_temp",
-      "community": 195,
+      "community": 154,
       "norm_label": "temp"
     },
     {
@@ -26252,7 +26592,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_main",
-      "community": 195,
+      "community": 154,
       "norm_label": "main"
     },
     {
@@ -26262,7 +26602,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_touch",
-      "community": 195,
+      "community": 154,
       "norm_label": "touch"
     },
     {
@@ -26272,7 +26612,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_export_service_dart",
-      "community": 195,
+      "community": 154,
       "norm_label": "package:simple_shot_timer/services/export_service.dart"
     },
     {
@@ -26282,7 +26622,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_export_plan_dart",
-      "community": 195,
+      "community": 154,
       "norm_label": "package:simple_shot_timer/services/video/export_plan.dart"
     },
     {
@@ -26472,7 +26812,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test",
-      "community": 138,
+      "community": 118,
       "norm_label": "i18n_parity_test.dart"
     },
     {
@@ -26482,7 +26822,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholder",
-      "community": 138,
+      "community": 118,
       "norm_label": "placeholder"
     },
     {
@@ -26492,7 +26832,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_plist",
-      "community": 138,
+      "community": 118,
       "norm_label": "plist"
     },
     {
@@ -26502,7 +26842,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_ioslocalizations",
-      "community": 138,
+      "community": 118,
       "norm_label": "ioslocalizations"
     },
     {
@@ -26512,7 +26852,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_main",
-      "community": 138,
+      "community": 118,
       "norm_label": "main"
     },
     {
@@ -26522,7 +26862,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_load",
-      "community": 138,
+      "community": 118,
       "norm_label": "load"
     },
     {
@@ -26532,7 +26872,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholders",
-      "community": 138,
+      "community": 118,
       "norm_label": "placeholders"
     },
     {
@@ -27012,7 +27352,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test",
-      "community": 41,
+      "community": 138,
       "norm_label": "review_discard_test.dart"
     },
     {
@@ -27022,7 +27362,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_metawrites",
-      "community": 198,
+      "community": 103,
       "norm_label": "_metawrites"
     },
     {
@@ -27032,7 +27372,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_writes",
-      "community": 41,
+      "community": 138,
       "norm_label": "writes"
     },
     {
@@ -27042,7 +27382,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_updatestringmeta",
-      "community": 41,
+      "community": 138,
       "norm_label": "updatestringmeta"
     },
     {
@@ -27052,7 +27392,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_nosuchmethod",
-      "community": 41,
+      "community": 138,
       "norm_label": "nosuchmethod"
     },
     {
@@ -27072,7 +27412,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_string_provider_dart",
-      "community": 41,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/providers/string_provider.dart"
     },
     {
@@ -27082,7 +27422,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_review_screen_dart",
-      "community": 41,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/screens/review_screen.dart"
     },
     {
@@ -27092,7 +27432,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "navigatorstate",
-      "community": 41,
+      "community": 138,
       "norm_label": "navigatorstate"
     },
     {
@@ -27102,7 +27442,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto",
-      "community": 195,
+      "community": 118,
       "norm_label": "roboto.dart"
     },
     {
@@ -27112,7 +27452,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_fonts",
-      "community": 195,
+      "community": 118,
       "norm_label": "fonts"
     },
     {
@@ -27122,7 +27462,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_roboto",
-      "community": 195,
+      "community": 118,
       "norm_label": "roboto"
     },
     {
@@ -27132,7 +27472,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_loadroboto",
-      "community": 195,
+      "community": 118,
       "norm_label": "loadroboto"
     },
     {
@@ -27142,7 +27482,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_load",
-      "community": 195,
+      "community": 118,
       "norm_label": "load"
     },
     {
@@ -27152,7 +27492,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test",
-      "community": 195,
+      "community": 138,
       "norm_label": "settings_delete_all_test.dart"
     },
     {
@@ -27172,7 +27512,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleted",
-      "community": 195,
+      "community": 138,
       "norm_label": "deleted"
     },
     {
@@ -27182,7 +27522,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_build",
-      "community": 195,
+      "community": 138,
       "norm_label": "build"
     },
     {
@@ -27192,7 +27532,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleteall",
-      "community": 195,
+      "community": 138,
       "norm_label": "deleteall"
     },
     {
@@ -27202,7 +27542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_main",
-      "community": 195,
+      "community": 138,
       "norm_label": "main"
     },
     {
@@ -27212,7 +27552,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_history_provider_dart",
-      "community": 195,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/providers/history_provider.dart"
     },
     {
@@ -27222,7 +27562,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_settings_screen_dart",
-      "community": 195,
+      "community": 138,
       "norm_label": "package:simple_shot_timer/screens/settings_screen.dart"
     },
     {
@@ -27284,6 +27624,216 @@
       "id": "test_shot_detector_test_main",
       "community": 86,
       "norm_label": "main"
+    },
+    {
+      "label": "shot_filter_test.dart",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test",
+      "community": 137,
+      "norm_label": "shot_filter_test.dart"
+    },
+    {
+      "label": "_shots",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_shots",
+      "community": 137,
+      "norm_label": "_shots"
+    },
+    {
+      "label": "_handling",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_handling",
+      "community": 137,
+      "norm_label": "_handling"
+    },
+    {
+      "label": "s0",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_s0",
+      "community": 137,
+      "norm_label": "s0"
+    },
+    {
+      "label": "gain",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_gain",
+      "community": 137,
+      "norm_label": "gain"
+    },
+    {
+      "label": "riseSeconds",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_riseseconds",
+      "community": 137,
+      "norm_label": "riseseconds"
+    },
+    {
+      "label": "smooth",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_smooth",
+      "community": 137,
+      "norm_label": "smooth"
+    },
+    {
+      "label": "muffled",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_muffled",
+      "community": 137,
+      "norm_label": "muffled"
+    },
+    {
+      "label": "cracks",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_cracks",
+      "community": 137,
+      "norm_label": "cracks"
+    },
+    {
+      "label": "ringing",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_ringing",
+      "community": 137,
+      "norm_label": "ringing"
+    },
+    {
+      "label": "quiet",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_quiet",
+      "community": 137,
+      "norm_label": "quiet"
+    },
+    {
+      "label": "echoes",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_echoes",
+      "community": 137,
+      "norm_label": "echoes"
+    },
+    {
+      "label": "beep",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_beep",
+      "community": 137,
+      "norm_label": "beep"
+    },
+    {
+      "label": "_crack",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_crack",
+      "community": 137,
+      "norm_label": "_crack"
+    },
+    {
+      "label": "_distantShot",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_distantshot",
+      "community": 137,
+      "norm_label": "_distantshot"
+    },
+    {
+      "label": "_muffledShot",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_muffledshot",
+      "community": 137,
+      "norm_label": "_muffledshot"
+    },
+    {
+      "label": "_clip",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_clip",
+      "community": 137,
+      "norm_label": "_clip"
+    },
+    {
+      "label": "_seconds",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_seconds",
+      "community": 137,
+      "norm_label": "_seconds"
+    },
+    {
+      "label": "_near",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_near",
+      "community": 137,
+      "norm_label": "_near"
+    },
+    {
+      "label": "main",
+      "file_type": "code",
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_shot_filter_test_main",
+      "community": 137,
+      "norm_label": "main"
+    },
+    {
+      "label": "package:simple_shot_timer/services/video/shot_filter.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_simple_shot_timer_services_video_shot_filter_dart",
+      "community": 137,
+      "norm_label": "package:simple_shot_timer/services/video/shot_filter.dart"
     },
     {
       "label": "shot_timeline_test.dart",
@@ -27762,7 +28312,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_memorystore",
-      "community": 198,
+      "community": 103,
       "norm_label": "_memorystore"
     },
     {
@@ -27772,7 +28322,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_audiblevolume",
-      "community": 205,
+      "community": 103,
       "norm_label": "_audiblevolume"
     },
     {
@@ -28292,7 +28842,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_memorystore",
-      "community": 198,
+      "community": 80,
       "norm_label": "_memorystore"
     },
     {
@@ -28592,7 +29142,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_export_test_fakegallery",
-      "community": 194,
+      "community": 164,
       "norm_label": "_fakegallery"
     },
     {
@@ -28992,7 +29542,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakeworkdir",
-      "community": 154,
+      "community": 127,
       "norm_label": "_fakeworkdir"
     },
     {
@@ -29472,7 +30022,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_check_dart",
-      "community": 195,
+      "community": 127,
       "norm_label": "package:simple_shot_timer/services/video/clip_check.dart"
     },
     {
@@ -29482,7 +30032,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test",
-      "community": 195,
+      "community": 127,
       "norm_label": "video_work_dir_test.dart"
     },
     {
@@ -29492,7 +30042,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_temp",
-      "community": 195,
+      "community": 127,
       "norm_label": "temp"
     },
     {
@@ -29502,7 +30052,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_work",
-      "community": 195,
+      "community": 127,
       "norm_label": "work"
     },
     {
@@ -29512,7 +30062,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_main",
-      "community": 195,
+      "community": 127,
       "norm_label": "main"
     },
     {
@@ -36539,6 +37089,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "package_flutter_test_flutter_test_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/shot_timeline_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -36743,6 +37303,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_marker_doc_test",
+      "target": "package_simple_shot_timer_services_video_clip_analyzer_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
       "target": "package_simple_shot_timer_services_video_clip_analyzer_dart"
     },
     {
@@ -42178,6 +42748,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "dart_math"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/services/video/spectrogram.dart",
       "source_location": null,
       "weight": 1.0,
@@ -42282,6 +42862,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_delay_test",
+      "target": "dart_math"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
       "target": "dart_math"
     },
     {
@@ -45097,6 +45687,17 @@
       "weight": 1.0,
       "context": "variable_type",
       "source": "lib_services_video_hud_painter",
+      "target": "return"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "source": "lib_services_video_shot_filter",
       "target": "return"
     },
     {
@@ -56216,6 +56817,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "dart_typed_data"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/shot_timeline_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -59240,6 +59851,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_clip_analyzer",
+      "target": "lib_services_video_clip_analyzer_shotlikeonly"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/clip_analyzer.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_clip_analyzer",
       "target": "lib_services_video_clip_analyzer_shotseconds"
     },
     {
@@ -59344,6 +59965,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_clip_analyzer",
+      "target": "shot_filter_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/clip_analyzer.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_clip_analyzer",
       "target": "spectrogram_dart"
     },
     {
@@ -59392,6 +60023,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "clip_shot_finder_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/services/video/clip_shot_finder.dart",
       "source_location": null,
       "weight": 1.0,
@@ -59406,6 +60047,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_clip_signal",
+      "target": "spectrogram_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
       "target": "spectrogram_dart"
     },
     {
@@ -63503,6 +64154,286 @@
       "context": "variable_type",
       "source": "test_part_strip_test",
       "target": "lib_services_video_part_window_partwindow"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_alike"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_band"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_boom"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_distance"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_echo"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_echoframes"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_echomargin"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_echoseconds"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_isolation"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_isolationfactor"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_keepshotlike"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_level"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_limit"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_mean"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_minboom"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_minhits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_minisolationlimit"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_p"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_peak"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_row"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_shape"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_shotlike"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_sorted"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_sound"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_sounds"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_span"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_sqrt"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/shot_filter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_shot_filter",
+      "target": "lib_services_video_shot_filter_sum"
     },
     {
       "relation": "defines",
@@ -70511,6 +71442,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "package_simple_shot_timer_services_video_clip_shot_finder_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/clip_shot_finder_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -70525,6 +71466,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_marker_doc_test",
+      "target": "package_simple_shot_timer_services_video_spectrogram_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
       "target": "package_simple_shot_timer_services_video_spectrogram_dart"
     },
     {
@@ -70575,6 +71526,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_marker_doc_test",
+      "target": "clip_fixtures_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
       "target": "clip_fixtures_dart"
     },
     {
@@ -71982,6 +72943,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_clip_fixtures",
+      "target": "test_clip_fixtures_addclick"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/clip_fixtures.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_clip_fixtures",
       "target": "test_clip_fixtures_addheldburst"
     },
     {
@@ -72112,6 +73083,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_clip_fixtures",
+      "target": "test_clip_fixtures_previous"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/clip_fixtures.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_clip_fixtures",
       "target": "test_clip_fixtures_rand"
     },
     {
@@ -72143,6 +73124,16 @@
       "weight": 1.0,
       "source": "test_clip_fixtures",
       "target": "test_clip_fixtures_release"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/clip_fixtures.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_clip_fixtures",
+      "target": "test_clip_fixtures_ringhz"
     },
     {
       "relation": "defines",
@@ -74087,6 +75078,206 @@
       "weight": 1.0,
       "source": "test_shot_detector_test",
       "target": "test_shot_detector_test_main"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "package_simple_shot_timer_services_video_shot_filter_dart"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_beep"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_clip"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_crack"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_cracks"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_distantshot"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_echoes"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_gain"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_handling"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_main"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_muffled"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_muffledshot"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_near"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_quiet"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_ringing"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_riseseconds"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_s0"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_seconds"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_shots"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/shot_filter_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_shot_filter_test",
+      "target": "test_shot_filter_test_smooth"
     },
     {
       "relation": "references",
@@ -81224,5 +82415,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ef8a2437db7db9175f7ccffdc6554af238570363"
+  "built_at_commit": "2089ad20b8857f948117d2d89a690fb63fb52259"
 }
