@@ -194,8 +194,15 @@
   "192": "dart:ui",
   "193": "package:flutter/foundation.dart",
   "194": "biquad_test.dart",
+  "195": "main.dart",
   "196": "MaterialPageRoute",
   "197": "Size",
+  "198": "custom_drills_provider.dart",
   "199": "isNoSpace",
-  "201": "ClipExporter"
+  "200": "drill_tile.dart",
+  "201": "ClipExporter",
+  "202": "ios_audio_session.dart",
+  "203": "settings_widgets.dart",
+  "204": "DatabaseService",
+  "205": "drill_config_test.dart"
 }

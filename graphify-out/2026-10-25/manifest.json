@@ -2225,8 +2225,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1792884274.1984186,
-    "ast_hash": "714ab33d806b9bc7a60e197b27d808c9",
+    "mtime": 1792895506.5202508,
+    "ast_hash": "4dff162ca6c8df43538aabb4aa046482",
     "semantic_hash": ""
   },
   "lib/screens/video_flows.dart": {
@@ -2340,8 +2340,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_signal.dart": {
-    "mtime": 1792712062.379878,
-    "ast_hash": "c0c26afcfe92249a67e9a8931418452a",
+    "mtime": 1792896313.430918,
+    "ast_hash": "0187a30cafd218c90e66ab2e9f2e7318",
     "semantic_hash": ""
   },
   "lib/utils/timeline_math.dart": {
@@ -2355,13 +2355,8 @@
     "semantic_hash": ""
   },
   "lib/widgets/timeline/shot_timeline.dart": {
-    "mtime": 1792752962.8003223,
-    "ast_hash": "5162c194cae950adb4906d4844cc562f",
-    "semantic_hash": ""
-  },
-  "lib/widgets/timeline/spectrogram_tiles.dart": {
-    "mtime": 1792712776.5869367,
-    "ast_hash": "e77e093c87cb8d9d3d73d2bab112e76c",
+    "mtime": 1792895992.9753697,
+    "ast_hash": "e190dd474162d459b5a3733706f508e3",
     "semantic_hash": ""
   },
   "lib/widgets/timeline/timeline_controller.dart": {
@@ -2370,18 +2365,18 @@
     "semantic_hash": ""
   },
   "lib/widgets/timeline/timeline_minimap.dart": {
-    "mtime": 1792717076.6766257,
-    "ast_hash": "282085aa28f96673e77484ca7e1d82c0",
+    "mtime": 1792895960.0794804,
+    "ast_hash": "576cf6c6e0bc5aaac2ed2e3198a18078",
     "semantic_hash": ""
   },
   "test/shot_timeline_test.dart": {
-    "mtime": 1792752634.2326083,
-    "ast_hash": "529c5fa3f65c5fe0c4eced411cc088f2",
+    "mtime": 1792895977.6437447,
+    "ast_hash": "811e91d37137c1b5049044ed7a13fb83",
     "semantic_hash": ""
   },
   "test/timeline_math_test.dart": {
-    "mtime": 1792711996.0877354,
-    "ast_hash": "7bd96724ef4fce84a409c1edb1f91f0e",
+    "mtime": 1792896305.5885751,
+    "ast_hash": "f4094662f567bf13a61c4894e7fbc8c9",
     "semantic_hash": ""
   },
   "lib/screens/video_part_view.dart": {
@@ -2577,6 +2572,11 @@
   "test/shot_filter_test.dart": {
     "mtime": 1792892873.988726,
     "ast_hash": "ff1b41e6ae44fc23625a7a2f96e14329",
+    "semantic_hash": ""
+  },
+  "test/timeline_minimap_test.dart": {
+    "mtime": 1792895695.8752902,
+    "ast_hash": "fdb9700bf915837056c5da869d6ffa52",
     "semantic_hash": ""
   }
 }
