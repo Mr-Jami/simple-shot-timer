@@ -47,6 +47,30 @@ void addShot(
   }
 }
 
+/// Gun handling as a camera on the shooter records it (a magazine seated,
+/// the slide, metal on concrete): a crack of treble-heavy noise and a short
+/// metallic ring at [ringHz], without a shot's boom. [gain] scales it.
+void addClick(
+  Float32List x,
+  double at,
+  double Function() rand, {
+  double gain = 1,
+  double ringHz = 4000,
+}) {
+  final s0 = (at * clipSampleRate).round();
+  var previous = 0.0;
+  for (var i = 0; i < 0.15 * clipSampleRate && s0 + i < x.length; i++) {
+    final t = i / clipSampleRate;
+    final noise = rand();
+    // The difference of successive samples tilts the noise to the treble.
+    final crack = 0.9 * math.exp(-t / 0.004) * (noise - previous) / 2;
+    previous = noise;
+    final ring =
+        0.3 * math.exp(-t / 0.03) * math.sin(2 * math.pi * ringHz * t);
+    x[s0 + i] += gain * (crack + ring);
+  }
+}
+
 /// Clips to ±1 and quantizes to 16 bits the way the reference writes its WAV
 /// (JavaScript Math.round of v·32767).
 Int16List toPcm(Float32List x) {

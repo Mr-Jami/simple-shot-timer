@@ -8,6 +8,7 @@ import 'dart:typed_data';
 
 import '../beep_constants.dart';
 import 'clip_shot_finder.dart';
+import 'shot_filter.dart';
 import 'spectrogram.dart';
 import 'start_finder.dart';
 import 'tone_finder.dart';
@@ -18,17 +19,23 @@ import 'tone_finder.dart';
 // analyzePcmFile reads the decoder's PCM file and analyses it in one, so the
 // samples never cross isolates.
 
-/// How eagerly shots are taken. Scales the adaptive loudness gate, so it can
-/// change after analysis without the audio (see [ClipAnalysis.withSensitivity]).
+/// How eagerly shots are taken. Scales the adaptive loudness gate and, but
+/// for [more], keeps only the hits that sound like the string's shots, so
+/// it can change after analysis without the audio (see
+/// [ClipAnalysis.withSensitivity]).
 enum ShotSensitivity {
   fewer(1.05),
   normal(1.0),
-  more(0.93);
+  more(0.93, shotLikeOnly: false);
 
-  const ShotSensitivity(this.gateScale);
+  const ShotSensitivity(this.gateScale, {this.shotLikeOnly = true});
 
   /// Multiplier on the loudness gate; lower takes quieter shots.
   final double gateScale;
+
+  /// Whether gun handling and other hits unlike the shots go
+  /// ([keepShotLike]). More keeps everything the shot test found.
+  final bool shotLikeOnly;
 }
 
 /// What the analyzer found in one clip. Times are seconds from the first
@@ -130,13 +137,18 @@ ClipAnalysis _decide(
   Spectrogram spectrogram,
   List<ToneRun> tones,
   ShotSensitivity sensitivity,
-) =>
-    ClipAnalysis(
-      spectrogram: spectrogram,
-      tones: tones,
-      scan: findShots(spectrogram, gateScale: sensitivity.gateScale),
-      sensitivity: sensitivity,
-    );
+) {
+  final scan = findShots(spectrogram, gateScale: sensitivity.gateScale);
+  return ClipAnalysis(
+    spectrogram: spectrogram,
+    tones: tones,
+    scan: sensitivity.shotLikeOnly
+        ? ShotScan(
+            shots: keepShotLike(spectrogram, scan.shots), gate: scan.gate)
+        : scan,
+    sensitivity: sensitivity,
+  );
+}
 
 /// This app's own beep, measured to within a bin and a half of its pitch.
 bool _isOwnBeep(ToneRun tone, double binHz) =>
