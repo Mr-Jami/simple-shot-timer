@@ -2130,8 +2130,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_analyzer.dart": {
-    "mtime": 1792752218.7852213,
-    "ast_hash": "0edcc13e78851d09bde3d4a43956a9d5",
+    "mtime": 1792892969.055343,
+    "ast_hash": "a0b51290a5840bf66a2330a7b9b6f712",
     "semantic_hash": ""
   },
   "lib/services/video/clip_audio_source.dart": {
@@ -2170,8 +2170,8 @@
     "semantic_hash": ""
   },
   "test/clip_fixtures.dart": {
-    "mtime": 1792701686.5146277,
-    "ast_hash": "1ef9958751d727f15d43621054264702",
+    "mtime": 1792890991.3328474,
+    "ast_hash": "2c266e4e9a5cad8b39e5416673a4f666",
     "semantic_hash": ""
   },
   "test/clip_shot_finder_test.dart": {
@@ -2567,6 +2567,16 @@
   "test/roboto.dart": {
     "mtime": 1792758062.4830377,
     "ast_hash": "4ec73f700a57678f303c2829a416037d",
+    "semantic_hash": ""
+  },
+  "lib/services/video/shot_filter.dart": {
+    "mtime": 1792893008.0578892,
+    "ast_hash": "54883c9368cfd5cb851708b706e75db1",
+    "semantic_hash": ""
+  },
+  "test/shot_filter_test.dart": {
+    "mtime": 1792892873.988726,
+    "ast_hash": "ff1b41e6ae44fc23625a7a2f96e14329",
     "semantic_hash": ""
   }
 }
