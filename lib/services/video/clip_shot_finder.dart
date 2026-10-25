@@ -27,7 +27,8 @@ class ShotHit {
   String toString() => 'ShotHit($frame${soft ? ', soft' : ''})';
 }
 
-/// Every shot [findShots] accepted, and the loudness gate it used.
+/// The shots of a clip, and the loudness gate [findShots] used. What
+/// [findShots] accepted, less what `keepShotLike` dropped (but for More).
 class ShotScan {
   const ShotScan({required this.shots, required this.gate});
 

@@ -111,33 +111,40 @@ int _peak(Spectrogram s, int frame) {
 /// A hit's sound: 16 bands from one bin up to 64 bins (about 0.2-12 kHz at
 /// 48 kHz) over four frames from the peak, less their mean so the level
 /// doesn't count; then the frame mean 10, 20, 40, 80 and 150 ms after the
-/// peak, against the peak's.
+/// peak, against the peak's. A point past the end of the clip (or part) is
+/// NaN, not silence: a last shot cut off there would look unlike the others.
 List<double> _sound(Spectrogram s, int onset) {
   final p = _peak(s, onset);
+  final frames = math.min(4, s.frameCount - p);
   final shape = [
     for (var b = 0; b < 16; b++)
-      [for (var m = p; m < p + 4; m++) _band(s, m, 1 + 4 * b, 5 + 4 * b)]
+      [for (var m = p; m < p + frames; m++) _band(s, m, 1 + 4 * b, 5 + 4 * b)]
               .reduce((x, y) => x + y) /
-          4,
+          frames,
   ];
   final mean = shape.reduce((x, y) => x + y) / shape.length;
   final level = _band(s, p, 0, Spectrogram.bins);
   return [
     for (final v in shape) v - mean,
     for (final ms in const [10, 20, 40, 80, 150])
-      _band(s, p + (ms / 1000 * s.framesPerSecond).round(), 0,
-              Spectrogram.bins) -
-          level,
+      if (p + (ms / 1000 * s.framesPerSecond).round() case final m
+          when m < s.frameCount)
+        _band(s, m, 0, Spectrogram.bins) - level
+      else
+        double.nan,
   ];
 }
 
-/// Root mean square difference of two sounds.
+/// Root mean square difference of two sounds, over the points both have.
 double _distance(List<double> a, List<double> b) {
   var sum = 0.0;
+  var n = 0;
   for (var i = 0; i < a.length; i++) {
+    if (a[i].isNaN || b[i].isNaN) continue;
     sum += (a[i] - b[i]) * (a[i] - b[i]);
+    n++;
   }
-  return math.sqrt(sum / a.length);
+  return math.sqrt(sum / n);
 }
 
 /// How much the low band (bins 1-5, about 0.2-1.1 kHz) stands above 4-12

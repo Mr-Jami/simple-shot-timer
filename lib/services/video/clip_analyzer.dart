@@ -65,7 +65,8 @@ class ClipAnalysis {
   /// Every steady tone, with its onset refined on the waveform.
   final List<ToneRun> tones;
 
-  /// Every shot in the clip, including any before START.
+  /// Every shot in the clip, including any before START, less the gun
+  /// handling [keepShotLike] dropped (but for More).
   final ShotScan scan;
   final ShotSensitivity sensitivity;
 
@@ -90,8 +91,9 @@ class ClipAnalysis {
     ];
   }
 
-  /// The same clip analysed at another [sensitivity]. Only the shot test and
-  /// the START choice run again.
+  /// The same clip analysed at another [sensitivity]. Only the shot test,
+  /// the shot filter ([keepShotLike], but for More) and the START choice run
+  /// again.
   ClipAnalysis withSensitivity(ShotSensitivity sensitivity) =>
       _decide(spectrogram, tones, sensitivity);
 }

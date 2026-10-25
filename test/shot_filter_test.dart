@@ -219,6 +219,18 @@ void main() {
     expect(_seconds(s, keepShotLike(s, hits)), _near(shots));
   });
 
+  test('keeps a last shot the end of the clip cuts off', () {
+    // 50 ms before the end: its decay is mostly past it.
+    const shots = [..._shots, 8.95];
+    final s = Spectrogram.compute(
+      _clip(shots: shots, handling: _handling.take(4).toList()),
+      clipSampleRate,
+    );
+    final hits = findShots(s).shots;
+    expect(_seconds(s, hits), hasLength(shots.length + 4));
+    expect(_seconds(s, keepShotLike(s, hits)), _near(shots));
+  });
+
   test('two hits have nothing to compare: both stay', () {
     final s = Spectrogram.compute(
       _clip(shots: const [3.0], handling: [_handling.first]),

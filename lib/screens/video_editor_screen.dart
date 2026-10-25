@@ -190,7 +190,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   /// Plays from [ms]: the timeline jumps there and follows from it. Plays
   /// once the seek has landed: at the end of the video, play() would start
   /// over at 0 instead. Another [ms] while that seek runs (the length
-  /// changed in the Export sheet) takes it over.
+  /// changed in the Export sheet) takes it over; a sheet closed meanwhile
+  /// ends the loop, and nothing plays.
   Future<void> _playFrom(int ms) async {
     if (_restartAt == ms) return;
     final restarting = _restartAt != null;
@@ -208,7 +209,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     } finally {
       _restartAt = null;
     }
-    if (mounted) await _player.play();
+    if (mounted && _loop != null) await _player.play();
   }
 
   void _togglePlay() {
