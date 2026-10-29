@@ -1,7 +1,7 @@
 # Graph Report - simple-shot-timer  (2026-10-29)
 
 ## Corpus Check
-- 238 files · ~435,464 words
+- 238 files · ~435,560 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ca431a23`
+- Built from commit: `31d58d6c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -180,7 +180,6 @@
 - [[_COMMUNITY_beepPlayerProvider|beepPlayerProvider]]
 - [[_COMMUNITY_app_navigation_bar.dart|app_navigation_bar.dart]]
 - [[_COMMUNITY_motion.dart|motion.dart]]
-- [[_COMMUNITY_biquad.dart|biquad.dart]]
 - [[_COMMUNITY_ios_audio_session.dart|ios_audio_session.dart]]
 - [[_COMMUNITY_export_service_test.dart|export_service_test.dart]]
 - [[_COMMUNITY_legal.dart|legal.dart]]
@@ -445,7 +444,7 @@ Nodes (22): build, createState, _error, _formatHz, label, onApply, onDiscard, _r
 
 ### Community 80 - "settings_screen.dart"
 Cohesion: 0.07
-Nodes (27): VideoSession, _MemoryStore, package:simple_shot_timer/providers/clip_editor_provider.dart, package:simple_shot_timer/screens/video_editor_screen.dart, package:simple_shot_timer/services/timer_ports.dart, package:simple_shot_timer/services/video/video_string_store.dart, package:simple_shot_timer/widgets/shot_badge.dart, _FakeSession (+19 more)
+Nodes (26): VideoStringStore, _MemoryStore, package:simple_shot_timer/providers/clip_editor_provider.dart, package:simple_shot_timer/screens/video_editor_screen.dart, package:simple_shot_timer/services/timer_ports.dart, package:simple_shot_timer/services/video/video_string_store.dart, package:simple_shot_timer/widgets/shot_badge.dart, _MemoryStore (+18 more)
 
 ### Community 81 - "main.dart"
 Cohesion: 0.14
@@ -492,7 +491,7 @@ Cohesion: 0.12
 Nodes (16): around, endMs, first, hashCode, _lead, lengthMs, loudest, maxClipPartMs (+8 more)
 
 ### Community 92 - "StatelessWidget"
-Cohesion: 0.20
+Cohesion: 0.29
 Nodes (7): 1. Join the tester group, 2. Opt in to the beta, 3. Install or update, How to join (Android), Join the Simple Shot Timer beta, Leaving the beta, Reporting bugs and feedback
 
 ### Community 93 - "drill_config_test.dart"
@@ -524,7 +523,7 @@ Cohesion: 0.05
 Nodes (42): _bounces, centreOn, displayMs, dispose, _dragStartPx, dragTo, endDrag, endMs (+34 more)
 
 ### Community 100 - "settingsProvider"
-Cohesion: 0.25
+Cohesion: 0.33
 Nodes (6): By hand, Fields, Languages, Store listing text, What's New, Writing and translating
 
 ### Community 101 - "legal.dart"
@@ -648,8 +647,8 @@ Cohesion: 0.14
 Nodes (13): attackSeconds, best, bestCount, candidates, chooseStart, isStopClick, maxDraw, minDraw (+5 more)
 
 ### Community 137 - "clip_analyzer_test.dart"
-Cohesion: 0.13
-Nodes (18): clip_fixtures.dart, package:simple_shot_timer/services/video/analyzed_clip.dart, package:simple_shot_timer/services/video/clip_analyzer.dart, package:simple_shot_timer/services/video/clip_audio_source.dart, package:simple_shot_timer/services/video/clip_shot_finder.dart, package:simple_shot_timer/services/video/clip_signal.dart, package:simple_shot_timer/services/video/marker_doc.dart, package:simple_shot_timer/services/video/spectrogram.dart (+10 more)
+Cohesion: 0.06
+Nodes (39): clip_fixtures.dart, package:simple_shot_timer/services/video/analyzed_clip.dart, package:simple_shot_timer/services/video/clip_analyzer.dart, package:simple_shot_timer/services/video/clip_audio_source.dart, package:simple_shot_timer/services/video/clip_shot_finder.dart, package:simple_shot_timer/services/video/clip_signal.dart, package:simple_shot_timer/services/video/marker_doc.dart, package:simple_shot_timer/services/video/shot_filter.dart (+31 more)
 
 ### Community 138 - "date_locale_test.dart"
 Cohesion: 0.12
@@ -669,7 +668,7 @@ Nodes (42): base, buildAppTheme, monochromeScheme, scheme, build, compact, heigh
 
 ### Community 142 - "RunEnvironment"
 Cohesion: 0.06
-Nodes (31): _FakeSession, VideoStringStore, package:simple_shot_timer/services/video/clip_analyzer_runner.dart, StateError, analyze, analyzer, args, delays (+23 more)
+Nodes (32): _FakeSession, VideoSession, package:simple_shot_timer/services/video/clip_analyzer_runner.dart, StateError, analyze, analyzer, args, delays (+24 more)
 
 ### Community 143 - "ChannelClipAudioSource"
 Cohesion: 0.07
@@ -762,10 +761,6 @@ Nodes (12): AppNavigationBar, build, fits, fittedLabelSize, _labelInset, onDesti
 ### Community 171 - "motion.dart"
 Cohesion: 0.25
 Nodes (7): Duration, kMotionMedium, kMotionShort, kMotionTick, motion, reducedMotionOf, package:flutter/widgets.dart
-
-### Community 172 - "biquad.dart"
-Cohesion: 0.09
-Nodes (21): package:simple_shot_timer/services/video/shot_filter.dart, beep, _clip, _crack, cracks, _distantShot, echoes, gain (+13 more)
 
 ### Community 173 - "ios_audio_session.dart"
 Cohesion: 0.07
