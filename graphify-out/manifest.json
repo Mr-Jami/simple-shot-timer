@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
-    "mtime": 1792722338.3231702,
-    "ast_hash": "39d0e25b0f82bdc8c9bc968ce754436b",
+    "mtime": 1793277287.2360227,
+    "ast_hash": "03b97be7ce12a5031e9389bafb4b5796",
     "semantic_hash": ""
   },
   "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java": {
@@ -2150,8 +2150,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/start_finder.dart": {
-    "mtime": 1792714246.4508643,
-    "ast_hash": "a1826d9d85167be06d69fe9d771f8aca",
+    "mtime": 1793278469.7327583,
+    "ast_hash": "9d2fb5e2bc225292b6ebd9acfaa81138",
     "semantic_hash": ""
   },
   "lib/services/video/tone_finder.dart": {
@@ -2160,8 +2160,8 @@
     "semantic_hash": ""
   },
   "test/clip_analyzer_test.dart": {
-    "mtime": 1792746945.620257,
-    "ast_hash": "12389da281f16cde37bb154ea909169d",
+    "mtime": 1793278444.9310784,
+    "ast_hash": "84a0accc56c37c267e0ad189ab826159",
     "semantic_hash": ""
   },
   "test/clip_audio_source_test.dart": {
