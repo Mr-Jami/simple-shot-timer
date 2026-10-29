@@ -154,28 +154,35 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
     guard let source = asset.tracks(withMediaType: .video).first else {
       throw ClipFailure("export_failed", "no video track")
     }
-    let range = CMTimeRangeGetIntersection(
-      CMTimeRangeFromTimeToTime(
-        start: CMTime(value: startMs, timescale: 1000),
-        end: CMTime(value: endMs, timescale: 1000)),
-      otherRange: source.timeRange)
+    let requested = CMTimeRangeFromTimeToTime(
+      start: CMTime(value: startMs, timescale: 1000),
+      end: CMTime(value: endMs, timescale: 1000))
+    let range = CMTimeRangeGetIntersection(requested, otherRange: source.timeRange)
     guard range.duration.seconds > 0 else { throw ClipFailure("export_failed", "empty range") }
+    // Output time = clip time - startMs, also when the picture starts a little
+    // after startMs (a track that begins after 0): that gap stays black.
+    func insert(_ range: CMTimeRange, of track: AVAssetTrack, into target: AVMutableCompositionTrack)
+      throws
+    {
+      let at = CMTimeSubtract(range.start, requested.start)
+      if at.seconds > 0 { target.insertEmptyTimeRange(CMTimeRange(start: .zero, duration: at)) }
+      try target.insertTimeRange(range, of: track, at: at)
+    }
 
     let composition = AVMutableComposition()
     guard
       let video = composition.addMutableTrack(
         withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
     else { throw ClipFailure("export_failed", "no composition track") }
-    try video.insertTimeRange(range, of: source, at: .zero)
-    // The picture's range only, so every output frame has a source frame.
+    try insert(range, of: source, into: video)
+    // Sound within the picture's range only.
     if let sound = ClipAudioChannel.audioTrack(of: asset) {
       let soundRange = CMTimeRangeGetIntersection(range, otherRange: sound.timeRange)
       if soundRange.duration.seconds > 0,
         let track = composition.addMutableTrack(
           withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
       {
-        try track.insertTimeRange(
-          soundRange, of: sound, at: CMTimeSubtract(soundRange.start, range.start))
+        try insert(soundRange, of: sound, into: track)
       }
     }
 
@@ -192,7 +199,7 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
     videoComposition.colorYCbCrMatrix = AVVideoYCbCrMatrix_ITU_R_709_2
     videoComposition.instructions = [
       OverlayInstruction(
-        timeRange: CMTimeRange(start: .zero, duration: range.duration),
+        timeRange: CMTimeRange(start: .zero, duration: composition.duration),
         trackID: video.trackID,
         orientation: orientation(source.preferredTransform),
         overlays: overlays)
@@ -279,7 +286,9 @@ private final class OverlayCompositor: NSObject, AVVideoCompositing, @unchecked 
 
   /// Pixel values pass through unchanged, as on Android: the overlay's
   /// colours land in the video as Dart drew them.
-  private let context = CIContext(options: [.workingColorSpace: NSNull(), .cacheIntermediates: false])
+  private let context = CIContext(options: [
+    .workingColorSpace: NSNull(), .outputColorSpace: NSNull(), .cacheIntermediates: false,
+  ])
   private let lock = NSLock()
   private var cancelling = false
 
