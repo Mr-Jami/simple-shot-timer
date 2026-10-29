@@ -6,21 +6,27 @@ style. One HTML page (`index.html`) holds all
 of them; a browser screenshot of each section is the deliverable. The listing
 text in every language is in [fastlane/metadata/](../../fastlane/metadata/README.md).
 
-Current set: 2026-10-01, app 2.0 UI (four-tab shell, saved drills).
+Current set: 2026-10-29, app 2.4 UI (five tabs with Video, the video editor).
 
 | Section id | Export | Shows |
 |---|---|---|
-| `#slide-1` … `#slide-8` | `out/01-ready.png` … `out/08-history.png`, 1080x1920 | Ready, running, finished, Review, Saved drills, Settings (Par), Test microphone, History |
+| `#slide-1` … `#slide-5`, `#slide-9`, `#slide-7`, `#slide-8` | `out/01-ready.png` … `out/08-history.png`, 1080x1920 | Ready, running, finished, Review, Saved drills, Video editor, Test microphone, History |
 | `#feature` | `out/feature-graphic.png`, 1024x500 | Feature graphic (listing header) |
+
+On Google Play the video editor (`#slide-9`) takes slot 6, as `out/06-video.png`;
+Settings (Par) (`#slide-6`) is left out there, since Play takes eight at most.
 
 Google Play accepts 2–8 phone screenshots (PNG/JPEG, 9:16, 320–3840 px per side)
 and one 1024x500 feature graphic without transparency. The exports meet both.
 
 ### App Store
 
-`index.html?ios` renders the same eight slides for the App Store: 1320x2868, the
+`index.html?ios` renders the slides for the App Store: 1320x2868, the
 6.9" iPhone size, which App Store Connect scales down for every smaller iPhone.
-Export them to `out/ios/01-ready.png` … `out/ios/08-history.png`. The App Store
+Export `#slide-1` … `#slide-8` to `out/ios/01-ready.png` … `out/ios/08-history.png`
+and `#slide-9` to `out/ios/09-video.png`: nine, all of them (the App Store takes
+up to ten). There the video slide turns black, so the colours keep alternating
+after the yellow History slide. The App Store
 has no feature graphic (the app icon comes from the build), so `#feature` is
 hidden in this mode.
 
@@ -47,6 +53,18 @@ Roboto for the app UI. `assets/mark-white.png` and `assets/mark-black.png` are t
 app icon (`assets/branding/icon.png`) and its colour-inverted copy. The listing
 yellow is `#FEE036`.
 
+### The video editor slide
+
+`#slide-9` is not HTML: `assets/video-editor.jpg` and `assets/video-editor-ios.jpg`
+are renders of the real editor (`VideoEditorScreen`, at 390x845 and 393x852 dp,
+3x) from a widget test kept out of the repo, like the clip. It analyses one of
+the developer's chest-mount range videos (no one's face in it), uses the app's
+dark theme and fonts, and stands in a fake video platform whose picture is the
+clip's frame at the playhead, so the editor draws its own overlay preview on
+it. The iOS render uses Segoe UI for SF Pro, as Chrome does for the HTML
+slides on Windows. Only chest-mount footage without faces goes into the
+listing, never videos of other shooters.
+
 ## Exporting
 
 Serve the folder (the browser blocks `file:` URLs) and screenshot each section at
@@ -58,9 +76,9 @@ python -m http.server 8765 --bind 127.0.0.1
 # then, with Playwright (the MCP tool or a script):
 #   page.goto('http://127.0.0.1:8765/index.html'); await fonts.ready
 #   page.locator('#slide-1').screenshot({ path: 'out/01-ready.png', scale: 'css' })
-#   ... #slide-8, #feature
+#   ... #slide-8, #slide-9, #feature
 #   App Store: page.goto('http://127.0.0.1:8765/index.html?ios'), then
-#   #slide-1 … #slide-8 to out/ios/
+#   #slide-1 … #slide-9 to out/ios/
 ```
 
 Check sizes with `ffprobe -show_entries stream=width,height out/*.png`.
@@ -78,9 +96,10 @@ in a single word. Keep every caption line under about 27 characters at 46 px.
 3. Instant breakdown: total, first shot and split
 4. Shot-by-shot review with splits, fastest, slowest and your notes
 5. Save your drills. Load any one with a tap
-6. Standard, Par or Stage. Random start delay, par time and cycles
+6. Standard, Par or Stage. Random start delay, par time and cycles (App Store only)
 7. Dial in the mic with a live level meter
 8. Every string saved. Browse, review, export CSV
+9. Time a string from your video. Export it with your splits on it (Play: slot 6)
 
 Feature graphic: "Simple Shot Timer — Saved drills, splits, history & more", with
 the running, Ready and Saved drills screens and the line "Shooter ready?".
