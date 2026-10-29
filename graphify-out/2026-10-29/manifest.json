@@ -5,7 +5,7 @@
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
-    "mtime": 1793277287.2360227,
+    "mtime": 1793279084.484198,
     "ast_hash": "03b97be7ce12a5031e9389bafb4b5796",
     "semantic_hash": ""
   },
@@ -35,8 +35,8 @@
     "semantic_hash": "f276a44edd917afd836899357fdae60e"
   },
   "assets/i18n/de.json": {
-    "mtime": 1792883983.9201932,
-    "ast_hash": "d17b0bdbcc5bb44969ead42c9fb184d5",
+    "mtime": 1793301150.315346,
+    "ast_hash": "5436af880d608cbac794625a7b677af6",
     "semantic_hash": ""
   },
   "assets/i18n/en.json": {
@@ -75,8 +75,8 @@
     "semantic_hash": ""
   },
   "ios/Runner/AppDelegate.swift": {
-    "mtime": 1791145913.2598455,
-    "ast_hash": "a3836c166e7855671374d685bb2a7798",
+    "mtime": 1793300857.8871613,
+    "ast_hash": "729d9a8babb14a6de593d608805f31a3",
     "semantic_hash": ""
   },
   "ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json": {
@@ -720,8 +720,8 @@
     "semantic_hash": ""
   },
   "test/i18n_parity_test.dart": {
-    "mtime": 1792724016.3143003,
-    "ast_hash": "e605e67ca575313063310d990ef7ce95",
+    "mtime": 1793301187.840678,
+    "ast_hash": "c0ab6f9fe5d9ed0e587c093cf87e851a",
     "semantic_hash": ""
   },
   "test/settings_service_test.dart": {
@@ -1310,8 +1310,8 @@
     "semantic_hash": ""
   },
   ".github/workflows/deploy-app-store.yml": {
-    "mtime": 1792758203.131555,
-    "ast_hash": "1d0ca63c1965999ae6b3834dbd842415",
+    "mtime": 1793301083.2268643,
+    "ast_hash": "50801d1bb4da444756f70f677c61d9c7",
     "semantic_hash": ""
   },
   "lib/utils/legal.dart": {
@@ -2135,8 +2135,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_audio_source.dart": {
-    "mtime": 1792751718.5861194,
-    "ast_hash": "f18cea5db723d510812d15e298264552",
+    "mtime": 1793300922.396462,
+    "ast_hash": "f19d81d24a9fbdc5613c870e44e62af2",
     "semantic_hash": ""
   },
   "lib/services/video/clip_shot_finder.dart": {
@@ -2260,8 +2260,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_picker.dart": {
-    "mtime": 1792752986.3156645,
-    "ast_hash": "3e1f8e8f77b787cbd83286afc279f40c",
+    "mtime": 1793300922.3975601,
+    "ast_hash": "f54554362c36ba9caa1d67409506fd23",
     "semantic_hash": ""
   },
   "lib/services/video/marker_doc.dart": {
@@ -2280,8 +2280,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/video_work_dir.dart": {
-    "mtime": 1792752938.191442,
-    "ast_hash": "fc4d48cb2ba23c3dd0ec074dcd5781d2",
+    "mtime": 1793301031.3006885,
+    "ast_hash": "33171ad655897109c91e4280a6bd5055",
     "semantic_hash": ""
   },
   "lib/widgets/pill_button.dart": {
@@ -2335,8 +2335,8 @@
     "semantic_hash": ""
   },
   "test/video_work_dir_test.dart": {
-    "mtime": 1792752884.7086089,
-    "ast_hash": "72deb07a5251b02dd237c6f62e7229c8",
+    "mtime": 1793300953.3539884,
+    "ast_hash": "02def366397e533c05ab66c4e54fc646",
     "semantic_hash": ""
   },
   "lib/services/video/clip_signal.dart": {
@@ -2400,8 +2400,8 @@
     "semantic_hash": ""
   },
   "test/nav_label_fit_test.dart": {
-    "mtime": 1792758166.6824305,
-    "ast_hash": "ef4b346b32b8d2ce330b8935765187c9",
+    "mtime": 1793301061.511865,
+    "ast_hash": "0b18a671ddaaf99c0ed7a426da80ec29",
     "semantic_hash": ""
   },
   "test/part_strip_test.dart": {
@@ -2470,8 +2470,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_exporter.dart": {
-    "mtime": 1792751893.483717,
-    "ast_hash": "86b47fee3d8aecd03d3acb52f3e8bf55",
+    "mtime": 1793300922.3975601,
+    "ast_hash": "aa951ae63552bb97caa6e4233feede57",
     "semantic_hash": ""
   },
   "lib/services/video/export_plan.dart": {
@@ -2577,6 +2577,31 @@
   "test/timeline_minimap_test.dart": {
     "mtime": 1792895695.8752902,
     "ast_hash": "fdb9700bf915837056c5da869d6ffa52",
+    "semantic_hash": ""
+  },
+  "ios/Runner/ClipAudioChannel.swift": {
+    "mtime": 1793301244.056009,
+    "ast_hash": "6b4a8f1ee55e9161ebdf7b8dac752ffb",
+    "semantic_hash": ""
+  },
+  "ios/Runner/ClipExportChannel.swift": {
+    "mtime": 1793300841.332902,
+    "ast_hash": "bac770ef58e849791439016cfc9cbbf4",
+    "semantic_hash": ""
+  },
+  "ios/Runner/ClipFilesChannel.swift": {
+    "mtime": 1793300745.3064814,
+    "ast_hash": "99242cc1edfc07f90d4989a141dd3909",
+    "semantic_hash": ""
+  },
+  "ios/Runner/NoSpace.swift": {
+    "mtime": 1793300588.042372,
+    "ast_hash": "c2a35431520038e32eedec25643141d3",
+    "semantic_hash": ""
+  },
+  "test/ios_project_test.dart": {
+    "mtime": 1793301423.349001,
+    "ast_hash": "d99a24201e59fa7f9ab917ff9796135d",
     "semantic_hash": ""
   }
 }
