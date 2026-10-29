@@ -62,10 +62,15 @@ void main() {
     // The App Store lists the languages of the <lang>.lproj folders in the
     // bundle, not CFBundleLocalizations or the Flutter assets: a language
     // without its folder is missing from the App Store page.
-    // The microphone, and saving an exported video to Photos (gal).
+    // The microphone, and saving an exported video to Photos (gal). The
+    // photo library and camera keys are never asked for (the photo picker
+    // needs no permission), but App Store Connect rejects a build whose
+    // plugins reference them (image_picker) without them.
     const keys = [
+      'NSCameraUsageDescription',
       'NSMicrophoneUsageDescription',
       'NSPhotoLibraryAddUsageDescription',
+      'NSPhotoLibraryUsageDescription',
     ];
     String? text(String source, RegExp pattern) =>
         pattern.firstMatch(source)?.group(1);

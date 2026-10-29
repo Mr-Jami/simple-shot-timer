@@ -39,10 +39,14 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Simple Shot Timer never uses the camera. Film your string with the Camera app, then choose the video in Simple Shot Timer.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Simple Shot Timer listens through the microphone to detect your shots and time your splits. The sound is analysed on your phone and never recorded or sent anywhere.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Simple Shot Timer saves the videos you export with your times to your photos. It never reads your library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Simple Shot Timer opens the video you choose to time the shots in it. It reads only that video, on your iPhone, and never uploads it.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

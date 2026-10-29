@@ -1,2 +1,4 @@
+"NSCameraUsageDescription" = "Simple Shot Timer nutzt die Kamera nie. Filme deinen Durchgang mit der Kamera-App und wähle das Video dann in Simple Shot Timer aus.";
 "NSMicrophoneUsageDescription" = "Simple Shot Timer hört über das Mikrofon mit, um deine Schüsse zu erkennen und deine Splits zu messen. Der Ton wird auf deinem iPhone ausgewertet und nie aufgenommen oder irgendwohin gesendet.";
 "NSPhotoLibraryAddUsageDescription" = "Simple Shot Timer sichert Videos, die du mit deinen Zeiten exportierst, in deinen Fotos. Deine Mediathek wird nie gelesen.";
+"NSPhotoLibraryUsageDescription" = "Simple Shot Timer öffnet das Video, das du auswählst, um die Schüsse darin zu messen. Es liest nur dieses Video, auf deinem iPhone, und lädt es nie hoch.";

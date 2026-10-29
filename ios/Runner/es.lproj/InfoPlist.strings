@@ -1,2 +1,4 @@
+"NSCameraUsageDescription" = "Simple Shot Timer nunca usa la cámara. Graba tu serie con la app Cámara y luego elige el vídeo en Simple Shot Timer.";
 "NSMicrophoneUsageDescription" = "Simple Shot Timer escucha a través del micrófono para detectar tus disparos y medir tus splits. El sonido se analiza en tu iPhone y nunca se graba ni se envía a ningún sitio.";
 "NSPhotoLibraryAddUsageDescription" = "Simple Shot Timer guarda en tus fotos los vídeos que exportas con tus tiempos. Nunca lee tu fototeca.";
+"NSPhotoLibraryUsageDescription" = "Simple Shot Timer abre el vídeo que eliges para medir los disparos que contiene. Solo lee ese vídeo, en tu iPhone, y nunca lo sube.";

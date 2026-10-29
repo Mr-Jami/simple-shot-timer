@@ -8,6 +8,12 @@ import UIKit
 
 @main
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
+  // The video feature's channels (lib/services/video/), kept for the app's
+  // lifetime.
+  private var clipAudio: ClipAudioChannel?
+  private var clipFiles: ClipFilesChannel?
+  private var clipExport: ClipExportChannel?
+
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -56,6 +62,11 @@ import UIKit
         result(FlutterMethodNotImplemented)
       }
     }
+
+    let messenger = engineBridge.applicationRegistrar.messenger()
+    clipAudio = ClipAudioChannel(messenger: messenger)
+    clipFiles = ClipFilesChannel(messenger: messenger)
+    clipExport = ClipExportChannel(messenger: messenger)
   }
 
   /// Replicates the session setup the record plugin performs when it manages

@@ -108,7 +108,7 @@ class ExportException implements Exception {
 }
 
 /// Exports a clip with the overlay. Implemented by the platform in
-/// `android/.../ClipExportChannel.kt`.
+/// `android/.../ClipExportChannel.kt` and `ios/Runner/ClipExportChannel.swift`.
 abstract interface class ClipExporter {
   /// [onProgress] gets 0..1; [cancel] stops it, and it then throws
   /// [ExportError.cancelled] and leaves no file.

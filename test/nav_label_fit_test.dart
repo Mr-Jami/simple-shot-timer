@@ -111,10 +111,11 @@ void main() {
     }
   });
 
-  testWidgets('no Video tab where clips cannot be read yet', (tester) async {
+  testWidgets('no Video tab where clips cannot be read', (tester) async {
     expect(clipAudioAvailableOn(TargetPlatform.android), isTrue);
+    expect(clipAudioAvailableOn(TargetPlatform.iOS), isTrue);
     await pumpBar(tester, 'en',
-        showVideo: clipAudioAvailableOn(TargetPlatform.iOS));
+        showVideo: clipAudioAvailableOn(TargetPlatform.macOS));
     expect(find.byType(NavigationDestination), findsNWidgets(4));
     expect(find.text('Video'), findsNothing);
   });

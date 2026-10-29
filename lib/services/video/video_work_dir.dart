@@ -16,16 +16,21 @@ import 'package:path_provider/path_provider.dart';
 /// "Delete all data and settings" calls [deleteAll]. Both also remove what
 /// the photo picker (image_picker) left in the cache: it copies the video
 /// to `<cache>/<uuid>/` before handing it over, so a pick given up during
-/// that copy, or cut short by a kill, leaves a full copy there.
+/// that copy, or cut short by a kill, leaves a full copy there. On iOS the
+/// pickers copy into the temporary folder instead: image_picker to
+/// `image_picker_*` files, the document picker to a `*-Inbox` folder.
 class VideoWorkDir {
   VideoWorkDir({
     Future<Directory> Function()? root,
     Future<Directory> Function()? cache,
+    Future<Directory?> Function()? temp,
   })  : _root = root ?? _defaultRoot,
-        _cache = cache ?? getTemporaryDirectory;
+        _cache = cache ?? getTemporaryDirectory,
+        _temp = temp ?? _defaultTemp;
 
   final Future<Directory> Function() _root;
   final Future<Directory> Function() _cache;
+  final Future<Directory?> Function() _temp;
 
   /// The folder image_picker copies a picked file into.
   static final _pickerCopy =
@@ -33,6 +38,10 @@ class VideoWorkDir {
 
   static Future<Directory> _defaultRoot() async =>
       Directory('${(await getApplicationSupportDirectory()).path}/video_work');
+
+  /// The pickers' folder on iOS; elsewhere they use the cache.
+  static Future<Directory?> _defaultTemp() async =>
+      Platform.isIOS ? Directory.systemTemp : null;
 
   Future<VideoSession> createSession() async {
     final root = await _root();
@@ -43,16 +52,31 @@ class VideoWorkDir {
     return VideoSession(dir);
   }
 
-  /// Removes every session folder and the photo picker's copies. Only call
-  /// it when no import or editor is open.
+  /// Removes every session folder and the pickers' copies. Only call it
+  /// when no import or editor is open.
   Future<void> sweep() async {
     final root = await _root();
     if (await root.exists()) await root.delete(recursive: true);
-    final cache = await _cache();
-    if (!await cache.exists()) return;
-    await for (final entity in cache.list(followLinks: false)) {
-      if (entity is Directory &&
-          _pickerCopy.hasMatch(p.basename(entity.path))) {
+    await _deleteIn(
+      await _cache(),
+      (entity, name) => entity is Directory && _pickerCopy.hasMatch(name),
+    );
+    await _deleteIn(
+      await _temp(),
+      (entity, name) =>
+          (entity is File && name.startsWith('image_picker_')) ||
+          (entity is Directory && name.endsWith('-Inbox')),
+    );
+  }
+
+  /// Deletes what [matches] in [dir], if there is such a folder.
+  static Future<void> _deleteIn(
+    Directory? dir,
+    bool Function(FileSystemEntity entity, String name) matches,
+  ) async {
+    if (dir == null || !await dir.exists()) return;
+    await for (final entity in dir.list(followLinks: false)) {
+      if (matches(entity, p.basename(entity.path))) {
         await entity.delete(recursive: true);
       }
     }

@@ -34,9 +34,11 @@ abstract interface class ClipPicker {
   });
 }
 
-/// Photos through image_picker, whose copy lands in the cache and is moved
-/// into the session; Files through `cc.jami.simpleshottimer/clip_files`
-/// (Android: `ClipFilesChannel.kt`), which copies straight into it.
+/// Photos through image_picker, whose copy lands in the cache (iOS: the
+/// temporary folder) and is moved into the session; Files through
+/// `cc.jami.simpleshottimer/clip_files` (`ClipFilesChannel.kt`, which copies
+/// straight into it; `ClipFilesChannel.swift`, which moves the document
+/// picker's copy there).
 class PluginClipPicker implements ClipPicker {
   PluginClipPicker({ImagePicker? photos, MethodChannel? files})
       : _photos = photos ?? ImagePicker(),

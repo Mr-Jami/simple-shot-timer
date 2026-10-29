@@ -1,2 +1,4 @@
+"NSCameraUsageDescription" = "Simple Shot Timer nigdy nie używa aparatu. Nagraj serię aplikacją Aparat, a potem wybierz wideo w Simple Shot Timer.";
 "NSMicrophoneUsageDescription" = "Simple Shot Timer nasłuchuje przez mikrofon, aby wykrywać twoje strzały i mierzyć splity. Dźwięk jest analizowany na twoim iPhonie i nigdy nie jest nagrywany ani nigdzie wysyłany.";
 "NSPhotoLibraryAddUsageDescription" = "Simple Shot Timer zapisuje w Zdjęciach wideo, które eksportujesz ze swoimi czasami. Nigdy nie odczytuje twojej biblioteki.";
+"NSPhotoLibraryUsageDescription" = "Simple Shot Timer otwiera wybrane przez ciebie wideo, aby zmierzyć czasy strzałów. Odczytuje tylko to wideo, na twoim iPhonie, i nigdy go nie wysyła.";

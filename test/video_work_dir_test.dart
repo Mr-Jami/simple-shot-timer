@@ -18,6 +18,7 @@ void main() {
     work = VideoWorkDir(
       root: () async => Directory('${temp.path}/video_work'),
       cache: () async => Directory('${temp.path}/cache'),
+      temp: () async => Directory('${temp.path}/tmp'),
     );
   });
   tearDown(() => temp.delete(recursive: true));
@@ -78,6 +79,20 @@ void main() {
     expect(copy.parent.existsSync(), isFalse);
     expect(shares.existsSync(), isTrue);
     expect(csv.existsSync(), isTrue);
+  });
+
+  test("on iOS the sweep removes the pickers' copies in the temporary folder",
+      () async {
+    final photos = File('${temp.path}/tmp/image_picker_9F2C-IMG_0042.MOV')
+      ..createSync(recursive: true);
+    final files =
+        File('${temp.path}/tmp/cc.jami.simpleshottimer-Inbox/IMG_0042.MOV')
+          ..createSync(recursive: true);
+    final other = File('${temp.path}/tmp/share.csv')..createSync();
+    await work.sweep();
+    expect(photos.existsSync(), isFalse);
+    expect(files.parent.existsSync(), isFalse);
+    expect(other.existsSync(), isTrue);
   });
 
   group('checking a clip', () {

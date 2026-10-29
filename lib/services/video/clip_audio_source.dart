@@ -8,10 +8,10 @@ import 'package:flutter/services.dart';
 
 import '../../utils/cancel_token.dart';
 
-/// Whether [platform] can read a clip's sound yet: Android only until the
-/// iOS decoder exists. Elsewhere the Video tab stays hidden.
+/// Whether [platform] can read a clip's sound: Android and iOS. Elsewhere
+/// the Video tab stays hidden.
 bool clipAudioAvailableOn(TargetPlatform platform) =>
-    platform == TargetPlatform.android;
+    platform == TargetPlatform.android || platform == TargetPlatform.iOS;
 
 /// Why a clip's sound could not be read.
 enum ClipAudioError {
@@ -36,8 +36,8 @@ enum ClipAudioError {
   /// The platform decoder failed part-way.
   decodeFailed,
 
-  /// No decoder or picker on this platform (iOS for now), or the platform
-  /// side refused the call.
+  /// No decoder or picker on this platform, or the platform side refused
+  /// the call.
   unavailable,
 
   /// The caller cancelled the decode.
@@ -131,7 +131,7 @@ class DecodedAudio {
 }
 
 /// Reads a clip's sound for the analyzer. Implemented by the platform in
-/// `android/.../ClipAudioChannel.kt`; iOS follows the same contract later.
+/// `android/.../ClipAudioChannel.kt` and `ios/Runner/ClipAudioChannel.swift`.
 abstract interface class ClipAudioSource {
   /// Reads [path]'s container metadata without decoding anything.
   Future<ClipInfo> probe(String path);
@@ -173,7 +173,7 @@ abstract interface class ClipAudioSource {
 }
 
 /// [ClipAudioSource] over the `cc.jami.simpleshottimer/clip_audio` channel
-/// (Android: `ClipAudioChannel.kt`).
+/// (`ClipAudioChannel.kt`, `ClipAudioChannel.swift`).
 class ChannelClipAudioSource implements ClipAudioSource {
   ChannelClipAudioSource({MethodChannel? channel})
       : _channel = channel ??
