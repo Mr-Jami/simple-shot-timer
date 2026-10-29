@@ -19,6 +19,11 @@ DETECÇÃO DE DISPAROS
 • No teste do microfone, um medidor de nível ao vivo ajuda você a ajustar a sensibilidade antes de atirar com munição real.
 • Adicione disparos manualmente a qualquer momento, depois da série ou na análise.
 
+VÍDEO
+• Escolha um vídeo de uma série. O app encontra o bipe e cada disparo, e você confere e corrige tudo na forma de onda do som.
+• Fica salva como qualquer outra série. Só os tempos ficam guardados, nunca o vídeo, e nada é enviado.
+• Exporte o vídeo com o relógio, seus splits e os totais na tela, e salve ou compartilhe.
+
 HISTÓRICO E ANÁLISE
 • Cada série é salva automaticamente (limite de 50 a 5000, padrão 500).
 • Analise cada série com os splits, o primeiro disparo e os splits mais rápido, mais lento e médio.

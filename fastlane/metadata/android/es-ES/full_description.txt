@@ -19,8 +19,13 @@ DETECCIÓN DE DISPAROS
 • En la prueba del micrófono, un medidor de nivel en vivo te ayuda a ajustar la sensibilidad antes de tirar con fuego real.
 • Añade disparos a mano en cualquier momento, al terminar la serie o en el detalle.
 
+VÍDEO
+• Elige un vídeo de una serie. La app encuentra el pitido y cada disparo, y tú los revisas y corriges sobre la forma de onda.
+• Se guarda como cualquier serie. Solo se guardan los tiempos, nunca el vídeo, y no se sube nada.
+• Exporta el vídeo con el reloj, tus splits y los totales encima, y guárdalo o compártelo.
+
 HISTORIAL Y DETALLE
-• Cada serie se guarda automáticamente (límite de 50 a 5000, 500 por defecto).
+• Cada serie se guarda automáticamente.
 • Revisa cada serie con sus splits, el primer disparo y los splits más rápido, más lento y promedio.
 • Etiqueta, notas y penalización editables en cada serie.
 
@@ -32,14 +37,13 @@ Bloquea la pantalla o cambia de app en mitad de una serie: el cronómetro sigue 
 
 PRIVACIDAD ANTE TODO
 • 100 % en el dispositivo. Sin cuentas, sin nube, sin analíticas, sin anuncios, sin rastreo.
-• El micrófono se usa en directo, en memoria, solo mientras la app escucha (una serie, la prueba del micrófono o la configuración automática). Nunca se graba ni se envía audio.
+• El micrófono se usa en directo, en memoria, solo mientras la app escucha. Nunca se graba ni se envía audio.
 • Elimina todos tus datos y ajustes desde Ajustes cuando quieras.
 • Código abierto (GPL-3.0): todo el código está en GitHub, en github.com/Mr-Jami/simple-shot-timer, para que puedas comprobar cada una de estas afirmaciones.
 
 COMODIDAD
 • Destello en pantalla con el pitido para campos de tiro ruidosos y protección auditiva gruesa, además de vibración opcional.
 • Un aviso te advierte si el volumen multimedia está silenciado durante una serie.
-• Mantiene la pantalla encendida durante la serie.
 • Tema monocromo Material 3: Sistema, Claro, Oscuro o Alto contraste.
 
 IDIOMAS
@@ -50,5 +54,8 @@ PERMISOS
 • Notificaciones: en Android 13 y posteriores, necesarias para la notificación que mantiene el cronómetro funcionando en segundo plano.
 • Vibración: opcional, con el pitido.
 • Mantener activo: evita que la pantalla se apague durante una serie.
+• Almacenamiento: solo hasta Android 10, para guardar vídeos exportados.
 
 Hecho para el campo de tiro, el club y el rincón de tiro en seco de casa. Gratis, ligero y sin compras dentro de la app.
+
+También en iPhone, gratis.

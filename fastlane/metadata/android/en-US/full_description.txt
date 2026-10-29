@@ -19,8 +19,13 @@ SHOT DETECTION
 • A mic test screen with a live level meter lets you dial in sensitivity before going hot.
 • Add shots by hand at any time, after the string or in review.
 
+VIDEO
+• Choose a video of a string. The app finds the beep and every shot, and you check and fix them on the sound's waveform.
+• Saved like any other string. Only the times are kept, never the video, and nothing is uploaded.
+• Export the video with the clock, your splits and the totals on it, then save or share it.
+
 HISTORY & REVIEW
-• Every string is saved automatically (rolling cap from 50 to 5000, default 500).
+• Every string is saved automatically.
 • Review each string with split times, first shot, fastest, slowest and average.
 • Editable label, notes and penalty per string.
 
@@ -32,14 +37,13 @@ Lock the screen or switch apps mid-string: the timer keeps detecting shots and p
 
 PRIVACY FIRST
 • 100% on-device. No accounts, no cloud, no analytics, no ads, no tracking.
-• The microphone is used live, in memory, only while the app is listening (a string, the mic test or auto-configure). No audio is recorded or sent anywhere.
+• The microphone is used live, in memory, only while the app is listening. No audio is recorded or sent anywhere.
 • Delete all your data and settings from Settings at any time.
 • Open source (GPL-3.0): the full code is on GitHub at github.com/Mr-Jami/simple-shot-timer, so you can check every claim above.
 
 QUALITY OF LIFE
 • Screen flash on the beep for loud ranges and heavy ear protection, plus optional haptics.
 • A notice warns you if the media volume is muted while a string runs.
-• Keeps the screen awake during a string.
 • Monochrome Material 3 theme with System, Light, Dark and High-contrast options.
 
 LANGUAGES
@@ -50,5 +54,8 @@ PERMISSIONS
 • Notifications: on Android 13 and later, needed for the notification that keeps the timer running in the background.
 • Vibration: optional haptic on the beep.
 • Wake lock: keeps the screen on during a string.
+• Storage: only up to Android 10, to save exported videos.
 
 Built for the range, the dojo and the basement dry-fire setup. Free, lean, no upsells.
+
+Also on iPhone, free.

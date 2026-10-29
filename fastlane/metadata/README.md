@@ -6,7 +6,7 @@ supports. This folder is the source: the *Update store listings* workflow
 it to both stores. Screenshots and the feature graphic are in
 [`branding/store-listing/`](../../branding/store-listing/README.md).
 
-Last updated: 2026-10-19, app 2.3.1.
+Last updated: 2026-10-29, app 2.4.0 (video).
 
 The layout is fastlane's: `supply` reads `android/`, `deliver` reads `ios/`.
 F-Droid reads `android/` too, including `android/en-US/images/` (icon,
@@ -58,8 +58,8 @@ other language.
 The promotional text sits above the description. It is the one version field
 Apple lets you change without a new version, but the workflow writes it to
 the version being prepared, so it appears once that version is live. It
-currently ends with "Now in 8 languages"; refresh it when that stops being
-news.
+currently leads with the video feature of 2.4.0; refresh it when that stops
+being news.
 
 `ios/en-US` has no `keywords.txt`: the English keywords live only in App Store
 Connect, and the workflow leaves fields without a file alone.
@@ -104,6 +104,11 @@ paste it into the field:
   details swapped: the iPhone mic, the Files app, "volume" instead of "media
   volume", no Material 3, and no permissions section on the App Store. Change
   both together, in every language.
+- Play also ends with "Also on iPhone, free." and, to stay under 4000
+  characters in German and French, leaves out the history's rolling cap and
+  the screen-awake bullet (it is under the permissions). The App Store text
+  names no other platform: Apple's guideline 2.3.10 forbids it in the
+  metadata.
 - When a feature changes, update English first, then each language, then the
   README features, the website homepages and `website/public/llms.txt`.
 - Use the app's own words for anything on screen (`assets/i18n/<code>.json`):

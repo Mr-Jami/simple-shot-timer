@@ -19,6 +19,11 @@ DETECCIÓN DE DISPAROS
 • En la prueba del micrófono, un medidor de nivel en vivo te ayuda a ajustar la sensibilidad antes de tirar con fuego real.
 • Añade disparos a mano en cualquier momento, al terminar la serie o en el detalle.
 
+VÍDEO
+• Elige un vídeo de una serie. La app encuentra el pitido y cada disparo, y tú los revisas y corriges sobre la forma de onda.
+• Se guarda como cualquier serie. Solo se guardan los tiempos, nunca el vídeo, y no se sube nada.
+• Exporta el vídeo con el reloj, tus splits y los totales encima, y guárdalo o compártelo.
+
 HISTORIAL Y DETALLE
 • Cada serie se guarda automáticamente (límite de 50 a 5000, 500 por defecto).
 • Revisa cada serie con sus splits, el primer disparo y los splits más rápido, más lento y promedio.

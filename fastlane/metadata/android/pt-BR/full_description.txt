@@ -19,8 +19,13 @@ DETECÇÃO DE DISPAROS
 • No teste do microfone, um medidor de nível ao vivo ajuda você a ajustar a sensibilidade antes de atirar com munição real.
 • Adicione disparos manualmente a qualquer momento, depois da série ou na análise.
 
+VÍDEO
+• Escolha um vídeo de uma série. O app encontra o bipe e cada disparo, e você confere e corrige tudo na forma de onda do som.
+• Fica salva como qualquer outra série. Só os tempos ficam guardados, nunca o vídeo, e nada é enviado.
+• Exporte o vídeo com o relógio, seus splits e os totais na tela, e salve ou compartilhe.
+
 HISTÓRICO E ANÁLISE
-• Cada série é salva automaticamente (limite de 50 a 5000, padrão 500).
+• Cada série é salva automaticamente.
 • Analise cada série com os splits, o primeiro disparo e os splits mais rápido, mais lento e médio.
 • Rótulo, anotações e penalidade editáveis em cada série.
 
@@ -32,14 +37,13 @@ Bloqueie a tela ou troque de app no meio da série: o timer continua detectando 
 
 PRIVACIDADE EM PRIMEIRO LUGAR
 • 100% no aparelho. Sem contas, sem nuvem, sem análise de uso, sem anúncios, sem rastreamento.
-• O microfone é usado ao vivo, na memória, só enquanto o app está ouvindo (uma série, o teste do microfone ou a configuração automática). Nenhum áudio é gravado ou enviado.
+• O microfone é usado ao vivo, na memória, só enquanto o app está ouvindo. Nenhum áudio é gravado ou enviado.
 • Exclua todos os seus dados e ajustes em Ajustes quando quiser.
 • Código aberto (GPL-3.0): todo o código está no GitHub, em github.com/Mr-Jami/simple-shot-timer, para você conferir cada uma dessas afirmações.
 
 CONFORTO
 • Flash na tela com o bipe para estandes barulhentos e protetores auriculares grossos, além de vibração opcional.
 • Um aviso alerta você se o volume de mídia estiver no mudo durante uma série.
-• A tela fica ligada durante a série.
 • Tema monocromático Material 3: Sistema, Claro, Escuro ou Alto contraste.
 
 IDIOMAS
@@ -50,5 +54,8 @@ PERMISSÕES
 • Notificações: no Android 13 ou mais recente, necessárias para a notificação que mantém o timer funcionando em segundo plano.
 • Vibração: opcional, com o bipe.
 • Manter ativo: impede que a tela se apague durante uma série.
+• Armazenamento: só até o Android 10, para salvar vídeos exportados.
 
 Feito para o estande, o clube e o treino em seco em casa. Grátis, leve e sem compras no app.
+
+Também no iPhone, grátis.
