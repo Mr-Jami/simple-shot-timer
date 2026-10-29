@@ -22,7 +22,9 @@ bool isStopClick(ToneRun tone, double seconds) =>
 ///   [attackSeconds] before the onset doesn't count: that is the click of a
 ///   piezo beep switching on, measured a hair early;
 /// * a shot must follow the tone within [maxDraw], and no sooner than
-///   [minDraw]. The tone's own stop click is not a shot;
+///   [minDraw]. A slow start (getting into position for long-range steel)
+///   can take over 8 s; past [windowSeconds] no shot would count anyway.
+///   The tone's own stop click is not a shot;
 /// * of several tones before the same first shot, the last one wins: button
 ///   chirps and range commands come before the real beep;
 /// * if several strings qualify, the one with the most shots in the
@@ -33,7 +35,7 @@ ToneRun? chooseStart(
   List<ToneRun> tones,
   List<double> shotSeconds, {
   double minDraw = minDrawSeconds,
-  double maxDraw = 8,
+  double maxDraw = 10,
   double quietBefore = 1.0,
   double attackSeconds = 0.03,
   double windowSeconds = 10,

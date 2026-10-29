@@ -86,6 +86,25 @@ void main() {
       expect(startOf(clip), closeTo(1.0, 0.005));
     });
 
+    test('is the beep of a slow start, 8.3 s before the first shot', () {
+      // Long-range steel: the shooter gets into position after the beep.
+      final clip = syntheticClip(
+        seconds: 13,
+        shots: const [9.3, 10.5, 11.7],
+        extra: (x) => addBeep(x, 1.0, 300),
+      );
+      expect(startOf(clip), closeTo(1.0, 0.005));
+    });
+
+    test('is empty when the first shot comes over 10 s after the beep', () {
+      final clip = syntheticClip(
+        seconds: 14,
+        shots: const [11.2, 12.4],
+        extra: (x) => addBeep(x, 1.0, 300),
+      );
+      expect(startOf(clip), isNull);
+    });
+
     test('is empty, not 0 s, when there is no beep', () {
       final analysis = analyzePcm(syntheticClip(), clipSampleRate);
       expect(analysis.startSeconds, isNull);
