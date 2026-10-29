@@ -46,6 +46,10 @@ Run an open string (Standard), use it as a par timer with repeat cycles and a re
 
 Each run is saved on your phone together with the drill it was shot with. Keep up to 5,000 strings, look back any time and export one string or your whole history as CSV through the share sheet. A run that detects no shots is not saved unless you add a shot by hand.
 
+### Video: Time it from a video.
+
+Film a string with your phone and choose the video in the Video tab (from Photos or Files). The app reads the sound on the phone and finds the start beep and every shot; you check them on a waveform of the sound, add a shot it missed, delete one that isn't yours or move START. The string is saved like any other, with only the times kept, never the video. Export the video with the clock, your splits and an end card on it (H.264, up to 1080p and 60 fps; HDR is converted), then save it to Photos or share it. Videos over three minutes are analysed a part of up to three minutes at a time.
+
 ## Details
 
 - Auto-configure: fire a few shots with your usual gun and stance, and the app suggests a sensitivity and frequency band tuned to what it heard on that range. Both can also be set by hand.
@@ -56,7 +60,7 @@ Each run is saved on your phone together with the drill it was shot with. Keep u
 - Never miss a beep: if the media volume is muted while a string runs, a one-line notice says so. On Android, tapping it opens the volume panel.
 - Themes: follow the system, or pick light, dark or high contrast, all in the app's black-and-white look.
 - Keep the screen awake during a string; optional haptic on every beep.
-- Navigation: four tabs (Timer, Drills, History, Settings). The tab bar is inert while a string is running.
+- Navigation: five tabs (Timer, Drills, Video, History, Settings). The tab bar is inert while a string is running.
 
 ## Privacy
 
@@ -65,6 +69,7 @@ Your strings stay on your phone.
 - No account: there is nothing to sign up for.
 - No ads, no tracking: no analytics, advertising or tracking code. The app sends nothing off your phone.
 - Nothing recorded: the mic signal is analysed in memory while the app listens (during a string, the mic test or auto-configure). Audio is never saved or sent. The app needs microphone permission to time a string.
+- Videos: a video you choose is copied into the app's private folder while you check it, its sound is analysed on the phone, and the copy is deleted when you close the editor. Only the times are saved. An exported video goes to Photos or the share sheet only when you choose.
 - Data the app stores (strings, shot times, settings) lives in a local SQLite database and preferences file on the device. It can be viewed, edited, exported as CSV and deleted in the app; uninstalling removes everything.
 - The website simpleshottimer.com sets no cookies, loads nothing from third parties and has no analytics. It is hosted by Netlify, which processes access data (such as IP address and time of request) to deliver the pages; server logs are deleted after 30 days at the latest.
 - App privacy policy: https://simpleshottimer.com/privacy/
@@ -99,6 +104,10 @@ Yes. Par mode gives you a start beep and a par beep to beat, with repeat cycles 
 ### Will a Bluetooth speaker throw off my times?
 
 No. The clock starts when the mic hears the beep, so the speaker's lag is measured, not guessed. For sound the mic can't hear, such as earbuds, set a manual latency offset in Settings.
+
+### Can it time a string from a video?
+
+Yes. Film the string with your phone, open the Video tab and choose the video. The app finds the start beep and every shot from the sound, and you check them on a waveform and fix any it got wrong. Only the times are saved, never the video, and nothing is uploaded. You can also export the video with the clock and your splits on it.
 
 ### Is there an iPhone version?
 

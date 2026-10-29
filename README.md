@@ -9,8 +9,8 @@ and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653).
 
 ## Features
 
-- **Navigation** — Four tabs: Timer, Drills, History, Settings. The tab bar
-  is greyed out and inert while a string is counting down or running.
+- **Navigation** — Five tabs: Timer, Drills, Video, History, Settings. The
+  tab bar is greyed out and inert while a string is counting down or running.
 - **Drill modes** — Standard (open string), Par (configurable repeat
   count with optional rest interval between cycles, each cycle bounded
   by distinct start/end beeps), and Stage (long single-window timer up
@@ -39,6 +39,14 @@ and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653).
   Review individual strings with split times, fastest/slowest, average, and
   editable label / notes / penalty. A run that detects no shots is not saved
   unless you add a shot by hand.
+- **Video** — Choose a video of a string (photo picker or Files). The app
+  decodes its sound on the phone (`ClipAudioChannel` on Android and iOS),
+  finds the start beep and every shot, and opens an editor with the video,
+  a waveform timeline and the markers to check and correct. The string is
+  saved like any other, with only the times kept, never the video. *Export
+  video* writes an H.264 copy (up to 1080p, 60 fps, HDR converted to SDR)
+  with the clock, splits and an end card drawn on it, to save to Photos or
+  share. Videos over three minutes are analysed a part at a time.
 - **CSV export** — Per-string or full-history export via the native share
   sheet.
 - **Manual shots** — Add shots after the fact on the Timer tab; add or

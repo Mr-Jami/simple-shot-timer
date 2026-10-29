@@ -13,6 +13,7 @@ export const statusBar = (time = '9:41') =>
 const DESTS = [
   ['timer', 'timer', 'nav.timer'],
   ['bookmarks-o', 'bookmarks-f', 'nav.drills'],
+  ['videocam-o', 'videocam-f', 'nav.video'],
   ['history', 'history', 'nav.history'],
   ['settings-o', 'settings-f', 'nav.settings'],
 ];
@@ -198,10 +199,23 @@ export function screen(name) {
     case 'running': return timerShell(runningView(), { stop: true, dim: true });
     case 'review': return reviewPage();
     case 'drills': return `${statusBar()}<div class="shell"><div class="tab">${drillsTab()}</div><div class="snack">${t('drills.appliedSnack', { name: 'Bill Drill' })}</div>${navBar(1)}</div>`;
-    case 'history': return `${statusBar()}<div class="shell"><div class="tab">${historyTab()}</div>${navBar(2)}</div>`;
+    case 'history': return `${statusBar()}<div class="shell"><div class="tab">${historyTab()}</div>${navBar(3)}</div>`;
+    case 'video': return `${render('video-editor', 845)}${statusBar()}`;
     default: return '';
   }
 }
+
+/**
+ * A render of the real app screen [name] in the page language: the video
+ * screens show a range video, which HTML can't recreate. They come from
+ * widget tests with the app's theme and fonts (see
+ * branding/store-listing/README.md).
+ */
+const render = (name, height, alt = '') =>
+  `<img class="render" src="/screens/${name}-${LANG}.webp" width="390" height="${height}" alt="${alt}" decoding="async">`;
+
+/** The Video tab before the first video string, above the tab bar. */
+export const videoTab = () => render('video-tab', 753, t('demo.videoTab'));
 
 export const phoneScreen = (inner) => `<div class="phone-screen"><div class="app">${inner}</div></div>`;
 
