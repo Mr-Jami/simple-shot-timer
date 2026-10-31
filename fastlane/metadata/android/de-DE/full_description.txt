@@ -19,8 +19,13 @@ SCHUSSERKENNUNG
 • Im Mikrofontest stellst du die Empfindlichkeit mit einer Live-Pegelanzeige ein, bevor du scharf schießt.
 • Schüsse kannst du jederzeit von Hand hinzufügen, nach dem Durchgang oder in der Auswertung.
 
+VIDEO
+• Wähle ein Video von einem Durchgang. Die App findet Beep und Schüsse, du prüfst und korrigierst sie an der Wellenform.
+• Gespeichert wie jeder Durchgang. Nur die Zeiten bleiben, nie das Video, und nichts wird hochgeladen.
+• Exportiere das Video mit Uhr, Splits und Ergebnissen darauf, dann sichere oder teile es.
+
 VERLAUF & AUSWERTUNG
-• Jeder Durchgang wird automatisch gespeichert (Obergrenze von 50 bis 5.000, Standard 500).
+• Jeder Durchgang wird automatisch gespeichert.
 • Werte jeden Durchgang aus: Splits, erster Schuss, schnellster, langsamster und durchschnittlicher Split.
 • Bezeichnung, Notizen und Strafzeit kannst du für jeden Durchgang bearbeiten.
 
@@ -32,23 +37,25 @@ Sperr den Bildschirm oder wechsle mitten im Durchgang die App: Der Timer erkennt
 
 DATENSCHUTZ ZUERST
 • Alles bleibt auf dem Gerät. Kein Konto, keine Cloud, keine Analyse, keine Werbung, kein Tracking.
-• Das Mikrofonsignal wird live im Arbeitsspeicher ausgewertet, nur solange die App zuhört (bei einem Durchgang, im Mikrofontest oder beim automatischen Konfigurieren). Audio wird nie aufgenommen oder gesendet.
+• Das Mikrofonsignal wird live im Arbeitsspeicher ausgewertet, nur solange die App zuhört. Audio wird nie aufgenommen oder gesendet.
 • Lösche alle deine Daten und Einstellungen jederzeit in den Einstellungen.
 • Open Source (GPL-3.0): Der komplette Code liegt auf GitHub unter github.com/Mr-Jami/simple-shot-timer, du kannst also jede Aussage hier selbst nachprüfen.
 
 KOMFORT
 • Bildschirm-Blitz beim Beep für laute Stände und dicken Gehörschutz, dazu auf Wunsch Vibration.
 • Eine Meldung warnt dich, wenn die Medienlautstärke während eines Durchgangs stumm ist.
-• Der Bildschirm bleibt während eines Durchgangs an.
 • Schwarz-weißes Material-3-Design: System, Hell, Dunkel oder Hoher Kontrast.
 
 SPRACHEN
 Deutsch, Englisch, Finnisch, Französisch, Polnisch, Portugiesisch, Russisch und Spanisch.
 
 BERECHTIGUNGEN
-• Mikrofon: nötig für die Schusserkennung. Die App fragt danach, wenn sie das Mikrofon zum ersten Mal braucht.
+• Mikrofon: nötig für die Schusserkennung. Die App fragt beim ersten Bedarf danach.
 • Benachrichtigungen: ab Android 13 nötig für die Benachrichtigung, mit der der Timer im Hintergrund weiterläuft.
 • Vibration: optional, beim Beep.
-• Bildschirm aktiv halten: verhindert, dass der Bildschirm während eines Durchgangs ausgeht.
+• Bildschirm aktiv halten: während eines Durchgangs.
+• Speicher: nur bis Android 10, zum Sichern exportierter Videos.
 
 Gemacht für den Schießstand, das Dojo und das Trockentraining im Keller. Kostenlos, schlank, ohne In-App-Käufe.
+
+Auch fürs iPhone, kostenlos.

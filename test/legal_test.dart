@@ -55,6 +55,26 @@ void main() {
     expect(text, contains(originalUrl));
   });
 
+  test('the bundled Montserrat font ships with its licence', () async {
+    LicenseRegistry.reset();
+    addTearDown(LicenseRegistry.reset);
+    registerAppLicenses();
+
+    final entries = await LicenseRegistry.licenses
+        .where((e) => e.packages.contains('Montserrat'))
+        .toList();
+    final text =
+        entries.expand((e) => e.paragraphs).map((p) => p.text).join('\n');
+    expect(text, contains('SIL Open Font License'));
+    // Declared as the Montserrat family, and the file is there.
+    const font = 'assets/fonts/Montserrat-ExtraBoldItalic.ttf';
+    expect(
+        File('pubspec.yaml').readAsStringSync(),
+        matches(RegExp(r'family: Montserrat\s+fonts:\s+- asset: ' +
+            RegExp.escape(font))));
+    expect(File(font).existsSync(), isTrue);
+  });
+
   test('every source file points to the license and NOTICE', () {
     const header = [
       '// SPDX-License-Identifier: GPL-3.0-only',

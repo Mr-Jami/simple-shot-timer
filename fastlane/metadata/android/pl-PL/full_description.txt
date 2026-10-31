@@ -19,8 +19,13 @@ WYKRYWANIE STRZAŁÓW
 • W teście mikrofonu ustawisz czułość z miernikiem poziomu na żywo, zanim zaczniesz strzelać na ostro.
 • Dodawaj strzały ręcznie w dowolnej chwili, po serii lub w analizie.
 
+WIDEO
+• Wybierz wideo z serią. Aplikacja znajdzie sygnał i każdy strzał, a ty sprawdzisz je i poprawisz na wykresie fali dźwięku.
+• Zapisuje się jak każda seria. Zostają tylko czasy, nigdy wideo, i nic nie jest wysyłane.
+• Eksportuj wideo z zegarem, splitami i wynikami na obrazie, a potem zapisz je albo udostępnij.
+
 HISTORIA I ANALIZA
-• Każda seria zapisuje się automatycznie (limit od 50 do 5000, domyślnie 500).
+• Każda seria zapisuje się automatycznie.
 • Analizuj każdą serię: splity, pierwszy strzał oraz najszybszy, najwolniejszy i średni split.
 • Edytowalna etykieta, notatki i kara dla każdej serii.
 
@@ -32,14 +37,13 @@ Zablokuj ekran albo przełącz aplikację w trakcie serii: timer dalej wykrywa s
 
 PRYWATNOŚĆ PRZEDE WSZYSTKIM
 • Wszystko zostaje na urządzeniu. Bez kont, bez chmury, bez analityki, bez reklam, bez śledzenia.
-• Mikrofon działa na żywo, w pamięci, tylko gdy aplikacja nasłuchuje (seria, test mikrofonu lub autokonfiguracja). Dźwięk nigdy nie jest nagrywany ani wysyłany.
+• Mikrofon działa na żywo, w pamięci, tylko gdy aplikacja nasłuchuje. Dźwięk nigdy nie jest nagrywany ani wysyłany.
 • Usuń wszystkie swoje dane i ustawienia w Ustawieniach, kiedy tylko chcesz.
 • Open source (GPL-3.0): cały kod jest na GitHubie pod adresem github.com/Mr-Jami/simple-shot-timer, więc każde z tych zapewnień możesz sprawdzić samodzielnie.
 
 WYGODA
 • Błysk ekranu przy sygnale na głośne strzelnice i grube ochronniki słuchu, do tego opcjonalna wibracja.
 • Komunikat ostrzega, gdy głośność multimediów jest wyciszona w trakcie serii.
-• Ekran nie gaśnie podczas serii.
 • Monochromatyczny motyw Material 3: Systemowy, Jasny, Ciemny lub Wysoki kontrast.
 
 JĘZYKI
@@ -50,5 +54,8 @@ UPRAWNIENIA
 • Powiadomienia: od Androida 13 potrzebne do powiadomienia, dzięki któremu timer działa w tle.
 • Wibracja: opcjonalna, przy sygnale.
 • Zapobieganie uśpieniu: ekran nie gaśnie podczas serii.
+• Pamięć: tylko do Androida 10, aby zapisywać wyeksportowane wideo.
 
 Stworzony na strzelnicę, do klubu i do treningu na sucho w domu. Darmowy, lekki, bez zakupów w aplikacji.
+
+Także na iPhone'a, za darmo.

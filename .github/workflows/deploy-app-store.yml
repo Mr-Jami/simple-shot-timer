@@ -5,6 +5,14 @@ on:
     tags:
       - 'v*.*.*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: >-
+          Version for a TestFlight build of an unreleased branch, e.g. 2.4.0
+          (App Store Connect takes no new builds for a released version).
+          Empty: the version in pubspec.yaml.
+        required: false
+        default: ''
 
 jobs:
   deploy:
@@ -22,6 +30,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Check the version input
+        # Before the long build: a typo fails here, in seconds. Empty (and
+        # every tag push) keeps the version in pubspec.yaml.
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if [ -n "$VERSION" ] && ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::version must look like 2.4.0, got '$VERSION'"
+            exit 1
+          fi
 
       - name: Select Xcode
         run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app"
@@ -127,10 +146,13 @@ jobs:
         # --build-number overrides CFBundleVersion. github.run_number gives a
         # monotonically increasing integer per workflow run, which App Store
         # Connect requires for every upload of the same version. The version
-        # string (e.g. 1.2.3) still comes from pubspec.yaml, which
-        # release-please manages on its release PR.
+        # string (e.g. 1.2.3) comes from pubspec.yaml, which release-please
+        # manages on its release PR, unless the version input overrides it.
+        env:
+          VERSION: ${{ inputs.version }}
         run: |
           flutter build ipa --release \
+            ${VERSION:+--build-name="$VERSION"} \
             --build-number=${{ github.run_number }} \
             --export-options-plist="$RUNNER_TEMP/ExportOptions.plist"
 

@@ -19,6 +19,11 @@ SCHUSSERKENNUNG
 • Im Mikrofontest stellst du die Empfindlichkeit mit einer Live-Pegelanzeige ein, bevor du scharf schießt.
 • Schüsse kannst du jederzeit von Hand hinzufügen, nach dem Durchgang oder in der Auswertung.
 
+VIDEO
+• Wähle ein Video von einem Durchgang. Die App findet Beep und Schüsse, du prüfst und korrigierst sie an der Wellenform.
+• Gespeichert wie jeder Durchgang. Nur die Zeiten bleiben, nie das Video, und nichts wird hochgeladen.
+• Exportiere das Video mit Uhr, Splits und Ergebnissen darauf, dann sichere oder teile es.
+
 VERLAUF & AUSWERTUNG
 • Jeder Durchgang wird automatisch gespeichert (Obergrenze von 50 bis 5.000, Standard 500).
 • Werte jeden Durchgang aus: Splits, erster Schuss, schnellster, langsamster und durchschnittlicher Split.

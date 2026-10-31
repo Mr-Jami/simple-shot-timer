@@ -19,6 +19,11 @@ SHOT DETECTION
 • A mic test screen with a live level meter lets you dial in sensitivity before going hot.
 • Add shots by hand at any time, after the string or in review.
 
+VIDEO
+• Choose a video of a string. The app finds the beep and every shot, and you check and fix them on the sound's waveform.
+• Saved like any other string. Only the times are kept, never the video, and nothing is uploaded.
+• Export the video with the clock, your splits and the totals on it, then save or share it.
+
 HISTORY & REVIEW
 • Every string is saved automatically (rolling cap from 50 to 5000, default 500).
 • Review each string with split times, first shot, fastest, slowest and average.

@@ -31,7 +31,7 @@
     "@type": "MobileApplication",
     "name": "Simple Shot Timer",
     "url": "https://simpleshottimer.com/de/",
-    "description": "Die kostenlose Open-Source-Shot-Timer-App, ohne Werbung und ohne Datentracking. Ein Shot Timer und Par Timer für Trockentraining und den Schießstand: erkennt Schüsse über das Mikrofon, kann Standard-, Par- und Stage-Drills, speichert Drills und jeden Durchgang und exportiert als CSV. Für Android und iPhone.",
+    "description": "Die kostenlose Open-Source-Shot-Timer-App, ohne Werbung und ohne Datentracking. Ein Shot Timer und Par Timer für Trockentraining und den Schießstand: erkennt Schüsse über das Mikrofon, kann Standard-, Par- und Stage-Drills, speichert Drills und jeden Durchgang und exportiert als CSV, misst Durchgänge aus Videos und exportiert das Video mit den Splits darauf. Für Android und iPhone.",
     "operatingSystem": "Android, iOS",
     "applicationCategory": "SportsApplication",
     "downloadUrl": ["https://play.google.com/store/apps/details?id=cc.jami.simpleshottimer", "https://apps.apple.com/app/simple-shot-timer/id6819042653"],
@@ -168,6 +168,14 @@
               <p class="step-num">05 · Verlauf</p>
               <h3 class="h3">Jeder Durchgang bleibt.</h3>
               <p>Jeder Durchgang wird auf deinem Telefon gespeichert, zusammen mit dem Drill, mit dem du ihn geschossen hast. Behalte bis zu 5.000 Durchgänge, schau jederzeit zurück und exportiere einen einzelnen Durchgang oder deinen ganzen Verlauf als CSV.</p>
+            </div>
+            <div class="phone phone-step" aria-hidden="true"></div>
+          </li>
+          <li class="step" data-screen="video">
+            <div class="step-text">
+              <p class="step-num">06 · Video</p>
+              <h3 class="h3">Zeiten aus dem Video.</h3>
+              <p>Filme einen Durchgang mit dem Handy und wähle das Video im Tab Video. Die App findet den Beep und jeden Schuss am Ton; du prüfst sie an der Wellenform, ergänzt einen verpassten Schuss oder verschiebst START. Dann exportierst du das Video mit Uhr und Splits darauf, fertig zum Teilen. Alles passiert auf deinem Handy, gespeichert werden nur die Zeiten.</p>
             </div>
             <div class="phone phone-step" aria-hidden="true"></div>
           </li>
@@ -340,6 +348,10 @@
         <details>
           <summary>Verfälscht ein Bluetooth-Lautsprecher meine Zeiten?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
           <div class="faq-a"><p>Nein. Die Zeit startet, wenn das Mikrofon den Beep hört; die Verzögerung des Lautsprechers wird also gemessen, nicht geschätzt. Für einen Beep, den das Mikrofon nicht hört, etwa über Kopfhörer, stellst du in den Einstellungen einen Latenzausgleich ein.</p></div>
+        </details>
+        <details>
+          <summary>Kann sie einen Durchgang aus einem Video messen?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="faq-a"><p>Ja. Filme den Durchgang mit dem Handy, öffne den Tab Video und wähle das Video. Die App findet den Start-Beep und jeden Schuss am Ton, du prüfst sie an der Wellenform und korrigierst, was nicht stimmt. Gespeichert werden nur die Zeiten, nie das Video, und nichts wird hochgeladen. Du kannst das Video auch mit Uhr und Splits darauf exportieren.</p></div>
         </details>
         <details>
           <summary>Gibt es eine iPhone-Version?<svg class="faq-ico" width="32" height="32" aria-hidden="true"><use href="#i-plus"/></svg></summary>

@@ -24,16 +24,21 @@ Uri privacyPolicyUri(String languageCode) => Uri.parse(
     );
 
 /// Adds the section-7 additional terms in NOTICE to the app's entry on the
-/// licenses page. Flutter already bundles the app's own LICENSE (the GPLv3
+/// licenses page, and the licence of the bundled Montserrat font (the video
+/// overlay's name). Flutter already bundles the app's own LICENSE (the GPLv3
 /// text) there.
 ///
-/// No try/catch on purpose: if NOTICE can't load, the licenses page shows the
-/// error instead of quietly dropping the terms.
+/// No try/catch on purpose: if a text can't load, the licenses page shows the
+/// error instead of quietly dropping it.
 void registerAppLicenses() {
   LicenseRegistry.addLicense(() async* {
     yield LicenseEntryWithLineBreaks(
       const ['simple_shot_timer'],
       await rootBundle.loadString('NOTICE'),
+    );
+    yield LicenseEntryWithLineBreaks(
+      const ['Montserrat'],
+      await rootBundle.loadString('assets/fonts/Montserrat-OFL.txt'),
     );
   });
 }

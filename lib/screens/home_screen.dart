@@ -21,6 +21,7 @@ import '../utils/motion.dart';
 import '../utils/time_format.dart';
 import '../widgets/big_time_display.dart';
 import '../widgets/mic_level_meter.dart';
+import '../widgets/pill_button.dart';
 import 'review_screen.dart';
 
 /// Pushes [screen] from the timer and, on return, lets a finished result
@@ -67,69 +68,23 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-/// The one control. Full width in every state; only its colour, icon and
-/// label change, and they change continuously from wherever they are, so a
-/// rapid START–STOP–START never jumps.
+/// The one control: START, or STOP while a string runs.
 class _BigButton extends ConsumerWidget {
   const _BigButton({required this.state});
   final TimerState state;
 
-  static const double _height = 96;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(timerProvider.notifier);
-    final scheme = Theme.of(context).colorScheme;
     final inProgress = state.phase == TimerPhase.running ||
         state.phase == TimerPhase.countdown;
-    final background = inProgress ? Colors.red : scheme.primary;
-    final foreground = inProgress ? Colors.white : scheme.onPrimary;
-    final label =
-        inProgress ? context.tr('home.stop') : context.tr('home.start');
-    final radius = BorderRadius.circular(_height / 2);
-    return Semantics(
-      button: true,
-      child: SizedBox(
-        height: _height,
-        width: double.infinity,
-        child: AnimatedContainer(
-          duration: motion(context, kMotionMedium),
-          curve: Curves.easeOutCubic,
-          decoration: BoxDecoration(color: background, borderRadius: radius),
-          child: Material(
-            type: MaterialType.transparency,
-            child: InkWell(
-              borderRadius: radius,
-              onTap: inProgress ? notifier.stop : notifier.start,
-              child: Center(
-                child: AnimatedSwitcher(
-                  duration: motion(context, kMotionShort),
-                  child: Row(
-                    key: ValueKey(inProgress),
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        inProgress ? Icons.stop : Icons.play_arrow,
-                        size: 36,
-                        color: foreground,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        label,
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: foreground,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+    return PillButton(
+      icon: inProgress ? Icons.stop : Icons.play_arrow,
+      label: inProgress ? context.tr('home.stop') : context.tr('home.start'),
+      onPressed: inProgress ? notifier.stop : notifier.start,
+      background: inProgress ? Colors.red : null,
+      foreground: inProgress ? Colors.white : null,
+      contentKey: ValueKey(inProgress),
     );
   }
 }

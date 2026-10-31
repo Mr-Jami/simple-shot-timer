@@ -19,6 +19,11 @@ LAUKAUSTEN TUNNISTUS
 • Mikrofonin testissä säädät herkkyyden reaaliaikaisen tasomittarin avulla ennen kuin ammut kovilla.
 • Lisää laukauksia käsin milloin tahansa, sarjan jälkeen tai tarkastelussa.
 
+VIDEO
+• Valitse video sarjasta. Sovellus löytää äänimerkin ja jokaisen laukauksen, ja sinä tarkistat ja korjaat ne aaltomuodosta.
+• Tallentuu kuten mikä tahansa sarja. Vain ajat tallennetaan, ei koskaan videota, eikä mitään lähetetä.
+• Vie video kellon, splittiesi ja tulosten kanssa, ja tallenna tai jaa se.
+
 HISTORIA JA TARKASTELU
 • Jokainen sarja tallentuu automaattisesti (enimmäismäärä 50–5000, oletuksena 500).
 • Tarkastele jokaista sarjaa: splitit, ensimmäinen laukaus sekä nopein, hitain ja keskimääräinen split.

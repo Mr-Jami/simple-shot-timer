@@ -20,6 +20,10 @@ class TimerString {
     this.penaltyMs = 0,
     this.parRepeatCount,
     this.parIntervalMs,
+    this.source = StringSource.live,
+    this.videoStartMs,
+    this.videoDurationMs,
+    this.videoRecordedAt,
   });
 
   final int? id;
@@ -40,6 +44,17 @@ class TimerString {
 
   /// Rest interval (ms) between par cycles. Null for non-par or pre-v3 rows.
   final int? parIntervalMs;
+
+  final StringSource source;
+
+  /// Video strings only: where START sits in the clip, the clip's length and
+  /// when it was filmed (if the file says). Together they recognise the clip
+  /// when it is chosen again; shot times stay relative to START.
+  final int? videoStartMs;
+  final int? videoDurationMs;
+  final DateTime? videoRecordedAt;
+
+  bool get isVideo => source == StringSource.video;
 
   int get shotCount => shots.length;
 
@@ -134,6 +149,10 @@ class TimerString {
     int? penaltyMs,
     int? parRepeatCount,
     int? parIntervalMs,
+    StringSource? source,
+    int? videoStartMs,
+    int? videoDurationMs,
+    DateTime? videoRecordedAt,
   }) =>
       TimerString(
         id: id ?? this.id,
@@ -148,6 +167,10 @@ class TimerString {
         penaltyMs: penaltyMs ?? this.penaltyMs,
         parRepeatCount: parRepeatCount ?? this.parRepeatCount,
         parIntervalMs: parIntervalMs ?? this.parIntervalMs,
+        source: source ?? this.source,
+        videoStartMs: videoStartMs ?? this.videoStartMs,
+        videoDurationMs: videoDurationMs ?? this.videoDurationMs,
+        videoRecordedAt: videoRecordedAt ?? this.videoRecordedAt,
       );
 
   Map<String, Object?> toMap() => {
@@ -162,6 +185,10 @@ class TimerString {
         'penalty_ms': penaltyMs,
         'par_repeat_count': parRepeatCount,
         'par_interval_ms': parIntervalMs,
+        'source': source.name,
+        'video_start_ms': videoStartMs,
+        'video_duration_ms': videoDurationMs,
+        'video_recorded_at': videoRecordedAt?.toUtc().toIso8601String(),
       };
 
   factory TimerString.fromMap(
@@ -186,6 +213,16 @@ class TimerString {
         penaltyMs: map['penalty_ms'] as int? ?? 0,
         parRepeatCount: map['par_repeat_count'] as int?,
         parIntervalMs: map['par_interval_ms'] as int?,
+        source: StringSource.values.firstWhere(
+          (e) => e.name == map['source'],
+          orElse: () => StringSource.live,
+        ),
+        videoStartMs: map['video_start_ms'] as int?,
+        videoDurationMs: map['video_duration_ms'] as int?,
+        videoRecordedAt: switch (map['video_recorded_at']) {
+          final String at => DateTime.parse(at),
+          _ => null,
+        },
         shots: shots,
       );
 }

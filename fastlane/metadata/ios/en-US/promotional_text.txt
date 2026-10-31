@@ -1,1 +1,1 @@
-Free, open-source shot timer for dry-fire and live-fire. Hears every shot, shows splits live, runs par drills. No ads, no tracking. Now in 8 languages.
+New: time a string from its video and export the video with your times on it. Free, open-source shot timer with live splits and par drills. No ads, no tracking.

@@ -70,9 +70,15 @@ website/
 │   └── styles/           # site.css (page) and app-ui.css (the app, scoped to .app);
 │                         # they @import the bundled fonts
 ├── public/               # copied as-is: _headers, _redirects, icons, og images,
-│                         # robots.txt, llms.txt
+│                         # robots.txt, llms.txt, and screens/: renders of the real
+│                         # video editor and Video tab (EN, DE), see below
 └── og-image/index.html   # source of public/og.png and og-de.png (not part of the build)
 ```
+
+The video screens (the story's sixth step and the demo's Video tab) are not HTML:
+they show a range video, so `public/screens/*.webp` are renders of the app's own
+screens in each language, made with widget tests like the store screenshots (see
+`branding/store-listing/README.md`). Re-render them when those screens change.
 
 Every page loads its stylesheets with `<link rel="stylesheet">` in the `<head>`, never
 from JavaScript: a stylesheet imported from JS arrives after the first paint, which

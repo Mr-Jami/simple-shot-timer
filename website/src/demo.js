@@ -7,7 +7,7 @@
 import { animate, spring } from 'animejs';
 import {
   icon, statusBar, navBar, readyView, standbyView, runningView, reviewPage,
-  drillsTab, historyTab, settingsTab, phoneScreen, sec, lastLine, headerLine, historyItem,
+  drillsTab, videoTab, historyTab, settingsTab, phoneScreen, sec, lastLine, headerLine, historyItem,
 } from './screens.js';
 import { t, clockTime, dateTime } from './i18n.js';
 
@@ -68,8 +68,9 @@ export function initDemo({ phone, hint, reduceMotion }) {
         <button class="bigbtn" type="button" data-ref="go" aria-label="${t('demo.startLabel')}">${icon('play')}<span>${t('home.start')}</span></button>
       </div>
       <div class="tab" data-pane="1" hidden style="opacity:0">${drillsTab(-1)}</div>
-      <div class="tab" data-pane="2" hidden style="opacity:0" data-ref="historyPane">${historyTab()}</div>
-      <div class="tab" data-pane="3" hidden style="opacity:0">${settingsTab()}</div>
+      <div class="tab" data-pane="2" hidden style="opacity:0">${videoTab()}</div>
+      <div class="tab" data-pane="3" hidden style="opacity:0" data-ref="historyPane">${historyTab()}</div>
+      <div class="tab" data-pane="4" hidden style="opacity:0">${settingsTab()}</div>
       ${navBar(0, { buttons: true })}
       <div class="snack" data-ref="snack" hidden></div>
     </div>

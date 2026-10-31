@@ -160,6 +160,7 @@
   .mic-sl { margin-top: 32px; }
   .mic-sl .trk { margin: 20px 10px 0; }
   .tip { margin-top: 24px; font-size: 12px; line-height: 1.4; color: #cccccc; }
+  .render { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
 
   /* ===== feature graphic 1024x500 ===== */
   .feature { position: relative; width: 1024px; height: 500px; overflow: hidden; background: #000; margin: 0 0 40px; }
@@ -212,6 +213,8 @@
   <symbol id="i-timer" viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></symbol>
   <symbol id="i-bookmarks-o" viewBox="0 0 24 24"><path d="M15 7v12.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10m4-6H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/></symbol>
   <symbol id="i-bookmarks-f" viewBox="0 0 24 24"><path d="M19 18l2 1V3c0-1.1-.9-2-2-2H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13zM15 5H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z"/></symbol>
+  <symbol id="i-videocam-o" viewBox="0 0 24 24"><path d="M15 8v8H5V8h10m1-2H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4V7c0-.55-.45-1-1-1z"/></symbol>
+  <symbol id="i-videocam-f" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></symbol>
   <symbol id="i-history" viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></symbol>
   <symbol id="i-settings-o" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.09-.16-.26-.25-.44-.25-.06 0-.12.01-.17.03l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.06-.02-.12-.03-.18-.03-.17 0-.34.09-.43.25l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.09.16.26.25.44.25.06 0 .12-.01.17-.03l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.06.02.12.03.18.03.17 0 .34-.09.43-.25l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-1.98-1.71c.04.31.05.52.05.73 0 .21-.02.43-.05.73l-.14 1.13.89.7 1.08.84-.7 1.21-1.27-.51-1.04-.42-.9.68c-.43.32-.84.56-1.25.73l-1.06.43-.16 1.13-.2 1.35h-1.4l-.19-1.35-.16-1.13-1.06-.43c-.43-.18-.83-.41-1.23-.71l-.91-.7-1.06.43-1.27.51-.7-1.21 1.08-.84.89-.7-.14-1.13c-.03-.31-.05-.54-.05-.74s.02-.43.05-.73l.14-1.13-.89-.7-1.08-.84.7-1.21 1.27.51 1.04.42.9-.68c.43-.32.84-.56 1.25-.73l1.06-.43.16-1.13.2-1.35h1.39l.19 1.35.16 1.13 1.06.43c.43.18.83.41 1.23.71l.91.7 1.06-.43 1.27-.51.7 1.21-1.07.85-.89.7.14 1.13zM12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></symbol>
   <symbol id="i-settings-f" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></symbol>
@@ -245,8 +248,9 @@
   <div class="navbar">
     <div class="dest" data-i="0"><div class="pill"></div><svg class="i ic-o"><use href="#i-timer"/></svg><svg class="i ic-f"><use href="#i-timer"/></svg><div class="lbl">Timer</div></div>
     <div class="dest" data-i="1"><div class="pill"></div><svg class="i ic-o"><use href="#i-bookmarks-o"/></svg><svg class="i ic-f"><use href="#i-bookmarks-f"/></svg><div class="lbl">Drills</div></div>
-    <div class="dest" data-i="2"><div class="pill"></div><svg class="i ic-o"><use href="#i-history"/></svg><svg class="i ic-f"><use href="#i-history"/></svg><div class="lbl">History</div></div>
-    <div class="dest" data-i="3"><div class="pill"></div><svg class="i ic-o"><use href="#i-settings-o"/></svg><svg class="i ic-f"><use href="#i-settings-f"/></svg><div class="lbl">Settings</div></div>
+    <div class="dest" data-i="2"><div class="pill"></div><svg class="i ic-o"><use href="#i-videocam-o"/></svg><svg class="i ic-f"><use href="#i-videocam-f"/></svg><div class="lbl">Video</div></div>
+    <div class="dest" data-i="3"><div class="pill"></div><svg class="i ic-o"><use href="#i-history"/></svg><svg class="i ic-f"><use href="#i-history"/></svg><div class="lbl">History</div></div>
+    <div class="dest" data-i="4"><div class="pill"></div><svg class="i ic-o"><use href="#i-settings-o"/></svg><svg class="i ic-f"><use href="#i-settings-f"/></svg><div class="lbl">Settings</div></div>
   </div>
 </template>
 
@@ -405,7 +409,7 @@
         <div class="sw"><span>Visual flash on beep</span><div class="swt"><span></span></div></div>
       </div>
     </div>
-    <div data-nav="3"></div>
+    <div data-nav="4"></div>
   </div></div></div></div>
 </section>
 
@@ -458,11 +462,23 @@
         <div class="divider"></div>
       </div>
     </div>
-    <div data-nav="2"></div>
+    <div data-nav="3"></div>
   </div></div></div></div>
 </section>
 
 <!-- ============ Feature graphic 1024x500 ============ -->
+<!-- ============ 9. Video editor (Play: slot 6; App Store: 9th, in black) ============
+     A render of the real editor (VideoEditorScreen) on a chest-mount clip,
+     with the app's own overlay preview: see the README. -->
+<section class="slide yellow" id="slide-9" data-ios-black>
+  <canvas width="1080" height="1920"></canvas>
+  <div class="cap"><img src="assets/mark-black.png" alt=""><h2>Time a string from<br>your video. Export it<br>with your splits on it</h2></div>
+  <div class="phone"><div class="screen"><div class="app">
+    <img class="render" src="assets/video-editor.jpg" data-ios-src="assets/video-editor-ios.jpg" alt="">
+    <div data-status></div>
+  </div></div></div>
+</section>
+
 <section class="feature" id="feature">
   <canvas width="1024" height="500"></canvas>
   <img class="mark" src="assets/mark-black.png" alt="">
@@ -535,6 +551,12 @@
     document.body.classList.add('ios');
     document.querySelectorAll('use[href="#i-back"]').forEach(function (u) { u.setAttribute('href', '#i-back-ios'); });
     document.querySelectorAll('.app').forEach(function (a) { a.insertAdjacentHTML('beforeend', '<div class="homebar"></div>'); });
+    document.querySelectorAll('img[data-ios-src]').forEach(function (i) { i.src = i.getAttribute('data-ios-src'); });
+    // An extra slide after the yellow History one: black keeps the colours alternating.
+    document.querySelectorAll('[data-ios-black]').forEach(function (s) {
+      s.classList.replace('yellow', 'black');
+      s.querySelector('.cap img').src = 'assets/mark-white.png';
+    });
   }
 
   // Clone the status bar and bottom tab bar into every placeholder.

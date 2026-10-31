@@ -49,12 +49,21 @@ dependencies:
 
   # Opens the privacy policy from Settings (App Store guideline 5.1.1).
   url_launcher: ^6.3.3
+  video_player: ^2.11.1
+  image_picker: ^1.2.4
+  # Saves an exported video to the phone's videos. 2.3.3: the newest that
+  # builds with Flutter 3.41.
+  gal: 2.3.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # On-device checks in integration_test/ (not run in CI).
+  integration_test:
+    sdk: flutter
   flutter_lints: ^6.0.0
   fake_async: ^1.3.3
+  sqflite_common_ffi: ^2.3.5
 
 # Pin transitive plugins whose released versions are incompatible with the
 # current record_platform_interface (1.5.0). They are only built when those
@@ -69,3 +78,14 @@ flutter:
     - assets/branding/
     # Section-7 license terms, shown on the in-app licenses page.
     - NOTICE
+    # The font of the app's name on the video overlay and its licence (OFL),
+    # also shown there.
+    - assets/fonts/Montserrat-OFL.txt
+
+  fonts:
+    # Basic Latin only (pyftsubset U+0020-007E): the name is the one user.
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic

@@ -14,3 +14,12 @@ String formatSplit(int? ms) {
 }
 
 String formatClock(int ms) => formatSeconds(ms);
+
+/// Whole minutes and seconds, "1:05", or past an hour "1:02:05".
+String formatMinutes(int ms) {
+  final s = ms ~/ 1000;
+  String two(int n) => n.toString().padLeft(2, '0');
+  return s >= 3600
+      ? '${s ~/ 3600}:${two(s ~/ 60 % 60)}:${two(s % 60)}'
+      : '${s ~/ 60}:${two(s % 60)}';
+}

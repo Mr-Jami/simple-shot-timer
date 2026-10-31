@@ -12,6 +12,8 @@ import 'providers/providers.dart';
 import 'services/audio_service.dart';
 import 'services/background_service.dart';
 import 'services/database_service.dart';
+import 'services/export_service.dart';
+import 'services/video/video_work_dir.dart';
 import 'utils/legal.dart';
 
 Future<void> main() async {
@@ -28,6 +30,15 @@ Future<void> main() async {
   BackgroundService.init();
   final prefs = await SharedPreferences.getInstance();
   final db = await DatabaseService.open();
+  // Leftovers of a crash or a kill mid-import or mid-edit (work folders and
+  // the photo picker's copies), and share_plus's copies of shared videos,
+  // which can be large.
+  try {
+    await VideoWorkDir().sweep();
+    await ExportService().deleteVideoShares();
+  } on Exception {
+    // Tried again next start.
+  }
   // Eagerly constructed — see audioServiceProvider for why.
   final audio = AudioService();
 

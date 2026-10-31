@@ -1,0 +1,376 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// Copyright (C) 2026 Tareq Jami (Jami IT)
+// Additional terms under GPLv3 section 7 apply; see NOTICE.
+
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../models/enums.dart';
+import '../models/timer_string.dart';
+import '../services/video/analyzed_clip.dart';
+import '../services/video/clip_analyzer.dart';
+import '../services/video/marker_doc.dart';
+import '../services/video/video_work_dir.dart';
+import 'history_provider.dart';
+import 'settings_provider.dart';
+import 'string_provider.dart';
+import 'video_providers.dart';
+
+/// What the editor opens: an analysed clip, its work folder (the editor
+/// deletes it when it closes) and, when reopened from history, the saved
+/// string whose markers it shows instead of the analyzer's.
+class ClipEditorArgs {
+  const ClipEditorArgs({
+    required this.clip,
+    required this.session,
+    required this.importedAt,
+    this.saved,
+  });
+
+  final AnalyzedClip clip;
+  final VideoSession session;
+  final DateTime importedAt;
+  final TimerString? saved;
+}
+
+enum SaveStatus { unsaved, saving, saved, failed }
+
+class ClipEditorState {
+  const ClipEditorState({
+    required this.doc,
+    this.pendingSensitivity,
+    this.selectedId,
+    this.label,
+    this.notes,
+    this.penaltyMs = 0,
+    this.savedId,
+    this.saveStatus = SaveStatus.unsaved,
+    this.canUndo = false,
+    this.reopened = false,
+  });
+
+  final MarkerDoc doc;
+
+  /// The level chosen while its detection runs.
+  final ShotSensitivity? pendingSensitivity;
+  final int? selectedId;
+  final String? label;
+  final String? notes;
+  final int penaltyMs;
+  final int? savedId;
+  final SaveStatus saveStatus;
+  final bool canUndo;
+
+  /// Opened with "Choose video again": the saved markers, no sensitivity.
+  final bool reopened;
+
+  EditShot? get selected =>
+      selectedId == null ? null : doc.shotById(selectedId!);
+
+  /// The level the selector shows: the one running, else the markers'.
+  ShotSensitivity get sensitivity => pendingSensitivity ?? doc.sensitivity;
+  bool get sensitivityBusy => pendingSensitivity != null;
+
+  ClipEditorState copyWith({
+    MarkerDoc? doc,
+    ShotSensitivity? Function()? pendingSensitivity,
+    int? Function()? selectedId,
+    String? Function()? label,
+    String? Function()? notes,
+    int? penaltyMs,
+    int? savedId,
+    SaveStatus? saveStatus,
+    bool? canUndo,
+  }) =>
+      ClipEditorState(
+        doc: doc ?? this.doc,
+        pendingSensitivity: pendingSensitivity == null
+            ? this.pendingSensitivity
+            : pendingSensitivity(),
+        selectedId: selectedId == null ? this.selectedId : selectedId(),
+        label: label == null ? this.label : label(),
+        notes: notes == null ? this.notes : notes(),
+        penaltyMs: penaltyMs ?? this.penaltyMs,
+        savedId: savedId ?? this.savedId,
+        saveStatus: saveStatus ?? this.saveStatus,
+        canUndo: canUndo ?? this.canUndo,
+        reopened: reopened,
+      );
+}
+
+/// The video editor's state and rules. The markers live in an immutable
+/// [MarkerDoc]; undo keeps earlier documents. Nothing is saved until a
+/// [flush] (leaving, exporting, or the app going to the background) finds
+/// START and at least one shot; after that first save every change
+/// autosaves [autosaveDelay] after the last edit. A change that leaves the
+/// string without them (an undo past Set START) isn't saved: the saved
+/// string keeps its last complete version. Saves run one at a time, so two
+/// quick ones never insert twice.
+class ClipEditorNotifier
+    extends AutoDisposeFamilyNotifier<ClipEditorState, ClipEditorArgs> {
+  static const autosaveDelay = Duration(milliseconds: 600);
+  static const _undoLimit = 50;
+
+  final _undo = <MarkerDoc>[];
+  Timer? _autosave;
+  Future<void> _saving = Future.value();
+  var _sensitivityRequest = 0;
+  var _discarded = false;
+  var _disposed = false;
+
+  /// Open while a finger drags a shot or holds a nudge button: all its
+  /// edits are one undo step.
+  var _gesture = false;
+  var _gestureRecorded = false;
+
+  @override
+  ClipEditorState build(ClipEditorArgs arg) {
+    ref.onDispose(() {
+      _disposed = true;
+      _autosave?.cancel();
+      unawaited(arg.session.dispose());
+    });
+    final saved = arg.saved;
+    if (saved != null) {
+      return ClipEditorState(
+        doc: MarkerDoc.fromSaved(saved,
+            fromMs: arg.clip.fromMs, toMs: arg.clip.toMs),
+        label: saved.label,
+        notes: saved.notes,
+        penaltyMs: saved.penaltyMs,
+        savedId: saved.id,
+        saveStatus: SaveStatus.saved,
+        reopened: true,
+      );
+    }
+    return ClipEditorState(doc: arg.clip.toDoc());
+  }
+
+  /// The string as it would be saved now; the editor's stats read it.
+  TimerString get draft => TimerString(
+        id: state.savedId,
+        createdAt: arg.importedAt,
+        drillMode: DrillMode.standard,
+        delayMode: DelayMode.instant,
+        delayUsedMs: 0,
+        pars: const [],
+        shots: state.doc.toShots(),
+        label: state.label,
+        notes: state.notes,
+        penaltyMs: state.penaltyMs,
+        source: StringSource.video,
+        videoStartMs: state.doc.startMs,
+        videoDurationMs: arg.clip.info.durationMs,
+        videoRecordedAt: arg.clip.info.creationTime,
+      );
+
+  void setStart(int ms) => _edit(state.doc.setStart(ms));
+
+  void addShot(int ms) {
+    final id = state.doc.nextId;
+    _edit(state.doc.addShot(ms), selectedId: () => id);
+  }
+
+  void select(int? id) => state = state.copyWith(selectedId: () => id);
+
+  void nudge(int id, int deltaMs) {
+    final shot = state.doc.shotById(id);
+    if (shot != null) _edit(state.doc.moveShot(id, shot.ms + deltaMs));
+  }
+
+  void moveShot(int id, int ms) => _edit(state.doc.moveShot(id, ms));
+
+  void setLastShot(int id) => _edit(state.doc.setLastShot(id));
+
+  void deleteShot(int id) => _edit(
+        state.doc.deleteShot(id),
+        selectedId: () => state.selectedId == id ? null : state.selectedId,
+      );
+
+  void undo() {
+    if (_undo.isEmpty) return;
+    final previous = _undo.removeLast();
+    state = state.copyWith(
+      doc: previous,
+      canUndo: _undo.isNotEmpty,
+      selectedId: () => previous.shotById(state.selectedId ?? -1) == null
+          ? null
+          : state.selectedId,
+    );
+    _changed();
+  }
+
+  /// Re-detects shots at [sensitivity] and keeps the user's edits; undo
+  /// takes the level back with the markers. The latest request wins, and
+  /// choosing the markers' own level again stops a running one. A failed
+  /// detection leaves the markers and their level. Reopened strings keep
+  /// exactly their markers.
+  Future<void> setSensitivity(ShotSensitivity sensitivity) async {
+    if (state.reopened || sensitivity == state.sensitivity) return;
+    final request = ++_sensitivityRequest;
+    if (sensitivity == state.doc.sensitivity) {
+      state = state.copyWith(pendingSensitivity: () => null);
+      return;
+    }
+    state = state.copyWith(pendingSensitivity: () => sensitivity);
+    ClipAnalysis? analysis;
+    try {
+      analysis = await ref
+          .read(clipAnalyzerProvider)
+          .resense(arg.clip.analysis, sensitivity);
+    } catch (e, stack) {
+      if (e is! Exception) {
+        FlutterError.reportError(FlutterErrorDetails(
+          exception: e,
+          stack: stack,
+          library: 'video editor',
+        ));
+      }
+    }
+    // Not when the editor closed meanwhile: it saved what the user saw.
+    if (_disposed || request != _sensitivityRequest) return;
+    if (analysis != null) {
+      final clip = arg.clip.withAnalysis(analysis);
+      _edit(state.doc.reconcile(
+        startMs: clip.startMs,
+        shotMs: clip.shotMs,
+        sensitivity: sensitivity,
+      ));
+    }
+    state = state.copyWith(pendingSensitivity: () => null);
+  }
+
+  void setLabel(String label) {
+    state = state.copyWith(label: () => label.isEmpty ? null : label);
+    _changed();
+  }
+
+  void setNotes(String notes) {
+    state = state.copyWith(notes: () => notes.isEmpty ? null : notes);
+    _changed();
+  }
+
+  void setPenalty(int penaltyMs) {
+    state = state.copyWith(penaltyMs: penaltyMs < 0 ? 0 : penaltyMs);
+    _changed();
+  }
+
+  /// Saves what there is to save; the editor calls it before it closes,
+  /// before an export and when the app goes to the background. Completes
+  /// when written.
+  Future<void> flush() {
+    _autosave?.cancel();
+    return _enqueueSave();
+  }
+
+  void _scheduleAutosave() {
+    _autosave?.cancel();
+    _autosave = Timer(autosaveDelay, _enqueueSave);
+  }
+
+  /// Deletes the saved string, if any, and stops saving. Should the delete
+  /// fail, the string stays and saving goes on.
+  Future<void> discard() async {
+    _discarded = true;
+    _autosave?.cancel();
+    await _saving;
+    final id = state.savedId;
+    if (id == null) return;
+    try {
+      await ref.read(videoStringStoreProvider).deleteString(id);
+    } catch (_) {
+      _discarded = false;
+      if (state.saveStatus != SaveStatus.saved) _scheduleAutosave();
+      rethrow;
+    }
+    _invalidate(id);
+  }
+
+  /// Starts a gesture (dragging a shot, holding a nudge button): its edits
+  /// become one undo step, recorded with its first change.
+  void beginGesture() {
+    _gesture = true;
+    _gestureRecorded = false;
+  }
+
+  void endGesture() => _gesture = false;
+
+  void _edit(MarkerDoc doc, {int? Function()? selectedId}) {
+    if (identical(doc, state.doc)) return;
+    if (!_gesture || !_gestureRecorded) {
+      _undo.add(state.doc);
+      if (_undo.length > _undoLimit) _undo.removeAt(0);
+      _gestureRecorded = _gesture;
+    }
+    // A new detection replaces untouched shots, so the selected one may be
+    // gone.
+    final selected = selectedId == null ? state.selectedId : selectedId();
+    state = state.copyWith(
+      doc: doc,
+      canUndo: true,
+      selectedId: () =>
+          selected != null && doc.shotById(selected) != null ? selected : null,
+    );
+    _changed();
+  }
+
+  /// Marks the string unsaved (an edit during a write too, so the write
+  /// doesn't claim it) and, once saved before, schedules the autosave.
+  void _changed() {
+    if (state.saveStatus != SaveStatus.unsaved) {
+      state = state.copyWith(saveStatus: SaveStatus.unsaved);
+    }
+    if (state.savedId != null) _scheduleAutosave();
+  }
+
+  Future<void> _enqueueSave() => _saving = _saving.then((_) => _persist());
+
+  Future<void> _persist() async {
+    if (_discarded || !state.doc.isComplete) return;
+    final savedId = state.savedId;
+    if (savedId != null && state.saveStatus == SaveStatus.saved) return;
+    final store = ref.read(videoStringStoreProvider);
+    state = state.copyWith(saveStatus: SaveStatus.saving);
+    try {
+      final string = draft;
+      int id;
+      if (savedId == null) {
+        final cap = ref.read(settingsProvider).historyCap;
+        id = (await store.insertString(string, historyCap: cap)).id!;
+      } else {
+        await store.updateVideoString(string);
+        id = savedId;
+      }
+      // An edit during the write leaves it unsaved for the next save.
+      final edited = state.saveStatus != SaveStatus.saving;
+      state = state.copyWith(
+        savedId: id,
+        saveStatus: edited ? SaveStatus.unsaved : SaveStatus.saved,
+      );
+      _invalidate(id);
+      if (edited) _scheduleAutosave();
+    } catch (e, stack) {
+      // Errors too: a failed future here would stop every later save.
+      if (e is! Exception) {
+        FlutterError.reportError(FlutterErrorDetails(
+          exception: e,
+          stack: stack,
+          library: 'video editor',
+        ));
+      }
+      state = state.copyWith(saveStatus: SaveStatus.failed);
+    }
+  }
+
+  void _invalidate(int id) {
+    ref.invalidate(historyProvider);
+    ref.invalidate(stringByIdProvider(id));
+  }
+}
+
+final clipEditorProvider = NotifierProvider.autoDispose
+    .family<ClipEditorNotifier, ClipEditorState, ClipEditorArgs>(
+  ClipEditorNotifier.new,
+);

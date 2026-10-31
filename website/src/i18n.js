@@ -11,7 +11,7 @@ export const LOCALE = LANG === 'de' ? 'de-DE' : 'en-US';
 const STRINGS = {
   en: {
     // nav.*
-    'nav.timer': 'Timer', 'nav.drills': 'Drills', 'nav.history': 'History', 'nav.settings': 'Settings',
+    'nav.timer': 'Timer', 'nav.drills': 'Drills', 'nav.video': 'Video', 'nav.history': 'History', 'nav.settings': 'Settings',
     // home.*
     'home.ready': 'Ready',
     'home.pressStartToBegin': 'Press START to begin',
@@ -61,9 +61,10 @@ const STRINGS = {
     'demo.again': 'Press <b>START</b> to go again.',
     'demo.addShotSnack': 'In the app, you can type in a shot the mic missed.',
     'demo.shotOne': '1 shot', 'demo.shotMany': '{count} shots',
+    'demo.videoTab': 'The Video tab: choose a video of a string, and the app finds the beep and every shot.',
   },
   de: {
-    'nav.timer': 'Timer', 'nav.drills': 'Drills', 'nav.history': 'Verlauf', 'nav.settings': 'Einstellungen',
+    'nav.timer': 'Timer', 'nav.drills': 'Drills', 'nav.video': 'Video', 'nav.history': 'Verlauf', 'nav.settings': 'Einstellungen',
     'home.ready': 'Bereit',
     'home.pressStartToBegin': 'START drücken, um zu beginnen',
     'home.standBy': 'BEREITHALTEN',
@@ -109,6 +110,7 @@ const STRINGS = {
     'demo.again': 'Mit <b>START</b> geht es von vorn los.',
     'demo.addShotSnack': 'In der App kannst du einen Schuss eintippen, den das Mikrofon verpasst hat.',
     'demo.shotOne': '1 Schuss', 'demo.shotMany': '{count} Schüsse',
+    'demo.videoTab': 'Der Tab Video: Wähle ein Video von einem Durchgang, die App findet den Beep und jeden Schuss.',
   },
 };
 

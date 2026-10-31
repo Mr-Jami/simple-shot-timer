@@ -9,23 +9,36 @@ import 'package:sqflite/sqflite.dart';
 import '../models/shot.dart';
 import '../models/timer_string.dart';
 import 'timer_ports.dart';
+import 'video/video_string_store.dart';
 
-class DatabaseService implements StringStore {
+class DatabaseService implements StringStore, VideoStringStore {
   DatabaseService._(this._db);
 
   final Database _db;
 
+  static const int schemaVersion = 4;
+
   static Future<DatabaseService> open() async {
     final dir = await getApplicationDocumentsDirectory();
-    final path = p.join(dir.path, 'simple_shot_timer.db');
-    final db = await openDatabase(
+    return openAt(p.join(dir.path, 'simple_shot_timer.db'));
+  }
+
+  /// Opens (creating or upgrading) the database at [path]. Tests pass an
+  /// FFI [factory] to run the real schema and migrations on the desktop.
+  static Future<DatabaseService> openAt(
+    String path, {
+    DatabaseFactory? factory,
+  }) async {
+    final db = await (factory ?? databaseFactory).openDatabase(
       path,
-      version: 3,
-      onConfigure: (db) async {
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: _createSchema,
-      onUpgrade: _onUpgrade,
+      options: OpenDatabaseOptions(
+        version: schemaVersion,
+        onConfigure: (db) async {
+          await db.execute('PRAGMA foreign_keys = ON');
+        },
+        onCreate: _createSchema,
+        onUpgrade: _onUpgrade,
+      ),
     );
     return DatabaseService._(db);
   }
@@ -43,7 +56,11 @@ class DatabaseService implements StringStore {
         notes TEXT,
         penalty_ms INTEGER NOT NULL DEFAULT 0,
         par_repeat_count INTEGER,
-        par_interval_ms INTEGER
+        par_interval_ms INTEGER,
+        source TEXT NOT NULL DEFAULT 'live',
+        video_start_ms INTEGER,
+        video_duration_ms INTEGER,
+        video_recorded_at TEXT
       )
     ''');
     await db.execute('''
@@ -69,16 +86,37 @@ class DatabaseService implements StringStore {
     if (oldVersion < 2) {
       // Per-cycle shot tagging for par-repeat runs (issue #5). Existing rows
       // default to cycle 1 since the old schema couldn't differentiate.
-      await db.execute(
-        'ALTER TABLE shots ADD COLUMN cycle_index INTEGER NOT NULL DEFAULT 1',
-      );
+      await _addColumn(db, 'shots', 'cycle_index', 'INTEGER NOT NULL DEFAULT 1');
     }
     if (oldVersion < 3) {
       // Capture the full par config per run (issue #6). Existing rows stay
       // NULL — they're rendered without the new chips in the review header.
-      await db.execute('ALTER TABLE strings ADD COLUMN par_repeat_count INTEGER');
-      await db.execute('ALTER TABLE strings ADD COLUMN par_interval_ms INTEGER');
+      await _addColumn(db, 'strings', 'par_repeat_count', 'INTEGER');
+      await _addColumn(db, 'strings', 'par_interval_ms', 'INTEGER');
     }
+    if (oldVersion < 4) {
+      // Strings made from a video. The clip itself is never stored: keep where
+      // START sits in it, its length and its recording date, to recognise it
+      // when it is chosen again. Existing rows are live strings.
+      await _addColumn(db, 'strings', 'source', "TEXT NOT NULL DEFAULT 'live'");
+      await _addColumn(db, 'strings', 'video_start_ms', 'INTEGER');
+      await _addColumn(db, 'strings', 'video_duration_ms', 'INTEGER');
+      await _addColumn(db, 'strings', 'video_recorded_at', 'TEXT');
+    }
+  }
+
+  /// Adds [column] unless [table] has it already: an older build (a tester
+  /// going back from TestFlight to the store version) sets the version
+  /// back without dropping the columns, and the upgrade then runs again.
+  static Future<void> _addColumn(
+    Database db,
+    String table,
+    String column,
+    String definition,
+  ) async {
+    final columns = await db.rawQuery('PRAGMA table_info($table)');
+    if (columns.any((c) => c['name'] == column)) return;
+    await db.execute('ALTER TABLE $table ADD COLUMN $column $definition');
   }
 
   @override
@@ -138,6 +176,29 @@ class DatabaseService implements StringStore {
     return (result.first['c'] as int?) ?? 0;
   }
 
+  @override
+  Future<void> updateVideoString(TimerString s) async {
+    final id = s.id!;
+    await _db.transaction((txn) async {
+      await txn.update(
+        'strings',
+        {
+          'label': s.label,
+          'notes': s.notes,
+          'penalty_ms': s.penaltyMs,
+          'video_start_ms': s.videoStartMs,
+        },
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+      await txn.delete('shots', where: 'string_id = ?', whereArgs: [id]);
+      for (final shot in s.shots) {
+        await txn.insert('shots', shot.copyWith(stringId: id).toMap()..remove('id'));
+      }
+    });
+  }
+
+  @override
   Future<void> deleteString(int id) async {
     await _db.delete('strings', where: 'id = ?', whereArgs: [id]);
   }

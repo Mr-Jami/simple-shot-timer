@@ -5,14 +5,25 @@
 package cc.jami.simpleshottimer
 
 import android.content.Context
+import android.content.Intent
 import android.media.AudioManager
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
+    private var clipAudio: ClipAudioChannel? = null
+    private var clipFiles: ClipFilesChannel? = null
+    private var clipExport: ClipExportChannel? = null
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        val clipChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_audio")
+        clipChannel.setMethodCallHandler(ClipAudioChannel(clipChannel).also { clipAudio = it })
+        val filesChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_files")
+        filesChannel.setMethodCallHandler(ClipFilesChannel(this, filesChannel).also { clipFiles = it })
+        val exportChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "cc.jami.simpleshottimer/clip_export")
+        exportChannel.setMethodCallHandler(ClipExportChannel(applicationContext, exportChannel).also { clipExport = it })
         // The beep plays on the media stream (see AudioService). A muted or
         // zeroed stream means a silent start signal, so the Dart side asks
         // before every string and shows a one-line notice if needed.
@@ -36,5 +47,20 @@ class MainActivity : FlutterActivity() {
                     else -> result.notImplemented()
                 }
             }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (clipFiles?.onActivityResult(requestCode, resultCode, data) == true) return
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
+        clipAudio?.dispose()
+        clipAudio = null
+        clipFiles?.dispose()
+        clipFiles = null
+        clipExport?.dispose()
+        clipExport = null
+        super.cleanUpFlutterEngine(flutterEngine)
     }
 }

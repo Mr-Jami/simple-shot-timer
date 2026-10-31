@@ -8,6 +8,7 @@ import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 
+import 'beep_constants.dart';
 import 'timer_ports.dart';
 
 /// Generates and plays a sine-wave start/par beep entirely from memory.
@@ -60,13 +61,11 @@ class AudioService implements BeepPlayer {
   /// Diagnostic only — see the constructor comment.
   String? lastGlobalError;
 
-  // Fixed beep specs — a piezo-style tone in the ~2.3 kHz range used by most
-  // club shot timers. Start beep is short; the par (end) beep is longer so
-  // shooters can clearly distinguish it without watching the screen.
-  // Public so ShotDetector can centre its notch filter on the same frequency.
-  static const int beepFrequencyHz = 2325;
-  static const int startBeepDurationMs = 300;
-  static const int parBeepDurationMs = 700;
+  // Fixed beep specs, defined in [Beeps]. Public so ShotDetector can centre
+  // its notch filter on the same frequency.
+  static const int beepFrequencyHz = Beeps.frequencyHz;
+  static const int startBeepDurationMs = Beeps.startDurationMs;
+  static const int parBeepDurationMs = Beeps.parDurationMs;
 
   @override
   Future<void> playStartBeep({required double volume}) =>

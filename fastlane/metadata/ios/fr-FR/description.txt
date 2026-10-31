@@ -19,6 +19,11 @@ DÉTECTION DES TIRS
 • Dans le test du micro, un vumètre en direct vous aide à régler la sensibilité avant de tirer à balles réelles.
 • Ajoutez des tirs à la main à tout moment, après la série ou dans les détails.
 
+VIDÉO
+• Choisissez la vidéo d'une série. L'application trouve le bip et chaque tir, et vous les vérifiez et corrigez sur la forme d'onde.
+• Elle est enregistrée comme toute autre série. Seuls les temps sont gardés, jamais la vidéo, et rien n'est envoyé.
+• Exportez la vidéo avec le chrono, vos splits et les totaux dessus, puis enregistrez-la ou partagez-la.
+
 HISTORIQUE ET DÉTAILS
 • Chaque série est enregistrée automatiquement (limite de 50 à 5000, 500 par défaut).
 • Analysez chaque série : splits, premier tir, split le plus rapide, le plus lent et split moyen.

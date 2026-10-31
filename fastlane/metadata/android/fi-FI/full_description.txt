@@ -19,8 +19,13 @@ LAUKAUSTEN TUNNISTUS
 • Mikrofonin testissä säädät herkkyyden reaaliaikaisen tasomittarin avulla ennen kuin ammut kovilla.
 • Lisää laukauksia käsin milloin tahansa, sarjan jälkeen tai tarkastelussa.
 
+VIDEO
+• Valitse video sarjasta. Sovellus löytää äänimerkin ja jokaisen laukauksen, ja sinä tarkistat ja korjaat ne aaltomuodosta.
+• Tallentuu kuten mikä tahansa sarja. Vain ajat tallennetaan, ei koskaan videota, eikä mitään lähetetä.
+• Vie video kellon, splittiesi ja tulosten kanssa, ja tallenna tai jaa se.
+
 HISTORIA JA TARKASTELU
-• Jokainen sarja tallentuu automaattisesti (enimmäismäärä 50–5000, oletuksena 500).
+• Jokainen sarja tallentuu automaattisesti.
 • Tarkastele jokaista sarjaa: splitit, ensimmäinen laukaus sekä nopein, hitain ja keskimääräinen split.
 • Muokattava otsikko, muistiinpanot ja sakko jokaiselle sarjalle.
 
@@ -32,14 +37,13 @@ Lukitse näyttö tai vaihda sovellusta kesken sarjan: ajanotto jatkaa laukausten
 
 YKSITYISYYS ENSIN
 • Kaikki pysyy laitteella. Ei tilejä, ei pilveä, ei analytiikkaa, ei mainoksia, ei seurantaa.
-• Mikrofonin signaalia käsitellään reaaliajassa muistissa ja vain silloin, kun sovellus kuuntelee (sarja, mikrofonin testi tai automaattinen säätö). Ääntä ei koskaan tallenneta eikä lähetetä minnekään.
+• Mikrofonin signaalia käsitellään reaaliajassa muistissa ja vain silloin, kun sovellus kuuntelee. Ääntä ei koskaan tallenneta eikä lähetetä minnekään.
 • Poista kaikki tietosi ja asetuksesi Asetuksista milloin tahansa.
 • Avoin lähdekoodi (GPL-3.0): koko koodi on GitHubissa osoitteessa github.com/Mr-Jami/simple-shot-timer, joten voit tarkistaa jokaisen väitteen itse.
 
 MUKAVUUS
 • Näytön välähdys äänimerkillä meluisille radoille ja paksuille kuulosuojaimille, lisäksi valinnainen värinä.
 • Ilmoitus varoittaa, jos median äänenvoimakkuus on mykistetty sarjan aikana.
-• Näyttö pysyy päällä sarjan ajan.
 • Mustavalkoinen Material 3 -teema: Järjestelmä, Vaalea, Tumma tai Suuri kontrasti.
 
 KIELET
@@ -50,5 +54,8 @@ KÄYTTÖOIKEUDET
 • Ilmoitukset: Android 13:sta alkaen tarvitaan ilmoitukseen, jonka ansiosta ajanotto jatkuu taustalla.
 • Värinä: valinnainen, äänimerkillä.
 • Näytön pitäminen päällä: estää näyttöä sammumasta sarjan aikana.
+• Tallennustila: vain Android 10:een asti, vietyjen videoiden tallentamiseen.
 
 Tehty ampumaradalle, dojolle ja kotiin kuivaharjoitteluun. Ilmainen, kevyt, ei sovelluksen sisäisiä ostoksia.
+
+Myös iPhonelle, ilmaiseksi.

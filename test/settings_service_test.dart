@@ -63,6 +63,37 @@ void main() {
     });
   });
 
+  group('SettingsService video export choices', () {
+    test('default to splits, top left, end card, the string; round-trip',
+        () async {
+      final service = SettingsService(prefs);
+      final loaded = service.load();
+      expect(
+          (
+            loaded.hudStyle,
+            loaded.hudCorner,
+            loaded.hudEndCard,
+            loaded.exportWholeVideo
+          ),
+          (HudStyle.splits, HudCorner.topLeft, true, false));
+      await service.save(const AppSettings(
+        hudStyle: HudStyle.full,
+        hudCorner: HudCorner.bottomRight,
+        hudEndCard: false,
+        exportWholeVideo: true,
+      ));
+      final again = SettingsService(prefs).load();
+      expect(
+          (
+            again.hudStyle,
+            again.hudCorner,
+            again.hudEndCard,
+            again.exportWholeVideo
+          ),
+          (HudStyle.full, HudCorner.bottomRight, false, true));
+    });
+  });
+
   group('SettingsService.reset', () {
     test('restores every setting to its default but keeps the drills',
         () async {
@@ -75,6 +106,7 @@ void main() {
         localeCode: 'fr',
       ));
       await service.saveDrills(_drills);
+      await service.setEncoderColorFix(true);
 
       await service.reset();
 
@@ -85,6 +117,7 @@ void main() {
       expect(loaded.parRepeatCount, defaults.parRepeatCount);
       expect(loaded.themeMode, defaults.themeMode);
       expect(loaded.localeCode, isNull);
+      expect(service.encoderColorFix, isNull);
       // Only the drills key is left, proving every settings key was removed.
       expect(prefs.getKeys(), {'custom_drills'});
       expect(service.loadDrills().map((d) => d.name), ['Bill Drill', 'Stage 60']);

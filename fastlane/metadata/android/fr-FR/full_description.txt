@@ -19,8 +19,13 @@ DÉTECTION DES TIRS
 • Dans le test du micro, un vumètre en direct vous aide à régler la sensibilité avant de tirer à balles réelles.
 • Ajoutez des tirs à la main à tout moment, après la série ou dans les détails.
 
+VIDÉO
+• Choisissez la vidéo d'une série. L'application trouve le bip et chaque tir, et vous les vérifiez et corrigez sur la forme d'onde.
+• Elle est enregistrée comme toute autre série. Seuls les temps sont gardés, jamais la vidéo, et rien n'est envoyé.
+• Exportez la vidéo avec le chrono, vos splits et les totaux dessus, puis enregistrez-la ou partagez-la.
+
 HISTORIQUE ET DÉTAILS
-• Chaque série est enregistrée automatiquement (limite de 50 à 5000, 500 par défaut).
+• Chaque série est enregistrée automatiquement.
 • Analysez chaque série : splits, premier tir, split le plus rapide, le plus lent et split moyen.
 • Étiquette, notes et pénalité modifiables pour chaque série.
 
@@ -32,23 +37,25 @@ Verrouillez l'écran ou changez d'application en pleine série : le chrono conti
 
 CONFIDENTIALITÉ D'ABORD
 • 100 % sur l'appareil. Pas de compte, pas de cloud, pas de statistiques d'usage, pas de pub, pas de pistage.
-• Le micro est utilisé en direct, en mémoire, uniquement quand l'application écoute (une série, le test du micro ou la configuration automatique). Aucun son n'est enregistré ni envoyé.
+• Le micro est utilisé en direct, en mémoire, uniquement quand l'application écoute. Aucun son n'est enregistré ni envoyé.
 • Supprimez toutes vos données et tous vos paramètres depuis les Paramètres, à tout moment.
-• Open source (GPL-3.0) : tout le code est sur GitHub, à l'adresse github.com/Mr-Jami/simple-shot-timer, pour que vous puissiez vérifier chacune de ces affirmations.
+• Open source (GPL-3.0) : tout le code est sur github.com/Mr-Jami/simple-shot-timer, pour tout vérifier vous-même.
 
 CONFORT
 • Flash à l'écran au bip pour les stands bruyants et les protections auditives épaisses, plus vibration en option.
 • Un avis vous prévient si le volume multimédia est coupé pendant une série.
-• L'écran reste allumé pendant une série.
 • Thème monochrome Material 3 : Système, Clair, Sombre ou Contraste élevé.
 
 LANGUES
 Français, allemand, anglais, espagnol, finnois, polonais, portugais et russe.
 
 AUTORISATIONS
-• Micro : nécessaire à la détection des tirs. Demandé la première fois que l'application a besoin du micro.
+• Micro : nécessaire à la détection des tirs, demandé à la première utilisation.
 • Notifications : à partir d'Android 13, nécessaires pour la notification qui garde le chrono actif en arrière-plan.
 • Vibration : facultative, au bip.
-• Maintien de l'écran allumé : empêche l'écran de s'éteindre pendant une série.
+• Maintien de l'écran allumé : pendant une série.
+• Stockage : seulement jusqu'à Android 10, pour enregistrer les vidéos exportées.
 
 Fait pour le stand, le dojo et le coin tir à sec à la maison. Gratuit, léger, sans achats intégrés.
+
+Aussi sur iPhone, gratuit.

@@ -28,7 +28,7 @@
   <article class="wrap legal-wrap">
     <p class="eyebrow">Datenschutz</p>
     <h1 class="h2">Datenschutz der App</h1>
-    <p class="legal-meta">Stand: 13. Oktober 2026</p>
+    <p class="legal-meta">Stand: 23. Oktober 2026</p>
     <p class="legal-lede">Diese Erklärung gilt für die App Simple Shot Timer für Android und iPhone (iOS). Was beim Besuch dieser Website passiert, steht in der <a href="/de/datenschutz/website/">Datenschutzerklärung der Website</a>.</p>
 
     <section class="legal-summary" aria-labelledby="kurz">
@@ -52,6 +52,7 @@
       <li>Schusszeiten: Position im Durchgang, Zeit in Millisekunden, ob manuell ergänzt</li>
       <li>Einstellungen wie Sprache, Verlaufslimit und Audio-Schwellenwerte</li>
       <li>Eigene Drills, die du speicherst: Name und Drill-Einstellungen</li>
+      <li>Für Durchgänge aus einem Video: wo der Start-Beep darin liegt, seine Länge und wann es aufgenommen wurde, nie das Video selbst</li>
     </ul>
     <p>Das liegt in einer lokalen SQLite-Datenbank und einer Einstellungsdatei im privaten Speicher der App. Ich erhalte diese Daten nie. Ist die Datensicherung deines Telefons eingeschaltet (iCloud-Backup auf dem iPhone, Google-Backup unter Android), kann das Betriebssystem diese Daten in die Sicherung aufnehmen; das bleibt zwischen dir und Apple bzw. Google.</p>
     <p><strong>Mikrofon:</strong></p>
@@ -59,11 +60,14 @@
     <p>Die Berechtigung kannst du jederzeit in den Systemeinstellungen erteilen oder entziehen. Ohne sie kann die App keinen Durchgang stoppen; Verlauf, gespeicherte Drills und Einstellungen bleiben nutzbar.</p>
     <p><strong>CSV-Export:</strong></p>
     <p>Exportierst du einen Durchgang als CSV, legt die App die Datei im temporären Speicher ab und übergibt sie an den Teilen-Dialog deines Systems. Wohin sie dann geht (E-Mail, Messenger, Cloud), entscheidest du mit der App, die du dort auswählst. Darauf habe ich keinen Einfluss und keinen Einblick.</p>
+    <p><strong>Videos (Android):</strong></p>
+    <p>Im Tab Video kannst du ein Video von deinem Telefon auswählen. Die App kopiert es in ihren privaten Speicher, wertet seinen Ton auf deinem Telefon aus, um Start-Beep und Schüsse zu finden, und zeigt es dir zum Korrigieren. Gespeichert werden nur die Zeiten, wie bei jedem anderen Durchgang. Die Kopie und ihr Ton werden gelöscht, wenn du den Editor verlässt, oder beim nächsten Start, falls die App vorher beendet wurde. <strong>Es wird kein Video hochgeladen oder übertragen.</strong> Exportierst du ein Video mit deinen Zeiten, erstellt die App das neue Video im selben privaten Ordner und sichert es je nach Wahl in den Videos deines Telefons oder übergibt es an den Teilen-Dialog, wie beim CSV-Export.</p>
 
     <h2 id="rechtsgrundlage">Rechtsgrundlage</h2>
     <ul>
       <li>Lokale Speicherung von Durchgängen und Einstellungen: Art. 6 Abs. 1 lit. b DSGVO, weil sie nötig ist, um die Funktion zu erbringen, die du beim Starten und Speichern eines Durchgangs nutzt.</li>
       <li>Mikrofonzugriff: Art. 6 Abs. 1 lit. a DSGVO, also deine Einwilligung über die Berechtigungsabfrage des Systems. Du kannst sie jederzeit in den Systemeinstellungen widerrufen; was bis dahin passiert ist, bleibt rechtmäßig.</li>
+      <li>Verarbeitung eines Videos, das du auswählst, auf deinem Gerät: Art. 6 Abs. 1 lit. b DSGVO, weil sie nötig ist, um die Funktion zu erbringen, die du nutzt.</li>
     </ul>
 
     <h2 id="speicherdauer">Speicherdauer</h2>
@@ -76,6 +80,7 @@
       <li>du die App deinstallierst.</li>
     </ul>
     <p>Temporäre Exportdateien liegen im Temp-Verzeichnis des Systems und können von dort jederzeit entfernt werden; „Alle Daten und Einstellungen löschen“ entfernt sie ebenfalls.</p>
+    <p>Ein Video, das du auswählst, liegt nur als temporäre Kopie vor, solange du seine Zeiten korrigierst; die App löscht sie, wenn du den Editor verlässt. Videos, die du in den Videos deines Telefons sicherst, bleiben dort, bis du sie löschst.</p>
 
     <h2 id="empfaenger">Empfänger und Drittländer</h2>
     <p>Ich erhalte, hoste oder übertrage keine deiner Daten. Es gibt keine Empfänger, und weil die App selbst nichts von deinem Gerät sendet, übermittle ich auch nichts in Drittländer nach Art. 44 ff. DSGVO. Eine Gerätesicherung bei Apple oder Google richtest du selbst ein; dafür gelten deren Datenschutzbestimmungen.</p>
@@ -91,6 +96,7 @@
       <li><strong>Vordergrunddienst</strong> (<code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_MICROPHONE</code>) und <strong>Benachrichtigungen</strong> (<code>POST_NOTIFICATIONS</code>): halten Schusserkennung und Signaltöne während eines Durchgangs im Hintergrund aktiv, mit der Benachrichtigung, die Android dabei anzeigt.</li>
       <li><strong>Vibration</strong> (<code>VIBRATE</code>): haptisches Feedback beim Signalton.</li>
       <li><strong>Wake Lock</strong> (<code>WAKE_LOCK</code>): hält den Prozessor wach, während ein Durchgang im Hintergrund läuft, damit Erkennung und Signaltöne nicht stoppen.</li>
+      <li><strong>Speicher</strong> (<code>WRITE_EXTERNAL_STORAGE</code>, nur Android 10 und älter): sichert ein exportiertes Video in den Videos deines Telefons. Das Auswählen eines Videos nutzt die Foto- bzw. Dateiauswahl des Systems und braucht keine Berechtigung.</li>
     </ul>
     <p>Den Bildschirm während eines Durchgangs eingeschaltet zu lassen braucht keine Berechtigung.</p>
     <p><strong>iPhone:</strong></p>

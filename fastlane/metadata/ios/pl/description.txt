@@ -19,6 +19,11 @@ WYKRYWANIE STRZAŁÓW
 • W teście mikrofonu ustawisz czułość z miernikiem poziomu na żywo, zanim zaczniesz strzelać na ostro.
 • Dodawaj strzały ręcznie w dowolnej chwili, po serii lub w analizie.
 
+WIDEO
+• Wybierz wideo z serią. Aplikacja znajdzie sygnał i każdy strzał, a ty sprawdzisz je i poprawisz na wykresie fali dźwięku.
+• Zapisuje się jak każda seria. Zostają tylko czasy, nigdy wideo, i nic nie jest wysyłane.
+• Eksportuj wideo z zegarem, splitami i wynikami na obrazie, a potem zapisz je albo udostępnij.
+
 HISTORIA I ANALIZA
 • Każda seria zapisuje się automatycznie (limit od 50 do 5000, domyślnie 500).
 • Analizuj każdą serię: splity, pierwszy strzał oraz najszybszy, najwolniejszy i średni split.

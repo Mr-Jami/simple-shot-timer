@@ -89,7 +89,9 @@ void main() {
         final limit = limits[field];
         expect(limit, isNotNull,
             reason: '$store/${name(dir)}/${name(file)} is not a known field');
-        final text = file.readAsStringSync().trim();
+        // Line breaks count once: a Windows checkout has CRLF, the upload
+        // job (Linux) sends LF.
+        final text = file.readAsStringSync().replaceAll('\r\n', '\n').trim();
         expect(text, isNotEmpty, reason: '$store/${name(dir)}/$field is empty');
         expect(text.runes.length, lessThanOrEqualTo(limit!),
             reason: '$store/${name(dir)}/$field is over $limit characters');
