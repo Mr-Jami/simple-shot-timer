@@ -213,9 +213,9 @@ final class ClipAudioChannel: NSObject, @unchecked Sendable {
     var sent = 0
     var sum = 0.0
     var inBucket = 0
-    var lastSend = ProcessInfo.processInfo.systemUptime
+    var lastSend = clockSeconds()
     func flush(force: Bool) {
-      let now = ProcessInfo.processInfo.systemUptime
+      let now = clockSeconds()
       if pending.isEmpty || (!force && now - lastSend < 0.2) { return }
       lastSend = now
       send("loudness", ["jobId": jobId, "from": sent, "values": pending])
@@ -328,7 +328,7 @@ final class ClipAudioChannel: NSObject, @unchecked Sendable {
         try sink(mono[skip..<end], t0 + Int64(skip) * 1_000_000 / rate, sampleRate)
       }
 
-      let now = ProcessInfo.processInfo.systemUptime
+      let now = clockSeconds()
       if reportProgress, let jobId, spanUs > 0, now - lastProgressAt >= 0.1 {
         lastProgressAt = now
         let fraction = min(1, max(0, Double(t0 - startUs) / Double(spanUs)))
@@ -465,4 +465,11 @@ func microseconds(_ time: CMTime) -> Int64 {
 func rotationDegrees(_ transform: CGAffineTransform) -> Int {
   let degrees = Int((atan2(transform.b, transform.a) * 180 / .pi).rounded())
   return ((degrees % 360) + 360) % 360
+}
+
+/// Seconds, to space out progress messages. Wall time on purpose: Apple
+/// counts systemUptime (and mach_absolute_time) as required-reason APIs that
+/// need a privacy manifest, and a throttle doesn't need a monotonic clock.
+private func clockSeconds() -> TimeInterval {
+  Date().timeIntervalSinceReferenceDate
 }
