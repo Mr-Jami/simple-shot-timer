@@ -168,6 +168,44 @@ void main() {
     });
   });
 
+  group('START among several tones', () {
+    const fps = 374.67;
+    ToneRun tone(double onset) => ToneRun(
+          startFrame: (onset * fps).round(),
+          endFrame: ((onset + 0.3) * fps).round() - 1,
+          frequencyHz: 3000,
+          onsetSeconds: onset,
+          framesPerSecond: fps,
+        );
+    const string = [4.5, 5.0, 5.5, 6.0, 6.5];
+
+    test('a hit the filter dropped never makes a chirp START', () {
+      // A button chirp, a click the shot filter dropped, the beep, then
+      // the string: the click counted as the chirp's first shot.
+      final beep = tone(3.0);
+      expect(
+          chooseStart([tone(0.0), beep], string, hitSeconds: [1.0, ...string]),
+          same(beep));
+    });
+
+    test('steel ringing that reaches the camera late is not START', () {
+      // Long-range steel: the first hit's ring arrives 1.3 s later, past
+      // the quiet second, and the string speeds up after it.
+      final beep = tone(0.0);
+      const shots = [2.0, 5.0, 8.0, 11.0, 12.0, 13.0, 14.0];
+      expect(chooseStart([beep, tone(3.3)], shots), same(beep));
+    });
+
+    test('a second beep after a pause still counts', () {
+      final second = tone(7.0);
+      const shots = [
+        2.0, 3.0, //
+        8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0,
+      ];
+      expect(chooseStart([tone(0.0), second], shots), same(second));
+    });
+  });
+
   test('finds a shot fired while a long beep still sounds', () {
     final clip = syntheticClip(
       shots: const [1.6, 2.0, 2.4],

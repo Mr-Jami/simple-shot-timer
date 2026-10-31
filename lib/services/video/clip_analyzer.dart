@@ -44,9 +44,10 @@ enum ShotSensitivity {
 class ClipAnalysis {
   /// Takes the tones and shots found in [spectrogram] and picks START.
   ///
-  /// START is chosen against [hits], every hit the shot test found (by
-  /// default [scan]'s shots): a hit [keepShotLike] dropped, a magazine
-  /// slapped home or a steel plate, still rules out the ring after it.
+  /// [scan]'s shots make the string START is chosen for; [hits], every hit
+  /// the shot test found (by default those shots), rule out the tones
+  /// right after one: a hit [keepShotLike] dropped, a magazine slapped home
+  /// or a steel plate, still rules out the ring after it.
   factory ClipAnalysis({
     required Spectrogram spectrogram,
     required List<ToneRun> tones,
@@ -57,8 +58,14 @@ class ClipAnalysis {
     List<double> seconds(List<ShotHit> of) =>
         [for (final s in of) spectrogram.secondsAt(s.frame)];
     final shotSeconds = seconds(scan.shots);
-    return ClipAnalysis._(spectrogram, tones, scan, sensitivity, shotSeconds,
-        chooseStart(tones, hits == null ? shotSeconds : seconds(hits)));
+    return ClipAnalysis._(
+        spectrogram,
+        tones,
+        scan,
+        sensitivity,
+        shotSeconds,
+        chooseStart(tones, shotSeconds,
+            hitSeconds: hits == null ? null : seconds(hits)));
   }
 
   const ClipAnalysis._(this.spectrogram, this.tones, this.scan,
