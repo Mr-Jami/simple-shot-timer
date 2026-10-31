@@ -204,7 +204,7 @@ void paintEndCard(
   if (logo != null) {
     _paintMark(canvas, logo, Rect.fromLTWH(left, y, mark, mark));
   }
-  name.paint(canvas, Offset(left + gap, y + (mark - name.height) / 2));
+  _paintText(canvas, name, Offset(left + gap, y + (mark - name.height) / 2));
   name.dispose();
   canvas.restore();
 }
@@ -229,7 +229,7 @@ void _paintBrand(Canvas canvas, HudLayout layout, ui.Image? logo, double y) {
     _paintMark(canvas, logo, Rect.fromLTWH(markX, y, mark, mark));
   }
   final nameX = layout.alignRight ? x : x + gap;
-  name.paint(canvas, Offset(nameX, y + (mark - name.height) / 2));
+  _paintText(canvas, name, Offset(nameX, y + (mark - name.height) / 2));
   name.dispose();
 }
 
@@ -244,7 +244,7 @@ void _paintClock(
 ) {
   final u = layout.unit;
   final label = _layout(labels.total, _labelStyle(0.36 * u, hudYellow));
-  label.paint(canvas, Offset(_x(layout, label.width), y));
+  _paintText(canvas, label, Offset(_x(layout, label.width), y));
   label.dispose();
 
   final size = HudLayout.clockUnits * u;
@@ -263,7 +263,7 @@ void _paintClock(
     ..scale(m.tick)
     ..translate(-pivot.dx, -pivot.dy);
   final text = _layout(clock, style);
-  text.paint(canvas, Offset(x, top));
+  _paintText(canvas, text, Offset(x, top));
   text.dispose();
   canvas.restore();
 }
@@ -291,7 +291,7 @@ void _paintLine(
     textDirection: TextDirection.ltr,
     maxLines: 1,
   )..layout();
-  line.paint(canvas, Offset(_x(layout, line.width), y + 0.15 * u));
+  _paintText(canvas, line, Offset(_x(layout, line.width), y + 0.15 * u));
   line.dispose();
 }
 
@@ -318,12 +318,14 @@ void _paintSplit(
   );
   final right = layout.alignRight;
   final w = layout.box.width;
-  number.paint(
+  _paintText(
       canvas,
+      number,
       Offset(right ? w - 0.42 * u - number.width : 0.42 * u,
           mid - number.height / 2));
-  split.paint(
+  _paintText(
       canvas,
+      split,
       Offset(right ? w - 1.45 * u - split.width : 1.45 * u,
           mid - split.height / 2));
   number.dispose();
@@ -338,6 +340,60 @@ void _paintMark(Canvas canvas, ui.Image logo, Rect at) => canvas.drawImageRect(
         ..filterQuality = FilterQuality.medium
         ..colorFilter = const ColorFilter.mode(hudYellow, BlendMode.srcIn),
     );
+
+/// Paints [p] at [at], its styles' shadows first. Each shadow is a pass of
+/// the same text through a blurred paint: that blur scales with the canvas,
+/// so the preview (the export's layout drawn smaller) looks like the export,
+/// where TextStyle.shadows would blur in screen pixels, up to four times too
+/// wide in the preview. The overlay's shadows have no offset.
+void _paintText(Canvas canvas, TextPainter p, Offset at) {
+  final span = p.text!;
+  var passes = 0;
+  span.visitChildren((child) {
+    passes = math.max(passes, child.style?.shadows?.length ?? 0);
+    return true;
+  });
+  for (var i = 0; i < passes; i++) {
+    final pass = TextPainter(
+      text: _restyled(span, (style) {
+        final shadows = style?.shadows ?? const <Shadow>[];
+        final shadow = i < shadows.length ? shadows[i] : null;
+        return (style ?? const TextStyle()).copyWith(
+          shadows: const [],
+          foreground: Paint()
+            ..color = shadow?.color ?? const Color(0x00000000)
+            ..maskFilter = shadow == null
+                ? null
+                : MaskFilter.blur(BlurStyle.normal, shadow.blurSigma),
+        );
+      }),
+      textDirection: p.textDirection,
+      maxLines: p.maxLines,
+    )..layout();
+    pass.paint(canvas, at);
+    pass.dispose();
+  }
+  final plain = TextPainter(
+    text: _restyled(span, (style) => style?.copyWith(shadows: const [])),
+    textDirection: p.textDirection,
+    maxLines: p.maxLines,
+  )..layout();
+  plain.paint(canvas, at);
+  plain.dispose();
+}
+
+/// [span] with every style [restyle]d.
+InlineSpan _restyled(InlineSpan span, TextStyle? Function(TextStyle?) restyle) {
+  final text = span as TextSpan;
+  return TextSpan(
+    text: text.text,
+    style: restyle(text.style),
+    children: [
+      for (final child in text.children ?? const <InlineSpan>[])
+        _restyled(child, restyle),
+    ],
+  );
+}
 
 /// A soft shadow under white type, instead of an outline: readable over any
 /// picture without looking stamped on.
@@ -415,7 +471,7 @@ double _paintCentred(
   TextStyle style,
 ) {
   final p = _layout(text, style, maxWidth: maxWidth);
-  p.paint(canvas, Offset(centreX - p.width / 2, y));
+  _paintText(canvas, p, Offset(centreX - p.width / 2, y));
   final height = p.height;
   p.dispose();
   return height;

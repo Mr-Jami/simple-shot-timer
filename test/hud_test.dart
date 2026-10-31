@@ -182,6 +182,38 @@ void main() {
     expect(rightRule.left, closeTo(box.width - topRule.right, 1e-9));
   });
 
+  testWidgets('the preview draws the export\'s shadows, only smaller',
+      (tester) async {
+    // The export draws the box at its size; the preview draws the same box
+    // scaled down. Shadows that blur in screen pixels would cover far more
+    // of the small one.
+    const options = HudOptions();
+    final layout = HudLayout(const Size(1080, 1920), options);
+    final m = HudMoment.at(string, 12600);
+    Future<int> covered(double scale) async {
+      final bleed = 2 * layout.unit;
+      final recorder = ui.PictureRecorder();
+      final canvas = Canvas(recorder)
+        ..scale(scale)
+        ..translate(bleed, bleed);
+      paintHudBox(canvas, layout, string, options, m, labels);
+      final image = await recorder.endRecording().toImage(
+          ((layout.box.width + 2 * bleed) * scale).ceil(),
+          ((layout.box.height + 2 * bleed) * scale).ceil());
+      final rgba = (await image.toByteData())!;
+      var n = 0;
+      for (var i = 3; i < rgba.lengthInBytes; i += 4) {
+        if (rgba.getUint8(i) > 8) n++;
+      }
+      return n;
+    }
+
+    final (export, preview) = (await tester
+        .runAsync(() async => (await covered(1), await covered(0.25))))!;
+    // About 1 when the shadows scale; 1.46 with TextStyle.shadows.
+    expect(preview / (export / 16), inInclusiveRange(0.85, 1.15));
+  });
+
   test('the shade sits in the overlay\'s corner and the card in its own', () {
     const frame = Size(1080, 1920);
     for (final corner in HudCorner.values) {
