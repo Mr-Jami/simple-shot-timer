@@ -89,7 +89,6 @@ class MarkerPanel extends StatelessWidget {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RepeatButton(
                 tooltip: context.tr('editor.nudgeEarlier'),
@@ -98,15 +97,21 @@ class MarkerPanel extends StatelessWidget {
                 onStep: () => onNudge(shot, -1),
                 onEnd: onNudgeEnd,
               ),
-              TextButton.icon(
-                icon: const Icon(Icons.delete_outline),
-                label: Text(context.tr('common.delete')),
-                onPressed: () => onDelete(shot),
+              // The two share the room between the nudges; a long label
+              // (Letzter Schuss at 360 dp) shrinks rather than overflow.
+              Expanded(
+                child: TextButton.icon(
+                  icon: const Icon(Icons.delete_outline),
+                  label: _fitted(context.tr('common.delete')),
+                  onPressed: () => onDelete(shot),
+                ),
               ),
-              TextButton.icon(
-                icon: const Icon(Icons.last_page),
-                label: Text(context.tr('editor.lastShot')),
-                onPressed: () => onLastShot(shot),
+              Expanded(
+                child: TextButton.icon(
+                  icon: const Icon(Icons.last_page),
+                  label: _fitted(context.tr('editor.lastShot')),
+                  onPressed: () => onLastShot(shot),
+                ),
               ),
               RepeatButton(
                 tooltip: context.tr('editor.nudgeLater'),
@@ -121,6 +126,11 @@ class MarkerPanel extends StatelessWidget {
       ),
     );
   }
+
+  static Widget _fitted(String label) => FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(label, maxLines: 1),
+      );
 
   Widget _markers(BuildContext context) {
     final theme = Theme.of(context);

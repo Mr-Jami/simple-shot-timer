@@ -270,16 +270,22 @@ class ClipEditorNotifier
     _autosave = Timer(autosaveDelay, _enqueueSave);
   }
 
-  /// Deletes the saved string, if any, and stops saving.
+  /// Deletes the saved string, if any, and stops saving. Should the delete
+  /// fail, the string stays and saving goes on.
   Future<void> discard() async {
     _discarded = true;
     _autosave?.cancel();
     await _saving;
     final id = state.savedId;
-    if (id != null) {
+    if (id == null) return;
+    try {
       await ref.read(videoStringStoreProvider).deleteString(id);
-      _invalidate(id);
+    } catch (_) {
+      _discarded = false;
+      if (state.saveStatus != SaveStatus.saved) _scheduleAutosave();
+      rethrow;
     }
+    _invalidate(id);
   }
 
   /// Starts a gesture (dragging a shot, holding a nudge button): its edits

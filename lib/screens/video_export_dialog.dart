@@ -139,9 +139,11 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
           ),
           const <Widget>[],
         ),
-      ExportDone(:final saved) => (
-          result(Icons.check_circle_outline,
-              context.tr(saved ? 'export.saved' : 'export.ready')),
+      ExportDone(:final saved, :final shareFailed) => (
+          shareFailed
+              ? result(Icons.error_outline, context.tr('export.shareFailed'))
+              : result(Icons.check_circle_outline,
+                  context.tr(saved ? 'export.saved' : 'export.ready')),
           [shareButton, doneButton],
         ),
       ExportNotSaved(:final denied) => (

@@ -69,6 +69,7 @@ class _FakeExporter implements ClipExporter {
 class _FakeGallery implements VideoGallery {
   bool allowed = true;
   bool broken = false;
+  bool shareBroken = false;
   final saved = <String>[];
   final shared = <String>[];
 
@@ -84,7 +85,10 @@ class _FakeGallery implements VideoGallery {
   }
 
   @override
-  Future<void> share(String path) async => shared.add(path);
+  Future<void> share(String path) async {
+    if (shareBroken) throw Exception('no share sheet');
+    shared.add(path);
+  }
 }
 
 class _FakeEnvironment implements RunEnvironment {
@@ -293,6 +297,24 @@ void main() {
     expect(gallery.shared, [exporter.request!.output]);
     expect(c.read(videoExportProvider(1)),
         isA<ExportDone>().having((s) => s.saved, 'saved', isTrue));
+  });
+
+  test('a share that fails says so, and Share again can still work', () async {
+    final c = await container();
+    gallery.shareBroken = true;
+    final controller = export(c, 1);
+    await controller.start(job(ExportTarget.photos));
+    await controller.deliver(ExportTarget.share);
+    expect(
+        c.read(videoExportProvider(1)),
+        isA<ExportDone>()
+            .having((s) => s.shareFailed, 'shareFailed', isTrue)
+            .having((s) => s.saved, 'saved', isTrue));
+    gallery.shareBroken = false;
+    await controller.deliver(ExportTarget.share);
+    expect(gallery.shared, [exporter.request!.output]);
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportDone>().having((s) => s.shareFailed, 'shareFailed', isFalse));
   });
 
   test('a full storage says so', () async {

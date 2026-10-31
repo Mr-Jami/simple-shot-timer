@@ -72,12 +72,15 @@ class ExportSaving extends ExportState {
 }
 
 class ExportDone extends ExportState {
-  const ExportDone(this.path, {this.saved = false});
+  const ExportDone(this.path, {this.saved = false, this.shareFailed = false});
 
   final String path;
 
   /// In the phone's videos (a later Share keeps it so).
   final bool saved;
+
+  /// The share sheet didn't open; Share again may.
+  final bool shareFailed;
 }
 
 /// The video is made but couldn't go to the phone's videos: not allowed
@@ -225,7 +228,7 @@ class VideoExportController
     } on Exception {
       _emit(target == ExportTarget.photos
           ? ExportNotSaved(path, denied: false)
-          : ExportDone(path, saved: saved));
+          : ExportDone(path, saved: saved, shareFailed: true));
     }
   }
 

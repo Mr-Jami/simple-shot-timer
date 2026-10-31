@@ -54,8 +54,13 @@ class _MemoryStore implements VideoStringStore {
   @override
   Future<void> updateVideoString(TimerString s) async => saved.add(s);
 
+  /// Fails every delete while set.
+  var failDelete = false;
+
   @override
-  Future<void> deleteString(int id) async {}
+  Future<void> deleteString(int id) async {
+    if (failDelete) throw Exception('database locked');
+  }
 }
 
 /// No video platform in tests: the player fails to start and the editor
@@ -108,10 +113,11 @@ void main() {
   );
 
   /// The editor over a page standing in for the Video tab, on the 7 s clip
-  /// unless [seconds] asks for a longer one.
+  /// unless [seconds] asks for a longer one, or one without a [beep].
   Future<ClipEditorState Function()> openEditor(
     WidgetTester tester, {
     int seconds = 7,
+    bool beep = true,
     List<Override> overrides = const [],
   }) async {
     tester.view.devicePixelRatio = 3;
@@ -133,12 +139,12 @@ void main() {
           durationMs: seconds * 1000,
           videoMime: 'video/avc',
         ),
-        analysis: seconds == 7
+        analysis: seconds == 7 && beep
             ? analysis
             : analyzePcm(
                 syntheticClip(
                   seconds: seconds.toDouble(),
-                  extra: (x) => addBeep(x, 1.0, 300),
+                  extra: beep ? (x) => addBeep(x, 1.0, 300) : null,
                 ),
                 clipSampleRate,
               ),
@@ -243,27 +249,31 @@ void main() {
     expect(undoBar, findsNothing);
   });
 
+  /// Exports up to the overlay images, handing their plan to [onPlan].
+  List<Override> exportToOverlay(void Function(ExportPlan plan) onPlan) => [
+        runEnvironmentProvider.overrideWithValue(_Awake()),
+        clipExporterProvider.overrideWithValue(_NoExporter()),
+        hudFrameRendererProvider.overrideWithValue((
+            {required Directory dir,
+            required ExportPlan plan,
+            required HudString string,
+            required HudOptions options,
+            required HudLabels labels,
+            ui.Image? logo,
+            void Function(double fraction)? onProgress,
+            CancelToken? cancel}) async {
+          onPlan(plan);
+          throw const ExportException(ExportError.cancelled);
+        }),
+      ];
+
   testWidgets('Whole video exports the clip from its first frame to its last',
       (tester) async {
     ExportPlan? exported;
     // Long enough that the string (to 4 s after the last shot, 8.1 s) isn't
     // the whole clip.
-    await openEditor(tester, seconds: 12, overrides: [
-      runEnvironmentProvider.overrideWithValue(_Awake()),
-      clipExporterProvider.overrideWithValue(_NoExporter()),
-      hudFrameRendererProvider.overrideWithValue((
-          {required Directory dir,
-          required ExportPlan plan,
-          required HudString string,
-          required HudOptions options,
-          required HudLabels labels,
-          ui.Image? logo,
-          void Function(double fraction)? onProgress,
-          CancelToken? cancel}) async {
-        exported = plan;
-        throw const ExportException(ExportError.cancelled);
-      }),
-    ]);
+    await openEditor(tester,
+        seconds: 12, overrides: exportToOverlay((plan) => exported = plan));
     await tester.tap(find.text('Export video'));
     await tester.pumpAndSettle();
     expect(find.text('String · 0:08'), findsOneWidget);
@@ -326,5 +336,100 @@ void main() {
     await tester.pumpAndSettle();
     expect(state().doc.shotById(before[0].id)!.ms, before[0].ms);
     expect(state().doc.shotById(before[1].id)!.ms, isNot(before[1].ms));
+  });
+
+  testWidgets('a drag while the timeline glides to a shot starts at the shot',
+      (tester) async {
+    final state = await openEditor(tester);
+    final shot = state().doc.activeShots[2];
+    // Its row chooses it and glides the timeline there; the finger lands
+    // a frame later.
+    await tester.tap(find.byType(ShotBadge).at(2));
+    await tester.pump(const Duration(milliseconds: 16));
+    expect(state().selectedId, shot.id);
+    await tester.drag(find.byType(ShotTimeline), const Offset(-8, 0));
+    await tester.pumpAndSettle();
+    expect((state().doc.shotById(shot.id)!.ms - shot.ms).abs(), lessThan(150));
+  });
+
+  testWidgets('with the keyboard up only the details show', (tester) async {
+    await openEditor(tester);
+    tester.view.physicalSize = const Size(360 * 3, 740 * 3);
+    tester.view.viewInsets = const FakeViewPadding(bottom: 300 * 3);
+    await tester.pumpAndSettle();
+    expect(find.byType(ShotTimeline), findsNothing);
+    expect(find.text('Export video'), findsNothing);
+    // The details list scrolls to the notes, above the keyboard.
+    final notes = find.widgetWithText(TextField, 'Notes');
+    await tester.dragUntilVisible(
+        notes, find.byType(ListView).last, const Offset(0, -100));
+    await tester.pumpAndSettle();
+    expect(tester.getRect(notes).bottom, lessThanOrEqualTo(740 - 300));
+
+    tester.view.resetViewInsets();
+    await tester.pumpAndSettle();
+    expect(find.byType(ShotTimeline), findsOneWidget);
+    expect(find.text('Export video'), findsOneWidget);
+  });
+
+  testWidgets('Back asks first while there is nothing to save', (tester) async {
+    await openEditor(tester, beep: false);
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('Leave without saving?'), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsNothing);
+    // The system's Back (on Android, an edge swipe on the timeline) too.
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Leave'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsOneWidget);
+    expect(store.saved, isEmpty);
+  });
+
+  testWidgets('a Discard that fails says so, and Back still works',
+      (tester) async {
+    await openEditor(tester);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    expect(store.saved, hasLength(1));
+    store.failDelete = true;
+    await tester.tap(find.byTooltip('Show menu'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Discard'));
+    await tester.pumpAndSettle();
+    expect(find.text('Discard this string?'), findsOneWidget);
+    await tester.tap(find.text('Discard'));
+    await tester.pumpAndSettle();
+    expect(find.text('The string couldn’t be deleted. Try again.'),
+        findsOneWidget);
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsOneWidget);
+  });
+
+  testWidgets('Export waits while the string couldn\'t be saved',
+      (tester) async {
+    ExportPlan? exported;
+    await openEditor(tester,
+        overrides: exportToOverlay((plan) => exported = plan));
+    store.failNext = true;
+    await tester.tap(find.text('Export video'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Save to Photos'));
+    await tester.pumpAndSettle();
+    expect(find.text('Couldn’t save'), findsOneWidget);
+    expect(exported, isNull);
+    await tester.tap(find.text('Export anyway'));
+    await tester.pumpAndSettle();
+    expect(exported, isNotNull);
+    expect(store.saved, isEmpty);
   });
 }

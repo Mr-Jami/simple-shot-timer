@@ -114,7 +114,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     final start = state.doc.startMs;
     final from = widget.args.clip.fromMs;
     _timeline.centreOn(
-      start == null ? from : (start - 1500).clamp(from, start),
+      start == null ? from : math.max(from, start - 1500),
       animate: false,
     );
     _player.initialize().then((_) {
@@ -212,23 +212,27 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     if (mounted && _loop != null) await _player.play();
   }
 
-  void _togglePlay() {
+  Future<void> _togglePlay() async {
     if (_player.value.isPlaying) {
       _player.pause();
-    } else {
-      _editor.select(null);
-      final clip = widget.args.clip;
-      // At the end, play the clip (or part) again from its start.
-      if (_timeline.playheadMs >= clip.toMs - 100) {
-        _timeline.centreOn(clip.fromMs, animate: false);
-      }
-      // Follow from where the video is now, not from its last report.
-      _reportedMs = _timeline.playheadMs.round();
-      _sinceReport
-        ..reset()
-        ..start();
-      _player.play();
+      return;
     }
+    _editor.select(null);
+    final clip = widget.args.clip;
+    // At the end, play the clip (or part) again from its start, once the
+    // seek has landed: at the end of the video, play() would start over
+    // at 0 instead.
+    if (_timeline.playheadMs >= clip.toMs - 100) {
+      _timeline.centreOn(clip.fromMs, animate: false);
+      await _player.settle(clip.fromMs);
+      if (!mounted) return;
+    }
+    // Follow from where the video is now, not from its last report.
+    _reportedMs = _timeline.playheadMs.round();
+    _sinceReport
+      ..reset()
+      ..start();
+    _player.play();
   }
 
   /// The clip time the overlay shows: the frame on screen. While playing
@@ -290,13 +294,17 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   void _onTouch() {
     _player.pause();
-    _dragging = true;
     final selected = ref.read(_provider).selected;
+    // Still gliding to the shot a tap just chose: land on it first, so a
+    // drag right away carries the shot from where it is.
+    if (selected != null && _timeline.motion == TimelineMotion.settle) {
+      _timeline.centreOn(selected.ms, animate: false);
+    }
+    _dragging = true;
     if (selected == null) return;
     // A shot rides along only from under the playhead. Should the playhead
     // have got away from it, the drag scrolls instead of fetching the shot.
-    if (_timeline.motion == TimelineMotion.idle &&
-        (selected.ms - _timeline.playheadMs).abs() > 1) {
+    if ((selected.ms - _timeline.playheadMs).abs() > 1) {
       _editor.select(null);
     } else {
       _editor.beginGesture();
@@ -376,7 +384,8 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   // Export ----------------------------------------------------------------
 
   /// The Export sheet over the playing export, then the export itself. The
-  /// string is saved first: exporting counts as keeping it.
+  /// string is saved first: exporting counts as keeping it. Should that
+  /// fail, the export waits for Try again or Export anyway.
   Future<void> _export() async {
     final start = ref.read(_provider).doc.startMs;
     if (start == null) return;
@@ -414,7 +423,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     await _player.pause();
     if (target == null || !mounted) return;
     final plan = planFor(ref.read(wholeVideo));
-    await _editor.flush();
+    await _save(body: 'editor.saveFailedExport', giveUp: 'editor.exportAnyway');
     if (!mounted) return;
     await showExportDialog(
       context,
@@ -433,26 +442,49 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   // Leaving ---------------------------------------------------------------
 
+  /// Back, the back button or gesture. A string that can't be saved yet
+  /// (no START or no shot) asks first: on Android an edge swipe on the
+  /// timeline is Back too.
   Future<void> _leave() async {
     if (_leaving) return;
     _leaving = true;
     await _player.pause();
+    if (!mounted) return;
+    if (!ref.read(_provider).doc.isComplete) {
+      final leave = await confirmDialog(
+        context,
+        title: context.tr('editor.leaveTitle'),
+        body: context.tr('editor.leaveBody'),
+        confirmLabel: context.tr('editor.leave'),
+      );
+      if (!mounted) return;
+      if (!leave) {
+        _leaving = false;
+        return;
+      }
+    }
+    await _save(body: 'editor.saveFailedBody', giveUp: 'common.discard');
+    if (mounted) Navigator.of(context).pop();
+  }
+
+  /// Saves, and while that fails offers Try again or [giveUp] (whose
+  /// outcome [body] tells).
+  Future<void> _save({required String body, required String giveUp}) async {
     while (true) {
       await _editor.flush();
       if (!mounted) return;
-      if (ref.read(_provider).saveStatus != SaveStatus.failed) break;
+      if (ref.read(_provider).saveStatus != SaveStatus.failed) return;
       final retry = await confirmDialog(
         context,
         title: context.tr('editor.saveFailedTitle'),
-        body: context.tr('editor.saveFailedBody'),
-        cancelLabel: context.tr('common.discard'),
+        body: context.tr(body),
+        cancelLabel: context.tr(giveUp),
         confirmLabel: context.tr('editor.retry'),
         // Only the buttons: a stray tap must not discard the string.
         dismissible: false,
       );
-      if (!retry) break;
+      if (!retry) return;
     }
-    if (mounted) Navigator.of(context).pop();
   }
 
   Future<void> _discard() async {
@@ -466,7 +498,18 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       if (!sure || !mounted) return;
     }
     _leaving = true;
-    await _editor.discard();
+    try {
+      await _editor.discard();
+    } catch (e) {
+      // Still saved: the editor stays, and Back works again.
+      _leaving = false;
+      if (mounted) {
+        _messenger.currentState?.showSnackBar(
+            SnackBar(content: Text(context.tr('editor.discardFailed'))));
+      }
+      if (e is Exception) return;
+      rethrow;
+    }
     if (mounted) Navigator.of(context).pop();
   }
 
@@ -505,6 +548,12 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
         _messenger.currentState?.hideCurrentSnackBar();
       }
     });
+    // While the keyboard is up (label, notes), only the details show, so
+    // the field being typed in stays in view; the rest keeps its state.
+    final typing = MediaQuery.viewInsetsOf(context).bottom > 0;
+    final pageIcons = scheme.brightness == Brightness.dark
+        ? Brightness.light
+        : Brightness.dark;
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) {
@@ -515,99 +564,45 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
         // keeps the page's colour.
         value: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: typing ? pageIcons : Brightness.light,
+          statusBarBrightness: typing ? scheme.brightness : Brightness.dark,
           systemNavigationBarColor: scheme.surface,
-          systemNavigationBarIconBrightness:
-              scheme.brightness == Brightness.dark
-                  ? Brightness.light
-                  : Brightness.dark,
+          systemNavigationBarIconBrightness: pageIcons,
         ),
         child: ScaffoldMessenger(
           key: _messenger,
           child: Scaffold(
             body: Column(
               children: [
-                _VideoPane(
-                  player: _player,
-                  aspectRatio: widget.args.clip.info.aspectRatio,
-                  overlay: _hud(state),
-                  showOverlay: _showHud,
-                  onToggleOverlay: () => setState(() => _showHud = !_showHud),
-                  onBack: _leave,
-                  onDiscard: _discard,
-                ),
-                EditorTransport(
-                  player: _player,
-                  timeline: _timeline,
-                  startMs: state.doc.startMs,
-                  onPlay: _togglePlay,
-                  onPrevious: () => _jump(forward: false),
-                  onNext: () => _jump(forward: true),
-                ),
-                ShotTimeline(
-                  controller: _timeline,
-                  loudness: _loudness,
-                  originMs: widget.args.clip.audioOriginMs,
-                  frameMs: frameMs,
-                  markers: _timelineMarkers(state),
-                  carryingShot: state.selectedId != null,
-                  onTouch: _onTouch,
-                  onRelease: _onRelease,
-                  onTapMarker: _tapMarker,
-                  onTapEmpty: () => _editor.select(null),
-                  startLabel: context.tr('editor.start'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
-                  child: TimelineMinimap(
-                    controller: _timeline,
-                    loudness: _loudness,
-                    originMs: widget.args.clip.audioOriginMs,
-                    frameMs: frameMs,
-                    markers: _markerTimes(state.doc),
-                    onJump: (ms) {
-                      _editor.select(null);
-                      _centre(ms);
-                    },
-                    onScrub: (ms) {
-                      _editor.select(null);
-                      _player.pause();
-                      _timeline.scrubTo(ms);
-                    },
-                    onScrubEnd: _timeline.endScrub,
+                Offstage(
+                  offstage: typing,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: _markerTools(state, frameMs),
                   ),
                 ),
-                MarkerPanel(
-                  selected: state.selected,
-                  shots: state.doc.activeShots,
-                  startMs: state.doc.startMs,
-                  onSetStart: () =>
-                      _editor.setStart(_timeline.playheadMs.round()),
-                  onAddShot: _addShot,
-                  onNudgeStart: _editor.beginGesture,
-                  onNudge: _nudge,
-                  onNudgeEnd: _editor.endGesture,
-                  onDelete: _delete,
-                  onLastShot: (shot) => _editor.setLastShot(shot.id),
-                  onDeselect: () => _editor.select(null),
+                Expanded(
+                  child: SafeArea(
+                    top: typing,
+                    bottom: false,
+                    child: _details(context, state),
+                  ),
                 ),
-                const Divider(height: 1),
-                Expanded(child: _details(context, state)),
-                SafeArea(
-                  top: false,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                    child: FilledButton.icon(
-                      style: FilledButton.styleFrom(
-                        minimumSize: const Size.fromHeight(52),
+                if (!typing)
+                  SafeArea(
+                    top: false,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                      child: FilledButton.icon(
+                        style: FilledButton.styleFrom(
+                          minimumSize: const Size.fromHeight(52),
+                        ),
+                        icon: const Icon(Icons.movie_outlined),
+                        label: Text(context.tr('editor.export')),
+                        onPressed: state.doc.isComplete ? _export : null,
                       ),
-                      icon: const Icon(Icons.movie_outlined),
-                      label: Text(context.tr('editor.export')),
-                      onPressed: state.doc.isComplete ? _export : null,
                     ),
                   ),
-                ),
               ],
             ),
           ),
@@ -615,6 +610,75 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       ),
     );
   }
+
+  /// Above the details: the video, the transport, the timeline and its
+  /// minimap, and the marker panel.
+  List<Widget> _markerTools(ClipEditorState state, double frameMs) => [
+        _VideoPane(
+          player: _player,
+          aspectRatio: widget.args.clip.info.aspectRatio,
+          overlay: _hud(state),
+          showOverlay: _showHud,
+          onToggleOverlay: () => setState(() => _showHud = !_showHud),
+          onBack: _leave,
+          onDiscard: _discard,
+        ),
+        EditorTransport(
+          player: _player,
+          timeline: _timeline,
+          startMs: state.doc.startMs,
+          onPlay: _togglePlay,
+          onPrevious: () => _jump(forward: false),
+          onNext: () => _jump(forward: true),
+        ),
+        ShotTimeline(
+          controller: _timeline,
+          loudness: _loudness,
+          originMs: widget.args.clip.audioOriginMs,
+          frameMs: frameMs,
+          markers: _timelineMarkers(state),
+          carryingShot: state.selectedId != null,
+          onTouch: _onTouch,
+          onRelease: _onRelease,
+          onTapMarker: _tapMarker,
+          onTapEmpty: () => _editor.select(null),
+          startLabel: context.tr('editor.start'),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
+          child: TimelineMinimap(
+            controller: _timeline,
+            loudness: _loudness,
+            originMs: widget.args.clip.audioOriginMs,
+            frameMs: frameMs,
+            markers: _markerTimes(state.doc),
+            onJump: (ms) {
+              _editor.select(null);
+              _centre(ms);
+            },
+            onScrub: (ms) {
+              _editor.select(null);
+              _player.pause();
+              _timeline.scrubTo(ms);
+            },
+            onScrubEnd: _timeline.endScrub,
+          ),
+        ),
+        MarkerPanel(
+          selected: state.selected,
+          shots: state.doc.activeShots,
+          startMs: state.doc.startMs,
+          onSetStart: () => _editor.setStart(_timeline.playheadMs.round()),
+          onAddShot: _addShot,
+          onNudgeStart: _editor.beginGesture,
+          onNudge: _nudge,
+          onNudgeEnd: _editor.endGesture,
+          onDelete: _delete,
+          onLastShot: (shot) => _editor.setLastShot(shot.id),
+          onDeselect: () => _editor.select(null),
+        ),
+        const Divider(height: 1),
+      ];
 
   /// Below the marker panel: sensitivity (fresh clips only), stats, the
   /// shots, then label, notes and penalty.
