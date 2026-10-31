@@ -6,7 +6,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/services.dart';
 
-/// The app's mark for the overlay's badge, decoded at [size] pixels.
+/// The app's mark for the overlay, decoded at [size] pixels.
 Future<ui.Image> loadHudLogo({int size = 128}) async {
   final data = await rootBundle.load('assets/branding/icon.png');
   final codec = await ui.instantiateImageCodec(

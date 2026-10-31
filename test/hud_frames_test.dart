@@ -61,7 +61,10 @@ void main() {
         labels: labels,
         onProgress: progress.add,
       );
-      final [box, card] = sequences;
+      final [shade, box, card] = sequences;
+
+      // One shade for the whole export.
+      expect(shade.timesUs, [0]);
 
       // The still, then frames from START (10.0 s) to the first past the
       // last shot's tick (11.62 s), each half a frame (50 ms) early.
@@ -78,10 +81,14 @@ void main() {
       for (final s in sequences) {
         final images = Directory(s.dir).listSync().whereType<File>().toList();
         expect(images, hasLength(s.timesUs.length));
-        final pixels = zlib.decode(File('${s.dir}/1.z').readAsBytesSync());
+        final pixels = zlib.decode(File('${s.dir}/0.z').readAsBytesSync());
         expect(pixels, hasLength(s.width * s.height * 4));
+        // Inside the frame, the box's room for its shadow too.
+        expect(s.x, greaterThanOrEqualTo(0));
+        expect(s.y, greaterThanOrEqualTo(0));
+        expect(s.x * 640 + s.width, lessThanOrEqualTo(641));
+        expect(s.y * 360 + s.height, lessThanOrEqualTo(361));
       }
-      expect(box.x, greaterThan(0));
       expect(card.x * 640 + card.width / 2, closeTo(320, 1));
       expect(progress.last, 1);
     });
@@ -93,7 +100,7 @@ void main() {
       await initializeDateFormatting('en');
       final dir = await Directory.systemTemp.createTemp('hud_frames');
       addTearDown(() => dir.delete(recursive: true));
-      final [box, card] = await renderHudFrames(
+      final [_, box, card] = await renderHudFrames(
         dir: dir,
         plan: ExportPlan.whole(info),
         string: string,

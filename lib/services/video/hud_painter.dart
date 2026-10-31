@@ -20,7 +20,7 @@ const _white = Color(0xFFFFFFFF);
 const _dimWhite = Color(0xB3FFFFFF);
 
 /// The overlay's words in the app's language (`BuildContext.hudLabels`
-/// makes them). The badge stays English: it is the app's name.
+/// makes them). The name stays English: it is the app's.
 class HudLabels {
   const HudLabels({
     required this.total,
@@ -51,12 +51,36 @@ class HudLabels {
       penaltyTemplate.replaceFirst(placeholder, formatSeconds(ms));
 }
 
+// The look: white type with a soft shadow on a soft shade, no boxes, the
+// brand yellow for the mark, the labels and one rule; like the stats on a
+// sports app's share card.
+
+/// The soft shade behind the corner overlay ([HudLayout.shade], in frame
+/// coordinates): dark in the corner, gone further out, so white type reads
+/// over bright footage too.
+void paintHudShade(Canvas canvas, HudLayout layout) {
+  canvas.drawRect(
+    layout.shade,
+    Paint()
+      ..shader = ui.Gradient.radial(
+        layout.shadeCentre,
+        HudLayout.shadeUnits * layout.unit,
+        // Eased out, so its edge never shows on a bright picture.
+        [
+          for (final alpha in const [0.7, 0.58, 0.38, 0.17, 0.05, 0.0])
+            _black.withValues(alpha: alpha),
+        ],
+        const [0, 0.25, 0.5, 0.72, 0.88, 1],
+      ),
+  );
+}
+
 /// Paints the corner overlay into its box ([HudLayout.box], with the box's
-/// top left at the canvas origin): the badge, the clock (with the shot
-/// tick), for [HudStyle.full] a line with the shots and the first shot,
-/// and for every style but [HudStyle.clock] the newest splits. The rows
-/// run from the corner out, so in bottom corners they stack upwards and
-/// the badge sits in the corner there too.
+/// top left at the canvas origin): the mark and name; the clock under the
+/// TOTAL label (with the shot tick); for [HudStyle.full] the shots and the
+/// first shot; and for every style but [HudStyle.clock] the newest splits
+/// beside a yellow rule. The rows run from the corner out, so in bottom
+/// corners they stack upwards and the mark sits in the corner there too.
 void paintHudBox(
   Canvas canvas,
   HudLayout layout,
@@ -78,54 +102,65 @@ void paintHudBox(
     return top;
   }
 
-  _paintBadge(canvas, layout, logo, row(HudLayout.badgeUnits));
-  row(HudLayout.gapUnits);
-  _paintClock(canvas, layout, m, row(HudLayout.clockUnits));
+  _paintBrand(canvas, layout, logo, row(HudLayout.brandUnits));
+  row(HudLayout.brandGapUnits);
+  _paintClock(
+    canvas,
+    layout,
+    labels,
+    m,
+    row(HudLayout.labelUnits + HudLayout.labelGapUnits + HudLayout.clockUnits),
+  );
   if (options.style == HudStyle.full) {
     _paintLine(canvas, layout, s, m, labels, row(HudLayout.lineUnits));
   }
-  if (options.style == HudStyle.clock) return;
-  row(HudLayout.gapUnits);
+  final shown = math.min(m.fired, HudLayout.splits);
+  if (options.style == HudStyle.clock || shown == 0) return;
+  row(HudLayout.splitsGapUnits);
   // The newest next to the clock.
-  for (var n = m.fired, age = 0; n >= 1 && age < HudLayout.chips; n--, age++) {
-    _paintSplit(canvas, layout, s, n, age, row(HudLayout.chipUnits));
-    row(HudLayout.chipPitchUnits - HudLayout.chipUnits);
+  final tops = [for (var i = 0; i < shown; i++) row(HudLayout.splitUnits)];
+  final first = tops.reduce(math.min);
+  final last = tops.reduce(math.max) + HudLayout.splitUnits * u;
+  final ruleWidth = 0.08 * u;
+  canvas.drawRect(
+    Rect.fromLTRB(_x(layout, ruleWidth), first + 0.1 * u,
+        _x(layout, ruleWidth) + ruleWidth, last - 0.1 * u),
+    Paint()..color = hudYellow,
+  );
+  for (var age = 0; age < shown; age++) {
+    _paintSplit(canvas, layout, s, m.fired - age, age, tops[age]);
   }
 }
 
-/// Paints the end card into its box ([HudLayout.card], top left at the
-/// canvas origin) at [opacity]: TOTAL large, then first, average, fastest
-/// and shots, then the label, the date and any penalty.
+/// Paints the end card at [opacity] in frame coordinates, on a soft dark
+/// field ([HudLayout.cardShade]): TOTAL large, then first, average, fastest
+/// and shots, then the label, the date and any penalty, then the name.
 void paintEndCard(
   Canvas canvas,
   HudLayout layout,
   HudString s,
   HudLabels labels,
-  double opacity,
-) {
+  double opacity, {
+  ui.Image? logo,
+}) {
   if (opacity <= 0) return;
   final u = layout.unit;
-  final card = Offset.zero & layout.card.size;
-  canvas.saveLayer(card, Paint()..color = _white.withValues(alpha: opacity));
+  final card = layout.card;
+  canvas.saveLayer(
+      layout.cardShade, Paint()..color = _white.withValues(alpha: opacity));
   canvas.drawRRect(
-    RRect.fromRectAndRadius(card, Radius.circular(0.6 * u)),
-    Paint()..color = _black.withValues(alpha: 0.72),
+    RRect.fromRectAndRadius(card.inflate(0.6 * u), Radius.circular(1.2 * u)),
+    Paint()
+      ..color = _black.withValues(alpha: 0.55)
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, u),
   );
   final string = s.string;
-  final pad = 0.7 * u;
-  final inner = card.width - 2 * pad;
-  var y = pad;
-  y += _paintCentred(
-      canvas,
-      labels.total,
-      card.width / 2,
-      y,
-      inner,
-      _numberStyle(0.6 * u)
-          .copyWith(color: hudYellow, letterSpacing: 0.15 * u));
-  y += _paintCentred(canvas, formatSeconds(string.totalTimeMs), card.width / 2,
-      y, inner, _numberStyle(2.6 * u));
-  y += 0.3 * u;
+  final cx = card.center.dx;
+  final inner = card.width - 1.4 * u;
+  _paintCentred(canvas, labels.total, cx, card.top + 0.2 * u, inner,
+      _labelStyle(0.5 * u, hudYellow).copyWith(letterSpacing: 0.25 * u));
+  _paintCentred(canvas, formatSeconds(string.totalTimeMs), cx,
+      card.top + 0.95 * u, inner, _numberStyle(3.4 * u, u));
 
   // Four columns of smaller stats.
   String time(int? ms) => ms == null ? '–' : formatSeconds(ms);
@@ -135,25 +170,42 @@ void paintEndCard(
     (labels.fastest, time(string.fastestSplitMs)),
     (labels.shots, '${string.shotCount}'),
   ];
-  final column = inner / stats.length;
+  final column = card.width / stats.length;
+  final top = card.top + 4.9 * u;
   for (final (i, (label, value)) in stats.indexed) {
-    final centre = pad + (i + 0.5) * column;
-    final labelStyle = _numberStyle(0.42 * u)
-        .copyWith(color: _dimWhite, letterSpacing: 0.05 * u);
-    final h =
-        _paintCentred(canvas, label, centre, y, column - 0.2 * u, labelStyle);
-    _paintCentred(
-        canvas, value, centre, y + h, column - 0.2 * u, _numberStyle(0.95 * u));
+    final centre = card.left + (i + 0.5) * column;
+    _paintCentred(canvas, label, centre, top, column - 0.3 * u,
+        _labelStyle(0.34 * u, _dimWhite));
+    _paintCentred(canvas, value, centre, top + 0.55 * u, column - 0.3 * u,
+        _numberStyle(0.95 * u, u));
+    if (i > 0) {
+      canvas.drawRect(
+        Rect.fromLTWH(
+            card.left + i * column, top, math.max(1, 0.03 * u), 1.5 * u),
+        Paint()..color = _white.withValues(alpha: 0.2),
+      );
+    }
   }
-  y += 1.9 * u;
 
   final parts = [
     if (string.label?.isNotEmpty ?? false) string.label!,
     DateFormat.yMMMd(labels.locale).format(s.date),
     if (string.penaltyMs > 0) labels.penalty(string.penaltyMs),
   ];
-  _paintCentred(canvas, parts.join('  ·  '), card.width / 2, y, inner,
-      TextStyle(fontSize: 0.5 * u, color: _dimWhite));
+  _paintCentred(canvas, parts.join('  ·  '), cx, card.top + 6.85 * u, inner,
+      TextStyle(fontSize: 0.42 * u, color: _dimWhite, shadows: _soft(u)));
+
+  // The mark and the name, centred at the foot.
+  final mark = 0.5 * u;
+  final name = _layout('SIMPLE SHOT TIMER', _nameStyle(0.34 * u, u));
+  final gap = logo == null ? 0.0 : mark + 0.25 * u;
+  final left = cx - (gap + name.width) / 2;
+  final y = card.top + 7.6 * u;
+  if (logo != null) {
+    _paintMark(canvas, logo, Rect.fromLTWH(left, y, mark, mark));
+  }
+  name.paint(canvas, Offset(left + gap, y + (mark - name.height) / 2));
+  name.dispose();
   canvas.restore();
 }
 
@@ -164,53 +216,55 @@ void paintEndCard(
 double _x(HudLayout layout, double width) =>
     layout.alignRight ? layout.box.width - width : 0;
 
-/// The badge: the mark and the name, black on yellow.
-void _paintBadge(Canvas canvas, HudLayout layout, ui.Image? logo, double y) {
+/// The mark in yellow and the name, the mark at the outer edge.
+void _paintBrand(Canvas canvas, HudLayout layout, ui.Image? logo, double y) {
   final u = layout.unit;
-  const height = HudLayout.badgeUnits;
-  final name = _layout('SIMPLE SHOT TIMER', _badgeStyle(u));
-  final mark = height * 0.72 * u;
-  final pad = 0.3 * u;
-  final width = math.min(
-    layout.box.width,
-    pad + (logo != null ? mark + 0.2 * u : 0) + name.width + pad,
-  );
+  final mark = HudLayout.brandUnits * u;
+  final name = _layout('SIMPLE SHOT TIMER', _nameStyle(0.46 * u, u));
+  final gap = logo == null ? 0.0 : mark + 0.23 * u;
+  final width = math.min(layout.box.width, gap + name.width);
   final x = _x(layout, width);
-  canvas.drawRRect(
-    RRect.fromLTRBR(x, y, x + width, y + height * u, Radius.circular(0.25 * u)),
-    Paint()..color = hudYellow,
-  );
-  var tx = x + pad;
   if (logo != null) {
-    canvas.drawImageRect(
-      logo,
-      Rect.fromLTWH(0, 0, logo.width.toDouble(), logo.height.toDouble()),
-      Rect.fromLTWH(tx, y + (height * u - mark) / 2, mark, mark),
-      Paint()
-        ..filterQuality = FilterQuality.medium
-        ..colorFilter = const ColorFilter.mode(_black, BlendMode.srcIn),
-    );
-    tx += mark + 0.2 * u;
+    final markX = layout.alignRight ? x + width - mark : x;
+    _paintMark(canvas, logo, Rect.fromLTWH(markX, y, mark, mark));
   }
-  name.paint(canvas, Offset(tx, y + (height * u - name.height) / 2));
+  final nameX = layout.alignRight ? x : x + gap;
+  name.paint(canvas, Offset(nameX, y + (mark - name.height) / 2));
   name.dispose();
 }
 
-/// The clock, pulsing on each shot around its outer edge (the side the box
-/// hugs) at the baseline.
-void _paintClock(Canvas canvas, HudLayout layout, HudMoment m, double y) {
+/// The TOTAL label, and under it the clock, pulsing on each shot around its
+/// outer edge (the side the box hugs) at the baseline.
+void _paintClock(
+  Canvas canvas,
+  HudLayout layout,
+  HudLabels labels,
+  HudMoment m,
+  double y,
+) {
   final u = layout.unit;
-  final style = _numberStyle(HudLayout.clockFontUnits * u);
+  final label = _layout(labels.total, _labelStyle(0.36 * u, hudYellow));
+  label.paint(canvas, Offset(_x(layout, label.width), y));
+  label.dispose();
+
+  final size = HudLayout.clockUnits * u;
+  final style = _numberStyle(size, u);
   final clock = formatSeconds(m.clockMs);
   final width = _textWidth(clock, style);
-  final x = _x(layout, width);
-  final pivot = Offset(layout.alignRight ? x + width : x, y + style.fontSize!);
+  // Big digits stand a little in from their box: align them with the label.
+  final inset = 0.04 * size;
+  final x =
+      layout.alignRight ? _x(layout, width) + inset : _x(layout, width) - inset;
+  final top = y + (HudLayout.labelUnits + HudLayout.labelGapUnits) * u;
+  final pivot = Offset(layout.alignRight ? x + width : x, top + size);
   canvas
     ..save()
     ..translate(pivot.dx, pivot.dy)
     ..scale(m.tick)
     ..translate(-pivot.dx, -pivot.dy);
-  _paintOutlined(canvas, clock, style, Offset(x, y));
+  final text = _layout(clock, style);
+  text.paint(canvas, Offset(x, top));
+  text.dispose();
   canvas.restore();
 }
 
@@ -223,15 +277,26 @@ void _paintLine(
   HudLabels labels,
   double y,
 ) {
+  final u = layout.unit;
   final first = m.fired > 0 ? formatSeconds(s.string.shots.first.timeMs) : '–';
-  final line = '${labels.shots} ${m.fired}   ${labels.first} $first';
-  final style = _numberStyle(0.6 * layout.unit);
-  _paintOutlined(
-      canvas, line, style, Offset(_x(layout, _textWidth(line, style)), y));
+  final label = _labelStyle(0.34 * u, _dimWhite);
+  final value = _numberStyle(0.62 * u, u);
+  final line = TextPainter(
+    text: TextSpan(children: [
+      TextSpan(text: '${labels.shots}  ', style: label),
+      TextSpan(text: '${m.fired}', style: value),
+      TextSpan(text: '     ${labels.first}  ', style: label),
+      TextSpan(text: first, style: value),
+    ]),
+    textDirection: TextDirection.ltr,
+    maxLines: 1,
+  )..layout();
+  line.paint(canvas, Offset(_x(layout, line.width), y + 0.15 * u));
+  line.dispose();
 }
 
-/// Shot [n]'s split, [age] shots old: the newest on a yellow chip, older
-/// ones fading from 80 to 40 %.
+/// Shot [n]'s split, [age] shots old: the newest larger, older ones fading
+/// from 90 to 60 %. Beside the rule: its number, then the split.
 void _paintSplit(
   Canvas canvas,
   HudLayout layout,
@@ -241,40 +306,76 @@ void _paintSplit(
   double y,
 ) {
   final u = layout.unit;
-  final width = HudLayout.chipWidthUnits * u;
-  const height = HudLayout.chipUnits;
-  final x = _x(layout, width);
   final newest = age == 0;
-  final opacity = newest ? 1.0 : 0.8 - 0.4 * (age - 1) / (HudLayout.chips - 2);
-  canvas.drawRRect(
-    RRect.fromLTRBR(x, y, x + width, y + height * u, Radius.circular(0.5 * u)),
-    Paint()
-      ..color = newest ? hudYellow : _black.withValues(alpha: 0.55 * opacity),
+  final opacity = newest ? 1.0 : 0.9 - 0.3 * (age - 1) / (HudLayout.splits - 2);
+  final mid = y + HudLayout.splitUnits * u / 2;
+  final number = _layout(
+      '#$n', _labelStyle(0.38 * u, _white.withValues(alpha: 0.75 * opacity)));
+  final split = _layout(
+    formatSeconds(s.splitMs(n - 1)),
+    _numberStyle(newest ? 0.8 * u : 0.64 * u, u)
+        .copyWith(color: _white.withValues(alpha: opacity)),
   );
-  final text = _layout(
-    '#$n  ${formatSeconds(s.splitMs(n - 1))}',
-    _numberStyle(0.62 * u).copyWith(
-      color: newest ? _black : _white.withValues(alpha: opacity),
-    ),
-  );
-  text.paint(canvas, Offset(x + 0.35 * u, y + (height * u - text.height) / 2));
-  text.dispose();
+  final right = layout.alignRight;
+  final w = layout.box.width;
+  number.paint(
+      canvas,
+      Offset(right ? w - 0.42 * u - number.width : 0.42 * u,
+          mid - number.height / 2));
+  split.paint(
+      canvas,
+      Offset(right ? w - 1.45 * u - split.width : 1.45 * u,
+          mid - split.height / 2));
+  number.dispose();
+  split.dispose();
 }
 
-TextStyle _badgeStyle(double u) => TextStyle(
+void _paintMark(Canvas canvas, ui.Image logo, Rect at) => canvas.drawImageRect(
+      logo,
+      Rect.fromLTWH(0, 0, logo.width.toDouble(), logo.height.toDouble()),
+      at,
+      Paint()
+        ..filterQuality = FilterQuality.medium
+        ..colorFilter = const ColorFilter.mode(hudYellow, BlendMode.srcIn),
+    );
+
+/// A soft shadow under white type, instead of an outline: readable over any
+/// picture without looking stamped on.
+List<Shadow> _soft(double u) => [
+      Shadow(color: _black.withValues(alpha: 0.55), blurRadius: 0.35 * u),
+      Shadow(color: _black.withValues(alpha: 0.35), blurRadius: 0.08 * u),
+    ];
+
+TextStyle _nameStyle(double size, double u) => TextStyle(
       fontFamily: 'Montserrat',
       fontWeight: FontWeight.w800,
       fontStyle: FontStyle.italic,
-      fontSize: 0.62 * u,
-      color: _black,
-      letterSpacing: 0.02 * u,
+      fontSize: size,
+      color: _white,
+      height: 1.0,
+      letterSpacing: 0.04 * size,
+      shadows: _soft(u),
     );
 
-TextStyle _numberStyle(double size) => TextStyle(
+/// Small capitals, spaced out.
+TextStyle _labelStyle(double size, Color color) => TextStyle(
+      fontSize: size,
+      fontWeight: FontWeight.w600,
+      color: color,
+      height: 1.0,
+      letterSpacing: 0.12 * size,
+      shadows: [
+        Shadow(color: _black.withValues(alpha: 0.6), blurRadius: 0.6 * size),
+      ],
+    );
+
+TextStyle _numberStyle(double size, double u) => TextStyle(
       fontSize: size,
       fontWeight: FontWeight.w700,
       color: _white,
+      height: 1.0,
       fontFeatures: const [ui.FontFeature.tabularFigures()],
+      shadows: _soft(u),
     );
 
 /// [text] laid out in [style]; with [maxWidth], shrunk to fit on one line.
@@ -288,7 +389,12 @@ TextPainter _layout(String text, TextStyle style, {double? maxWidth}) {
   if (maxWidth == null || painter.width <= maxWidth) return painter;
   final size = style.fontSize! * maxWidth / painter.width;
   painter.dispose();
-  return make(style.copyWith(fontSize: size));
+  return make(style.copyWith(
+    fontSize: size,
+    letterSpacing: style.letterSpacing == null
+        ? null
+        : style.letterSpacing! * size / style.fontSize!,
+  ));
 }
 
 double _textWidth(String text, TextStyle style) {
@@ -313,26 +419,4 @@ double _paintCentred(
   final height = p.height;
   p.dispose();
   return height;
-}
-
-/// White text with a dark outline, readable over any picture.
-void _paintOutlined(Canvas canvas, String text, TextStyle style, Offset at) {
-  final outline = _layout(
-    text,
-    TextStyle(
-      fontSize: style.fontSize,
-      fontWeight: style.fontWeight,
-      fontFeatures: style.fontFeatures,
-      foreground: Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = style.fontSize! * 0.12
-        ..strokeJoin = StrokeJoin.round
-        ..color = _black.withValues(alpha: 0.85),
-    ),
-  );
-  outline.paint(canvas, at);
-  outline.dispose();
-  final fill = _layout(text, style);
-  fill.paint(canvas, at);
-  fill.dispose();
 }

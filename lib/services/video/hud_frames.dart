@@ -27,7 +27,8 @@ typedef HudFrameRenderer = Future<List<OverlaySequence>> Function({
 });
 
 /// One sequence of overlay images: its [folder], where it sits in the frame
-/// ([rect]), the clip times of its images, and how to paint one.
+/// ([rect]), the clip times of its images, and how to paint one (in frame
+/// coordinates).
 typedef _Sequence = ({
   String folder,
   ui.Rect rect,
@@ -37,6 +38,7 @@ typedef _Sequence = ({
 
 /// Draws the overlay images an export of [plan] needs, under [dir]:
 ///
+/// - `shade/`: the soft shade behind the corner overlay, one image;
 /// - `box/`: the corner overlay; a still before START, then one image per
 ///   video frame while the clock runs and the last shot ticks;
 /// - `card/` (when the end card shows): nothing, then its fade in, one
@@ -66,27 +68,33 @@ Future<List<OverlaySequence>> renderHudFrames({
           (k * frameMs).round(),
       ];
 
-  // A little room around the box for the clock's outline.
-  final bleed = (0.2 * layout.unit).ceilToDouble();
+  // Room around the box for the type's soft shadow.
+  final bleed = layout.unit.ceilToDouble();
   final cardFrom = string.endMs + HudMoment.endCardDelayMs;
   final cardOut = cardFrom + HudMoment.endCardShowMs;
   final sequences = <_Sequence>[
     (
+      folder: 'shade',
+      rect: layout.shade,
+      times: [plan.startMs],
+      paint: (canvas, m) => paintHudShade(canvas, layout),
+    ),
+    (
       folder: 'box',
-      rect: layout.box.inflate(bleed),
+      rect: layout.box.inflate(bleed).intersect(ui.Offset.zero & plan.frame),
       times: [
         plan.startMs,
         ...frames(string.startMs, string.endMs + HudMoment.tickMs),
       ],
       paint: (canvas, m) {
-        canvas.translate(bleed, bleed);
+        canvas.translate(layout.box.left, layout.box.top);
         paintHudBox(canvas, layout, string, options, m, labels, logo: logo);
       },
     ),
     if (options.endCard && string.shotCount > 0)
       (
         folder: 'card',
-        rect: layout.card,
+        rect: layout.cardShade,
         times: [
           plan.startMs,
           ...frames(cardFrom, cardFrom + HudMoment.endCardFadeMs),
@@ -94,7 +102,7 @@ Future<List<OverlaySequence>> renderHudFrames({
             ...frames(cardOut, cardOut + HudMoment.endCardFadeMs),
         ],
         paint: (canvas, m) =>
-            paintEndCard(canvas, layout, string, labels, m.endCard),
+            paintEndCard(canvas, layout, string, labels, m.endCard, logo: logo),
       ),
   ];
 
@@ -110,7 +118,7 @@ Future<List<OverlaySequence>> renderHudFrames({
         for (final (i, t) in q.times.indexed)
           () async {
             final m = HudMoment.at(string, t, endCard: options.endCard);
-            final rgba = await _rasterise(q.rect.size, (c) => q.paint(c, m));
+            final rgba = await _rasterise(q.rect, (c) => q.paint(c, m));
             await File('${dir.path}/${q.folder}/$i.z')
                 .writeAsBytes(zlib.encode(rgba));
             onProgress?.call(++done / total);
@@ -142,13 +150,14 @@ Future<List<OverlaySequence>> renderHudFrames({
   ];
 }
 
-/// What [draw] paints, as an image of [size] in raw premultiplied RGBA.
+/// What [draw] paints (in frame coordinates) inside [rect], as an image in
+/// raw premultiplied RGBA.
 Future<Uint8List> _rasterise(
-    ui.Size size, void Function(ui.Canvas) draw) async {
+    ui.Rect rect, void Function(ui.Canvas) draw) async {
   final recorder = ui.PictureRecorder();
-  draw(ui.Canvas(recorder));
+  draw(ui.Canvas(recorder)..translate(-rect.left, -rect.top));
   final picture = recorder.endRecording();
-  final image = await picture.toImage(size.width.ceil(), size.height.ceil());
+  final image = await picture.toImage(rect.width.ceil(), rect.height.ceil());
   picture.dispose();
   final rgba = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
   image.dispose();

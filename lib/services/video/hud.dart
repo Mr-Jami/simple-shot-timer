@@ -3,7 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:math' as math;
-import 'dart:ui' show Rect, Size;
+import 'dart:ui' show Offset, Rect, Size;
 
 import '../../models/enums.dart';
 import '../../models/timer_string.dart';
@@ -163,11 +163,18 @@ class HudLayout {
           : math.min(box.bottom + margin, usable - margin - cardHeight);
       card = Rect.fromLTWH(card.left, cardTop, cardWidth, cardHeight);
     }
+    final whole = Offset.zero & frame;
+    final corner =
+        Offset(right ? box.right : box.left, bottom ? box.bottom : box.top);
     return HudLayout._(
       frame: frame,
       unit: unit,
       box: box,
       card: card,
+      shadeCentre: corner,
+      shade: Rect.fromCircle(center: corner, radius: shadeUnits * unit)
+          .intersect(whole),
+      cardShade: card.inflate(cardShadeUnits * unit).intersect(whole),
       alignRight: right,
       alignBottom: bottom,
     );
@@ -178,34 +185,47 @@ class HudLayout {
     required this.unit,
     required this.box,
     required this.card,
+    required this.shadeCentre,
+    required this.shade,
+    required this.cardShade,
     required this.alignRight,
     required this.alignBottom,
   });
 
   // In units: the box's margin and width, then its rows from the corner out
-  // (the badge, the clock, the Full style's line, five split chips), then
-  // the end card.
+  // (the mark and name; the label over the clock; the Full style's line;
+  // five splits), the corner's shade, then the end card and its shade.
   static const double marginUnits = 0.8;
   static const double widthUnits = 9;
-  static const double badgeUnits = 1.2;
-  static const double gapUnits = 0.3;
-  static const double clockUnits = 2.8;
-  static const double clockFontUnits = 2.4;
-  static const double chipWidthUnits = 5.6;
+  static const double brandUnits = 0.62;
+  static const double brandGapUnits = 0.5;
+  static const double labelUnits = 0.4;
+  static const double labelGapUnits = 0.15;
+  static const double clockUnits = 2.9;
   static const double lineUnits = 0.9;
-  static const double chipUnits = 1.0;
-  static const double chipPitchUnits = 1.2;
-  static const int chips = 5;
+  static const double splitsGapUnits = 0.35;
+  static const double splitUnits = 0.82;
+  static const int splits = 5;
+  static const double shadeUnits = 13;
   static const Size cardUnits = Size(13, 8.4);
+  static const double cardShadeUnits = 3.6;
 
   final Size frame;
   final double unit;
 
-  /// The corner overlay: badge, clock, splits.
+  /// The corner overlay: mark and name, clock, splits.
   final Rect box;
 
   /// The end card.
   final Rect card;
+
+  /// The soft shade behind the corner overlay: dark at [shadeCentre], the
+  /// box's corner in the frame's, gone [shadeUnits] away; [shade] holds it.
+  final Offset shadeCentre;
+  final Rect shade;
+
+  /// The end card with the soft dark field around it.
+  final Rect cardShade;
 
   /// Content hugs the box's right edge (right corners).
   final bool alignRight;
@@ -214,9 +234,10 @@ class HudLayout {
   final bool alignBottom;
 
   static Size boxSize(double unit, HudStyle style) {
-    var height = badgeUnits + gapUnits + clockUnits;
+    var height =
+        brandUnits + brandGapUnits + labelUnits + labelGapUnits + clockUnits;
     if (style == HudStyle.full) height += lineUnits;
-    if (style != HudStyle.clock) height += gapUnits + chips * chipPitchUnits;
+    if (style != HudStyle.clock) height += splitsGapUnits + splits * splitUnits;
     return Size(widthUnits * unit, height * unit);
   }
 }

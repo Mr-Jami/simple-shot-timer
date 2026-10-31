@@ -97,15 +97,13 @@ class _HudPainter extends CustomPainter {
     final m =
         HudMoment.at(string, timeMs(), endCard: options.endCard, pulse: pulse);
     canvas.scale(size.width / frame.width);
+    paintHudShade(canvas, layout);
     canvas
       ..save()
       ..translate(layout.box.left, layout.box.top);
     paintHudBox(canvas, layout, string, options, m, labels, logo: logo);
     canvas.restore();
-    if (m.endCard > 0) {
-      canvas.translate(layout.card.left, layout.card.top);
-      paintEndCard(canvas, layout, string, labels, m.endCard);
-    }
+    paintEndCard(canvas, layout, string, labels, m.endCard, logo: logo);
   }
 
   // Cheap, and the string and labels are rebuilt with the page anyway.

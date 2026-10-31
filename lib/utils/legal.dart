@@ -25,7 +25,7 @@ Uri privacyPolicyUri(String languageCode) => Uri.parse(
 
 /// Adds the section-7 additional terms in NOTICE to the app's entry on the
 /// licenses page, and the licence of the bundled Montserrat font (the video
-/// overlay's badge). Flutter already bundles the app's own LICENSE (the GPLv3
+/// overlay's name). Flutter already bundles the app's own LICENSE (the GPLv3
 /// text) there.
 ///
 /// No try/catch on purpose: if a text can't load, the licenses page shows the
