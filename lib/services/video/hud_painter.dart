@@ -54,7 +54,9 @@ class HudLabels {
 /// Paints the corner overlay into its box ([HudLayout.box], with the box's
 /// top left at the canvas origin): the badge, the clock (with the shot
 /// tick), for [HudStyle.full] a line with the shots and the first shot,
-/// and for every style but [HudStyle.clock] the newest splits.
+/// and for every style but [HudStyle.clock] the newest splits. The rows
+/// run from the corner out, so in bottom corners they stack upwards and
+/// the badge sits in the corner there too.
 void paintHudBox(
   Canvas canvas,
   HudLayout layout,
@@ -64,12 +66,31 @@ void paintHudBox(
   HudLabels labels, {
   ui.Image? logo,
 }) {
-  var y = _paintBadge(canvas, layout, logo);
-  y = _paintClock(canvas, layout, m, y);
-  if (options.style == HudStyle.full) {
-    y = _paintLine(canvas, layout, s, m, labels, y);
+  final u = layout.unit;
+  var fromCorner = 0.0;
+
+  /// The top of the next row, [units] high.
+  double row(double units) {
+    final top = layout.alignBottom
+        ? layout.box.height - fromCorner - units * u
+        : fromCorner;
+    fromCorner += units * u;
+    return top;
   }
-  if (options.style != HudStyle.clock) _paintSplits(canvas, layout, s, m, y);
+
+  _paintBadge(canvas, layout, logo, row(HudLayout.badgeUnits));
+  row(HudLayout.gapUnits);
+  _paintClock(canvas, layout, m, row(HudLayout.clockUnits));
+  if (options.style == HudStyle.full) {
+    _paintLine(canvas, layout, s, m, labels, row(HudLayout.lineUnits));
+  }
+  if (options.style == HudStyle.clock) return;
+  row(HudLayout.gapUnits);
+  // The newest next to the clock.
+  for (var n = m.fired, age = 0; n >= 1 && age < HudLayout.chips; n--, age++) {
+    _paintSplit(canvas, layout, s, n, age, row(HudLayout.chipUnits));
+    row(HudLayout.chipPitchUnits - HudLayout.chipUnits);
+  }
 }
 
 /// Paints the end card into its box ([HudLayout.card], top left at the
@@ -136,15 +157,15 @@ void paintEndCard(
   canvas.restore();
 }
 
-// The box's rows, top down; each but the splits returns where the next row
-// starts. [_x] places a row left or right.
+// The box's rows, each at the top [y] paintHudBox gives it. [_x] places a
+// row left or right.
 
 /// Left in left corners, right in right corners.
 double _x(HudLayout layout, double width) =>
     layout.alignRight ? layout.box.width - width : 0;
 
 /// The badge: the mark and the name, black on yellow.
-double _paintBadge(Canvas canvas, HudLayout layout, ui.Image? logo) {
+void _paintBadge(Canvas canvas, HudLayout layout, ui.Image? logo, double y) {
   final u = layout.unit;
   const height = HudLayout.badgeUnits;
   final name = _layout('SIMPLE SHOT TIMER', _badgeStyle(u));
@@ -156,7 +177,7 @@ double _paintBadge(Canvas canvas, HudLayout layout, ui.Image? logo) {
   );
   final x = _x(layout, width);
   canvas.drawRRect(
-    RRect.fromLTRBR(x, 0, x + width, height * u, Radius.circular(0.25 * u)),
+    RRect.fromLTRBR(x, y, x + width, y + height * u, Radius.circular(0.25 * u)),
     Paint()..color = hudYellow,
   );
   var tx = x + pad;
@@ -164,21 +185,20 @@ double _paintBadge(Canvas canvas, HudLayout layout, ui.Image? logo) {
     canvas.drawImageRect(
       logo,
       Rect.fromLTWH(0, 0, logo.width.toDouble(), logo.height.toDouble()),
-      Rect.fromLTWH(tx, (height * u - mark) / 2, mark, mark),
+      Rect.fromLTWH(tx, y + (height * u - mark) / 2, mark, mark),
       Paint()
         ..filterQuality = FilterQuality.medium
         ..colorFilter = const ColorFilter.mode(_black, BlendMode.srcIn),
     );
     tx += mark + 0.2 * u;
   }
-  name.paint(canvas, Offset(tx, (height * u - name.height) / 2));
+  name.paint(canvas, Offset(tx, y + (height * u - name.height) / 2));
   name.dispose();
-  return (height + HudLayout.gapUnits) * u;
 }
 
 /// The clock, pulsing on each shot around its outer edge (the side the box
 /// hugs) at the baseline.
-double _paintClock(Canvas canvas, HudLayout layout, HudMoment m, double y) {
+void _paintClock(Canvas canvas, HudLayout layout, HudMoment m, double y) {
   final u = layout.unit;
   final style = _numberStyle(HudLayout.clockFontUnits * u);
   final clock = formatSeconds(m.clockMs);
@@ -192,11 +212,10 @@ double _paintClock(Canvas canvas, HudLayout layout, HudMoment m, double y) {
     ..translate(-pivot.dx, -pivot.dy);
   _paintOutlined(canvas, clock, style, Offset(x, y));
   canvas.restore();
-  return y + HudLayout.clockUnits * u;
 }
 
 /// [HudStyle.full]'s line: shots so far and the first shot.
-double _paintLine(
+void _paintLine(
   Canvas canvas,
   HudLayout layout,
   HudString s,
@@ -209,44 +228,37 @@ double _paintLine(
   final style = _numberStyle(0.6 * layout.unit);
   _paintOutlined(
       canvas, line, style, Offset(_x(layout, _textWidth(line, style)), y));
-  return y + HudLayout.lineUnits * layout.unit;
 }
 
-/// The newest splits, newest first: the newest on a yellow chip, older ones
-/// fading from 80 to 40 %.
-void _paintSplits(
+/// Shot [n]'s split, [age] shots old: the newest on a yellow chip, older
+/// ones fading from 80 to 40 %.
+void _paintSplit(
   Canvas canvas,
   HudLayout layout,
   HudString s,
-  HudMoment m,
+  int n,
+  int age,
   double y,
 ) {
   final u = layout.unit;
   final width = HudLayout.chipWidthUnits * u;
   const height = HudLayout.chipUnits;
   final x = _x(layout, width);
-  y += HudLayout.gapUnits * u;
-  for (var n = m.fired, age = 0; n >= 1 && age < HudLayout.chips; n--, age++) {
-    final newest = age == 0;
-    final opacity =
-        newest ? 1.0 : 0.8 - 0.4 * (age - 1) / (HudLayout.chips - 2);
-    canvas.drawRRect(
-      RRect.fromLTRBR(
-          x, y, x + width, y + height * u, Radius.circular(0.5 * u)),
-      Paint()
-        ..color = newest ? hudYellow : _black.withValues(alpha: 0.55 * opacity),
-    );
-    final text = _layout(
-      '#$n  ${formatSeconds(s.splitMs(n - 1))}',
-      _numberStyle(0.62 * u).copyWith(
-        color: newest ? _black : _white.withValues(alpha: opacity),
-      ),
-    );
-    text.paint(
-        canvas, Offset(x + 0.35 * u, y + (height * u - text.height) / 2));
-    text.dispose();
-    y += HudLayout.chipPitchUnits * u;
-  }
+  final newest = age == 0;
+  final opacity = newest ? 1.0 : 0.8 - 0.4 * (age - 1) / (HudLayout.chips - 2);
+  canvas.drawRRect(
+    RRect.fromLTRBR(x, y, x + width, y + height * u, Radius.circular(0.5 * u)),
+    Paint()
+      ..color = newest ? hudYellow : _black.withValues(alpha: 0.55 * opacity),
+  );
+  final text = _layout(
+    '#$n  ${formatSeconds(s.splitMs(n - 1))}',
+    _numberStyle(0.62 * u).copyWith(
+      color: newest ? _black : _white.withValues(alpha: opacity),
+    ),
+  );
+  text.paint(canvas, Offset(x + 0.35 * u, y + (height * u - text.height) / 2));
+  text.dispose();
 }
 
 TextStyle _badgeStyle(double u) => TextStyle(

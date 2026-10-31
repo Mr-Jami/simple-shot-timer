@@ -92,11 +92,24 @@ void main() {
       expect(r.alignRight, isTrue);
     });
 
-    test('9:16 keeps out of the bottom fifth and the right edge', () {
+    test('every corner keeps the same margin, on 9:16 too', () {
+      for (final frame in const [landscape, portrait]) {
+        for (final corner in HudCorner.values) {
+          final l = HudLayout(frame, HudOptions(corner: corner));
+          final box = l.box;
+          expect(l.alignRight ? frame.width - box.right : box.left,
+              closeTo(0.8 * 54, 1e-9),
+              reason: '$frame $corner');
+          expect(l.alignBottom ? frame.height - box.bottom : box.top,
+              closeTo(0.8 * 54, 1e-9),
+              reason: '$frame $corner');
+        }
+      }
+    });
+
+    test('9:16 keeps the end card out of the bottom fifth', () {
       final l =
           HudLayout(portrait, const HudOptions(corner: HudCorner.bottomRight));
-      expect(l.box.bottom, lessThanOrEqualTo(1920 * 4 / 5));
-      expect(l.box.right, lessThanOrEqualTo(1080 * 0.85));
       expect(l.card.bottom, lessThanOrEqualTo(1920 * 4 / 5));
     });
 
@@ -120,18 +133,49 @@ void main() {
     });
   });
 
+  const labels = HudLabels(
+    total: 'TOTAL',
+    first: 'FIRST',
+    average: 'AVERAGE',
+    fastest: 'FASTEST',
+    shots: 'SHOTS',
+    penaltyTemplate: 'Penalty: \u0000s',
+    locale: 'en',
+  );
+
+  test('bottom corners mirror the top ones: the badge in the corner', () {
+    // The badge, then a chip per split: 3 shots fired at 12.6 s.
+    List<RRect> rects(HudCorner corner) {
+      final options = HudOptions(style: HudStyle.full, corner: corner);
+      final canvas = TestRecordingCanvas();
+      paintHudBox(canvas, HudLayout(const Size(1080, 1920), options), string,
+          options, HudMoment.at(string, 12600), labels);
+      return [
+        for (final i in canvas.invocations)
+          if (i.invocation.memberName == #drawRRect)
+            i.invocation.positionalArguments.first as RRect,
+      ];
+    }
+
+    final height = HudLayout(
+            const Size(1080, 1920), const HudOptions(style: HudStyle.full))
+        .box
+        .height;
+    final top = rects(HudCorner.topLeft);
+    final bottom = rects(HudCorner.bottomLeft);
+    expect(top, hasLength(4));
+    expect(top.first.top, 0);
+    expect(bottom.first.bottom, closeTo(height, 1e-9));
+    for (final (i, r) in bottom.indexed) {
+      expect(r.left, top[i].left);
+      expect(r.top, closeTo(height - top[i].bottom, 1e-9));
+      expect(r.bottom, closeTo(height - top[i].top, 1e-9));
+    }
+  });
+
   test('paints every style, corner and the end card without errors', () async {
     // The app's localizations load this; the end card's date needs it.
     await initializeDateFormatting('en');
-    const labels = HudLabels(
-      total: 'TOTAL',
-      first: 'FIRST',
-      average: 'AVERAGE',
-      fastest: 'FASTEST',
-      shots: 'SHOTS',
-      penaltyTemplate: 'Penalty: \u0000s',
-      locale: 'en',
-    );
     expect(labels.penalty(2000), 'Penalty: 2.00s');
     for (final frame in const [Size(1920, 1080), Size(1080, 1920)]) {
       for (final style in HudStyle.values) {

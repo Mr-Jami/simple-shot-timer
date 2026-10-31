@@ -128,8 +128,9 @@ class HudMoment {
 
 /// Where the overlay goes in a video frame of [frame] pixels (upright), in
 /// units of the short side ÷ 20, so it looks the same at any resolution.
-/// Tall frames (9:16) keep it out of the bottom fifth and away from the
-/// right edge, where Reels, Shorts and TikTok draw their own buttons.
+/// The corner overlay keeps the same margin in every corner. Tall frames
+/// (9:16) keep the end card out of the bottom fifth, where Reels, Shorts
+/// and TikTok draw their own captions.
 class HudLayout {
   factory HudLayout(Size frame, HudOptions options) {
     final unit = frame.shortestSide / 20;
@@ -140,10 +141,8 @@ class HudLayout {
         options.corner == HudCorner.bottomRight;
     final bottom = options.corner == HudCorner.bottomLeft ||
         options.corner == HudCorner.bottomRight;
-    final rightInset = margin + (tall ? frame.width * 0.15 : 0);
-    final bottomInset = margin + (tall ? frame.height / 5 : 0);
-    final left = right ? frame.width - rightInset - size.width : margin;
-    final top = bottom ? frame.height - bottomInset - size.height : margin;
+    final left = right ? frame.width - margin - size.width : margin;
+    final top = bottom ? frame.height - margin - size.height : margin;
 
     // The end card in the middle; on tall frames, of the part above the
     // bottom fifth. Where that would cover the corner overlay (narrow
@@ -170,6 +169,7 @@ class HudLayout {
       box: box,
       card: card,
       alignRight: right,
+      alignBottom: bottom,
     );
   }
 
@@ -179,11 +179,12 @@ class HudLayout {
     required this.box,
     required this.card,
     required this.alignRight,
+    required this.alignBottom,
   });
 
-  // In units: the box's margin and width, then its rows top down (the
-  // badge, the clock, the Full style's line, five split chips), then the
-  // end card.
+  // In units: the box's margin and width, then its rows from the corner out
+  // (the badge, the clock, the Full style's line, five split chips), then
+  // the end card.
   static const double marginUnits = 0.8;
   static const double widthUnits = 9;
   static const double badgeUnits = 1.2;
@@ -208,6 +209,9 @@ class HudLayout {
 
   /// Content hugs the box's right edge (right corners).
   final bool alignRight;
+
+  /// Rows stack up from the box's bottom edge (bottom corners).
+  final bool alignBottom;
 
   static Size boxSize(double unit, HudStyle style) {
     var height = badgeUnits + gapUnits + clockUnits;
