@@ -186,6 +186,7 @@
   "184": "ClipFilesChannel",
   "185": "dart:async",
   "186": "settings_provider.dart",
+  "187": "custom_drills_screen.dart",
   "188": "custom_drills_provider.dart",
   "189": "FrameSequenceOverlay",
   "190": "MainActivity",
@@ -194,10 +195,11 @@
   "193": "package:flutter/foundation.dart",
   "194": "biquad_test.dart",
   "195": "main.dart",
+  "196": "biquad.dart",
   "197": "Size",
   "198": "custom_drills_provider.dart",
   "199": "isNoSpace",
-  "202": "ios_audio_session.dart",
-  "205": "drill_config_test.dart",
+  "200": "flash_overlay_test.dart",
+  "201": "ClipExporter",
   "206": "Timer?"
 }
