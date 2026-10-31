@@ -4,6 +4,7 @@
 
 import '../../models/shot.dart';
 import '../../models/timer_string.dart';
+import 'clip_analyzer.dart' show ShotSensitivity;
 
 /// How a marker got where it is.
 enum ShotOrigin {
@@ -22,7 +23,6 @@ class EditShot {
   const EditShot({
     required this.id,
     required this.ms,
-    required this.origin,
     this.detectedMs,
   });
 
@@ -31,18 +31,19 @@ class EditShot {
 
   /// Milliseconds from the start of the clip.
   final int ms;
-  final ShotOrigin origin;
 
   /// Where the analyzer put it; null for added shots.
   final int? detectedMs;
 
-  EditShot _at(int ms) => EditShot(
-        id: id,
-        ms: ms,
-        origin:
-            origin == ShotOrigin.added ? ShotOrigin.added : ShotOrigin.moved,
-        detectedMs: detectedMs,
-      );
+  /// From the times: a shot dragged back onto where it was detected is
+  /// detected again.
+  ShotOrigin get origin => detectedMs == null
+      ? ShotOrigin.added
+      : ms == detectedMs
+          ? ShotOrigin.detected
+          : ShotOrigin.moved;
+
+  EditShot _at(int ms) => EditShot(id: id, ms: ms, detectedMs: detectedMs);
 }
 
 /// The editor's markers, in clip milliseconds. Immutable: every edit returns
@@ -60,17 +61,19 @@ class MarkerDoc {
     this.startEdited = false,
     this.shots = const [],
     this.tombstones = const [],
-    this.endMs,
+    this.lastShotId,
     this.nextId = 0,
+    this.sensitivity = ShotSensitivity.normal,
   });
 
-  /// A fresh document from the analyzer: START (null when no beep was found)
-  /// and the detected shots, in clip milliseconds.
+  /// A fresh document from the analyzer at [sensitivity]: START (null when
+  /// no beep was found) and the detected shots, in clip milliseconds.
   factory MarkerDoc.detected({
     int fromMs = 0,
     required int toMs,
     required int? startMs,
     required List<int> shotMs,
+    ShotSensitivity sensitivity = ShotSensitivity.normal,
   }) {
     final sorted = [...shotMs]..sort();
     return MarkerDoc(
@@ -79,41 +82,44 @@ class MarkerDoc {
       startMs: startMs,
       shots: [
         for (var i = 0; i < sorted.length; i++)
-          EditShot(
-            id: i,
-            ms: sorted[i],
-            origin: ShotOrigin.detected,
-            detectedMs: sorted[i],
-          ),
+          EditShot(id: i, ms: sorted[i], detectedMs: sorted[i]),
       ],
       nextId: sorted.length,
+      sensitivity: sensitivity,
     );
   }
 
   /// A saved video string, reopened with "Choose video again". Shots added
-  /// or moved by hand come back as added; the rest as detected.
+  /// or moved by hand come back as added; the rest as detected. Only
+  /// markers inside [fromMs]..[toMs] come back, since another video can be
+  /// opened anyway: without its START the editor asks for one, as for a
+  /// clip with no beep.
   factory MarkerDoc.fromSaved(
     TimerString string, {
     int fromMs = 0,
     required int toMs,
   }) {
-    final start = string.videoStartMs ?? 0;
+    bool inside(int ms) => ms >= fromMs && ms <= toMs;
+    final start = string.videoStartMs;
     final shots = <EditShot>[];
-    for (final s in string.shots) {
-      final ms = start + s.timeMs;
-      shots.add(EditShot(
-        id: shots.length,
-        ms: ms,
-        origin: s.manual ? ShotOrigin.added : ShotOrigin.detected,
-        detectedMs: s.manual ? null : ms,
-      ));
+    if (start != null) {
+      for (final s in string.shots) {
+        final ms = start + s.timeMs;
+        if (!inside(ms)) continue;
+        shots.add(EditShot(
+          id: shots.length,
+          ms: ms,
+          detectedMs: s.manual ? null : ms,
+        ));
+      }
     }
     shots.sort((a, b) => a.ms.compareTo(b.ms));
+    final fits = start != null && inside(start);
     return MarkerDoc(
       fromMs: fromMs,
       toMs: toMs,
-      startMs: start,
-      startEdited: true,
+      startMs: fits ? start : null,
+      startEdited: fits,
       shots: shots,
       nextId: shots.length,
     );
@@ -136,17 +142,25 @@ class MarkerDoc {
   /// Detected times of deleted detected or moved shots.
   final List<int> tombstones;
 
-  /// Set by Last shot: later shots don't count.
-  final int? endMs;
+  /// The shot marked Last shot: later shots don't count.
+  final int? lastShotId;
   final int nextId;
+
+  /// The detection the untouched shots come from; undo brings it back with
+  /// them.
+  final ShotSensitivity sensitivity;
+
+  /// Where the string ends: the shot marked Last shot, wherever it is.
+  int? get endMs => lastShotId == null ? null : shotById(lastShotId!)?.ms;
 
   /// The string's shots: after START and up to the last shot.
   List<EditShot> get activeShots {
     final start = startMs;
     if (start == null) return const [];
+    final end = endMs;
     return [
       for (final s in shots)
-        if (s.ms > start && (endMs == null || s.ms <= endMs!)) s,
+        if (s.ms > start && (end == null || s.ms <= end)) s,
     ];
   }
 
@@ -180,30 +194,34 @@ class MarkerDoc {
   /// last shot becomes the new last shot.
   MarkerDoc addShot(int ms) {
     final at = _clamp(ms);
+    final end = endMs;
     return _copy(
-      shots: _sorted([
-        ...shots,
-        EditShot(id: nextId, ms: at, origin: ShotOrigin.added),
-      ]),
-      endMs: endMs != null && at > endMs! ? at : endMs,
+      shots: _sorted([...shots, EditShot(id: nextId, ms: at)]),
+      lastShotId: end != null && at > end ? () => nextId : null,
       nextId: nextId + 1,
     );
   }
 
   /// Moves a shot; the end of the string goes with the shot marked Last
-  /// shot.
+  /// shot. Moving a shot to where it is changes nothing.
   MarkerDoc moveShot(int id, int ms) {
-    if (shotById(id) == null) return this;
+    final shot = shotById(id);
     final at = _clamp(ms);
+    if (shot == null || shot.ms == at) return this;
     return _copy(
       shots: _sorted([for (final s in shots) s.id == id ? s._at(at) : s]),
-      endMs: endMs != null && shotById(id)?.ms == endMs ? at : null,
     );
   }
 
+  /// Deletes a shot. Without the shot marked Last shot, the string ends at
+  /// the shot before it.
   MarkerDoc deleteShot(int id) {
     final shot = shotById(id);
     if (shot == null) return this;
+    int? before;
+    for (final s in shots) {
+      if (s.id != id && s.ms <= shot.ms) before = s.id;
+    }
     return _copy(
       shots: [
         for (final s in shots)
@@ -213,25 +231,29 @@ class MarkerDoc {
         ...tombstones,
         if (shot.detectedMs != null) shot.detectedMs!,
       ],
+      lastShotId: id == lastShotId ? () => before : null,
     );
   }
 
-  MarkerDoc setLastShot(int id) {
-    final shot = shotById(id);
-    return shot == null ? this : _copy(endMs: shot.ms);
-  }
+  MarkerDoc setLastShot(int id) =>
+      shotById(id) == null ? this : _copy(lastShotId: () => id);
 
-  /// Applies a new detection (another sensitivity) and keeps the user's
-  /// edits: moved and added shots stay, untouched detected shots are
-  /// replaced, and a detection near a tombstone or near a kept shot (moved
-  /// shots by their detected time too) is dropped. START follows the new
-  /// detection unless the user placed it or the new one found none.
-  MarkerDoc reconcile({required int? startMs, required List<int> shotMs}) {
+  /// Applies a new detection at [sensitivity] and keeps the user's edits:
+  /// moved and added shots and the shot marked Last shot stay, untouched
+  /// detected shots are replaced, and a detection near a tombstone or near
+  /// a kept shot (moved shots by their detected time too) is dropped. START
+  /// follows the new detection unless the user placed it or the new one
+  /// found none.
+  MarkerDoc reconcile({
+    required int? startMs,
+    required List<int> shotMs,
+    ShotSensitivity? sensitivity,
+  }) {
     const sameDetectionMs = 30;
     const keptShotMs = 50;
     final kept = [
       for (final s in shots)
-        if (s.origin != ShotOrigin.detected) s
+        if (s.origin != ShotOrigin.detected || s.id == lastShotId) s
     ];
     bool near(int a, int b, int within) => (a - b).abs() <= within;
     var id = nextId;
@@ -242,13 +264,13 @@ class MarkerDoc {
                 near(ms, k.ms, keptShotMs) ||
                 (k.detectedMs != null &&
                     near(ms, k.detectedMs!, sameDetectionMs))))
-          EditShot(
-              id: id++, ms: ms, origin: ShotOrigin.detected, detectedMs: ms),
+          EditShot(id: id++, ms: ms, detectedMs: ms),
     ];
     return _copy(
       startMs: startEdited ? this.startMs : startMs,
       shots: _sorted([...kept, ...fresh]),
       nextId: id,
+      sensitivity: sensitivity,
     );
   }
 
@@ -262,8 +284,9 @@ class MarkerDoc {
     bool? startEdited,
     List<EditShot>? shots,
     List<int>? tombstones,
-    int? endMs,
+    int? Function()? lastShotId,
     int? nextId,
+    ShotSensitivity? sensitivity,
   }) =>
       MarkerDoc(
         fromMs: fromMs,
@@ -272,7 +295,8 @@ class MarkerDoc {
         startEdited: startEdited ?? this.startEdited,
         shots: shots ?? this.shots,
         tombstones: tombstones ?? this.tombstones,
-        endMs: endMs ?? this.endMs,
+        lastShotId: lastShotId == null ? this.lastShotId : lastShotId(),
         nextId: nextId ?? this.nextId,
+        sensitivity: sensitivity ?? this.sensitivity,
       );
 }

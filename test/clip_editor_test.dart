@@ -19,6 +19,7 @@ import 'package:simple_shot_timer/services/video/analyzed_clip.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer_runner.dart';
 import 'package:simple_shot_timer/services/video/clip_audio_source.dart';
+import 'package:simple_shot_timer/services/video/marker_doc.dart';
 import 'package:simple_shot_timer/services/video/video_string_store.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 
@@ -70,6 +71,9 @@ class _FakeSession extends VideoSession {
 class _SlowAnalyzer implements ClipAnalyzerRunner {
   final delays = <ShotSensitivity, Duration>{};
 
+  /// Thrown by the next detection, then cleared.
+  Object? failNext;
+
   @override
   Future<ClipAnalysis> analyze(String pcmPath, int sampleRate) =>
       throw UnimplementedError();
@@ -77,6 +81,9 @@ class _SlowAnalyzer implements ClipAnalyzerRunner {
   @override
   Future<ClipAnalysis> resense(ClipAnalysis a, ShotSensitivity s) async {
     await Future<void>.delayed(delays[s] ?? Duration.zero);
+    final failure = failNext;
+    failNext = null;
+    if (failure != null) throw failure;
     return a.withSensitivity(s);
   }
 }
@@ -273,6 +280,26 @@ void main() {
       expect(reported.single.exception, isA<StateError>());
     });
 
+    test('an undo past Set START after a save keeps the saved string', () {
+      run(args(noBeep), (async, editor, state) {
+        editor.setStart(1000);
+        editor.flush();
+        async.flushMicrotasks();
+        final saved = store.inserted.single;
+        expect(saved.shots, isNotEmpty);
+        editor.undo();
+        expect(state().doc.startMs, isNull);
+        async.elapse(const Duration(seconds: 1));
+        editor.flush();
+        async.flushMicrotasks();
+        expect(store.updated, isEmpty);
+        expect(state().saveStatus, SaveStatus.unsaved);
+        editor.setStart(1100);
+        async.elapse(const Duration(seconds: 1));
+        expect(store.updated.single.videoStartMs, 1100);
+      });
+    });
+
     test('closing the editor deletes the clip\'s folder', () {
       run(args(withBeep), (async, editor, state) {});
       expect(session.disposed, isTrue);
@@ -318,6 +345,21 @@ void main() {
       });
     });
 
+    test('a shot let go where it was (a pinch) is no edit', () {
+      run(args(withBeep), (async, editor, state) {
+        final shot = state().doc.activeShots[2];
+        editor.flush();
+        async.flushMicrotasks();
+        editor.select(shot.id);
+        editor.beginGesture();
+        editor.moveShot(shot.id, shot.ms);
+        editor.endGesture();
+        expect(state().doc.shotById(shot.id)!.origin, ShotOrigin.detected);
+        expect(state().canUndo, isFalse);
+        expect(state().saveStatus, SaveStatus.saved);
+      });
+    });
+
     test('an added shot is selected and nudges by a millisecond', () {
       run(args(withBeep), (async, editor, state) {
         editor.addShot(6000);
@@ -341,6 +383,63 @@ void main() {
         final times = [for (final s in state().doc.activeShots) s.ms];
         expect(times, isNot(contains(deleted.ms)));
         expect(times, contains(6000));
+      });
+    });
+
+    test('undo takes the level back with the markers', () {
+      run(args(withBeep), (async, editor, state) {
+        final before = [for (final s in state().doc.activeShots) s.ms];
+        editor.setSensitivity(ShotSensitivity.more);
+        async.elapse(const Duration(seconds: 1));
+        expect(state().sensitivity, ShotSensitivity.more);
+        editor.undo();
+        expect(state().sensitivity, ShotSensitivity.normal);
+        expect([for (final s in state().doc.activeShots) s.ms], before);
+      });
+    });
+
+    test('a failed detection keeps the level, and choosing it again retries',
+        () {
+      run(args(withBeep), (async, editor, state) {
+        analyzer.failNext = Exception('isolate died');
+        editor.setSensitivity(ShotSensitivity.more);
+        expect(state().sensitivity, ShotSensitivity.more);
+        expect(state().sensitivityBusy, isTrue);
+        async.elapse(const Duration(seconds: 1));
+        expect(state().sensitivity, ShotSensitivity.normal);
+        expect(state().sensitivityBusy, isFalse);
+        expect(state().canUndo, isFalse);
+        editor.setSensitivity(ShotSensitivity.more);
+        async.elapse(const Duration(seconds: 1));
+        expect(state().sensitivity, ShotSensitivity.more);
+        expect(state().canUndo, isTrue);
+      });
+    });
+
+    test('an error in a detection is reported and stops the spinner', () {
+      final reported = <FlutterErrorDetails>[];
+      final previous = FlutterError.onError;
+      FlutterError.onError = reported.add;
+      addTearDown(() => FlutterError.onError = previous);
+      run(args(withBeep), (async, editor, state) {
+        analyzer.failNext = StateError('a bug');
+        editor.setSensitivity(ShotSensitivity.fewer);
+        async.elapse(const Duration(seconds: 1));
+        expect(state().sensitivityBusy, isFalse);
+        expect(state().sensitivity, ShotSensitivity.normal);
+      });
+      expect(reported.single.exception, isA<StateError>());
+    });
+
+    test('choosing the markers\' own level again stops a running one', () {
+      analyzer.delays[ShotSensitivity.more] = const Duration(seconds: 2);
+      run(args(withBeep), (async, editor, state) {
+        editor.setSensitivity(ShotSensitivity.more);
+        editor.setSensitivity(ShotSensitivity.normal);
+        expect(state().sensitivityBusy, isFalse);
+        async.elapse(const Duration(seconds: 3));
+        expect(state().sensitivity, ShotSensitivity.normal);
+        expect(state().canUndo, isFalse);
       });
     });
 

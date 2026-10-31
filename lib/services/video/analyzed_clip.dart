@@ -100,6 +100,7 @@ class AnalyzedClip {
         toMs: toMs,
         startMs: startMs,
         shotMs: shotMs,
+        sensitivity: analysis.sensitivity,
       );
 
   /// The same clip and part with [analysis] (another sensitivity).

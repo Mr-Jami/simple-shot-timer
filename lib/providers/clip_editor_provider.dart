@@ -40,9 +40,8 @@ enum SaveStatus { unsaved, saving, saved, failed }
 class ClipEditorState {
   const ClipEditorState({
     required this.doc,
-    required this.sensitivity,
+    this.pendingSensitivity,
     this.selectedId,
-    this.sensitivityBusy = false,
     this.label,
     this.notes,
     this.penaltyMs = 0,
@@ -53,9 +52,10 @@ class ClipEditorState {
   });
 
   final MarkerDoc doc;
-  final ShotSensitivity sensitivity;
+
+  /// The level chosen while its detection runs.
+  final ShotSensitivity? pendingSensitivity;
   final int? selectedId;
-  final bool sensitivityBusy;
   final String? label;
   final String? notes;
   final int penaltyMs;
@@ -69,11 +69,14 @@ class ClipEditorState {
   EditShot? get selected =>
       selectedId == null ? null : doc.shotById(selectedId!);
 
+  /// The level the selector shows: the one running, else the markers'.
+  ShotSensitivity get sensitivity => pendingSensitivity ?? doc.sensitivity;
+  bool get sensitivityBusy => pendingSensitivity != null;
+
   ClipEditorState copyWith({
     MarkerDoc? doc,
-    ShotSensitivity? sensitivity,
+    ShotSensitivity? Function()? pendingSensitivity,
     int? Function()? selectedId,
-    bool? sensitivityBusy,
     String? Function()? label,
     String? Function()? notes,
     int? penaltyMs,
@@ -83,9 +86,10 @@ class ClipEditorState {
   }) =>
       ClipEditorState(
         doc: doc ?? this.doc,
-        sensitivity: sensitivity ?? this.sensitivity,
+        pendingSensitivity: pendingSensitivity == null
+            ? this.pendingSensitivity
+            : pendingSensitivity(),
         selectedId: selectedId == null ? this.selectedId : selectedId(),
-        sensitivityBusy: sensitivityBusy ?? this.sensitivityBusy,
         label: label == null ? this.label : label(),
         notes: notes == null ? this.notes : notes(),
         penaltyMs: penaltyMs ?? this.penaltyMs,
@@ -100,8 +104,10 @@ class ClipEditorState {
 /// [MarkerDoc]; undo keeps earlier documents. Nothing is saved until a
 /// [flush] (leaving, exporting, or the app going to the background) finds
 /// START and at least one shot; after that first save every change
-/// autosaves [autosaveDelay] after the last edit. Saves run one at a time,
-/// so two quick ones never insert twice.
+/// autosaves [autosaveDelay] after the last edit. A change that leaves the
+/// string without them (an undo past Set START) isn't saved: the saved
+/// string keeps its last complete version. Saves run one at a time, so two
+/// quick ones never insert twice.
 class ClipEditorNotifier
     extends AutoDisposeFamilyNotifier<ClipEditorState, ClipEditorArgs> {
   static const autosaveDelay = Duration(milliseconds: 600);
@@ -131,7 +137,6 @@ class ClipEditorNotifier
       return ClipEditorState(
         doc: MarkerDoc.fromSaved(saved,
             fromMs: arg.clip.fromMs, toMs: arg.clip.toMs),
-        sensitivity: arg.clip.analysis.sensitivity,
         label: saved.label,
         notes: saved.notes,
         penaltyMs: saved.penaltyMs,
@@ -140,10 +145,7 @@ class ClipEditorNotifier
         reopened: true,
       );
     }
-    return ClipEditorState(
-      doc: arg.clip.toDoc(),
-      sensitivity: arg.clip.analysis.sensitivity,
-    );
+    return ClipEditorState(doc: arg.clip.toDoc());
   }
 
   /// The string as it would be saved now; the editor's stats read it.
@@ -200,28 +202,44 @@ class ClipEditorNotifier
     _changed();
   }
 
-  /// Re-detects shots at [sensitivity] and keeps the user's edits. The
-  /// latest request wins; reopened strings keep exactly their markers.
+  /// Re-detects shots at [sensitivity] and keeps the user's edits; undo
+  /// takes the level back with the markers. The latest request wins, and
+  /// choosing the markers' own level again stops a running one. A failed
+  /// detection leaves the markers and their level. Reopened strings keep
+  /// exactly their markers.
   Future<void> setSensitivity(ShotSensitivity sensitivity) async {
     if (state.reopened || sensitivity == state.sensitivity) return;
     final request = ++_sensitivityRequest;
-    state = state.copyWith(sensitivity: sensitivity, sensitivityBusy: true);
-    final ClipAnalysis analysis;
+    if (sensitivity == state.doc.sensitivity) {
+      state = state.copyWith(pendingSensitivity: () => null);
+      return;
+    }
+    state = state.copyWith(pendingSensitivity: () => sensitivity);
+    ClipAnalysis? analysis;
     try {
       analysis = await ref
           .read(clipAnalyzerProvider)
           .resense(arg.clip.analysis, sensitivity);
-    } on Exception {
-      if (request == _sensitivityRequest) {
-        state = state.copyWith(sensitivityBusy: false);
+    } catch (e, stack) {
+      if (e is! Exception) {
+        FlutterError.reportError(FlutterErrorDetails(
+          exception: e,
+          stack: stack,
+          library: 'video editor',
+        ));
       }
-      return;
     }
     // Not when the editor closed meanwhile: it saved what the user saw.
     if (_disposed || request != _sensitivityRequest) return;
-    final clip = arg.clip.withAnalysis(analysis);
-    _edit(state.doc.reconcile(startMs: clip.startMs, shotMs: clip.shotMs));
-    state = state.copyWith(sensitivityBusy: false);
+    if (analysis != null) {
+      final clip = arg.clip.withAnalysis(analysis);
+      _edit(state.doc.reconcile(
+        startMs: clip.startMs,
+        shotMs: clip.shotMs,
+        sensitivity: sensitivity,
+      ));
+    }
+    state = state.copyWith(pendingSensitivity: () => null);
   }
 
   void setLabel(String label) {
@@ -304,9 +322,8 @@ class ClipEditorNotifier
   Future<void> _enqueueSave() => _saving = _saving.then((_) => _persist());
 
   Future<void> _persist() async {
-    if (_discarded) return;
+    if (_discarded || !state.doc.isComplete) return;
     final savedId = state.savedId;
-    if (savedId == null && !state.doc.isComplete) return;
     if (savedId != null && state.saveStatus == SaveStatus.saved) return;
     final store = ref.read(videoStringStoreProvider);
     state = state.copyWith(saveStatus: SaveStatus.saving);

@@ -97,6 +97,31 @@ void main() {
       expect(active(d.moveShot(0, 2800)), [2620]);
     });
 
+    test('another shot moved through the end does not take it along', () {
+      var d = doc().setLastShot(1);
+      d = d.moveShot(0, 2620).moveShot(0, 2800);
+      expect(active(d), [2620]);
+    });
+
+    test('deleting the shot marked Last shot ends the string before it', () {
+      final d = doc().setLastShot(1).deleteShot(1);
+      expect(active(d), [2200]);
+    });
+
+    test('a shot moved to where it is changes nothing', () {
+      final d = doc();
+      expect(identical(d.moveShot(1, 2620), d), isTrue);
+      final end = d.moveShot(2, 20000);
+      expect(identical(end.moveShot(2, 30000), end), isTrue,
+          reason: 'both clamped to the clip\'s end');
+    });
+
+    test('a shot moved back where it was detected is detected again', () {
+      final d = doc().moveShot(1, 2700).moveShot(1, 2620);
+      expect(d.shotById(1)!.origin, ShotOrigin.detected);
+      expect(d.toShots().any((s) => s.manual), isFalse);
+    });
+
     test('deleting the last shot leaves nothing to save', () {
       var d = doc(shots: [2200]);
       d = d.deleteShot(d.shots.single.id);
@@ -139,6 +164,21 @@ void main() {
       expect(doc().reconcile(startMs: null, shotMs: [2200]).startMs, 1000);
     });
 
+    test('keeps the shot marked Last shot and the end with it', () {
+      // The new detection puts that shot a frame later.
+      final d = doc()
+          .setLastShot(1)
+          .reconcile(startMs: 1000, shotMs: [2200, 2621, 2950]);
+      expect(active(d), [2200, 2620]);
+    });
+
+    test('takes the level along', () {
+      final d = doc().reconcile(
+          startMs: 1000, shotMs: [2200], sensitivity: ShotSensitivity.more);
+      expect(doc().sensitivity, ShotSensitivity.normal);
+      expect(d.sensitivity, ShotSensitivity.more);
+    });
+
     test('flipping back and forth is stable', () {
       var d = doc().addShot(3300);
       d = d.deleteShot(d.shots.first.id);
@@ -169,6 +209,17 @@ void main() {
     expect(d.startEdited, isTrue);
     expect(d.toShots().map((s) => (s.timeMs, s.manual)),
         [(1720, false), (2060, true)]);
+
+    // Opened anyway on another video: only what fits in it comes back, and
+    // without its START the editor asks for one.
+    final shorter = MarkerDoc.fromSaved(saved, toMs: 6600);
+    expect(shorter.startMs, 4788);
+    expect([for (final s in shorter.shots) s.ms], [6508]);
+    final part = MarkerDoc.fromSaved(saved, fromMs: 5000, toMs: 60000);
+    expect(part.startMs, isNull);
+    expect(part.startEdited, isFalse);
+    expect([for (final s in part.shots) s.ms], [6508, 6848]);
+    expect(part.isComplete, isFalse);
   });
 
   group('an analysed clip', () {
