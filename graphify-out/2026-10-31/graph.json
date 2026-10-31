@@ -1210,7 +1210,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 155,
+      "community": 141,
       "norm_label": "dart:io"
     },
     {
@@ -2173,7 +2173,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_int",
-      "community": 194,
+      "community": 52,
       "norm_label": "int"
     },
     {
@@ -2343,7 +2343,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_upright",
-      "community": 194,
+      "community": 52,
       "norm_label": ".upright()"
     },
     {
@@ -2353,7 +2353,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_avassettrack",
-      "community": 194,
+      "community": 52,
       "norm_label": "avassettrack"
     },
     {
@@ -2363,7 +2363,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "cgsize",
-      "community": 194,
+      "community": 52,
       "norm_label": "cgsize"
     },
     {
@@ -2373,7 +2373,7 @@
       "source_location": "L228",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
-      "community": 194,
+      "community": 52,
       "norm_label": ".rendersize()"
     },
     {
@@ -2593,7 +2593,7 @@
       "source_location": "L383",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes",
-      "community": 194,
+      "community": 84,
       "norm_label": "overlayframes"
     },
     {
@@ -2603,7 +2603,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_int64",
-      "community": 194,
+      "community": 84,
       "norm_label": "int64"
     },
     {
@@ -2613,7 +2613,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "cgfloat",
-      "community": 194,
+      "community": 52,
       "norm_label": "cgfloat"
     },
     {
@@ -2623,7 +2623,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ciimage",
-      "community": 194,
+      "community": 84,
       "norm_label": "ciimage"
     },
     {
@@ -2643,7 +2643,7 @@
       "source_location": "L411",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_image",
-      "community": 194,
+      "community": 84,
       "norm_label": ".image()"
     },
     {
@@ -2653,7 +2653,7 @@
       "source_location": "L430",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_pixels",
-      "community": 194,
+      "community": 84,
       "norm_label": ".pixels()"
     },
     {
@@ -2663,7 +2663,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "data",
-      "community": 194,
+      "community": 84,
       "norm_label": "data"
     },
     {
@@ -3045,7 +3045,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 81,
+      "community": 54,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -3065,7 +3065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_build",
-      "community": 81,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -3095,7 +3095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -3105,7 +3105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "i18n_app_localizations_dart",
-      "community": 185,
+      "community": 135,
       "norm_label": "../../i18n/app_localizations.dart"
     },
     {
@@ -3205,7 +3205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_applocalizationsx",
-      "community": 205,
+      "community": 4,
       "norm_label": "applocalizationsx"
     },
     {
@@ -3215,7 +3215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "buildcontext",
-      "community": 205,
+      "community": 4,
       "norm_label": "buildcontext"
     },
     {
@@ -3425,7 +3425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_convert",
-      "community": 17,
+      "community": 88,
       "norm_label": "dart:convert"
     },
     {
@@ -3435,7 +3435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_services_dart",
-      "community": 141,
+      "community": 173,
       "norm_label": "package:flutter/services.dart"
     },
     {
@@ -3535,7 +3535,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_audio_service_dart",
-      "community": 179,
+      "community": 103,
       "norm_label": "../services/audio_service.dart"
     },
     {
@@ -3555,7 +3555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_database_service_dart",
-      "community": 103,
+      "community": 179,
       "norm_label": "../services/database_service.dart"
     },
     {
@@ -3565,7 +3565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_export_service_dart",
-      "community": 179,
+      "community": 175,
       "norm_label": "../services/export_service.dart"
     },
     {
@@ -4545,7 +4545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_widgets_dart",
-      "community": 152,
+      "community": 165,
       "norm_label": "package:flutter/widgets.dart"
     },
     {
@@ -4855,7 +4855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_math",
-      "community": 93,
+      "community": 203,
       "norm_label": "dart:math"
     },
     {
@@ -5005,7 +5005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_timer_state_timerstate",
-      "community": 29,
+      "community": 191,
       "norm_label": "timerstate"
     },
     {
@@ -5845,7 +5845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "future",
-      "community": 152,
+      "community": 104,
       "norm_label": "future"
     },
     {
@@ -6175,7 +6175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 3,
+      "community": 32,
       "norm_label": "../../models/timer_string.dart"
     },
     {
@@ -6195,7 +6195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_analyzer_dart",
-      "community": 32,
+      "community": 13,
       "norm_label": "../../services/video/clip_analyzer.dart"
     },
     {
@@ -6415,7 +6415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_custom_drill_dart",
-      "community": 187,
+      "community": 95,
       "norm_label": "../models/custom_drill.dart"
     },
     {
@@ -6425,7 +6425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_drill_config_dart",
-      "community": 187,
+      "community": 95,
       "norm_label": "../models/drill_config.dart"
     },
     {
@@ -6435,7 +6435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_dart",
-      "community": 3,
+      "community": 186,
       "norm_label": "providers.dart"
     },
     {
@@ -6445,7 +6445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider",
-      "community": 3,
+      "community": 155,
       "norm_label": "history_provider.dart"
     },
     {
@@ -6455,7 +6455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_historynotifier",
-      "community": 3,
+      "community": 155,
       "norm_label": "historynotifier"
     },
     {
@@ -6465,7 +6465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "asyncnotifier",
-      "community": 3,
+      "community": 155,
       "norm_label": "asyncnotifier"
     },
     {
@@ -6485,7 +6485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_build",
-      "community": 3,
+      "community": 155,
       "norm_label": "build"
     },
     {
@@ -6495,7 +6495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_refresh",
-      "community": 3,
+      "community": 155,
       "norm_label": "refresh"
     },
     {
@@ -6505,7 +6505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_delete",
-      "community": 3,
+      "community": 155,
       "norm_label": "delete"
     },
     {
@@ -6515,7 +6515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_deleteall",
-      "community": 3,
+      "community": 155,
       "norm_label": "deleteall"
     },
     {
@@ -6545,7 +6545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_databaseprovider",
-      "community": 3,
+      "community": 155,
       "norm_label": "databaseprovider"
     },
     {
@@ -6595,7 +6595,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_beepplayerprovider",
-      "community": 207,
+      "community": 191,
       "norm_label": "beepplayerprovider"
     },
     {
@@ -6785,7 +6785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 3,
+      "community": 175,
       "norm_label": "string_provider.dart"
     },
     {
@@ -6805,7 +6805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 3,
+      "community": 175,
       "norm_label": "read"
     },
     {
@@ -6825,7 +6825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timernotifier",
-      "community": 29,
+      "community": 191,
       "norm_label": "timernotifier"
     },
     {
@@ -7075,7 +7075,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timerprovider",
-      "community": 183,
+      "community": 54,
       "norm_label": "timerprovider"
     },
     {
@@ -7305,7 +7305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playstartbeep",
-      "community": 207,
+      "community": 191,
       "norm_label": "_playstartbeep"
     },
     {
@@ -7315,7 +7315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playparbeep",
-      "community": 207,
+      "community": 191,
       "norm_label": "_playparbeep"
     },
     {
@@ -7625,7 +7625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "image",
-      "community": 138,
+      "community": 150,
       "norm_label": "image?"
     },
     {
@@ -7655,7 +7655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "duration",
-      "community": 152,
+      "community": 165,
       "norm_label": "duration"
     },
     {
@@ -7855,7 +7855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_path_dart",
-      "community": 155,
+      "community": 41,
       "norm_label": "package:path/path.dart"
     },
     {
@@ -7885,7 +7885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_hud_dart",
-      "community": 150,
+      "community": 138,
       "norm_label": "../../services/video/hud.dart"
     },
     {
@@ -7935,7 +7935,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importstate",
-      "community": 195,
+      "community": 149,
       "norm_label": "importstate"
     },
     {
@@ -7945,7 +7945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importworking",
-      "community": 195,
+      "community": 149,
       "norm_label": "importworking"
     },
     {
@@ -7955,7 +7955,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importchoosepart",
-      "community": 195,
+      "community": 149,
       "norm_label": "importchoosepart"
     },
     {
@@ -7965,7 +7965,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importproblem",
-      "community": 195,
+      "community": 149,
       "norm_label": "importproblem"
     },
     {
@@ -7975,7 +7975,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importcancelled",
-      "community": 195,
+      "community": 149,
       "norm_label": "importcancelled"
     },
     {
@@ -7985,7 +7985,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importready",
-      "community": 195,
+      "community": 149,
       "norm_label": "importready"
     },
     {
@@ -7995,7 +7995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_videoimportcontroller",
-      "community": 195,
+      "community": 150,
       "norm_label": "videoimportcontroller"
     },
     {
@@ -8395,7 +8395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_analyse",
-      "community": 195,
+      "community": 150,
       "norm_label": "_analyse"
     },
     {
@@ -8425,7 +8425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_audio_source_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "../services/video/clip_audio_source.dart"
     },
     {
@@ -8435,7 +8435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_check_dart",
-      "community": 126,
+      "community": 32,
       "norm_label": "../services/video/clip_check.dart"
     },
     {
@@ -8445,7 +8445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_picker_dart",
-      "community": 126,
+      "community": 32,
       "norm_label": "../services/video/clip_picker.dart"
     },
     {
@@ -8475,7 +8475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_clipaudiosourceprovider",
-      "community": 195,
+      "community": 150,
       "norm_label": "clipaudiosourceprovider"
     },
     {
@@ -8485,7 +8485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_clippickerprovider",
-      "community": 195,
+      "community": 150,
       "norm_label": "clippickerprovider"
     },
     {
@@ -8505,7 +8505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_videoworkdirprovider",
-      "community": 54,
+      "community": 150,
       "norm_label": "videoworkdirprovider"
     },
     {
@@ -8555,7 +8555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_hudlogoprovider",
-      "community": 178,
+      "community": 18,
       "norm_label": "hudlogoprovider"
     },
     {
@@ -8565,7 +8565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_hudoptionsprovider",
-      "community": 178,
+      "community": 18,
       "norm_label": "hudoptionsprovider"
     },
     {
@@ -8645,7 +8645,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstatefulwidget",
-      "community": 172,
+      "community": 18,
       "norm_label": "consumerstatefulwidget"
     },
     {
@@ -8665,7 +8665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstate",
-      "community": 172,
+      "community": 18,
       "norm_label": "consumerstate"
     },
     {
@@ -8795,7 +8795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "voidcallback",
-      "community": 187,
+      "community": 95,
       "norm_label": "voidcallback"
     },
     {
@@ -9135,7 +9135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_custom_drills_provider_dart",
-      "community": 187,
+      "community": 95,
       "norm_label": "../providers/custom_drills_provider.dart"
     },
     {
@@ -9165,7 +9165,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen",
-      "community": 187,
+      "community": 95,
       "norm_label": "custom_drills_screen.dart"
     },
     {
@@ -9175,7 +9175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_drillaction",
-      "community": 187,
+      "community": 95,
       "norm_label": "_drillaction"
     },
     {
@@ -9195,7 +9195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_emptystate",
-      "community": 187,
+      "community": 95,
       "norm_label": "_emptystate"
     },
     {
@@ -9205,7 +9205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_onsave",
-      "community": 187,
+      "community": 95,
       "norm_label": "onsave"
     },
     {
@@ -9225,7 +9225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_run",
-      "community": 187,
+      "community": 95,
       "norm_label": "_run"
     },
     {
@@ -9235,7 +9235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_menuitems",
-      "community": 187,
+      "community": 95,
       "norm_label": "_menuitems"
     },
     {
@@ -9245,7 +9245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_drill_tile_dart",
-      "community": 187,
+      "community": 95,
       "norm_label": "../widgets/drill_tile.dart"
     },
     {
@@ -9255,7 +9255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -9265,7 +9265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "custom_drill_flows_dart",
-      "community": 187,
+      "community": 95,
       "norm_label": "custom_drill_flows.dart"
     },
     {
@@ -9355,7 +9355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen",
-      "community": 185,
+      "community": 175,
       "norm_label": "history_screen.dart"
     },
     {
@@ -9385,7 +9385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_history_provider_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "../providers/history_provider.dart"
     },
     {
@@ -9395,7 +9395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_string_tile_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "../widgets/string_tile.dart"
     },
     {
@@ -9405,7 +9405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "review_screen_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "review_screen.dart"
     },
     {
@@ -9425,7 +9425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_homescreen",
-      "community": 183,
+      "community": 54,
       "norm_label": "homescreen"
     },
     {
@@ -9435,7 +9435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_bigbutton",
-      "community": 183,
+      "community": 54,
       "norm_label": "_bigbutton"
     },
     {
@@ -9545,7 +9545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_finishedview",
-      "community": 183,
+      "community": 54,
       "norm_label": "_finishedview"
     },
     {
@@ -9795,7 +9795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_timer_provider_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "../providers/timer_provider.dart"
     },
     {
@@ -9845,7 +9845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_pill_button_dart",
-      "community": 14,
+      "community": 175,
       "norm_label": "../widgets/pill_button.dart"
     },
     {
@@ -9855,7 +9855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell",
-      "community": 183,
+      "community": 81,
       "norm_label": "main_shell.dart"
     },
     {
@@ -9865,7 +9865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshell",
-      "community": 183,
+      "community": 18,
       "norm_label": "mainshell"
     },
     {
@@ -9875,7 +9875,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshellstate",
-      "community": 183,
+      "community": 18,
       "norm_label": "_mainshellstate"
     },
     {
@@ -9885,7 +9885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_index",
-      "community": 183,
+      "community": 81,
       "norm_label": "_index"
     },
     {
@@ -9895,7 +9895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_createstate",
-      "community": 183,
+      "community": 81,
       "norm_label": "createstate"
     },
     {
@@ -9905,7 +9905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_select",
-      "community": 183,
+      "community": 54,
       "norm_label": "_select"
     },
     {
@@ -9915,7 +9915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_build",
-      "community": 183,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -9925,7 +9925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_app_navigation_bar_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "../widgets/app_navigation_bar.dart"
     },
     {
@@ -9935,7 +9935,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_flash_overlay_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "../widgets/flash_overlay.dart"
     },
     {
@@ -9945,7 +9945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "custom_drills_screen_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "custom_drills_screen.dart"
     },
     {
@@ -9955,7 +9955,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "history_screen_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "history_screen.dart"
     },
     {
@@ -9965,7 +9965,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "home_screen_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "home_screen.dart"
     },
     {
@@ -9975,7 +9975,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "settings_screen_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "settings_screen.dart"
     },
     {
@@ -9985,7 +9985,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_screen_dart",
-      "community": 183,
+      "community": 81,
       "norm_label": "video_screen.dart"
     },
     {
@@ -9995,7 +9995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "systemuioverlaystyle",
-      "community": 183,
+      "community": 81,
       "norm_label": "systemuioverlaystyle"
     },
     {
@@ -10205,7 +10205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbody",
-      "community": 172,
+      "community": 3,
       "norm_label": "_reviewbody"
     },
     {
@@ -10215,7 +10215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbodystate",
-      "community": 172,
+      "community": 3,
       "norm_label": "_reviewbodystate"
     },
     {
@@ -10225,7 +10225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 14,
+      "community": 3,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -10255,7 +10255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 3,
+      "community": 14,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -10445,7 +10445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_persistmeta",
-      "community": 3,
+      "community": 155,
       "norm_label": "_persistmeta"
     },
     {
@@ -10455,7 +10455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_deleteshot",
-      "community": 3,
+      "community": 155,
       "norm_label": "_deleteshot"
     },
     {
@@ -10465,7 +10465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_addshot",
-      "community": 3,
+      "community": 155,
       "norm_label": "_addshot"
     },
     {
@@ -10525,7 +10525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_flows_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "video_flows.dart"
     },
     {
@@ -10605,7 +10605,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_settings_screen_confirmdeleteall",
-      "community": 54,
+      "community": 150,
       "norm_label": "_confirmdeleteall"
     },
     {
@@ -10645,7 +10645,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_providers_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "../providers/video_providers.dart"
     },
     {
@@ -10695,7 +10695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_videoeditorscreen",
-      "community": 172,
+      "community": 18,
       "norm_label": "videoeditorscreen"
     },
     {
@@ -10705,7 +10705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_videoeditorscreenstate",
-      "community": 178,
+      "community": 18,
       "norm_label": "_videoeditorscreenstate"
     },
     {
@@ -10715,7 +10715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "tickerproviderstatemixin",
-      "community": 178,
+      "community": 18,
       "norm_label": "tickerproviderstatemixin"
     },
     {
@@ -10725,7 +10725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgetsbindingobserver",
-      "community": 178,
+      "community": 18,
       "norm_label": "widgetsbindingobserver"
     },
     {
@@ -10735,7 +10735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "wholevideo",
-      "community": 178,
+      "community": 18,
       "norm_label": "wholevideo"
     },
     {
@@ -11135,7 +11135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_hud",
-      "community": 178,
+      "community": 18,
       "norm_label": "_hud"
     },
     {
@@ -11255,7 +11255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_export",
-      "community": 178,
+      "community": 18,
       "norm_label": "_export"
     },
     {
@@ -11365,7 +11365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_export_provider_dart",
-      "community": 81,
+      "community": 172,
       "norm_label": "../providers/video_export_provider.dart"
     },
     {
@@ -11475,7 +11475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_overlay_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "../widgets/video/hud_overlay.dart"
     },
     {
@@ -11565,7 +11565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_var",
-      "community": 172,
+      "community": 156,
       "norm_label": "static var"
     },
     {
@@ -11725,7 +11725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows",
-      "community": 126,
+      "community": 32,
       "norm_label": "video_flows.dart"
     },
     {
@@ -11735,7 +11735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_startvideoimport",
-      "community": 126,
+      "community": 32,
       "norm_label": "startvideoimport"
     },
     {
@@ -11745,7 +11745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_choosevideoagain",
-      "community": 126,
+      "community": 32,
       "norm_label": "choosevideoagain"
     },
     {
@@ -11755,7 +11755,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_clipproblemkey",
-      "community": 126,
+      "community": 32,
       "norm_label": "clipproblemkey"
     },
     {
@@ -11765,7 +11765,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_import_screen_dart",
-      "community": 126,
+      "community": 32,
       "norm_label": "video_import_screen.dart"
     },
     {
@@ -11805,7 +11805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_analyzingview",
-      "community": 14,
+      "community": 126,
       "norm_label": "_analyzingview"
     },
     {
@@ -12155,7 +12155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "valuechanged",
-      "community": 32,
+      "community": 13,
       "norm_label": "valuechanged"
     },
     {
@@ -12335,7 +12335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen",
-      "community": 185,
+      "community": 175,
       "norm_label": "video_screen.dart"
     },
     {
@@ -12355,7 +12355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_sample",
-      "community": 178,
+      "community": 18,
       "norm_label": "_sample"
     },
     {
@@ -12365,7 +12365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_emptystate",
-      "community": 14,
+      "community": 175,
       "norm_label": "_emptystate"
     },
     {
@@ -12375,7 +12375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_recentcount",
-      "community": 185,
+      "community": 175,
       "norm_label": "_recentcount"
     },
     {
@@ -12385,7 +12385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_build",
-      "community": 178,
+      "community": 18,
       "norm_label": "build"
     },
     {
@@ -12395,7 +12395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_sample_dart",
-      "community": 185,
+      "community": 175,
       "norm_label": "../widgets/video/hud_sample.dart"
     },
     {
@@ -13325,7 +13325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_database_service_databaseservice",
-      "community": 103,
+      "community": 32,
       "norm_label": "databaseservice"
     },
     {
@@ -15215,7 +15215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "clip_analyzer_dart",
-      "community": 165,
+      "community": 143,
       "norm_label": "clip_analyzer.dart"
     },
     {
@@ -15285,7 +15285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_shotsensitivity",
-      "community": 32,
+      "community": 13,
       "norm_label": "shotsensitivity"
     },
     {
@@ -15455,7 +15455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_isolate",
-      "community": 165,
+      "community": 143,
       "norm_label": "dart:isolate"
     },
     {
@@ -15485,7 +15485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "spectrogram_dart",
-      "community": 133,
+      "community": 131,
       "norm_label": "spectrogram.dart"
     },
     {
@@ -15505,7 +15505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_runner",
-      "community": 165,
+      "community": 143,
       "norm_label": "clip_analyzer_runner.dart"
     },
     {
@@ -15515,7 +15515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_runner_clipanalyzerrunner",
-      "community": 165,
+      "community": 143,
       "norm_label": "clipanalyzerrunner"
     },
     {
@@ -15525,7 +15525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_runner_isolateclipanalyzer",
-      "community": 165,
+      "community": 143,
       "norm_label": "isolateclipanalyzer"
     },
     {
@@ -15535,7 +15535,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_runner_analyze",
-      "community": 165,
+      "community": 143,
       "norm_label": "analyze"
     },
     {
@@ -15545,7 +15545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_runner_resense",
-      "community": 165,
+      "community": 143,
       "norm_label": "resense"
     },
     {
@@ -15615,7 +15615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_audio_source_clipaudiosource",
-      "community": 208,
+      "community": 101,
       "norm_label": "clipaudiosource"
     },
     {
@@ -15625,7 +15625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_audio_source_channelclipaudiosource",
-      "community": 208,
+      "community": 101,
       "norm_label": "channelclipaudiosource"
     },
     {
@@ -16485,7 +16485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_image_picker_image_picker_dart",
-      "community": 156,
+      "community": 184,
       "norm_label": "package:image_picker/image_picker.dart"
     },
     {
@@ -17665,7 +17665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const_double",
-      "community": 170,
+      "community": 151,
       "norm_label": "static const double"
     },
     {
@@ -17749,24 +17749,44 @@
       "norm_label": "widthunits"
     },
     {
-      "label": "badgeUnits",
+      "label": "brandUnits",
       "file_type": "code",
       "source_file": "lib/services/video/hud.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_badgeunits",
+      "id": "lib_services_video_hud_brandunits",
       "community": 139,
-      "norm_label": "badgeunits"
+      "norm_label": "brandunits"
     },
     {
-      "label": "gapUnits",
+      "label": "brandGapUnits",
       "file_type": "code",
       "source_file": "lib/services/video/hud.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_gapunits",
+      "id": "lib_services_video_hud_brandgapunits",
       "community": 139,
-      "norm_label": "gapunits"
+      "norm_label": "brandgapunits"
+    },
+    {
+      "label": "labelUnits",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_labelunits",
+      "community": 139,
+      "norm_label": "labelunits"
+    },
+    {
+      "label": "labelGapUnits",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_labelgapunits",
+      "community": 139,
+      "norm_label": "labelgapunits"
     },
     {
       "label": "clockUnits",
@@ -17779,26 +17799,6 @@
       "norm_label": "clockunits"
     },
     {
-      "label": "clockFontUnits",
-      "file_type": "code",
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_video_hud_clockfontunits",
-      "community": 139,
-      "norm_label": "clockfontunits"
-    },
-    {
-      "label": "chipWidthUnits",
-      "file_type": "code",
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_video_hud_chipwidthunits",
-      "community": 139,
-      "norm_label": "chipwidthunits"
-    },
-    {
       "label": "lineUnits",
       "file_type": "code",
       "source_file": "lib/services/video/hud.dart",
@@ -17809,34 +17809,44 @@
       "norm_label": "lineunits"
     },
     {
-      "label": "chipUnits",
+      "label": "splitsGapUnits",
       "file_type": "code",
       "source_file": "lib/services/video/hud.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_chipunits",
+      "id": "lib_services_video_hud_splitsgapunits",
       "community": 139,
-      "norm_label": "chipunits"
+      "norm_label": "splitsgapunits"
     },
     {
-      "label": "chipPitchUnits",
+      "label": "splitUnits",
       "file_type": "code",
       "source_file": "lib/services/video/hud.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_chippitchunits",
+      "id": "lib_services_video_hud_splitunits",
       "community": 139,
-      "norm_label": "chippitchunits"
+      "norm_label": "splitunits"
     },
     {
-      "label": "chips",
+      "label": "splits",
       "file_type": "code",
       "source_file": "lib/services/video/hud.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_chips",
+      "id": "lib_services_video_hud_splits",
       "community": 139,
-      "norm_label": "chips"
+      "norm_label": "splits"
+    },
+    {
+      "label": "shadeUnits",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_shadeunits",
+      "community": 139,
+      "norm_label": "shadeunits"
     },
     {
       "label": "cardUnits",
@@ -17857,6 +17867,16 @@
       "id": "static_const_size",
       "community": 139,
       "norm_label": "static const size"
+    },
+    {
+      "label": "cardShadeUnits",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_cardshadeunits",
+      "community": 139,
+      "norm_label": "cardshadeunits"
     },
     {
       "label": "frame",
@@ -17907,6 +17927,46 @@
       "id": "lib_services_video_hud_card",
       "community": 139,
       "norm_label": "card"
+    },
+    {
+      "label": "shadeCentre",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_shadecentre",
+      "community": 139,
+      "norm_label": "shadecentre"
+    },
+    {
+      "label": "Offset",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "offset",
+      "community": 139,
+      "norm_label": "offset"
+    },
+    {
+      "label": "shade",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_shade",
+      "community": 139,
+      "norm_label": "shade"
+    },
+    {
+      "label": "cardShade",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_cardshade",
+      "community": 139,
+      "norm_label": "cardshade"
     },
     {
       "label": "alignRight",
@@ -18459,6 +18519,46 @@
       "norm_label": "fromcorner"
     },
     {
+      "label": "shown",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_shown",
+      "community": 83,
+      "norm_label": "shown"
+    },
+    {
+      "label": "tops",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_tops",
+      "community": 83,
+      "norm_label": "tops"
+    },
+    {
+      "label": "last",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_last",
+      "community": 83,
+      "norm_label": "last"
+    },
+    {
+      "label": "ruleWidth",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_rulewidth",
+      "community": 83,
+      "norm_label": "rulewidth"
+    },
+    {
       "label": "card",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
@@ -18479,14 +18579,14 @@
       "norm_label": "string"
     },
     {
-      "label": "pad",
+      "label": "cx",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_pad",
+      "id": "lib_services_video_hud_painter_cx",
       "community": 83,
-      "norm_label": "pad"
+      "norm_label": "cx"
     },
     {
       "label": "inner",
@@ -18497,16 +18597,6 @@
       "id": "lib_services_video_hud_painter_inner",
       "community": 83,
       "norm_label": "inner"
-    },
-    {
-      "label": "y",
-      "file_type": "code",
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_video_hud_painter_y",
-      "community": 83,
-      "norm_label": "y"
     },
     {
       "label": "stats",
@@ -18529,6 +18619,16 @@
       "norm_label": "column"
     },
     {
+      "label": "top",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_top",
+      "community": 83,
+      "norm_label": "top"
+    },
+    {
       "label": "parts",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
@@ -18539,14 +18639,14 @@
       "norm_label": "parts"
     },
     {
-      "label": "height",
+      "label": "mark",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_height",
+      "id": "lib_services_video_hud_painter_mark",
       "community": 83,
-      "norm_label": "height"
+      "norm_label": "mark"
     },
     {
       "label": "name",
@@ -18559,14 +18659,34 @@
       "norm_label": "name"
     },
     {
-      "label": "mark",
+      "label": "gap",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_mark",
+      "id": "lib_services_video_hud_painter_gap",
       "community": 83,
-      "norm_label": "mark"
+      "norm_label": "gap"
+    },
+    {
+      "label": "left",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_left",
+      "community": 83,
+      "norm_label": "left"
+    },
+    {
+      "label": "y",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_y",
+      "community": 83,
+      "norm_label": "y"
     },
     {
       "label": "width",
@@ -18589,14 +18709,34 @@
       "norm_label": "x"
     },
     {
-      "label": "tx",
+      "label": "nameX",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_tx",
+      "id": "lib_services_video_hud_painter_namex",
       "community": 83,
-      "norm_label": "tx"
+      "norm_label": "namex"
+    },
+    {
+      "label": "label",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_label",
+      "community": 83,
+      "norm_label": "label"
+    },
+    {
+      "label": "size",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_size",
+      "community": 83,
+      "norm_label": "size"
     },
     {
       "label": "style",
@@ -18619,6 +18759,16 @@
       "norm_label": "clock"
     },
     {
+      "label": "inset",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_inset",
+      "community": 83,
+      "norm_label": "inset"
+    },
+    {
       "label": "pivot",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
@@ -18627,6 +18777,26 @@
       "id": "lib_services_video_hud_painter_pivot",
       "community": 83,
       "norm_label": "pivot"
+    },
+    {
+      "label": "text",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_text",
+      "community": 83,
+      "norm_label": "text"
+    },
+    {
+      "label": "value",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_value",
+      "community": 83,
+      "norm_label": "value"
     },
     {
       "label": "line",
@@ -18659,14 +18829,54 @@
       "norm_label": "opacity"
     },
     {
-      "label": "text",
+      "label": "mid",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_text",
+      "id": "lib_services_video_hud_painter_mid",
       "community": 83,
-      "norm_label": "text"
+      "norm_label": "mid"
+    },
+    {
+      "label": "number",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_number",
+      "community": 83,
+      "norm_label": "number"
+    },
+    {
+      "label": "split",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_split",
+      "community": 83,
+      "norm_label": "split"
+    },
+    {
+      "label": "right",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_right",
+      "community": 83,
+      "norm_label": "right"
+    },
+    {
+      "label": "w",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_w",
+      "community": 83,
+      "norm_label": "w"
     },
     {
       "label": "painter",
@@ -18679,16 +18889,6 @@
       "norm_label": "painter"
     },
     {
-      "label": "size",
-      "file_type": "code",
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_video_hud_painter_size",
-      "community": 83,
-      "norm_label": "size"
-    },
-    {
       "label": "p",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
@@ -18699,24 +18899,14 @@
       "norm_label": "p"
     },
     {
-      "label": "outline",
+      "label": "height",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_outline",
+      "id": "lib_services_video_hud_painter_height",
       "community": 83,
-      "norm_label": "outline"
-    },
-    {
-      "label": "fill",
-      "file_type": "code",
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_video_hud_painter_fill",
-      "community": 83,
-      "norm_label": "fill"
+      "norm_label": "height"
     },
     {
       "label": "penalty",
@@ -18727,6 +18917,16 @@
       "id": "lib_services_video_hud_painter_penalty",
       "community": 83,
       "norm_label": "penalty"
+    },
+    {
+      "label": "paintHudShade",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_painthudshade",
+      "community": 83,
+      "norm_label": "painthudshade"
     },
     {
       "label": "paintHudBox",
@@ -18769,14 +18969,14 @@
       "norm_label": "time"
     },
     {
-      "label": "_paintBadge",
+      "label": "_paintBrand",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_paintbadge",
+      "id": "lib_services_video_hud_painter_paintbrand",
       "community": 83,
-      "norm_label": "_paintbadge"
+      "norm_label": "_paintbrand"
     },
     {
       "label": "_paintClock",
@@ -18809,14 +19009,44 @@
       "norm_label": "_paintsplit"
     },
     {
-      "label": "_badgeStyle",
+      "label": "_paintMark",
       "file_type": "code",
       "source_file": "lib/services/video/hud_painter.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_services_video_hud_painter_badgestyle",
+      "id": "lib_services_video_hud_painter_paintmark",
       "community": 83,
-      "norm_label": "_badgestyle"
+      "norm_label": "_paintmark"
+    },
+    {
+      "label": "_soft",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_soft",
+      "community": 83,
+      "norm_label": "_soft"
+    },
+    {
+      "label": "_nameStyle",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_namestyle",
+      "community": 83,
+      "norm_label": "_namestyle"
+    },
+    {
+      "label": "_labelStyle",
+      "file_type": "code",
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_hud_painter_labelstyle",
+      "community": 83,
+      "norm_label": "_labelstyle"
     },
     {
       "label": "_numberStyle",
@@ -18867,16 +19097,6 @@
       "id": "lib_services_video_hud_painter_paintcentred",
       "community": 83,
       "norm_label": "_paintcentred"
-    },
-    {
-      "label": "_paintOutlined",
-      "file_type": "code",
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_services_video_hud_painter_paintoutlined",
-      "community": 83,
-      "norm_label": "_paintoutlined"
     },
     {
       "label": "package:flutter/painting.dart",
@@ -19245,7 +19465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_part_window_partwindow",
-      "community": 171,
+      "community": 91,
       "norm_label": "partwindow"
     },
     {
@@ -20095,7 +20315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker",
-      "community": 152,
+      "community": 104,
       "norm_label": "throttled_seeker.dart"
     },
     {
@@ -20105,7 +20325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_throttledseeker",
-      "community": 152,
+      "community": 104,
       "norm_label": "throttledseeker"
     },
     {
@@ -20115,7 +20335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_mingap",
-      "community": 152,
+      "community": 104,
       "norm_label": "mingap"
     },
     {
@@ -20125,7 +20345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_pending",
-      "community": 152,
+      "community": 104,
       "norm_label": "_pending"
     },
     {
@@ -20135,7 +20355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_releasing",
-      "community": 152,
+      "community": 104,
       "norm_label": "_releasing"
     },
     {
@@ -20145,7 +20365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_draining",
-      "community": 152,
+      "community": 104,
       "norm_label": "_draining"
     },
     {
@@ -20155,7 +20375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_gap",
-      "community": 152,
+      "community": 104,
       "norm_label": "_gap"
     },
     {
@@ -20165,7 +20385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "completer",
-      "community": 152,
+      "community": 104,
       "norm_label": "completer"
     },
     {
@@ -20175,7 +20395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_gaptimer",
-      "community": 152,
+      "community": 104,
       "norm_label": "_gaptimer"
     },
     {
@@ -20185,7 +20405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_scrub",
-      "community": 152,
+      "community": 104,
       "norm_label": "scrub"
     },
     {
@@ -20195,7 +20415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_release",
-      "community": 152,
+      "community": 104,
       "norm_label": "release"
     },
     {
@@ -20205,7 +20425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_drain",
-      "community": 152,
+      "community": 104,
       "norm_label": "_drain"
     },
     {
@@ -20215,7 +20435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_throttled_seeker_endgap",
-      "community": 152,
+      "community": 104,
       "norm_label": "_endgap"
     },
     {
@@ -20785,7 +21005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store",
-      "community": 3,
+      "community": 32,
       "norm_label": "video_string_store.dart"
     },
     {
@@ -20795,7 +21015,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_videostringstore",
-      "community": 80,
+      "community": 32,
       "norm_label": "videostringstore"
     },
     {
@@ -20805,7 +21025,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_insertstring",
-      "community": 3,
+      "community": 32,
       "norm_label": "insertstring"
     },
     {
@@ -20815,7 +21035,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_updatevideostring",
-      "community": 3,
+      "community": 32,
       "norm_label": "updatevideostring"
     },
     {
@@ -20825,7 +21045,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_deletestring",
-      "community": 3,
+      "community": 32,
       "norm_label": "deletestring"
     },
     {
@@ -20845,7 +21065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videoworkdir",
-      "community": 189,
+      "community": 127,
       "norm_label": "videoworkdir"
     },
     {
@@ -20885,7 +21105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "directory",
-      "community": 155,
+      "community": 41,
       "norm_label": "directory"
     },
     {
@@ -21015,7 +21235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service",
-      "community": 141,
+      "community": 173,
       "norm_label": "volume_service.dart"
     },
     {
@@ -21035,7 +21255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_channel",
-      "community": 141,
+      "community": 173,
       "norm_label": "_channel"
     },
     {
@@ -21045,7 +21265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_ismediaaudible",
-      "community": 141,
+      "community": 173,
       "norm_label": "ismediaaudible"
     },
     {
@@ -21055,7 +21275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_showvolumepanel",
-      "community": 141,
+      "community": 173,
       "norm_label": "showvolumepanel"
     },
     {
@@ -21515,7 +21735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion",
-      "community": 152,
+      "community": 165,
       "norm_label": "motion.dart"
     },
     {
@@ -21525,7 +21745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotionshort",
-      "community": 152,
+      "community": 165,
       "norm_label": "kmotionshort"
     },
     {
@@ -21535,7 +21755,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotionmedium",
-      "community": 152,
+      "community": 165,
       "norm_label": "kmotionmedium"
     },
     {
@@ -21545,7 +21765,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotiontick",
-      "community": 152,
+      "community": 165,
       "norm_label": "kmotiontick"
     },
     {
@@ -21555,7 +21775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_reducedmotionof",
-      "community": 152,
+      "community": 165,
       "norm_label": "reducedmotionof"
     },
     {
@@ -21565,7 +21785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_motion",
-      "community": 152,
+      "community": 165,
       "norm_label": "motion"
     },
     {
@@ -22075,7 +22295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar",
-      "community": 170,
+      "community": 151,
       "norm_label": "app_navigation_bar.dart"
     },
     {
@@ -22085,7 +22305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_appnavigationbar",
-      "community": 170,
+      "community": 151,
       "norm_label": "appnavigationbar"
     },
     {
@@ -22095,7 +22315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_step",
-      "community": 170,
+      "community": 151,
       "norm_label": "step"
     },
     {
@@ -22105,7 +22325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_smallest",
-      "community": 170,
+      "community": 151,
       "norm_label": "smallest"
     },
     {
@@ -22115,7 +22335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_size",
-      "community": 170,
+      "community": 151,
       "norm_label": "size"
     },
     {
@@ -22125,7 +22345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_selectedindex",
-      "community": 170,
+      "community": 151,
       "norm_label": "selectedindex"
     },
     {
@@ -22135,7 +22355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_ondestinationselected",
-      "community": 170,
+      "community": 151,
       "norm_label": "ondestinationselected"
     },
     {
@@ -22145,7 +22365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_showvideo",
-      "community": 170,
+      "community": 151,
       "norm_label": "showvideo"
     },
     {
@@ -22155,7 +22375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_labelinset",
-      "community": 170,
+      "community": 151,
       "norm_label": "_labelinset"
     },
     {
@@ -22165,7 +22385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_fittedlabelsize",
-      "community": 170,
+      "community": 151,
       "norm_label": "fittedlabelsize"
     },
     {
@@ -22175,7 +22395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_fits",
-      "community": 170,
+      "community": 151,
       "norm_label": "fits"
     },
     {
@@ -22185,7 +22405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_build",
-      "community": 170,
+      "community": 151,
       "norm_label": "build"
     },
     {
@@ -22195,7 +22415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display",
-      "community": 104,
+      "community": 19,
       "norm_label": "big_time_display.dart"
     },
     {
@@ -22235,7 +22455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_timems",
-      "community": 104,
+      "community": 19,
       "norm_label": "timems"
     },
     {
@@ -22245,7 +22465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_label",
-      "community": 104,
+      "community": 19,
       "norm_label": "label"
     },
     {
@@ -22255,7 +22475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_fontsize",
-      "community": 104,
+      "community": 19,
       "norm_label": "fontsize"
     },
     {
@@ -22265,7 +22485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_pulsekey",
-      "community": 104,
+      "community": 19,
       "norm_label": "pulsekey"
     },
     {
@@ -22275,7 +22495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "object",
-      "community": 104,
+      "community": 19,
       "norm_label": "object?"
     },
     {
@@ -22285,7 +22505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_ctrl",
-      "community": 104,
+      "community": 19,
       "norm_label": "_ctrl"
     },
     {
@@ -22295,7 +22515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animationcontroller",
-      "community": 104,
+      "community": 19,
       "norm_label": "animationcontroller"
     },
     {
@@ -22305,7 +22525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_scale",
-      "community": 104,
+      "community": 19,
       "norm_label": "_scale"
     },
     {
@@ -22315,7 +22535,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animation",
-      "community": 104,
+      "community": 19,
       "norm_label": "animation"
     },
     {
@@ -22325,7 +22545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_createstate",
-      "community": 104,
+      "community": 19,
       "norm_label": "createstate"
     },
     {
@@ -22335,7 +22555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_didupdatewidget",
-      "community": 104,
+      "community": 19,
       "norm_label": "didupdatewidget"
     },
     {
@@ -22345,7 +22565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_dispose",
-      "community": 104,
+      "community": 19,
       "norm_label": "dispose"
     },
     {
@@ -22355,7 +22575,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_build",
-      "community": 104,
+      "community": 19,
       "norm_label": "build"
     },
     {
@@ -22425,7 +22645,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog",
-      "community": 22,
+      "community": 135,
       "norm_label": "confirm_dialog.dart"
     },
     {
@@ -22435,7 +22655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_dismissible",
-      "community": 22,
+      "community": 135,
       "norm_label": "dismissible"
     },
     {
@@ -22445,7 +22665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "string_cancellabel_bool",
-      "community": 22,
+      "community": 135,
       "norm_label": "string? cancellabel,\n  bool"
     },
     {
@@ -22455,7 +22675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_result",
-      "community": 22,
+      "community": 135,
       "norm_label": "result"
     },
     {
@@ -22465,7 +22685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_false",
-      "community": 22,
+      "community": 135,
       "norm_label": "false"
     },
     {
@@ -22475,7 +22695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return_result",
-      "community": 22,
+      "community": 135,
       "norm_label": "return result ??"
     },
     {
@@ -22485,7 +22705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_confirmdialog",
-      "community": 22,
+      "community": 135,
       "norm_label": "confirmdialog"
     },
     {
@@ -22675,7 +22895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile",
-      "community": 187,
+      "community": 95,
       "norm_label": "drill_tile.dart"
     },
     {
@@ -22685,7 +22905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drilltile",
-      "community": 187,
+      "community": 95,
       "norm_label": "drilltile"
     },
     {
@@ -22695,7 +22915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drill",
-      "community": 187,
+      "community": 95,
       "norm_label": "drill"
     },
     {
@@ -22705,7 +22925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_active",
-      "community": 187,
+      "community": 95,
       "norm_label": "active"
     },
     {
@@ -22715,7 +22935,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_ontap",
-      "community": 187,
+      "community": 95,
       "norm_label": "ontap"
     },
     {
@@ -22725,7 +22945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_trailing",
-      "community": 187,
+      "community": 95,
       "norm_label": "trailing"
     },
     {
@@ -22735,7 +22955,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_build",
-      "community": 187,
+      "community": 95,
       "norm_label": "build"
     },
     {
@@ -23015,7 +23235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector",
-      "community": 32,
+      "community": 13,
       "norm_label": "sensitivity_selector.dart"
     },
     {
@@ -23025,7 +23245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_sensitivityselector",
-      "community": 32,
+      "community": 13,
       "norm_label": "sensitivityselector"
     },
     {
@@ -23035,7 +23255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_value",
-      "community": 32,
+      "community": 13,
       "norm_label": "value"
     },
     {
@@ -23045,7 +23265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_busy",
-      "community": 32,
+      "community": 13,
       "norm_label": "busy"
     },
     {
@@ -23055,7 +23275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_onchanged",
-      "community": 32,
+      "community": 13,
       "norm_label": "onchanged"
     },
     {
@@ -23065,7 +23285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_build",
-      "community": 32,
+      "community": 13,
       "norm_label": "build"
     },
     {
@@ -23255,7 +23475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter",
-      "community": 202,
+      "community": 22,
       "norm_label": "mic_level_meter.dart"
     },
     {
@@ -23265,7 +23485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_miclevelmeter",
-      "community": 202,
+      "community": 22,
       "norm_label": "miclevelmeter"
     },
     {
@@ -23275,7 +23495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_level",
-      "community": 202,
+      "community": 22,
       "norm_label": "level"
     },
     {
@@ -23285,7 +23505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_threshold",
-      "community": 202,
+      "community": 22,
       "norm_label": "threshold"
     },
     {
@@ -23295,7 +23515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_height",
-      "community": 202,
+      "community": 22,
       "norm_label": "height"
     },
     {
@@ -23305,7 +23525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_compact",
-      "community": 202,
+      "community": 22,
       "norm_label": "compact"
     },
     {
@@ -23315,7 +23535,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_mic_level_meter_build",
-      "community": 202,
+      "community": 22,
       "norm_label": "build"
     },
     {
@@ -24325,7 +24545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "t",
-      "community": 32,
+      "community": 13,
       "norm_label": "t"
     },
     {
@@ -24335,7 +24555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets",
-      "community": 32,
+      "community": 13,
       "norm_label": "settings_widgets.dart"
     },
     {
@@ -24345,7 +24565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_settingssection",
-      "community": 32,
+      "community": 13,
       "norm_label": "settingssection"
     },
     {
@@ -24355,7 +24575,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_enumchoice",
-      "community": 32,
+      "community": 13,
       "norm_label": "enumchoice"
     },
     {
@@ -24365,7 +24585,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_title",
-      "community": 32,
+      "community": 13,
       "norm_label": "title"
     },
     {
@@ -24375,7 +24595,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_values",
-      "community": 32,
+      "community": 13,
       "norm_label": "values"
     },
     {
@@ -24385,7 +24605,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_current",
-      "community": 32,
+      "community": 13,
       "norm_label": "current"
     },
     {
@@ -24395,7 +24615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_onchanged",
-      "community": 32,
+      "community": 13,
       "norm_label": "onchanged"
     },
     {
@@ -24405,7 +24625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_settings_widgets_build",
-      "community": 32,
+      "community": 13,
       "norm_label": "build"
     },
     {
@@ -24685,7 +24905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_shot_timeline_shottimeline",
-      "community": 130,
+      "community": 171,
       "norm_label": "shottimeline"
     },
     {
@@ -24695,7 +24915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_shot_timeline_shottimelinestate",
-      "community": 130,
+      "community": 171,
       "norm_label": "_shottimelinestate"
     },
     {
@@ -25175,7 +25395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_timeline_controller_timelinecontroller",
-      "community": 112,
+      "community": 170,
       "norm_label": "timelinecontroller"
     },
     {
@@ -25185,7 +25405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "changenotifier",
-      "community": 112,
+      "community": 170,
       "norm_label": "changenotifier"
     },
     {
@@ -25805,7 +26025,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_overlay_hudlabelsof",
-      "community": 205,
+      "community": 4,
       "norm_label": "hudlabelsof"
     },
     {
@@ -26605,7 +26825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_memorystore",
-      "community": 80,
+      "community": 32,
       "norm_label": "_memorystore"
     },
     {
@@ -26625,7 +26845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_slowanalyzer",
-      "community": 165,
+      "community": 143,
       "norm_label": "_slowanalyzer"
     },
     {
@@ -26905,7 +27125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_fake_async_fake_async_dart",
-      "community": 94,
+      "community": 142,
       "norm_label": "package:fake_async/fake_async.dart"
     },
     {
@@ -26965,7 +27185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_video_providers_dart",
-      "community": 155,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/providers/video_providers.dart"
     },
     {
@@ -26995,7 +27215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_marker_doc_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/services/video/marker_doc.dart"
     },
     {
@@ -27015,7 +27235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_video_work_dir_dart",
-      "community": 155,
+      "community": 127,
       "norm_label": "package:simple_shot_timer/services/video/video_work_dir.dart"
     },
     {
@@ -27895,7 +28115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_database_service_dart",
-      "community": 141,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/services/database_service.dart"
     },
     {
@@ -27965,7 +28185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 93,
+      "community": 203,
       "norm_label": "delay_test.dart"
     },
     {
@@ -27975,7 +28195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 93,
+      "community": 203,
       "norm_label": "main"
     },
     {
@@ -27985,7 +28205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_timer_provider_dart",
-      "community": 94,
+      "community": 203,
       "norm_label": "package:simple_shot_timer/providers/timer_provider.dart"
     },
     {
@@ -27995,7 +28215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test",
-      "community": 17,
+      "community": 88,
       "norm_label": "drill_config_test.dart"
     },
     {
@@ -28005,7 +28225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_drill",
-      "community": 17,
+      "community": 88,
       "norm_label": "_drill"
     },
     {
@@ -28015,7 +28235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_other",
-      "community": 17,
+      "community": 88,
       "norm_label": "_other"
     },
     {
@@ -28025,7 +28245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_singlefieldedits",
-      "community": 17,
+      "community": 88,
       "norm_label": "_singlefieldedits"
     },
     {
@@ -28035,7 +28255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_main",
-      "community": 17,
+      "community": 88,
       "norm_label": "main"
     },
     {
@@ -28045,7 +28265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test",
-      "community": 155,
+      "community": 41,
       "norm_label": "export_service_test.dart"
     },
     {
@@ -28055,7 +28275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_temp",
-      "community": 155,
+      "community": 41,
       "norm_label": "temp"
     },
     {
@@ -28065,7 +28285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_main",
-      "community": 155,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -28075,7 +28295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_touch",
-      "community": 155,
+      "community": 41,
       "norm_label": "touch"
     },
     {
@@ -28085,7 +28305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_export_service_dart",
-      "community": 155,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/services/export_service.dart"
     },
     {
@@ -28095,7 +28315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_export_plan_dart",
-      "community": 155,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/services/video/export_plan.dart"
     },
     {
@@ -28455,7 +28675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_blend_test",
-      "community": 94,
+      "community": 203,
       "norm_label": "latency_blend_test.dart"
     },
     {
@@ -28465,7 +28685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_blend_test_main",
-      "community": 94,
+      "community": 203,
       "norm_label": "main"
     },
     {
@@ -28475,7 +28695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_calibration_test",
-      "community": 94,
+      "community": 203,
       "norm_label": "latency_calibration_test.dart"
     },
     {
@@ -28485,7 +28705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_calibration_test_main",
-      "community": 94,
+      "community": 203,
       "norm_label": "main"
     },
     {
@@ -28585,7 +28805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_panel_fit_test",
-      "community": 141,
+      "community": 94,
       "norm_label": "marker_panel_fit_test.dart"
     },
     {
@@ -28595,7 +28815,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_panel_fit_test_shot",
-      "community": 141,
+      "community": 94,
       "norm_label": "shot"
     },
     {
@@ -28605,7 +28825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_panel_fit_test_shots",
-      "community": 141,
+      "community": 94,
       "norm_label": "shots"
     },
     {
@@ -28615,7 +28835,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_panel_fit_test_main",
-      "community": 141,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -28625,7 +28845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_theme_app_theme_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/theme/app_theme.dart"
     },
     {
@@ -28635,7 +28855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_editor_marker_panel_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/widgets/editor/marker_panel.dart"
     },
     {
@@ -28645,7 +28865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "roboto_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "roboto.dart"
     },
     {
@@ -28655,7 +28875,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test",
-      "community": 141,
+      "community": 94,
       "norm_label": "nav_label_fit_test.dart"
     },
     {
@@ -28665,7 +28885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_main",
-      "community": 141,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -28675,7 +28895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_pumpbar",
-      "community": 141,
+      "community": 94,
       "norm_label": "pumpbar"
     },
     {
@@ -28685,7 +28905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_paragraph",
-      "community": 141,
+      "community": 94,
       "norm_label": "paragraph"
     },
     {
@@ -28695,7 +28915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_nav_label_fit_test_lines",
-      "community": 141,
+      "community": 94,
       "norm_label": "lines"
     },
     {
@@ -28705,7 +28925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_rendering_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:flutter/rendering.dart"
     },
     {
@@ -28715,7 +28935,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_app_navigation_bar_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/widgets/app_navigation_bar.dart"
     },
     {
@@ -28725,7 +28945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "renderparagraph",
-      "community": 141,
+      "community": 94,
       "norm_label": "renderparagraph"
     },
     {
@@ -28765,7 +28985,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test",
-      "community": 171,
+      "community": 91,
       "norm_label": "part_strip_test.dart"
     },
     {
@@ -28775,7 +28995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_tenminutes",
-      "community": 171,
+      "community": 91,
       "norm_label": "tenminutes"
     },
     {
@@ -28785,7 +29005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_window",
-      "community": 171,
+      "community": 91,
       "norm_label": "window"
     },
     {
@@ -28795,7 +29015,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_edges",
-      "community": 171,
+      "community": 91,
       "norm_label": "edges"
     },
     {
@@ -28805,7 +29025,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_ends",
-      "community": 171,
+      "community": 91,
       "norm_label": "ends"
     },
     {
@@ -28815,7 +29035,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_main",
-      "community": 171,
+      "community": 91,
       "norm_label": "main"
     },
     {
@@ -28825,7 +29045,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_pumpstrip",
-      "community": 171,
+      "community": 91,
       "norm_label": "pumpstrip"
     },
     {
@@ -28835,7 +29055,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_part_window_dart",
-      "community": 171,
+      "community": 91,
       "norm_label": "package:simple_shot_timer/services/video/part_window.dart"
     },
     {
@@ -28845,7 +29065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_part_strip_dart",
-      "community": 171,
+      "community": 91,
       "norm_label": "package:simple_shot_timer/widgets/part_strip.dart"
     },
     {
@@ -28855,7 +29075,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test",
-      "community": 171,
+      "community": 91,
       "norm_label": "part_window_test.dart"
     },
     {
@@ -28865,7 +29085,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_minute",
-      "community": 171,
+      "community": 91,
       "norm_label": "minute"
     },
     {
@@ -28875,7 +29095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_tenminutes",
-      "community": 171,
+      "community": 91,
       "norm_label": "tenminutes"
     },
     {
@@ -28885,7 +29105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_main",
-      "community": 171,
+      "community": 91,
       "norm_label": "main"
     },
     {
@@ -28895,7 +29115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test",
-      "community": 141,
+      "community": 41,
       "norm_label": "review_discard_test.dart"
     },
     {
@@ -28905,7 +29125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_metawrites",
-      "community": 103,
+      "community": 32,
       "norm_label": "_metawrites"
     },
     {
@@ -28915,7 +29135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_writes",
-      "community": 141,
+      "community": 41,
       "norm_label": "writes"
     },
     {
@@ -28925,7 +29145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_updatestringmeta",
-      "community": 141,
+      "community": 41,
       "norm_label": "updatestringmeta"
     },
     {
@@ -28935,7 +29155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_nosuchmethod",
-      "community": 141,
+      "community": 41,
       "norm_label": "nosuchmethod"
     },
     {
@@ -28955,7 +29175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_string_provider_dart",
-      "community": 141,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/providers/string_provider.dart"
     },
     {
@@ -28965,7 +29185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_review_screen_dart",
-      "community": 141,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/screens/review_screen.dart"
     },
     {
@@ -28975,7 +29195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "navigatorstate",
-      "community": 141,
+      "community": 41,
       "norm_label": "navigatorstate"
     },
     {
@@ -28985,7 +29205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto",
-      "community": 155,
+      "community": 141,
       "norm_label": "roboto.dart"
     },
     {
@@ -28995,7 +29215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_fonts",
-      "community": 155,
+      "community": 141,
       "norm_label": "fonts"
     },
     {
@@ -29005,7 +29225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_roboto",
-      "community": 155,
+      "community": 141,
       "norm_label": "roboto"
     },
     {
@@ -29015,7 +29235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_loadroboto",
-      "community": 155,
+      "community": 141,
       "norm_label": "loadroboto"
     },
     {
@@ -29025,7 +29245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_load",
-      "community": 155,
+      "community": 141,
       "norm_label": "load"
     },
     {
@@ -29035,7 +29255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test",
-      "community": 155,
+      "community": 141,
       "norm_label": "settings_delete_all_test.dart"
     },
     {
@@ -29045,7 +29265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_history",
-      "community": 3,
+      "community": 155,
       "norm_label": "_history"
     },
     {
@@ -29055,7 +29275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleted",
-      "community": 155,
+      "community": 141,
       "norm_label": "deleted"
     },
     {
@@ -29065,7 +29285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_build",
-      "community": 155,
+      "community": 141,
       "norm_label": "build"
     },
     {
@@ -29075,7 +29295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleteall",
-      "community": 155,
+      "community": 141,
       "norm_label": "deleteall"
     },
     {
@@ -29085,7 +29305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_main",
-      "community": 155,
+      "community": 141,
       "norm_label": "main"
     },
     {
@@ -29095,7 +29315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_history_provider_dart",
-      "community": 155,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/providers/history_provider.dart"
     },
     {
@@ -29105,7 +29325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_settings_screen_dart",
-      "community": 155,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/screens/settings_screen.dart"
     },
     {
@@ -29735,7 +29955,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test",
-      "community": 141,
+      "community": 94,
       "norm_label": "theme_monochrome_test.dart"
     },
     {
@@ -29745,7 +29965,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_main",
-      "community": 141,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -29755,7 +29975,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_roles",
-      "community": 141,
+      "community": 94,
       "norm_label": "roles"
     },
     {
@@ -29765,7 +29985,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test",
-      "community": 94,
+      "community": 142,
       "norm_label": "throttled_seeker_test.dart"
     },
     {
@@ -29775,7 +29995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test_main",
-      "community": 94,
+      "community": 142,
       "norm_label": "main"
     },
     {
@@ -29785,7 +30005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_throttled_seeker_dart",
-      "community": 94,
+      "community": 142,
       "norm_label": "package:simple_shot_timer/services/video/throttled_seeker.dart"
     },
     {
@@ -30435,7 +30655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_memorystore",
-      "community": 80,
+      "community": 32,
       "norm_label": "_memorystore"
     },
     {
@@ -31165,7 +31385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakeworkdir",
-      "community": 189,
+      "community": 127,
       "norm_label": "_fakeworkdir"
     },
     {
@@ -31185,7 +31405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakeaudio",
-      "community": 208,
+      "community": 101,
       "norm_label": "_fakeaudio"
     },
     {
@@ -31195,7 +31415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakeanalyzer",
-      "community": 165,
+      "community": 143,
       "norm_label": "_fakeanalyzer"
     },
     {
@@ -31645,7 +31865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_check_dart",
-      "community": 155,
+      "community": 127,
       "norm_label": "package:simple_shot_timer/services/video/clip_check.dart"
     },
     {
@@ -31655,7 +31875,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test",
-      "community": 155,
+      "community": 127,
       "norm_label": "video_work_dir_test.dart"
     },
     {
@@ -31665,7 +31885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_temp",
-      "community": 155,
+      "community": 127,
       "norm_label": "temp"
     },
     {
@@ -31675,7 +31895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_work",
-      "community": 155,
+      "community": 127,
       "norm_label": "work"
     },
     {
@@ -31685,7 +31905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_main",
-      "community": 155,
+      "community": 127,
       "norm_label": "main"
     },
     {
@@ -33065,7 +33285,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "join_testing",
-      "community": 204,
+      "community": 92,
       "norm_label": "join_testing.md"
     },
     {
@@ -33145,7 +33365,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme",
-      "community": 204,
+      "community": 92,
       "norm_label": "readme.md"
     },
     {
@@ -34945,7 +35165,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "branding_store_listing_readme",
-      "community": 204,
+      "community": 100,
       "norm_label": "readme.md"
     },
     {
@@ -35025,7 +35245,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "fastlane_metadata_readme",
-      "community": 204,
+      "community": 100,
       "norm_label": "readme.md"
     },
     {
@@ -35115,7 +35335,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "website_readme",
-      "community": 204,
+      "community": 92,
       "norm_label": "readme.md"
     },
     {
@@ -67265,16 +67485,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud",
-      "target": "lib_services_video_hud_badgeunits"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_box"
     },
     {
@@ -67295,6 +67505,26 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_brandgapunits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_brandunits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_card"
     },
     {
@@ -67305,57 +67535,27 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_cardshade"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_cardshadeunits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_cardunits"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud",
-      "target": "lib_services_video_hud_chippitchunits"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud",
-      "target": "lib_services_video_hud_chips"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud",
-      "target": "lib_services_video_hud_chipunits"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud",
-      "target": "lib_services_video_hud_chipwidthunits"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud",
-      "target": "lib_services_video_hud_clockfontunits"
     },
     {
       "relation": "defines",
@@ -67475,16 +67675,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud",
-      "target": "lib_services_video_hud_gapunits"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_hashcode"
     },
     {
@@ -67535,6 +67725,26 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_labelgapunits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_labelunits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_lineunits"
     },
     {
@@ -67565,6 +67775,36 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_shade"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_shadecentre"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_shadeunits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_shotcount"
     },
     {
@@ -67586,6 +67826,36 @@
       "weight": 1.0,
       "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_splitms"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_splits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_splitsgapunits"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud",
+      "target": "lib_services_video_hud_splitunits"
     },
     {
       "relation": "defines",
@@ -67666,6 +67936,17 @@
       "weight": 1.0,
       "source": "lib_services_video_hud",
       "target": "lib_services_video_hud_widthunits"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "source": "lib_services_video_hud",
+      "target": "offset"
     },
     {
       "relation": "references",
@@ -68117,16 +68398,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_badgestyle"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_black"
     },
     {
@@ -68167,6 +68438,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_cx"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_dimwhite"
     },
     {
@@ -68187,16 +68468,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_fill"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_first"
     },
     {
@@ -68208,6 +68479,16 @@
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_fromcorner"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_gap"
     },
     {
       "relation": "defines",
@@ -68257,7 +68538,57 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_inset"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_label"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_labelstyle"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_last"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_layout"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_left"
     },
     {
       "relation": "defines",
@@ -68307,6 +68638,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_mid"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_name"
     },
     {
@@ -68317,7 +68658,37 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_namestyle"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_namex"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_newest"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_number"
     },
     {
       "relation": "defines",
@@ -68347,16 +68718,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_outline"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_p"
     },
     {
@@ -68367,17 +68728,7 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_pad"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/services/video/hud_painter.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_paintbadge"
+      "target": "lib_services_video_hud_painter_paintbrand"
     },
     {
       "relation": "defines",
@@ -68437,6 +68788,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_painthudshade"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_paintline"
     },
     {
@@ -68447,7 +68808,7 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_paintoutlined"
+      "target": "lib_services_video_hud_painter_paintmark"
     },
     {
       "relation": "defines",
@@ -68517,7 +68878,27 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_right"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_row"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_rulewidth"
     },
     {
       "relation": "defines",
@@ -68537,7 +68918,37 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_shown"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_size"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_soft"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_split"
     },
     {
       "relation": "defines",
@@ -68607,6 +69018,26 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_top"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_tops"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
       "target": "lib_services_video_hud_painter_total"
     },
     {
@@ -68617,7 +69048,7 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_tx"
+      "target": "lib_services_video_hud_painter_u"
     },
     {
       "relation": "defines",
@@ -68627,7 +69058,17 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_hud_painter",
-      "target": "lib_services_video_hud_painter_u"
+      "target": "lib_services_video_hud_painter_value"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/hud_painter.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_hud_painter",
+      "target": "lib_services_video_hud_painter_w"
     },
     {
       "relation": "defines",
@@ -87678,5 +88119,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f72c6c8265f469555b4829afe1901c57d04d03c7"
+  "built_at_commit": "257f6b6f25bca34dc5fbba682920816c2a01f3b0"
 }

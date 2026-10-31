@@ -2100,8 +2100,8 @@
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/images/phoneScreenshots/6.png": {
-    "mtime": 1793467683.7759235,
-    "ast_hash": "dff662cc721cc260f790f469bb935dce",
+    "mtime": 1793471397.8709693,
+    "ast_hash": "3f978ba9f2b91f0dc03be46ca054e9ce",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/images/phoneScreenshots/7.png": {
@@ -2130,7 +2130,7 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_analyzer.dart": {
-    "mtime": 1793465721.0370615,
+    "mtime": 1793470749.768122,
     "ast_hash": "674de8f8144fa417dbb252a4542f6668",
     "semantic_hash": ""
   },
@@ -2150,8 +2150,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/start_finder.dart": {
-    "mtime": 1793465721.0370615,
-    "ast_hash": "ff3844a790f63095c6c42709eab609ce",
+    "mtime": 1793470803.585548,
+    "ast_hash": "c50056e452d5049423cbc25a7934fe71",
     "semantic_hash": ""
   },
   "lib/services/video/tone_finder.dart": {
@@ -2160,8 +2160,8 @@
     "semantic_hash": ""
   },
   "test/clip_analyzer_test.dart": {
-    "mtime": 1793465721.072196,
-    "ast_hash": "420bd29ba5a24b4d99a0221c5aef8fec",
+    "mtime": 1793471093.3818188,
+    "ast_hash": "788a211ec3bd06dd9c64b3de77ee14a6",
     "semantic_hash": ""
   },
   "test/clip_audio_source_test.dart": {
@@ -2210,7 +2210,7 @@
     "semantic_hash": ""
   },
   "lib/providers/clip_editor_provider.dart": {
-    "mtime": 1793465088.4993794,
+    "mtime": 1793470755.8093612,
     "ast_hash": "f7f22a2fa6bae2f1a35171b380c057e9",
     "semantic_hash": ""
   },
@@ -2225,7 +2225,7 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1793465476.12757,
+    "mtime": 1793470742.319397,
     "ast_hash": "ee03b1691687e8dbe3230009515cd0de",
     "semantic_hash": ""
   },
@@ -2305,8 +2305,8 @@
     "semantic_hash": ""
   },
   "test/clip_editor_test.dart": {
-    "mtime": 1793464680.9374156,
-    "ast_hash": "3b6d8149e6e98eaa45fcf69ab68c99d8",
+    "mtime": 1793470679.9748137,
+    "ast_hash": "022fecd558a6edb2d09ebdf9b5f061f6",
     "semantic_hash": ""
   },
   "test/clip_picker_test.dart": {
@@ -2450,13 +2450,13 @@
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipExportChannel.kt": {
-    "mtime": 1792751690.9479618,
-    "ast_hash": "853b6899cf9a9ce9642cad644efa9cd9",
+    "mtime": 1793470513.7015624,
+    "ast_hash": "1b61f9c94d6c5aa98d0feab8b48fac4d",
     "semantic_hash": ""
   },
   "lib/providers/video_export_provider.dart": {
-    "mtime": 1793465088.5004067,
-    "ast_hash": "c2ff18d7c468578620b53515d15398de",
+    "mtime": 1793470488.717307,
+    "ast_hash": "e98cbf106653174235506af07a2efeaa",
     "semantic_hash": ""
   },
   "lib/screens/video_export_dialog.dart": {
@@ -2470,8 +2470,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_exporter.dart": {
-    "mtime": 1793300922.3975601,
-    "ast_hash": "aa951ae63552bb97caa6e4233feede57",
+    "mtime": 1793470460.2027564,
+    "ast_hash": "13b20bb7f19117f6243cd6269bf51332",
     "semantic_hash": ""
   },
   "lib/services/video/export_plan.dart": {
@@ -2510,13 +2510,13 @@
     "semantic_hash": ""
   },
   "test/hud_frames_test.dart": {
-    "mtime": 1793467148.192594,
-    "ast_hash": "f930e89f38abb9b7b52a24168cd286ea",
+    "mtime": 1793471080.2172184,
+    "ast_hash": "0ac831a3aa3aa44f4892c703e3d1e6ab",
     "semantic_hash": ""
   },
   "test/hud_test.dart": {
-    "mtime": 1793467477.7613008,
-    "ast_hash": "d3e67d58947c8471b170b16a0eb8d301",
+    "mtime": 1793471093.3828304,
+    "ast_hash": "f0d1b50e76688fd7f38f67ab1deb3c60",
     "semantic_hash": ""
   },
   "test/video_export_sheet_test.dart": {
@@ -2525,8 +2525,8 @@
     "semantic_hash": ""
   },
   "test/video_export_test.dart": {
-    "mtime": 1793465104.6869662,
-    "ast_hash": "a7be547c0bf94ed302d8e33af9f7d536",
+    "mtime": 1793470604.430914,
+    "ast_hash": "083bda583aea037a6cdc7f45a3e0de04",
     "semantic_hash": ""
   },
   "assets/fonts/Montserrat-OFL.txt": {
@@ -2535,13 +2535,13 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud_frames.dart": {
-    "mtime": 1793467382.272338,
-    "ast_hash": "89ad117b31603af1ccbfdb431df569b6",
+    "mtime": 1793470803.5705178,
+    "ast_hash": "11040bc4d0d7e89d125e405c5eb6e56d",
     "semantic_hash": ""
   },
   "lib/services/video/hud_painter.dart": {
-    "mtime": 1793467634.2172573,
-    "ast_hash": "88b85e336bde9c8fa9ea9ac32eaa6572",
+    "mtime": 1793471305.2611418,
+    "ast_hash": "a67bf2c88283129deff83a4c849a7894",
     "semantic_hash": ""
   },
   "test/settings_delete_all_test.dart": {
@@ -2550,8 +2550,8 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1793465557.8599486,
-    "ast_hash": "5a8c809c312ee72c38624a0cbdb11363",
+    "mtime": 1793470656.342131,
+    "ast_hash": "c51b9a102aee722c6abe7e07a7dbe9de",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/NoSpace.kt": {
@@ -2605,33 +2605,33 @@
     "semantic_hash": ""
   },
   "branding/store-listing/assets/video-editor-ios.jpg": {
-    "mtime": 1793467653.4960485,
-    "ast_hash": "320247c391f93f1af17592c0e1420bbd",
+    "mtime": 1793471320.2263763,
+    "ast_hash": "7e40537f06d7db6bc407b282500cce22",
     "semantic_hash": ""
   },
   "branding/store-listing/assets/video-editor.jpg": {
-    "mtime": 1793467652.8811646,
-    "ast_hash": "39f11f5e0a52d29735cc1f5f0a5c3327",
+    "mtime": 1793471320.0917714,
+    "ast_hash": "fc9a79c2ab76c411f293ae674944e009",
     "semantic_hash": ""
   },
   "website/public/screens/video-editor-de.webp": {
-    "mtime": 1793467656.1690562,
-    "ast_hash": "9e793ee99a75ea1fe017b91df34fc997",
+    "mtime": 1793471320.8106446,
+    "ast_hash": "64d4abc18ae31220679ed93a59c9f45e",
     "semantic_hash": ""
   },
   "website/public/screens/video-editor-en.webp": {
-    "mtime": 1793467654.859629,
-    "ast_hash": "4e8c3cba26ab341a8bf637daf68decc5",
+    "mtime": 1793471320.5182784,
+    "ast_hash": "95952674d95fb3777fa58628ea25588d",
     "semantic_hash": ""
   },
   "website/public/screens/video-tab-de.webp": {
-    "mtime": 1793467658.1808097,
-    "ast_hash": "bba52084ab3a09d755b2e4ed5b618c98",
+    "mtime": 1793471321.2816741,
+    "ast_hash": "83b1355e752581e1682e95c79b98e675",
     "semantic_hash": ""
   },
   "website/public/screens/video-tab-en.webp": {
-    "mtime": 1793467657.3202312,
-    "ast_hash": "f8e67f563ca5e78f8ae964215b33e9b9",
+    "mtime": 1793471321.0505092,
+    "ast_hash": "6c25db1831cef56b687def1767657334",
     "semantic_hash": ""
   },
   "test/marker_panel_fit_test.dart": {
