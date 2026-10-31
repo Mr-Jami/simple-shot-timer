@@ -385,8 +385,8 @@
     "semantic_hash": "f7ee1b402881509d197f34963e569927"
   },
   "pubspec.yaml": {
-    "mtime": 1792725093.0856926,
-    "ast_hash": "cb1b9631075f44d429b8eae8c2a5df21",
+    "mtime": 1793467519.574647,
+    "ast_hash": "ba6b84206adf27995da0be1464cbff25",
     "semantic_hash": ""
   },
   "android/app/src/main/res/mipmap-hdpi/ic_launcher.png": {
@@ -1315,8 +1315,8 @@
     "semantic_hash": ""
   },
   "lib/utils/legal.dart": {
-    "mtime": 1792721444.39152,
-    "ast_hash": "45142d0b17c865bee5fa815feb9adebd",
+    "mtime": 1793467528.386879,
+    "ast_hash": "0eb3e535381e92923d86f8949eba829f",
     "semantic_hash": ""
   },
   "test/legal_test.dart": {
@@ -2100,8 +2100,8 @@
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/images/phoneScreenshots/6.png": {
-    "mtime": 1793302571.8598802,
-    "ast_hash": "02b520507359f254e5f4c344c074a396",
+    "mtime": 1793467683.7759235,
+    "ast_hash": "dff662cc721cc260f790f469bb935dce",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/images/phoneScreenshots/7.png": {
@@ -2480,13 +2480,13 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud.dart": {
-    "mtime": 1793461570.2219505,
-    "ast_hash": "8cd2ed35fc61feacf765afac23def7b0",
+    "mtime": 1793467382.2543488,
+    "ast_hash": "871a8468025c7ccdbe62f5669da3635f",
     "semantic_hash": ""
   },
   "lib/services/video/hud_logo.dart": {
-    "mtime": 1792721717.3627224,
-    "ast_hash": "944babfc10d0391fa242187a62632885",
+    "mtime": 1793467519.5510988,
+    "ast_hash": "969fec1e473920927283f2ef9ed81174",
     "semantic_hash": ""
   },
   "lib/services/video/video_gallery.dart": {
@@ -2495,8 +2495,8 @@
     "semantic_hash": ""
   },
   "lib/widgets/video/hud_overlay.dart": {
-    "mtime": 1792725013.0923529,
-    "ast_hash": "61546c934c498cc98eab4ab563ee583f",
+    "mtime": 1793467121.0390046,
+    "ast_hash": "0897d57537b91118f8c5d619c70344f3",
     "semantic_hash": ""
   },
   "lib/widgets/video/hud_sample.dart": {
@@ -2510,13 +2510,13 @@
     "semantic_hash": ""
   },
   "test/hud_frames_test.dart": {
-    "mtime": 1792884468.8169034,
-    "ast_hash": "18a7738d2e6376d58a9f0e824f19f16d",
+    "mtime": 1793467148.192594,
+    "ast_hash": "f930e89f38abb9b7b52a24168cd286ea",
     "semantic_hash": ""
   },
   "test/hud_test.dart": {
-    "mtime": 1793461592.428828,
-    "ast_hash": "cb5b81bdb739a65850f32d2374036a07",
+    "mtime": 1793467477.7613008,
+    "ast_hash": "d3e67d58947c8471b170b16a0eb8d301",
     "semantic_hash": ""
   },
   "test/video_export_sheet_test.dart": {
@@ -2535,13 +2535,13 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud_frames.dart": {
-    "mtime": 1792884181.7393034,
-    "ast_hash": "7296dedc5afed3c0359294d602f8d491",
+    "mtime": 1793467382.272338,
+    "ast_hash": "89ad117b31603af1ccbfdb431df569b6",
     "semantic_hash": ""
   },
   "lib/services/video/hud_painter.dart": {
-    "mtime": 1793461686.0590668,
-    "ast_hash": "4b6eabb930ae2233672108710354a5a0",
+    "mtime": 1793467634.2172573,
+    "ast_hash": "88b85e336bde9c8fa9ea9ac32eaa6572",
     "semantic_hash": ""
   },
   "test/settings_delete_all_test.dart": {
@@ -2605,33 +2605,33 @@
     "semantic_hash": ""
   },
   "branding/store-listing/assets/video-editor-ios.jpg": {
-    "mtime": 1793302516.4211514,
-    "ast_hash": "94f42b13dd55829d1259ebd1935a4f14",
+    "mtime": 1793467653.4960485,
+    "ast_hash": "320247c391f93f1af17592c0e1420bbd",
     "semantic_hash": ""
   },
   "branding/store-listing/assets/video-editor.jpg": {
-    "mtime": 1793302516.299072,
-    "ast_hash": "5fc56c7eebed15e7bfefe30925ffae22",
+    "mtime": 1793467652.8811646,
+    "ast_hash": "39f11f5e0a52d29735cc1f5f0a5c3327",
     "semantic_hash": ""
   },
   "website/public/screens/video-editor-de.webp": {
-    "mtime": 1793302847.445671,
-    "ast_hash": "db2701efd65d18e031a254c0be2c729d",
+    "mtime": 1793467656.1690562,
+    "ast_hash": "9e793ee99a75ea1fe017b91df34fc997",
     "semantic_hash": ""
   },
   "website/public/screens/video-editor-en.webp": {
-    "mtime": 1793302847.1450808,
-    "ast_hash": "17846f5f40775e20747433c01e05d923",
+    "mtime": 1793467654.859629,
+    "ast_hash": "4e8c3cba26ab341a8bf637daf68decc5",
     "semantic_hash": ""
   },
   "website/public/screens/video-tab-de.webp": {
-    "mtime": 1793302847.91872,
-    "ast_hash": "511e8c251e0849ddfa20fdc762fdc496",
+    "mtime": 1793467658.1808097,
+    "ast_hash": "bba52084ab3a09d755b2e4ed5b618c98",
     "semantic_hash": ""
   },
   "website/public/screens/video-tab-en.webp": {
-    "mtime": 1793302847.686529,
-    "ast_hash": "11b95249322492e7d49f19449309ba29",
+    "mtime": 1793467657.3202312,
+    "ast_hash": "f8e67f563ca5e78f8ae964215b33e9b9",
     "semantic_hash": ""
   },
   "test/marker_panel_fit_test.dart": {
