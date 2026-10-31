@@ -5,7 +5,7 @@
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
-    "mtime": 1793279084.484198,
+    "mtime": 1793358899.9598815,
     "ast_hash": "03b97be7ce12a5031e9389bafb4b5796",
     "semantic_hash": ""
   },
@@ -2480,8 +2480,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud.dart": {
-    "mtime": 1792884173.5339293,
-    "ast_hash": "1e8c6c781f73d94beeb46909c0f8c705",
+    "mtime": 1793461570.2219505,
+    "ast_hash": "8cd2ed35fc61feacf765afac23def7b0",
     "semantic_hash": ""
   },
   "lib/services/video/hud_logo.dart": {
@@ -2515,8 +2515,8 @@
     "semantic_hash": ""
   },
   "test/hud_test.dart": {
-    "mtime": 1792884012.1431177,
-    "ast_hash": "13f28fbcb8f5a00ac10a630741068f14",
+    "mtime": 1793461592.428828,
+    "ast_hash": "cb5b81bdb739a65850f32d2374036a07",
     "semantic_hash": ""
   },
   "test/video_export_sheet_test.dart": {
@@ -2540,8 +2540,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud_painter.dart": {
-    "mtime": 1793302835.8988233,
-    "ast_hash": "5f4474b73bd4f97774e20843eb56a672",
+    "mtime": 1793461686.0590668,
+    "ast_hash": "4b6eabb930ae2233672108710354a5a0",
     "semantic_hash": ""
   },
   "test/settings_delete_all_test.dart": {
