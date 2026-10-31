@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -91,6 +92,67 @@ void main() {
       }
       expect(card.x * 640 + card.width / 2, closeTo(320, 1));
       expect(progress.last, 1);
+    });
+  });
+
+  testWidgets('every corner draws its overlay, on whole pixels',
+      (tester) async {
+    await tester.runAsync(() async {
+      await initializeDateFormatting('en');
+      for (final corner in HudCorner.values) {
+        final dir = await Directory.systemTemp.createTemp('hud_frames');
+        addTearDown(() => dir.delete(recursive: true));
+        final sequences = await renderHudFrames(
+          dir: dir,
+          plan: plan,
+          string: string,
+          options: HudOptions(corner: corner),
+          labels: labels,
+        );
+        for (final s in sequences) {
+          expect(s.x * 640, closeTo((s.x * 640).roundToDouble(), 1e-6));
+          expect(s.y * 360, closeTo((s.y * 360).roundToDouble(), 1e-6));
+        }
+        final [shade, box, _] = sequences;
+        for (final s in [shade, box]) {
+          final pixels = zlib.decode(File('${s.dir}/0.z').readAsBytesSync());
+          final drawn = [for (var i = 3; i < pixels.length; i += 4) pixels[i]]
+              .where((a) => a > 0)
+              .length;
+          expect(drawn, greaterThan(100), reason: '$corner ${s.dir}');
+        }
+      }
+    });
+  });
+
+  testWidgets('straight alpha when the exporter takes it', (tester) async {
+    await tester.runAsync(() async {
+      await initializeDateFormatting('en');
+      for (final straight in [false, true]) {
+        final dir = await Directory.systemTemp.createTemp('hud_frames');
+        addTearDown(() => dir.delete(recursive: true));
+        final [_, box, _] = await renderHudFrames(
+          dir: dir,
+          plan: plan,
+          string: string,
+          options: const HudOptions(),
+          labels: labels,
+          straightAlpha: straight,
+        );
+        expect(box.straightAlpha, straight);
+        final last = box.timesUs.length - 1;
+        final pixels =
+            zlib.decode(File('${box.dir}/$last.z').readAsBytesSync());
+        // Premultiplied, no colour channel exceeds alpha; straight, the
+        // edges of white and yellow do.
+        var brighter = 0;
+        for (var i = 0; i < pixels.length; i += 4) {
+          final colour =
+              [pixels[i], pixels[i + 1], pixels[i + 2]].reduce(math.max);
+          if (colour > pixels[i + 3] + 2) brighter++;
+        }
+        expect(brighter > 0, straight, reason: 'straight: $straight');
+      }
     });
   });
 

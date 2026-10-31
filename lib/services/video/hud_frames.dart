@@ -22,6 +22,7 @@ typedef HudFrameRenderer = Future<List<OverlaySequence>> Function({
   required HudOptions options,
   required HudLabels labels,
   ui.Image? logo,
+  bool straightAlpha,
   void Function(double fraction)? onProgress,
   CancelToken? cancel,
 });
@@ -46,8 +47,11 @@ typedef _Sequence = ({
 ///   export runs that long (the whole video).
 ///
 /// Each image starts half a frame early: frame times arrive rounded, and a
-/// frame must never pick up the previous image. Raw RGBA with zlib, not
-/// PNG: about six times faster to make. [onProgress] gets 0..1.
+/// frame must never pick up the previous image. Each sits on whole pixels,
+/// so the encoder never blends neighbouring ones. Raw RGBA with zlib, not
+/// PNG: about six times faster to make; premultiplied unless
+/// [straightAlpha] (the exporter's [ClipExporter.straightAlpha]).
+/// [onProgress] gets 0..1.
 Future<List<OverlaySequence>> renderHudFrames({
   required Directory dir,
   required ExportPlan plan,
@@ -55,6 +59,7 @@ Future<List<OverlaySequence>> renderHudFrames({
   required HudOptions options,
   required HudLabels labels,
   ui.Image? logo,
+  bool straightAlpha = false,
   void Function(double fraction)? onProgress,
   CancelToken? cancel,
 }) async {
@@ -68,6 +73,14 @@ Future<List<OverlaySequence>> renderHudFrames({
           (k * frameMs).round(),
       ];
 
+  /// [r] grown to whole pixels, inside the frame.
+  ui.Rect whole(ui.Rect r) => ui.Rect.fromLTRB(
+          r.left.floorToDouble(),
+          r.top.floorToDouble(),
+          r.right.ceilToDouble(),
+          r.bottom.ceilToDouble())
+      .intersect(ui.Offset.zero & plan.frame);
+
   // Room around the box for the type's soft shadow.
   final bleed = layout.unit.ceilToDouble();
   final cardFrom = string.endMs + HudMoment.endCardDelayMs;
@@ -75,13 +88,13 @@ Future<List<OverlaySequence>> renderHudFrames({
   final sequences = <_Sequence>[
     (
       folder: 'shade',
-      rect: layout.shade,
+      rect: whole(layout.shade),
       times: [plan.startMs],
       paint: (canvas, m) => paintHudShade(canvas, layout),
     ),
     (
       folder: 'box',
-      rect: layout.box.inflate(bleed).intersect(ui.Offset.zero & plan.frame),
+      rect: whole(layout.box.inflate(bleed)),
       times: [
         plan.startMs,
         ...frames(string.startMs, string.endMs + HudMoment.tickMs),
@@ -94,7 +107,7 @@ Future<List<OverlaySequence>> renderHudFrames({
     if (options.endCard && string.shotCount > 0)
       (
         folder: 'card',
-        rect: layout.cardShade,
+        rect: whole(layout.cardShade),
         times: [
           plan.startMs,
           ...frames(cardFrom, cardFrom + HudMoment.endCardFadeMs),
@@ -118,7 +131,8 @@ Future<List<OverlaySequence>> renderHudFrames({
         for (final (i, t) in q.times.indexed)
           () async {
             final m = HudMoment.at(string, t, endCard: options.endCard);
-            final rgba = await _rasterise(q.rect, (c) => q.paint(c, m));
+            final rgba =
+                await _rasterise(q.rect, (c) => q.paint(c, m), straightAlpha);
             await File('${dir.path}/${q.folder}/$i.z')
                 .writeAsBytes(zlib.encode(rgba));
             onProgress?.call(++done / total);
@@ -146,20 +160,24 @@ Future<List<OverlaySequence>> renderHudFrames({
         ],
         x: q.rect.left / frame.width,
         y: q.rect.top / frame.height,
+        straightAlpha: straightAlpha,
       ),
   ];
 }
 
 /// What [draw] paints (in frame coordinates) inside [rect], as an image in
-/// raw premultiplied RGBA.
+/// raw RGBA, premultiplied unless [straightAlpha].
 Future<Uint8List> _rasterise(
-    ui.Rect rect, void Function(ui.Canvas) draw) async {
+    ui.Rect rect, void Function(ui.Canvas) draw, bool straightAlpha) async {
   final recorder = ui.PictureRecorder();
   draw(ui.Canvas(recorder)..translate(-rect.left, -rect.top));
   final picture = recorder.endRecording();
   final image = await picture.toImage(rect.width.ceil(), rect.height.ceil());
   picture.dispose();
-  final rgba = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+  final rgba = await image.toByteData(
+      format: straightAlpha
+          ? ui.ImageByteFormat.rawStraightRgba
+          : ui.ImageByteFormat.rawRgba);
   image.dispose();
   return rgba!.buffer.asUint8List();
 }

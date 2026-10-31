@@ -55,7 +55,9 @@ import kotlin.math.abs
  * - `export` trims the clip to [startMs, endMs), scales it to at most
  *   `shortSide`, drops frames above `maxFps`, tone-maps HDR to SDR and
  *   encodes H.264 with the sound kept. Each overlay is a folder of images
- *   (`i.z`: premultiplied RGBA, zlib) that Dart drew, image `i` showing from
+ *   (`i.z`: RGBA, zlib; straight alpha with `straightAlpha`, which Dart sends
+ *   here because Media3's overlay shader blends straight alpha) that Dart
+ *   drew, image `i` showing from
  *   `timesUs[i]` (output time) on, placed with its top left at (`x`, `y`)
  *   in fractions of the frame. Progress (0..1) comes back as `progress`
  *   messages; `cancel` names the job to stop. Fails with `cancelled`,
@@ -136,6 +138,7 @@ class ClipExportChannel(
                 height = (it["height"] as Number).toInt(),
                 x = (it["x"] as Number).toFloat(),
                 y = (it["y"] as Number).toFloat(),
+                straightAlpha = it["straightAlpha"] as Boolean? ?: false,
             )
         }
 
@@ -363,9 +366,11 @@ class ClipExportChannel(
 }
 
 /**
- * Shows image `i` of [dir] (`i.z`, [width] x [height] premultiplied RGBA,
- * zlib) from [timesUs]`[i]` on, with its top left at ([x], [y]) in fractions
- * of the frame. Two bitmaps alternate, so Media3 sees a new one per change.
+ * Shows image `i` of [dir] (`i.z`, [width] x [height] RGBA, zlib) from
+ * [timesUs]`[i]` on, with its top left at ([x], [y]) in fractions of the
+ * frame. With [straightAlpha] the bitmaps say so: their pixels reach the
+ * shader as they are, and it blends straight alpha. Two bitmaps alternate,
+ * so Media3 sees a new one per change.
  */
 @OptIn(UnstableApi::class)
 private class FrameSequenceOverlay(
@@ -375,6 +380,7 @@ private class FrameSequenceOverlay(
     private val height: Int,
     private val x: Float,
     private val y: Float,
+    private val straightAlpha: Boolean,
 ) : BitmapOverlay() {
     private var current = -1
     private var shown = 0
@@ -398,7 +404,9 @@ private class FrameSequenceOverlay(
         i = i.coerceIn(0, timesUs.size - 1)
         if (i != current || bitmaps[shown] == null) {
             val slot = (shown + 1) % 2
-            val bitmap = bitmaps[slot] ?: Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            val bitmap = bitmaps[slot]
+                ?: Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+                    .apply { isPremultiplied = !straightAlpha }
             val inflater = Inflater()
             try {
                 inflater.setInput(File(dir, "$i.z").readBytes())

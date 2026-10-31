@@ -145,6 +145,7 @@ class VideoExportController
         options: job.options,
         labels: job.labels,
         logo: job.logo,
+        straightAlpha: ref.read(clipExporterProvider).straightAlpha,
         onProgress: (f) => _progress(overlayShare * f),
         cancel: _cancel,
       );

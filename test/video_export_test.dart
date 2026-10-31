@@ -64,6 +64,9 @@ class _FakeExporter implements ClipExporter {
     colorChecks++;
     return needsFix;
   }
+
+  @override
+  bool straightAlpha = false;
 }
 
 class _FakeGallery implements VideoGallery {
@@ -110,6 +113,7 @@ void main() {
   late _FakeEnvironment env;
   late ExportPlan? renderedPlan;
   Object? renderError;
+  bool? renderedStraight;
 
   final analysis = analyzePcm(
     syntheticClip(extra: (x) => addBeep(x, 1.0, 300)),
@@ -180,9 +184,11 @@ void main() {
           required HudOptions options,
           required HudLabels labels,
           ui.Image? logo,
+          bool straightAlpha = false,
           void Function(double fraction)? onProgress,
           CancelToken? cancel}) async {
         renderedPlan = plan;
+        renderedStraight = straightAlpha;
         await Directory('${dir.path}/box').create(recursive: true);
         if (renderError != null) throw renderError!;
         onProgress?.call(1);
@@ -315,6 +321,15 @@ void main() {
     expect(gallery.shared, [exporter.request!.output]);
     expect(c.read(videoExportProvider(1)),
         isA<ExportDone>().having((s) => s.shareFailed, 'shareFailed', isFalse));
+  });
+
+  test('the overlay images come in the alpha the exporter takes', () async {
+    final c = await container();
+    for (final straight in [true, false]) {
+      exporter.straightAlpha = straight;
+      await export(c, straight ? 1 : 2).start(job(ExportTarget.photos));
+      expect(renderedStraight, straight);
+    }
   });
 
   test('a full storage says so', () async {

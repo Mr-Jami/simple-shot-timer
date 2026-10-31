@@ -30,6 +30,7 @@ import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 import 'package:simple_shot_timer/utils/cancel_token.dart';
 import 'package:simple_shot_timer/widgets/shot_badge.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
+import 'package:simple_shot_timer/widgets/timeline/timeline_controller.dart';
 
 import 'clip_fixtures.dart';
 import 'roboto.dart';
@@ -96,6 +97,9 @@ class _NoExporter implements ClipExporter {
 
   @override
   Future<bool> encoderNeedsColorFix() async => false;
+
+  @override
+  bool get straightAlpha => false;
 }
 
 void main() {
@@ -260,6 +264,7 @@ void main() {
             required HudOptions options,
             required HudLabels labels,
             ui.Image? logo,
+            bool straightAlpha = false,
             void Function(double fraction)? onProgress,
             CancelToken? cancel}) async {
           onPlan(plan);
@@ -347,9 +352,15 @@ void main() {
     await tester.tap(find.byType(ShotBadge).at(2));
     await tester.pump(const Duration(milliseconds: 16));
     expect(state().selectedId, shot.id);
-    await tester.drag(find.byType(ShotTimeline), const Offset(-8, 0));
+    final timeline =
+        tester.widget<ShotTimeline>(find.byType(ShotTimeline)).controller;
+    expect(timeline.motion, TimelineMotion.settle, reason: 'still gliding');
+    // Far enough to start the gesture: the shot moves 60 px later.
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
     await tester.pumpAndSettle();
-    expect((state().doc.shotById(shot.id)!.ms - shot.ms).abs(), lessThan(150));
+    final moved = 60 / timeline.pxPerSecond * 1000;
+    // Give or take the snap to a nearby onset on release.
+    expect(state().doc.shotById(shot.id)!.ms, closeTo(shot.ms + moved, 60));
   });
 
   testWidgets('with the keyboard up only the details show', (tester) async {

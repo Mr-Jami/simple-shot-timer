@@ -4,15 +4,16 @@
 
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../../utils/cancel_token.dart';
 import 'export_plan.dart';
 
 /// A folder of overlay images for the exporter: image `i` (`i.z`,
-/// [width] x [height] premultiplied RGBA compressed with zlib) shows from
-/// [timesUs]`[i]` (output time) on, its top left at ([x], [y]) in fractions
-/// of the frame.
+/// [width] x [height] RGBA compressed with zlib, premultiplied unless
+/// [straightAlpha]) shows from [timesUs]`[i]` (output time) on, its top left
+/// at ([x], [y]) in fractions of the frame.
 class OverlaySequence {
   const OverlaySequence({
     required this.dir,
@@ -21,6 +22,7 @@ class OverlaySequence {
     required this.timesUs,
     required this.x,
     required this.y,
+    this.straightAlpha = false,
   });
 
   final String dir;
@@ -29,6 +31,7 @@ class OverlaySequence {
   final List<int> timesUs;
   final double x;
   final double y;
+  final bool straightAlpha;
 
   Map<String, Object?> toMap() => {
         'dir': dir,
@@ -37,6 +40,7 @@ class OverlaySequence {
         'timesUs': timesUs,
         'x': x,
         'y': y,
+        'straightAlpha': straightAlpha,
       };
 }
 
@@ -121,6 +125,10 @@ abstract interface class ClipExporter {
   /// Whether this phone's encoder needs [ExportRequest.colorFix]. Encodes
   /// one frame, so callers keep the answer.
   Future<bool> encoderNeedsColorFix();
+
+  /// Whether overlay images must come with straight alpha
+  /// ([OverlaySequence.straightAlpha]) rather than premultiplied.
+  bool get straightAlpha;
 }
 
 /// [ClipExporter] over the `cc.jami.simpleshottimer/clip_export` channel.
@@ -138,6 +146,12 @@ class ChannelClipExporter implements ClipExporter {
   final MethodChannel _channel;
   final _progress = <int, void Function(double)>{};
   static var _nextJobId = 1;
+
+  /// Media3's overlay shader blends straight alpha (`rgb * a`), so
+  /// premultiplied images would come out with `a` squared: semi-transparent
+  /// white too dark. Core Image takes premultiplied images.
+  @override
+  bool get straightAlpha => defaultTargetPlatform == TargetPlatform.android;
 
   @override
   Future<void> export(
