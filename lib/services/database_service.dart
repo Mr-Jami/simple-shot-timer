@@ -86,27 +86,37 @@ class DatabaseService implements StringStore, VideoStringStore {
     if (oldVersion < 2) {
       // Per-cycle shot tagging for par-repeat runs (issue #5). Existing rows
       // default to cycle 1 since the old schema couldn't differentiate.
-      await db.execute(
-        'ALTER TABLE shots ADD COLUMN cycle_index INTEGER NOT NULL DEFAULT 1',
-      );
+      await _addColumn(db, 'shots', 'cycle_index', 'INTEGER NOT NULL DEFAULT 1');
     }
     if (oldVersion < 3) {
       // Capture the full par config per run (issue #6). Existing rows stay
       // NULL — they're rendered without the new chips in the review header.
-      await db.execute('ALTER TABLE strings ADD COLUMN par_repeat_count INTEGER');
-      await db.execute('ALTER TABLE strings ADD COLUMN par_interval_ms INTEGER');
+      await _addColumn(db, 'strings', 'par_repeat_count', 'INTEGER');
+      await _addColumn(db, 'strings', 'par_interval_ms', 'INTEGER');
     }
     if (oldVersion < 4) {
       // Strings made from a video. The clip itself is never stored: keep where
       // START sits in it, its length and its recording date, to recognise it
       // when it is chosen again. Existing rows are live strings.
-      await db.execute(
-        "ALTER TABLE strings ADD COLUMN source TEXT NOT NULL DEFAULT 'live'",
-      );
-      await db.execute('ALTER TABLE strings ADD COLUMN video_start_ms INTEGER');
-      await db.execute('ALTER TABLE strings ADD COLUMN video_duration_ms INTEGER');
-      await db.execute('ALTER TABLE strings ADD COLUMN video_recorded_at TEXT');
+      await _addColumn(db, 'strings', 'source', "TEXT NOT NULL DEFAULT 'live'");
+      await _addColumn(db, 'strings', 'video_start_ms', 'INTEGER');
+      await _addColumn(db, 'strings', 'video_duration_ms', 'INTEGER');
+      await _addColumn(db, 'strings', 'video_recorded_at', 'TEXT');
     }
+  }
+
+  /// Adds [column] unless [table] has it already: an older build (a tester
+  /// going back from TestFlight to the store version) sets the version
+  /// back without dropping the columns, and the upgrade then runs again.
+  static Future<void> _addColumn(
+    Database db,
+    String table,
+    String column,
+    String definition,
+  ) async {
+    final columns = await db.rawQuery('PRAGMA table_info($table)');
+    if (columns.any((c) => c['name'] == column)) return;
+    await db.execute('ALTER TABLE $table ADD COLUMN $column $definition');
   }
 
   @override

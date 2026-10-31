@@ -151,6 +151,38 @@ void main() {
     });
   }
 
+  test('opens again after an older build set the version back', () async {
+    // An older build without onDowngrade lowers the version and keeps the
+    // newer columns; the upgrade then runs over columns that exist.
+    final file = path('downgraded');
+    final first = await DatabaseService.openAt(file, factory: factory);
+    await first.insertString(
+      TimerString(
+        createdAt: DateTime(2026, 10, 31),
+        drillMode: DrillMode.standard,
+        delayMode: DelayMode.instant,
+        delayUsedMs: 0,
+        pars: const [],
+        shots: [Shot(index: 0, timeMs: 1500)],
+        source: StringSource.video,
+        videoStartMs: 4000,
+      ),
+      historyCap: 500,
+    );
+    await first.close();
+    for (final older in [3, 1]) {
+      final db = await factory.openDatabase(file);
+      await db.setVersion(older);
+      await db.close();
+
+      final service = await DatabaseService.openAt(file, factory: factory);
+      final s = (await service.getString(1))!;
+      await service.close();
+      expect(s.videoStartMs, 4000, reason: 'from version $older');
+      expect(s.shots.map((x) => x.timeMs), [1500]);
+    }
+  });
+
   group('a video string', () {
     final recorded = DateTime.utc(2026, 10, 20, 9, 15, 30);
     TimerString video({int? id}) => TimerString(
