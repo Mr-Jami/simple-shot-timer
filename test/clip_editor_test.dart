@@ -55,8 +55,14 @@ class _MemoryStore implements VideoStringStore {
     updated.add(s);
   }
 
+  /// Fails every delete while set.
+  var failDelete = false;
+
   @override
-  Future<void> deleteString(int id) async => deleted.add(id);
+  Future<void> deleteString(int id) async {
+    if (failDelete) throw Exception('database locked');
+    deleted.add(id);
+  }
 }
 
 class _FakeSession extends VideoSession {
@@ -236,6 +242,22 @@ void main() {
         async.elapse(const Duration(seconds: 1));
         expect(store.deleted, [42]);
         expect(store.updated, isEmpty);
+      });
+    });
+
+    test('after a Discard that failed, edits are saved again', () {
+      run(args(withBeep), (async, editor, state) {
+        editor.flush();
+        async.flushMicrotasks();
+        store.failDelete = true;
+        Object? error;
+        editor.discard().catchError((Object e) => error = e);
+        async.flushMicrotasks();
+        expect(error, isA<Exception>());
+        expect(store.deleted, isEmpty);
+        editor.addShot(6000);
+        async.elapse(const Duration(seconds: 1));
+        expect(store.updated.single.shots.last.manual, isTrue);
       });
     });
 
