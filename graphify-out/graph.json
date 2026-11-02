@@ -1180,7 +1180,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "integration_test_clip_analysis_test",
-      "community": 164,
+      "community": 154,
       "norm_label": "clip_analysis_test.dart"
     },
     {
@@ -1190,7 +1190,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "integration_test_clip_analysis_test_binding",
-      "community": 164,
+      "community": 154,
       "norm_label": "binding"
     },
     {
@@ -1200,7 +1200,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "integration_test_clip_analysis_test_main",
-      "community": 164,
+      "community": 154,
       "norm_label": "main"
     },
     {
@@ -1210,7 +1210,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 118,
+      "community": 93,
       "norm_label": "dart:io"
     },
     {
@@ -1220,7 +1220,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_foundation_dart",
-      "community": 195,
+      "community": 173,
       "norm_label": "package:flutter/foundation.dart"
     },
     {
@@ -1240,7 +1240,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_integration_test_integration_test_dart",
-      "community": 164,
+      "community": 154,
       "norm_label": "package:integration_test/integration_test.dart"
     },
     {
@@ -1250,7 +1250,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_provider_path_provider_dart",
-      "community": 164,
+      "community": 154,
       "norm_label": "package:path_provider/path_provider.dart"
     },
     {
@@ -1270,7 +1270,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_audio_source_dart",
-      "community": 164,
+      "community": 154,
       "norm_label": "package:simple_shot_timer/services/video/clip_audio_source.dart"
     },
     {
@@ -1712,7 +1712,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipaudiochannel_swift_flutterresult",
-      "community": 193,
+      "community": 26,
       "norm_label": "flutterresult"
     },
     {
@@ -1752,7 +1752,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "ios_runner_clipaudiochannel_clipaudiochannel_reply",
-      "community": 193,
+      "community": 26,
       "norm_label": ".reply()"
     },
     {
@@ -1762,7 +1762,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "dispatchqueue",
-      "community": 193,
+      "community": 84,
       "norm_label": "dispatchqueue"
     },
     {
@@ -2300,7 +2300,7 @@
       "label": ".finish()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L134",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_finish",
       "community": 52,
@@ -2313,7 +2313,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_bool",
-      "community": 84,
+      "community": 52,
       "norm_label": "bool"
     },
     {
@@ -2330,7 +2330,7 @@
       "label": ".makeSession()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L145",
+      "source_location": "L144",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "community": 52,
@@ -2340,10 +2340,10 @@
       "label": ".upright()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L221",
+      "source_location": "L220",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_upright",
-      "community": 155,
+      "community": 52,
       "norm_label": ".upright()"
     },
     {
@@ -2353,7 +2353,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_avassettrack",
-      "community": 155,
+      "community": 52,
       "norm_label": "avassettrack"
     },
     {
@@ -2370,7 +2370,7 @@
       "label": ".renderSize()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L228",
+      "source_location": "L227",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
       "community": 155,
@@ -2380,7 +2380,7 @@
       "label": ".frameDuration()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L238",
+      "source_location": "L237",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
       "community": 52,
@@ -2410,7 +2410,7 @@
       "label": ".orientation()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L244",
+      "source_location": "L243",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_orientation",
       "community": 84,
@@ -2437,10 +2437,50 @@
       "norm_label": "cgimagepropertyorientation"
     },
     {
+      "label": "errorDetail()",
+      "file_type": "code",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L258",
+      "_origin": "ast",
+      "id": "ios_runner_clipexportchannel_errordetail",
+      "community": 52,
+      "norm_label": "errordetail()"
+    },
+    {
+      "label": "Error",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runner_clipexportchannel_swift_error",
+      "community": 52,
+      "norm_label": "error"
+    },
+    {
+      "label": "ClipFailure",
+      "file_type": "code",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L276",
+      "_origin": "ast",
+      "id": "ios_runner_clipexportchannel_clipfailure",
+      "community": 52,
+      "norm_label": "clipfailure"
+    },
+    {
+      "label": "CustomNSError",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "customnserror",
+      "community": 52,
+      "norm_label": "customnserror"
+    },
+    {
       "label": "OverlayInstruction",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L256",
+      "source_location": "L283",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayinstruction",
       "community": 84,
@@ -2490,7 +2530,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L269",
+      "source_location": "L296",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayinstruction_init",
       "community": 84,
@@ -2500,7 +2540,7 @@
       "label": "OverlayCompositor",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L284",
+      "source_location": "L311",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor",
       "community": 84,
@@ -2520,7 +2560,7 @@
       "label": ".renderContextChanged()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L302",
+      "source_location": "L335",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_rendercontextchanged",
       "community": 84,
@@ -2540,7 +2580,7 @@
       "label": ".startRequest()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L304",
+      "source_location": "L337",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
       "community": 84,
@@ -2560,7 +2600,7 @@
       "label": ".cancelAllPendingVideoCompositionRequests()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L319",
+      "source_location": "L356",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_cancelallpendingvideocompositionrequests",
       "community": 84,
@@ -2570,7 +2610,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L338",
+      "source_location": "L375",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_render",
       "community": 84,
@@ -2590,7 +2630,7 @@
       "label": "OverlayFrames",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L383",
+      "source_location": "L420",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes",
       "community": 155,
@@ -2630,7 +2670,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L394",
+      "source_location": "L431",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_init",
       "community": 52,
@@ -2640,7 +2680,7 @@
       "label": ".image()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L411",
+      "source_location": "L448",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_image",
       "community": 155,
@@ -2650,7 +2690,7 @@
       "label": ".pixels()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L430",
+      "source_location": "L467",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_pixels",
       "community": 155,
@@ -2894,7 +2934,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_h_ios_runner_generatedpluginregistrant",
-      "community": 188,
+      "community": 10,
       "norm_label": "generatedpluginregistrant.h"
     },
     {
@@ -2904,7 +2944,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_generatedpluginregistrant",
-      "community": 188,
+      "community": 10,
       "norm_label": "generatedpluginregistrant"
     },
     {
@@ -2914,7 +2954,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_h_nsobject",
-      "community": 188,
+      "community": 10,
       "norm_label": "nsobject"
     },
     {
@@ -2924,7 +2964,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_generatedpluginregistrant_registerwithregistry",
-      "community": 188,
+      "community": 10,
       "norm_label": "+registerwithregistry"
     },
     {
@@ -2934,7 +2974,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_m_ios_runner_generatedpluginregistrant",
-      "community": 188,
+      "community": 10,
       "norm_label": "generatedpluginregistrant.m"
     },
     {
@@ -2944,7 +2984,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_nospace",
-      "community": 193,
+      "community": 10,
       "norm_label": "nospace.swift"
     },
     {
@@ -2955,7 +2995,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "foundation",
-      "community": 193,
+      "community": 10,
       "norm_label": "foundation"
     },
     {
@@ -2965,7 +3005,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "ios_runner_nospace_isnospace",
-      "community": 193,
+      "community": 10,
       "norm_label": "isnospace()"
     },
     {
@@ -2975,7 +3015,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_nospace_swift_error",
-      "community": 193,
+      "community": 10,
       "norm_label": "error"
     },
     {
@@ -2985,7 +3025,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_nospace_swift_bool",
-      "community": 193,
+      "community": 10,
       "norm_label": "bool"
     },
     {
@@ -2995,7 +3035,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_runner_bridging_header",
-      "community": 188,
+      "community": 10,
       "norm_label": "runner-bridging-header.h"
     },
     {
@@ -3085,7 +3125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_localizations_flutter_localizations_dart",
-      "community": 94,
+      "community": 93,
       "norm_label": "package:flutter_localizations/flutter_localizations.dart"
     },
     {
@@ -3175,7 +3215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_applocalizations",
-      "community": 196,
+      "community": 4,
       "norm_label": "applocalizations"
     },
     {
@@ -3185,7 +3225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_applocalizationsdelegate",
-      "community": 196,
+      "community": 4,
       "norm_label": "_applocalizationsdelegate"
     },
     {
@@ -3195,7 +3235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "localizationsdelegate",
-      "community": 196,
+      "community": 4,
       "norm_label": "localizationsdelegate"
     },
     {
@@ -3365,7 +3405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_of",
-      "community": 196,
+      "community": 4,
       "norm_label": "of"
     },
     {
@@ -3435,7 +3475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_services_dart",
-      "community": 178,
+      "community": 173,
       "norm_label": "package:flutter/services.dart"
     },
     {
@@ -3905,7 +3945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const_int",
-      "community": 140,
+      "community": 17,
       "norm_label": "static const int"
     },
     {
@@ -4435,7 +4475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "int_get",
-      "community": 186,
+      "community": 183,
       "norm_label": "int get"
     },
     {
@@ -4855,7 +4895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_math",
-      "community": 182,
+      "community": 118,
       "norm_label": "dart:math"
     },
     {
@@ -5255,7 +5295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_timer_string_timerstring",
-      "community": 135,
+      "community": 32,
       "norm_label": "timerstring"
     },
     {
@@ -5585,7 +5625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "autodisposefamilynotifier",
-      "community": 150,
+      "community": 170,
       "norm_label": "autodisposefamilynotifier"
     },
     {
@@ -6195,7 +6235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_analyzer_dart",
-      "community": 185,
+      "community": 13,
       "norm_label": "../../services/video/clip_analyzer.dart"
     },
     {
@@ -6225,7 +6265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "settings_provider_dart",
-      "community": 186,
+      "community": 183,
       "norm_label": "settings_provider.dart"
     },
     {
@@ -6255,7 +6295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider",
-      "community": 186,
+      "community": 183,
       "norm_label": "custom_drills_provider.dart"
     },
     {
@@ -6285,7 +6325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_nextid",
-      "community": 186,
+      "community": 183,
       "norm_label": "_nextid"
     },
     {
@@ -6315,7 +6355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_current",
-      "community": 186,
+      "community": 183,
       "norm_label": "current"
     },
     {
@@ -6325,7 +6365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_null",
-      "community": 186,
+      "community": 183,
       "norm_label": "null"
     },
     {
@@ -6345,7 +6385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_build",
-      "community": 186,
+      "community": 183,
       "norm_label": "build"
     },
     {
@@ -6365,7 +6405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_findbyname",
-      "community": 186,
+      "community": 183,
       "norm_label": "findbyname"
     },
     {
@@ -6375,7 +6415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_add",
-      "community": 186,
+      "community": 183,
       "norm_label": "add"
     },
     {
@@ -6385,7 +6425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_rename",
-      "community": 186,
+      "community": 183,
       "norm_label": "rename"
     },
     {
@@ -6395,7 +6435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_overwrite",
-      "community": 186,
+      "community": 183,
       "norm_label": "overwrite"
     },
     {
@@ -6405,7 +6445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_delete",
-      "community": 186,
+      "community": 183,
       "norm_label": "delete"
     },
     {
@@ -6415,7 +6455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_custom_drill_dart",
-      "community": 93,
+      "community": 95,
       "norm_label": "../models/custom_drill.dart"
     },
     {
@@ -6425,7 +6465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_drill_config_dart",
-      "community": 186,
+      "community": 95,
       "norm_label": "../models/drill_config.dart"
     },
     {
@@ -6445,7 +6485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider",
-      "community": 3,
+      "community": 140,
       "norm_label": "history_provider.dart"
     },
     {
@@ -6455,7 +6495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_historynotifier",
-      "community": 3,
+      "community": 140,
       "norm_label": "historynotifier"
     },
     {
@@ -6465,7 +6505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "asyncnotifier",
-      "community": 3,
+      "community": 140,
       "norm_label": "asyncnotifier"
     },
     {
@@ -6485,7 +6525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_build",
-      "community": 3,
+      "community": 140,
       "norm_label": "build"
     },
     {
@@ -6495,7 +6535,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_refresh",
-      "community": 3,
+      "community": 140,
       "norm_label": "refresh"
     },
     {
@@ -6505,7 +6545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_delete",
-      "community": 3,
+      "community": 140,
       "norm_label": "delete"
     },
     {
@@ -6515,7 +6555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_history_provider_deleteall",
-      "community": 3,
+      "community": 140,
       "norm_label": "deleteall"
     },
     {
@@ -6545,7 +6585,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_databaseprovider",
-      "community": 3,
+      "community": 140,
       "norm_label": "databaseprovider"
     },
     {
@@ -6565,7 +6605,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_audioserviceprovider",
-      "community": 103,
+      "community": 18,
       "norm_label": "audioserviceprovider"
     },
     {
@@ -6685,7 +6725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "sharedpreferences",
-      "community": 86,
+      "community": 141,
       "norm_label": "sharedpreferences"
     },
     {
@@ -7405,7 +7445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_shot_dart",
-      "community": 138,
+      "community": 174,
       "norm_label": "../../models/shot.dart"
     },
     {
@@ -7625,7 +7665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "image",
-      "community": 138,
+      "community": 150,
       "norm_label": "image?"
     },
     {
@@ -7707,6 +7747,16 @@
       "id": "lib_providers_video_export_provider_nospace",
       "community": 176,
       "norm_label": "nospace"
+    },
+    {
+      "label": "detail",
+      "file_type": "code",
+      "source_file": "lib/providers/video_export_provider.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_providers_video_export_provider_detail",
+      "community": 176,
+      "norm_label": "detail"
     },
     {
       "label": "overlayShare",
@@ -7895,7 +7945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_hud_painter_dart",
-      "community": 138,
+      "community": 174,
       "norm_label": "../../services/video/hud_painter.dart"
     },
     {
@@ -8435,7 +8485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_check_dart",
-      "community": 32,
+      "community": 126,
       "norm_label": "../services/video/clip_check.dart"
     },
     {
@@ -8445,7 +8495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_picker_dart",
-      "community": 32,
+      "community": 126,
       "norm_label": "../services/video/clip_picker.dart"
     },
     {
@@ -8635,7 +8685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreen",
-      "community": 183,
+      "community": 102,
       "norm_label": "autoconfigurescreen"
     },
     {
@@ -8645,7 +8695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstatefulwidget",
-      "community": 183,
+      "community": 81,
       "norm_label": "consumerstatefulwidget"
     },
     {
@@ -8655,7 +8705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreenstate",
-      "community": 183,
+      "community": 102,
       "norm_label": "_autoconfigurescreenstate"
     },
     {
@@ -8665,7 +8715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstate",
-      "community": 183,
+      "community": 81,
       "norm_label": "consumerstate"
     },
     {
@@ -8795,7 +8845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "voidcallback",
-      "community": 93,
+      "community": 95,
       "norm_label": "voidcallback"
     },
     {
@@ -9135,7 +9185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_custom_drills_provider_dart",
-      "community": 93,
+      "community": 95,
       "norm_label": "../providers/custom_drills_provider.dart"
     },
     {
@@ -9165,7 +9215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen",
-      "community": 93,
+      "community": 95,
       "norm_label": "custom_drills_screen.dart"
     },
     {
@@ -9175,7 +9225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_drillaction",
-      "community": 93,
+      "community": 95,
       "norm_label": "_drillaction"
     },
     {
@@ -9195,7 +9245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_emptystate",
-      "community": 93,
+      "community": 95,
       "norm_label": "_emptystate"
     },
     {
@@ -9205,7 +9255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_onsave",
-      "community": 93,
+      "community": 95,
       "norm_label": "onsave"
     },
     {
@@ -9215,7 +9265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_build",
-      "community": 54,
+      "community": 95,
       "norm_label": "build"
     },
     {
@@ -9225,7 +9275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_run",
-      "community": 93,
+      "community": 95,
       "norm_label": "_run"
     },
     {
@@ -9235,7 +9285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_menuitems",
-      "community": 93,
+      "community": 95,
       "norm_label": "_menuitems"
     },
     {
@@ -9245,7 +9295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_drill_tile_dart",
-      "community": 93,
+      "community": 95,
       "norm_label": "../widgets/drill_tile.dart"
     },
     {
@@ -9265,7 +9315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "custom_drill_flows_dart",
-      "community": 93,
+      "community": 95,
       "norm_label": "custom_drill_flows.dart"
     },
     {
@@ -9285,7 +9335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_detectionsettingsscreen",
-      "community": 18,
+      "community": 54,
       "norm_label": "detectionsettingsscreen"
     },
     {
@@ -9785,7 +9835,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_intl_intl_dart",
-      "community": 94,
+      "community": 93,
       "norm_label": "package:intl/intl.dart"
     },
     {
@@ -9815,7 +9865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_time_format_dart",
-      "community": 135,
+      "community": 32,
       "norm_label": "../utils/time_format.dart"
     },
     {
@@ -9865,7 +9915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshell",
-      "community": 183,
+      "community": 81,
       "norm_label": "mainshell"
     },
     {
@@ -9875,7 +9925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_mainshellstate",
-      "community": 183,
+      "community": 81,
       "norm_label": "_mainshellstate"
     },
     {
@@ -10015,7 +10065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreen",
-      "community": 183,
+      "community": 18,
       "norm_label": "mictestscreen"
     },
     {
@@ -10025,7 +10075,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreenstate",
-      "community": 183,
+      "community": 18,
       "norm_label": "_mictestscreenstate"
     },
     {
@@ -10175,7 +10225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_build",
-      "community": 103,
+      "community": 18,
       "norm_label": "build"
     },
     {
@@ -10205,7 +10255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbody",
-      "community": 3,
+      "community": 81,
       "norm_label": "_reviewbody"
     },
     {
@@ -10215,7 +10265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbodystate",
-      "community": 3,
+      "community": 81,
       "norm_label": "_reviewbodystate"
     },
     {
@@ -10225,7 +10275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 14,
+      "community": 3,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -10265,7 +10315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclestat",
-      "community": 14,
+      "community": 3,
       "norm_label": "_cyclestat"
     },
     {
@@ -10445,7 +10495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_persistmeta",
-      "community": 3,
+      "community": 140,
       "norm_label": "_persistmeta"
     },
     {
@@ -10455,7 +10505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_deleteshot",
-      "community": 3,
+      "community": 140,
       "norm_label": "_deleteshot"
     },
     {
@@ -10465,7 +10515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_addshot",
-      "community": 3,
+      "community": 140,
       "norm_label": "_addshot"
     },
     {
@@ -10695,7 +10745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_videoeditorscreen",
-      "community": 183,
+      "community": 171,
       "norm_label": "videoeditorscreen"
     },
     {
@@ -11365,7 +11415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_export_provider_dart",
-      "community": 135,
+      "community": 172,
       "norm_label": "../providers/video_export_provider.dart"
     },
     {
@@ -11565,7 +11615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_var",
-      "community": 172,
+      "community": 156,
       "norm_label": "static var"
     },
     {
@@ -11577,6 +11627,16 @@
       "id": "lib_screens_video_export_dialog_id",
       "community": 172,
       "norm_label": "_id"
+    },
+    {
+      "label": "_copied",
+      "file_type": "code",
+      "source_file": "lib/screens/video_export_dialog.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_screens_video_export_dialog_copied",
+      "community": 172,
+      "norm_label": "_copied"
     },
     {
       "label": "_export",
@@ -11715,7 +11775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_build",
-      "community": 54,
+      "community": 135,
       "norm_label": "build"
     },
     {
@@ -11725,7 +11785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows",
-      "community": 32,
+      "community": 126,
       "norm_label": "video_flows.dart"
     },
     {
@@ -11735,7 +11795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_startvideoimport",
-      "community": 32,
+      "community": 126,
       "norm_label": "startvideoimport"
     },
     {
@@ -11745,7 +11805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_choosevideoagain",
-      "community": 32,
+      "community": 126,
       "norm_label": "choosevideoagain"
     },
     {
@@ -11755,7 +11815,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_clipproblemkey",
-      "community": 32,
+      "community": 126,
       "norm_label": "clipproblemkey"
     },
     {
@@ -11765,7 +11825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_import_screen_dart",
-      "community": 32,
+      "community": 126,
       "norm_label": "video_import_screen.dart"
     },
     {
@@ -11785,7 +11845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_videoimportscreen",
-      "community": 126,
+      "community": 81,
       "norm_label": "videoimportscreen"
     },
     {
@@ -11795,7 +11855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_videoimportscreenstate",
-      "community": 126,
+      "community": 81,
       "norm_label": "_videoimportscreenstate"
     },
     {
@@ -11825,7 +11885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_steprow",
-      "community": 126,
+      "community": 14,
       "norm_label": "_steprow"
     },
     {
@@ -12095,7 +12155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_part_view_videopartview",
-      "community": 130,
+      "community": 97,
       "norm_label": "videopartview"
     },
     {
@@ -12105,7 +12165,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "statefulwidget",
-      "community": 130,
+      "community": 97,
       "norm_label": "statefulwidget"
     },
     {
@@ -12115,7 +12175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_part_view_videopartviewstate",
-      "community": 130,
+      "community": 97,
       "norm_label": "_videopartviewstate"
     },
     {
@@ -12125,7 +12185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "state",
-      "community": 130,
+      "community": 97,
       "norm_label": "state"
     },
     {
@@ -13035,7 +13095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_beep_constants",
-      "community": 140,
+      "community": 17,
       "norm_label": "beep_constants.dart"
     },
     {
@@ -13045,7 +13105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_beep_constants_beeps",
-      "community": 140,
+      "community": 17,
       "norm_label": "beeps"
     },
     {
@@ -13055,7 +13115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_beep_constants_frequencyhz",
-      "community": 140,
+      "community": 17,
       "norm_label": "frequencyhz"
     },
     {
@@ -13065,7 +13125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_beep_constants_startdurationms",
-      "community": 140,
+      "community": 17,
       "norm_label": "startdurationms"
     },
     {
@@ -13075,7 +13135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_beep_constants_pardurationms",
-      "community": 140,
+      "community": 17,
       "norm_label": "pardurationms"
     },
     {
@@ -13235,7 +13295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad",
-      "community": 182,
+      "community": 188,
       "norm_label": "biquad.dart"
     },
     {
@@ -13245,7 +13305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_biquad",
-      "community": 182,
+      "community": 188,
       "norm_label": "biquad"
     },
     {
@@ -13255,7 +13315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_x1",
-      "community": 182,
+      "community": 188,
       "norm_label": "_x1"
     },
     {
@@ -13265,7 +13325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_notch",
-      "community": 182,
+      "community": 188,
       "norm_label": "notch"
     },
     {
@@ -13275,7 +13335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_highpass",
-      "community": 182,
+      "community": 188,
       "norm_label": "highpass"
     },
     {
@@ -13285,7 +13345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_lowpass",
-      "community": 182,
+      "community": 188,
       "norm_label": "lowpass"
     },
     {
@@ -13295,7 +13355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_processint16inplace",
-      "community": 182,
+      "community": 188,
       "norm_label": "processint16inplace"
     },
     {
@@ -13305,7 +13365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_reset",
-      "community": 182,
+      "community": 188,
       "norm_label": "reset"
     },
     {
@@ -15285,7 +15345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_shotsensitivity",
-      "community": 185,
+      "community": 13,
       "norm_label": "shotsensitivity"
     },
     {
@@ -15485,7 +15545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "spectrogram_dart",
-      "community": 133,
+      "community": 131,
       "norm_label": "spectrogram.dart"
     },
     {
@@ -16115,7 +16175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_exporter_clipexporter",
-      "community": 201,
+      "community": 169,
       "norm_label": "clipexporter"
     },
     {
@@ -16125,7 +16185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_exporter_channelclipexporter",
-      "community": 201,
+      "community": 169,
       "norm_label": "channelclipexporter"
     },
     {
@@ -16455,7 +16515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "imagepicker",
-      "community": 156,
+      "community": 137,
       "norm_label": "imagepicker"
     },
     {
@@ -16495,7 +16555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_image_picker_image_picker_dart",
-      "community": 156,
+      "community": 137,
       "norm_label": "package:image_picker/image_picker.dart"
     },
     {
@@ -17505,7 +17565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_hud_hudoptions",
-      "community": 150,
+      "community": 174,
       "norm_label": "hudoptions"
     },
     {
@@ -17675,7 +17735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const_double",
-      "community": 151,
+      "community": 138,
       "norm_label": "static const double"
     },
     {
@@ -18415,7 +18475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_hud_painter_hudlabels",
-      "community": 138,
+      "community": 174,
       "norm_label": "hudlabels"
     },
     {
@@ -19555,7 +19615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_part_window_partwindow",
-      "community": 91,
+      "community": 130,
       "norm_label": "partwindow"
     },
     {
@@ -21105,7 +21165,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videoworkdir",
-      "community": 127,
+      "community": 189,
       "norm_label": "videoworkdir"
     },
     {
@@ -21115,7 +21175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videosession",
-      "community": 189,
+      "community": 142,
       "norm_label": "videosession"
     },
     {
@@ -21275,7 +21335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service",
-      "community": 178,
+      "community": 173,
       "norm_label": "volume_service.dart"
     },
     {
@@ -21295,7 +21355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_channel",
-      "community": 178,
+      "community": 173,
       "norm_label": "_channel"
     },
     {
@@ -21305,7 +21365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_ismediaaudible",
-      "community": 178,
+      "community": 173,
       "norm_label": "ismediaaudible"
     },
     {
@@ -21315,7 +21375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_showvolumepanel",
-      "community": 178,
+      "community": 173,
       "norm_label": "showvolumepanel"
     },
     {
@@ -22335,7 +22395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar",
-      "community": 151,
+      "community": 138,
       "norm_label": "app_navigation_bar.dart"
     },
     {
@@ -22345,7 +22405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_appnavigationbar",
-      "community": 151,
+      "community": 138,
       "norm_label": "appnavigationbar"
     },
     {
@@ -22355,7 +22415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_step",
-      "community": 151,
+      "community": 138,
       "norm_label": "step"
     },
     {
@@ -22365,7 +22425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_smallest",
-      "community": 151,
+      "community": 138,
       "norm_label": "smallest"
     },
     {
@@ -22375,7 +22435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_size",
-      "community": 151,
+      "community": 138,
       "norm_label": "size"
     },
     {
@@ -22385,7 +22445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_selectedindex",
-      "community": 151,
+      "community": 138,
       "norm_label": "selectedindex"
     },
     {
@@ -22395,7 +22455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_ondestinationselected",
-      "community": 151,
+      "community": 138,
       "norm_label": "ondestinationselected"
     },
     {
@@ -22405,7 +22465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_showvideo",
-      "community": 151,
+      "community": 138,
       "norm_label": "showvideo"
     },
     {
@@ -22415,7 +22475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_labelinset",
-      "community": 151,
+      "community": 138,
       "norm_label": "_labelinset"
     },
     {
@@ -22425,7 +22485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_fittedlabelsize",
-      "community": 151,
+      "community": 138,
       "norm_label": "fittedlabelsize"
     },
     {
@@ -22435,7 +22495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_fits",
-      "community": 151,
+      "community": 138,
       "norm_label": "fits"
     },
     {
@@ -22445,7 +22505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_app_navigation_bar_build",
-      "community": 151,
+      "community": 138,
       "norm_label": "build"
     },
     {
@@ -22455,7 +22515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display",
-      "community": 137,
+      "community": 19,
       "norm_label": "big_time_display.dart"
     },
     {
@@ -22465,7 +22525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_bigtimedisplay",
-      "community": 130,
+      "community": 97,
       "norm_label": "bigtimedisplay"
     },
     {
@@ -22475,7 +22535,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_bigtimedisplaystate",
-      "community": 130,
+      "community": 97,
       "norm_label": "_bigtimedisplaystate"
     },
     {
@@ -22485,7 +22545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "singletickerproviderstatemixin",
-      "community": 130,
+      "community": 97,
       "norm_label": "singletickerproviderstatemixin"
     },
     {
@@ -22495,7 +22555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_timems",
-      "community": 137,
+      "community": 19,
       "norm_label": "timems"
     },
     {
@@ -22505,7 +22565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_label",
-      "community": 137,
+      "community": 19,
       "norm_label": "label"
     },
     {
@@ -22515,7 +22575,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_fontsize",
-      "community": 137,
+      "community": 19,
       "norm_label": "fontsize"
     },
     {
@@ -22525,7 +22585,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_pulsekey",
-      "community": 137,
+      "community": 19,
       "norm_label": "pulsekey"
     },
     {
@@ -22535,7 +22595,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "object",
-      "community": 137,
+      "community": 19,
       "norm_label": "object?"
     },
     {
@@ -22545,7 +22605,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_ctrl",
-      "community": 137,
+      "community": 19,
       "norm_label": "_ctrl"
     },
     {
@@ -22555,7 +22615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animationcontroller",
-      "community": 137,
+      "community": 19,
       "norm_label": "animationcontroller"
     },
     {
@@ -22565,7 +22625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_scale",
-      "community": 137,
+      "community": 19,
       "norm_label": "_scale"
     },
     {
@@ -22575,7 +22635,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animation",
-      "community": 137,
+      "community": 19,
       "norm_label": "animation"
     },
     {
@@ -22585,7 +22645,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_createstate",
-      "community": 137,
+      "community": 19,
       "norm_label": "createstate"
     },
     {
@@ -22595,7 +22655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_didupdatewidget",
-      "community": 137,
+      "community": 19,
       "norm_label": "didupdatewidget"
     },
     {
@@ -22605,7 +22665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_dispose",
-      "community": 137,
+      "community": 19,
       "norm_label": "dispose"
     },
     {
@@ -22615,7 +22675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_build",
-      "community": 137,
+      "community": 19,
       "norm_label": "build"
     },
     {
@@ -22935,7 +22995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile",
-      "community": 93,
+      "community": 95,
       "norm_label": "drill_tile.dart"
     },
     {
@@ -22945,7 +23005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drilltile",
-      "community": 93,
+      "community": 95,
       "norm_label": "drilltile"
     },
     {
@@ -22955,7 +23015,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_drill",
-      "community": 93,
+      "community": 95,
       "norm_label": "drill"
     },
     {
@@ -22965,7 +23025,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_active",
-      "community": 93,
+      "community": 95,
       "norm_label": "active"
     },
     {
@@ -22975,7 +23035,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_ontap",
-      "community": 93,
+      "community": 95,
       "norm_label": "ontap"
     },
     {
@@ -22985,7 +23045,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_trailing",
-      "community": 93,
+      "community": 95,
       "norm_label": "trailing"
     },
     {
@@ -22995,7 +23055,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_drill_tile_build",
-      "community": 93,
+      "community": 95,
       "norm_label": "build"
     },
     {
@@ -23275,7 +23335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector",
-      "community": 185,
+      "community": 13,
       "norm_label": "sensitivity_selector.dart"
     },
     {
@@ -23285,7 +23345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_sensitivityselector",
-      "community": 185,
+      "community": 13,
       "norm_label": "sensitivityselector"
     },
     {
@@ -23295,7 +23355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_value",
-      "community": 185,
+      "community": 13,
       "norm_label": "value"
     },
     {
@@ -23305,7 +23365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_busy",
-      "community": 185,
+      "community": 13,
       "norm_label": "busy"
     },
     {
@@ -23315,7 +23375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_onchanged",
-      "community": 185,
+      "community": 13,
       "norm_label": "onchanged"
     },
     {
@@ -23325,7 +23385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_build",
-      "community": 185,
+      "community": 13,
       "norm_label": "build"
     },
     {
@@ -23345,7 +23405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_flash_overlay_flashoverlay",
-      "community": 130,
+      "community": 97,
       "norm_label": "flashoverlay"
     },
     {
@@ -23355,7 +23415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_flash_overlay_flashoverlaystate",
-      "community": 130,
+      "community": 97,
       "norm_label": "_flashoverlaystate"
     },
     {
@@ -23605,7 +23665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_part_strip_partstrip",
-      "community": 130,
+      "community": 97,
       "norm_label": "partstrip"
     },
     {
@@ -23615,7 +23675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_part_strip_partstripstate",
-      "community": 130,
+      "community": 97,
       "norm_label": "_partstripstate"
     },
     {
@@ -24725,7 +24785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_summary_grid",
-      "community": 135,
+      "community": 32,
       "norm_label": "string_summary_grid.dart"
     },
     {
@@ -24735,7 +24795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_summary_grid_stringsummarygrid",
-      "community": 135,
+      "community": 32,
       "norm_label": "stringsummarygrid"
     },
     {
@@ -24745,7 +24805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_summary_grid_summaryitem",
-      "community": 135,
+      "community": 32,
       "norm_label": "_summaryitem"
     },
     {
@@ -24755,7 +24815,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_summary_grid_string",
-      "community": 135,
+      "community": 32,
       "norm_label": "string"
     },
     {
@@ -24765,7 +24825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_summary_grid_label",
-      "community": 135,
+      "community": 32,
       "norm_label": "label"
     },
     {
@@ -24775,7 +24835,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_summary_grid_value",
-      "community": 135,
+      "community": 32,
       "norm_label": "value"
     },
     {
@@ -24785,7 +24845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_summary_grid_build",
-      "community": 135,
+      "community": 32,
       "norm_label": "build"
     },
     {
@@ -24795,7 +24855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_tile",
-      "community": 135,
+      "community": 32,
       "norm_label": "string_tile.dart"
     },
     {
@@ -24805,7 +24865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_tile_stringtile",
-      "community": 135,
+      "community": 32,
       "norm_label": "stringtile"
     },
     {
@@ -24815,7 +24875,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_tile_string",
-      "community": 135,
+      "community": 32,
       "norm_label": "string"
     },
     {
@@ -24825,7 +24885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_tile_ontap",
-      "community": 135,
+      "community": 32,
       "norm_label": "ontap"
     },
     {
@@ -24835,7 +24895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_tile_drillsummary",
-      "community": 135,
+      "community": 32,
       "norm_label": "drillsummary"
     },
     {
@@ -24845,7 +24905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_tile_fmt",
-      "community": 135,
+      "community": 32,
       "norm_label": "fmt"
     },
     {
@@ -24855,7 +24915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_string_tile_build",
-      "community": 135,
+      "community": 32,
       "norm_label": "build"
     },
     {
@@ -24945,7 +25005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_shot_timeline_shottimeline",
-      "community": 98,
+      "community": 97,
       "norm_label": "shottimeline"
     },
     {
@@ -24955,7 +25015,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_shot_timeline_shottimelinestate",
-      "community": 98,
+      "community": 97,
       "norm_label": "_shottimelinestate"
     },
     {
@@ -26215,7 +26275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample",
-      "community": 138,
+      "community": 174,
       "norm_label": "hud_sample.dart"
     },
     {
@@ -26225,7 +26285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_hudsample",
-      "community": 138,
+      "community": 174,
       "norm_label": "hudsample"
     },
     {
@@ -26235,7 +26295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_options",
-      "community": 138,
+      "community": 174,
       "norm_label": "options"
     },
     {
@@ -26245,7 +26305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_labels",
-      "community": 138,
+      "community": 174,
       "norm_label": "labels"
     },
     {
@@ -26255,7 +26315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_logo",
-      "community": 138,
+      "community": 174,
       "norm_label": "logo"
     },
     {
@@ -26265,7 +26325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_frame",
-      "community": 138,
+      "community": 174,
       "norm_label": "_frame"
     },
     {
@@ -26275,7 +26335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_atms",
-      "community": 138,
+      "community": 174,
       "norm_label": "_atms"
     },
     {
@@ -26285,7 +26345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_string",
-      "community": 138,
+      "community": 174,
       "norm_label": "_string"
     },
     {
@@ -26295,7 +26355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_sample_build",
-      "community": 138,
+      "community": 174,
       "norm_label": "build"
     },
     {
@@ -26305,7 +26365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "hud_overlay_dart",
-      "community": 138,
+      "community": 174,
       "norm_label": "hud_overlay.dart"
     },
     {
@@ -26415,7 +26475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test",
-      "community": 166,
+      "community": 118,
       "norm_label": "auto_configure_test.dart"
     },
     {
@@ -26425,7 +26485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test_shot",
-      "community": 166,
+      "community": 118,
       "norm_label": "shot"
     },
     {
@@ -26435,7 +26495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test_main",
-      "community": 166,
+      "community": 118,
       "norm_label": "main"
     },
     {
@@ -26445,7 +26505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_calibration_shot_dart",
-      "community": 166,
+      "community": 118,
       "norm_label": "package:simple_shot_timer/models/calibration_shot.dart"
     },
     {
@@ -26455,7 +26515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_auto_configure_dart",
-      "community": 166,
+      "community": 118,
       "norm_label": "package:simple_shot_timer/services/auto_configure.dart"
     },
     {
@@ -26465,7 +26525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_fft_dart",
-      "community": 166,
+      "community": 118,
       "norm_label": "package:simple_shot_timer/utils/fft.dart"
     },
     {
@@ -26625,7 +26685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test",
-      "community": 182,
+      "community": 118,
       "norm_label": "biquad_test.dart"
     },
     {
@@ -26635,7 +26695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_samplerate",
-      "community": 182,
+      "community": 118,
       "norm_label": "samplerate"
     },
     {
@@ -26645,7 +26705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_beephz",
-      "community": 182,
+      "community": 118,
       "norm_label": "beephz"
     },
     {
@@ -26655,7 +26715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_main",
-      "community": 182,
+      "community": 118,
       "norm_label": "main"
     },
     {
@@ -26665,7 +26725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_sine",
-      "community": 182,
+      "community": 118,
       "norm_label": "sine"
     },
     {
@@ -26675,7 +26735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_peakabs",
-      "community": 182,
+      "community": 118,
       "norm_label": "peakabs"
     },
     {
@@ -26685,7 +26745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_biquad_dart",
-      "community": 182,
+      "community": 118,
       "norm_label": "package:simple_shot_timer/services/biquad.dart"
     },
     {
@@ -26875,7 +26935,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_fakesession",
-      "community": 189,
+      "community": 142,
       "norm_label": "_fakesession"
     },
     {
@@ -27175,7 +27235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_fake_async_fake_async_dart",
-      "community": 142,
+      "community": 118,
       "norm_label": "package:fake_async/fake_async.dart"
     },
     {
@@ -27185,7 +27245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_enums_dart",
-      "community": 86,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/models/enums.dart"
     },
     {
@@ -27235,7 +27295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_video_providers_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/providers/video_providers.dart"
     },
     {
@@ -27285,7 +27345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_video_work_dir_dart",
-      "community": 127,
+      "community": 189,
       "norm_label": "package:simple_shot_timer/services/video/video_work_dir.dart"
     },
     {
@@ -27715,7 +27775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test",
-      "community": 184,
+      "community": 137,
       "norm_label": "clip_picker_test.dart"
     },
     {
@@ -27725,7 +27785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_fakephotos",
-      "community": 156,
+      "community": 137,
       "norm_label": "_fakephotos"
     },
     {
@@ -27735,7 +27795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_path",
-      "community": 184,
+      "community": 137,
       "norm_label": "path"
     },
     {
@@ -27745,7 +27805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_channel",
-      "community": 184,
+      "community": 137,
       "norm_label": "channel"
     },
     {
@@ -27755,7 +27815,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_messenger",
-      "community": 184,
+      "community": 137,
       "norm_label": "messenger"
     },
     {
@@ -27765,7 +27825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_temp",
-      "community": 184,
+      "community": 137,
       "norm_label": "temp"
     },
     {
@@ -27775,7 +27835,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_session",
-      "community": 184,
+      "community": 137,
       "norm_label": "session"
     },
     {
@@ -27785,7 +27845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_pickvideo",
-      "community": 184,
+      "community": 137,
       "norm_label": "pickvideo"
     },
     {
@@ -27795,7 +27855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_main",
-      "community": 184,
+      "community": 137,
       "norm_label": "main"
     },
     {
@@ -27805,7 +27865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_picker_test_fromplatform",
-      "community": 184,
+      "community": 137,
       "norm_label": "fromplatform"
     },
     {
@@ -27815,7 +27875,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_picker_dart",
-      "community": 184,
+      "community": 137,
       "norm_label": "package:simple_shot_timer/services/video/clip_picker.dart"
     },
     {
@@ -27845,7 +27905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test",
-      "community": 86,
+      "community": 141,
       "norm_label": "custom_drill_test.dart"
     },
     {
@@ -27855,7 +27915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_drill",
-      "community": 86,
+      "community": 141,
       "norm_label": "_drill"
     },
     {
@@ -27865,7 +27925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_main",
-      "community": 86,
+      "community": 141,
       "norm_label": "main"
     },
     {
@@ -27875,7 +27935,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_app_settings_dart",
-      "community": 86,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/models/app_settings.dart"
     },
     {
@@ -27885,7 +27945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_custom_drill_dart",
-      "community": 86,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/models/custom_drill.dart"
     },
     {
@@ -27895,7 +27955,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_drill_config_dart",
-      "community": 86,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/models/drill_config.dart"
     },
     {
@@ -28055,7 +28115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_settings_service_dart",
-      "community": 86,
+      "community": 141,
       "norm_label": "package:simple_shot_timer/services/settings_service.dart"
     },
     {
@@ -28185,7 +28245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_date_locale_test",
-      "community": 94,
+      "community": 93,
       "norm_label": "date_locale_test.dart"
     },
     {
@@ -28195,7 +28255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_date_locale_test_when",
-      "community": 94,
+      "community": 93,
       "norm_label": "when"
     },
     {
@@ -28205,7 +28265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_date_locale_test_main",
-      "community": 94,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -28215,7 +28275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_date_locale_test_formatin",
-      "community": 94,
+      "community": 93,
       "norm_label": "formatin"
     },
     {
@@ -28225,7 +28285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_i18n_app_localizations_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/i18n/app_localizations.dart"
     },
     {
@@ -28235,7 +28295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 182,
+      "community": 118,
       "norm_label": "delay_test.dart"
     },
     {
@@ -28245,7 +28305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 182,
+      "community": 118,
       "norm_label": "main"
     },
     {
@@ -28365,7 +28425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_export_plan_dart",
-      "community": 41,
+      "community": 189,
       "norm_label": "package:simple_shot_timer/services/video/export_plan.dart"
     },
     {
@@ -28375,7 +28435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 22,
+      "community": 118,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -28385,7 +28445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 22,
+      "community": 118,
       "norm_label": "_host"
     },
     {
@@ -28395,7 +28455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 22,
+      "community": 118,
       "norm_label": "_visiblesignal"
     },
     {
@@ -28405,7 +28465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 22,
+      "community": 118,
       "norm_label": "main"
     },
     {
@@ -28415,7 +28475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 22,
+      "community": 118,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -28565,7 +28625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test",
-      "community": 118,
+      "community": 93,
       "norm_label": "i18n_parity_test.dart"
     },
     {
@@ -28575,7 +28635,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholder",
-      "community": 118,
+      "community": 93,
       "norm_label": "placeholder"
     },
     {
@@ -28585,7 +28645,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_plist",
-      "community": 118,
+      "community": 93,
       "norm_label": "plist"
     },
     {
@@ -28595,7 +28655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_ioslocalizations",
-      "community": 118,
+      "community": 93,
       "norm_label": "ioslocalizations"
     },
     {
@@ -28605,7 +28665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_main",
-      "community": 118,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -28615,7 +28675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_load",
-      "community": 118,
+      "community": 93,
       "norm_label": "load"
     },
     {
@@ -28625,7 +28685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_i18n_parity_test_placeholders",
-      "community": 118,
+      "community": 93,
       "norm_label": "placeholders"
     },
     {
@@ -28635,7 +28695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test",
-      "community": 194,
+      "community": 173,
       "norm_label": "ios_audio_session_test.dart"
     },
     {
@@ -28645,7 +28705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_channel",
-      "community": 194,
+      "community": 173,
       "norm_label": "channel"
     },
     {
@@ -28655,7 +28715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_messenger",
-      "community": 194,
+      "community": 173,
       "norm_label": "messenger"
     },
     {
@@ -28665,7 +28725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_calls",
-      "community": 194,
+      "community": 173,
       "norm_label": "calls"
     },
     {
@@ -28675,7 +28735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_main",
-      "community": 194,
+      "community": 173,
       "norm_label": "main"
     },
     {
@@ -28685,7 +28745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_audio_session_test_installhandler",
-      "community": 194,
+      "community": 173,
       "norm_label": "installhandler"
     },
     {
@@ -28695,7 +28755,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_ios_audio_session_dart",
-      "community": 194,
+      "community": 173,
       "norm_label": "package:simple_shot_timer/services/ios_audio_session.dart"
     },
     {
@@ -28705,7 +28765,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_project_test",
-      "community": 118,
+      "community": 93,
       "norm_label": "ios_project_test.dart"
     },
     {
@@ -28715,7 +28775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_project_test_main",
-      "community": 118,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -28765,7 +28825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test",
-      "community": 195,
+      "community": 173,
       "norm_label": "legal_test.dart"
     },
     {
@@ -28775,7 +28835,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test_attribution",
-      "community": 195,
+      "community": 173,
       "norm_label": "attribution"
     },
     {
@@ -28785,7 +28845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test_originalurl",
-      "community": 195,
+      "community": 173,
       "norm_label": "originalurl"
     },
     {
@@ -28795,7 +28855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_legal_test_main",
-      "community": 195,
+      "community": 173,
       "norm_label": "main"
     },
     {
@@ -28805,7 +28865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_legal_dart",
-      "community": 195,
+      "community": 173,
       "norm_label": "package:simple_shot_timer/utils/legal.dart"
     },
     {
@@ -29005,7 +29065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test",
-      "community": 86,
+      "community": 41,
       "norm_label": "par_schedule_test.dart"
     },
     {
@@ -29015,7 +29075,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test_main",
-      "community": 86,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -29025,7 +29085,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_par_schedule_dart",
-      "community": 86,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/models/par_schedule.dart"
     },
     {
@@ -29035,7 +29095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test",
-      "community": 91,
+      "community": 130,
       "norm_label": "part_strip_test.dart"
     },
     {
@@ -29045,7 +29105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_tenminutes",
-      "community": 91,
+      "community": 130,
       "norm_label": "tenminutes"
     },
     {
@@ -29055,7 +29115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_window",
-      "community": 91,
+      "community": 130,
       "norm_label": "window"
     },
     {
@@ -29065,7 +29125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_edges",
-      "community": 91,
+      "community": 130,
       "norm_label": "edges"
     },
     {
@@ -29075,7 +29135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_ends",
-      "community": 91,
+      "community": 130,
       "norm_label": "ends"
     },
     {
@@ -29085,7 +29145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_main",
-      "community": 91,
+      "community": 130,
       "norm_label": "main"
     },
     {
@@ -29095,7 +29155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_pumpstrip",
-      "community": 91,
+      "community": 130,
       "norm_label": "pumpstrip"
     },
     {
@@ -29105,7 +29165,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_part_window_dart",
-      "community": 91,
+      "community": 130,
       "norm_label": "package:simple_shot_timer/services/video/part_window.dart"
     },
     {
@@ -29115,7 +29175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_part_strip_dart",
-      "community": 91,
+      "community": 130,
       "norm_label": "package:simple_shot_timer/widgets/part_strip.dart"
     },
     {
@@ -29125,7 +29185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test",
-      "community": 91,
+      "community": 130,
       "norm_label": "part_window_test.dart"
     },
     {
@@ -29135,7 +29195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_minute",
-      "community": 91,
+      "community": 130,
       "norm_label": "minute"
     },
     {
@@ -29145,7 +29205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_tenminutes",
-      "community": 91,
+      "community": 130,
       "norm_label": "tenminutes"
     },
     {
@@ -29155,7 +29215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_main",
-      "community": 91,
+      "community": 130,
       "norm_label": "main"
     },
     {
@@ -29305,7 +29365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test",
-      "community": 41,
+      "community": 93,
       "norm_label": "settings_delete_all_test.dart"
     },
     {
@@ -29315,7 +29375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_history",
-      "community": 41,
+      "community": 140,
       "norm_label": "_history"
     },
     {
@@ -29325,7 +29385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleted",
-      "community": 41,
+      "community": 93,
       "norm_label": "deleted"
     },
     {
@@ -29335,7 +29395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_build",
-      "community": 41,
+      "community": 93,
       "norm_label": "build"
     },
     {
@@ -29345,7 +29405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleteall",
-      "community": 41,
+      "community": 93,
       "norm_label": "deleteall"
     },
     {
@@ -29355,7 +29415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_main",
-      "community": 41,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -29365,7 +29425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_history_provider_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/providers/history_provider.dart"
     },
     {
@@ -29375,7 +29435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_settings_screen_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/screens/settings_screen.dart"
     },
     {
@@ -29385,7 +29445,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_service_test",
-      "community": 86,
+      "community": 141,
       "norm_label": "settings_service_test.dart"
     },
     {
@@ -29395,7 +29455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_service_test_drills",
-      "community": 86,
+      "community": 141,
       "norm_label": "_drills"
     },
     {
@@ -29405,7 +29465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_service_test_prefs",
-      "community": 86,
+      "community": 141,
       "norm_label": "prefs"
     },
     {
@@ -29415,7 +29475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_service_test_main",
-      "community": 86,
+      "community": 141,
       "norm_label": "main"
     },
     {
@@ -29425,7 +29485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test",
-      "community": 86,
+      "community": 141,
       "norm_label": "shot_detector_test.dart"
     },
     {
@@ -29435,7 +29495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test_main",
-      "community": 86,
+      "community": 141,
       "norm_label": "main"
     },
     {
@@ -29895,7 +29955,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test",
-      "community": 118,
+      "community": 185,
       "norm_label": "store_listing_test.dart"
     },
     {
@@ -29905,7 +29965,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_root",
-      "community": 118,
+      "community": 185,
       "norm_label": "root"
     },
     {
@@ -29915,7 +29975,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_storelocales",
-      "community": 118,
+      "community": 185,
       "norm_label": "storelocales"
     },
     {
@@ -29925,7 +29985,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_playlimits",
-      "community": 118,
+      "community": 185,
       "norm_label": "playlimits"
     },
     {
@@ -29935,7 +29995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_playrequired",
-      "community": 118,
+      "community": 185,
       "norm_label": "playrequired"
     },
     {
@@ -29945,7 +30005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_appstorelimits",
-      "community": 118,
+      "community": 185,
       "norm_label": "appstorelimits"
     },
     {
@@ -29955,7 +30015,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_appstorerequired",
-      "community": 118,
+      "community": 185,
       "norm_label": "appstorerequired"
     },
     {
@@ -29965,7 +30025,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_main",
-      "community": 118,
+      "community": 185,
       "norm_label": "main"
     },
     {
@@ -29975,7 +30035,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_locales",
-      "community": 118,
+      "community": 185,
       "norm_label": "locales"
     },
     {
@@ -29985,7 +30045,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_name",
-      "community": 118,
+      "community": 185,
       "norm_label": "name"
     },
     {
@@ -29995,7 +30055,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_store_listing_test_checkstore",
-      "community": 118,
+      "community": 185,
       "norm_label": "checkstore"
     },
     {
@@ -30035,7 +30095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test",
-      "community": 142,
+      "community": 118,
       "norm_label": "throttled_seeker_test.dart"
     },
     {
@@ -30045,7 +30105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test_main",
-      "community": 142,
+      "community": 118,
       "norm_label": "main"
     },
     {
@@ -30055,7 +30115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_throttled_seeker_dart",
-      "community": 142,
+      "community": 118,
       "norm_label": "package:simple_shot_timer/services/video/throttled_seeker.dart"
     },
     {
@@ -30715,7 +30775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_session",
-      "community": 189,
+      "community": 142,
       "norm_label": "_session"
     },
     {
@@ -30735,7 +30795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_noexporter",
-      "community": 201,
+      "community": 169,
       "norm_label": "_noexporter"
     },
     {
@@ -31025,7 +31085,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_export_test_fakeexporter",
-      "community": 201,
+      "community": 169,
       "norm_label": "_fakeexporter"
     },
     {
@@ -31037,6 +31097,16 @@
       "id": "test_video_export_test_fakegallery",
       "community": 187,
       "norm_label": "_fakegallery"
+    },
+    {
+      "label": "_FailingExport",
+      "file_type": "code",
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_export_test_failingexport",
+      "community": 150,
+      "norm_label": "_failingexport"
     },
     {
       "label": "_FakeEnvironment",
@@ -31075,7 +31145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "canceltoken",
-      "community": 160,
+      "community": 127,
       "norm_label": "canceltoken?"
     },
     {
@@ -31187,6 +31257,16 @@
       "id": "test_video_export_test_saving",
       "community": 160,
       "norm_label": "saving"
+    },
+    {
+      "label": "failure",
+      "file_type": "code",
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_export_test_failure",
+      "community": 160,
+      "norm_label": "failure"
     },
     {
       "label": "awake",
@@ -31379,6 +31459,26 @@
       "norm_label": "share"
     },
     {
+      "label": "build",
+      "file_type": "code",
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_export_test_build",
+      "community": 160,
+      "norm_label": "build"
+    },
+    {
+      "label": "start",
+      "file_type": "code",
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_video_export_test_start",
+      "community": 160,
+      "norm_label": "start"
+    },
+    {
       "label": "setKeepAwake",
       "file_type": "code",
       "source_file": "test/video_export_test.dart",
@@ -31439,6 +31539,16 @@
       "norm_label": "job"
     },
     {
+      "label": "package:simple_shot_timer/screens/video_export_dialog.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_simple_shot_timer_screens_video_export_dialog_dart",
+      "community": 160,
+      "norm_label": "package:simple_shot_timer/screens/video_export_dialog.dart"
+    },
+    {
       "label": "package:simple_shot_timer/services/video/video_gallery.dart",
       "file_type": "code",
       "source_file": null,
@@ -31465,7 +31575,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakesession",
-      "community": 189,
+      "community": 142,
       "norm_label": "_fakesession"
     },
     {
@@ -31475,7 +31585,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakeworkdir",
-      "community": 127,
+      "community": 189,
       "norm_label": "_fakeworkdir"
     },
     {
@@ -31955,7 +32065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_check_dart",
-      "community": 127,
+      "community": 189,
       "norm_label": "package:simple_shot_timer/services/video/clip_check.dart"
     },
     {
@@ -31965,7 +32075,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test",
-      "community": 127,
+      "community": 189,
       "norm_label": "video_work_dir_test.dart"
     },
     {
@@ -31975,7 +32085,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_temp",
-      "community": 127,
+      "community": 189,
       "norm_label": "temp"
     },
     {
@@ -31985,7 +32095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_work",
-      "community": 127,
+      "community": 189,
       "norm_label": "work"
     },
     {
@@ -31995,7 +32105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_main",
-      "community": 127,
+      "community": 189,
       "norm_label": "main"
     },
     {
@@ -32005,7 +32115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_driver_integration_test",
-      "community": 188,
+      "community": 10,
       "norm_label": "integration_test.dart"
     },
     {
@@ -32015,7 +32125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_driver_integration_test_main",
-      "community": 188,
+      "community": 10,
       "norm_label": "main"
     },
     {
@@ -32025,7 +32135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_integration_test_integration_test_driver_dart",
-      "community": 188,
+      "community": 10,
       "norm_label": "package:integration_test/integration_test_driver.dart"
     },
     {
@@ -33029,10 +33139,40 @@
       "norm_label": "changelog"
     },
     {
-      "label": "[2.3.2](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.1...v2.3.2) (2026-10-19)",
+      "label": "[2.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.2...v2.4.0) (2026-10-31)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L3",
+      "_origin": "ast",
+      "id": "changelog_2_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_2_v2_4_0_2026_10_31",
+      "community": 50,
+      "norm_label": "[2.4.0](https://github.com/mr-jami/simple-shot-timer/compare/v2.3.2...v2.4.0) (2026-10-31)"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "changelog_features",
+      "community": 50,
+      "norm_label": "features"
+    },
+    {
+      "label": "Bug Fixes",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "changelog_bug_fixes",
+      "community": 50,
+      "norm_label": "bug fixes"
+    },
+    {
+      "label": "[2.3.2](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.1...v2.3.2) (2026-10-19)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "changelog_2_3_2_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_1_v2_3_2_2026_10_19",
       "community": 50,
@@ -33042,9 +33182,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L6",
+      "source_location": "L18",
       "_origin": "ast",
-      "id": "changelog_bug_fixes",
+      "id": "changelog_bug_fixes_18",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -33052,7 +33192,7 @@
       "label": "[2.3.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.0...v2.3.1) (2026-10-19)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L11",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
       "community": 50,
@@ -33062,9 +33202,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L14",
+      "source_location": "L26",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_14",
+      "id": "changelog_bug_fixes_26",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -33072,7 +33212,7 @@
       "label": "[2.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.2.0...v2.3.0) (2026-10-19)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "changelog_2_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_2_0_v2_3_0_2026_10_19",
       "community": 50,
@@ -33082,9 +33222,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L21",
+      "source_location": "L33",
       "_origin": "ast",
-      "id": "changelog_features",
+      "id": "changelog_features_33",
       "community": 50,
       "norm_label": "features"
     },
@@ -33092,7 +33232,7 @@
       "label": "[2.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.1.0...v2.2.0) (2026-10-13)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L25",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "changelog_2_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_1_0_v2_2_0_2026_10_13",
       "community": 50,
@@ -33102,9 +33242,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L40",
       "_origin": "ast",
-      "id": "changelog_features_28",
+      "id": "changelog_features_40",
       "community": 50,
       "norm_label": "features"
     },
@@ -33112,7 +33252,7 @@
       "label": "[2.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.0.0...v2.1.0) (2026-10-04)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L32",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "changelog_2_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_0_0_v2_1_0_2026_10_04",
       "community": 50,
@@ -33122,9 +33262,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L47",
       "_origin": "ast",
-      "id": "changelog_features_35",
+      "id": "changelog_features_47",
       "community": 50,
       "norm_label": "features"
     },
@@ -33132,7 +33272,7 @@
       "label": "[2.0.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.7.0...v2.0.0) (2026-10-01)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L39",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
       "community": 50,
@@ -33142,7 +33282,7 @@
       "label": "\u26a0 BREAKING CHANGES",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L42",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "changelog_breaking_changes",
       "community": 50,
@@ -33152,9 +33292,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L46",
+      "source_location": "L58",
       "_origin": "ast",
-      "id": "changelog_features_46",
+      "id": "changelog_features_58",
       "community": 50,
       "norm_label": "features"
     },
@@ -33162,7 +33302,7 @@
       "label": "[1.7.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.6.0...v1.7.0) (2026-09-30)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L50",
+      "source_location": "L62",
       "_origin": "ast",
       "id": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
       "community": 50,
@@ -33172,9 +33312,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L65",
       "_origin": "ast",
-      "id": "changelog_features_53",
+      "id": "changelog_features_65",
       "community": 50,
       "norm_label": "features"
     },
@@ -33182,7 +33322,7 @@
       "label": "[1.6.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.5.0...v1.6.0) (2026-07-05)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
       "community": 50,
@@ -33192,9 +33332,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L60",
+      "source_location": "L72",
       "_origin": "ast",
-      "id": "changelog_features_60",
+      "id": "changelog_features_72",
       "community": 50,
       "norm_label": "features"
     },
@@ -33202,7 +33342,7 @@
       "label": "[1.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.1...v1.5.0) (2026-07-05)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L65",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
       "community": 50,
@@ -33212,9 +33352,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L68",
+      "source_location": "L80",
       "_origin": "ast",
-      "id": "changelog_features_68",
+      "id": "changelog_features_80",
       "community": 50,
       "norm_label": "features"
     },
@@ -33222,41 +33362,11 @@
       "label": "[1.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L72",
+      "source_location": "L84",
       "_origin": "ast",
       "id": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
       "community": 50,
       "norm_label": "[1.4.1](https://github.com/mr-jami/simple-shot-timer/compare/v1.4.0...v1.4.1) (2026-06-02)"
-    },
-    {
-      "label": "Bug Fixes",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L75",
-      "_origin": "ast",
-      "id": "changelog_bug_fixes_75",
-      "community": 50,
-      "norm_label": "bug fixes"
-    },
-    {
-      "label": "[1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L79",
-      "_origin": "ast",
-      "id": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
-      "community": 50,
-      "norm_label": "[1.4.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)"
-    },
-    {
-      "label": "Features",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L82",
-      "_origin": "ast",
-      "id": "changelog_features_82",
-      "community": 50,
-      "norm_label": "features"
     },
     {
       "label": "Bug Fixes",
@@ -33269,14 +33379,14 @@
       "norm_label": "bug fixes"
     },
     {
-      "label": "[1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)",
+      "label": "[1.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L91",
       "_origin": "ast",
-      "id": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
+      "id": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
       "community": 50,
-      "norm_label": "[1.3.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)"
+      "norm_label": "[1.4.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.3.0...v1.4.0) (2026-05-20)"
     },
     {
       "label": "Features",
@@ -33289,10 +33399,40 @@
       "norm_label": "features"
     },
     {
+      "label": "Bug Fixes",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L99",
+      "_origin": "ast",
+      "id": "changelog_bug_fixes_99",
+      "community": 50,
+      "norm_label": "bug fixes"
+    },
+    {
+      "label": "[1.3.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L103",
+      "_origin": "ast",
+      "id": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
+      "community": 50,
+      "norm_label": "[1.3.0](https://github.com/mr-jami/simple-shot-timer/compare/v1.2.0...v1.3.0) (2026-05-20)"
+    },
+    {
+      "label": "Features",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L106",
+      "_origin": "ast",
+      "id": "changelog_features_106",
+      "community": 50,
+      "norm_label": "features"
+    },
+    {
       "label": "[1.2.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.1.0...v1.2.0) (2026-05-19)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L100",
+      "source_location": "L112",
       "_origin": "ast",
       "id": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
       "community": 50,
@@ -33302,9 +33442,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L103",
+      "source_location": "L115",
       "_origin": "ast",
-      "id": "changelog_features_103",
+      "id": "changelog_features_115",
       "community": 50,
       "norm_label": "features"
     },
@@ -33312,9 +33452,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L110",
+      "source_location": "L122",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_110",
+      "id": "changelog_bug_fixes_122",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -33322,7 +33462,7 @@
       "label": "[1.1.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v1.0.0...v1.1.0) (2026-05-15)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L114",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
       "community": 50,
@@ -33332,9 +33472,9 @@
       "label": "Features",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L117",
+      "source_location": "L129",
       "_origin": "ast",
-      "id": "changelog_features_117",
+      "id": "changelog_features_129",
       "community": 50,
       "norm_label": "features"
     },
@@ -33342,9 +33482,9 @@
       "label": "Bug Fixes",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L126",
+      "source_location": "L138",
       "_origin": "ast",
-      "id": "changelog_bug_fixes_126",
+      "id": "changelog_bug_fixes_138",
       "community": 50,
       "norm_label": "bug fixes"
     },
@@ -33375,7 +33515,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "join_testing",
-      "community": 92,
+      "community": 193,
       "norm_label": "join_testing.md"
     },
     {
@@ -33455,7 +33595,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme",
-      "community": 92,
+      "community": 193,
       "norm_label": "readme.md"
     },
     {
@@ -35255,7 +35395,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "branding_store_listing_readme",
-      "community": 100,
+      "community": 193,
       "norm_label": "readme.md"
     },
     {
@@ -35272,7 +35412,7 @@
       "label": "App Store",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L22",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "branding_store_listing_readme_app_store",
       "community": 114,
@@ -35282,7 +35422,7 @@
       "label": "How the screens are made",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L43",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "branding_store_listing_readme_how_the_screens_are_made",
       "community": 114,
@@ -35292,7 +35432,7 @@
       "label": "The video editor slide",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L56",
+      "source_location": "L77",
       "_origin": "ast",
       "id": "branding_store_listing_readme_the_video_editor_slide",
       "community": 114,
@@ -35302,7 +35442,7 @@
       "label": "Exporting",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L68",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "branding_store_listing_readme_exporting",
       "community": 114,
@@ -35312,7 +35452,7 @@
       "label": "Updating after a UI change",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L86",
+      "source_location": "L107",
       "_origin": "ast",
       "id": "branding_store_listing_readme_updating_after_a_ui_change",
       "community": 114,
@@ -35322,7 +35462,7 @@
       "label": "Captions",
       "file_type": "document",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L92",
+      "source_location": "L113",
       "_origin": "ast",
       "id": "branding_store_listing_readme_captions",
       "community": 114,
@@ -35335,7 +35475,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "fastlane_metadata_readme",
-      "community": 100,
+      "community": 193,
       "norm_label": "readme.md"
     },
     {
@@ -35425,7 +35565,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "website_readme",
-      "community": 92,
+      "community": 193,
       "norm_label": "readme.md"
     },
     {
@@ -38733,16 +38873,6 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "test/video_export_test.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "test_video_export_test",
-      "target": "package_flutter_foundation_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "test/auto_configure_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -40259,7 +40389,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L284",
+      "source_location": "L311",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "nsobject",
@@ -40269,7 +40399,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L256",
+      "source_location": "L283",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "nsobject",
@@ -40299,7 +40429,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L295",
+      "source_location": "L328",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlaycompositor",
@@ -40310,7 +40440,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L383",
+      "source_location": "L420",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "sendable",
@@ -40320,7 +40450,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L256",
+      "source_location": "L283",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "sendable",
@@ -40438,17 +40568,6 @@
     },
     {
       "relation": "references",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "ios/Runner/ClipAudioChannel.swift",
-      "source_location": "L76",
-      "weight": 1.0,
-      "source": "ios_runner_clipaudiochannel_clipaudiochannel_handle",
-      "target": "ios_runner_clipaudiochannel_clipfailure"
-    },
-    {
-      "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipAudioChannel.swift",
       "source_location": "L41",
@@ -40490,17 +40609,6 @@
       "source": "ios_runner_clipaudiochannel_clipaudiochannel_decodeloop",
       "target": "ios_runner_clipaudiochannel_clipaudiochannel_takecancel",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "ios/Runner/ClipAudioChannel.swift",
-      "source_location": "L90",
-      "weight": 1.0,
-      "source": "ios_runner_clipaudiochannel_clipaudiochannel_takecancel",
-      "target": "ios_runner_clipaudiochannel_clipfailure"
     },
     {
       "relation": "references",
@@ -40651,7 +40759,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L139",
+      "source_location": "L138",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
       "target": "ios_runner_clipaudiochannel_clipaudiochannel_reply"
@@ -40673,7 +40781,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L285",
+      "source_location": "L317",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "dispatchqueue"
@@ -41212,7 +41320,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L151",
+      "source_location": "L150",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "avurlasset"
@@ -41348,50 +41456,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L150",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
-      "target": "ios_runner_clipaudiochannel_clipfailure"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L341",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_overlaycompositor_render",
-      "target": "ios_runner_clipaudiochannel_clipfailure"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L401",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_overlayframes_init",
-      "target": "ios_runner_clipaudiochannel_clipfailure"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L432",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_overlayframes_pixels",
-      "target": "ios_runner_clipaudiochannel_clipfailure"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipAudioChannel.swift",
@@ -41408,7 +41472,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L359",
+      "source_location": "L396",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ios_runner_clipaudiochannel_microseconds"
@@ -41430,7 +41494,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L245",
+      "source_location": "L244",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_orientation",
       "target": "ios_runner_clipaudiochannel_rotationdegrees"
@@ -41471,6 +41535,26 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L276",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel",
+      "target": "ios_runner_clipexportchannel_clipfailure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L258",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel",
+      "target": "ios_runner_clipexportchannel_errordetail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
       "source_location": "L37",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
@@ -41481,7 +41565,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L284",
+      "source_location": "L311",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_overlaycompositor",
@@ -41491,7 +41575,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L383",
+      "source_location": "L420",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_overlayframes",
@@ -41501,7 +41585,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L256",
+      "source_location": "L283",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_overlayinstruction",
@@ -41521,7 +41605,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L134",
+      "source_location": "L133",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -41531,7 +41615,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L238",
+      "source_location": "L237",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
@@ -41561,7 +41645,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L145",
+      "source_location": "L144",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -41571,7 +41655,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L244",
+      "source_location": "L243",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_orientation",
@@ -41581,7 +41665,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L228",
+      "source_location": "L227",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
@@ -41601,7 +41685,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L221",
+      "source_location": "L220",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_upright",
@@ -41666,7 +41750,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L134",
+      "source_location": "L133",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -41753,7 +41837,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L228",
+      "source_location": "L227",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
@@ -41775,7 +41859,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L386",
+      "source_location": "L423",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -41786,7 +41870,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L430",
+      "source_location": "L467",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_pixels",
@@ -41797,7 +41881,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L134",
+      "source_location": "L133",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -41830,7 +41914,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L145",
+      "source_location": "L144",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -41852,7 +41936,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L384",
+      "source_location": "L421",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -41864,7 +41948,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L145",
+      "source_location": "L144",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "avassetexportsession",
@@ -41970,6 +42054,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_start",
+      "target": "ios_runner_clipexportchannel_errordetail",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
@@ -42017,7 +42112,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L145",
+      "source_location": "L144",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -42028,7 +42123,29 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L295",
+      "source_location": "L277",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runner_clipexportchannel_clipfailure",
+      "target": "ios_runner_clipexportchannel_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L258",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "ios_runner_clipexportchannel_errordetail",
+      "target": "ios_runner_clipexportchannel_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L328",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlaycompositor",
@@ -42039,7 +42156,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L394",
+      "source_location": "L431",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_init",
@@ -42050,7 +42167,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L145",
+      "source_location": "L144",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -42061,7 +42178,18 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L394",
+      "source_location": "L278",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runner_clipexportchannel_clipfailure",
+      "target": "ios_runner_clipexportchannel_swift_any",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L431",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_init",
@@ -42083,7 +42211,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L134",
+      "source_location": "L133",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -42094,7 +42222,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L134",
+      "source_location": "L133",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -42106,7 +42234,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L312",
+      "source_location": "L348",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
       "target": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -42116,7 +42244,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L325",
+      "source_location": "L362",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlaycompositor",
@@ -42128,43 +42256,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L202",
+      "source_location": "L201",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "cmtimerange",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L194",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
-      "target": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L204",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
-      "target": "ios_runner_clipexportchannel_clipexportchannel_orientation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L192",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
-      "target": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
       "confidence_score": 1.0
     },
     {
@@ -42175,6 +42270,39 @@
       "source_location": "L193",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
+      "target": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L203",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
+      "target": "ios_runner_clipexportchannel_clipexportchannel_orientation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L191",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
+      "target": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L192",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_clipexportchannel_upright",
       "confidence_score": 1.0
     },
@@ -42183,7 +42311,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L201",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
+      "target": "ios_runner_clipexportchannel_clipfailure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L200",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_overlayinstruction",
@@ -42194,7 +42333,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L158",
+      "source_location": "L157",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_swift_cmtime",
@@ -42205,7 +42344,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L221",
+      "source_location": "L220",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_upright",
       "target": "cgsize",
@@ -42215,7 +42354,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L221",
+      "source_location": "L220",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_upright",
@@ -42226,7 +42365,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L238",
+      "source_location": "L237",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
@@ -42238,7 +42377,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L228",
+      "source_location": "L227",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
       "target": "cgsize",
@@ -42249,7 +42388,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L422",
+      "source_location": "L459",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_image",
       "target": "cgsize",
@@ -42260,7 +42399,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L231",
+      "source_location": "L230",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
       "target": "cgfloat",
@@ -42271,7 +42410,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L238",
+      "source_location": "L237",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
       "target": "ios_runner_clipexportchannel_swift_cmtime",
@@ -42282,7 +42421,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L238",
+      "source_location": "L237",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
       "target": "ios_runner_clipexportchannel_swift_double",
@@ -42292,7 +42431,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L244",
+      "source_location": "L243",
       "weight": 1.0,
       "context": "return_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_orientation",
@@ -42303,7 +42442,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L244",
+      "source_location": "L243",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_orientation",
@@ -42315,7 +42454,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L350",
+      "source_location": "L387",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ios_runner_clipexportchannel_swift_cgaffinetransform",
@@ -42325,7 +42464,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L266",
+      "source_location": "L293",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -42336,7 +42475,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L269",
+      "source_location": "L296",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -42344,10 +42483,64 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L258",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runner_clipexportchannel_errordetail",
+      "target": "ios_runner_clipexportchannel_swift_error",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L256",
+      "source_location": "L276",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipfailure",
+      "target": "customnserror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L378",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_overlaycompositor_render",
+      "target": "ios_runner_clipexportchannel_clipfailure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L438",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_overlayframes_init",
+      "target": "ios_runner_clipexportchannel_clipfailure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L469",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_overlayframes_pixels",
+      "target": "ios_runner_clipexportchannel_clipfailure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L283",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "avvideocompositioninstructionprotocol",
@@ -42357,7 +42550,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L265",
+      "source_location": "L292",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -42368,7 +42561,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L259",
+      "source_location": "L286",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -42379,7 +42572,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L267",
+      "source_location": "L294",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -42390,7 +42583,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L269",
+      "source_location": "L296",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -42400,7 +42593,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L262",
+      "source_location": "L289",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -42411,7 +42604,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L269",
+      "source_location": "L296",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -42422,7 +42615,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L269",
+      "source_location": "L296",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -42433,7 +42626,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L269",
+      "source_location": "L296",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -42444,7 +42637,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L284",
+      "source_location": "L311",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "avvideocompositing",
@@ -42454,7 +42647,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L319",
+      "source_location": "L356",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_cancelallpendingvideocompositionrequests",
@@ -42464,7 +42657,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L338",
+      "source_location": "L375",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_render",
@@ -42474,7 +42667,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L302",
+      "source_location": "L335",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_rendercontextchanged",
@@ -42484,7 +42677,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L304",
+      "source_location": "L337",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
@@ -42494,7 +42687,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L302",
+      "source_location": "L335",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlaycompositor_rendercontextchanged",
@@ -42505,32 +42698,10 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L304",
+      "source_location": "L337",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
-      "target": "avasynchronousvideocompositionrequest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L311",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
-      "target": "ios_runner_clipexportchannel_overlaycompositor_render",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L338",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "avasynchronousvideocompositionrequest",
       "confidence_score": 1.0
     },
@@ -42541,6 +42712,28 @@
       "source_file": "ios/Runner/ClipExportChannel.swift",
       "source_location": "L347",
       "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
+      "target": "ios_runner_clipexportchannel_overlaycompositor_render",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L375",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runner_clipexportchannel_overlaycompositor_render",
+      "target": "avasynchronousvideocompositionrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L384",
+      "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ciimage",
       "confidence_score": 1.0
@@ -42549,7 +42742,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L338",
+      "source_location": "L375",
       "weight": 1.0,
       "context": "return_type",
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
@@ -42561,7 +42754,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L361",
+      "source_location": "L398",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ios_runner_clipexportchannel_overlayframes_image",
@@ -42571,7 +42764,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L388",
+      "source_location": "L425",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -42582,7 +42775,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L392",
+      "source_location": "L429",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -42593,7 +42786,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L411",
+      "source_location": "L448",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "ios_runner_clipexportchannel_overlayframes_image",
@@ -42603,7 +42796,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L394",
+      "source_location": "L431",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "ios_runner_clipexportchannel_overlayframes_init",
@@ -42613,7 +42806,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L430",
+      "source_location": "L467",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "ios_runner_clipexportchannel_overlayframes_pixels",
@@ -42623,7 +42816,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L385",
+      "source_location": "L422",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -42634,7 +42827,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L411",
+      "source_location": "L448",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_image",
@@ -42646,7 +42839,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L406",
+      "source_location": "L443",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_init",
       "target": "cgfloat",
@@ -42657,7 +42850,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L411",
+      "source_location": "L448",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_image",
       "target": "ciimage",
@@ -42668,7 +42861,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L421",
+      "source_location": "L458",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_image",
       "target": "ios_runner_clipexportchannel_overlayframes_pixels",
@@ -42679,7 +42872,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L430",
+      "source_location": "L467",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_pixels",
       "target": "data",
@@ -44019,6 +44212,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
+      "target": "package_flutter_material_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_import_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -44093,6 +44296,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_video_export_sheet_test",
+      "target": "package_flutter_localizations_flutter_localizations_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
       "target": "package_flutter_localizations_flutter_localizations_dart"
     },
     {
@@ -45405,6 +45618,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/screens/video_export_dialog.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_video_export_dialog",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/services/ios_audio_session.dart",
       "source_location": null,
       "weight": 1.0,
@@ -45609,6 +45832,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_video_export_sheet_test",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
       "target": "package_flutter_services_dart"
     },
     {
@@ -53600,6 +53833,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_providers_video_export_provider",
+      "target": "lib_providers_video_export_provider_detail"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/providers/video_export_provider.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_providers_video_export_provider",
       "target": "lib_providers_video_export_provider_disposed"
     },
     {
@@ -54230,6 +54473,16 @@
       "context": "riverpod_reference",
       "source": "lib_providers_video_export_provider_videoexportcontroller",
       "target": "lib_providers_video_providers_videogalleryprovider"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test_failingexport",
+      "target": "lib_providers_video_export_provider_videoexportcontroller"
     },
     {
       "relation": "references",
@@ -60543,6 +60796,16 @@
       "weight": 1.0,
       "source": "lib_screens_video_export_dialog",
       "target": "lib_screens_video_export_dialog_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/screens/video_export_dialog.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_screens_video_export_dialog",
+      "target": "lib_screens_video_export_dialog_copied"
     },
     {
       "relation": "defines",
@@ -79604,6 +79867,16 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
+      "target": "package_simple_shot_timer_i18n_app_localizations_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "test/video_import_test.dart",
       "source_location": null,
       "weight": 1.0,
@@ -82335,6 +82608,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_video_export_test",
+      "target": "package_simple_shot_timer_screens_video_export_dialog_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
       "target": "package_simple_shot_timer_services_video_video_gallery_dart"
     },
     {
@@ -82376,6 +82659,16 @@
       "weight": 1.0,
       "source": "test_video_export_test",
       "target": "test_video_export_test_broken"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
+      "target": "test_video_export_test_build"
     },
     {
       "relation": "defines",
@@ -82466,6 +82759,26 @@
       "weight": 1.0,
       "source": "test_video_export_test",
       "target": "test_video_export_test_exporter"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
+      "target": "test_video_export_test_failingexport"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
+      "target": "test_video_export_test_failure"
     },
     {
       "relation": "defines",
@@ -82688,6 +83001,16 @@
       "weight": 1.0,
       "source": "test_video_export_test",
       "target": "test_video_export_test_shared"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/video_export_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_video_export_test",
+      "target": "test_video_export_test_start"
     },
     {
       "relation": "defines",
@@ -85816,7 +86139,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L114",
+      "source_location": "L126",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
@@ -85826,7 +86149,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L100",
+      "source_location": "L112",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
@@ -85836,7 +86159,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L91",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
@@ -85846,7 +86169,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L79",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
@@ -85856,7 +86179,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L72",
+      "source_location": "L84",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
@@ -85866,7 +86189,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L65",
+      "source_location": "L77",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
@@ -85876,7 +86199,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L57",
+      "source_location": "L69",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
@@ -85886,7 +86209,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L50",
+      "source_location": "L62",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
@@ -85896,7 +86219,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L39",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
@@ -85906,7 +86229,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L32",
+      "source_location": "L44",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_0_0_v2_1_0_2026_10_04",
@@ -85916,7 +86239,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L25",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_1_0_v2_2_0_2026_10_13",
@@ -85926,7 +86249,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_2_0_v2_3_0_2026_10_19",
@@ -85936,7 +86259,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L11",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
@@ -85946,7 +86269,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L3",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_2_3_2_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_1_v2_3_2_2026_10_19",
@@ -85956,9 +86279,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L6",
+      "source_location": "L3",
       "weight": 1.0,
-      "source": "changelog_2_3_2_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_1_v2_3_2_2026_10_19",
+      "source": "changelog_changelog",
+      "target": "changelog_2_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_2_v2_4_0_2026_10_31",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "changelog_2_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_2_v2_4_0_2026_10_31",
       "target": "changelog_bug_fixes",
       "confidence_score": 1.0
     },
@@ -85966,19 +86299,9 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L14",
+      "source_location": "L6",
       "weight": 1.0,
-      "source": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
-      "target": "changelog_bug_fixes_14",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L21",
-      "weight": 1.0,
-      "source": "changelog_2_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_2_0_v2_3_0_2026_10_19",
+      "source": "changelog_2_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_2_v2_4_0_2026_10_31",
       "target": "changelog_features",
       "confidence_score": 1.0
     },
@@ -85986,27 +86309,57 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "changelog_2_3_2_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_1_v2_3_2_2026_10_19",
+      "target": "changelog_bug_fixes_18",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "changelog_2_3_1_https_github_com_mr_jami_simple_shot_timer_compare_v2_3_0_v2_3_1_2026_10_19",
+      "target": "changelog_bug_fixes_26",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "changelog_2_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_2_0_v2_3_0_2026_10_19",
+      "target": "changelog_features_33",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "changelog_2_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_1_0_v2_2_0_2026_10_13",
-      "target": "changelog_features_28",
+      "target": "changelog_features_40",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L47",
       "weight": 1.0,
       "source": "changelog_2_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v2_0_0_v2_1_0_2026_10_04",
-      "target": "changelog_features_35",
+      "target": "changelog_features_47",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L42",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
       "target": "changelog_breaking_changes",
@@ -86016,50 +86369,40 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L46",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "changelog_2_0_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_7_0_v2_0_0_2026_10_01",
-      "target": "changelog_features_46",
+      "target": "changelog_features_58",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L53",
+      "source_location": "L65",
       "weight": 1.0,
       "source": "changelog_1_7_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_6_0_v1_7_0_2026_09_30",
-      "target": "changelog_features_53",
+      "target": "changelog_features_65",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L60",
+      "source_location": "L72",
       "weight": 1.0,
       "source": "changelog_1_6_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_5_0_v1_6_0_2026_07_05",
-      "target": "changelog_features_60",
+      "target": "changelog_features_72",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L68",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "changelog_1_5_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_1_v1_5_0_2026_07_05",
-      "target": "changelog_features_68",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CHANGELOG.md",
-      "source_location": "L75",
-      "weight": 1.0,
-      "source": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
-      "target": "changelog_bug_fixes_75",
+      "target": "changelog_features_80",
       "confidence_score": 1.0
     },
     {
@@ -86068,7 +86411,7 @@
       "source_file": "CHANGELOG.md",
       "source_location": "L87",
       "weight": 1.0,
-      "source": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
+      "source": "changelog_1_4_1_https_github_com_mr_jami_simple_shot_timer_compare_v1_4_0_v1_4_1_2026_06_02",
       "target": "changelog_bug_fixes_87",
       "confidence_score": 1.0
     },
@@ -86076,10 +86419,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L82",
+      "source_location": "L99",
       "weight": 1.0,
       "source": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
-      "target": "changelog_features_82",
+      "target": "changelog_bug_fixes_99",
       "confidence_score": 1.0
     },
     {
@@ -86088,7 +86431,7 @@
       "source_file": "CHANGELOG.md",
       "source_location": "L94",
       "weight": 1.0,
-      "source": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
+      "source": "changelog_1_4_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_3_0_v1_4_0_2026_05_20",
       "target": "changelog_features_94",
       "confidence_score": 1.0
     },
@@ -86096,40 +86439,50 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L110",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "changelog_1_3_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_2_0_v1_3_0_2026_05_20",
+      "target": "changelog_features_106",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L122",
       "weight": 1.0,
       "source": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
-      "target": "changelog_bug_fixes_110",
+      "target": "changelog_bug_fixes_122",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L103",
+      "source_location": "L115",
       "weight": 1.0,
       "source": "changelog_1_2_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_1_0_v1_2_0_2026_05_19",
-      "target": "changelog_features_103",
+      "target": "changelog_features_115",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L126",
+      "source_location": "L138",
       "weight": 1.0,
       "source": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
-      "target": "changelog_bug_fixes_126",
+      "target": "changelog_bug_fixes_138",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L117",
+      "source_location": "L129",
       "weight": 1.0,
       "source": "changelog_1_1_0_https_github_com_mr_jami_simple_shot_timer_compare_v1_0_0_v1_1_0_2026_05_15",
-      "target": "changelog_features_117",
+      "target": "changelog_features_129",
       "confidence_score": 1.0
     },
     {
@@ -87986,7 +88339,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L22",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_app_store",
@@ -87996,7 +88349,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L92",
+      "source_location": "L113",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_captions",
@@ -88006,7 +88359,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L68",
+      "source_location": "L89",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_exporting",
@@ -88016,7 +88369,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L43",
+      "source_location": "L64",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_how_the_screens_are_made",
@@ -88026,7 +88379,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L86",
+      "source_location": "L107",
       "weight": 1.0,
       "source": "branding_store_listing_readme_store_listing_graphics",
       "target": "branding_store_listing_readme_updating_after_a_ui_change",
@@ -88036,7 +88389,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "branding/store-listing/README.md",
-      "source_location": "L56",
+      "source_location": "L77",
       "weight": 1.0,
       "source": "branding_store_listing_readme_how_the_screens_are_made",
       "target": "branding_store_listing_readme_the_video_editor_slide",
@@ -88364,5 +88717,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6c0b21122f346fb4382150ff8e2e014e7230c862"
+  "built_at_commit": "5e58d2b2f71b33ed00fd3c41b44d340dab023963"
 }
