@@ -6,16 +6,20 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_shot_timer/i18n/app_localizations.dart';
 import 'package:simple_shot_timer/models/enums.dart';
 import 'package:simple_shot_timer/models/shot.dart';
 import 'package:simple_shot_timer/models/timer_string.dart';
 import 'package:simple_shot_timer/providers/providers.dart';
 import 'package:simple_shot_timer/providers/video_export_provider.dart';
 import 'package:simple_shot_timer/providers/video_providers.dart';
+import 'package:simple_shot_timer/screens/video_export_dialog.dart';
 import 'package:simple_shot_timer/services/timer_ports.dart';
 import 'package:simple_shot_timer/services/video/analyzed_clip.dart';
 import 'package:simple_shot_timer/services/video/clip_analyzer.dart';
@@ -92,6 +96,19 @@ class _FakeGallery implements VideoGallery {
     if (shareBroken) throw Exception('no share sheet');
     shared.add(path);
   }
+}
+
+/// Ends every export with [failure] at once.
+class _FailingExport extends VideoExportController {
+  _FailingExport(this.failure);
+
+  final ExportFailed failure;
+
+  @override
+  ExportState build(int arg) => const ExportRunning(0);
+
+  @override
+  Future<void> start(ExportJob job) async => state = failure;
 }
 
 class _FakeEnvironment implements RunEnvironment {
@@ -349,8 +366,11 @@ void main() {
     final c = await container();
     renderError = StateError('a bug');
     await export(c, 1).start(job(ExportTarget.photos));
-    expect(c.read(videoExportProvider(1)),
-        isA<ExportFailed>().having((s) => s.noSpace, 'noSpace', isFalse));
+    expect(
+        c.read(videoExportProvider(1)),
+        isA<ExportFailed>()
+            .having((s) => s.noSpace, 'noSpace', isFalse)
+            .having((s) => s.detail, 'detail', 'Bad state: a bug'));
     expect(env.awake, [true, false]);
     expect(reported.single.exception, isA<StateError>());
   });
@@ -411,11 +431,23 @@ void main() {
     expect(c.read(videoExportProvider(2)), isA<ExportDone>());
   });
 
-  test('a failed export says so and cleans up', () async {
+  test('an export the platform can\'t run names the reason', () async {
     final c = await container();
-    exporter.error = const ExportException(ExportError.failed, 'codec');
+    exporter.error = const ExportException(ExportError.unavailable);
     await export(c, 1).start(job(ExportTarget.photos));
-    expect(c.read(videoExportProvider(1)), isA<ExportFailed>());
+    expect(c.read(videoExportProvider(1)),
+        isA<ExportFailed>().having((s) => s.detail, 'detail', 'unavailable'));
+  });
+
+  test('a failed export says why and cleans up', () async {
+    final c = await container();
+    exporter.error = const ExportException(
+        ExportError.failed, 'AVFoundationErrorDomain -11800');
+    await export(c, 1).start(job(ExportTarget.photos));
+    expect(
+        c.read(videoExportProvider(1)),
+        isA<ExportFailed>().having(
+            (s) => s.detail, 'detail', 'AVFoundationErrorDomain -11800'));
     expect(env.awake, [true, false]);
     expect(Directory('${session.dir.path}/overlay_1').existsSync(), isFalse);
   });
@@ -455,6 +487,80 @@ void main() {
       expect((whole.startMs, whole.endMs), (0, 30000));
       expect((whole.frame, whole.shortSide, whole.fps, whole.bitrate),
           (around.frame, around.shortSide, around.fps, around.bitrate));
+    });
+  });
+
+  group('the dialog', () {
+    setUp(rootBundle.clear);
+
+    Future<void> showFailure(WidgetTester tester, ExportFailed failure) async {
+      final c = ProviderContainer(overrides: [
+        videoExportProvider.overrideWith(() => _FailingExport(failure)),
+      ]);
+      addTearDown(c.dispose);
+      await tester.pumpWidget(UncontrolledProviderScope(
+        container: c,
+        child: MaterialApp(
+          locale: const Locale('en'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: Builder(
+            builder: (context) => Scaffold(
+              body: TextButton(
+                onPressed: () =>
+                    showExportDialog(context, job(ExportTarget.photos)),
+                child: const Text('open'),
+              ),
+            ),
+          ),
+        ),
+      ));
+      // AppLocalizations reads its JSON from the asset bundle: real I/O.
+      for (var i = 0; find.text('open').evaluate().isEmpty && i < 200; i++) {
+        await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 10)));
+        await tester.pump();
+      }
+      await tester.tap(find.text('open'));
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('a failure shows its detail, and Copy copies it',
+        (tester) async {
+      final copied = <Object?>[];
+      final messenger = tester.binding.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+        if (call.method == 'Clipboard.setData') {
+          copied.add((call.arguments as Map<Object?, Object?>)['text']);
+        }
+        return null;
+      });
+      addTearDown(() =>
+          messenger.setMockMethodCallHandler(SystemChannels.platform, null));
+      const detail =
+          'AVFoundationErrorDomain -11800 / NSOSStatusErrorDomain -12902';
+      await showFailure(tester, const ExportFailed(detail: detail));
+
+      expect(find.text('The video couldn’t be exported.'), findsOneWidget);
+      expect(find.text(detail), findsOneWidget);
+      expect(find.byIcon(Icons.check), findsNothing);
+      await tester.tap(find.text('Copy'));
+      await tester.pump();
+      expect(copied, [detail]);
+      expect(find.byIcon(Icons.check), findsOneWidget);
+    });
+
+    testWidgets('a full storage says what to do, with nothing to copy',
+        (tester) async {
+      await showFailure(
+          tester, const ExportFailed(noSpace: true, detail: 'ENOSPC'));
+      expect(find.textContaining('free space'), findsOneWidget);
+      expect(find.text('ENOSPC'), findsNothing);
+      expect(find.text('Copy'), findsNothing);
     });
   });
 }

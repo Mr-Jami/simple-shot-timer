@@ -268,6 +268,7 @@
   "export.noAccess": "Simple Shot Timer nie może zapisywać wideo. Możesz je jednak udostępnić.",
   "export.saveFailed": "Nie udało się zapisać wideo w Zdjęciach. Możesz je jednak udostępnić.",
   "export.failed": "Nie udało się wyeksportować wideo.",
+  "export.copy": "Kopiuj",
   "export.shareFailed": "Nie udało się otworzyć udostępniania. Spróbuj ponownie.",
   "export.noSpace": "Za mało wolnego miejsca, by wyeksportować wideo. Zwolnij trochę miejsca i spróbuj ponownie.",
   "export.done": "Gotowe",

@@ -93,10 +93,14 @@ class ExportNotSaved extends ExportState {
 }
 
 class ExportFailed extends ExportState {
-  const ExportFailed({this.noSpace = false});
+  const ExportFailed({this.noSpace = false, this.detail});
 
   /// The phone's storage ran full.
   final bool noSpace;
+
+  /// What went wrong, untranslated, to copy into a bug report: the
+  /// platform's message (an error code on iOS), or the Dart error.
+  final String? detail;
 }
 
 class ExportCancelled extends ExportState {
@@ -183,6 +187,11 @@ class VideoExportController
           noSpace: (e is ExportException && e.error == ExportError.noSpace) ||
               (e is FileSystemException &&
                   e.osError?.errorCode == _noSpaceErrno),
+          detail: switch (e) {
+            ExportException(:final error, :final message) =>
+              message ?? error.name,
+            _ => '$e',
+          },
         ));
       }
     } finally {

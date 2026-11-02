@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../i18n/app_localizations.dart';
@@ -10,7 +11,8 @@ import '../providers/video_export_provider.dart';
 
 /// Runs [job] and shows how it goes: a progress ring with the time left,
 /// and a line asking to keep the app open (the screen stays on). Then the
-/// result, with Share; or what went wrong. Back cancels while it runs; once
+/// result, with Share; or what went wrong, with any detail to copy for a bug
+/// report (a check mark once copied). Back cancels while it runs; once
 /// the video goes to Photos it can no longer be cancelled.
 Future<void> showExportDialog(BuildContext context, ExportJob job) =>
     showDialog<void>(
@@ -31,6 +33,9 @@ class _ExportDialog extends ConsumerStatefulWidget {
 class _ExportDialogState extends ConsumerState<_ExportDialog> {
   static var _exports = 0;
   final _id = _exports++;
+
+  /// The failure's detail is on the clipboard: Copy shows a check mark.
+  var _copied = false;
 
   VideoExportController get _export =>
       ref.read(videoExportProvider(_id).notifier);
@@ -53,7 +58,7 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
     final scheme = theme.colorScheme;
     void close() => Navigator.of(context).pop();
 
-    Widget result(IconData icon, String text) => Column(
+    Widget result(IconData icon, String text, {String? detail}) => Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(icon, size: 56, color: scheme.onSurface),
@@ -61,6 +66,16 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
             Text(text,
                 textAlign: TextAlign.center,
                 style: theme.textTheme.titleMedium),
+            if (detail != null) ...[
+              const SizedBox(height: 8),
+              SelectableText(
+                detail,
+                textAlign: TextAlign.center,
+                maxLines: 4,
+                style: theme.textTheme.bodySmall
+                    ?.copyWith(color: scheme.onSurfaceVariant),
+              ),
+            ],
           ],
         );
     final shareButton = TextButton.icon(
@@ -153,10 +168,27 @@ class _ExportDialogState extends ConsumerState<_ExportDialog> {
           ),
           [shareButton, doneButton],
         ),
-      ExportFailed(:final noSpace) => (
-          result(Icons.error_outline,
-              context.tr(noSpace ? 'export.noSpace' : 'export.failed')),
+      // A full storage says what to do; any other failure shows its detail
+      // to copy into a bug report.
+      ExportFailed(noSpace: true) => (
+          result(Icons.error_outline, context.tr('export.noSpace')),
           [doneButton],
+        ),
+      ExportFailed(:final detail) => (
+          result(Icons.error_outline, context.tr('export.failed'),
+              detail: detail),
+          [
+            if (detail != null)
+              TextButton.icon(
+                icon: Icon(_copied ? Icons.check : Icons.copy_outlined),
+                label: Text(context.tr('export.copy')),
+                onPressed: () async {
+                  await Clipboard.setData(ClipboardData(text: detail));
+                  if (mounted) setState(() => _copied = true);
+                },
+              ),
+            doneButton,
+          ],
         ),
       ExportCancelled() => (const SizedBox.shrink(), const <Widget>[]),
     };
