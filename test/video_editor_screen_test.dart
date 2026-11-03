@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -31,6 +32,7 @@ import 'package:simple_shot_timer/utils/cancel_token.dart';
 import 'package:simple_shot_timer/widgets/shot_badge.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
 import 'package:simple_shot_timer/widgets/timeline/timeline_controller.dart';
+import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
 import 'clip_fixtures.dart';
 import 'roboto.dart';
@@ -74,6 +76,61 @@ class _Session extends VideoSession {
 
   @override
   Future<void> dispose() async {}
+}
+
+/// A video platform whose clips start and play: each position report (every
+/// 100 ms while playing) is 100 ms on from the last.
+class _PlayingVideo extends VideoPlayerPlatform {
+  final _events = <int, StreamController<VideoEvent>>{};
+  var _position = Duration.zero;
+
+  @override
+  Future<void> init() async {}
+
+  @override
+  Future<int?> createWithOptions(VideoCreationOptions options) async {
+    final id = _events.length;
+    _events[id] = StreamController<VideoEvent>()
+      ..add(VideoEvent(
+        eventType: VideoEventType.initialized,
+        duration: const Duration(seconds: 7),
+        size: const Size(1920, 1080),
+      ));
+    return id;
+  }
+
+  @override
+  Stream<VideoEvent> videoEventsFor(int playerId) => _events[playerId]!.stream;
+
+  @override
+  Future<void> dispose(int playerId) async => _events[playerId]!.close();
+
+  @override
+  Future<void> setLooping(int playerId, bool looping) async {}
+
+  @override
+  Future<void> setVolume(int playerId, double volume) async {}
+
+  @override
+  Future<void> setPlaybackSpeed(int playerId, double speed) async {}
+
+  @override
+  Future<void> play(int playerId) async {}
+
+  @override
+  Future<void> pause(int playerId) async {}
+
+  @override
+  Future<void> seekTo(int playerId, Duration position) async =>
+      _position = position;
+
+  @override
+  Future<Duration> getPosition(int playerId) async =>
+      _position += const Duration(milliseconds: 100);
+
+  @override
+  Widget buildViewWithOptions(VideoViewOptions options) =>
+      const SizedBox.expand();
 }
 
 /// Export just far enough to reach the overlay images.
@@ -287,6 +344,34 @@ void main() {
     await tester.tap(find.text('Save to Photos'));
     await tester.pumpAndSettle();
     expect((exported!.startMs, exported!.endMs), (0, 12000));
+  });
+
+  testWidgets('a paused editor draws nothing; playing, the timeline follows',
+      (tester) async {
+    final platform = VideoPlayerPlatform.instance;
+    VideoPlayerPlatform.instance = _PlayingVideo();
+    addTearDown(() => VideoPlayerPlatform.instance = platform);
+    // Opening settles: no frame after frame while the video stands still.
+    await openEditor(tester);
+    expect(tester.binding.hasScheduledFrame, isFalse);
+    final timeline =
+        tester.widget<ShotTimeline>(find.byType(ShotTimeline)).controller;
+    final from = timeline.playheadMs;
+
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    expect(tester.binding.hasScheduledFrame, isTrue);
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(timeline.playheadMs, greaterThanOrEqualTo(from + 400));
+
+    await tester.tap(find.byTooltip('Pause'));
+    await tester.pumpAndSettle();
+    expect(tester.binding.hasScheduledFrame, isFalse);
+
+    // Closed while the fake platform is still in place.
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsOneWidget);
   });
 
   testWidgets('Back saves the string once', (tester) async {

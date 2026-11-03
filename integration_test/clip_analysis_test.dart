@@ -65,6 +65,7 @@ void main() {
         'audioMime': info.audioMime,
         'videoMime': info.videoMime,
         'colorTransfer': info.colorTransfer,
+        'bitDepth': info.bitDepth,
         'rotation': info.rotationDegrees,
         'frameRate': info.frameRate,
         'creationTime': info.creationTime?.toIso8601String(),

@@ -148,13 +148,30 @@ jobs:
         # Connect requires for every upload of the same version. The version
         # string (e.g. 1.2.3) comes from pubspec.yaml, which release-please
         # manages on its release PR, unless the version input overrides it.
+        # --obfuscate and --split-debug-info make the Dart code smaller; its
+        # stack traces then need the symbols kept below
+        # (flutter symbolize -i <trace> -d app.ios-arm64.symbols).
         env:
           VERSION: ${{ inputs.version }}
         run: |
           flutter build ipa --release \
             ${VERSION:+--build-name="$VERSION"} \
             --build-number=${{ github.run_number }} \
+            --obfuscate --split-debug-info="$PWD/build/symbols" \
+            --extra-gen-snapshot-options=--save-obfuscation-map="$PWD/build/symbols/obfuscation-map.json" \
             --export-options-plist="$RUNNER_TEMP/ExportOptions.plist"
+
+      - name: Keep the Dart symbols
+        # Named by the build number App Store Connect shows for the upload.
+        uses: actions/upload-artifact@v4
+        with:
+          name: dart-symbols-ios-build-${{ github.run_number }}
+          path: build/symbols
+          if-no-files-found: error
+          # A re-run uploads the same name again.
+          overwrite: true
+          # The most GitHub keeps an artifact of a public repository.
+          retention-days: 90
 
       - name: Upload to App Store Connect
         # Re-exports the archive with destination "upload", authenticated

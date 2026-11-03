@@ -4,16 +4,33 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:video_player/video_player.dart';
 
+import 'clip_audio_source.dart';
 import 'throttled_seeker.dart';
 
-/// A clip's video for the editor and Choose the part. It plays in a
-/// platform view: the texture view washes out HDR and garbles 4K 10-bit
-/// clips. Seeks that follow a finger go through a [ThrottledSeeker].
+/// A clip's video for the editor and Choose the part, in the view
+/// [viewTypeFor] picks. Seeks that follow a finger go through a
+/// [ThrottledSeeker].
 class ClipPlayer extends VideoPlayerController {
-  ClipPlayer(String path)
-      : super.file(File(path), viewType: VideoViewType.platformView);
+  ClipPlayer(String path, {required ClipInfo info})
+      : super.file(File(path),
+            viewType: viewTypeFor(info, defaultTargetPlatform));
+
+  /// The texture view washes out HDR and garbles 4K 10-bit video, so
+  /// those clips, and any whose colours or bit depth the file doesn't name,
+  /// play in a platform view. On Android that is a SurfaceView, which puts
+  /// the screen into Hybrid Composition: Flutter then draws on the main
+  /// thread and every frame also goes through Android's renderer. So there,
+  /// 8-bit SDR clips play in the texture view.
+  @visibleForTesting
+  static VideoViewType viewTypeFor(ClipInfo info, TargetPlatform platform) =>
+      platform == TargetPlatform.android &&
+              info.colorTransfer == 'sdr' &&
+              info.bitDepth == 8
+          ? VideoViewType.textureView
+          : VideoViewType.platformView;
 
   late final _seeker = ThrottledSeeker(seekTo);
 

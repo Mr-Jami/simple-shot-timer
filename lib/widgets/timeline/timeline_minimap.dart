@@ -61,18 +61,21 @@ class TimelineMinimap extends StatelessWidget {
         onHorizontalDragUpdate: (d) => onScrub(msAt(d.localPosition.dx)),
         onHorizontalDragEnd: (_) => onScrubEnd(),
         onHorizontalDragCancel: onScrubEnd,
-        child: CustomPaint(
-          size: Size(width, height),
-          painter: _MinimapPainter(
-            controller: controller,
-            buckets: bucketMax(loudness, width.floor().clamp(1, 4096)),
-            originMs: originMs,
-            frameMs: frameMs,
-            frames: loudness.length,
-            markers: markers,
-            ink: scheme.onSurface,
-            dim: scheme.onSurfaceVariant,
-            track: scheme.surfaceContainerHighest,
+        // Repaints with the playhead without the page around it.
+        child: RepaintBoundary(
+          child: CustomPaint(
+            size: Size(width, height),
+            painter: _MinimapPainter(
+              controller: controller,
+              buckets: bucketMax(loudness, width.floor().clamp(1, 4096)),
+              originMs: originMs,
+              frameMs: frameMs,
+              frames: loudness.length,
+              markers: markers,
+              ink: scheme.onSurface,
+              dim: scheme.onSurfaceVariant,
+              track: scheme.surfaceContainerHighest,
+            ),
           ),
         ),
       );

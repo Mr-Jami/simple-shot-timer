@@ -59,7 +59,8 @@ class VideoEditorScreen extends ConsumerStatefulWidget {
 
 class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     with TickerProviderStateMixin, WidgetsBindingObserver {
-  late final _player = ClipPlayer(widget.args.session.clipPath);
+  late final _player =
+      ClipPlayer(widget.args.session.clipPath, info: widget.args.clip.info);
   late final Ticker _playback = createTicker(_followPlayback);
   late final TimelineController _timeline = TimelineController(
     vsync: this,
@@ -123,7 +124,6 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       final at = _timeline.playheadMs.round();
       _reportedMs = at;
       unawaited(_player.settle(at));
-      _playback.start();
     }, onError: (Object _) {
       // A video this phone can't play: the markers can still be checked on
       // the timeline, over a black picture.
@@ -133,6 +133,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _player.removeListener(_onPlayer);
     _playback.dispose();
     _timeline.dispose();
     _player.dispose();
@@ -151,20 +152,26 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
 
   // Playback ------------------------------------------------------------
 
+  /// The player's position reports, and play: the timeline starts following.
   void _onPlayer() {
-    final ms = _player.value.position.inMilliseconds;
+    final value = _player.value;
+    final ms = value.position.inMilliseconds;
     if (ms != _reportedMs) {
       _reportedMs = ms;
       _sinceReport
         ..reset()
         ..start();
     }
+    if (value.isPlaying && !_playback.isActive) _playback.start();
   }
 
   /// While the video plays, the timeline follows it, running on between
   /// the player's position reports (every 100 ms). Playback stops at the
   /// end of the analysed part, or loops while the Export sheet is open (also
   /// when the video itself ends first).
+  ///
+  /// Runs on every frame, so only while the video plays (and while the
+  /// Export sheet loops it): a paused editor draws nothing.
   void _followPlayback(Duration elapsed) {
     final value = _player.value;
     final loop = _loop;
@@ -174,6 +181,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
         return;
       }
       _timeline.stopFollowing();
+      if (loop == null) _playback.stop();
       return;
     }
     final clip = widget.args.clip;

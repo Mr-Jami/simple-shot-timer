@@ -2,9 +2,12 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:math' as math;
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:simple_shot_timer/models/enums.dart';
@@ -13,6 +16,7 @@ import 'package:simple_shot_timer/models/timer_string.dart';
 import 'package:simple_shot_timer/services/video/export_plan.dart';
 import 'package:simple_shot_timer/services/video/hud.dart';
 import 'package:simple_shot_timer/services/video/hud_painter.dart';
+import 'package:simple_shot_timer/widgets/video/hud_overlay.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -63,8 +67,7 @@ void main() {
       expect(HudMoment.at(string, 20000, endCard: false).endCard, 0);
     });
 
-    test('fades the end card out 4 s after it came, past a string export',
-        () {
+    test('fades the end card out 4 s after it came, past a string export', () {
       expect(HudMoment.at(string, 12600 + ExportPlan.tailMs).endCard, 1);
       expect(HudMoment.at(string, 12600 + 4500).endCard, 1);
       expect(HudMoment.at(string, 12600 + 4650).endCard, closeTo(0.5, 1e-9));
@@ -248,10 +251,184 @@ void main() {
           final canvas = Canvas(recorder);
           paintHudBox(canvas, layout, string, options,
               HudMoment.at(string, 12100), labels);
-          paintEndCard(canvas, layout, string, labels, 1);
+          paintEndCard(canvas, layout, string, labels);
           recorder.endRecording().dispose();
         }
       }
     }
   });
+
+  test('the still parts and then the clock paint the same as all of it',
+      () async {
+    const frame = Size(360, 640);
+    Future<Uint8List> pixels(HudLayout layout, void Function(Canvas) paint) =>
+        _pixels(
+          (layout.box.width + 2 * layout.unit).ceil(),
+          (layout.box.height + 2 * layout.unit).ceil(),
+          (canvas) => paint(canvas..translate(layout.unit, layout.unit)),
+        );
+    // Before START, the first shot's tick, and stopped on the last shot.
+    for (final ms in const [9000, 11550, 12700]) {
+      final m = HudMoment.at(string, ms);
+      for (final style in HudStyle.values) {
+        for (final corner in HudCorner.values) {
+          final options = HudOptions(style: style, corner: corner);
+          final layout = HudLayout(frame, options);
+          void box(Canvas c, HudParts parts) =>
+              paintHudBox(c, layout, string, options, m, labels, parts: parts);
+          final all = await pixels(layout, (c) => box(c, HudParts.all));
+          final parts = await pixels(layout, (c) {
+            box(c, HudParts.still);
+            box(c, HudParts.clock);
+          });
+          expect(_differing(parts, all), 0, reason: '$style $corner $ms ms');
+        }
+      }
+    }
+  });
+
+  testWidgets(
+      'the preview lays out only the clock as it runs, and the rest again '
+      'when a shot fires', (tester) async {
+    final time = ValueNotifier(11000);
+    addTearDown(time.dispose);
+    Widget overlay() =>
+        _preview(string, const HudOptions(), labels, () => time.value,
+            repaint: time);
+    final painter = find.descendant(
+        of: find.byType(HudOverlay), matching: find.byType(CustomPaint));
+    // The picture of the still parts: the first one it draws.
+    ui.Picture still() {
+      ui.Picture? drawn;
+      expect(
+        tester.renderObject(painter),
+        paints
+          ..something((method, args) {
+            if (method != #drawPicture) return false;
+            drawn = args.single as ui.Picture;
+            return true;
+          }),
+      );
+      return drawn!;
+    }
+
+    await tester.pumpWidget(overlay());
+    final first = still();
+    time.value = 11100;
+    await tester.pump();
+    // The same picture, and only the clock's digits laid out: two soft
+    // shadows, then the digits.
+    expect(still(), same(first));
+    expect(tester.renderObject(painter),
+        paintsExactlyCountTimes(#drawParagraph, 3));
+
+    // A shot fires: a new picture. Two shots in, it shows what a fresh
+    // overlay would.
+    time.value = 11600;
+    await tester.pump();
+    expect(still(), isNot(same(first)));
+    time.value = 12300;
+    await tester.pump();
+    final ran = await _shown(tester);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpWidget(overlay());
+    expect(_differing(ran, await _shown(tester)), 0);
+  });
+
+  testWidgets(
+      'a rebuilt preview shows a new corner, style, shot or penalty at once',
+      (tester) async {
+    // The last shot 10 s later, so its split gets wider: the test font
+    // draws every digit alike. At 24 s all three have fired either way, and
+    // only the moved string's end card is up, where a penalty shows.
+    final moved = HudString(
+      string.string.copyWith(shots: [
+        Shot(index: 0, timeMs: 1500),
+        Shot(index: 1, timeMs: 2000),
+        Shot(index: 2, timeMs: 12600),
+      ]),
+      startMs: string.startMs,
+    );
+    Widget overlay(HudOptions options, HudString shown) =>
+        _preview(shown, options, labels, () => 24000);
+    Future<Uint8List> fresh(Widget overlay) async {
+      await tester.pumpWidget(const SizedBox());
+      await tester.pumpWidget(overlay);
+      return _shown(tester);
+    }
+
+    final penalized = HudString(moved.string.copyWith(penaltyMs: 10000),
+        startMs: moved.startMs);
+    const corner = HudOptions(corner: HudCorner.bottomRight);
+    const full =
+        HudOptions(style: HudStyle.full, corner: HudCorner.bottomRight);
+    var before = await fresh(overlay(const HudOptions(), string));
+    for (final (change, next) in [
+      ('corner', overlay(corner, string)),
+      ('style', overlay(full, string)),
+      ('shot', overlay(full, moved)),
+      ('penalty', overlay(full, penalized)),
+    ]) {
+      await tester.pumpWidget(next);
+      final rebuilt = await _shown(tester);
+      final expected = await fresh(next);
+      expect(_differing(expected, before), isNonZero, reason: change);
+      expect(_differing(rebuilt, expected), 0, reason: change);
+      before = expected;
+    }
+  });
+}
+
+/// The overlay over a 360 x 640 clip, in a box that size.
+Widget _preview(HudString string, HudOptions options, HudLabels labels,
+    int Function() timeMs,
+    {Listenable? repaint}) {
+  const frame = Size(360, 640);
+  return Center(
+    child: SizedBox.fromSize(
+      size: frame,
+      child: HudOverlay(
+        frame: frame,
+        string: string,
+        options: options,
+        labels: labels,
+        timeMs: timeMs,
+        repaint: repaint,
+      ),
+    ),
+  );
+}
+
+/// What the overlay on screen shows, in RGBA.
+Future<Uint8List> _shown(WidgetTester tester) async =>
+    (await tester.runAsync(() async {
+      final image = await tester
+          .renderObject<RenderRepaintBoundary>(find.descendant(
+              of: find.byType(HudOverlay),
+              matching: find.byType(RepaintBoundary)))
+          .toImage();
+      final bytes = (await image.toByteData())!.buffer.asUint8List();
+      image.dispose();
+      return bytes;
+    }))!;
+
+/// What [paint] draws on a [width] x [height] canvas, in RGBA.
+Future<Uint8List> _pixels(
+    int width, int height, void Function(Canvas canvas) paint) async {
+  final recorder = ui.PictureRecorder();
+  paint(Canvas(recorder));
+  final image = await recorder.endRecording().toImage(width, height);
+  final bytes = (await image.toByteData())!.buffer.asUint8List();
+  image.dispose();
+  return bytes;
+}
+
+/// How many bytes of [a] and [b] differ (all of them in size).
+int _differing(Uint8List a, Uint8List b) {
+  if (a.length != b.length) return math.max(a.length, b.length);
+  var n = 0;
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] != b[i]) n++;
+  }
+  return n;
 }

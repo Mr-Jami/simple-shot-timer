@@ -75,12 +75,19 @@ void paintHudShade(Canvas canvas, HudLayout layout) {
   );
 }
 
+/// The parts of the corner overlay [paintHudBox] paints: all of it (the
+/// export), or for the preview everything but the clock's digits ([still],
+/// which changes only when a shot fires) and the digits alone ([clock]).
+enum HudParts { all, still, clock }
+
 /// Paints the corner overlay into its box ([HudLayout.box], with the box's
 /// top left at the canvas origin): the mark and name; the clock under the
 /// TOTAL label (with the shot tick); for [HudStyle.full] the shots and the
 /// first shot; and for every style but [HudStyle.clock] the newest splits
 /// beside a yellow rule. The rows run from the corner out, so in bottom
 /// corners they stack upwards and the mark sits in the corner there too.
+/// [parts] picks what to paint; the clock's digits come last, so the still
+/// parts and then the digits paint the same as all of it.
 void paintHudBox(
   Canvas canvas,
   HudLayout layout,
@@ -89,6 +96,7 @@ void paintHudBox(
   HudMoment m,
   HudLabels labels, {
   ui.Image? logo,
+  HudParts parts = HudParts.all,
 }) {
   final u = layout.unit;
   var fromCorner = 0.0;
@@ -102,22 +110,36 @@ void paintHudBox(
     return top;
   }
 
-  _paintBrand(canvas, layout, logo, row(HudLayout.brandUnits));
+  final brandTop = row(HudLayout.brandUnits);
   row(HudLayout.brandGapUnits);
-  _paintClock(
-    canvas,
-    layout,
-    labels,
-    m,
-    row(HudLayout.labelUnits + HudLayout.labelGapUnits + HudLayout.clockUnits),
-  );
-  if (options.style == HudStyle.full) {
-    _paintLine(canvas, layout, s, m, labels, row(HudLayout.lineUnits));
+  final clockTop = row(
+      HudLayout.labelUnits + HudLayout.labelGapUnits + HudLayout.clockUnits);
+  if (parts != HudParts.clock) {
+    _paintBrand(canvas, layout, logo, brandTop);
+    _paintClockLabel(canvas, layout, labels, clockTop);
+    if (options.style == HudStyle.full) {
+      _paintLine(canvas, layout, s, m, labels, row(HudLayout.lineUnits));
+    }
+    if (options.style != HudStyle.clock) {
+      _paintSplits(canvas, layout, s, m.fired, row);
+    }
   }
-  final shown = math.min(m.fired, HudLayout.splits);
-  if (options.style == HudStyle.clock || shown == 0) return;
+  if (parts != HudParts.still) _paintClock(canvas, layout, m, clockTop);
+}
+
+/// The newest splits of the [fired] shots, the newest next to the clock,
+/// beside a yellow rule; [row] places each.
+void _paintSplits(
+  Canvas canvas,
+  HudLayout layout,
+  HudString s,
+  int fired,
+  double Function(double units) row,
+) {
+  final u = layout.unit;
+  final shown = math.min(fired, HudLayout.splits);
+  if (shown == 0) return;
   row(HudLayout.splitsGapUnits);
-  // The newest next to the clock.
   final tops = [for (var i = 0; i < shown; i++) row(HudLayout.splitUnits)];
   final first = tops.reduce(math.min);
   final last = tops.reduce(math.max) + HudLayout.splitUnits * u;
@@ -128,26 +150,37 @@ void paintHudBox(
     Paint()..color = hudYellow,
   );
   for (var age = 0; age < shown; age++) {
-    _paintSplit(canvas, layout, s, m.fired - age, age, tops[age]);
+    _paintSplit(canvas, layout, s, fired - age, age, tops[age]);
   }
 }
 
-/// Paints the end card at [opacity] in frame coordinates, on a soft dark
-/// field ([HudLayout.cardShade]): TOTAL large, then first, average, fastest
-/// and shots, then the label, the date and any penalty, then the name.
+/// Runs [paint], which stays inside [bounds], at [opacity] (the end card's
+/// fade): through a layer while it fades, straight once it is fully there.
+void paintFaded(
+    Canvas canvas, Rect bounds, double opacity, void Function() paint) {
+  if (opacity <= 0) return;
+  final fading = opacity < 1;
+  if (fading) {
+    canvas.saveLayer(
+        bounds, Paint()..color = _white.withValues(alpha: opacity));
+  }
+  paint();
+  if (fading) canvas.restore();
+}
+
+/// Paints the end card in frame coordinates, on a soft dark field inside
+/// [HudLayout.cardShade]: TOTAL large, then first, average, fastest and
+/// shots, then the label, the date and any penalty, then the name. Its fade
+/// is [paintFaded]'s.
 void paintEndCard(
   Canvas canvas,
   HudLayout layout,
   HudString s,
-  HudLabels labels,
-  double opacity, {
+  HudLabels labels, {
   ui.Image? logo,
 }) {
-  if (opacity <= 0) return;
   final u = layout.unit;
   final card = layout.card;
-  canvas.saveLayer(
-      layout.cardShade, Paint()..color = _white.withValues(alpha: opacity));
   canvas.drawRRect(
     RRect.fromRectAndRadius(card.inflate(0.6 * u), Radius.circular(1.2 * u)),
     Paint()
@@ -206,7 +239,6 @@ void paintEndCard(
   }
   _paintText(canvas, name, Offset(left + gap, y + (mark - name.height) / 2));
   name.dispose();
-  canvas.restore();
 }
 
 // The box's rows, each at the top [y] paintHudBox gives it. [_x] places a
@@ -233,24 +265,22 @@ void _paintBrand(Canvas canvas, HudLayout layout, ui.Image? logo, double y) {
   name.dispose();
 }
 
-/// The TOTAL label, and under it the clock, pulsing on each shot around its
-/// outer edge (the side the box hugs) at the baseline.
-void _paintClock(
-  Canvas canvas,
-  HudLayout layout,
-  HudLabels labels,
-  HudMoment m,
-  double y,
-) {
-  final u = layout.unit;
-  final label = _layout(labels.total, _labelStyle(0.36 * u, hudYellow));
+/// The TOTAL label at the top of the clock's row.
+void _paintClockLabel(
+    Canvas canvas, HudLayout layout, HudLabels labels, double y) {
+  final label =
+      _layout(labels.total, _labelStyle(0.36 * layout.unit, hudYellow));
   _paintText(canvas, label, Offset(_x(layout, label.width), y));
   label.dispose();
+}
 
+/// The clock under the TOTAL label of the row at [y], pulsing on each shot
+/// around its outer edge (the side the box hugs) at the baseline.
+void _paintClock(Canvas canvas, HudLayout layout, HudMoment m, double y) {
+  final u = layout.unit;
   final size = HudLayout.clockUnits * u;
-  final style = _numberStyle(size, u);
-  final clock = formatSeconds(m.clockMs);
-  final width = _textWidth(clock, style);
+  final text = _layout(formatSeconds(m.clockMs), _numberStyle(size, u));
+  final width = text.width;
   // Big digits stand a little in from their box: align them with the label.
   final inset = 0.04 * size;
   final x =
@@ -262,7 +292,6 @@ void _paintClock(
     ..translate(pivot.dx, pivot.dy)
     ..scale(m.tick)
     ..translate(-pivot.dx, -pivot.dy);
-  final text = _layout(clock, style);
   _paintText(canvas, text, Offset(x, top));
   text.dispose();
   canvas.restore();
@@ -451,13 +480,6 @@ TextPainter _layout(String text, TextStyle style, {double? maxWidth}) {
         ? null
         : style.letterSpacing! * size / style.fontSize!,
   ));
-}
-
-double _textWidth(String text, TextStyle style) {
-  final p = _layout(text, style);
-  final width = p.width;
-  p.dispose();
-  return width;
 }
 
 /// [text] centred on [centreX] at [y], at most [maxWidth] wide. Returns its

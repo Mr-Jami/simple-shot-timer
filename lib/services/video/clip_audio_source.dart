@@ -58,9 +58,11 @@ class ClipAudioException implements Exception {
 
 /// What the platform knows about a clip before decoding it. `checkClip`
 /// reads the audio, video and frame-rate fields; the editor and the export
-/// read the displayed size, the frame rate and the recording date. The
-/// audio codec, rotation and colour transfer are diagnostics for the
-/// on-device analysis report (`integration_test/clip_analysis_test.dart`).
+/// read the displayed size, the frame rate and the recording date, and the
+/// colour transfer and bit depth pick the video's view
+/// (`ClipPlayer.viewTypeFor`). The audio codec and rotation are diagnostics
+/// for the on-device analysis report
+/// (`integration_test/clip_analysis_test.dart`).
 class ClipInfo {
   const ClipInfo({
     required this.hasAudio,
@@ -71,6 +73,7 @@ class ClipInfo {
     this.width,
     this.height,
     this.colorTransfer,
+    this.bitDepth,
     this.frameRate,
     this.captureFrameRate,
     this.creationTime,
@@ -87,8 +90,12 @@ class ClipInfo {
   final int? width;
   final int? height;
 
-  /// 'sdr', 'pq' (HDR10, Dolby Vision) or 'hlg'; null when unknown.
+  /// 'sdr', 'pq' (HDR10, Dolby Vision) or 'hlg'; null when unknown. On
+  /// Android 'sdr' is only BT.709/601; on iOS it is any other named curve.
   final String? colorTransfer;
+
+  /// 8 or 10, as the codec profile says (H.264 and HEVC on Android).
+  final int? bitDepth;
   final double? frameRate;
 
   /// The rate the camera recorded at, when it differs in kind from
@@ -206,6 +213,7 @@ class ChannelClipAudioSource implements ClipAudioSource {
       width: m['width'] as int?,
       height: m['height'] as int?,
       colorTransfer: m['colorTransfer'] as String?,
+      bitDepth: m['bitDepth'] as int?,
       frameRate: (m['frameRate'] as num?)?.toDouble(),
       captureFrameRate: (m['captureFrameRate'] as num?)?.toDouble(),
       creationTime: created == null
