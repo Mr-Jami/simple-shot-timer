@@ -168,6 +168,8 @@ jobs:
           name: dart-symbols-ios-build-${{ github.run_number }}
           path: build/symbols
           if-no-files-found: error
+          # A re-run uploads the same name again.
+          overwrite: true
           # The most GitHub keeps an artifact of a public repository.
           retention-days: 90
 
