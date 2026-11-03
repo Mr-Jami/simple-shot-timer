@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.2](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.4.1...v2.4.2) (2026-11-03)
+
+
+### Performance
+
+* **video:** the video editor uses far less battery and plays more smoothly ([#62](https://github.com/Mr-Jami/simple-shot-timer/issues/62)) ([e9840f9](https://github.com/Mr-Jami/simple-shot-timer/commit/e9840f9af58299677022457b567018e704312e9c))
+
 ## [2.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.4.0...v2.4.1) (2026-11-03)
 
 
