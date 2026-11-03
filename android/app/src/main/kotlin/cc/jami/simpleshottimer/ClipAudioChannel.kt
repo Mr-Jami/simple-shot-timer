@@ -6,6 +6,7 @@ package cc.jami.simpleshottimer
 
 import android.media.AudioFormat
 import android.media.MediaCodec
+import android.media.MediaCodecInfo.CodecProfileLevel
 import android.media.MediaExtractor
 import android.media.MediaFormat
 import android.media.MediaMetadataRetriever
@@ -123,6 +124,7 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
             var videoMime: String? = null
             var frameRate: Double? = null
             var transfer: String? = null
+            var bitDepth: Int? = null
             for (i in 0 until extractor.trackCount) {
                 val format = extractor.getTrackFormat(i)
                 if (format.containsKey(MediaFormat.KEY_DURATION)) {
@@ -132,11 +134,15 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
                 if (!mime.startsWith("video/") || videoMime != null) continue
                 videoMime = mime
                 frameRate = number(format, MediaFormat.KEY_FRAME_RATE)
+                bitDepth = bitDepth(mime, format)
                 if (format.containsKey(MediaFormat.KEY_COLOR_TRANSFER)) {
+                    // Only BT.709/601 is "sdr": the editor plays those clips in
+                    // the texture view. Linear and other curves stay unknown.
                     transfer = when (format.getInteger(MediaFormat.KEY_COLOR_TRANSFER)) {
+                        MediaFormat.COLOR_TRANSFER_SDR_VIDEO -> "sdr"
                         MediaFormat.COLOR_TRANSFER_ST2084 -> "pq"
                         MediaFormat.COLOR_TRANSFER_HLG -> "hlg"
-                        else -> "sdr"
+                        else -> null
                     }
                 }
             }
@@ -155,6 +161,7 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
                 "width" to width,
                 "height" to height,
                 "colorTransfer" to transfer,
+                "bitDepth" to bitDepth,
                 "frameRate" to frameRate,
                 "captureFrameRate" to meta.captureFrameRate,
                 "creationTimeMs" to meta.created,
@@ -528,6 +535,33 @@ class ClipAudioChannel(private val channel: MethodChannel) : MethodChannel.Metho
     }
 
     /** A format number that may be stored as an int or a float. */
+    /** 8 or 10 bits, as far as an H.264 or HEVC profile says. */
+    private fun bitDepth(mime: String, format: MediaFormat): Int? {
+        if (!format.containsKey(MediaFormat.KEY_PROFILE)) return null
+        val profile = format.getInteger(MediaFormat.KEY_PROFILE)
+        return when (mime) {
+            MediaFormat.MIMETYPE_VIDEO_AVC -> when (profile) {
+                CodecProfileLevel.AVCProfileBaseline,
+                CodecProfileLevel.AVCProfileConstrainedBaseline,
+                CodecProfileLevel.AVCProfileMain,
+                CodecProfileLevel.AVCProfileExtended,
+                CodecProfileLevel.AVCProfileHigh,
+                CodecProfileLevel.AVCProfileConstrainedHigh -> 8
+                CodecProfileLevel.AVCProfileHigh10 -> 10
+                else -> null
+            }
+            MediaFormat.MIMETYPE_VIDEO_HEVC -> when (profile) {
+                CodecProfileLevel.HEVCProfileMain,
+                CodecProfileLevel.HEVCProfileMainStill -> 8
+                CodecProfileLevel.HEVCProfileMain10,
+                CodecProfileLevel.HEVCProfileMain10HDR10,
+                CodecProfileLevel.HEVCProfileMain10HDR10Plus -> 10
+                else -> null
+            }
+            else -> null
+        }
+    }
+
     private fun number(format: MediaFormat, key: String): Double? {
         if (!format.containsKey(key)) return null
         return try {

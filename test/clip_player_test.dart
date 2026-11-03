@@ -9,24 +9,31 @@ import 'package:simple_shot_timer/services/video/clip_player.dart';
 import 'package:video_player/video_player.dart';
 
 void main() {
-  test('SDR on Android plays in the texture view, the rest in a platform view',
-      () {
+  test(
+      '8-bit SDR on Android plays in the texture view, the rest in a '
+      'platform view', () {
     const android = TargetPlatform.android;
     const iOS = TargetPlatform.iOS;
     const texture = VideoViewType.textureView;
     const platform = VideoViewType.platformView;
-    for (final (on, transfer, view) in const [
-      (android, 'sdr', texture),
-      (android, 'pq', platform),
-      (android, 'hlg', platform),
-      (android, null, platform),
-      (iOS, 'sdr', platform),
-      (iOS, 'pq', platform),
-      (iOS, null, platform),
+    for (final (on, transfer, bits, view) in const [
+      (android, 'sdr', 8, texture),
+      (android, 'sdr', 10, platform),
+      (android, 'sdr', null, platform),
+      (android, 'pq', 10, platform),
+      (android, 'hlg', 10, platform),
+      (android, null, 8, platform),
+      (iOS, 'sdr', 8, platform),
+      (iOS, 'pq', 10, platform),
+      (iOS, null, null, platform),
     ]) {
-      final clip =
-          ClipInfo(hasAudio: true, durationMs: 1000, colorTransfer: transfer);
-      expect(ClipPlayer.viewTypeFor(clip, on), view, reason: '$on $transfer');
+      final clip = ClipInfo(
+          hasAudio: true,
+          durationMs: 1000,
+          colorTransfer: transfer,
+          bitDepth: bits);
+      expect(ClipPlayer.viewTypeFor(clip, on), view,
+          reason: '$on $transfer $bits-bit');
     }
   });
 }

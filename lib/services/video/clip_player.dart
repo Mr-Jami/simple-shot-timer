@@ -18,15 +18,17 @@ class ClipPlayer extends VideoPlayerController {
       : super.file(File(path),
             viewType: viewTypeFor(info, defaultTargetPlatform));
 
-  /// The texture view washes out HDR and garbles 4K HDR10, so those clips,
-  /// and any whose colours the file doesn't name, play in a platform view.
-  /// On Android that is a SurfaceView, which puts the screen into Hybrid
-  /// Composition: Flutter then draws on the main thread and every frame
-  /// also goes through Android's renderer. So there, SDR clips play in the
-  /// texture view.
+  /// The texture view washes out HDR and garbles 4K 10-bit video, so
+  /// those clips, and any whose colours or bit depth the file doesn't name,
+  /// play in a platform view. On Android that is a SurfaceView, which puts
+  /// the screen into Hybrid Composition: Flutter then draws on the main
+  /// thread and every frame also goes through Android's renderer. So there,
+  /// 8-bit SDR clips play in the texture view.
   @visibleForTesting
   static VideoViewType viewTypeFor(ClipInfo info, TargetPlatform platform) =>
-      platform == TargetPlatform.android && info.colorTransfer == 'sdr'
+      platform == TargetPlatform.android &&
+              info.colorTransfer == 'sdr' &&
+              info.bitDepth == 8
           ? VideoViewType.textureView
           : VideoViewType.platformView;
 
