@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.4.0...v2.4.1) (2026-11-03)
+
+
+### Bug Fixes
+
+* **video:** exporting on iPhone no longer stops partway or closes the app ([#59](https://github.com/Mr-Jami/simple-shot-timer/issues/59)) ([545ae2d](https://github.com/Mr-Jami/simple-shot-timer/commit/545ae2d258234b6080b81fa7e613540ea4ade671))
+
 ## [2.4.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.3.2...v2.4.0) (2026-10-31)
 
 
