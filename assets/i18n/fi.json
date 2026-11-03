@@ -268,6 +268,7 @@
   "export.noAccess": "Simple Shot Timer ei saa tallentaa videoita. Voit silti jakaa sen.",
   "export.saveFailed": "Videota ei voitu tallentaa kuviin. Voit silti jakaa sen.",
   "export.failed": "Videota ei voitu viedä.",
+  "export.copy": "Kopioi",
   "export.shareFailed": "Jakaminen ei avautunut. Yritä uudelleen.",
   "export.noSpace": "Tilaa ei ole tarpeeksi videon viemiseen. Vapauta tilaa ja yritä uudelleen.",
   "export.done": "Valmis",

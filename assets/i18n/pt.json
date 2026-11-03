@@ -268,6 +268,7 @@
   "export.noAccess": "O Simple Shot Timer não pode salvar vídeos. Você ainda pode compartilhá-lo.",
   "export.saveFailed": "Não foi possível salvar o vídeo em Fotos. Você ainda pode compartilhá-lo.",
   "export.failed": "Não foi possível exportar o vídeo.",
+  "export.copy": "Copiar",
   "export.shareFailed": "Não foi possível abrir o compartilhamento. Tente de novo.",
   "export.noSpace": "Não há espaço livre suficiente para exportar o vídeo. Libere espaço e tente de novo.",
   "export.done": "Pronto",

@@ -18,10 +18,10 @@ import UIKit
 ///   zlib) that Dart drew, image `i` showing from `timesUs[i]` (output time)
 ///   on, its top left at (`x`, `y`) in fractions of the frame. Progress
 ///   (0..1) comes back as `progress` messages; `cancel` names the job to
-///   stop. Fails with `cancelled`, `no_space` or `export_failed`, leaving no
-///   file, or with `busy` while another export runs. AVAssetExportSession
-///   chooses the bitrate (`bitrate` is Android's), and the export stops if
-///   the app goes to the background.
+///   stop. Fails with `cancelled`, `no_space` or `export_failed` (the
+///   message is [errorDetail]), leaving no file, or with `busy` while another
+///   export runs. AVAssetExportSession chooses the bitrate (`bitrate` is
+///   Android's), and the export stops if the app goes to the background.
 /// - `checkEncoderColors`: Apple's encoder converts with the matrix it tags,
 ///   so it never needs Android's `colorFix`.
 final class ClipExportChannel: NSObject, @unchecked Sendable {
@@ -90,7 +90,7 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
         session = try Self.makeSession(args, output: running.output)
       } catch {
         let code = isNoSpace(error) ? "no_space" : "export_failed"
-        let message = (error as? ClipFailure)?.message ?? "\(error)"
+        let message = errorDetail(error)
         DispatchQueue.main.async {
           self.finish(running) { $0(FlutterError(code: code, message: message, details: nil)) }
         }
@@ -123,9 +123,8 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
     default:
       let error = session.error
       let code = error.map(isNoSpace) == true ? "no_space" : "export_failed"
-      finish(running) {
-        $0(FlutterError(code: code, message: error.map { "\($0)" } ?? "\(session.status)", details: nil))
-      }
+      let message = error.map(errorDetail) ?? "status \(session.status.rawValue)"
+      finish(running) { $0(FlutterError(code: code, message: message, details: nil)) }
     }
   }
 
@@ -251,6 +250,34 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
   }
 }
 
+/// [error] as the export's error detail, which the app shows to copy into a
+/// bug report: our own message, or the domain and code of the error and of
+/// each one it wraps ("AVFoundationErrorDomain -11800 / NSOSStatusErrorDomain
+/// -12902"). The description would add memory addresses and prose in the
+/// phone's language.
+private func errorDetail(_ error: Error) -> String {
+  var parts: [String] = []
+  var next: Error? = error
+  while let e = next {
+    let ns = e as NSError
+    if ns.domain == ClipFailure.errorDomain {
+      parts.append(ns.localizedFailureReason ?? ns.domain)
+      break
+    }
+    parts.append("\(ns.domain) \(ns.code)")
+    next = ns.userInfo[NSUnderlyingErrorKey] as? Error
+  }
+  return parts.joined(separator: " / ")
+}
+
+/// A ClipFailure keeps its message as an NSError, so [errorDetail] still
+/// finds it after AVFoundation wraps (or re-creates) an error the compositor
+/// threw.
+extension ClipFailure: CustomNSError {
+  static var errorDomain: String { "ClipFailure" }
+  var errorUserInfo: [String: Any] { [NSLocalizedFailureReasonErrorKey: message ?? code] }
+}
+
 /// The one instruction of an export: the source track to draw upright, and
 /// the overlays on top.
 private final class OverlayInstruction: NSObject, AVVideoCompositionInstructionProtocol,
@@ -282,7 +309,13 @@ private final class OverlayInstruction: NSObject, AVVideoCompositionInstructionP
 /// render size, then the overlay images for its time. Requests are drawn
 /// one at a time on [queue].
 private final class OverlayCompositor: NSObject, AVVideoCompositing, @unchecked Sendable {
-  private let queue = DispatchQueue(label: "cc.jami.simpleshottimer.clip_export.render")
+  /// Drains an autorelease pool after every request, like the one around
+  /// each frame. Without them GCD drains only when the queue's thread idles,
+  /// which it never does during an export, and each frame's autoreleased
+  /// Core Image objects kept its source pixel buffer alive: about 4 s of
+  /// 1440p video filled the app's memory and iOS closed it (issue #58).
+  private let queue = DispatchQueue(
+    label: "cc.jami.simpleshottimer.clip_export.render", autoreleaseFrequency: .workItem)
 
   /// Pixel values pass through unchanged, as on Android: the overlay's
   /// colours land in the video as Dart drew them.
@@ -307,11 +340,15 @@ private final class OverlayCompositor: NSObject, AVVideoCompositing, @unchecked 
         request.finishCancelledRequest()
         return
       }
-      do {
-        let frame = try self.render(request)
-        request.finish(withComposedVideoFrame: frame)
-      } catch {
-        request.finish(with: error)
+      // The frame's Core Image objects, and the source buffer they hold, go
+      // as soon as it's drawn.
+      autoreleasepool {
+        do {
+          let frame = try self.render(request)
+          request.finish(withComposedVideoFrame: frame)
+        } catch {
+          request.finish(with: error)
+        }
       }
     }
   }
