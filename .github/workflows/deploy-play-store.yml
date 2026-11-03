@@ -73,7 +73,24 @@ jobs:
         # workflow run, which Play Store requires for every upload. The
         # versionName (e.g. 1.2.3) still comes from pubspec.yaml, which
         # release-please manages on its release PR.
-        run: flutter build appbundle --release --build-number=${{ github.run_number }}
+        # --obfuscate and --split-debug-info make the Dart code about 1.2 MB
+        # smaller; its stack traces then need the symbols kept below
+        # (flutter symbolize -i <trace> -d app.android-arm64.symbols).
+        run: |
+          flutter build appbundle --release \
+            --build-number=${{ github.run_number }} \
+            --obfuscate --split-debug-info="$PWD/build/symbols" \
+            --extra-gen-snapshot-options=--save-obfuscation-map="$PWD/build/symbols/obfuscation-map.json"
+
+      - name: Keep the Dart symbols
+        # Named by the build number Play Console shows for the upload.
+        uses: actions/upload-artifact@v4
+        with:
+          name: dart-symbols-android-build-${{ github.run_number }}
+          path: build/symbols
+          if-no-files-found: error
+          # The most GitHub keeps an artifact of a public repository.
+          retention-days: 90
 
       - name: Prepare Play Store release notes
         # Pull the body of the GitHub Release for the current tag (or the
