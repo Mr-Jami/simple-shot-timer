@@ -58,8 +58,9 @@ other language.
 The promotional text sits above the description. It is the one version field
 Apple lets you change without a new version, but the workflow writes it to
 the version being prepared, so it appears once that version is live. It
-currently leads with the video feature of 2.4.0; refresh it when that stops
-being news.
+stays the same from release to release, in every language: "Free,
+open-source shot timer with live splits and par drills. No ads, no
+tracking." News goes in What's New, not here.
 
 `ios/en-US` has no `keywords.txt`: the English keywords live only in App Store
 Connect, and the workflow leaves fields without a file alone.
