@@ -28,7 +28,11 @@ extension HudLabelsOf on BuildContext {
 /// and scaled to the box it fills, so the preview matches the export.
 /// [timeMs] is read on every paint, which [repaint] triggers. With
 /// [reduceMotion] the clock doesn't pulse (the export still does).
-class HudOverlay extends StatelessWidget {
+///
+/// Only the clock's digits change from frame to frame. The rest is kept in
+/// pictures, drawn again when a shot fires or the overlay changes, and the
+/// overlay repaints without the page around it.
+class HudOverlay extends StatefulWidget {
   const HudOverlay({
     super.key,
     required this.frame,
@@ -51,22 +55,80 @@ class HudOverlay extends StatelessWidget {
   final bool reduceMotion;
 
   @override
+  State<HudOverlay> createState() => _HudOverlayState();
+}
+
+class _HudOverlayState extends State<HudOverlay> {
+  final _pictures = _HudPictures();
+
+  // Every rebuild brings a new string, labels and time (they can't be
+  // compared), so the pictures are drawn again; the editor rebuilds on
+  // edits, not while it plays.
+  @override
+  void didUpdateWidget(HudOverlay old) {
+    super.didUpdateWidget(old);
+    _pictures.clear();
+  }
+
+  @override
+  void dispose() {
+    _pictures.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      child: CustomPaint(
-        size: Size.infinite,
-        painter: _HudPainter(
-          frame: frame,
-          string: string,
-          options: options,
-          labels: labels,
-          timeMs: timeMs,
-          logo: logo,
-          pulse: !reduceMotion,
-          repaint: repaint,
+      child: RepaintBoundary(
+        child: CustomPaint(
+          size: Size.infinite,
+          painter: _HudPainter(
+            frame: widget.frame,
+            string: widget.string,
+            options: widget.options,
+            labels: widget.labels,
+            timeMs: widget.timeMs,
+            logo: widget.logo,
+            pulse: !widget.reduceMotion,
+            pictures: _pictures,
+            repaint: widget.repaint,
+          ),
         ),
       ),
     );
+  }
+}
+
+/// Pictures of the parts that change only when a shot fires: the shade and
+/// the box without the clock's digits (for the shots fired so far), and the
+/// end card.
+class _HudPictures {
+  ui.Picture? _still;
+  int? _fired;
+  ui.Picture? _card;
+
+  ui.Picture still(int fired, void Function(Canvas canvas) paint) {
+    if (_still == null || fired != _fired) {
+      _still?.dispose();
+      _still = _record(paint);
+      _fired = fired;
+    }
+    return _still!;
+  }
+
+  ui.Picture card(void Function(Canvas canvas) paint) =>
+      _card ??= _record(paint);
+
+  void clear() {
+    _still?.dispose();
+    _card?.dispose();
+    _still = _card = null;
+  }
+
+  static ui.Picture _record(void Function(Canvas canvas) paint) {
+    final recorder = ui.PictureRecorder();
+    paint(Canvas(recorder));
+    return recorder.endRecording();
   }
 }
 
@@ -79,6 +141,7 @@ class _HudPainter extends CustomPainter {
     required this.timeMs,
     required this.logo,
     required this.pulse,
+    required this.pictures,
     super.repaint,
   });
 
@@ -89,6 +152,7 @@ class _HudPainter extends CustomPainter {
   final int Function() timeMs;
   final ui.Image? logo;
   final bool pulse;
+  final _HudPictures pictures;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -96,17 +160,31 @@ class _HudPainter extends CustomPainter {
     final layout = HudLayout(frame, options);
     final m =
         HudMoment.at(string, timeMs(), endCard: options.endCard, pulse: pulse);
-    canvas.scale(size.width / frame.width);
-    paintHudShade(canvas, layout);
+    final box = layout.box.topLeft;
     canvas
+      ..scale(size.width / frame.width)
+      ..drawPicture(pictures.still(m.fired, (c) {
+        paintHudShade(c, layout);
+        c.translate(box.dx, box.dy);
+        paintHudBox(c, layout, string, options, m, labels,
+            logo: logo, parts: HudParts.still);
+      }))
       ..save()
-      ..translate(layout.box.left, layout.box.top);
-    paintHudBox(canvas, layout, string, options, m, labels, logo: logo);
+      ..translate(box.dx, box.dy);
+    paintHudBox(canvas, layout, string, options, m, labels,
+        parts: HudParts.clock);
     canvas.restore();
-    paintEndCard(canvas, layout, string, labels, m.endCard, logo: logo);
+    paintFaded(
+      canvas,
+      layout.cardShade,
+      m.endCard,
+      () => canvas.drawPicture(pictures
+          .card((c) => paintEndCard(c, layout, string, labels, logo: logo))),
+    );
   }
 
-  // Cheap, and the string and labels are rebuilt with the page anyway.
+  // A new painter comes only with a rebuilt overlay, which also cleared the
+  // pictures.
   @override
   bool shouldRepaint(_HudPainter old) => true;
 }

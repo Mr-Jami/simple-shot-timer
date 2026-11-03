@@ -37,7 +37,7 @@ class VideoPartView extends StatefulWidget {
 }
 
 class _VideoPartViewState extends State<VideoPartView> {
-  late final _player = ClipPlayer(widget.part.clipPath);
+  late final _player = ClipPlayer(widget.part.clipPath, info: widget.part.info);
   var _dragging = false;
   var _previewMs = 0;
 

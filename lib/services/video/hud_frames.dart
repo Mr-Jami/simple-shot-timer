@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:io';
+import 'dart:isolate';
 import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -114,14 +115,13 @@ Future<List<OverlaySequence>> renderHudFrames({
           if (cardOut < plan.endMs)
             ...frames(cardOut, cardOut + HudMoment.endCardFadeMs),
         ],
-        paint: (canvas, m) =>
-            paintEndCard(canvas, layout, string, labels, m.endCard, logo: logo),
+        paint: (canvas, m) => paintFaded(canvas, layout.cardShade, m.endCard,
+            () => paintEndCard(canvas, layout, string, labels, logo: logo)),
       ),
   ];
 
   final total = sequences.fold(0, (n, q) => n + q.times.length);
   var done = 0;
-  final zlib = ZLibCodec(level: 1);
   for (final q in sequences) {
     await Directory('${dir.path}/${q.folder}').create(recursive: true);
   }
@@ -134,7 +134,7 @@ Future<List<OverlaySequence>> renderHudFrames({
             final rgba =
                 await _rasterise(q.rect, (c) => q.paint(c, m), straightAlpha);
             await File('${dir.path}/${q.folder}/$i.z')
-                .writeAsBytes(zlib.encode(rgba));
+                .writeAsBytes(await _deflate(rgba));
             onProgress?.call(++done / total);
           },
     ],
@@ -181,6 +181,12 @@ Future<Uint8List> _rasterise(
   image.dispose();
   return rgba!.buffer.asUint8List();
 }
+
+/// [rgba] compressed with zlib in a worker isolate, so the progress keeps
+/// moving while it runs. A function of its own: the isolate gets only the
+/// pixels, not whatever else a closure in [renderHudFrames] would hold.
+Future<List<int>> _deflate(Uint8List rgba) =>
+    Isolate.run(() => ZLibCodec(level: 1).encode(rgba));
 
 /// Runs [jobs] a few at a time: the rasterising and the encoding run off the
 /// UI thread, so they overlap. Stops starting new ones once [cancel] fires.

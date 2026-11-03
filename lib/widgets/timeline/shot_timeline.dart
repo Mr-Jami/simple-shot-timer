@@ -157,20 +157,23 @@ class _ShotTimelineState extends State<ShotTimeline> {
               widget.onTapMarker(tapped);
             }
           },
-          child: CustomPaint(
-            size: Size(width, ShotTimeline.height),
-            painter: _TimelinePainter(
-              controller: controller,
-              loudness: widget.loudness,
-              originMs: widget.originMs,
-              frameMs: widget.frameMs,
-              markers: widget.markers,
-              startLabel: widget.startLabel,
-              ink: scheme.onSurface,
-              paper: scheme.surface,
-              dim: scheme.onSurfaceVariant,
-              textStyle: theme.textTheme.labelSmall!.copyWith(
-                fontFeatures: const [FontFeature.tabularFigures()],
+          // Repaints with the playhead without the page around it.
+          child: RepaintBoundary(
+            child: CustomPaint(
+              size: Size(width, ShotTimeline.height),
+              painter: _TimelinePainter(
+                controller: controller,
+                loudness: widget.loudness,
+                originMs: widget.originMs,
+                frameMs: widget.frameMs,
+                markers: widget.markers,
+                startLabel: widget.startLabel,
+                ink: scheme.onSurface,
+                paper: scheme.surface,
+                dim: scheme.onSurfaceVariant,
+                textStyle: theme.textTheme.labelSmall!.copyWith(
+                  fontFeatures: const [FontFeature.tabularFigures()],
+                ),
               ),
             ),
           ),
@@ -220,6 +223,11 @@ class _TimelinePainter extends CustomPainter {
   final Color paper;
   final Color dim;
   final TextStyle textStyle;
+
+  /// The badges' and splits' labels, laid out once: the markers stay the
+  /// same while the timeline scrolls, and a change brings a new painter.
+  /// They go with this painter (the garbage collector frees them).
+  final _labels = <(String, TextStyle), TextPainter>{};
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -372,7 +380,8 @@ class _TimelinePainter extends CustomPainter {
     }
   }
 
-  TextPainter _layout(String text, TextStyle style) => TextPainter(
+  TextPainter _layout(String text, TextStyle style) =>
+      _labels[(text, style)] ??= TextPainter(
         text: TextSpan(text: text, style: style),
         textDirection: TextDirection.ltr,
       )..layout();

@@ -38,33 +38,36 @@ class EditorTransport extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: ListenableBuilder(
-              listenable: timeline,
-              builder: (context, _) {
-                final ms = (timeline.playheadMs - (start ?? 0)).round();
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '${ms < 0 ? '−' : ''}'
-                      '${formatSeconds(ms.abs(), decimals: 3)}s',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontFeatures: const [FontFeature.tabularFigures()],
-                        fontWeight: FontWeight.w600,
+            // Changes with the playhead without repainting the page.
+            child: RepaintBoundary(
+              child: ListenableBuilder(
+                listenable: timeline,
+                builder: (context, _) {
+                  final ms = (timeline.playheadMs - (start ?? 0)).round();
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '${ms < 0 ? '−' : ''}'
+                        '${formatSeconds(ms.abs(), decimals: 3)}s',
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontFeatures: const [FontFeature.tabularFigures()],
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    Text(
-                      context.tr(start == null
-                          ? 'editor.inVideo'
-                          : 'editor.fromStart'),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
+                      Text(
+                        context.tr(start == null
+                            ? 'editor.inVideo'
+                            : 'editor.fromStart'),
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              },
+                    ],
+                  );
+                },
+              ),
             ),
           ),
           IconButton(
