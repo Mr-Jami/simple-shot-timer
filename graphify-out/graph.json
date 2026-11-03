@@ -187,7 +187,7 @@
       "label": "ClipAudioChannel",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L45",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "community": 116,
@@ -207,7 +207,7 @@
       "label": ".onMethodCall()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L53",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
       "community": 116,
@@ -227,7 +227,7 @@
       "label": ".dispose()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L91",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_dispose",
       "community": 116,
@@ -237,7 +237,7 @@
       "label": ".reply()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L96",
+      "source_location": "L97",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_reply",
       "community": 116,
@@ -267,7 +267,7 @@
       "label": ".required()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L115",
+      "source_location": "L116",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_required",
       "community": 116,
@@ -287,7 +287,7 @@
       "label": ".probe()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L118",
+      "source_location": "L119",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
       "community": 116,
@@ -307,7 +307,7 @@
       "label": ".decode()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L172",
+      "source_location": "L179",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
       "community": 116,
@@ -337,7 +337,7 @@
       "label": ".loudness()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L215",
+      "source_location": "L222",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
       "community": 116,
@@ -347,7 +347,7 @@
       "label": "LoopResult",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L251",
+      "source_location": "L258",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_loopresult",
       "community": 116,
@@ -357,7 +357,7 @@
       "label": ".decodeLoop()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L258",
+      "source_location": "L265",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
       "community": 116,
@@ -377,7 +377,7 @@
       "label": ".firstChannel()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L379",
+      "source_location": "L386",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
       "community": 116,
@@ -417,7 +417,7 @@
       "label": ".thumbnails()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
       "community": 116,
@@ -437,7 +437,7 @@
       "label": ".open()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L438",
+      "source_location": "L445",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_open",
       "community": 116,
@@ -457,7 +457,7 @@
       "label": ".audioTrack()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L457",
+      "source_location": "L464",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_audiotrack",
       "community": 116,
@@ -467,7 +467,7 @@
       "label": "Metadata",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L478",
+      "source_location": "L485",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_metadata",
       "community": 116,
@@ -477,7 +477,7 @@
       "label": ".metadata()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L480",
+      "source_location": "L487",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_metadata",
       "community": 116,
@@ -487,7 +487,7 @@
       "label": ".videoSize()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L502",
+      "source_location": "L509",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_videosize",
       "community": 116,
@@ -507,21 +507,21 @@
       "label": ".parseDate()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L516",
+      "source_location": "L523",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_parsedate",
       "community": 116,
       "norm_label": ".parsedate()"
     },
     {
-      "label": ".number()",
+      "label": ".bitDepth()",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L531",
+      "source_location": "L539",
       "_origin": "ast",
-      "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
+      "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_bitdepth",
       "community": 116,
-      "norm_label": ".number()"
+      "norm_label": ".bitdepth()"
     },
     {
       "label": "MediaFormat",
@@ -532,6 +532,16 @@
       "id": "mediaformat",
       "community": 116,
       "norm_label": "mediaformat"
+    },
+    {
+      "label": ".number()",
+      "file_type": "code",
+      "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
+      "source_location": "L565",
+      "_origin": "ast",
+      "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
+      "community": 116,
+      "norm_label": ".number()"
     },
     {
       "label": "Double",
@@ -547,7 +557,7 @@
       "label": "ClipAudioFailure",
       "file_type": "code",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L540",
+      "source_location": "L574",
       "_origin": "ast",
       "id": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
       "community": 116,
@@ -1240,7 +1250,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_foundation_dart",
-      "community": 173,
+      "community": 207,
       "norm_label": "package:flutter/foundation.dart"
     },
     {
@@ -1250,7 +1260,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_test_flutter_test_dart",
-      "community": 185,
+      "community": 41,
       "norm_label": "package:flutter_test/flutter_test.dart"
     },
     {
@@ -2954,7 +2964,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_h_ios_runner_generatedpluginregistrant",
-      "community": 177,
+      "community": 178,
       "norm_label": "generatedpluginregistrant.h"
     },
     {
@@ -2964,7 +2974,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_generatedpluginregistrant",
-      "community": 177,
+      "community": 178,
       "norm_label": "generatedpluginregistrant"
     },
     {
@@ -2974,7 +2984,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_h_nsobject",
-      "community": 177,
+      "community": 178,
       "norm_label": "nsobject"
     },
     {
@@ -2984,7 +2994,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_generatedpluginregistrant_registerwithregistry",
-      "community": 177,
+      "community": 178,
       "norm_label": "+registerwithregistry"
     },
     {
@@ -2994,7 +3004,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_m_ios_runner_generatedpluginregistrant",
-      "community": 177,
+      "community": 178,
       "norm_label": "generatedpluginregistrant.m"
     },
     {
@@ -3055,7 +3065,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_runner_bridging_header",
-      "community": 177,
+      "community": 178,
       "norm_label": "runner-bridging-header.h"
     },
     {
@@ -3095,7 +3105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app",
-      "community": 18,
+      "community": 130,
       "norm_label": "app.dart"
     },
     {
@@ -3105,7 +3115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 54,
+      "community": 130,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -3125,7 +3135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_build",
-      "community": 18,
+      "community": 130,
       "norm_label": "build"
     },
     {
@@ -3165,7 +3175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "i18n_app_localizations_dart",
-      "community": 32,
+      "community": 18,
       "norm_label": "../../i18n/app_localizations.dart"
     },
     {
@@ -3175,7 +3185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_enums_dart",
-      "community": 18,
+      "community": 130,
       "norm_label": "../../models/enums.dart"
     },
     {
@@ -3185,7 +3195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 18,
+      "community": 130,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -3195,7 +3205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "screens_main_shell_dart",
-      "community": 18,
+      "community": 130,
       "norm_label": "screens/main_shell.dart"
     },
     {
@@ -3205,7 +3215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "theme_app_theme_dart",
-      "community": 18,
+      "community": 130,
       "norm_label": "theme/app_theme.dart"
     },
     {
@@ -3235,7 +3245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_applocalizations",
-      "community": 4,
+      "community": 208,
       "norm_label": "applocalizations"
     },
     {
@@ -3245,7 +3255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_applocalizationsdelegate",
-      "community": 4,
+      "community": 208,
       "norm_label": "_applocalizationsdelegate"
     },
     {
@@ -3255,7 +3265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "localizationsdelegate",
-      "community": 4,
+      "community": 208,
       "norm_label": "localizationsdelegate"
     },
     {
@@ -3265,7 +3275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_applocalizationsx",
-      "community": 4,
+      "community": 210,
       "norm_label": "applocalizationsx"
     },
     {
@@ -3275,7 +3285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "buildcontext",
-      "community": 4,
+      "community": 210,
       "norm_label": "buildcontext"
     },
     {
@@ -3425,7 +3435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_i18n_app_localizations_of",
-      "community": 4,
+      "community": 208,
       "norm_label": "of"
     },
     {
@@ -3625,7 +3635,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_export_service_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../services/export_service.dart"
     },
     {
@@ -4605,7 +4615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_widgets_dart",
-      "community": 165,
+      "community": 104,
       "norm_label": "package:flutter/widgets.dart"
     },
     {
@@ -5165,7 +5175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "datetime",
-      "community": 18,
+      "community": 140,
       "norm_label": "datetime?"
     },
     {
@@ -5845,7 +5855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const",
-      "community": 32,
+      "community": 130,
       "norm_label": "static const"
     },
     {
@@ -6235,7 +6245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 3,
+      "community": 32,
       "norm_label": "../../models/timer_string.dart"
     },
     {
@@ -6355,7 +6365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_customdrillsprovider",
-      "community": 183,
+      "community": 95,
       "norm_label": "customdrillsprovider"
     },
     {
@@ -6365,7 +6375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_activedrillprovider",
-      "community": 183,
+      "community": 54,
       "norm_label": "activedrillprovider"
     },
     {
@@ -6395,7 +6405,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return",
-      "community": 82,
+      "community": 203,
       "norm_label": "return"
     },
     {
@@ -6485,7 +6495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_drill_config_dart",
-      "community": 186,
+      "community": 95,
       "norm_label": "../models/drill_config.dart"
     },
     {
@@ -6625,7 +6635,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_audioserviceprovider",
-      "community": 103,
+      "community": 54,
       "norm_label": "audioserviceprovider"
     },
     {
@@ -6655,7 +6665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_beepplayerprovider",
-      "community": 29,
+      "community": 211,
       "norm_label": "beepplayerprovider"
     },
     {
@@ -6665,7 +6675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_stringstoreprovider",
-      "community": 5,
+      "community": 209,
       "norm_label": "stringstoreprovider"
     },
     {
@@ -7135,7 +7145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timerprovider",
-      "community": 81,
+      "community": 54,
       "norm_label": "timerprovider"
     },
     {
@@ -7215,7 +7225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_addmanualshot",
-      "community": 5,
+      "community": 209,
       "norm_label": "addmanualshot"
     },
     {
@@ -7235,7 +7245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_updatenotes",
-      "community": 5,
+      "community": 209,
       "norm_label": "updatenotes"
     },
     {
@@ -7245,7 +7255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_updatelabel",
-      "community": 5,
+      "community": 209,
       "norm_label": "updatelabel"
     },
     {
@@ -7365,7 +7375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playstartbeep",
-      "community": 29,
+      "community": 211,
       "norm_label": "_playstartbeep"
     },
     {
@@ -7375,7 +7385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playparbeep",
-      "community": 29,
+      "community": 211,
       "norm_label": "_playparbeep"
     },
     {
@@ -7495,7 +7505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_export_provider_exporttarget",
-      "community": 32,
+      "community": 130,
       "norm_label": "exporttarget"
     },
     {
@@ -7685,7 +7695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "image",
-      "community": 137,
+      "community": 150,
       "norm_label": "image?"
     },
     {
@@ -7715,7 +7725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "duration",
-      "community": 165,
+      "community": 104,
       "norm_label": "duration"
     },
     {
@@ -7925,7 +7935,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_path_path_dart",
-      "community": 189,
+      "community": 93,
       "norm_label": "package:path/path.dart"
     },
     {
@@ -8005,7 +8015,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importstate",
-      "community": 149,
+      "community": 170,
       "norm_label": "importstate"
     },
     {
@@ -8015,7 +8025,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importworking",
-      "community": 149,
+      "community": 170,
       "norm_label": "importworking"
     },
     {
@@ -8025,7 +8035,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importchoosepart",
-      "community": 149,
+      "community": 170,
       "norm_label": "importchoosepart"
     },
     {
@@ -8035,7 +8045,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importproblem",
-      "community": 149,
+      "community": 170,
       "norm_label": "importproblem"
     },
     {
@@ -8045,7 +8055,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importcancelled",
-      "community": 149,
+      "community": 170,
       "norm_label": "importcancelled"
     },
     {
@@ -8055,7 +8065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importready",
-      "community": 149,
+      "community": 170,
       "norm_label": "importready"
     },
     {
@@ -8505,7 +8515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_check_dart",
-      "community": 126,
+      "community": 204,
       "norm_label": "../services/video/clip_check.dart"
     },
     {
@@ -8515,7 +8525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_picker_dart",
-      "community": 126,
+      "community": 204,
       "norm_label": "../services/video/clip_picker.dart"
     },
     {
@@ -8705,7 +8715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreen",
-      "community": 178,
+      "community": 102,
       "norm_label": "autoconfigurescreen"
     },
     {
@@ -8715,7 +8725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstatefulwidget",
-      "community": 178,
+      "community": 81,
       "norm_label": "consumerstatefulwidget"
     },
     {
@@ -8725,7 +8735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreenstate",
-      "community": 178,
+      "community": 102,
       "norm_label": "_autoconfigurescreenstate"
     },
     {
@@ -8735,7 +8745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstate",
-      "community": 178,
+      "community": 81,
       "norm_label": "consumerstate"
     },
     {
@@ -9015,7 +9025,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows",
-      "community": 93,
+      "community": 95,
       "norm_label": "custom_drill_flows.dart"
     },
     {
@@ -9025,7 +9035,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_drills",
-      "community": 93,
+      "community": 95,
       "norm_label": "drills"
     },
     {
@@ -9035,7 +9045,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_config",
-      "community": 93,
+      "community": 95,
       "norm_label": "config"
     },
     {
@@ -9045,7 +9055,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_name",
-      "community": 93,
+      "community": 95,
       "norm_label": "name"
     },
     {
@@ -9055,7 +9065,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_existing",
-      "community": 93,
+      "community": 95,
       "norm_label": "existing"
     },
     {
@@ -9065,7 +9075,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_taken",
-      "community": 93,
+      "community": 95,
       "norm_label": "taken"
     },
     {
@@ -9075,7 +9085,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_confirmed",
-      "community": 93,
+      "community": 95,
       "norm_label": "confirmed"
     },
     {
@@ -9085,7 +9095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_savecurrentdrill",
-      "community": 183,
+      "community": 95,
       "norm_label": "savecurrentdrill"
     },
     {
@@ -9095,7 +9105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_add",
-      "community": 93,
+      "community": 95,
       "norm_label": "add"
     },
     {
@@ -9115,7 +9125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_read",
-      "community": 93,
+      "community": 95,
       "norm_label": "read"
     },
     {
@@ -9125,7 +9135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_renamedrill",
-      "community": 183,
+      "community": 95,
       "norm_label": "renamedrill"
     },
     {
@@ -9135,7 +9145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_rename",
-      "community": 93,
+      "community": 95,
       "norm_label": "rename"
     },
     {
@@ -9145,7 +9155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_overwritedrill",
-      "community": 93,
+      "community": 95,
       "norm_label": "overwritedrill"
     },
     {
@@ -9155,7 +9165,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_deletedrill",
-      "community": 183,
+      "community": 95,
       "norm_label": "deletedrill"
     },
     {
@@ -9165,7 +9175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_delete",
-      "community": 93,
+      "community": 95,
       "norm_label": "delete"
     },
     {
@@ -9175,7 +9185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_confirmandoverwrite",
-      "community": 93,
+      "community": 95,
       "norm_label": "_confirmandoverwrite"
     },
     {
@@ -9185,7 +9195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_overwrite",
-      "community": 93,
+      "community": 95,
       "norm_label": "overwrite"
     },
     {
@@ -9195,7 +9205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drill_flows_snack",
-      "community": 93,
+      "community": 95,
       "norm_label": "_snack"
     },
     {
@@ -9215,7 +9225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_confirm_dialog_dart",
-      "community": 93,
+      "community": 95,
       "norm_label": "../widgets/confirm_dialog.dart"
     },
     {
@@ -9225,7 +9235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_drill_name_dialog_dart",
-      "community": 93,
+      "community": 95,
       "norm_label": "../widgets/drill_name_dialog.dart"
     },
     {
@@ -9255,7 +9265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_customdrillsscreen",
-      "community": 183,
+      "community": 54,
       "norm_label": "customdrillsscreen"
     },
     {
@@ -9285,7 +9295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_build",
-      "community": 183,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -9325,7 +9335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_tab_header_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../widgets/tab_header.dart"
     },
     {
@@ -9355,7 +9365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_detectionsettingsscreen",
-      "community": 54,
+      "community": 18,
       "norm_label": "detectionsettingsscreen"
     },
     {
@@ -9425,7 +9435,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_history_screen",
-      "community": 175,
+      "community": 18,
       "norm_label": "history_screen.dart"
     },
     {
@@ -9455,7 +9465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_history_provider_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../providers/history_provider.dart"
     },
     {
@@ -9465,7 +9475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_string_tile_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../widgets/string_tile.dart"
     },
     {
@@ -9475,7 +9485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "review_screen_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "review_screen.dart"
     },
     {
@@ -9495,7 +9505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_homescreen",
-      "community": 81,
+      "community": 54,
       "norm_label": "homescreen"
     },
     {
@@ -9505,7 +9515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_bigbutton",
-      "community": 81,
+      "community": 54,
       "norm_label": "_bigbutton"
     },
     {
@@ -9515,7 +9525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_timerarea",
-      "community": 183,
+      "community": 54,
       "norm_label": "_timerarea"
     },
     {
@@ -9615,7 +9625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_home_screen_finishedview",
-      "community": 81,
+      "community": 54,
       "norm_label": "_finishedview"
     },
     {
@@ -9855,7 +9865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_intl_intl_dart",
-      "community": 94,
+      "community": 32,
       "norm_label": "package:intl/intl.dart"
     },
     {
@@ -9875,7 +9885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_motion_dart",
-      "community": 151,
+      "community": 165,
       "norm_label": "../utils/motion.dart"
     },
     {
@@ -9905,7 +9915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_mic_level_meter_dart",
-      "community": 18,
+      "community": 140,
       "norm_label": "../widgets/mic_level_meter.dart"
     },
     {
@@ -9915,7 +9925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_pill_button_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../widgets/pill_button.dart"
     },
     {
@@ -9975,7 +9985,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_select",
-      "community": 81,
+      "community": 54,
       "norm_label": "_select"
     },
     {
@@ -9985,7 +9995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_main_shell_build",
-      "community": 81,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -10075,7 +10085,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen",
-      "community": 18,
+      "community": 140,
       "norm_label": "mic_test_screen.dart"
     },
     {
@@ -10085,7 +10095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreen",
-      "community": 178,
+      "community": 81,
       "norm_label": "mictestscreen"
     },
     {
@@ -10095,7 +10105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreenstate",
-      "community": 178,
+      "community": 54,
       "norm_label": "_mictestscreenstate"
     },
     {
@@ -10105,7 +10115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_frequencyreadout",
-      "community": 18,
+      "community": 140,
       "norm_label": "_frequencyreadout"
     },
     {
@@ -10115,7 +10125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_ticker",
-      "community": 18,
+      "community": 140,
       "norm_label": "_ticker"
     },
     {
@@ -10125,7 +10135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_level",
-      "community": 18,
+      "community": 140,
       "norm_label": "_level"
     },
     {
@@ -10135,7 +10145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_peakhold",
-      "community": 18,
+      "community": 140,
       "norm_label": "_peakhold"
     },
     {
@@ -10145,7 +10155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_peakat",
-      "community": 18,
+      "community": 140,
       "norm_label": "_peakat"
     },
     {
@@ -10155,7 +10165,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dominantfreqhz",
-      "community": 18,
+      "community": 140,
       "norm_label": "_dominantfreqhz"
     },
     {
@@ -10165,7 +10175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dominantfreqstrength",
-      "community": 18,
+      "community": 140,
       "norm_label": "_dominantfreqstrength"
     },
     {
@@ -10175,7 +10185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_error",
-      "community": 18,
+      "community": 140,
       "norm_label": "_error"
     },
     {
@@ -10185,7 +10195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_freqhz",
-      "community": 18,
+      "community": 140,
       "norm_label": "freqhz"
     },
     {
@@ -10195,7 +10205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_strength",
-      "community": 18,
+      "community": 140,
       "norm_label": "strength"
     },
     {
@@ -10205,7 +10215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_createstate",
-      "community": 18,
+      "community": 140,
       "norm_label": "createstate"
     },
     {
@@ -10215,7 +10225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_initstate",
-      "community": 18,
+      "community": 140,
       "norm_label": "initstate"
     },
     {
@@ -10245,7 +10255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_build",
-      "community": 103,
+      "community": 54,
       "norm_label": "build"
     },
     {
@@ -10275,7 +10285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbody",
-      "community": 178,
+      "community": 81,
       "norm_label": "_reviewbody"
     },
     {
@@ -10285,7 +10295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbodystate",
-      "community": 178,
+      "community": 81,
       "norm_label": "_reviewbodystate"
     },
     {
@@ -10295,7 +10305,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 3,
+      "community": 14,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -10315,7 +10325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 3,
+      "community": 14,
       "norm_label": "_percyclesummary"
     },
     {
@@ -10325,7 +10335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 14,
+      "community": 3,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -10595,7 +10605,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_flows_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "video_flows.dart"
     },
     {
@@ -10715,7 +10725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_video_providers_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../providers/video_providers.dart"
     },
     {
@@ -10765,7 +10775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_videoeditorscreen",
-      "community": 178,
+      "community": 81,
       "norm_label": "videoeditorscreen"
     },
     {
@@ -11545,7 +11555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_overlay_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../widgets/video/hud_overlay.dart"
     },
     {
@@ -11595,7 +11605,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_dialog_exportdialog",
-      "community": 178,
+      "community": 172,
       "norm_label": "_exportdialog"
     },
     {
@@ -11735,7 +11745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet",
-      "community": 32,
+      "community": 130,
       "norm_label": "video_export_sheet.dart"
     },
     {
@@ -11745,7 +11755,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_exportsheet",
-      "community": 54,
+      "community": 130,
       "norm_label": "_exportsheet"
     },
     {
@@ -11755,7 +11765,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_stringms",
-      "community": 32,
+      "community": 130,
       "norm_label": "stringms"
     },
     {
@@ -11765,7 +11775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_wholems",
-      "community": 32,
+      "community": 130,
       "norm_label": "wholems"
     },
     {
@@ -11775,7 +11785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_corners",
-      "community": 32,
+      "community": 130,
       "norm_label": "_corners"
     },
     {
@@ -11785,7 +11795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_showexportsheet",
-      "community": 32,
+      "community": 130,
       "norm_label": "showexportsheet"
     },
     {
@@ -11795,7 +11805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_build",
-      "community": 54,
+      "community": 130,
       "norm_label": "build"
     },
     {
@@ -11805,7 +11815,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows",
-      "community": 126,
+      "community": 204,
       "norm_label": "video_flows.dart"
     },
     {
@@ -11815,7 +11825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_startvideoimport",
-      "community": 126,
+      "community": 204,
       "norm_label": "startvideoimport"
     },
     {
@@ -11825,7 +11835,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_choosevideoagain",
-      "community": 126,
+      "community": 204,
       "norm_label": "choosevideoagain"
     },
     {
@@ -11835,7 +11845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_clipproblemkey",
-      "community": 126,
+      "community": 204,
       "norm_label": "clipproblemkey"
     },
     {
@@ -11845,7 +11855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_import_screen_dart",
-      "community": 126,
+      "community": 204,
       "norm_label": "video_import_screen.dart"
     },
     {
@@ -11915,7 +11925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_problemview",
-      "community": 14,
+      "community": 126,
       "norm_label": "_problemview"
     },
     {
@@ -12415,7 +12425,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen",
-      "community": 175,
+      "community": 18,
       "norm_label": "video_screen.dart"
     },
     {
@@ -12445,7 +12455,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_emptystate",
-      "community": 175,
+      "community": 18,
       "norm_label": "_emptystate"
     },
     {
@@ -12455,7 +12465,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_screen_recentcount",
-      "community": 175,
+      "community": 18,
       "norm_label": "_recentcount"
     },
     {
@@ -12475,7 +12485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_video_hud_sample_dart",
-      "community": 175,
+      "community": 18,
       "norm_label": "../widgets/video/hud_sample.dart"
     },
     {
@@ -12645,7 +12655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_typed_data",
-      "community": 164,
+      "community": 166,
       "norm_label": "dart:typed_data"
     },
     {
@@ -13315,7 +13325,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad",
-      "community": 118,
+      "community": 201,
       "norm_label": "biquad.dart"
     },
     {
@@ -13325,7 +13335,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_biquad",
-      "community": 118,
+      "community": 201,
       "norm_label": "biquad"
     },
     {
@@ -13335,7 +13345,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_x1",
-      "community": 118,
+      "community": 201,
       "norm_label": "_x1"
     },
     {
@@ -13345,7 +13355,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_notch",
-      "community": 118,
+      "community": 201,
       "norm_label": "notch"
     },
     {
@@ -13355,7 +13365,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_highpass",
-      "community": 118,
+      "community": 201,
       "norm_label": "highpass"
     },
     {
@@ -13365,7 +13375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_lowpass",
-      "community": 118,
+      "community": 201,
       "norm_label": "lowpass"
     },
     {
@@ -13375,7 +13385,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_processint16inplace",
-      "community": 118,
+      "community": 201,
       "norm_label": "processint16inplace"
     },
     {
@@ -13385,7 +13395,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_reset",
-      "community": 118,
+      "community": 201,
       "norm_label": "reset"
     },
     {
@@ -13405,7 +13415,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_database_service_databaseservice",
-      "community": 103,
+      "community": 205,
       "norm_label": "databaseservice"
     },
     {
@@ -13635,7 +13645,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service",
-      "community": 189,
+      "community": 175,
       "norm_label": "export_service.dart"
     },
     {
@@ -13645,7 +13655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportservice",
-      "community": 189,
+      "community": 175,
       "norm_label": "exportservice"
     },
     {
@@ -13655,7 +13665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportname",
-      "community": 189,
+      "community": 175,
       "norm_label": "_exportname"
     },
     {
@@ -13665,7 +13675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_final",
-      "community": 189,
+      "community": 175,
       "norm_label": "static final"
     },
     {
@@ -13675,7 +13685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_videoname",
-      "community": 189,
+      "community": 175,
       "norm_label": "_videoname"
     },
     {
@@ -13685,7 +13695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writestringcsv",
-      "community": 189,
+      "community": 175,
       "norm_label": "writestringcsv"
     },
     {
@@ -13695,7 +13705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writeallstringscsv",
-      "community": 189,
+      "community": 175,
       "norm_label": "writeallstringscsv"
     },
     {
@@ -13705,7 +13715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_deleteexports",
-      "community": 189,
+      "community": 175,
       "norm_label": "deleteexports"
     },
     {
@@ -13715,7 +13725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_deletevideoshares",
-      "community": 189,
+      "community": 175,
       "norm_label": "deletevideoshares"
     },
     {
@@ -13725,7 +13735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_delete",
-      "community": 189,
+      "community": 175,
       "norm_label": "_delete"
     },
     {
@@ -13735,7 +13745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_share",
-      "community": 189,
+      "community": 175,
       "norm_label": "share"
     },
     {
@@ -13745,7 +13755,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_csv",
-      "community": 189,
+      "community": 175,
       "norm_label": "_csv"
     },
     {
@@ -15565,7 +15575,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "spectrogram_dart",
-      "community": 131,
+      "community": 133,
       "norm_label": "spectrogram.dart"
     },
     {
@@ -15807,6 +15817,16 @@
       "id": "lib_services_video_clip_audio_source_colortransfer",
       "community": 101,
       "norm_label": "colortransfer"
+    },
+    {
+      "label": "bitDepth",
+      "file_type": "code",
+      "source_file": "lib/services/video/clip_audio_source.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_services_video_clip_audio_source_bitdepth",
+      "community": 101,
+      "norm_label": "bitdepth"
     },
     {
       "label": "frameRate",
@@ -16065,7 +16085,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check",
-      "community": 157,
+      "community": 203,
       "norm_label": "clip_check.dart"
     },
     {
@@ -16075,7 +16095,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_clipproblem",
-      "community": 157,
+      "community": 127,
       "norm_label": "clipproblem"
     },
     {
@@ -16085,7 +16105,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_minclipms",
-      "community": 157,
+      "community": 203,
       "norm_label": "_minclipms"
     },
     {
@@ -16095,7 +16115,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_capture",
-      "community": 157,
+      "community": 203,
       "norm_label": "capture"
     },
     {
@@ -16105,7 +16125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_playback",
-      "community": 157,
+      "community": 203,
       "norm_label": "playback"
     },
     {
@@ -16115,7 +16135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_null",
-      "community": 157,
+      "community": 203,
       "norm_label": "null"
     },
     {
@@ -16125,7 +16145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_checkclip",
-      "community": 157,
+      "community": 203,
       "norm_label": "checkclip"
     },
     {
@@ -16135,7 +16155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_problemfor",
-      "community": 157,
+      "community": 203,
       "norm_label": "problemfor"
     },
     {
@@ -16675,7 +16695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_video_player_video_player_dart",
-      "community": 173,
+      "community": 207,
       "norm_label": "package:video_player/video_player.dart"
     },
     {
@@ -19705,7 +19725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_part_window_partwindow",
-      "community": 130,
+      "community": 91,
       "norm_label": "partwindow"
     },
     {
@@ -21195,7 +21215,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store",
-      "community": 3,
+      "community": 32,
       "norm_label": "video_string_store.dart"
     },
     {
@@ -21205,7 +21225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_videostringstore",
-      "community": 142,
+      "community": 205,
       "norm_label": "videostringstore"
     },
     {
@@ -21215,7 +21235,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_insertstring",
-      "community": 3,
+      "community": 32,
       "norm_label": "insertstring"
     },
     {
@@ -21225,7 +21245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_updatevideostring",
-      "community": 3,
+      "community": 32,
       "norm_label": "updatevideostring"
     },
     {
@@ -21235,7 +21255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_deletestring",
-      "community": 3,
+      "community": 32,
       "norm_label": "deletestring"
     },
     {
@@ -21265,7 +21285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videosession",
-      "community": 189,
+      "community": 142,
       "norm_label": "videosession"
     },
     {
@@ -21295,7 +21315,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "directory",
-      "community": 41,
+      "community": 93,
       "norm_label": "directory"
     },
     {
@@ -21925,7 +21945,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion",
-      "community": 165,
+      "community": 104,
       "norm_label": "motion.dart"
     },
     {
@@ -21935,7 +21955,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotionshort",
-      "community": 165,
+      "community": 104,
       "norm_label": "kmotionshort"
     },
     {
@@ -21945,7 +21965,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotionmedium",
-      "community": 165,
+      "community": 104,
       "norm_label": "kmotionmedium"
     },
     {
@@ -21955,7 +21975,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_kmotiontick",
-      "community": 165,
+      "community": 104,
       "norm_label": "kmotiontick"
     },
     {
@@ -21965,7 +21985,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_reducedmotionof",
-      "community": 165,
+      "community": 104,
       "norm_label": "reducedmotionof"
     },
     {
@@ -21975,7 +21995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_motion_motion",
-      "community": 165,
+      "community": 104,
       "norm_label": "motion"
     },
     {
@@ -22605,7 +22625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display",
-      "community": 19,
+      "community": 165,
       "norm_label": "big_time_display.dart"
     },
     {
@@ -22645,7 +22665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_timems",
-      "community": 19,
+      "community": 165,
       "norm_label": "timems"
     },
     {
@@ -22655,7 +22675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_label",
-      "community": 19,
+      "community": 165,
       "norm_label": "label"
     },
     {
@@ -22665,7 +22685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_fontsize",
-      "community": 19,
+      "community": 165,
       "norm_label": "fontsize"
     },
     {
@@ -22675,7 +22695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_pulsekey",
-      "community": 19,
+      "community": 165,
       "norm_label": "pulsekey"
     },
     {
@@ -22685,7 +22705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "object",
-      "community": 19,
+      "community": 165,
       "norm_label": "object?"
     },
     {
@@ -22695,7 +22715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_ctrl",
-      "community": 19,
+      "community": 165,
       "norm_label": "_ctrl"
     },
     {
@@ -22705,7 +22725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animationcontroller",
-      "community": 19,
+      "community": 165,
       "norm_label": "animationcontroller"
     },
     {
@@ -22715,7 +22735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_scale",
-      "community": 19,
+      "community": 165,
       "norm_label": "_scale"
     },
     {
@@ -22725,7 +22745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "animation",
-      "community": 19,
+      "community": 165,
       "norm_label": "animation"
     },
     {
@@ -22735,7 +22755,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_createstate",
-      "community": 19,
+      "community": 165,
       "norm_label": "createstate"
     },
     {
@@ -22745,7 +22765,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_didupdatewidget",
-      "community": 19,
+      "community": 165,
       "norm_label": "didupdatewidget"
     },
     {
@@ -22755,7 +22775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_dispose",
-      "community": 19,
+      "community": 165,
       "norm_label": "dispose"
     },
     {
@@ -22765,7 +22785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_big_time_display_build",
-      "community": 19,
+      "community": 165,
       "norm_label": "build"
     },
     {
@@ -22835,7 +22855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog",
-      "community": 32,
+      "community": 18,
       "norm_label": "confirm_dialog.dart"
     },
     {
@@ -22845,7 +22865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_dismissible",
-      "community": 32,
+      "community": 18,
       "norm_label": "dismissible"
     },
     {
@@ -22855,7 +22875,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "string_cancellabel_bool",
-      "community": 32,
+      "community": 18,
       "norm_label": "string? cancellabel,\n  bool"
     },
     {
@@ -22865,7 +22885,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_result",
-      "community": 32,
+      "community": 18,
       "norm_label": "result"
     },
     {
@@ -22875,7 +22895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_false",
-      "community": 32,
+      "community": 18,
       "norm_label": "false"
     },
     {
@@ -22885,7 +22905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return_result",
-      "community": 32,
+      "community": 18,
       "norm_label": "return result ??"
     },
     {
@@ -22895,7 +22915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_confirm_dialog_confirmdialog",
-      "community": 32,
+      "community": 18,
       "norm_label": "confirmdialog"
     },
     {
@@ -25595,7 +25615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_timeline_timeline_controller_timelinecontroller",
-      "community": 112,
+      "community": 212,
       "norm_label": "timelinecontroller"
     },
     {
@@ -25605,7 +25625,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "changenotifier",
-      "community": 112,
+      "community": 212,
       "norm_label": "changenotifier"
     },
     {
@@ -26245,7 +26265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_video_hud_overlay_hudlabelsof",
-      "community": 4,
+      "community": 210,
       "norm_label": "hudlabelsof"
     },
     {
@@ -27145,7 +27165,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_memorystore",
-      "community": 142,
+      "community": 205,
       "norm_label": "_memorystore"
     },
     {
@@ -27155,7 +27175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_fakesession",
-      "community": 189,
+      "community": 142,
       "norm_label": "_fakesession"
     },
     {
@@ -27455,7 +27475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_fake_async_fake_async_dart",
-      "community": 142,
+      "community": 41,
       "norm_label": "package:fake_async/fake_async.dart"
     },
     {
@@ -27505,7 +27525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_providers_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/providers/providers.dart"
     },
     {
@@ -28105,7 +28125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_player_test",
-      "community": 173,
+      "community": 207,
       "norm_label": "clip_player_test.dart"
     },
     {
@@ -28115,7 +28135,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_player_test_main",
-      "community": 173,
+      "community": 207,
       "norm_label": "main"
     },
     {
@@ -28125,7 +28145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_player_dart",
-      "community": 173,
+      "community": 207,
       "norm_label": "package:simple_shot_timer/services/video/clip_player.dart"
     },
     {
@@ -28355,7 +28375,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_settings_provider_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/providers/settings_provider.dart"
     },
     {
@@ -28545,7 +28565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 118,
+      "community": 41,
       "norm_label": "delay_test.dart"
     },
     {
@@ -28555,7 +28575,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 118,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -28565,7 +28585,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_timer_provider_dart",
-      "community": 185,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/providers/timer_provider.dart"
     },
     {
@@ -28625,7 +28645,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test",
-      "community": 41,
+      "community": 93,
       "norm_label": "export_service_test.dart"
     },
     {
@@ -28635,7 +28655,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_temp",
-      "community": 41,
+      "community": 93,
       "norm_label": "temp"
     },
     {
@@ -28645,7 +28665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_main",
-      "community": 41,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -28655,7 +28675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_export_service_test_touch",
-      "community": 41,
+      "community": 93,
       "norm_label": "touch"
     },
     {
@@ -28665,7 +28685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_export_service_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/services/export_service.dart"
     },
     {
@@ -28675,7 +28695,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_export_plan_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/services/video/export_plan.dart"
     },
     {
@@ -28685,7 +28705,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 22,
+      "community": 41,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -28695,7 +28715,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 22,
+      "community": 41,
       "norm_label": "_host"
     },
     {
@@ -28705,7 +28725,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 22,
+      "community": 41,
       "norm_label": "_visiblesignal"
     },
     {
@@ -28715,7 +28735,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 22,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -28725,7 +28745,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 22,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -28735,7 +28755,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_frames_test",
-      "community": 41,
+      "community": 93,
       "norm_label": "hud_frames_test.dart"
     },
     {
@@ -28745,7 +28765,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_frames_test_string",
-      "community": 41,
+      "community": 93,
       "norm_label": "string"
     },
     {
@@ -28755,7 +28775,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_frames_test_info",
-      "community": 41,
+      "community": 93,
       "norm_label": "info"
     },
     {
@@ -28765,7 +28785,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_frames_test_plan",
-      "community": 41,
+      "community": 93,
       "norm_label": "plan"
     },
     {
@@ -28775,7 +28795,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_frames_test_labels",
-      "community": 41,
+      "community": 93,
       "norm_label": "labels"
     },
     {
@@ -28785,7 +28805,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_frames_test_main",
-      "community": 41,
+      "community": 93,
       "norm_label": "main"
     },
     {
@@ -28795,7 +28815,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_intl_date_symbol_data_local_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:intl/date_symbol_data_local.dart"
     },
     {
@@ -28805,7 +28825,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_hud_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/services/video/hud.dart"
     },
     {
@@ -28815,7 +28835,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_hud_frames_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/services/video/hud_frames.dart"
     },
     {
@@ -28825,7 +28845,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_hud_painter_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/services/video/hud_painter.dart"
     },
     {
@@ -28835,7 +28855,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test",
-      "community": 41,
+      "community": 93,
       "norm_label": "hud_test.dart"
     },
     {
@@ -28845,7 +28865,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_string",
-      "community": 41,
+      "community": 93,
       "norm_label": "string"
     },
     {
@@ -28855,8 +28875,18 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_labels",
-      "community": 41,
+      "community": 93,
       "norm_label": "labels"
+    },
+    {
+      "label": "frame",
+      "file_type": "code",
+      "source_file": "test/hud_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_hud_test_frame",
+      "community": 93,
+      "norm_label": "frame"
     },
     {
       "label": "recorder",
@@ -28865,7 +28895,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_recorder",
-      "community": 41,
+      "community": 93,
       "norm_label": "recorder"
     },
     {
@@ -28875,7 +28905,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_image",
-      "community": 41,
+      "community": 93,
       "norm_label": "image"
     },
     {
@@ -28885,7 +28915,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_bytes",
-      "community": 41,
+      "community": 93,
       "norm_label": "bytes"
     },
     {
@@ -28895,7 +28925,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_n",
-      "community": 41,
+      "community": 93,
       "norm_label": "n"
     },
     {
@@ -28905,8 +28935,28 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_main",
-      "community": 41,
+      "community": 93,
       "norm_label": "main"
+    },
+    {
+      "label": "_preview",
+      "file_type": "code",
+      "source_file": "test/hud_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_hud_test_preview",
+      "community": 93,
+      "norm_label": "_preview"
+    },
+    {
+      "label": "_shown",
+      "file_type": "code",
+      "source_file": "test/hud_test.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "test_hud_test_shown",
+      "community": 93,
+      "norm_label": "_shown"
     },
     {
       "label": "_pixels",
@@ -28915,7 +28965,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_pixels",
-      "community": 41,
+      "community": 93,
       "norm_label": "_pixels"
     },
     {
@@ -28925,7 +28975,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_hud_test_differing",
-      "community": 41,
+      "community": 93,
       "norm_label": "_differing"
     },
     {
@@ -28945,7 +28995,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_video_hud_overlay_dart",
-      "community": 41,
+      "community": 93,
       "norm_label": "package:simple_shot_timer/widgets/video/hud_overlay.dart"
     },
     {
@@ -28955,7 +29005,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "renderrepaintboundary",
-      "community": 41,
+      "community": 93,
       "norm_label": "renderrepaintboundary"
     },
     {
@@ -29125,7 +29175,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_blend_test",
-      "community": 185,
+      "community": 41,
       "norm_label": "latency_blend_test.dart"
     },
     {
@@ -29135,7 +29185,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_blend_test_main",
-      "community": 185,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -29145,7 +29195,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_calibration_test",
-      "community": 185,
+      "community": 41,
       "norm_label": "latency_calibration_test.dart"
     },
     {
@@ -29155,7 +29205,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_latency_calibration_test_main",
-      "community": 185,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -29425,7 +29475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test",
-      "community": 130,
+      "community": 91,
       "norm_label": "part_strip_test.dart"
     },
     {
@@ -29435,7 +29485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_tenminutes",
-      "community": 130,
+      "community": 91,
       "norm_label": "tenminutes"
     },
     {
@@ -29445,7 +29495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_window",
-      "community": 130,
+      "community": 91,
       "norm_label": "window"
     },
     {
@@ -29455,7 +29505,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_edges",
-      "community": 130,
+      "community": 91,
       "norm_label": "edges"
     },
     {
@@ -29465,7 +29515,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_ends",
-      "community": 130,
+      "community": 91,
       "norm_label": "ends"
     },
     {
@@ -29475,7 +29525,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_main",
-      "community": 130,
+      "community": 91,
       "norm_label": "main"
     },
     {
@@ -29485,7 +29535,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_pumpstrip",
-      "community": 130,
+      "community": 91,
       "norm_label": "pumpstrip"
     },
     {
@@ -29495,7 +29545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_part_window_dart",
-      "community": 130,
+      "community": 91,
       "norm_label": "package:simple_shot_timer/services/video/part_window.dart"
     },
     {
@@ -29505,7 +29555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_part_strip_dart",
-      "community": 130,
+      "community": 91,
       "norm_label": "package:simple_shot_timer/widgets/part_strip.dart"
     },
     {
@@ -29515,7 +29565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test",
-      "community": 130,
+      "community": 91,
       "norm_label": "part_window_test.dart"
     },
     {
@@ -29525,7 +29575,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_minute",
-      "community": 130,
+      "community": 91,
       "norm_label": "minute"
     },
     {
@@ -29535,7 +29585,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_tenminutes",
-      "community": 130,
+      "community": 91,
       "norm_label": "tenminutes"
     },
     {
@@ -29545,7 +29595,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_main",
-      "community": 130,
+      "community": 91,
       "norm_label": "main"
     },
     {
@@ -29565,7 +29615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_metawrites",
-      "community": 103,
+      "community": 205,
       "norm_label": "_metawrites"
     },
     {
@@ -30175,7 +30225,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_timeline_timeline_controller_dart",
-      "community": 164,
+      "community": 166,
       "norm_label": "package:simple_shot_timer/widgets/timeline/timeline_controller.dart"
     },
     {
@@ -30195,7 +30245,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_math_test",
-      "community": 185,
+      "community": 41,
       "norm_label": "slider_math_test.dart"
     },
     {
@@ -30205,7 +30255,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_math_test_main",
-      "community": 185,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -30215,7 +30265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_slider_math_dart",
-      "community": 185,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/utils/slider_math.dart"
     },
     {
@@ -30225,7 +30275,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_units_test",
-      "community": 185,
+      "community": 41,
       "norm_label": "slider_units_test.dart"
     },
     {
@@ -30235,7 +30285,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_units_test_main",
-      "community": 185,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -30245,7 +30295,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_slider_units_dart",
-      "community": 185,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/utils/slider_units.dart"
     },
     {
@@ -30425,7 +30475,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test",
-      "community": 142,
+      "community": 41,
       "norm_label": "throttled_seeker_test.dart"
     },
     {
@@ -30435,7 +30485,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test_main",
-      "community": 142,
+      "community": 41,
       "norm_label": "main"
     },
     {
@@ -30445,7 +30495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_throttled_seeker_dart",
-      "community": 142,
+      "community": 41,
       "norm_label": "package:simple_shot_timer/services/video/throttled_seeker.dart"
     },
     {
@@ -30495,7 +30545,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timeline_minimap_test",
-      "community": 164,
+      "community": 166,
       "norm_label": "timeline_minimap_test.dart"
     },
     {
@@ -30505,7 +30555,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timeline_minimap_test_main",
-      "community": 164,
+      "community": 166,
       "norm_label": "main"
     },
     {
@@ -30515,7 +30565,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_timeline_timeline_minimap_dart",
-      "community": 164,
+      "community": 166,
       "norm_label": "package:simple_shot_timer/widgets/timeline/timeline_minimap.dart"
     },
     {
@@ -31095,7 +31145,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_memorystore",
-      "community": 142,
+      "community": 205,
       "norm_label": "_memorystore"
     },
     {
@@ -31105,7 +31155,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_session",
-      "community": 189,
+      "community": 142,
       "norm_label": "_session"
     },
     {
@@ -31535,7 +31585,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_export_sheet_test",
-      "community": 141,
+      "community": 94,
       "norm_label": "video_export_sheet_test.dart"
     },
     {
@@ -31545,7 +31595,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_export_sheet_test_main",
-      "community": 141,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -31555,7 +31605,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_video_export_provider_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/providers/video_export_provider.dart"
     },
     {
@@ -31565,7 +31615,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_video_export_sheet_dart",
-      "community": 141,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/screens/video_export_sheet.dart"
     },
     {
@@ -32075,7 +32125,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakesession",
-      "community": 189,
+      "community": 142,
       "norm_label": "_fakesession"
     },
     {
@@ -32615,7 +32665,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_driver_integration_test",
-      "community": 177,
+      "community": 178,
       "norm_label": "integration_test.dart"
     },
     {
@@ -32625,7 +32675,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_driver_integration_test_main",
-      "community": 177,
+      "community": 178,
       "norm_label": "main"
     },
     {
@@ -32635,7 +32685,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_integration_test_integration_test_driver_dart",
-      "community": 177,
+      "community": 178,
       "norm_label": "package:integration_test/integration_test_driver.dart"
     },
     {
@@ -37289,7 +37339,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
@@ -37299,7 +37349,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L540",
+      "source_location": "L574",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
@@ -37309,7 +37359,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L251",
+      "source_location": "L258",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_loopresult",
@@ -37319,7 +37369,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L478",
+      "source_location": "L485",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_metadata",
@@ -37329,7 +37379,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L457",
+      "source_location": "L464",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_audiotrack",
@@ -37339,7 +37389,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L172",
+      "source_location": "L539",
+      "weight": 1.0,
+      "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
+      "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_bitdepth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
+      "source_location": "L179",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
@@ -37349,7 +37409,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L258",
+      "source_location": "L265",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
@@ -37359,7 +37419,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L91",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_dispose",
@@ -37369,7 +37429,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L379",
+      "source_location": "L386",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
@@ -37379,7 +37439,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L215",
+      "source_location": "L222",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
@@ -37389,7 +37449,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L480",
+      "source_location": "L487",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_metadata",
@@ -37399,7 +37459,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L531",
+      "source_location": "L565",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
@@ -37409,7 +37469,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
@@ -37419,7 +37479,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L438",
+      "source_location": "L445",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_open",
@@ -37429,7 +37489,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L516",
+      "source_location": "L523",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_parsedate",
@@ -37439,7 +37499,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L118",
+      "source_location": "L119",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
@@ -37449,7 +37509,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L96",
+      "source_location": "L97",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_reply",
@@ -37459,7 +37519,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L115",
+      "source_location": "L116",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_required",
@@ -37469,7 +37529,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -37479,7 +37539,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L502",
+      "source_location": "L509",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_videosize",
@@ -37489,7 +37549,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel",
       "target": "methodchannel",
@@ -37499,7 +37559,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
@@ -37510,7 +37570,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L96",
+      "source_location": "L97",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_reply",
@@ -37631,7 +37691,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L58",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
@@ -37642,7 +37702,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L67",
+      "source_location": "L68",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
@@ -37653,7 +37713,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
@@ -37664,7 +37724,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_reply",
@@ -37675,7 +37735,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_required",
@@ -37686,7 +37746,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L74",
+      "source_location": "L75",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -37696,7 +37756,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_onmethodcall",
@@ -37707,7 +37767,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L96",
+      "source_location": "L97",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_reply",
@@ -37718,7 +37778,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L96",
+      "source_location": "L97",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_reply",
@@ -37740,7 +37800,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L172",
+      "source_location": "L179",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
@@ -37751,7 +37811,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L215",
+      "source_location": "L222",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
@@ -37762,7 +37822,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L118",
+      "source_location": "L119",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
@@ -37773,7 +37833,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -37785,7 +37845,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L116",
+      "source_location": "L117",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_required",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
@@ -37795,7 +37855,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L115",
+      "source_location": "L116",
       "weight": 1.0,
       "context": "return_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_required",
@@ -37806,7 +37866,18 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L172",
+      "source_location": "L539",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_bitdepth",
+      "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_kt_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
+      "source_location": "L179",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
@@ -37817,7 +37888,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L258",
+      "source_location": "L265",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
@@ -37828,7 +37899,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L215",
+      "source_location": "L222",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
@@ -37839,7 +37910,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L480",
+      "source_location": "L487",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_metadata",
@@ -37850,7 +37921,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L531",
+      "source_location": "L565",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
@@ -37861,7 +37932,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L438",
+      "source_location": "L445",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_open",
@@ -37872,7 +37943,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L516",
+      "source_location": "L523",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_parsedate",
@@ -37883,7 +37954,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L118",
+      "source_location": "L119",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
@@ -37894,7 +37965,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -37906,7 +37977,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L121",
+      "source_location": "L122",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_audiotrack",
@@ -37917,7 +37988,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L143",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
+      "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_bitdepth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
+      "source_location": "L149",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_metadata",
@@ -37928,7 +38010,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L134",
+      "source_location": "L136",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
@@ -37939,7 +38021,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L144",
+      "source_location": "L150",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_videosize",
@@ -37949,7 +38031,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L118",
+      "source_location": "L119",
       "weight": 1.0,
       "context": "return_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_probe",
@@ -37960,7 +38042,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L172",
+      "source_location": "L179",
       "weight": 1.0,
       "context": "return_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
@@ -37971,7 +38053,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L215",
+      "source_location": "L222",
       "weight": 1.0,
       "context": "return_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
@@ -37982,7 +38064,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "weight": 1.0,
       "context": "return_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -37994,7 +38076,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L180",
+      "source_location": "L187",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
@@ -38005,7 +38087,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L196",
+      "source_location": "L203",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
@@ -38015,7 +38097,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L172",
+      "source_location": "L179",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
@@ -38026,7 +38108,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L172",
+      "source_location": "L179",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decode",
@@ -38037,7 +38119,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L457",
+      "source_location": "L464",
       "weight": 1.0,
       "context": "return_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_audiotrack",
@@ -38048,7 +38130,18 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L258",
+      "source_location": "L539",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_bitdepth",
+      "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_kt_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
+      "source_location": "L265",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
@@ -38059,7 +38152,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L379",
+      "source_location": "L386",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
@@ -38070,7 +38163,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L215",
+      "source_location": "L222",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
@@ -38081,7 +38174,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -38092,7 +38185,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L502",
+      "source_location": "L509",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_videosize",
@@ -38103,7 +38196,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L258",
+      "source_location": "L265",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
@@ -38114,7 +38207,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L516",
+      "source_location": "L523",
       "weight": 1.0,
       "context": "return_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_parsedate",
@@ -38125,7 +38218,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "weight": 1.0,
       "context": "generic_arg",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -38137,7 +38230,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L233",
+      "source_location": "L240",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_loudness",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
@@ -38148,7 +38241,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L258",
+      "source_location": "L265",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_loopresult",
@@ -38159,7 +38252,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L270",
+      "source_location": "L277",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_audiotrack",
@@ -38170,7 +38263,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L342",
+      "source_location": "L349",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
@@ -38181,7 +38274,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L266",
+      "source_location": "L273",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
@@ -38191,7 +38284,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L258",
+      "source_location": "L265",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
@@ -38203,7 +38296,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L300",
+      "source_location": "L307",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_decodeloop",
       "target": "shortarray",
@@ -38213,7 +38306,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L379",
+      "source_location": "L386",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
@@ -38224,7 +38317,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L379",
+      "source_location": "L386",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
@@ -38235,7 +38328,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L379",
+      "source_location": "L386",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
@@ -38246,7 +38339,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L379",
+      "source_location": "L386",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_firstchannel",
@@ -38258,7 +38351,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L409",
+      "source_location": "L416",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
@@ -38268,7 +38361,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L404",
+      "source_location": "L411",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_thumbnails",
@@ -38280,7 +38373,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L439",
+      "source_location": "L446",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_open",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
@@ -38291,7 +38384,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L438",
+      "source_location": "L445",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_open",
       "target": "mediaextractor",
@@ -38301,7 +38394,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L457",
+      "source_location": "L464",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_audiotrack",
@@ -38312,7 +38405,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L502",
+      "source_location": "L509",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_videosize",
@@ -38335,7 +38428,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L480",
+      "source_location": "L487",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_metadata",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_metadata",
@@ -38346,7 +38439,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L502",
+      "source_location": "L509",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_videosize",
       "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_kt_pair",
@@ -38356,18 +38449,18 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L531",
+      "source_location": "L539",
       "weight": 1.0,
-      "context": "return_type",
-      "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
-      "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_kt_double",
+      "context": "parameter_type",
+      "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_bitdepth",
+      "target": "mediaformat",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L531",
+      "source_location": "L565",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
@@ -38375,10 +38468,21 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
+      "source_location": "L565",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiochannel_number",
+      "target": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_kt_double",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt",
-      "source_location": "L540",
+      "source_location": "L574",
       "weight": 1.0,
       "source": "android_app_src_main_kotlin_cc_jami_simpleshottimer_clipaudiochannel_clipaudiofailure",
       "target": "exception",
@@ -66724,6 +66828,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "lib_services_video_clip_audio_source",
+      "target": "lib_services_video_clip_audio_source_bitdepth"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/services/video/clip_audio_source.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "lib_services_video_clip_audio_source",
       "target": "lib_services_video_clip_audio_source_captureframerate"
     },
     {
@@ -81546,6 +81660,16 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_hud_test",
+      "target": "test_hud_test_frame"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/hud_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_hud_test",
       "target": "test_hud_test_image"
     },
     {
@@ -81596,7 +81720,27 @@
       "source_location": null,
       "weight": 1.0,
       "source": "test_hud_test",
+      "target": "test_hud_test_preview"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/hud_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_hud_test",
       "target": "test_hud_test_recorder"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/hud_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "test_hud_test",
+      "target": "test_hud_test_shown"
     },
     {
       "relation": "defines",
@@ -90533,5 +90677,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "54e58b7c8377c0b5d2b5258a10a179758a9f04d6"
+  "built_at_commit": "5584a470632d0c3f9272f05ea6561c8f062dda11"
 }

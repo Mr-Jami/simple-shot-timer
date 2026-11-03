@@ -345,8 +345,8 @@
     "semantic_hash": "055041055ece4d9e8e6009d7b87a6b24"
   },
   ".github/workflows/deploy-play-store.yml": {
-    "mtime": 1793667498.5425193,
-    "ast_hash": "328bbaed067c8012b19558e694dcb601",
+    "mtime": 1793715271.909446,
+    "ast_hash": "3a8ee3f27838710dd8b24c99e312a682",
     "semantic_hash": ""
   },
   ".github/workflows/release-please.yml": {
@@ -1310,8 +1310,8 @@
     "semantic_hash": ""
   },
   ".github/workflows/deploy-app-store.yml": {
-    "mtime": 1793667498.9124253,
-    "ast_hash": "0952d5b95c316a7ac02421f1941ba6dd",
+    "mtime": 1793715271.911445,
+    "ast_hash": "3ecd72c20cdf2c8dfc6fae5da1114ee8",
     "semantic_hash": ""
   },
   "lib/utils/legal.dart": {
@@ -2115,13 +2115,13 @@
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt": {
-    "mtime": 1792752218.7897255,
-    "ast_hash": "911251b5133e61ca265ba053192f443b",
+    "mtime": 1793715886.621921,
+    "ast_hash": "ecd7443d070869bb642d9addb717573f",
     "semantic_hash": ""
   },
   "integration_test/clip_analysis_test.dart": {
-    "mtime": 1792702990.2552946,
-    "ast_hash": "9713e69652b9bc7d3e66268084d61e98",
+    "mtime": 1793715886.6249223,
+    "ast_hash": "dd157d08225eeccc247239e1834c1a99",
     "semantic_hash": ""
   },
   "lib/services/beep_constants.dart": {
@@ -2135,8 +2135,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_audio_source.dart": {
-    "mtime": 1793300922.396462,
-    "ast_hash": "f19d81d24a9fbdc5613c870e44e62af2",
+    "mtime": 1793715899.1104825,
+    "ast_hash": "c0a2d99dc5ad1f888cd98bddebae3e34",
     "semantic_hash": ""
   },
   "lib/services/video/clip_shot_finder.dart": {
@@ -2420,8 +2420,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_player.dart": {
-    "mtime": 1793669212.4178572,
-    "ast_hash": "de702193e3799513e51625711f4f2523",
+    "mtime": 1793715899.112494,
+    "ast_hash": "4729ae21cc8d901fc5c813388f84cef9",
     "semantic_hash": ""
   },
   "lib/widgets/clip_video.dart": {
@@ -2495,7 +2495,7 @@
     "semantic_hash": ""
   },
   "lib/widgets/video/hud_overlay.dart": {
-    "mtime": 1793668148.6935177,
+    "mtime": 1793715526.094501,
     "ast_hash": "198601b8a2104e46694ba5d8c0efc8ed",
     "semantic_hash": ""
   },
@@ -2515,8 +2515,8 @@
     "semantic_hash": ""
   },
   "test/hud_test.dart": {
-    "mtime": 1793668149.473946,
-    "ast_hash": "be4ff310261fdb6a776eeb3aa01312a2",
+    "mtime": 1793715492.5566843,
+    "ast_hash": "020106469d3a5ca950ab063738c43050",
     "semantic_hash": ""
   },
   "test/video_export_sheet_test.dart": {
@@ -2835,8 +2835,8 @@
     "semantic_hash": ""
   },
   "test/clip_player_test.dart": {
-    "mtime": 1793668149.8674605,
-    "ast_hash": "67381a0a17e116fb9e69752bd2c25ec3",
+    "mtime": 1793715899.1134524,
+    "ast_hash": "aea478b5ffd50b6246523f50422d598c",
     "semantic_hash": ""
   },
   "brag-output/2026-10-31/brag-plan.md": {
