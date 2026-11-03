@@ -1,1 +1,1 @@
-New: time a string from its video and export the video with your times on it. Free, open-source shot timer with live splits and par drills. No ads, no tracking.
+Free, open-source shot timer with live splits and par drills. No ads, no tracking.
