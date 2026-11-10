@@ -24,6 +24,10 @@ final _stage = DrillConfig.fromSettings(const AppSettings(
   stageDurationMs: 45000,
 ));
 
+/// The default drill with only the sensitivity changed (issue #68).
+final _quiet =
+    DrillConfig.fromSettings(const AppSettings(sensitivityPercent: 40));
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -130,18 +134,26 @@ void main() {
   group('SettingsNotifier.applyDrill', () {
     test('changes only the drill fields and persists them', () async {
       await settings().update(
-        (s) => s.copyWith(beepVolume: 0.2, sensitivityPercent: 77),
+        (s) => s.copyWith(beepVolume: 0.2, echoFilterMs: 150),
       );
       await settings().applyDrill(_par);
 
       final s = container.read(settingsProvider);
       expect(DrillConfig.fromSettings(s), _par);
       expect(s.beepVolume, 0.2);
-      expect(s.sensitivityPercent, 77);
+      expect(s.echoFilterMs, 150);
 
       final reloaded = SettingsService(prefs).load();
       expect(DrillConfig.fromSettings(reloaded), _par);
       expect(reloaded.beepVolume, 0.2);
+    });
+
+    test('sets the sensitivity the drill was saved with', () async {
+      await settings().update((s) => s.copyWith(sensitivityPercent: 77));
+      await settings().applyDrill(_quiet);
+
+      expect(container.read(settingsProvider).sensitivityPercent, 40);
+      expect(SettingsService(prefs).load().sensitivityPercent, 40);
     });
   });
 
@@ -205,6 +217,27 @@ void main() {
       expect(container.read(activeDrillProvider)?.name, 'Par');
       await settings().update((s) => s.copyWith(parRepeatCount: 4));
       expect(container.read(activeDrillProvider), isNull);
+    });
+
+    test('clears when the sensitivity changes, returns when it is set back',
+        () async {
+      await notifier().add('Dry fire', _quiet);
+      await settings().applyDrill(_quiet);
+      expect(container.read(activeDrillProvider)?.name, 'Dry fire');
+      await settings().update((s) => s.copyWith(sensitivityPercent: 41));
+      expect(container.read(activeDrillProvider), isNull);
+      await settings().update((s) => s.copyWith(sensitivityPercent: 40));
+      expect(container.read(activeDrillProvider)?.name, 'Dry fire');
+    });
+
+    test('tells apart two drills that differ only in sensitivity', () async {
+      await notifier().add('Dry fire', _quiet);
+      await notifier().add(
+        'Range',
+        DrillConfig.fromSettings(const AppSettings(sensitivityPercent: 12)),
+      );
+      await settings().update((s) => s.copyWith(sensitivityPercent: 12));
+      expect(container.read(activeDrillProvider)?.name, 'Range');
     });
 
     test('prefers the first of two identical drills', () async {

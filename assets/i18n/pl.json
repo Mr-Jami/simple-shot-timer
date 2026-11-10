@@ -175,6 +175,7 @@
   "drills.overwrittenSnack": "Zaktualizowano „{name}”",
   "drills.appliedSnack": "Zastosowano „{name}”",
   "drills.empty": "Brak zapisanych ćwiczeń. Zapisz bieżące ćwiczenie, aby uruchamiać je jednym dotknięciem.",
+  "drills.sensitivity": "Czułość {sensitivity}%",
 
   "micTest.title": "Test mikrofonu",
   "micTest.instruction": "Wydaj dźwięk, który ma być wykrywany. Czerwona linia to bieżący próg wykrywania — ustaw czułość tak, aby szczyty ledwo go przekraczały.",

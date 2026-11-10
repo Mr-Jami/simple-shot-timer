@@ -9,7 +9,7 @@ RETARDO DE INICIO
 Inmediato, fijo o aleatorio entre un mínimo y un máximo.
 
 EJERCICIOS GUARDADOS
-Guarda con un nombre los ejercicios que haces a menudo (modo, retardo de inicio, tiempo par y de stage) y carga cualquiera de ellos con un toque.
+Guarda con un nombre los ejercicios que haces a menudo (modo, retardo de inicio, tiempo par y de stage, sensibilidad) y carga cualquiera de ellos con un toque.
 
 DETECCIÓN DE DISPAROS
 • Escucha a través del micrófono del iPhone y detecta cada disparo en el momento en que se produce.

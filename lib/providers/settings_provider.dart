@@ -20,8 +20,9 @@ class SettingsNotifier extends Notifier<AppSettings> {
     await ref.read(settingsServiceProvider).save(next);
   }
 
-  /// Loads a saved drill: only the drill-configuration fields change, every
-  /// other setting keeps its value (issue #24).
+  /// Loads a saved drill: only the drill-configuration fields change (the
+  /// sensitivity is one of them), every other setting keeps its value
+  /// (issue #24).
   Future<void> applyDrill(DrillConfig config) => update(config.applyTo);
 
   /// "Reset settings only": defaults again, custom drills kept.

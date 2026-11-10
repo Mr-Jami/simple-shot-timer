@@ -78,6 +78,17 @@ void main() {
       );
     });
 
+    test('a drill without a sensitivity decodes with the fallback', () {
+      final decoded = CustomDrill.decodeList(
+        '['
+        '{"id": 1, "name": "Old"},'
+        '{"id": 2, "name": "New", "sensitivity_percent": 30}'
+        ']',
+        sensitivityFallback: 55,
+      );
+      expect(decoded.map((d) => d.config.sensitivityPercent), [55, 30]);
+    });
+
     test('normalizes names on decode', () {
       final decoded =
           CustomDrill.decodeList('[{"id": 1, "name": "  Bill   Drill \\n"}]');

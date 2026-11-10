@@ -9,7 +9,7 @@ DÉLAI DE DÉPART
 Instantané, fixe ou aléatoire entre un minimum et un maximum.
 
 EXERCICES ENREGISTRÉS
-Enregistrez sous un nom les exercices que vous faites souvent (mode, délai de départ, temps par et de stage) et chargez-en un d'un simple toucher.
+Enregistrez sous un nom les exercices que vous faites souvent (mode, délai de départ, temps par et de stage, sensibilité) et chargez-en un d'un simple toucher.
 
 DÉTECTION DES TIRS
 • Écoute avec le micro de votre iPhone et repère chaque tir au moment où il part.

@@ -13,6 +13,7 @@ import 'services/audio_service.dart';
 import 'services/background_service.dart';
 import 'services/database_service.dart';
 import 'services/export_service.dart';
+import 'services/settings_service.dart';
 import 'services/video/video_work_dir.dart';
 import 'utils/legal.dart';
 
@@ -29,6 +30,12 @@ Future<void> main() async {
   // a string doesn't pay the channel-creation latency.
   BackgroundService.init();
   final prefs = await SharedPreferences.getInstance();
+  // Before the providers read the saved drills.
+  try {
+    await SettingsService(prefs).migrateDrills();
+  } on Exception {
+    // Tried again next start; until then the drills load as they are.
+  }
   final db = await DatabaseService.open();
   // Leftovers of a crash or a kill mid-import or mid-edit (work folders and
   // the photo picker's copies), and share_plus's copies of shared videos,

@@ -9,7 +9,7 @@ ATRASO DE INÍCIO
 Imediato, fixo ou aleatório entre um mínimo e um máximo.
 
 EXERCÍCIOS SALVOS
-Salve com um nome os exercícios que você faz com frequência (modo, atraso de início, tempo par e de stage) e carregue qualquer um deles com um toque.
+Salve com um nome os exercícios que você faz com frequência (modo, atraso de início, tempo par e de stage, sensibilidade) e carregue qualquer um deles com um toque.
 
 DETECÇÃO DE DISPAROS
 • Escuta pelo microfone do iPhone e identifica cada disparo no momento em que ele acontece.

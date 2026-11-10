@@ -175,6 +175,7 @@
   "drills.overwrittenSnack": "„{name}“ aktualisiert",
   "drills.appliedSnack": "„{name}“ angewendet",
   "drills.empty": "Noch keine Drills gespeichert. Speichere deinen aktuellen Drill, um ihn mit einem Tipp wiederzuverwenden.",
+  "drills.sensitivity": "{sensitivity}% Empfindlichkeit",
 
   "micTest.title": "Mikrofon testen",
   "micTest.instruction": "Erzeuge das Geräusch, das erkannt werden soll. Die rote Linie zeigt die aktuelle Erkennungsschwelle – Empfindlichkeit so anpassen, dass die Spitzen sie gerade überschreiten.",

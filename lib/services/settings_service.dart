@@ -2,10 +2,13 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/app_settings.dart';
 import '../models/custom_drill.dart';
+import '../models/drill_config.dart';
 import '../models/enums.dart';
 
 class SettingsService {
@@ -45,14 +48,21 @@ class SettingsService {
   /// keys. Not part of [AppSettings]; survives [reset].
   static const _kCustomDrills = 'custom_drills';
 
+  /// Format version of [_kCustomDrills], written by [migrateDrills]. It
+  /// survives [reset] with the drills, or the upgrade would run again after
+  /// every reset.
+  static const _kCustomDrillsVersion = 'custom_drills_version';
+
+  /// 2: every drill carries its sensitivity (issue #68).
+  static const _currentDrillsVersion = 2;
+
   /// Not a setting either: what this phone's encoder does to colours.
   static const _kEncoderColorFix = 'video_encoder_color_fix';
 
   AppSettings load() {
     const defaults = AppSettings();
     return AppSettings(
-      sensitivityPercent:
-          _prefs.getInt(_kSensitivity) ?? defaults.sensitivityPercent,
+      sensitivityPercent: _sensitivityPercent,
       echoFilterMs: _prefs.getInt(_kEchoFilter) ?? defaults.echoFilterMs,
       bandFilterEnabled:
           _prefs.getBool(_kBandEnabled) ?? defaults.bandFilterEnabled,
@@ -133,17 +143,80 @@ class SettingsService {
   Future<void> setEncoderColorFix(bool value) =>
       _prefs.setBool(_kEncoderColorFix, value);
 
-  List<CustomDrill> loadDrills() =>
-      CustomDrill.decodeList(_prefs.getString(_kCustomDrills));
+  /// The sensitivity in use, as [load] reports it.
+  int get _sensitivityPercent =>
+      _prefs.getInt(_kSensitivity) ?? const AppSettings().sensitivityPercent;
+
+  /// A drill stored without a sensitivity loads with the one in use. After
+  /// [migrateDrills] that is only left for a list it could not rewrite, or
+  /// one an older app version, which doesn't know the field, saved again.
+  List<CustomDrill> loadDrills() => CustomDrill.decodeList(
+        _prefs.getString(_kCustomDrills),
+        sensitivityFallback: _sensitivityPercent,
+      );
 
   Future<void> saveDrills(List<CustomDrill> drills) =>
       _prefs.setString(_kCustomDrills, CustomDrill.encodeList(drills));
 
-  /// "Reset settings only": wipes every preference except the custom drills,
-  /// which are user-authored content like saved strings and survive a reset.
+  /// One-time upgrade of the stored drills; `main()` runs it before anything
+  /// reads them. Drills saved before issue #68 have no sensitivity: each gets
+  /// the one in use now and keeps it from then on.
+  ///
+  /// The version is written last. If the app dies in between, the next start
+  /// runs the upgrade again, and since it only fills in missing values that
+  /// second run changes nothing.
+  Future<void> migrateDrills() async {
+    final version = _prefs.get(_kCustomDrillsVersion);
+    if (version is int && version >= _currentDrillsVersion) return;
+    final upgraded = _drillsWithSensitivity(_prefs.get(_kCustomDrills));
+    if (upgraded != null) {
+      // A rejected write leaves the version unset, so the next start retries.
+      if (!await _prefs.setString(_kCustomDrills, upgraded)) return;
+    }
+    await _prefs.setInt(_kCustomDrillsVersion, _currentDrillsVersion);
+  }
+
+  /// The [stored] drill list with the sensitivity in use filled into every
+  /// drill that has none, or null when there is nothing to write.
+  ///
+  /// Works on the decoded JSON rather than on [CustomDrill]s, so entries the
+  /// decoder would skip and keys this version doesn't know stay as they are.
+  /// A value that isn't a JSON list is left alone.
+  String? _drillsWithSensitivity(Object? stored) {
+    if (stored is! String) return null;
+    final Object? list;
+    try {
+      list = jsonDecode(stored);
+    } on FormatException {
+      return null;
+    }
+    if (list is! List) return null;
+    var changed = false;
+    for (final entry in list) {
+      if (entry is Map && entry[DrillConfig.sensitivityKey] is! num) {
+        entry[DrillConfig.sensitivityKey] = _sensitivityPercent;
+        changed = true;
+      }
+    }
+    if (!changed) return null;
+    try {
+      return jsonEncode(list);
+    } on JsonUnsupportedObjectError {
+      // A number too large for a double decodes as infinity, which JSON
+      // can't write back. Such a list stays as it is, and its drills take
+      // the sensitivity in use when they load.
+      return null;
+    }
+  }
+
+  /// "Reset settings only": wipes every preference except the custom drills
+  /// (and their format version), which are user-authored content like saved
+  /// strings and survive a reset.
   Future<void> reset() async {
     for (final key in _prefs.getKeys().toList()) {
-      if (key != _kCustomDrills) await _prefs.remove(key);
+      if (key != _kCustomDrills && key != _kCustomDrillsVersion) {
+        await _prefs.remove(key);
+      }
     }
   }
 

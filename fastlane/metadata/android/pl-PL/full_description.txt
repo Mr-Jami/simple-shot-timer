@@ -9,7 +9,7 @@ OPÓŹNIENIE STARTU
 Natychmiast, stałe lub losowe w zakresie od minimum do maksimum.
 
 ZAPISANE ĆWICZENIA
-Zapisz pod nazwą ćwiczenia, które często powtarzasz (tryb, opóźnienie startu, czas par i stage), i wczytaj dowolne z nich jednym dotknięciem.
+Zapisz pod nazwą ćwiczenia, które często powtarzasz (tryb, opóźnienie startu, czas par i stage, czułość), i wczytaj dowolne z nich jednym dotknięciem.
 
 WYKRYWANIE STRZAŁÓW
 • Nasłuchuje przez mikrofon telefonu i wychwytuje każdy strzał w chwili jego oddania.

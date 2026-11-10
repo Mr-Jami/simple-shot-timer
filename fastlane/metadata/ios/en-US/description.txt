@@ -9,7 +9,7 @@ START DELAY
 Instant, fixed, or random within a min/max range.
 
 SAVED DRILLS
-Save the drills you run often (mode, start delay, par and stage timing) under a name, and load any one with a tap.
+Save the drills you run often (mode, start delay, par and stage timing, sensitivity) under a name, and load any one with a tap.
 
 SHOT DETECTION
 • Listens through your iPhone's microphone and picks out each shot as it happens.

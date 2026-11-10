@@ -9,7 +9,7 @@ STARTVERZÖGERUNG
 Sofort, fest oder zufällig zwischen einem Minimum und einem Maximum.
 
 GESPEICHERTE DRILLS
-Speichere die Drills, die du oft schießt (Modus, Startverzögerung, Par- und Stage-Zeit), unter einem Namen und lade jeden davon mit einem Tipp.
+Speichere die Drills, die du oft schießt (Modus, Startverzögerung, Par- und Stage-Zeit, Empfindlichkeit), unter einem Namen und lade jeden davon mit einem Tipp.
 
 SCHUSSERKENNUNG
 • Hört über das Mikrofon deines iPhones mit und erkennt jeden Schuss in dem Moment, in dem er fällt.

@@ -21,12 +21,12 @@ const _drill = AppSettings(
   parRepeatCount: 4,
   parIntervalMs: 2500,
   stageDurationMs: 90000,
+  sensitivityPercent: 42,
 );
 
 /// Non-drill fields set away from their defaults, so `applyTo` can be checked
 /// for leaving them alone.
 const _other = AppSettings(
-  sensitivityPercent: 42,
   echoFilterMs: 120,
   bandFilterEnabled: false,
   bandLowHz: 450,
@@ -56,6 +56,8 @@ final _singleFieldEdits = <String, AppSettings Function(AppSettings)>{
   'parIntervalMs': (s) => s.copyWith(parIntervalMs: s.parIntervalMs + 100),
   'stageDurationMs': (s) =>
       s.copyWith(stageDurationMs: s.stageDurationMs + 1000),
+  'sensitivityPercent': (s) =>
+      s.copyWith(sensitivityPercent: s.sensitivityPercent + 1),
 };
 
 void main() {
@@ -71,6 +73,7 @@ void main() {
       expect(c.parRepeatCount, 4);
       expect(c.parIntervalMs, 2500);
       expect(c.stageDurationMs, 90000);
+      expect(c.sensitivityPercent, 42);
     });
 
     test('defaults equal a fresh AppSettings', () {
@@ -84,7 +87,6 @@ void main() {
   group('DrillConfig.applyTo', () {
     test('leaves every non-drill field untouched', () {
       final applied = DrillConfig.fromSettings(_drill).applyTo(_other);
-      expect(applied.sensitivityPercent, _other.sensitivityPercent);
       expect(applied.echoFilterMs, _other.echoFilterMs);
       expect(applied.bandFilterEnabled, _other.bandFilterEnabled);
       expect(applied.bandLowHz, _other.bandLowHz);
@@ -154,6 +156,48 @@ void main() {
 
     test('empty map yields the defaults', () {
       expect(DrillConfig.fromMap(const {}), DrillConfig.defaults);
+    });
+
+    test('the sensitivity is stored under the settings key', () {
+      expect(DrillConfig.sensitivityKey, 'sensitivity_percent');
+      expect(
+        DrillConfig.fromSettings(_drill).toMap()['sensitivity_percent'],
+        42,
+      );
+    });
+
+    test('a missing sensitivity takes the fallback, a stored one wins', () {
+      // A drill saved before issue #68 has every key but the sensitivity.
+      final old = DrillConfig.fromSettings(_drill).toMap()
+        ..remove('sensitivity_percent');
+      final decoded = DrillConfig.fromMap(old, sensitivityFallback: 63);
+      expect(decoded.sensitivityPercent, 63);
+      expect(
+        decoded,
+        DrillConfig.fromSettings(_drill.copyWith(sensitivityPercent: 63)),
+      );
+
+      expect(
+        DrillConfig.fromMap(
+          const {'sensitivity_percent': 8},
+          sensitivityFallback: 63,
+        ).sensitivityPercent,
+        8,
+      );
+      expect(
+        DrillConfig.fromMap(
+          const {'sensitivity_percent': 'loud'},
+          sensitivityFallback: 63,
+        ).sensitivityPercent,
+        63,
+      );
+    });
+
+    test('the fallback touches nothing but the sensitivity', () {
+      expect(
+        DrillConfig.fromMap(const {}, sensitivityFallback: 63),
+        DrillConfig.fromSettings(const AppSettings(sensitivityPercent: 63)),
+      );
     });
 
     test('unknown enum names fall back to the defaults', () {

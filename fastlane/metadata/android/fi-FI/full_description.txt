@@ -9,7 +9,7 @@ ALOITUSVIIVE
 Heti, kiinteä tai satunnainen minimin ja maksimin väliltä.
 
 TALLENNETUT HARJOITTEET
-Tallenna usein ampumasi harjoitteet nimellä (tila, aloitusviive, par- ja stage-aika) ja lataa mikä tahansa niistä yhdellä napautuksella.
+Tallenna usein ampumasi harjoitteet nimellä (tila, aloitusviive, par- ja stage-aika, herkkyys) ja lataa mikä tahansa niistä yhdellä napautuksella.
 
 LAUKAUSTEN TUNNISTUS
 • Kuuntelee puhelimen mikrofonia ja tunnistaa jokaisen laukauksen sillä hetkellä, kun se ammutaan.
