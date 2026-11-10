@@ -158,9 +158,25 @@ class SettingsService {
   Future<void> saveDrills(List<CustomDrill> drills) =>
       _prefs.setString(_kCustomDrills, CustomDrill.encodeList(drills));
 
-  /// One-time upgrade of the stored drills; `main()` runs it before anything
-  /// reads them. Drills saved before issue #68 have no sensitivity: each gets
-  /// the one in use now and keeps it from then on.
+  /// The app's preferences, with the stored drills upgraded
+  /// ([migrateDrills]). `main()` gets them here and nowhere else, so no
+  /// provider can read the drills before the upgrade has run.
+  ///
+  /// A failed upgrade doesn't keep the app from starting: the drills load
+  /// as they are and the next start tries again.
+  static Future<SharedPreferences> openPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    try {
+      await SettingsService(prefs).migrateDrills();
+    } on Exception {
+      // Tried again next start.
+    }
+    return prefs;
+  }
+
+  /// One-time upgrade of the stored drills, run by [openPrefs] before
+  /// anything reads them. Drills saved before issue #68 have no sensitivity:
+  /// each gets the one in use now and keeps it from then on.
   ///
   /// The version is written last. If the app dies in between, the next start
   /// runs the upgrade again, and since it only fills in missing values that

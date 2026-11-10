@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,6 +29,65 @@ final _drills = [
     ),
   ),
 ];
+
+/// The drill list exactly as app version 2.4.2 stored it, before drills had
+/// a sensitivity (issue #68). No value is at its default, so a key the
+/// decoder stopped reading would show up as a default in the loaded drill.
+/// Never edit this to follow a change in `toMap`: it stands for what is on
+/// users' phones.
+const _storedBy242 = '[{"id":3,"name":"El Presidente","drill_mode":"par",'
+    '"delay_mode":"fixed","fixed_delay_ms":3500,"random_delay_min_ms":1500,'
+    '"random_delay_max_ms":6500,"par_duration_ms":2700,"par_repeat_count":4,'
+    '"par_interval_ms":8000,"stage_duration_ms":90000},'
+    '{"id":7,"name":"Stage 2","drill_mode":"stage","delay_mode":"instant",'
+    '"fixed_delay_ms":500,"random_delay_min_ms":2000,'
+    '"random_delay_max_ms":3000,"par_duration_ms":1200,"par_repeat_count":2,'
+    '"par_interval_ms":2500,"stage_duration_ms":120000}]';
+
+/// [_storedBy242] as it must load once upgraded with [sensitivityPercent].
+List<CustomDrill> _loadedFrom242(int sensitivityPercent) => [
+      CustomDrill(
+        id: 3,
+        name: 'El Presidente',
+        config: DrillConfig(
+          drillMode: DrillMode.par,
+          delayMode: DelayMode.fixed,
+          fixedDelayMs: 3500,
+          randomDelayMinMs: 1500,
+          randomDelayMaxMs: 6500,
+          parDurationMs: 2700,
+          parRepeatCount: 4,
+          parIntervalMs: 8000,
+          stageDurationMs: 90000,
+          sensitivityPercent: sensitivityPercent,
+        ),
+      ),
+      CustomDrill(
+        id: 7,
+        name: 'Stage 2',
+        config: DrillConfig(
+          drillMode: DrillMode.stage,
+          delayMode: DelayMode.instant,
+          fixedDelayMs: 500,
+          randomDelayMinMs: 2000,
+          randomDelayMaxMs: 3000,
+          parDurationMs: 1200,
+          parRepeatCount: 2,
+          parIntervalMs: 2500,
+          stageDurationMs: 120000,
+          sensitivityPercent: sensitivityPercent,
+        ),
+      ),
+    ];
+
+void _expectDrills(List<CustomDrill> actual, List<CustomDrill> expected) {
+  expect(actual, hasLength(expected.length));
+  for (var i = 0; i < expected.length; i++) {
+    expect(actual[i].id, expected[i].id);
+    expect(actual[i].name, expected[i].name);
+    expect(actual[i].config, expected[i].config);
+  }
+}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -106,6 +166,22 @@ void main() {
       );
     });
 
+    test('upgrades a list stored by 2.4.2 and loses none of it', () async {
+      await prefs.setInt('sensitivity_percent', 33);
+      await prefs.setString('custom_drills', _storedBy242);
+      final service = SettingsService(prefs);
+
+      await service.migrateDrills();
+
+      // Every key 2.4.2 wrote is still there, with its value and in place;
+      // the sensitivity is the only addition.
+      expect(
+        prefs.getString('custom_drills'),
+        _storedBy242.replaceAll('}', ',"sensitivity_percent":33}'),
+      );
+      _expectDrills(service.loadDrills(), _loadedFrom242(33));
+    });
+
     test('a later sensitivity change does not reach upgraded drills',
         () async {
       await prefs.setInt('sensitivity_percent', 33);
@@ -176,6 +252,41 @@ void main() {
       await prefs.setString('custom_drills', value);
       await SettingsService(prefs).migrateDrills();
       expect(prefs.getString('custom_drills'), value);
+    });
+  });
+
+  group('SettingsService.openPrefs', () {
+    test('returns the preferences with the stored drills upgraded', () async {
+      SharedPreferences.setMockInitialValues({
+        'flutter.sensitivity_percent': 33,
+        'flutter.custom_drills': _storedBy242,
+      });
+
+      final opened = await SettingsService.openPrefs();
+
+      expect(opened.getInt('custom_drills_version'), 2);
+      // The setting changes after the start; the drills keep what they got.
+      await opened.setInt('sensitivity_percent', 70);
+      _expectDrills(SettingsService(opened).loadDrills(), _loadedFrom242(33));
+    });
+
+    test('is the only place the app opens its preferences', () {
+      // Preferences opened anywhere else would skip the drills upgrade, and
+      // nothing would show it: such drills load with the sensitivity in use
+      // and then follow it from start to start.
+      const open = 'SharedPreferences.getInstance(';
+      final openers = Directory('lib')
+          .listSync(recursive: true)
+          .whereType<File>()
+          .where((f) => f.path.endsWith('.dart'))
+          .where((f) => f.readAsStringSync().contains(open))
+          .map((f) => f.path.replaceAll(r'\', '/'))
+          .toList();
+      expect(openers, ['lib/services/settings_service.dart']);
+      expect(
+        File('lib/main.dart').readAsStringSync(),
+        contains('final prefs = await SettingsService.openPrefs();'),
+      );
     });
   });
 

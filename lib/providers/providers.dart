@@ -12,7 +12,7 @@ import '../services/shot_detector.dart';
 import '../services/timer_ports.dart';
 import '../services/volume_service.dart';
 
-/// Overridden in `main()` after `SharedPreferences.getInstance()` resolves.
+/// Overridden in `main()` with what `SettingsService.openPrefs()` returns.
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError('SharedPreferences must be overridden in main()');
 });
