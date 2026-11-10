@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "lib/main.dart": {
-    "mtime": 1794352586.6201942,
-    "ast_hash": "f83231b04b74410ed49249aed46dc1c6",
+    "mtime": 1794354490.4696176,
+    "ast_hash": "8579f525fd2082b8e7f04e48886b13d1",
     "semantic_hash": ""
   },
   "lib/models/app_settings.dart": {
@@ -170,8 +170,8 @@
     "semantic_hash": ""
   },
   "lib/providers/providers.dart": {
-    "mtime": 1791145913.2663574,
-    "ast_hash": "1624e1988d478fda713d1ce72b3aa747",
+    "mtime": 1794354459.6868255,
+    "ast_hash": "3b9fb3308223ed42aa277deb23f7fcb0",
     "semantic_hash": ""
   },
   "lib/providers/settings_provider.dart": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "lib/services/settings_service.dart": {
-    "mtime": 1794353344.5765758,
-    "ast_hash": "0c09a24ccdefe0d99d6146826552caa2",
+    "mtime": 1794354496.381705,
+    "ast_hash": "9d48bd1efdbc33a2abcd9dbfe31574cd",
     "semantic_hash": ""
   },
   "lib/services/shot_detector.dart": {
@@ -675,7 +675,7 @@
     "semantic_hash": ""
   },
   "lib/models/drill_config.dart": {
-    "mtime": 1794353344.5780895,
+    "mtime": 1794354508.2888098,
     "ast_hash": "598ec3bc63aab59514f495edaf1ad0b1",
     "semantic_hash": ""
   },
@@ -725,8 +725,8 @@
     "semantic_hash": ""
   },
   "test/settings_service_test.dart": {
-    "mtime": 1794352921.7890928,
-    "ast_hash": "c8263289c433209b985d7d6828458f64",
+    "mtime": 1794354459.687828,
+    "ast_hash": "8c2b5d0c6cd64913dd61971d449b79b3",
     "semantic_hash": ""
   },
   "brag-assets/brag-video-plan.md": {
@@ -2030,8 +2030,8 @@
     "semantic_hash": ""
   },
   "website/de/ratgeber/handy-als-shot-timer/index.html": {
-    "mtime": 1792692393.9213202,
-    "ast_hash": "ff26973ac8d3676f68b6185aaf150d0f",
+    "mtime": 1794353700.2011948,
+    "ast_hash": "ed015467e0881b814dac0bf0f183abde",
     "semantic_hash": ""
   },
   "website/de/ratgeber/index.html": {
@@ -2055,8 +2055,8 @@
     "semantic_hash": ""
   },
   "website/guides/phone-shot-timer/index.html": {
-    "mtime": 1792692393.9311154,
-    "ast_hash": "7eaf09b51657e68233b9da1dd86d1794",
+    "mtime": 1794353700.1952384,
+    "ast_hash": "ad7059cbd1d50e9b77e06423564c72cc",
     "semantic_hash": ""
   },
   "website/guides/shot-timer-app-vs-dedicated-timer/index.html": {
