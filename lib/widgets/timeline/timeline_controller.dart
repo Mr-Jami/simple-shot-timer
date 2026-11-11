@@ -180,6 +180,19 @@ class TimelineController extends ChangeNotifier {
     if (_motion == TimelineMotion.drag) _settled();
   }
 
+  /// Stops a glide (a flick carrying on, or a spring) where it is, back
+  /// inside the range if it was past an end, and reports that spot through
+  /// [onSettle]. Does nothing while the timeline rests, follows the video
+  /// or is under a finger.
+  void halt() {
+    if (_motion != TimelineMotion.fling && _motion != TimelineMotion.settle) {
+      return;
+    }
+    _stop();
+    _setPx(_px.clamp(_minPx, _maxPx).toDouble(), user: true);
+    _settled();
+  }
+
   /// Brings [ms] under the playhead, gliding there unless [animate] is off
   /// (reduced motion) or it is already close.
   void centreOn(int ms, {bool animate = true}) {

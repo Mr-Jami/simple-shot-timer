@@ -227,14 +227,17 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     }
     _editor.select(null);
     final clip = widget.args.clip;
-    // At the end, play the clip (or part) again from its start, once the
-    // seek has landed: at the end of the video, play() would start over
-    // at 0 instead.
+    // A timeline still gliding stops here: the video plays from this spot,
+    // not from where the glide would have ended.
+    _timeline.halt();
+    // At the end, play the clip (or part) again from its start.
     if (_timeline.playheadMs >= clip.toMs - 100) {
       _timeline.centreOn(clip.fromMs, animate: false);
-      await _player.settle(clip.fromMs);
-      if (!mounted) return;
     }
+    // Once the seek to that spot has landed: sooner, the video would play
+    // from where the glide last sent it and then jump, and at the end of
+    // the video play() would start over at 0.
+    if (!await _player.landed() || !mounted) return;
     // Follow from where the video is now, not from its last report.
     _reportedMs = _timeline.playheadMs.round();
     _sinceReport

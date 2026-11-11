@@ -84,6 +84,12 @@ class _PlayingVideo extends VideoPlayerPlatform {
   final _events = <int, StreamController<VideoEvent>>{};
   var _position = Duration.zero;
 
+  /// What the player was asked for, in order: a seek's ms, or 'play'.
+  final asked = <Object>[];
+
+  /// While set, seeks land only once it completes, as on a slow decoder.
+  Completer<void>? slowSeek;
+
   @override
   Future<void> init() async {}
 
@@ -115,14 +121,17 @@ class _PlayingVideo extends VideoPlayerPlatform {
   Future<void> setPlaybackSpeed(int playerId, double speed) async {}
 
   @override
-  Future<void> play(int playerId) async {}
+  Future<void> play(int playerId) async => asked.add('play');
 
   @override
   Future<void> pause(int playerId) async {}
 
   @override
-  Future<void> seekTo(int playerId, Duration position) async =>
-      _position = position;
+  Future<void> seekTo(int playerId, Duration position) async {
+    asked.add(position.inMilliseconds);
+    await slowSeek?.future;
+    _position = position;
+  }
 
   @override
   Future<Duration> getPosition(int playerId) async =>
@@ -372,6 +381,130 @@ void main() {
     await tester.tap(find.byTooltip('Back'));
     await tester.pumpAndSettle();
     expect(find.text('open'), findsOneWidget);
+  });
+
+  /// The editor on a playing video, its timeline flicked and still gliding,
+  /// and every seek from here on slow to land.
+  Future<(_PlayingVideo, TimelineController)> openGliding(
+      WidgetTester tester) async {
+    final platform = VideoPlayerPlatform.instance;
+    final video = _PlayingVideo();
+    VideoPlayerPlatform.instance = video;
+    addTearDown(() => VideoPlayerPlatform.instance = platform);
+    await openEditor(tester);
+    final timeline =
+        tester.widget<ShotTimeline>(find.byType(ShotTimeline)).controller;
+    await tester.flingFrom(tester.getCenter(find.byType(ShotTimeline)),
+        const Offset(-100, 0), 1500);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(timeline.motion, TimelineMotion.fling, reason: 'still gliding');
+    video.slowSeek = Completer<void>();
+    video.asked.clear();
+    return (video, timeline);
+  }
+
+  /// Lets the slow seeks land, then closes the editor while the fake
+  /// platform is still in place.
+  Future<void> landAndClose(WidgetTester tester, _PlayingVideo video) async {
+    video.slowSeek?.complete();
+    video.slowSeek = null;
+    await tester.pump();
+    if (find.byTooltip('Pause').evaluate().isNotEmpty) {
+      await tester.tap(find.byTooltip('Pause'));
+    }
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsOneWidget);
+  }
+
+  testWidgets(
+      'Play while the timeline glides stops it and plays from there, once '
+      'the seek has landed', (tester) async {
+    final (video, timeline) = await openGliding(tester);
+
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    final at = timeline.playheadMs;
+    expect(timeline.motion, TimelineMotion.idle);
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(timeline.playheadMs, at, reason: 'the glide stopped');
+    expect(video.asked, [at.round()], reason: 'waiting for the seek');
+
+    video.slowSeek!.complete();
+    video.slowSeek = null;
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    // On from the stop at the video's pace, not the glide's, and with no
+    // seek to where the glide would have ended.
+    expect(timeline.playheadMs, inInclusiveRange(at + 400, at + 700));
+    expect(video.asked, [at.round(), 'play']);
+
+    await landAndClose(tester, video);
+  });
+
+  testWidgets('a drag calls off a Play still waiting for its seek',
+      (tester) async {
+    final (video, _) = await openGliding(tester);
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pump();
+
+    video.slowSeek!.complete();
+    video.slowSeek = null;
+    await tester.pumpAndSettle();
+    expect(video.asked, isNot(contains('play')));
+    expect(find.byTooltip('Play'), findsOneWidget);
+
+    await landAndClose(tester, video);
+  });
+
+  testWidgets('a seek that fails doesn\'t keep Play from playing',
+      (tester) async {
+    final (video, _) = await openGliding(tester);
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    video.slowSeek!.completeError(PlatformException(code: 'seek'));
+    video.slowSeek = null;
+    await tester.pump();
+    expect(video.asked.last, 'play');
+    expect(find.byTooltip('Pause'), findsOneWidget);
+
+    await landAndClose(tester, video);
+  });
+
+  testWidgets('Play at the end starts over once the seek there has landed',
+      (tester) async {
+    final platform = VideoPlayerPlatform.instance;
+    final video = _PlayingVideo();
+    VideoPlayerPlatform.instance = video;
+    addTearDown(() => VideoPlayerPlatform.instance = platform);
+    await openEditor(tester);
+    final timeline =
+        tester.widget<ShotTimeline>(find.byType(ShotTimeline)).controller;
+    timeline.centreOn(7000, animate: false);
+    await tester.pump();
+    video.slowSeek = Completer<void>();
+    video.asked.clear();
+
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    expect(timeline.playheadMs, 0);
+    expect(video.asked, [0], reason: 'waiting for the seek');
+
+    video.slowSeek!.complete();
+    video.slowSeek = null;
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    // Only seeks to the start, then play: at the end of the video, play()
+    // itself would start over at 0 and add its own seek.
+    expect(video.asked.last, 'play');
+    expect(video.asked.whereType<int>().toSet(), {0});
+    expect(timeline.playheadMs, inInclusiveRange(400, 700));
+
+    await landAndClose(tester, video);
   });
 
   testWidgets('Back saves the string once', (tester) async {
