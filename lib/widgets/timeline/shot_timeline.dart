@@ -41,7 +41,9 @@ class TimelineMarker {
 
 /// The editor's timeline: shot badges on top, the clip's loudness as a
 /// waveform in the middle (shots are the tall spikes), splits underneath,
-/// and a fixed playhead the clip scrolls under.
+/// and a fixed playhead the clip scrolls under. The playhead is two
+/// pointers, above and below the waveform, with nothing drawn between them:
+/// a line there would hide in the spike it is being lined up with.
 /// One finger drags it 1:1, two fingers zoom around themselves, a flick
 /// flings it, and a tap picks the nearest marker. While [carryingShot] (a
 /// selected shot rides under the playhead) it never flings and zooms around
@@ -62,10 +64,18 @@ class ShotTimeline extends StatefulWidget {
     this.carryingShot = false,
   });
 
-  static const double badgeHeight = 28;
+  // The editor's top part has a fixed height, so every dp here comes out of
+  // the list under it: the badge and split rows are as tall as what they
+  // hold (a 22 dp badge, a 16 dp line of text) and no taller.
+  static const double badgeHeight = 24;
+
+  /// How tall each playhead pointer is, and the room kept for it above the
+  /// waveform and below it.
+  static const double pointerHeight = 8;
   static const double bandHeight = 84;
-  static const double splitHeight = 20;
-  static const double height = badgeHeight + bandHeight + splitHeight;
+  static const double splitHeight = 16;
+  static const double height =
+      badgeHeight + bandHeight + splitHeight + 2 * pointerHeight;
   static const double _tapSlop = 24;
 
   final TimelineController controller;
@@ -224,6 +234,8 @@ class _TimelinePainter extends CustomPainter {
   final Color dim;
   final TextStyle textStyle;
 
+  static const _pointerHalfWidth = 7.0;
+
   /// The badges' and splits' labels, laid out once: the markers stay the
   /// same while the timeline scrolls, and a change brings a new painter.
   /// They go with this painter (the garbage collector frees them).
@@ -235,7 +247,7 @@ class _TimelinePainter extends CustomPainter {
     final pps = controller.pxPerSecond;
     final at = controller.displayMs;
     double xOf(num ms) => centre + (ms - at) / 1000 * pps;
-    const top = ShotTimeline.badgeHeight;
+    const top = ShotTimeline.badgeHeight + ShotTimeline.pointerHeight;
     const bottom = top + ShotTimeline.bandHeight;
     final band = Rect.fromLTRB(0, top, size.width, bottom);
 
@@ -263,19 +275,19 @@ class _TimelinePainter extends CustomPainter {
       _paintMarker(canvas, m, x, top, bottom);
     }
 
-    // The playhead, from below the badges so the one on it stays legible.
-    final playhead = Paint()
-      ..color = ink
-      ..strokeWidth = 2;
-    canvas.drawLine(Offset(centre, top), Offset(centre, size.height), playhead);
-    canvas.drawPath(
-      Path()
-        ..moveTo(centre - 6, top)
-        ..lineTo(centre + 6, top)
-        ..lineTo(centre, top + 7)
-        ..close(),
-      Paint()..color = ink,
-    );
+    // The playhead: the tips touch the band's edges from outside.
+    final playhead = Paint()..color = ink;
+    for (final (tip, away) in const [(top, -1), (bottom, 1)]) {
+      final base = tip + away * ShotTimeline.pointerHeight;
+      canvas.drawPath(
+        Path()
+          ..moveTo(centre - _pointerHalfWidth, base)
+          ..lineTo(centre + _pointerHalfWidth, base)
+          ..lineTo(centre, tip)
+          ..close(),
+        playhead,
+      );
+    }
   }
 
   /// The loudness mirrored around the band's middle, the loudest frame per
@@ -316,14 +328,17 @@ class _TimelinePainter extends CustomPainter {
   void _paintMarker(
       Canvas canvas, TimelineMarker m, double x, double top, double bottom) {
     final colour = m.active || m.kind == TimelineMarkerKind.start ? ink : dim;
-    // Light, so the shot's spike under it still reads.
-    canvas.drawLine(
-      Offset(x, top),
-      Offset(x, bottom),
-      Paint()
-        ..color = colour.withValues(alpha: m.selected ? 1 : 0.4)
-        ..strokeWidth = m.selected ? 2.5 : 1,
-    );
+    // Light, so the shot's spike under it still reads. None for the selected
+    // shot: it sits under the playhead, whose pointers mark it.
+    if (!m.selected) {
+      canvas.drawLine(
+        Offset(x, ShotTimeline.badgeHeight),
+        Offset(x, bottom),
+        Paint()
+          ..color = colour.withValues(alpha: 0.4)
+          ..strokeWidth = 1,
+      );
+    }
     const r = 11.0;
     final c = Offset(x, ShotTimeline.badgeHeight / 2);
     if (m.kind == TimelineMarkerKind.start) {

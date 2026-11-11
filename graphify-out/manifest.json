@@ -2225,7 +2225,7 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1794358226.6926076,
+    "mtime": 1794358858.0155938,
     "ast_hash": "02372baa54eef6b0b20eb2df172aea1a",
     "semantic_hash": ""
   },
@@ -2270,7 +2270,7 @@
     "semantic_hash": ""
   },
   "lib/services/video/throttled_seeker.dart": {
-    "mtime": 1794358410.711164,
+    "mtime": 1794358858.0167546,
     "ast_hash": "3fa6bf0b3114e8ba91bf92445ec158a7",
     "semantic_hash": ""
   },
@@ -2325,7 +2325,7 @@
     "semantic_hash": ""
   },
   "test/throttled_seeker_test.dart": {
-    "mtime": 1794355793.1313193,
+    "mtime": 1794358858.0193286,
     "ast_hash": "ef348cca7eb7da259c5d5cc5f24c6853",
     "semantic_hash": ""
   },
@@ -2355,12 +2355,12 @@
     "semantic_hash": ""
   },
   "lib/widgets/timeline/shot_timeline.dart": {
-    "mtime": 1793720629.6170526,
-    "ast_hash": "2b201c77e5d99250b28a97e674e3bfaa",
+    "mtime": 1794361388.5075965,
+    "ast_hash": "141af7dc83ecf9840616fbf934ac1bed",
     "semantic_hash": ""
   },
   "lib/widgets/timeline/timeline_controller.dart": {
-    "mtime": 1794358369.3271234,
+    "mtime": 1794358858.0167546,
     "ast_hash": "e86e336ea6842175437bed3420aac5d4",
     "semantic_hash": ""
   },
@@ -2370,8 +2370,8 @@
     "semantic_hash": ""
   },
   "test/shot_timeline_test.dart": {
-    "mtime": 1794355792.668083,
-    "ast_hash": "3d87c5d5bb656b2c6c6ab4440a0a45e6",
+    "mtime": 1794361298.7238276,
+    "ast_hash": "be392b2423a524294fec8f7896aa89e1",
     "semantic_hash": ""
   },
   "test/timeline_math_test.dart": {
@@ -2420,7 +2420,7 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_player.dart": {
-    "mtime": 1794358396.0542686,
+    "mtime": 1794358858.0155938,
     "ast_hash": "efdaa09d94d2374c9806966ba8dd8697",
     "semantic_hash": ""
   },
@@ -2550,7 +2550,7 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1794358139.8445704,
+    "mtime": 1794361388.5329845,
     "ast_hash": "9de74ffa3ae0549b87a32926c38673e4",
     "semantic_hash": ""
   },
