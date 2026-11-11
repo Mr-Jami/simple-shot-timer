@@ -52,4 +52,25 @@ void main() {
       expect(done, isTrue);
     });
   });
+
+  test('landed waits for the seeks under way, and for nothing at rest', () {
+    fakeAsync((async) {
+      final seeker = ThrottledSeeker(
+          (d) => Future<void>.delayed(const Duration(milliseconds: 40)));
+      var landings = 0;
+      seeker.landed.then((_) => landings++);
+      async.flushMicrotasks();
+      expect(landings, 1, reason: 'nothing to wait for');
+
+      // A scrub in flight, then the release that follows it.
+      seeker.scrub(const Duration(milliseconds: 1000));
+      async.elapse(const Duration(milliseconds: 20));
+      seeker.release(const Duration(milliseconds: 2345));
+      seeker.landed.then((_) => landings++);
+      async.elapse(const Duration(milliseconds: 59));
+      expect(landings, 1, reason: 'the release is still seeking');
+      async.elapse(const Duration(milliseconds: 2));
+      expect(landings, 2);
+    });
+  });
 }

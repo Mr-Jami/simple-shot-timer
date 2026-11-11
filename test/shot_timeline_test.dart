@@ -197,6 +197,71 @@ void main() {
     expect(settled.last, 6789);
   });
 
+  testWidgets('halting a flick stops it there and settles once',
+      (tester) async {
+    await pumpTimeline(tester);
+    await tester.flingFrom(centre(tester), const Offset(-100, 0), 1500);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(controller.motion, TimelineMotion.fling);
+    settled.clear();
+    final at = controller.playheadMs;
+    controller.halt();
+    expect(controller.motion, TimelineMotion.idle);
+    expect(settled, [at.round()]);
+    await tester.pumpAndSettle();
+    expect(controller.playheadMs, at);
+    expect(settled, hasLength(1));
+  });
+
+  testWidgets('halting a glide to a marker stops short of it', (tester) async {
+    await pumpTimeline(tester);
+    controller.centreOn(6789);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    settled.clear();
+    final at = controller.playheadMs;
+    expect(at, inExclusiveRange(5000, 6789));
+    controller.halt();
+    await tester.pumpAndSettle();
+    expect(controller.playheadMs, at);
+    expect(settled, [at.round()]);
+  });
+
+  testWidgets('halted while springing back from past an end, it lands on it',
+      (tester) async {
+    await pumpTimeline(tester);
+    controller.centreOn(200, animate: false);
+    controller.startDrag();
+    controller.dragTo(300);
+    controller.endDrag(0);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 16));
+    expect(controller.displayMs, lessThan(0), reason: 'still stretched');
+    settled.clear();
+    controller.halt();
+    expect(controller.displayMs, 0);
+    expect(settled, [0]);
+    await tester.pumpAndSettle();
+    expect(settled, hasLength(1));
+  });
+
+  testWidgets('halting changes nothing at rest, under a finger or in playback',
+      (tester) async {
+    await pumpTimeline(tester);
+    settled.clear();
+    controller.halt();
+    controller.follow(5200);
+    controller.halt();
+    expect(controller.motion, TimelineMotion.playback);
+    controller.startDrag();
+    controller.dragTo(-30);
+    controller.halt();
+    expect(controller.motion, TimelineMotion.drag);
+    expect(settled, isEmpty);
+    controller.endDrag(0);
+  });
+
   testWidgets('pinching zooms around the fingers', (tester) async {
     await pumpTimeline(tester);
     controller.startDrag();

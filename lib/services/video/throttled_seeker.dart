@@ -39,6 +39,10 @@ class ThrottledSeeker {
     return _draining ??= _drain();
   }
 
+  /// Completes once no seek is in flight or waiting: the player is where it
+  /// was last sent.
+  Future<void> get landed => _draining ?? Future<void>.value();
+
   Future<void> _drain() async {
     try {
       while (_pending != null) {
