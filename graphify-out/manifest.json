@@ -2225,7 +2225,7 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1794356908.9425762,
+    "mtime": 1794358226.6926076,
     "ast_hash": "02372baa54eef6b0b20eb2df172aea1a",
     "semantic_hash": ""
   },
@@ -2270,7 +2270,7 @@
     "semantic_hash": ""
   },
   "lib/services/video/throttled_seeker.dart": {
-    "mtime": 1794356995.971282,
+    "mtime": 1794358410.711164,
     "ast_hash": "3fa6bf0b3114e8ba91bf92445ec158a7",
     "semantic_hash": ""
   },
@@ -2360,7 +2360,7 @@
     "semantic_hash": ""
   },
   "lib/widgets/timeline/timeline_controller.dart": {
-    "mtime": 1794356969.966952,
+    "mtime": 1794358369.3271234,
     "ast_hash": "e86e336ea6842175437bed3420aac5d4",
     "semantic_hash": ""
   },
@@ -2420,8 +2420,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/clip_player.dart": {
-    "mtime": 1794356983.0159752,
-    "ast_hash": "6a9bf61d0c1fbbd21b0bd4069940c2fe",
+    "mtime": 1794358396.0542686,
+    "ast_hash": "efdaa09d94d2374c9806966ba8dd8697",
     "semantic_hash": ""
   },
   "lib/widgets/clip_video.dart": {
@@ -2550,8 +2550,8 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1794356855.5663495,
-    "ast_hash": "b8db3d66cb6c3d3b8e3b700504e69236",
+    "mtime": 1794358139.8445704,
+    "ast_hash": "9de74ffa3ae0549b87a32926c38673e4",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/NoSpace.kt": {
