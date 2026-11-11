@@ -3,6 +3,7 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -77,10 +78,10 @@ void main() {
       find.descendant(
           of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
       paints
-        ..clipRect(rect: const Rect.fromLTRB(-400, 38, 1100, 122))
+        ..clipRect(rect: const Rect.fromLTRB(-400, 32, 1100, 116))
         ..path(
-          includes: const [Offset(200, 44), Offset(200, 116)],
-          excludes: const [Offset(300, 76)],
+          includes: const [Offset(200, 38), Offset(200, 110)],
+          excludes: const [Offset(300, 70)],
         ),
     );
   });
@@ -90,17 +91,17 @@ void main() {
     await pumpTimeline(tester, loudness: spike);
     controller.centreOn(6000, animate: false);
     await tester.pump();
-    // The band is 84 px from y 38: middle 80, 40 px either way. The spike
+    // The band is 84 px from y 32: middle 74, 40 px either way. The spike
     // sits under the playhead (x 200); 100 px on is quiet.
     expect(
       find.descendant(
           of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
       paints
         // Only where the clip has frames: 0 to 10 s.
-        ..clipRect(rect: const Rect.fromLTRB(-700, 38, 800, 122))
+        ..clipRect(rect: const Rect.fromLTRB(-700, 32, 800, 116))
         ..path(
-          includes: const [Offset(200, 44), Offset(200, 116)],
-          excludes: const [Offset(300, 76), Offset(300, 84)],
+          includes: const [Offset(200, 38), Offset(200, 110)],
+          excludes: const [Offset(300, 70), Offset(300, 78)],
         ),
     );
   });
@@ -127,22 +128,22 @@ void main() {
       paints
         // The waveform first.
         ..path()
-        // Above the band (y 38 to 122) pointing down, below it pointing up:
+        // Above the band (y 32 to 116) pointing down, below it pointing up:
         // the tips touch the band's edges and stay out of the waveform.
         ..path(
-          includes: const [Offset(200, 30), Offset(195, 30), Offset(200, 37)],
-          excludes: const [Offset(200, 39), Offset(195, 37), Offset(200, 27)],
+          includes: const [Offset(200, 26), Offset(195, 26), Offset(200, 31)],
+          excludes: const [Offset(200, 33), Offset(195, 31), Offset(200, 23)],
         )
         ..path(
           includes: const [
-            Offset(200, 130),
-            Offset(205, 130),
-            Offset(200, 123)
+            Offset(200, 122),
+            Offset(205, 122),
+            Offset(200, 117)
           ],
           excludes: const [
-            Offset(200, 121),
-            Offset(205, 123),
-            Offset(200, 133)
+            Offset(200, 115),
+            Offset(205, 117),
+            Offset(200, 125)
           ],
         ),
     );
@@ -163,8 +164,75 @@ void main() {
     for (final (from, to) in lines) {
       expect(from.dx, to.dx);
       // From under the badges, through the room for the pointers.
-      expect((from.dy, to.dy), (28, 122));
+      expect((from.dy, to.dy), (24, 116));
     }
+  });
+
+  testWidgets('the selected shot is marked by its badge', (tester) async {
+    await pumpTimeline(tester, markers: const [
+      TimelineMarker(
+          ms: 5000,
+          kind: TimelineMarkerKind.shot,
+          id: 1,
+          ordinal: 1,
+          selected: true),
+      TimelineMarker(
+          ms: 6000, kind: TimelineMarkerKind.shot, id: 2, ordinal: 2),
+    ]);
+    await tester.pump();
+    final ink = Theme.of(tester.element(find.byType(ShotTimeline)))
+        .colorScheme
+        .onSurface;
+    final fills = <double, Color>{};
+    expect(
+      find.descendant(
+          of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
+      paints
+        ..everything((method, arguments) {
+          final paint = method == #drawCircle ? arguments[2] as Paint : null;
+          if (paint != null && paint.style == PaintingStyle.fill) {
+            fills[(arguments[0] as Offset).dx] = paint.color;
+          }
+          return true;
+        }),
+    );
+    // With no line of its own, the badge is all that tells the selected shot
+    // (under the playhead, x 200) from the others: solid ink, theirs isn't.
+    expect(fills[200.0], isSameColorAs(ink));
+    expect(fills[350.0], isNot(isSameColorAs(ink)));
+  });
+
+  testWidgets('the pointers have room of their own, clear of the splits',
+      (tester) async {
+    // START 90 px left of the playhead, a shot 90 px right of it: their
+    // split's label sits right under the bottom pointer.
+    await pumpTimeline(tester, markers: const [
+      TimelineMarker(ms: 4400, kind: TimelineMarkerKind.start),
+      TimelineMarker(
+          ms: 5600, kind: TimelineMarkerKind.shot, id: 1, ordinal: 1),
+    ]);
+    await tester.pump();
+    final labels = <Rect>[];
+    expect(
+      find.descendant(
+          of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
+      paints
+        ..everything((method, arguments) {
+          if (method == #drawParagraph) {
+            final text = arguments[0] as ui.Paragraph;
+            labels.add((arguments[1] as Offset) &
+                Size(text.maxIntrinsicWidth, text.height));
+          }
+          return true;
+        }),
+    );
+    // Badges 24, a pointer 8, the band 84, a pointer 8: the splits start at
+    // y 124, where the bottom pointer ends, and fit in what is left.
+    final split = labels.singleWhere((l) => l.top > 24);
+    expect(split.center.dx, closeTo(200, 1));
+    expect(split.top, greaterThanOrEqualTo(124));
+    expect(split.bottom,
+        lessThanOrEqualTo(tester.getSize(find.byType(ShotTimeline)).height));
   });
 
   testWidgets('a drag moves the clip 1:1 under the finger', (tester) async {

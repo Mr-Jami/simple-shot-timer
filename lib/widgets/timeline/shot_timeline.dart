@@ -64,13 +64,16 @@ class ShotTimeline extends StatefulWidget {
     this.carryingShot = false,
   });
 
-  static const double badgeHeight = 28;
+  // The editor's top part has a fixed height, so every dp here comes out of
+  // the list under it: the badge and split rows are as tall as what they
+  // hold (a 22 dp badge, a 16 dp line of text) and no taller.
+  static const double badgeHeight = 24;
 
   /// How tall each playhead pointer is, and the room kept for it above the
   /// waveform and below it.
-  static const double pointerHeight = 10;
+  static const double pointerHeight = 8;
   static const double bandHeight = 84;
-  static const double splitHeight = 20;
+  static const double splitHeight = 16;
   static const double height =
       badgeHeight + bandHeight + splitHeight + 2 * pointerHeight;
   static const double _tapSlop = 24;
