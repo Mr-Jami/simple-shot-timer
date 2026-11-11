@@ -77,10 +77,10 @@ void main() {
       find.descendant(
           of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
       paints
-        ..clipRect(rect: const Rect.fromLTRB(-400, 28, 1100, 112))
+        ..clipRect(rect: const Rect.fromLTRB(-400, 38, 1100, 122))
         ..path(
-          includes: const [Offset(200, 34), Offset(200, 106)],
-          excludes: const [Offset(300, 66)],
+          includes: const [Offset(200, 44), Offset(200, 116)],
+          excludes: const [Offset(300, 76)],
         ),
     );
   });
@@ -90,19 +90,81 @@ void main() {
     await pumpTimeline(tester, loudness: spike);
     controller.centreOn(6000, animate: false);
     await tester.pump();
-    // The band is 84 px from y 28: middle 70, 40 px either way. The spike
+    // The band is 84 px from y 38: middle 80, 40 px either way. The spike
     // sits under the playhead (x 200); 100 px on is quiet.
     expect(
       find.descendant(
           of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
       paints
         // Only where the clip has frames: 0 to 10 s.
-        ..clipRect(rect: const Rect.fromLTRB(-700, 28, 800, 112))
+        ..clipRect(rect: const Rect.fromLTRB(-700, 38, 800, 122))
         ..path(
-          includes: const [Offset(200, 34), Offset(200, 106)],
-          excludes: const [Offset(300, 66), Offset(300, 74)],
+          includes: const [Offset(200, 44), Offset(200, 116)],
+          excludes: const [Offset(300, 76), Offset(300, 84)],
         ),
     );
+  });
+
+  testWidgets('the playhead is two pointers, with no line over the waveform',
+      (tester) async {
+    await pumpTimeline(tester, loudness: spike, markers: const [
+      TimelineMarker(ms: 4400, kind: TimelineMarkerKind.start),
+      // Under the playhead (x 200), and 150 px right of it.
+      TimelineMarker(
+          ms: 5000,
+          kind: TimelineMarkerKind.shot,
+          id: 1,
+          ordinal: 1,
+          selected: true),
+      TimelineMarker(
+          ms: 6000, kind: TimelineMarkerKind.shot, id: 2, ordinal: 2),
+    ]);
+    await tester.pump();
+    final timeline = find.descendant(
+        of: find.byType(ShotTimeline), matching: find.byType(CustomPaint));
+    expect(
+      timeline,
+      paints
+        // The waveform first.
+        ..path()
+        // Above the band (y 38 to 122) pointing down, below it pointing up:
+        // the tips touch the band's edges and stay out of the waveform.
+        ..path(
+          includes: const [Offset(200, 30), Offset(195, 30), Offset(200, 37)],
+          excludes: const [Offset(200, 39), Offset(195, 37), Offset(200, 27)],
+        )
+        ..path(
+          includes: const [
+            Offset(200, 130),
+            Offset(205, 130),
+            Offset(200, 123)
+          ],
+          excludes: const [
+            Offset(200, 121),
+            Offset(205, 123),
+            Offset(200, 133)
+          ],
+        ),
+    );
+    final lines = <(Offset, Offset)>[];
+    expect(
+      timeline,
+      paints
+        ..everything((method, arguments) {
+          if (method == #drawLine) {
+            lines.add((arguments[0] as Offset, arguments[1] as Offset));
+          }
+          return true;
+        }),
+    );
+    // START and the other shot keep their lines down the band; nothing is
+    // drawn down the playhead, not even the selected shot's line.
+    expect(lines.map((l) => l.$1.dx), unorderedEquals([110.0, 350.0]));
+    for (final (from, to) in lines) {
+      expect(from.dx, to.dx);
+      // From under the badges, through the room for the pointers.
+      expect((from.dy, to.dy), (28, 122));
+    }
   });
 
   testWidgets('a drag moves the clip 1:1 under the finger', (tester) async {
