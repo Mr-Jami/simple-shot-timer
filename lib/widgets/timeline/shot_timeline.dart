@@ -4,6 +4,7 @@
 
 import 'dart:math' as math;
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
@@ -42,8 +43,11 @@ class TimelineMarker {
 /// The editor's timeline: shot badges on top, the clip's loudness as a
 /// waveform in the middle (shots are the tall spikes), splits underneath,
 /// and a fixed playhead the clip scrolls under. The playhead is two
-/// pointers, above and below the waveform, with nothing drawn between them:
-/// a line there would hide in the spike it is being lined up with.
+/// pointers, above and below the waveform, and a hairline between their
+/// tips. A plain line would hide in the spike it is being lined up with, so
+/// this one takes the background's colour where it crosses the waveform
+/// (not where the waveform is dimmed, outside the string), and it fades
+/// towards the middle to leave the waveform there alone.
 /// One finger drags it 1:1, two fingers zoom around themselves, a flick
 /// flings it, and a tap picks the nearest marker. While [carryingShot] (a
 /// selected shot rides under the playhead) it never flings and zooms around
@@ -236,6 +240,31 @@ class _TimelinePainter extends CustomPainter {
 
   static const _pointerHalfWidth = 7.0;
 
+  /// The band the waveform is drawn in, between the pointers' tips.
+  static const _bandTop = ShotTimeline.badgeHeight + ShotTimeline.pointerHeight;
+  static const _bandBottom = _bandTop + ShotTimeline.bandHeight;
+
+  /// The hairline between the tips: how wide, and how strong at the tips
+  /// and in the band's middle.
+  static const _guideWidth = 1.0;
+  static const _guideTipAlpha = 0.9;
+  static const _guideMidAlpha = 0.15;
+
+  /// The hairline's two colours, fading from the tips towards the middle:
+  /// beside the waveform and across it. Made once, not on every frame.
+  late final _guideBeside = _guideFade(ink);
+  late final _guideAcross = _guideFade(paper);
+
+  static ui.Gradient _guideFade(Color colour) {
+    final tip = colour.withValues(alpha: _guideTipAlpha);
+    return ui.Gradient.linear(
+      const Offset(0, _bandTop),
+      const Offset(0, _bandBottom),
+      [tip, colour.withValues(alpha: _guideMidAlpha), tip],
+      const [0, 0.5, 1],
+    );
+  }
+
   /// The badges' and splits' labels, laid out once: the markers stay the
   /// same while the timeline scrolls, and a change brings a new painter.
   /// They go with this painter (the garbage collector frees them).
@@ -247,12 +276,12 @@ class _TimelinePainter extends CustomPainter {
     final pps = controller.pxPerSecond;
     final at = controller.displayMs;
     double xOf(num ms) => centre + (ms - at) / 1000 * pps;
-    const top = ShotTimeline.badgeHeight + ShotTimeline.pointerHeight;
-    const bottom = top + ShotTimeline.bandHeight;
+    const top = _bandTop;
+    const bottom = _bandBottom;
     final band = Rect.fromLTRB(0, top, size.width, bottom);
 
     canvas.drawRect(Offset.zero & size, Paint()..color = paper);
-    _paintWaveform(canvas, band, xOf);
+    final waveHalf = _paintWaveform(canvas, band, xOf);
 
     // Outside the string (before START, after the last shot) is dimmed.
     final active = [
@@ -262,10 +291,19 @@ class _TimelinePainter extends CustomPainter {
     final start =
         markers.where((m) => m.kind == TimelineMarkerKind.start).firstOrNull;
     final shade = Paint()..color = paper.withValues(alpha: 0.7);
+    var playheadDimmed = false;
     if (start != null) {
-      canvas.drawRect(Rect.fromLTRB(0, top, xOf(start.ms), bottom), shade);
-      final end = active.isEmpty ? start.ms : active.last;
-      canvas.drawRect(Rect.fromLTRB(xOf(end), top, size.width, bottom), shade);
+      final from = xOf(start.ms);
+      final to = xOf(active.isEmpty ? start.ms : active.last);
+      canvas.drawRect(Rect.fromLTRB(0, top, from, bottom), shade);
+      canvas.drawRect(Rect.fromLTRB(to, top, size.width, bottom), shade);
+      // Only with the whole hairline in the shade, and not at its edge. A
+      // marker carried under the playhead sits on the playhead's whole
+      // millisecond, so the shade's edge is up to half a millisecond (a
+      // pixel at the closest zoom) to either side of it from frame to
+      // frame, and the hairline must not switch with it.
+      final slack = _guideWidth / 2 + pps / 2000;
+      playheadDimmed = centre + slack <= from || centre - slack >= to;
     }
 
     _paintSplits(canvas, size, xOf);
@@ -275,7 +313,11 @@ class _TimelinePainter extends CustomPainter {
       _paintMarker(canvas, m, x, top, bottom);
     }
 
-    // The playhead: the tips touch the band's edges from outside.
+    // The playhead: the tips touch the band's edges from outside, with the
+    // hairline between them.
+    // A dimmed waveform is mostly background already: there the hairline
+    // stays ink all the way, which shows on it.
+    _paintGuide(canvas, centre, band, playheadDimmed ? 0 : waveHalf);
     final playhead = Paint()..color = ink;
     for (final (tip, away) in const [(top, -1), (bottom, 1)]) {
       final base = tip + away * ShotTimeline.pointerHeight;
@@ -290,10 +332,28 @@ class _TimelinePainter extends CustomPainter {
     }
   }
 
+  /// The hairline between the pointers' tips at [x]: in [paper] where it
+  /// crosses the waveform ([waveHalf] either way from the band's middle), in
+  /// [ink] beside it.
+  void _paintGuide(Canvas canvas, double x, Rect band, double waveHalf) {
+    final mid = band.center.dy;
+    Rect part(double from, double to) =>
+        Rect.fromLTRB(x - _guideWidth / 2, from, x + _guideWidth / 2, to);
+    final beside = Paint()..shader = _guideBeside;
+    canvas.drawRect(part(band.top, mid - waveHalf), beside);
+    canvas.drawRect(part(mid + waveHalf, band.bottom), beside);
+    if (waveHalf > 0) {
+      canvas.drawRect(
+          part(mid - waveHalf, mid + waveHalf), Paint()..shader = _guideAcross);
+    }
+  }
+
   /// The loudness mirrored around the band's middle, the loudest frame per
-  /// pixel column, at least a hairline where there are frames.
-  void _paintWaveform(Canvas canvas, Rect band, double Function(num) xOf) {
-    if (frameMs <= 0 || loudness.isEmpty) return;
+  /// pixel column, at least a hairline where there are frames. Returns how
+  /// far the waveform reaches from the middle at the playhead (the band's
+  /// centre); 0 where the clip has no frames.
+  double _paintWaveform(Canvas canvas, Rect band, double Function(num) xOf) {
+    if (frameMs <= 0 || loudness.isEmpty) return 0;
     final columns = band.width.ceil();
     final leftMs =
         controller.displayMs - band.width / 2 / controller.pxPerSecond * 1000;
@@ -314,15 +374,25 @@ class _TimelinePainter extends CustomPainter {
       wave.lineTo(c + 0.5, mid + half(c));
     }
     wave.close();
-    canvas.save();
-    canvas.clipRect(Rect.fromLTRB(
+    final frames = Rect.fromLTRB(
       xOf(originMs),
       band.top,
       xOf(originMs + loudness.length * frameMs),
       band.bottom,
-    ));
+    );
+    canvas.save();
+    canvas.clipRect(frames);
     canvas.drawPath(wave, Paint()..color = ink);
     canvas.restore();
+
+    // The outline runs through each column's middle: the playhead is
+    // between two of them.
+    final playhead = band.center.dx;
+    if (playhead < frames.left || playhead > frames.right) return 0;
+    final before = (playhead - 0.5).floor().clamp(0, columns - 1);
+    final after = math.min(before + 1, columns - 1);
+    final along = (playhead - 0.5 - before).clamp(0.0, 1.0);
+    return half(before) + (half(after) - half(before)) * along;
   }
 
   void _paintMarker(

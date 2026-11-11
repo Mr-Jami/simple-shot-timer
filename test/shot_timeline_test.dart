@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:simple_shot_timer/widgets/repeat_button.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
@@ -28,6 +29,7 @@ void main() {
     TargetPlatform platform = TargetPlatform.android,
     Float32List? loudness,
     int originMs = 0,
+    double pxPerSecond = 150,
   }) async {
     tapped = [];
     settled = [];
@@ -35,7 +37,7 @@ void main() {
       vsync: tester,
       endMs: 10000,
       platform: platform,
-      pxPerSecond: 150,
+      pxPerSecond: pxPerSecond,
       onSettle: settled.add,
     );
     addTearDown(controller.dispose);
@@ -66,6 +68,44 @@ void main() {
 
   Offset centre(WidgetTester tester) =>
       tester.getCenter(find.byType(ShotTimeline));
+
+  /// The hairline's parts after the next frame: beside the waveform (above
+  /// it, below it), then across it. Where the waveform is dimmed there is
+  /// no part across it.
+  Future<List<Rect>> guideParts(WidgetTester tester) async {
+    await tester.pump();
+    final rects = <Rect>[];
+    expect(
+      find.descendant(
+          of: find.byType(ShotTimeline), matching: find.byType(CustomPaint)),
+      paints
+        ..everything((method, arguments) {
+          if (method == #drawRect && (arguments[1] as Paint).shader != null) {
+            rects.add(arguments[0] as Rect);
+          }
+          return true;
+        }),
+    );
+    return rects;
+  }
+
+  /// How bright the timeline is at a point, 0 to 1 (the test theme draws
+  /// dark on light). At 2 px per logical px the 1 px hairline, half a px
+  /// either side of x 200, covers whole pixels.
+  Future<double Function(int x, int y)> shown(WidgetTester tester) async {
+    final (bytes, width) = (await tester.runAsync(() async {
+      final image = await tester
+          .renderObject<RenderRepaintBoundary>(find.descendant(
+              of: find.byType(ShotTimeline),
+              matching: find.byType(RepaintBoundary)))
+          .toImage(pixelRatio: 2);
+      final rgba = (await image.toByteData())!.buffer.asUint8List();
+      final width = image.width;
+      image.dispose();
+      return (rgba, width);
+    }))!;
+    return (x, y) => bytes[(y * 2 * width + x * 2) * 4] / 255;
+  }
 
   testWidgets("a long clip's part: its frames start at its own time",
       (tester) async {
@@ -106,7 +146,7 @@ void main() {
     );
   });
 
-  testWidgets('the playhead is two pointers, with no line over the waveform',
+  testWidgets('the playhead is two pointers; a selected shot has no line',
       (tester) async {
     await pumpTimeline(tester, loudness: spike, markers: const [
       TimelineMarker(ms: 4400, kind: TimelineMarkerKind.start),
@@ -158,14 +198,142 @@ void main() {
           return true;
         }),
     );
-    // START and the other shot keep their lines down the band; nothing is
-    // drawn down the playhead, not even the selected shot's line.
+    // START and the other shot keep their lines down the band; the selected
+    // shot under the playhead has none, only the playhead's own hairline.
     expect(lines.map((l) => l.$1.dx), unorderedEquals([110.0, 350.0]));
     for (final (from, to) in lines) {
       expect(from.dx, to.dx);
       // From under the badges, through the room for the pointers.
       expect((from.dy, to.dy), (24, 116));
     }
+  });
+
+  testWidgets(
+      'a hairline joins the pointers: it stands out on the waveform and '
+      'beside it, and fades towards the middle', (tester) async {
+    // Loud from 5.9 to 6.1 s: under the playhead the waveform fills the
+    // band (y 32 to 116) but for 2 px at each edge.
+    final loud = Float32List(3750)
+      ..fillRange((5900 / frameMs).floor(), (6100 / frameMs).floor(), 1);
+    await pumpTimeline(tester, loudness: loud);
+    controller.centreOn(6000, animate: false);
+    await tester.pump();
+    var at = await shown(tester);
+    // Across the waveform (dark) the hairline is light, as the background.
+    expect(at(190, 40), lessThan(0.3));
+    expect(at(200, 40), greaterThan(0.6));
+    expect(at(200, 108), greaterThan(0.6));
+    // In the middle it has faded and the waveform shows.
+    expect(at(200, 74), lessThan(0.4));
+    // Between a tip and the waveform it is dark, on the light background.
+    expect(at(190, 33), greaterThan(0.9));
+    expect(at(200, 33), lessThan(0.4));
+
+    // Over a quiet part it is dark from tip to tip, fainter in the middle.
+    controller.centreOn(5000, animate: false);
+    await tester.pump();
+    at = await shown(tester);
+    expect(at(190, 36), greaterThan(0.9));
+    expect(at(200, 36), lessThan(0.4));
+    expect(at(200, 112), lessThan(0.4));
+    expect(at(200, 64), greaterThan(at(200, 36) + 0.3));
+  });
+
+  testWidgets(
+      'over a dimmed waveform, outside the string, the hairline is dark',
+      (tester) async {
+    final loud = Float32List(3750)
+      ..fillRange((5900 / frameMs).floor(), (6100 / frameMs).floor(), 1);
+    const shot = TimelineMarker(ms: 9000, kind: TimelineMarkerKind.shot, id: 1);
+
+    // The playhead (6 s) before START, and after the last shot: the
+    // waveform under it is dimmed, mostly background. A background-coloured
+    // hairline would be lost on it, so it is dark there too.
+    for (final markers in const [
+      [TimelineMarker(ms: 8000, kind: TimelineMarkerKind.start), shot],
+      [
+        TimelineMarker(ms: 2000, kind: TimelineMarkerKind.start),
+        TimelineMarker(ms: 3000, kind: TimelineMarkerKind.shot, id: 1),
+      ],
+    ]) {
+      await pumpTimeline(tester, loudness: loud, markers: markers);
+      controller.centreOn(6000, animate: false);
+      await tester.pump();
+      final at = await shown(tester);
+      expect(at(190, 40), greaterThan(0.6));
+      expect(at(200, 40), lessThan(at(190, 40) - 0.3));
+      expect(at(200, 108), lessThan(at(190, 108) - 0.3));
+    }
+
+    // START carried under the playhead: the shade ends there, the waveform
+    // right of it is at full strength, and the hairline is light across it.
+    await pumpTimeline(tester, loudness: loud, markers: const [
+      TimelineMarker(ms: 6000, kind: TimelineMarkerKind.start),
+      shot,
+    ]);
+    controller.centreOn(6000, animate: false);
+    await tester.pump();
+    final at = await shown(tester);
+    expect(at(210, 40), lessThan(0.3));
+    expect(at(200, 40), greaterThan(0.6));
+  });
+
+  testWidgets("at a spike's edge the hairline is cut halfway up the spike",
+      (tester) async {
+    // At 150 px a second a pixel column is 2.5 frames and the playhead (6 s,
+    // frame 2250) sits between two columns: frames 2247.5 to 2250 left of
+    // it, 2250 to 2252.5 right of it. A selected shot sits on such an edge.
+    // Rising: quiet (a 0.5 px hairline) left, full (40 px) right.
+    await pumpTimeline(tester,
+        loudness: Float32List(3750)..fillRange(2252, 2400, 1));
+    controller.centreOn(6000, animate: false);
+    expect(await guideParts(tester), const [
+      Rect.fromLTRB(199.5, 32, 200.5, 53.75),
+      Rect.fromLTRB(199.5, 94.25, 200.5, 116),
+      Rect.fromLTRB(199.5, 53.75, 200.5, 94.25),
+    ]);
+
+    // Falling: half strength (20 px) left, quiet right.
+    await pumpTimeline(tester,
+        loudness: Float32List(3750)..fillRange(2100, 2250, 0.5));
+    controller.centreOn(6000, animate: false);
+    expect(await guideParts(tester), const [
+      Rect.fromLTRB(199.5, 32, 200.5, 63.75),
+      Rect.fromLTRB(199.5, 84.25, 200.5, 116),
+      Rect.fromLTRB(199.5, 63.75, 200.5, 84.25),
+    ]);
+  });
+
+  testWidgets(
+      'carrying the last shot at the closest zoom, the hairline stays as it is',
+      (tester) async {
+    // Loud all across the view. The shade after the last shot (6 s) starts
+    // at the playhead. The editor keeps a carried shot on the playhead's
+    // whole millisecond, so the shade's edge is up to half a millisecond off
+    // the playhead: a pixel at 2000 px a second, more than half the line.
+    final loud = Float32List(3750)
+      ..fillRange((5800 / frameMs).floor(), (6200 / frameMs).floor(), 1);
+    await pumpTimeline(tester,
+        loudness: loud,
+        pxPerSecond: 2000,
+        markers: const [
+          TimelineMarker(ms: 2000, kind: TimelineMarkerKind.start),
+          TimelineMarker(ms: 6000, kind: TimelineMarkerKind.shot, id: 1),
+        ]);
+    controller.centreOn(6000, animate: false);
+    controller.startDrag();
+    // The playhead at 6000.3 ms: the shot stays on 6000.
+    controller.dragTo(-0.6);
+    expect(await guideParts(tester), hasLength(3));
+    // Anywhere within that millisecond, to either side: no switching.
+    for (var px = -0.9; px < 0.95; px += 0.1) {
+      controller.dragTo(px);
+      expect(await guideParts(tester), hasLength(3), reason: '$px px');
+    }
+    // A millisecond into the shade (2 px), the hairline is the dimmed
+    // waveform's: no part across it.
+    controller.dragTo(-2);
+    expect(await guideParts(tester), hasLength(2));
   });
 
   testWidgets('the selected shot is marked by its badge', (tester) async {
