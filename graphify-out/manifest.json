@@ -2355,8 +2355,8 @@
     "semantic_hash": ""
   },
   "lib/widgets/timeline/shot_timeline.dart": {
-    "mtime": 1794360126.9088278,
-    "ast_hash": "e8ddf9d1b5fed6a0ada7768eecc58ec5",
+    "mtime": 1794361388.5075965,
+    "ast_hash": "141af7dc83ecf9840616fbf934ac1bed",
     "semantic_hash": ""
   },
   "lib/widgets/timeline/timeline_controller.dart": {
@@ -2370,8 +2370,8 @@
     "semantic_hash": ""
   },
   "test/shot_timeline_test.dart": {
-    "mtime": 1794360126.912721,
-    "ast_hash": "be0f17c80368f87c4221538337db666e",
+    "mtime": 1794361298.7238276,
+    "ast_hash": "be392b2423a524294fec8f7896aa89e1",
     "semantic_hash": ""
   },
   "test/timeline_math_test.dart": {
@@ -2550,7 +2550,7 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1794358858.0193286,
+    "mtime": 1794361388.5329845,
     "ast_hash": "9de74ffa3ae0549b87a32926c38673e4",
     "semantic_hash": ""
   },
