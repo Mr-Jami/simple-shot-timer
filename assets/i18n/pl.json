@@ -279,6 +279,8 @@
   "editor.setStart": "Ustaw START",
   "editor.addShot": "Strzał",
   "editor.lastShot": "Ostatni strzał",
+  "editor.done": "Gotowe",
+  "editor.dragHint": "Przeciągnij oś czasu, aby przesunąć ten strzał.",
   "editor.deleted": "Strzał usunięty",
   "editor.undo": "Cofnij",
   "editor.start": "START",

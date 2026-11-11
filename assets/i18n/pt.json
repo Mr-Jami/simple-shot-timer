@@ -279,6 +279,8 @@
   "editor.setStart": "Marcar INÍCIO",
   "editor.addShot": "Disparo",
   "editor.lastShot": "Último disparo",
+  "editor.done": "Pronto",
+  "editor.dragHint": "Arraste a linha do tempo para mover este disparo.",
   "editor.deleted": "Disparo excluído",
   "editor.undo": "Desfazer",
   "editor.start": "INÍCIO",

@@ -279,6 +279,8 @@
   "editor.setStart": "Отметить START",
   "editor.addShot": "Выстрел",
   "editor.lastShot": "Последний",
+  "editor.done": "Готово",
+  "editor.dragHint": "Перетащите шкалу времени, чтобы сдвинуть выстрел.",
   "editor.deleted": "Выстрел удалён",
   "editor.undo": "Вернуть",
   "editor.start": "START",

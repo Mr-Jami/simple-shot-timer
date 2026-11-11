@@ -686,7 +686,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
           onNudgeEnd: _editor.endGesture,
           onDelete: _delete,
           onLastShot: (shot) => _editor.setLastShot(shot.id),
-          onDeselect: () => _editor.select(null),
+          onDone: () => _editor.select(null),
         ),
         const Divider(height: 1),
       ];

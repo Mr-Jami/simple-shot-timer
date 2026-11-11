@@ -279,6 +279,8 @@
   "editor.setStart": "Set START",
   "editor.addShot": "Shot",
   "editor.lastShot": "Last shot",
+  "editor.done": "Done",
+  "editor.dragHint": "Drag the timeline to move this shot.",
   "editor.deleted": "Shot deleted",
   "editor.undo": "Undo",
   "editor.start": "START",

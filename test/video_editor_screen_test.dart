@@ -643,6 +643,59 @@ void main() {
     expect(state().doc.shotById(shot.id)!.ms, closeTo(shot.ms + moved, 60));
   });
 
+  testWidgets(
+      'a drag moves a new shot until Done; after Done it scrolls past the shot',
+      (tester) async {
+    final state = await openEditor(tester);
+    final timeline =
+        tester.widget<ShotTimeline>(find.byType(ShotTimeline)).controller;
+    const hint = 'Drag the timeline to move this shot.';
+    expect(find.text('Done'), findsNothing);
+    expect(find.text(hint), findsNothing);
+
+    await tester.tap(find.widgetWithText(FilledButton, 'Shot'));
+    await tester.pumpAndSettle();
+    final added = state().selected!;
+    expect(added.ms, timeline.playheadMs.round());
+    expect(find.text(hint), findsOneWidget);
+
+    // Not placed yet: the shot rides along with the timeline.
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pumpAndSettle();
+    final placed = state().doc.shotById(added.id)!.ms;
+    expect(placed, isNot(added.ms));
+    expect(state().selectedId, added.id);
+
+    await tester.tap(find.widgetWithText(FilledButton, 'Done'));
+    await tester.pumpAndSettle();
+    expect(state().selectedId, isNull);
+    expect(state().doc.shotById(added.id)!.ms, placed);
+    expect(find.text('Done'), findsNothing);
+    expect(find.text(hint), findsNothing);
+
+    // Placed: the same drag now scrolls, and the shot stays behind.
+    final from = timeline.playheadMs;
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pumpAndSettle();
+    expect(timeline.playheadMs, greaterThan(from + 100));
+    expect(state().selectedId, isNull);
+    expect(state().doc.shotById(added.id)!.ms, placed);
+  });
+
+  testWidgets('a shot chosen in the list gets Done and the hint too',
+      (tester) async {
+    final state = await openEditor(tester);
+    await selectFirstShot(tester);
+    final shot = state().selected!;
+    expect(find.text('Drag the timeline to move this shot.'), findsOneWidget);
+    await tester.tap(find.widgetWithText(FilledButton, 'Done'));
+    await tester.pumpAndSettle();
+    expect(state().selectedId, isNull);
+    expect(state().doc.shotById(shot.id)!.ms, shot.ms);
+    // Back to Set START and + Shot.
+    expect(find.widgetWithText(FilledButton, 'Shot'), findsOneWidget);
+  });
+
   testWidgets('with the keyboard up only the details show', (tester) async {
     await openEditor(tester);
     tester.view.physicalSize = const Size(360 * 3, 740 * 3);
