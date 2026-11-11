@@ -386,12 +386,14 @@ void main() {
   /// The editor on a playing video, its timeline flicked and still gliding,
   /// and every seek from here on slow to land.
   Future<(_PlayingVideo, TimelineController)> openGliding(
-      WidgetTester tester) async {
+    WidgetTester tester, {
+    bool beep = true,
+  }) async {
     final platform = VideoPlayerPlatform.instance;
     final video = _PlayingVideo();
     VideoPlayerPlatform.instance = video;
     addTearDown(() => VideoPlayerPlatform.instance = platform);
-    await openEditor(tester);
+    await openEditor(tester, beep: beep);
     final timeline =
         tester.widget<ShotTimeline>(find.byType(ShotTimeline)).controller;
     await tester.flingFrom(tester.getCenter(find.byType(ShotTimeline)),
@@ -457,6 +459,66 @@ void main() {
     await tester.pumpAndSettle();
     expect(video.asked, isNot(contains('play')));
     expect(find.byTooltip('Play'), findsOneWidget);
+
+    await landAndClose(tester, video);
+  });
+
+  testWidgets(
+      'going to the background calls off a Play still waiting for its seek',
+      (tester) async {
+    final (video, _) = await openGliding(tester);
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump();
+
+    video.slowSeek!.complete();
+    video.slowSeek = null;
+    await tester.pumpAndSettle();
+    expect(video.asked, isNot(contains('play')), reason: 'in the background');
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pumpAndSettle();
+    expect(video.asked, isNot(contains('play')), reason: 'back in front');
+    expect(find.byTooltip('Play'), findsOneWidget);
+
+    await landAndClose(tester, video);
+  });
+
+  testWidgets('Back calls off a Play still waiting for its seek',
+      (tester) async {
+    // Nothing to save yet, so Back asks first and the editor stays.
+    final (video, _) = await openGliding(tester, beep: false);
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    await tester.tap(find.byTooltip('Back'));
+    await tester.pump();
+
+    video.slowSeek!.complete();
+    video.slowSeek = null;
+    await tester.pumpAndSettle();
+    expect(find.text('Leave without saving?'), findsOneWidget);
+    expect(video.asked, isNot(contains('play')));
+
+    await tester.tap(find.text('Leave'));
+    await tester.pumpAndSettle();
+    expect(find.text('open'), findsOneWidget);
+  });
+
+  testWidgets('a seek that never lands keeps Play waiting a second at most',
+      (tester) async {
+    final (video, _) = await openGliding(tester);
+    await tester.tap(find.byTooltip('Play'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 990));
+    expect(video.asked, isNot(contains('play')));
+    await tester.pump(const Duration(milliseconds: 20));
+    // From wherever the video is: better than a Play that does nothing.
+    expect(video.asked.last, 'play');
+    expect(find.byTooltip('Pause'), findsOneWidget);
 
     await landAndClose(tester, video);
   });

@@ -47,13 +47,16 @@ class ClipPlayer extends VideoPlayerController {
   /// it and then jump. False if [pause] was called meanwhile: whatever
   /// called it (a touch on the timeline, leaving the screen, the app going
   /// to the background) called that play off.
+  ///
+  /// Waits a second at most: a seek the platform never answers (on iOS, one
+  /// to the exact end of some files) must not leave Play dead.
   Future<bool> landed() async {
     final pauses = _pauses;
     try {
-      await _seeker.landed;
+      await _seeker.landed.timeout(const Duration(seconds: 1));
     } on Exception {
-      // A seek that failed leaves the video where it was: it plays from
-      // there rather than not at all.
+      // A seek that failed, or hasn't landed in time, leaves the video
+      // where it is: it plays from there rather than not at all.
     }
     return pauses == _pauses;
   }
