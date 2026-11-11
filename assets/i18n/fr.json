@@ -175,6 +175,7 @@
   "drills.overwrittenSnack": "« {name} » mis à jour",
   "drills.appliedSnack": "« {name} » appliqué",
   "drills.empty": "Aucun exercice enregistré pour le moment. Enregistrez votre exercice actuel pour le réutiliser en un geste.",
+  "drills.sensitivity": "{sensitivity}% de sensibilité",
 
   "micTest.title": "Tester le microphone",
   "micTest.instruction": "Produisez le bruit à détecter. La ligne rouge représente le seuil de détection actuel — ajustez la sensibilité jusqu'à ce que les pics la franchissent à peine.",

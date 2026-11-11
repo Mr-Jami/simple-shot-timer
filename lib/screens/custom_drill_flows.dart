@@ -47,7 +47,8 @@ Future<void> saveCurrentDrill(BuildContext context, WidgetRef ref) async {
 }
 
 /// Loads [drill] into the settings and says so. Only the drill fields
-/// change; the timer picks them up at the next start.
+/// change, the sensitivity among them; the timer picks them up at the next
+/// start.
 Future<void> applyDrill(
   BuildContext context,
   WidgetRef ref,

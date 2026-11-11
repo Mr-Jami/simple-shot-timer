@@ -15,14 +15,25 @@ class CustomDrill {
   });
 
   /// Throws [FormatException] on a missing id or blank name; [decodeList]
-  /// turns that into "skip this entry".
-  factory CustomDrill.fromMap(Map<String, Object?> map) {
+  /// turns that into "skip this entry". [sensitivityFallback] is passed on
+  /// to [DrillConfig.fromMap].
+  factory CustomDrill.fromMap(
+    Map<String, Object?> map, {
+    int? sensitivityFallback,
+  }) {
     final id = map['id'];
     if (id is! int) throw const FormatException('custom drill without id');
     final rawName = map['name'];
     final name = normalizeName(rawName is String ? rawName : '');
     if (name.isEmpty) throw const FormatException('custom drill without name');
-    return CustomDrill(id: id, name: name, config: DrillConfig.fromMap(map));
+    return CustomDrill(
+      id: id,
+      name: name,
+      config: DrillConfig.fromMap(
+        map,
+        sensitivityFallback: sensitivityFallback,
+      ),
+    );
   }
 
   /// Longest name the entry dialog accepts; keeps the home chip readable.
@@ -58,7 +69,10 @@ class CustomDrill {
 
   /// Never throws. A corrupt blob yields an empty list and a corrupt entry is
   /// skipped, so a bad prefs value can't take the app down at startup.
-  static List<CustomDrill> decodeList(String? json) {
+  ///
+  /// A drill stored without a sensitivity gets [sensitivityFallback] (see
+  /// [DrillConfig.fromMap]); the caller passes the sensitivity in use.
+  static List<CustomDrill> decodeList(String? json, {int? sensitivityFallback}) {
     if (json == null || json.isEmpty) return const [];
     final Object? raw;
     try {
@@ -71,7 +85,10 @@ class CustomDrill {
     for (final entry in raw) {
       if (entry is! Map) continue;
       try {
-        drills.add(CustomDrill.fromMap(Map<String, Object?>.from(entry)));
+        drills.add(CustomDrill.fromMap(
+          Map<String, Object?>.from(entry),
+          sensitivityFallback: sensitivityFallback,
+        ));
       } on FormatException {
         continue;
       }

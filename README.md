@@ -17,8 +17,8 @@ and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653).
   to 200s for scenario practice).
 - **Start delay** — Instant, fixed, or random within a min/max range.
 - **Saved drills** — Save the current drill (mode, start delay, par/stage
-  timing) under a name. On the Drills tab, tap a drill to apply it; its menu
-  renames, overwrites or deletes it.
+  timing and the detection sensitivity) under a name. On the Drills tab,
+  tap a drill to apply it; its menu renames, overwrites or deletes it.
 - **Shot detection** — Raw mic stream with the platform's voice processing
   bypassed, an optional frequency-band filter and a notch at the beep tone,
   then peak detection with an echo filter. The beep never counts as a shot,

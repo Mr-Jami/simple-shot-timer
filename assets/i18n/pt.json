@@ -175,6 +175,7 @@
   "drills.overwrittenSnack": "“{name}” atualizado",
   "drills.appliedSnack": "“{name}” aplicado",
   "drills.empty": "Nenhum exercício salvo ainda. Salve seu exercício atual para usá-lo de novo com um toque.",
+  "drills.sensitivity": "Sensibilidade {sensitivity}%",
 
   "micTest.title": "Testar microfone",
   "micTest.instruction": "Faça o som que você quer detectar. A linha vermelha é o limiar de detecção atual — ajuste a sensibilidade até que os picos mal passem dela.",

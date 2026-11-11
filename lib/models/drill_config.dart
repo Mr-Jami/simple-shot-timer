@@ -8,9 +8,11 @@ import '../i18n/app_localizations.dart';
 import 'app_settings.dart';
 import 'enums.dart';
 
-/// The subset of [AppSettings] that defines a drill: mode, start delay and
-/// par/stage timing. Detection, beep, display, locale and history settings
-/// are deliberately not part of it.
+/// The subset of [AppSettings] that defines a drill: mode, start delay,
+/// par/stage timing and the detection sensitivity (issue #68: another gun,
+/// indoors or outdoors and dry fire each want their own). The rest of the
+/// detection setup (echo and band filter) and the beep, display, locale and
+/// history settings are deliberately not part of it.
 ///
 /// This is the one definition of "drill configuration" in the app (issue
 /// #24). Any new AppSettings field that shapes a drill must be added here,
@@ -27,6 +29,7 @@ class DrillConfig {
     required this.parRepeatCount,
     required this.parIntervalMs,
     required this.stageDurationMs,
+    required this.sensitivityPercent,
   });
 
   /// Snapshot of the drill fields of [s].
@@ -40,12 +43,20 @@ class DrillConfig {
         parRepeatCount: s.parRepeatCount,
         parIntervalMs: s.parIntervalMs,
         stageDurationMs: s.stageDurationMs,
+        sensitivityPercent: s.sensitivityPercent,
       );
 
   /// Tolerant decode in the style of `SettingsService.load`: a missing or
   /// wrong-typed value falls back to the app default, as does an unknown
   /// enum name. Ranges are not enforced here; the timer guards them at use.
-  factory DrillConfig.fromMap(Map<String, Object?> map) {
+  ///
+  /// The sensitivity alone falls back to [sensitivityFallback] when given,
+  /// so a drill stored without one loads with the sensitivity in use rather
+  /// than the default.
+  factory DrillConfig.fromMap(
+    Map<String, Object?> map, {
+    int? sensitivityFallback,
+  }) {
     final d = defaults;
     int readInt(String key, int fallback) {
       final v = map[key];
@@ -66,6 +77,10 @@ class DrillConfig {
       parRepeatCount: readInt('par_repeat_count', d.parRepeatCount),
       parIntervalMs: readInt('par_interval_ms', d.parIntervalMs),
       stageDurationMs: readInt('stage_duration_ms', d.stageDurationMs),
+      sensitivityPercent: readInt(
+        sensitivityKey,
+        sensitivityFallback ?? d.sensitivityPercent,
+      ),
     );
   }
 
@@ -82,6 +97,12 @@ class DrillConfig {
   final int parRepeatCount;
   final int parIntervalMs;
   final int stageDurationMs;
+  final int sensitivityPercent;
+
+  /// The [toMap] key of [sensitivityPercent]. Public because the one-time
+  /// upgrade of older drills (`SettingsService.migrateDrills`) fills it in
+  /// on the stored maps.
+  static const sensitivityKey = 'sensitivity_percent';
 
   /// Returns [s] with only the drill fields replaced; every other setting
   /// keeps its current value.
@@ -95,6 +116,7 @@ class DrillConfig {
         parRepeatCount: parRepeatCount,
         parIntervalMs: parIntervalMs,
         stageDurationMs: stageDurationMs,
+        sensitivityPercent: sensitivityPercent,
       );
 
   /// Keys match the SharedPreferences keys in `SettingsService` so the two
@@ -109,6 +131,7 @@ class DrillConfig {
         'par_repeat_count': parRepeatCount,
         'par_interval_ms': parIntervalMs,
         'stage_duration_ms': stageDurationMs,
+        sensitivityKey: sensitivityPercent,
       };
 
   @override
@@ -123,7 +146,8 @@ class DrillConfig {
           parDurationMs == other.parDurationMs &&
           parRepeatCount == other.parRepeatCount &&
           parIntervalMs == other.parIntervalMs &&
-          stageDurationMs == other.stageDurationMs;
+          stageDurationMs == other.stageDurationMs &&
+          sensitivityPercent == other.sensitivityPercent;
 
   @override
   int get hashCode => Object.hash(
@@ -136,6 +160,7 @@ class DrillConfig {
         parRepeatCount,
         parIntervalMs,
         stageDurationMs,
+        sensitivityPercent,
       );
 
   @override
@@ -145,9 +170,10 @@ class DrillConfig {
 /// Localized descriptions of a [DrillConfig], in the style of the `labelFor`
 /// extensions in `enums.dart`.
 extension DrillConfigLabels on DrillConfig {
-  /// One short label per aspect, e.g. ["Par mode", "Random delay",
-  /// "Par 2.0s x 4"]. Rendered as the home summary chips and joined for list
-  /// subtitles, so a drill reads the same everywhere.
+  /// One short label per timing aspect, e.g. ["Par mode", "Random delay",
+  /// "Par 2.0s x 4"]. Rendered as the home summary chips and leading the
+  /// list subtitles, so a drill reads the same everywhere. The sensitivity
+  /// is left to [summary]: on the Timer tab it would crowd the chips.
   List<String> chipLabels(BuildContext context) => [
         context.tr('home.modeChip', args: {'mode': drillMode.labelFor(context)}),
         _delayLabel(context),
@@ -155,8 +181,13 @@ extension DrillConfigLabels on DrillConfig {
         if (drillMode == DrillMode.stage) _stageLabel(context),
       ];
 
-  /// [chipLabels] on a single line.
-  String summary(BuildContext context) => chipLabels(context).join(' · ');
+  /// Everything the drill stores on a single line: [chipLabels], then the
+  /// sensitivity.
+  String summary(BuildContext context) => [
+        ...chipLabels(context),
+        context.tr('drills.sensitivity',
+            args: {'sensitivity': sensitivityPercent}),
+      ].join(' · ');
 
   String _delayLabel(BuildContext context) {
     switch (delayMode) {

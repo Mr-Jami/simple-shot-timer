@@ -175,6 +175,7 @@
   "drills.overwrittenSnack": "Updated “{name}”",
   "drills.appliedSnack": "Applied “{name}”",
   "drills.empty": "No saved drills yet. Save your current drill to reuse it in one tap.",
+  "drills.sensitivity": "{sensitivity}% sensitivity",
 
   "micTest.title": "Test microphone",
   "micTest.instruction": "Make the noise you want to detect. The red line is the current detection threshold — adjust sensitivity until peaks just cross it.",
