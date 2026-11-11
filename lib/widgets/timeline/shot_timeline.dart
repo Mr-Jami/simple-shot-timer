@@ -297,11 +297,13 @@ class _TimelinePainter extends CustomPainter {
       final to = xOf(active.isEmpty ? start.ms : active.last);
       canvas.drawRect(Rect.fromLTRB(0, top, from, bottom), shade);
       canvas.drawRect(Rect.fromLTRB(to, top, size.width, bottom), shade);
-      // Only with the whole hairline in the shade. A marker carried under
-      // the playhead puts the shade's edge there, a fraction of a pixel to
-      // either side from frame to frame.
-      playheadDimmed =
-          centre + _guideWidth / 2 <= from || centre - _guideWidth / 2 >= to;
+      // Only with the whole hairline in the shade, and not at its edge. A
+      // marker carried under the playhead sits on the playhead's whole
+      // millisecond, so the shade's edge is up to half a millisecond (a
+      // pixel at the closest zoom) to either side of it from frame to
+      // frame, and the hairline must not switch with it.
+      final slack = _guideWidth / 2 + pps / 2000;
+      playheadDimmed = centre + slack <= from || centre - slack >= to;
     }
 
     _paintSplits(canvas, size, xOf);
