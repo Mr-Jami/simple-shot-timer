@@ -45,8 +45,9 @@ class TimelineMarker {
 /// and a fixed playhead the clip scrolls under. The playhead is two
 /// pointers, above and below the waveform, and a hairline between their
 /// tips. A plain line would hide in the spike it is being lined up with, so
-/// this one takes the background's colour where it crosses the waveform,
-/// and it fades towards the middle to leave the waveform there alone.
+/// this one takes the background's colour where it crosses the waveform
+/// (not where the waveform is dimmed, outside the string), and it fades
+/// towards the middle to leave the waveform there alone.
 /// One finger drags it 1:1, two fingers zoom around themselves, a flick
 /// flings it, and a tap picks the nearest marker. While [carryingShot] (a
 /// selected shot rides under the playhead) it never flings and zooms around
@@ -290,10 +291,17 @@ class _TimelinePainter extends CustomPainter {
     final start =
         markers.where((m) => m.kind == TimelineMarkerKind.start).firstOrNull;
     final shade = Paint()..color = paper.withValues(alpha: 0.7);
+    var playheadDimmed = false;
     if (start != null) {
-      canvas.drawRect(Rect.fromLTRB(0, top, xOf(start.ms), bottom), shade);
-      final end = active.isEmpty ? start.ms : active.last;
-      canvas.drawRect(Rect.fromLTRB(xOf(end), top, size.width, bottom), shade);
+      final from = xOf(start.ms);
+      final to = xOf(active.isEmpty ? start.ms : active.last);
+      canvas.drawRect(Rect.fromLTRB(0, top, from, bottom), shade);
+      canvas.drawRect(Rect.fromLTRB(to, top, size.width, bottom), shade);
+      // Only with the whole hairline in the shade. A marker carried under
+      // the playhead puts the shade's edge there, a fraction of a pixel to
+      // either side from frame to frame.
+      playheadDimmed =
+          centre + _guideWidth / 2 <= from || centre - _guideWidth / 2 >= to;
     }
 
     _paintSplits(canvas, size, xOf);
@@ -305,7 +313,9 @@ class _TimelinePainter extends CustomPainter {
 
     // The playhead: the tips touch the band's edges from outside, with the
     // hairline between them.
-    _paintGuide(canvas, centre, band, waveHalf);
+    // A dimmed waveform is mostly background already: there the hairline
+    // stays ink all the way, which shows on it.
+    _paintGuide(canvas, centre, band, playheadDimmed ? 0 : waveHalf);
     final playhead = Paint()..color = ink;
     for (final (tip, away) in const [(top, -1), (bottom, 1)]) {
       final base = tip + away * ShotTimeline.pointerHeight;
