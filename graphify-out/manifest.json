@@ -2225,8 +2225,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1794500193.0018275,
-    "ast_hash": "0d4fb53338831ee8ac138ba807b306ea",
+    "mtime": 1794503942.0639293,
+    "ast_hash": "6bb47b73a2a54372c874ca554718ae44",
     "semantic_hash": ""
   },
   "lib/screens/video_flows.dart": {
@@ -2440,8 +2440,8 @@
     "semantic_hash": ""
   },
   "lib/widgets/editor/marker_panel.dart": {
-    "mtime": 1794365979.8718238,
-    "ast_hash": "0a3949a0df8065d426184866862eed7e",
+    "mtime": 1794503441.5933762,
+    "ast_hash": "c464d329ede24fc0140b8534fccd93da",
     "semantic_hash": ""
   },
   "lib/widgets/editor/sensitivity_selector.dart": {
@@ -2550,8 +2550,8 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1794500146.8300412,
-    "ast_hash": "fa90cf449b27b05c725e64350c89c2b8",
+    "mtime": 1794503854.9656,
+    "ast_hash": "97ad98ae74c5a3bd16a55bcd092dc10f",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/NoSpace.kt": {
