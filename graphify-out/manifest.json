@@ -2210,8 +2210,8 @@
     "semantic_hash": ""
   },
   "lib/providers/clip_editor_provider.dart": {
-    "mtime": 1793720629.578015,
-    "ast_hash": "f7f22a2fa6bae2f1a35171b380c057e9",
+    "mtime": 1794505304.6997738,
+    "ast_hash": "bddd3923294865a3f6c5a642b4bb1c77",
     "semantic_hash": ""
   },
   "lib/providers/video_import_provider.dart": {
@@ -2225,8 +2225,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1794503942.0639293,
-    "ast_hash": "6bb47b73a2a54372c874ca554718ae44",
+    "mtime": 1794505304.7007773,
+    "ast_hash": "677eba9a094838460e195233d12eed72",
     "semantic_hash": ""
   },
   "lib/screens/video_flows.dart": {
@@ -2265,8 +2265,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/marker_doc.dart": {
-    "mtime": 1793720629.6010222,
-    "ast_hash": "4d17a599871ce97aeca101e8d425ed08",
+    "mtime": 1794505304.6987748,
+    "ast_hash": "5c6c7238c146fe5d21bd2ebeb3ec6328",
     "semantic_hash": ""
   },
   "lib/services/video/throttled_seeker.dart": {
@@ -2305,8 +2305,8 @@
     "semantic_hash": ""
   },
   "test/clip_editor_test.dart": {
-    "mtime": 1793720629.6230762,
-    "ast_hash": "c760e31ebaa51d014b70e04b42f05d3e",
+    "mtime": 1794505273.4273598,
+    "ast_hash": "b8d636d79885d191d36ed28641cd546e",
     "semantic_hash": ""
   },
   "test/clip_picker_test.dart": {
@@ -2320,8 +2320,8 @@
     "semantic_hash": ""
   },
   "test/marker_doc_test.dart": {
-    "mtime": 1793720629.630588,
-    "ast_hash": "cbf1b9bb4454cd054f4c37e37afe7247",
+    "mtime": 1794505273.4273598,
+    "ast_hash": "340b106693db8e3ee03144ddff1b6ce8",
     "semantic_hash": ""
   },
   "test/throttled_seeker_test.dart": {
@@ -2550,8 +2550,8 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1794503854.9656,
-    "ast_hash": "97ad98ae74c5a3bd16a55bcd092dc10f",
+    "mtime": 1794505273.4283607,
+    "ast_hash": "d1df52eb3f745ffa44497bd4e0145f33",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/NoSpace.kt": {
