@@ -185,7 +185,8 @@ final class ClipExportTests: XCTestCase {
   /// Every one of [frames] is [size] and shows the whole picture and nothing
   /// else: green near each edge and at the inner side of the [band] pixels
   /// wide band, white right behind it. The 5 pixels of slack are for the
-  /// encoder's blur.
+  /// encoder's blur. Stops at the first frame that doesn't: the others fail
+  /// the same way.
   private func check(
     _ frames: [CVPixelBuffer], size: CGSize, band: Int = 16,
     file: StaticString = #filePath, line: UInt = #line
@@ -199,6 +200,7 @@ final class ClipExportTests: XCTestCase {
       let probes: [(depth: Int, green: Bool)] = [(3, true), (band - 5, true), (band + 5, false)]
       CVPixelBufferLockBaseAddress(frame, .readOnly)
       defer { CVPixelBufferUnlockBaseAddress(frame, .readOnly) }
+      var asDrawn = true
       for (depth, green) in probes {
         let spots = [
           ("left", depth, height / 2),
@@ -208,13 +210,16 @@ final class ClipExportTests: XCTestCase {
         ]
         for (edge, x, y) in spots {
           let found = pixel(frame, x, y)
+          let right = green ? found.isGreen : found.isWhite
+          asDrawn = asDrawn && right
           XCTAssertTrue(
-            green ? found.isGreen : found.isWhite,
+            right,
             "frame \(i), \(depth) px in from the \(edge) edge: \(found) is not "
               + (green ? "green" : "white"),
             file: file, line: line)
         }
       }
+      if !asDrawn { break }
     }
   }
 
