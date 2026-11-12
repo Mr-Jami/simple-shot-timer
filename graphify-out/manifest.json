@@ -2480,8 +2480,8 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud.dart": {
-    "mtime": 1794510428.710028,
-    "ast_hash": "3a53ef15917e1d719e400d270b605c47",
+    "mtime": 1794511863.1429653,
+    "ast_hash": "62ed00e57aad276852e9efa2e20c74fa",
     "semantic_hash": ""
   },
   "lib/services/video/hud_logo.dart": {
@@ -2515,8 +2515,8 @@
     "semantic_hash": ""
   },
   "test/hud_test.dart": {
-    "mtime": 1794509598.7035787,
-    "ast_hash": "dd0a74f0692f83034c26224e2e5a09e5",
+    "mtime": 1794511829.3541582,
+    "ast_hash": "7b9bae81fd8b858dd8a30f6c9652d162",
     "semantic_hash": ""
   },
   "test/video_export_sheet_test.dart": {
