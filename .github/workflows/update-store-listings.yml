@@ -2,9 +2,10 @@ name: Update store listings
 
 # Uploads the listing text in fastlane/metadata (see its README) to Google
 # Play and App Store Connect, in every language that has a folder there, and
-# the App Store's What's New, built from the GitHub Releases. Text only:
-# binaries, screenshots, graphics and the Play "What's new" (which
-# deploy-play-store.yml sets from the GitHub Release) are left alone.
+# the App Store's What's New, built from the GitHub Releases. Text only,
+# unless the App Store screenshots are asked for: binaries, graphics, the
+# Play screenshots and the Play "What's new" (which deploy-play-store.yml
+# sets from the GitHub Release) are left alone.
 
 on:
   workflow_dispatch:
@@ -25,6 +26,10 @@ on:
         description: 'App Store: write What''s New from the GitHub Releases (off: keep what App Store Connect has)'
         type: boolean
         default: true
+      screenshots:
+        description: 'App Store: replace the screenshots with the ones in branding/store-listing/app-store/screenshots'
+        type: boolean
+        default: false
       submit_for_review:
         description: 'App Store: submit the version for review afterwards, with its latest processed build'
         type: boolean
@@ -181,16 +186,30 @@ jobs:
         # submits the version with its latest processed build; otherwise
         # nothing is submitted. deliver runs precheck after the upload, and
         # precheck fails with an API key, so it is switched off.
+        #
+        # With screenshots on, each language's screenshots on that version
+        # are removed and replaced with the files in its folder under
+        # branding/store-listing/app-store/screenshots (same folder names as
+        # the metadata; deliver tells the display size from the pixels and
+        # orders by file name). Off, the screenshots are not touched.
         if: ${{ !inputs.validate_only }}
+        env:
+          SCREENSHOTS: ${{ inputs.screenshots }}
         run: |
           echo "Editing App Store version $VERSION"
+          if [ "$SCREENSHOTS" = "true" ]; then
+            shots=(skip_screenshots:false overwrite_screenshots:true
+                   screenshots_path:branding/store-listing/app-store/screenshots)
+          else
+            shots=(skip_screenshots:true)
+          fi
           fastlane run upload_to_app_store \
             api_key_path:"$RUNNER_TEMP/asc_api_key.json" \
             app_identifier:cc.jami.simpleshottimer \
             app_version:"$VERSION" \
             metadata_path:fastlane/metadata/ios \
             skip_binary_upload:true \
-            skip_screenshots:true \
+            "${shots[@]}" \
             submit_for_review:${{ inputs.submit_for_review }} \
             run_precheck_before_submit:false \
             force:true

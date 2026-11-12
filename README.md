@@ -428,6 +428,12 @@ New, which it builds from the GitHub Releases. Start it from *Run workflow*:
   keywords and What's New can only change with a new version, so run it for
   each release; the English keywords have no file and keep whatever App
   Store Connect has.
+- **Screenshots** (off by default) replaces the App Store screenshots of
+  that version, in every language, with the files in
+  `branding/store-listing/app-store/screenshots/`
+  (see [its README](branding/store-listing/README.md)). The Play
+  screenshots and the App Store header and search artwork are uploaded by
+  hand.
 - **Submit for review** (off by default) submits that version afterwards
   with its latest build. Run it once the build from the deploy has finished
   processing in App Store Connect (TestFlight shows it), and only after the

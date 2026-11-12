@@ -467,14 +467,14 @@
 </section>
 
 <!-- ============ Feature graphic 1024x500 ============ -->
-<!-- ============ 9. Video editor (Play: slot 6; App Store: 9th, in black) ============
+<!-- ============ 9. Video editor (Play: slot 6) ============
      A render of the real editor (VideoEditorScreen) on a chest-mount clip,
      with the app's own overlay preview: see the README. -->
-<section class="slide yellow" id="slide-9" data-ios-black>
+<section class="slide yellow" id="slide-9">
   <canvas width="1080" height="1920"></canvas>
   <div class="cap"><img src="assets/mark-black.png" alt=""><h2>Time a string from<br>your video. Export it<br>with your splits on it</h2></div>
   <div class="phone"><div class="screen"><div class="app">
-    <img class="render" src="assets/video-editor.jpg" data-ios-src="assets/video-editor-ios.jpg" alt="">
+    <img class="render" src="assets/video-editor.jpg" alt="">
     <div data-status></div>
   </div></div></div>
 </section>
@@ -544,20 +544,47 @@
   </div></div></div></div></div>
 </section>
 
+<script src="captions.js"></script>
 <script>
   // index.html?ios renders the App Store set: iPhone frame and iOS chrome.
+  // There every screen is a render of the real app (renders/ios/<lang>/, see
+  // the README), in the order and with the captions of the App Store listing:
+  // index.html?ios&lang=de. The HTML screens below are the Google Play set.
   var ios = /[?&]ios(&|=|$)/.test(location.search);
+  var lang = (/[?&]lang=([a-z]+)/.exec(location.search) || [])[1] || 'en';
+  var SHOTS = [['slide-2', 'running'], ['slide-9', 'video'], ['slide-4', 'review'],
+    ['slide-3', 'total'], ['slide-5', 'drills'], ['slide-6', 'settings'],
+    ['slide-8', 'history'], ['slide-7', 'mic'], ['slide-1', 'ready']];
   if (ios) {
     document.body.classList.add('ios');
+    document.documentElement.lang = lang;
+    SHOTS.forEach(function (s, i) {
+      var slide = document.getElementById(s[0]), black = i % 2 === 0;
+      slide.classList.remove('black', 'yellow');
+      slide.classList.add(black ? 'black' : 'yellow');
+      // The export's file name: its place in the listing and the screen.
+      slide.setAttribute('data-shot', (i < 9 ? '0' : '') + (i + 1) + '-' + s[1]);
+      slide.querySelector('.cap img').src = black ? 'assets/mark-white.png' : 'assets/mark-black.png';
+      slide.querySelector('.cap h2').innerHTML = CAPTIONS[lang][s[1]];
+      slide.querySelector('.app').innerHTML =
+        '<img class="render" src="renders/ios/' + lang + '/' + s[1] + '.png" alt=""><div data-status></div>';
+    });
     document.querySelectorAll('use[href="#i-back"]').forEach(function (u) { u.setAttribute('href', '#i-back-ios'); });
     document.querySelectorAll('.app').forEach(function (a) { a.insertAdjacentHTML('beforeend', '<div class="homebar"></div>'); });
-    document.querySelectorAll('img[data-ios-src]').forEach(function (i) { i.src = i.getAttribute('data-ios-src'); });
-    // An extra slide after the yellow History one: black keeps the colours alternating.
-    document.querySelectorAll('[data-ios-black]').forEach(function (s) {
-      s.classList.replace('yellow', 'black');
-      s.querySelector('.cap img').src = 'assets/mark-white.png';
-    });
   }
+
+  // App Store captions: one size for the whole set, small enough for its
+  // longest line. Call once the caption font has loaded.
+  function fitCaptions() {
+    var hs = [].slice.call(document.querySelectorAll('.slide .cap h2')), k = 1;
+    hs.forEach(function (h) {
+      h.style.fontSize = ''; h.style.whiteSpace = 'nowrap';
+      k = Math.min(k, h.parentNode.clientWidth / h.scrollWidth);
+    });
+    if (k < 1) hs.forEach(function (h) { h.style.fontSize = Math.floor(58 * k) + 'px'; });
+    return Math.floor(58 * Math.min(k, 1));
+  }
+  if (ios) document.fonts.ready.then(fitCaptions);
 
   // Clone the status bar and bottom tab bar into every placeholder.
   document.querySelectorAll('[data-status]').forEach(function (el) {
