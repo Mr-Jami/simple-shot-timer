@@ -8,28 +8,34 @@ import 'dart:ui' show Offset, Rect, Size;
 import '../../models/enums.dart';
 import '../../models/timer_string.dart';
 
-/// The video overlay's choices: what it shows, where, and whether the end
-/// card follows the last shot.
+/// The video overlay's choices: what it shows, where, whether the end card
+/// follows the last shot, and whether the corner overlay keeps clear of the
+/// buttons Reels, Shorts and TikTok draw over a tall video.
 class HudOptions {
   const HudOptions({
     this.style = HudStyle.splits,
     this.corner = HudCorner.topLeft,
     this.endCard = true,
+    this.clearOfButtons = false,
   });
 
   final HudStyle style;
   final HudCorner corner;
   final bool endCard;
 
+  /// Only tall frames heed it ([HudLayout.isTall]).
+  final bool clearOfButtons;
+
   @override
   bool operator ==(Object other) =>
       other is HudOptions &&
       other.style == style &&
       other.corner == corner &&
-      other.endCard == endCard;
+      other.endCard == endCard &&
+      other.clearOfButtons == clearOfButtons;
 
   @override
-  int get hashCode => Object.hash(style, corner, endCard);
+  int get hashCode => Object.hash(style, corner, endCard, clearOfButtons);
 }
 
 /// A string as the overlay tells it: [string]'s shots (times from START)
@@ -130,19 +136,23 @@ class HudMoment {
 /// units of the short side ÷ 20, so it looks the same at any resolution.
 /// The corner overlay keeps the same margin in every corner. Tall frames
 /// (9:16) keep the end card out of the bottom fifth, where Reels, Shorts
-/// and TikTok draw their own captions.
+/// and TikTok draw their own captions; with [HudOptions.clearOfButtons]
+/// the corner overlay stays out of their way too ([clearOfButtons]).
 class HudLayout {
   factory HudLayout(Size frame, HudOptions options) {
     final unit = frame.shortestSide / 20;
-    final tall = frame.height >= frame.width * 1.6;
+    final tall = isTall(frame);
     final margin = marginUnits * unit;
     final size = boxSize(unit, options.style);
     final right = options.corner == HudCorner.topRight ||
         options.corner == HudCorner.bottomRight;
     final bottom = options.corner == HudCorner.bottomLeft ||
         options.corner == HudCorner.bottomRight;
-    final left = right ? frame.width - margin - size.width : margin;
-    final top = bottom ? frame.height - margin - size.height : margin;
+    final room = tall && options.clearOfButtons
+        ? clearOfButtons(frame)
+        : (Offset.zero & frame).deflate(margin);
+    final left = right ? room.right - size.width : room.left;
+    final top = bottom ? room.bottom - size.height : room.top;
 
     // The end card in the middle; on tall frames, of the part above the
     // bottom fifth. Where that would cover the corner overlay (narrow
@@ -209,6 +219,34 @@ class HudLayout {
   static const double shadeUnits = 13;
   static const Size cardUnits = Size(13, 8.4);
   static const double cardShadeUnits = 3.6;
+
+  // What the apps cover of a 9:16 video, as parts of its height (top and
+  // bottom) and width (right). None of them publishes these for plain
+  // posts and creator guides differ, so they are on the roomy side of
+  // what most guides give: 250, 384 and 162 px of 1080 x 1920. The bottom
+  // is the fifth the end card keeps out of too.
+  static const double coveredTop = 0.13;
+  static const double coveredBottom = 0.2;
+  static const double coveredRight = 0.15;
+
+  /// Whether [frame] is tall enough (9:16 and the like) for Reels, Shorts
+  /// and TikTok to show it full screen, under their own controls.
+  static bool isTall(Size frame) => frame.height >= frame.width * 1.6;
+
+  /// The part of a tall [frame] those apps leave free: below their header,
+  /// above the caption and beside the column of buttons on the right; on
+  /// the left only the usual margin. A frame taller than 9:16 may be shown
+  /// cropped to its middle 9:16, so the top and bottom are measured there.
+  static Rect clearOfButtons(Size frame) {
+    final shown = math.min(frame.height, frame.width * 16 / 9);
+    final cropped = (frame.height - shown) / 2;
+    return Rect.fromLTRB(
+      marginUnits * frame.shortestSide / 20,
+      cropped + coveredTop * shown,
+      frame.width * (1 - coveredRight),
+      frame.height - cropped - coveredBottom * shown,
+    );
+  }
 
   final Size frame;
   final double unit;

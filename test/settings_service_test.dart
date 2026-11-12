@@ -303,8 +303,9 @@ void main() {
   });
 
   group('SettingsService video export choices', () {
-    test('default to splits, top left, end card, the string; round-trip',
-        () async {
+    test(
+        'default to splits, top left, end card, not clear of buttons, the '
+        'string; round-trip', () async {
       final service = SettingsService(prefs);
       final loaded = service.load();
       expect(
@@ -312,13 +313,15 @@ void main() {
             loaded.hudStyle,
             loaded.hudCorner,
             loaded.hudEndCard,
+            loaded.hudClearOfButtons,
             loaded.exportWholeVideo
           ),
-          (HudStyle.splits, HudCorner.topLeft, true, false));
+          (HudStyle.splits, HudCorner.topLeft, true, false, false));
       await service.save(const AppSettings(
         hudStyle: HudStyle.full,
         hudCorner: HudCorner.bottomRight,
         hudEndCard: false,
+        hudClearOfButtons: true,
         exportWholeVideo: true,
       ));
       final again = SettingsService(prefs).load();
@@ -327,9 +330,10 @@ void main() {
             again.hudStyle,
             again.hudCorner,
             again.hudEndCard,
+            again.hudClearOfButtons,
             again.exportWholeVideo
           ),
-          (HudStyle.full, HudCorner.bottomRight, false, true));
+          (HudStyle.full, HudCorner.bottomRight, false, true, true));
     });
   });
 

@@ -43,11 +43,12 @@ final hudFrameRendererProvider =
 /// at start-up, so the image is ready before any overlay first shows.
 final hudLogoProvider = FutureProvider<ui.Image>((ref) => loadHudLogo());
 
-/// The overlay's style, corner and end card, as last chosen.
+/// The overlay's choices in the export sheet, as last made.
 final hudOptionsProvider = Provider<HudOptions>(
   (ref) => ref.watch(settingsProvider.select((s) => HudOptions(
         style: s.hudStyle,
         corner: s.hudCorner,
         endCard: s.hudEndCard,
+        clearOfButtons: s.hudClearOfButtons,
       ))),
 );

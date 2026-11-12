@@ -125,6 +125,36 @@ void main() {
     });
   });
 
+  testWidgets('a 9:16 export keeps the overlay clear of the apps\' buttons',
+      (tester) async {
+    await tester.runAsync(() async {
+      await initializeDateFormatting('en');
+      const tall = ClipInfo(
+          hasAudio: true,
+          durationMs: 30000,
+          width: 360,
+          height: 640,
+          frameRate: 10);
+      final dir = await Directory.systemTemp.createTemp('hud_frames');
+      addTearDown(() => dir.delete(recursive: true));
+      final [_, box, card] = await renderHudFrames(
+        dir: dir,
+        plan: ExportPlan(string, tall, fromMs: 0, toMs: 30000),
+        string: string,
+        options: const HudOptions(
+            corner: HudCorner.bottomRight, clearOfButtons: true),
+        labels: labels,
+      );
+      // The image holds the box and a unit (18 px) around it for the
+      // type's shadow, on whole pixels: the box ends 20 % from the bottom
+      // and 15 % from the right.
+      expect(box.x * 360 + box.width, closeTo(360 * 0.85 + 18, 1));
+      expect(box.y * 640 + box.height, closeTo(640 * 0.8 + 18, 1));
+      // The end card where it always is.
+      expect(card.x * 360 + card.width / 2, closeTo(180, 1));
+    });
+  });
+
   testWidgets('straight alpha when the exporter takes it', (tester) async {
     await tester.runAsync(() async {
       await initializeDateFormatting('en');

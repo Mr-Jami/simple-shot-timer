@@ -35,6 +35,7 @@ import 'package:simple_shot_timer/widgets/editor/marker_panel.dart';
 import 'package:simple_shot_timer/widgets/shot_badge.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
 import 'package:simple_shot_timer/widgets/timeline/timeline_controller.dart';
+import 'package:simple_shot_timer/widgets/video/hud_overlay.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
 import 'clip_fixtures.dart';
@@ -186,12 +187,14 @@ void main() {
   );
 
   /// The editor over a page standing in for the Video tab, on the 7 s clip
-  /// unless [seconds] asks for a longer one, or one without a [beep].
+  /// unless [seconds] asks for a longer one, or one without a [beep]. The
+  /// clip's size is unknown unless [frame] gives it.
   Future<ClipEditorState Function()> openEditor(
     WidgetTester tester, {
     int seconds = 7,
     bool beep = true,
     String language = 'en',
+    Size? frame,
     List<Override> overrides = const [],
   }) async {
     tester.view.devicePixelRatio = 3;
@@ -212,6 +215,8 @@ void main() {
           hasAudio: true,
           durationMs: seconds * 1000,
           videoMime: 'video/avc',
+          width: frame?.width.round(),
+          height: frame?.height.round(),
         ),
         analysis: seconds == 7 && beep
             ? analysis
@@ -326,8 +331,13 @@ void main() {
     expect(undoBar, findsNothing);
   });
 
-  /// Exports up to the overlay images, handing their plan to [onPlan].
-  List<Override> exportToOverlay(void Function(ExportPlan plan) onPlan) => [
+  /// Exports up to the overlay images, handing their plan to [onPlan] and
+  /// the overlay's choices to [onOptions].
+  List<Override> exportToOverlay(
+    void Function(ExportPlan plan) onPlan, {
+    void Function(HudOptions options)? onOptions,
+  }) =>
+      [
         runEnvironmentProvider.overrideWithValue(_Awake()),
         clipExporterProvider.overrideWithValue(_NoExporter()),
         hudFrameRendererProvider.overrideWithValue((
@@ -341,6 +351,7 @@ void main() {
             void Function(double fraction)? onProgress,
             CancelToken? cancel}) async {
           onPlan(plan);
+          onOptions?.call(options);
           throw const ExportException(ExportError.cancelled);
         }),
       ];
@@ -360,6 +371,37 @@ void main() {
     await tester.tap(find.text('Save to Photos'));
     await tester.pumpAndSettle();
     expect((exported!.startMs, exported!.endMs), (0, 12000));
+  });
+
+  const clearOfButtons = 'Keep clear of Reels and TikTok buttons';
+
+  testWidgets(
+      'a 9:16 clip can keep its overlay clear of the apps\' buttons, in the '
+      'preview and in the export', (tester) async {
+    HudOptions? exported;
+    await openEditor(tester,
+        frame: const Size(1080, 1920),
+        overrides: exportToOverlay((_) {}, onOptions: (o) => exported = o));
+    await tester.tap(find.text('Export video'));
+    await tester.pumpAndSettle();
+    HudOptions preview() =>
+        tester.widget<HudOverlay>(find.byType(HudOverlay)).options;
+    expect(preview().clearOfButtons, isFalse);
+    await tester.tap(find.text(clearOfButtons));
+    await tester.pumpAndSettle();
+    expect(preview().clearOfButtons, isTrue);
+    await tester.tap(find.text('Save to Photos'));
+    await tester.pumpAndSettle();
+    expect(exported!.clearOfButtons, isTrue);
+  });
+
+  testWidgets('a 16:9 clip isn\'t asked about the apps\' buttons',
+      (tester) async {
+    await openEditor(tester, frame: const Size(1920, 1080));
+    await tester.tap(find.text('Export video'));
+    await tester.pumpAndSettle();
+    expect(find.text('End card with totals'), findsOneWidget);
+    expect(find.text(clearOfButtons), findsNothing);
   });
 
   testWidgets('a paused editor draws nothing; playing, the timeline follows',
