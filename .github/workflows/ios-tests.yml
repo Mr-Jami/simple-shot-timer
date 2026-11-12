@@ -1,0 +1,78 @@
+name: iOS tests
+
+# The app's Swift (the video channels) runs nowhere in CI otherwise: the
+# Dart tests run on Linux, and the deploy only compiles it. This runs
+# ios/RunnerTests in a simulator, which exports real clips through
+# ClipExportChannel. macOS runners are slow to start, so only for changes
+# under ios/.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ios/**'
+      - '.github/workflows/ios-tests.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'ios/**'
+      - '.github/workflows/ios-tests.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ios-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  runner-tests:
+    name: Runner tests (simulator)
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    env:
+      FLUTTER_VERSION: '3.41.9'
+      # The Xcode the App Store build uses (deploy-app-store.yml).
+      XCODE_VERSION: '26.3'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build for the simulator
+        # Also writes the Podfile and the Xcode settings the test build
+        # needs: neither is checked in.
+        run: flutter build ios --simulator --debug
+
+      - name: Run the tests
+        run: |
+          set -o pipefail
+          # The last iPhone listed: one on the newest iOS installed.
+          device=$(xcrun simctl list devices available \
+            | grep -E '^ +iPhone' | tail -1 \
+            | grep -oE '[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}' || true)
+          if [ -z "$device" ]; then
+            echo "::error::no iPhone simulator on this runner"
+            xcrun simctl list runtimes
+            xcrun simctl list devices available
+            exit 1
+          fi
+          xcrun simctl list devices available | grep "$device"
+          xcodebuild test \
+            -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,id=$device" \
+            -parallel-testing-enabled NO \
+            -only-testing:RunnerTests

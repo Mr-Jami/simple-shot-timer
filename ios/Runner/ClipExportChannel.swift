@@ -140,8 +140,9 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
   }
 
   /// The export session for [args]: the range of the clip as its own
-  /// composition starting at 0, drawn by [OverlayCompositor].
-  private static func makeSession(_ args: [String: Any], output: URL) throws -> AVAssetExportSession {
+  /// composition starting at 0, drawn by [OverlayCompositor]. Not private:
+  /// RunnerTests exports through it.
+  static func makeSession(_ args: [String: Any], output: URL) throws -> AVAssetExportSession {
     func number(_ key: String) -> NSNumber? { args[key] as? NSNumber }
     guard let input = args["input"] as? String,
       let startMs = number("startMs")?.int64Value,
