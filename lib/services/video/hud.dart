@@ -148,15 +148,18 @@ class HudLayout {
         options.corner == HudCorner.bottomRight;
     final bottom = options.corner == HudCorner.bottomLeft ||
         options.corner == HudCorner.bottomRight;
-    final room = tall && options.clearOfButtons
-        ? clearOfButtons(frame)
-        : (Offset.zero & frame).deflate(margin);
+    final clear = tall && options.clearOfButtons;
+    final room =
+        clear ? clearOfButtons(frame) : (Offset.zero & frame).deflate(margin);
     final left = right ? room.right - size.width : room.left;
     final top = bottom ? room.bottom - size.height : room.top;
 
     // The end card in the middle; on tall frames, of the part above the
     // bottom fifth. Where that would cover the corner overlay (narrow
-    // frames), it moves into the room beside it, above or below.
+    // frames), it moves into the room beside it, above or below. Clear of
+    // the buttons the overlay sits nearer the middle, so there the card
+    // also moves when it would come closer than the margin: its shade
+    // reaches further than the card.
     final box = Rect.fromLTWH(left, top, size.width, size.height);
     final cardWidth = math.min(cardUnits.width * unit, frame.width * 0.9);
     final cardHeight = cardUnits.height * unit;
@@ -167,7 +170,7 @@ class HudLayout {
       cardWidth,
       cardHeight,
     );
-    if (card.overlaps(box)) {
+    if ((clear ? card.inflate(margin) : card).overlaps(box)) {
       final cardTop = bottom
           ? math.max(margin, box.top - margin - cardHeight)
           : math.min(box.bottom + margin, usable - margin - cardHeight);

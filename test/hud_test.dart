@@ -167,6 +167,15 @@ void main() {
             closeTo(2340 - 210 - 384, 1e-9));
       });
 
+      test('a tall frame wider than 9:16 counts from its whole height', () {
+        const frame = Size(1080, 1728);
+        expect(clear(frame, HudCorner.topLeft).box.top,
+            closeTo(0.13 * 1728, 1e-9));
+        final r = clear(frame, HudCorner.bottomRight);
+        expect(r.box.bottom, closeTo(0.8 * 1728, 1e-9));
+        expect(r.box.right, closeTo(918, 1e-9));
+      });
+
       test('frames that are not tall stay as they are', () {
         for (final frame in const [
           landscape,
@@ -188,24 +197,45 @@ void main() {
         expect(l.box.topLeft, const Offset(43.2, 43.2));
       });
 
-      test('the end card never covers the corner overlay', () {
+      test('the end card keeps the margin from the corner overlay', () {
         for (final frame in const [
           portrait,
           Size(480, 854),
           Size(1080, 1728),
           Size(1080, 2340),
         ]) {
+          // The margin of 0.8 units, less a hair for the arithmetic.
+          final margin = 0.8 * frame.width / 20 - 1e-6;
           for (final style in HudStyle.values) {
             for (final corner in HudCorner.values) {
               final l = clear(frame, corner, style);
-              final reason = '$frame $style $corner';
-              expect(l.card.overlaps(l.box), isFalse, reason: reason);
+              final reason = '$frame $style $corner ${l.card} ${l.box}';
+              expect(l.card.inflate(margin).overlaps(l.box), isFalse,
+                  reason: reason);
               expect(l.card.top, greaterThanOrEqualTo(0), reason: reason);
               expect(l.card.bottom, lessThanOrEqualTo(frame.height * 4 / 5),
                   reason: reason);
             }
           }
         }
+      });
+
+      test('9:16, Full, a bottom corner: the card moves up, above the box', () {
+        // In the middle it would end 5 px above the box, its shade on the
+        // box's top row.
+        final l = clear(portrait, HudCorner.bottomLeft, HudStyle.full);
+        expect(l.box.top - l.card.bottom, closeTo(43.2, 1e-9));
+        expect(l.card.top, greaterThan(249.6));
+        // Splits leaves the card room in the middle.
+        final s = clear(portrait, HudCorner.bottomLeft);
+        expect(s.card.center.dy, closeTo(1920 * 4 / 5 / 2, 1e-9));
+      });
+
+      test('off, the card moves only where it would cover the overlay', () {
+        // 9:16, Splits, top left: 11 px under the box, as it always was.
+        final l = HudLayout(portrait, const HudOptions());
+        expect(l.card.center.dy, closeTo(1920 * 4 / 5 / 2, 1e-9));
+        expect(l.card.top - l.box.bottom, inInclusiveRange(0, 43.2));
       });
 
       test('the shade goes with the overlay, inside the frame', () {
