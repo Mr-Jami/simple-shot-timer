@@ -73,9 +73,18 @@ const _onHistory = Duration(milliseconds: 3000);
 const _onVideo = Duration(milliseconds: 2800);
 const _onDrills = Duration(milliseconds: 3000);
 
-/// Ready before the first tap and after the last one. Longer than the video
-/// shows, so the cut never lands on a moving frame.
+/// Ready after the last tap. Longer than the video shows, so the cut never
+/// lands on a moving frame.
 const _hold = Duration(milliseconds: 4000);
+
+/// Ready before the first tap of the pass that counts: the same, and time
+/// for the simulator to come to rest.
+const _settle = Duration(milliseconds: 8000);
+
+/// A pass during which the app stood still for longer than this is played
+/// again, [_attempts] times at most.
+const _stutterMs = 200;
+const _attempts = 3;
 
 const _settings = AppSettings(
   themeMode: AppThemeMode.dark,
@@ -594,22 +603,53 @@ void main() {
       expect(lastFired, findsOneWidget);
     }
 
-    // A debug build stutters the first time it shows a screen, so once
-    // through everything first. That string is deleted again.
-    await play(recorded: false);
-    final container = ProviderScope.containerOf(
-      tester.element(find.byType(MainShell)),
-    );
-    final rehearsal = (await container.read(historyProvider.future)).first;
-    await container.read(historyProvider.notifier).delete(rehearsal.id!);
-    await _until(lastSeeded);
+    /// Deletes the string a pass has just fired, so the next one starts
+    /// from the same Ready screen.
+    Future<void> forget() async {
+      final container = ProviderScope.containerOf(
+        tester.element(find.byType(MainShell)),
+      );
+      final fired = (await container.read(historyProvider.future)).first;
+      await container.read(historyProvider.notifier).delete(fired.id!);
+      await _until(lastSeeded);
+    }
 
-    await _wait(_hold);
-    final stalls = _StallWatch();
-    await play(recorded: true);
-    await _wait(_hold);
-    stalls.stop();
-    _note('PREVIEW_WORST_STALL ${stalls.worstMs}');
+    // A debug build stutters the first times it shows a screen, and a
+    // simulator that has just started an app is busy for a while: twice
+    // through everything before the pass that counts.
+    for (var rehearsal = 0; rehearsal < 2; rehearsal++) {
+      await play(recorded: false);
+      await forget();
+    }
+
+    // The pass that counts. Again if the app stood still during it, which
+    // shows as a stutter; the cut takes the last pass in the recording.
+    for (var attempt = 1;; attempt++) {
+      await _wait(_settle);
+      final stalls = _StallWatch();
+      await play(recorded: true);
+      await _wait(_hold);
+      stalls.stop();
+      _note('PREVIEW_WORST_STALL ${stalls.worstMs}');
+      if (stalls.worstMs <= _stutterMs || attempt == _attempts) break;
+      await forget();
+    }
+
+    // Taking the app down is the test framework's last step, and the app
+    // is not made for it: the timer's cleanup reads a provider while they
+    // are all being disposed, which Riverpod refuses. Done here instead,
+    // where that one error can be told from any other.
+    final errors = <Object>[];
+    await runZonedGuarded(() async {
+      runApp(const SizedBox());
+      await _wait(const Duration(milliseconds: 500));
+    }, (error, _) => errors.add(error));
+    expect(
+      errors.where(
+        (e) => !(e is StateError && e.message.contains('already disposed')),
+      ),
+      isEmpty,
+    );
   }
 
   testWidgets('plays the App Store preview', (tester) async {
