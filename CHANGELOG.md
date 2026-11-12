@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.5.0](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.4.2...v2.5.0) (2026-11-12)
+
+
+### Features
+
+* **drills:** your saved drills remember their sensitivity ([#72](https://github.com/Mr-Jami/simple-shot-timer/issues/72)) ([4c15190](https://github.com/Mr-Jami/simple-shot-timer/commit/4c151902e81f716b6d4fdd9b8270006eab25e201))
+* **video:** a Done button places a new shot, so scrolling no longer moves it ([#77](https://github.com/Mr-Jami/simple-shot-timer/issues/77)) ([7d1ec05](https://github.com/Mr-Jami/simple-shot-timer/commit/7d1ec0581c1ce787b84fbfd1cd114ae83f902469))
+* **video:** a thin line at the playhead helps you place shots exactly ([#76](https://github.com/Mr-Jami/simple-shot-timer/issues/76)) ([c793724](https://github.com/Mr-Jami/simple-shot-timer/commit/c793724ec7a01e9beaa13b91a2cfd9a2f6b7294f))
+* **video:** the overlay can keep clear of the Reels and TikTok buttons on 9:16 videos ([#78](https://github.com/Mr-Jami/simple-shot-timer/issues/78)) ([2322508](https://github.com/Mr-Jami/simple-shot-timer/commit/2322508b5a3683e72f33b4d776f21eecfed6bd4c))
+* **video:** the playhead is easier to see on the timeline ([#75](https://github.com/Mr-Jami/simple-shot-timer/issues/75)) ([3f5fc3c](https://github.com/Mr-Jami/simple-shot-timer/commit/3f5fc3c3a2384eb27939850714d273dec391e34f))
+
+
+### Bug Fixes
+
+* **video:** Play starts right away while the timeline is still moving ([#74](https://github.com/Mr-Jami/simple-shot-timer/issues/74)) ([edb2742](https://github.com/Mr-Jami/simple-shot-timer/commit/edb27420247804d8a1f8cbe4fe040c442e30ca9d))
+
 ## [2.4.2](https://github.com/Mr-Jami/simple-shot-timer/compare/v2.4.1...v2.4.2) (2026-11-03)
 
 
