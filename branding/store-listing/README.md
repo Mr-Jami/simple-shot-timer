@@ -95,6 +95,17 @@ against them: the first search image had the mark 87 px above its safe area.
 App previews (videos) are optional and must be screen recordings of the app
 itself, so the HTML launch video can't be used as one.
 
+**iPhone Duo.** Apple takes screenshots for the folding iPhone (1398x2034 for
+the outer display, 2007x2853 for the inner one) and shows a "made for iPhone
+Duo" badge on the product page once they are there; from April 2027 they are
+required for apps built with the iOS 27.1 SDK. None are uploaded yet, on
+purpose: only a build made with the iOS 27.1 SDK fills those displays (an
+older build sits in the middle of the inner one), so the badge would promise
+more than the app does. The layout itself is ready: `store_shots_test.dart`
+with `SIZE=669x951`, `466x678` and `951x669` renders every screen without an
+overflow (checked 2026-11-12, English and Russian). When the deploy moves to
+Xcode 27.1, render at those sizes, add slides for them and upload.
+
 ## How the screens are made
 
 The phone screens are the app recreated in HTML at 390x845 dp and scaled 1.5x into

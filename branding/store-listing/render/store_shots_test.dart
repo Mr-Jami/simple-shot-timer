@@ -10,7 +10,7 @@
 //
 //   flutter test branding/store-listing/render/store_shots_test.dart
 //     --dart-define=PLATFORM=ios|android --dart-define=LOCALE=de
-//     --dart-define=OUT=<folder>
+//     --dart-define=OUT=<folder> [--dart-define=SIZE=669x951]
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
@@ -41,6 +41,10 @@ import 'package:simple_shot_timer/services/volume_service.dart';
 const platform = String.fromEnvironment('PLATFORM', defaultValue: 'ios');
 const localeCode = String.fromEnvironment('LOCALE', defaultValue: 'en');
 const outDir = String.fromEnvironment('OUT');
+
+/// Another screen than the iPhone or Android phone of the listing, in
+/// logical pixels, e.g. 669x951 (to see how the app lays out there).
+const sizeArg = String.fromEnvironment('SIZE');
 
 /// The mic: hears what the script says.
 class _Detector implements ShotDetector {
@@ -235,7 +239,11 @@ void main() {
 
   testWidgets('store screenshots', (tester) async {
     if (ios) debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-    final logical = ios ? const Size(393, 852) : const Size(390, 845);
+    var logical = ios ? const Size(393, 852) : const Size(390, 845);
+    if (sizeArg.isNotEmpty) {
+      final wh = sizeArg.split('x').map(double.parse).toList();
+      logical = Size(wh[0], wh[1]);
+    }
     tester.view.devicePixelRatio = 3;
     tester.view.physicalSize = logical * 3;
     tester.view.padding = FakeViewPadding(
