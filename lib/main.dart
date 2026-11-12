@@ -20,7 +20,7 @@ Future<void> main() => startApp();
 
 /// Starts the app. [overrides] replace single providers on top of the app's
 /// own: the App Store preview recording
-/// (integration_test/app_preview_test.dart) puts a script in place of the
+/// (integration_test/app_preview.dart) puts a script in place of the
 /// microphone that way and leaves everything else as shipped.
 Future<void> startApp({List<Override> overrides = const []}) async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -9,7 +9,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_shot_timer/main.dart' as app;
@@ -38,15 +37,24 @@ import 'package:simple_shot_timer/services/volume_service.dart';
 /// arrive at set times), the beep (silent), the clock a string is saved with
 /// (9:41, the time the status bar is set to) and the history and drills
 /// already on the phone, which are those of the store screenshots
-/// (branding/store-listing). Every screen is the app's own.
+/// (branding/store-listing). Every screen is the app's own, and every tap
+/// goes in the way a finger's does.
+///
+/// An entry point, not a test for `flutter test`: under the test binding the
+/// screen is drawn again 60 times a second even when nothing moves, which is
+/// more than a simulator in CI and its recorder keep up with. Here the app
+/// runs as it ships and flutter_test only supplies the finders and the
+/// finger.
 ///
 /// `.github/workflows/app-preview.yml` builds the app with this file as its
 /// entry point, starts it in a simulator and records the screen;
 /// branding/store-listing/README.md says how the recording becomes the
-/// video. To run it by hand, in a simulator or on a spare phone (it replaces
-/// the app's history, drills and settings with its own):
+/// video. To watch it in a simulator:
 ///
-///     flutter test integration_test/app_preview_test.dart -d <device>
+///     flutter run -t integration_test/app_preview.dart -d <simulator>
+///
+/// Never on a phone with data to keep: it replaces the app's history,
+/// drills and settings with its own.
 
 /// The shots of the string, in milliseconds after the beep: the string of the
 /// store screenshots (first shot 1.42 s, total 2.37 s).
@@ -402,30 +410,33 @@ Future<void> _seed() async {
 
 Future<void> _wait(Duration duration) => Future<void>.delayed(duration);
 
-/// Waits until [finder] finds something, in real time: the app draws its
-/// frames by itself.
+/// Waits until [finder] finds exactly one widget.
 Future<void> _until(
   Finder finder, {
   Duration timeout = const Duration(seconds: 15),
 }) async {
   final watch = Stopwatch()..start();
-  while (finder.evaluate().isEmpty) {
-    if (watch.elapsed > timeout) fail('not on screen after $timeout: $finder');
+  while (finder.evaluate().length != 1) {
+    if (watch.elapsed > timeout) {
+      throw StateError(
+        'after $timeout ${finder.evaluate().length} on screen, not one: '
+        '$finder',
+      );
+    }
     await _wait(const Duration(milliseconds: 16));
   }
 }
 
 /// Where the steps of the run are written: `app_preview_marks.txt` in the
-/// app's documents. The workflow waits for its last line and cuts the
-/// recording by its times (see the README).
+/// app's documents. The workflow waits for its last line and the cut reads
+/// the times (see the README).
 File? _marks;
 
-/// Notes [line] with the time, in the marks file and in the test's output.
+/// Notes [line] with the time, in the marks file and in the app's output.
 void _note(String line) {
   final text = '$line ${DateTime.now().millisecondsSinceEpoch}';
   _marks?.writeAsStringSync('$text\n', mode: FileMode.append, flush: true);
-  // ignore: avoid_print
-  print(text);
+  debugPrint(text);
 }
 
 /// Notes when [step] of the story happens.
@@ -436,9 +447,8 @@ Finder _tab(String label) => find.descendant(
       matching: find.text(label),
     );
 
-/// Says in the test's output when the app stood still. A timer that fires
-/// late means nothing else ran in the meantime either; the recording
-/// stutters there, and the run is better repeated.
+/// Notes when the app stood still. A timer that fires late means nothing
+/// else ran in the meantime either; the recording stutters there.
 class _StallWatch {
   _StallWatch() {
     _timer = Timer.periodic(_period, (_) {
@@ -463,207 +473,172 @@ class _StallWatch {
   void stop() => _timer.cancel();
 }
 
-void main() {
-  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized()
-    // Every frame the app asks for, not only those a test pumps.
-    ..framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive
-    // Taps go in the way a finger's do. Sent as a test's, the binding would
-    // draw a crosshair on each.
-    ..shouldPropagateDevicePointerEvents = true;
-
-  TestGesture finger() => TestGesture(
-        dispatcher: (event) async => binding.handlePointerEvent(event),
-      );
-
-  Future<void> tap(WidgetTester tester, Finder finder) async {
-    final gesture = finger();
-    await gesture.down(tester.getCenter(finder));
+/// Starts the app and plays the story in it, with [screen] as the finger.
+Future<void> _preview(LiveWidgetController screen) async {
+  Future<void> tap(Finder finder) async {
+    final finger = await screen.startGesture(screen.getCenter(finder));
     await _wait(const Duration(milliseconds: 90));
-    await gesture.up();
+    await finger.up();
   }
 
   /// A slow drag that comes to rest, so nothing flings.
   Future<void> drag(Offset from, Offset by, Duration duration) async {
     const steps = 45;
-    final gesture = finger();
-    await gesture.down(from);
+    final finger = await screen.startGesture(from);
     for (var i = 1; i <= steps; i++) {
       await _wait(duration ~/ steps);
-      await gesture.moveTo(from + by * Curves.easeInOut.transform(i / steps));
+      await finger.moveTo(from + by * Curves.easeInOut.transform(i / steps));
     }
     await _wait(const Duration(milliseconds: 60));
-    await gesture.up();
+    await finger.up();
   }
 
-  Future<void> preview(WidgetTester tester) async {
-    // The binding draws the test's name along the top edge of the screen.
-    // ignore: invalid_use_of_protected_member
-    binding.setLabel('');
-    await _seed();
-    await app.startApp(overrides: [
-      shotSourceProvider.overrideWithValue(_ScriptedMicrophone(_shotsMs)),
-      beepPlayerProvider.overrideWithValue(_SilentBeep()),
-      stringStoreProvider.overrideWith(
-        (ref) => _StoreAtNow(ref.watch(databaseProvider)),
-      ),
-      runEnvironmentProvider.overrideWithValue(_NoEnvironment()),
-      volumeServiceProvider.overrideWithValue(_AudibleVolume()),
-    ]);
+  await _seed();
+  await app.startApp(overrides: [
+    shotSourceProvider.overrideWithValue(_ScriptedMicrophone(_shotsMs)),
+    beepPlayerProvider.overrideWithValue(_SilentBeep()),
+    stringStoreProvider.overrideWith(
+      (ref) => _StoreAtNow(ref.watch(databaseProvider)),
+    ),
+    runEnvironmentProvider.overrideWithValue(_NoEnvironment()),
+    volumeServiceProvider.overrideWithValue(_AudibleVolume()),
+  ]);
 
-    final lastSeeded = find.text('Last 1.84s · 6 shots');
-    final lastFired = find.text('Last 2.37s · 5 shots');
-    await _until(lastSeeded);
-    expect(find.text('El Presidente'), findsOneWidget);
-    expect(find.text('Random delay'), findsOneWidget);
+  final lastSeeded = find.text('Last 1.84s · 6 shots');
+  final lastFired = find.text('Last 2.37s · 5 shots');
+  await _until(lastSeeded);
+  await _until(find.text('El Presidente'));
+  await _until(find.text('Random delay'));
 
-    // The story. [recorded] is the pass the video is cut from; the pass
-    // before it only makes the app run everything once.
-    Future<void> play({required bool recorded}) async {
-      Future<void> stay(Duration time) =>
-          _wait(recorded ? time : const Duration(milliseconds: 500));
-      void mark(String step) {
-        if (recorded) _mark(step);
-      }
-
-      mark('start');
-      await tap(tester, find.text('START'));
-      await _until(find.text('STAND BY'));
-      await _until(find.textContaining(RegExp(r'^(TIME|LAST)$')));
-      mark('beep');
-      await _until(find.text('2.37'));
-      mark('last-shot');
-      expect(find.text('5'), findsOneWidget);
-      expect(find.text('1.42'), findsOneWidget);
-      expect(find.text('0.22s'), findsOneWidget);
-      await stay(_afterLastShot);
-
-      mark('stop');
-      await tap(tester, find.text('STOP'));
-      await _until(find.text('TOTAL'));
-      expect(find.textContaining(RegExp(r'^Saved 9:41\sAM$')), findsOneWidget);
-      await stay(_onTotal);
-      // Only now: while the views cross-fade the time is there twice.
-      expect(find.text('2.37'), findsOneWidget);
-
-      mark('review');
-      await tap(tester, find.text('Review'));
-      await _until(find.text('split 0.26s'));
-      expect(
-        find.textContaining(RegExp(r'^Oct 1, 2026 9:41\sAM$')),
-        findsOneWidget,
-      );
-      expect(find.text('Standard · Random (1.58s delay)'), findsOneWidget);
-      await stay(_onReviewTop);
-      // The fifth shot is below the screen's edge: up to the end of the
-      // list. The first 18 px of a drag only tell it from a tap.
-      final list = tester.state<ScrollableState>(
-        find
-            .descendant(
-              of: find.byType(ReviewScreen),
-              matching: find.byType(Scrollable),
-            )
-            .first,
-      );
-      final listBox = tester.getRect(find.byWidget(list.widget));
-      await drag(
-        listBox.center + Offset(0, listBox.height / 4),
-        Offset(0, -(list.position.maxScrollExtent + 18)),
-        _reviewScroll,
-      );
-      for (final split in ['split 0.23s', 'split 0.24s', 'split 0.22s']) {
-        expect(find.text(split), findsOneWidget);
-      }
-      await stay(_onReviewShots);
-
-      mark('back');
-      await tap(tester, find.byType(BackButton));
-      await _until(lastFired);
-      await stay(_onReadyBetween);
-
-      mark('history');
-      await tap(tester, _tab('History'));
-      await _until(find.text('2.37s · 5 shots'));
-      expect(find.text('Bill Drill, cold'), findsOneWidget);
-      await stay(_onHistory);
-
-      mark('video');
-      await tap(tester, _tab('Video'));
-      await _until(find.text('Choose video'));
-      await stay(_onVideo);
-
-      mark('drills');
-      await tap(tester, _tab('Drills'));
-      await _until(find.text('Saved drills'));
-      expect(find.text('Bill Drill'), findsOneWidget);
-      await stay(_onDrills);
-
-      mark('timer');
-      await tap(tester, _tab('Timer'));
-      await _until(find.text('Ready'));
-      expect(lastFired, findsOneWidget);
+  // The story. Each step waits for what the screenshots of the listing
+  // show, so a change in the app that breaks the story stops it here.
+  // [recorded] is the pass the video is cut from; the passes before it only
+  // make the app run everything.
+  Future<void> play({required bool recorded}) async {
+    Future<void> stay(Duration time) =>
+        _wait(recorded ? time : const Duration(milliseconds: 500));
+    void mark(String step) {
+      if (recorded) _mark(step);
     }
 
-    /// Deletes the string a pass has just fired, so the next one starts
-    /// from the same Ready screen.
-    Future<void> forget() async {
-      final container = ProviderScope.containerOf(
-        tester.element(find.byType(MainShell)),
-      );
-      final fired = (await container.read(historyProvider.future)).first;
-      await container.read(historyProvider.notifier).delete(fired.id!);
-      await _until(lastSeeded);
-    }
+    mark('start');
+    await tap(find.text('START'));
+    await _until(find.text('STAND BY'));
+    await _until(find.textContaining(RegExp(r'^(TIME|LAST)$')));
+    mark('beep');
+    await _until(find.text('2.37'));
+    mark('last-shot');
+    await _until(find.text('5'));
+    await _until(find.text('1.42'));
+    await _until(find.text('0.22s'));
+    await stay(_afterLastShot);
 
-    // A debug build stutters the first times it shows a screen, and a
-    // simulator that has just started an app is busy for a while: twice
-    // through everything before the pass that counts.
-    for (var rehearsal = 0; rehearsal < 2; rehearsal++) {
-      await play(recorded: false);
-      await forget();
-    }
+    mark('stop');
+    await tap(find.text('STOP'));
+    await _until(find.text('TOTAL'));
+    await _until(find.textContaining(RegExp(r'^Saved 9:41\sAM$')));
+    await stay(_onTotal);
 
-    // The pass that counts. Again if the app stood still during it, which
-    // shows as a stutter; the cut takes the last pass in the recording.
-    for (var attempt = 1;; attempt++) {
-      await _wait(_settle);
-      final stalls = _StallWatch();
-      await play(recorded: true);
-      await _wait(_hold);
-      stalls.stop();
-      _note('PREVIEW_WORST_STALL ${stalls.worstMs}');
-      if (stalls.worstMs <= _stutterMs || attempt == _attempts) break;
-      await forget();
-    }
-
-    // Taking the app down is the test framework's last step, and the app
-    // is not made for it: the timer's cleanup reads a provider while they
-    // are all being disposed, which Riverpod refuses. Done here instead,
-    // where that one error can be told from any other.
-    final errors = <Object>[];
-    await runZonedGuarded(() async {
-      runApp(const SizedBox());
-      await _wait(const Duration(milliseconds: 500));
-    }, (error, _) => errors.add(error));
-    expect(
-      errors.where(
-        (e) => !(e is StateError && e.message.contains('already disposed')),
-      ),
-      isEmpty,
+    mark('review');
+    await tap(find.text('Review'));
+    await _until(find.text('split 0.26s'));
+    await _until(find.textContaining(RegExp(r'^Oct 1, 2026 9:41\sAM$')));
+    await _until(find.text('Standard · Random (1.58s delay)'));
+    await stay(_onReviewTop);
+    // The fifth shot is below the screen's edge: up to the end of the list.
+    // The first 18 px of a drag only tell it from a tap.
+    final list = screen.state<ScrollableState>(
+      find
+          .descendant(
+            of: find.byType(ReviewScreen),
+            matching: find.byType(Scrollable),
+          )
+          .first,
     );
+    final listBox = screen.getRect(find.byWidget(list.widget));
+    await drag(
+      listBox.center + Offset(0, listBox.height / 4),
+      Offset(0, -(list.position.maxScrollExtent + 18)),
+      _reviewScroll,
+    );
+    for (final split in ['split 0.23s', 'split 0.24s', 'split 0.22s']) {
+      await _until(find.text(split));
+    }
+    await stay(_onReviewShots);
+
+    mark('back');
+    await tap(find.byType(BackButton));
+    await _until(lastFired);
+    await stay(_onReadyBetween);
+
+    mark('history');
+    await tap(_tab('History'));
+    await _until(find.text('2.37s · 5 shots'));
+    await _until(find.text('Bill Drill, cold'));
+    await stay(_onHistory);
+
+    mark('video');
+    await tap(_tab('Video'));
+    await _until(find.text('Choose video'));
+    await stay(_onVideo);
+
+    mark('drills');
+    await tap(_tab('Drills'));
+    await _until(find.text('Saved drills'));
+    await _until(find.text('Bill Drill'));
+    await stay(_onDrills);
+
+    mark('timer');
+    await tap(_tab('Timer'));
+    await _until(find.text('Ready'));
+    await _until(lastFired);
   }
 
-  testWidgets('plays the App Store preview', (tester) async {
-    final documents = await getApplicationDocumentsDirectory();
-    final marks = File('${documents.path}/app_preview_marks.txt');
-    if (marks.existsSync()) marks.deleteSync();
-    _marks = marks;
-    try {
-      await preview(tester);
-      _mark('end');
-    } catch (_) {
-      // The workflow stops waiting for the end.
-      _mark('failed');
-      rethrow;
-    }
-  });
+  /// Deletes the string a pass has just fired, so the next one starts from
+  /// the same Ready screen.
+  Future<void> forget() async {
+    final container = ProviderScope.containerOf(
+      screen.element(find.byType(MainShell)),
+    );
+    final fired = (await container.read(historyProvider.future)).first;
+    await container.read(historyProvider.notifier).delete(fired.id!);
+    await _until(lastSeeded);
+  }
+
+  // A debug build stutters the first times it shows a screen, and a
+  // simulator that has just started an app is busy for a while: twice
+  // through everything before the pass that counts.
+  for (var rehearsal = 0; rehearsal < 2; rehearsal++) {
+    await play(recorded: false);
+    await forget();
+  }
+
+  // The pass that counts. Again if the app stood still during it, which
+  // shows as a stutter; the cut takes the last pass in the recording.
+  for (var attempt = 1;; attempt++) {
+    await _wait(_settle);
+    final stalls = _StallWatch();
+    await play(recorded: true);
+    await _wait(_hold);
+    stalls.stop();
+    _note('PREVIEW_WORST_STALL ${stalls.worstMs}');
+    if (stalls.worstMs <= _stutterMs || attempt == _attempts) break;
+    await forget();
+  }
+}
+
+Future<void> main() async {
+  final binding = WidgetsFlutterBinding.ensureInitialized();
+  final documents = await getApplicationDocumentsDirectory();
+  final marks = File('${documents.path}/app_preview_marks.txt');
+  if (marks.existsSync()) marks.deleteSync();
+  _marks = marks;
+  try {
+    await _preview(LiveWidgetController(binding));
+    _mark('end');
+  } catch (error, stack) {
+    debugPrint('PREVIEW_ERROR $error\n$stack');
+    // The workflow stops waiting for the end.
+    _mark('failed');
+  }
 }

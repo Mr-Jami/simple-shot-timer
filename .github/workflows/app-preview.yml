@@ -1,15 +1,15 @@
 name: App preview
 
 # Records the raw material of the App Store preview video: the real app in
-# an iPhone simulator, played by integration_test/app_preview_test.dart,
-# with the simulator's screen recorded. The recording is an artifact of the
+# an iPhone simulator, played by integration_test/app_preview.dart, with
+# the simulator's screen recorded. The recording is an artifact of the
 # run; branding/store-listing/README.md says how it becomes the video.
 # Nothing is uploaded to the store from here.
 on:
   pull_request:
     branches: [main]
     paths:
-      - 'integration_test/app_preview_test.dart'
+      - 'integration_test/app_preview.dart'
       - '.github/workflows/app-preview.yml'
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
   record:
     name: Record in the simulator
     runs-on: macos-15
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     env:
       FLUTTER_VERSION: '3.41.9'
@@ -47,12 +47,11 @@ jobs:
         run: flutter pub get
 
       - name: Build for the simulator
-        # The test is the app's entry point: started like any app, it plays
-        # the story by itself. `flutter test -d` would do the same but takes
-        # minutes to start the app, and sometimes never does.
+        # With the script as the app's entry point: started like any app,
+        # it plays the story by itself.
         run: >-
           flutter build ios --simulator --debug
-          --target integration_test/app_preview_test.dart
+          --target integration_test/app_preview.dart
 
       - name: Boot an iPhone
         # The largest iPhone with a Dynamic Island that is installed, on
@@ -84,30 +83,32 @@ jobs:
             --cellularMode active --cellularBars 4 \
             --batteryState discharging --batteryLevel 100
           xcrun simctl install "$device" build/ios/iphonesimulator/Runner.app
-          # The test never opens the microphone, but no system dialog may
+          # The script never opens the microphone, but no system dialog may
           # ever cover the app.
           xcrun simctl privacy "$device" grant microphone "$BUNDLE_ID" || true
 
       - name: Wait for the simulator to come to rest
         # After its first boot a simulator is busy for minutes (indexing,
-        # setting itself up). A recording made meanwhile loses frames by
-        # the second. Until the Mac has little to do, five minutes at most.
+        # setting itself up), and a recording made meanwhile loses frames
+        # by the second. Until the Mac's load is back under its three
+        # cores, eight minutes at most.
         run: |
           sleep 30
-          for _ in $(seq 1 54); do
+          for _ in $(seq 1 45); do
             load=$(sysctl -n vm.loadavg | awk '{ print $2 }')
             echo "load $load"
-            if awk -v load="$load" 'BEGIN { exit !(load < 1.5) }'; then
+            if awk -v load="$load" 'BEGIN { exit !(load < 3) }'; then
               break
             fi
-            sleep 5
+            sleep 10
           done
 
       - name: Record the app
         run: |
           mkdir -p preview
 
-          # What the app prints, for when the test fails.
+          sysctl -n vm.loadavg
+          # What the app prints, for when the script fails.
           xcrun simctl spawn "$DEVICE" log stream --style compact \
             --predicate 'processImagePath ENDSWITH "/Runner"' \
             > preview/app.log 2>&1 &
@@ -126,7 +127,7 @@ jobs:
           sleep 2
 
           xcrun simctl launch "$DEVICE" "$BUNDLE_ID"
-          # The test writes its steps here; a simulator's files are the
+          # The script writes its steps here; a simulator's files are the
           # Mac's.
           marks="$(xcrun simctl get_app_container "$DEVICE" "$BUNDLE_ID" data)/Documents/app_preview_marks.txt"
           result='did not finish in time'
@@ -153,7 +154,7 @@ jobs:
           cat preview/marks.txt
           ls -l preview
           if [ "$result" != passed ]; then
-            echo "::error::the preview test $result (see app.log in the artifact)"
+            echo "::error::the preview script $result (see app.log in the artifact)"
             grep -a 'flutter' preview/app.log | tail -n 120 || true
             exit 1
           fi
