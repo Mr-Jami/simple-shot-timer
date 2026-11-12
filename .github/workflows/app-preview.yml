@@ -21,14 +21,13 @@ jobs:
   record:
     name: Record in the simulator
     runs-on: macos-15
-    timeout-minutes: 45
+    timeout-minutes: 30
 
     env:
       FLUTTER_VERSION: '3.41.9'
       # The Xcode the App Store build uses (deploy-app-store.yml).
       XCODE_VERSION: '26.3'
       BUNDLE_ID: cc.jami.simpleshottimer
-      TEST: integration_test/app_preview_test.dart
 
     steps:
       - name: Checkout repository
@@ -48,9 +47,12 @@ jobs:
         run: flutter pub get
 
       - name: Build for the simulator
-        # Ahead of the recording, so that it does not sit through the whole
-        # build: the test run below only has to build what changed.
-        run: flutter build ios --simulator --debug --target "$TEST"
+        # The test is the app's entry point: started like any app, it plays
+        # the story by itself. `flutter test -d` would do the same but takes
+        # minutes to start the app, and sometimes never does.
+        run: >-
+          flutter build ios --simulator --debug
+          --target integration_test/app_preview_test.dart
 
       - name: Boot an iPhone
         # The largest iPhone with a Dynamic Island that is installed, on
@@ -81,14 +83,21 @@ jobs:
             --dataNetwork wifi --wifiMode active --wifiBars 3 \
             --cellularMode active --cellularBars 4 \
             --batteryState discharging --batteryLevel 100
+          xcrun simctl install "$device" build/ios/iphonesimulator/Runner.app
           # The test never opens the microphone, but no system dialog may
           # ever cover the app.
           xcrun simctl privacy "$device" grant microphone "$BUNDLE_ID" || true
 
-      - name: Record the test
+      - name: Record the app
         run: |
           mkdir -p preview
           now_ms() { python3 -c 'import time; print(int(time.time() * 1000))'; }
+
+          # What the app prints, for when the test fails.
+          xcrun simctl spawn "$DEVICE" log stream --style compact \
+            --predicate 'processImagePath ENDSWITH "/Runner"' \
+            > preview/app.log 2>&1 &
+          logger=$!
 
           xcrun simctl io "$DEVICE" recordVideo --codec=h264 --mask=ignored \
             --force preview/recording.mov 2> preview/recording.log &
@@ -99,25 +108,43 @@ jobs:
             fi
             sleep 0.2
           done
-          # With the test's PREVIEW_MARK lines this says where in the
-          # recording each step is.
-          echo "PREVIEW_MARK recording $(now_ms)" | tee preview/marks.txt
+          # With the times the test notes, this says where in the recording
+          # each step is.
+          echo "PREVIEW_MARK recording $(now_ms)" > preview/marks.txt
           cat preview/recording.log
 
-          set +e
-          flutter test "$TEST" -d "$DEVICE" 2>&1 | tee preview/test.log
-          result=${PIPESTATUS[0]}
-          set -e
+          xcrun simctl launch "$DEVICE" "$BUNDLE_ID"
+          # The test writes its steps here; a simulator's files are the
+          # Mac's.
+          marks="$(xcrun simctl get_app_container "$DEVICE" "$BUNDLE_ID" data)/Documents/app_preview_marks.txt"
+          result='did not finish in time'
+          for _ in $(seq 1 240); do
+            if grep -q 'PREVIEW_MARK end' "$marks" 2> /dev/null; then
+              result=passed
+              break
+            fi
+            if grep -q 'PREVIEW_MARK failed' "$marks" 2> /dev/null; then
+              result=failed
+              break
+            fi
+            sleep 1
+          done
 
           sleep 2
           # SIGINT, or the file is left without its index.
           kill -INT "$recorder"
           wait "$recorder" || true
+          kill "$logger" || true
+          xcrun simctl terminate "$DEVICE" "$BUNDLE_ID" || true
           cat preview/recording.log
-          grep -o 'PREVIEW_MARK .*' preview/test.log >> preview/marks.txt || true
+          cat "$marks" >> preview/marks.txt || true
           cat preview/marks.txt
           ls -l preview
-          exit "$result"
+          if [ "$result" != passed ]; then
+            echo "::error::the preview test $result (see app.log in the artifact)"
+            grep -a 'flutter' preview/app.log | tail -n 120 || true
+            exit 1
+          fi
 
       - name: Upload the recording
         if: always()

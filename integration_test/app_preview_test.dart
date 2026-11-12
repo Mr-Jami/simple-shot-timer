@@ -3,12 +3,14 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 import 'dart:async';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_shot_timer/main.dart' as app;
 import 'package:simple_shot_timer/models/app_settings.dart';
@@ -38,7 +40,8 @@ import 'package:simple_shot_timer/services/volume_service.dart';
 /// already on the phone, which are those of the store screenshots
 /// (branding/store-listing). Every screen is the app's own.
 ///
-/// `.github/workflows/app-preview.yml` records it;
+/// `.github/workflows/app-preview.yml` builds the app with this file as its
+/// entry point, starts it in a simulator and records the screen;
 /// branding/store-listing/README.md says how the recording becomes the
 /// video. To run it by hand, in a simulator or on a spare phone (it replaces
 /// the app's history, drills and settings with its own):
@@ -403,12 +406,21 @@ Future<void> _until(
   }
 }
 
-/// A line in the test's output that says when [step] happened, so the
-/// recording can be cut (see the README).
-void _mark(String step) {
+/// Where the steps of the run are written: `app_preview_marks.txt` in the
+/// app's documents. The workflow waits for its last line and cuts the
+/// recording by its times (see the README).
+File? _marks;
+
+/// Notes [line] with the time, in the marks file and in the test's output.
+void _note(String line) {
+  final text = '$line ${DateTime.now().millisecondsSinceEpoch}';
+  _marks?.writeAsStringSync('$text\n', mode: FileMode.append, flush: true);
   // ignore: avoid_print
-  print('PREVIEW_MARK $step ${DateTime.now().millisecondsSinceEpoch}');
+  print(text);
 }
+
+/// Notes when [step] of the story happens.
+void _mark(String step) => _note('PREVIEW_MARK $step');
 
 Finder _tab(String label) => find.descendant(
       of: find.byType(NavigationBar),
@@ -426,8 +438,7 @@ class _StallWatch {
       _lastMs = now;
       if (late < 120) return;
       if (late > worstMs) worstMs = late;
-      // ignore: avoid_print
-      print('PREVIEW_STALL $late ms ${DateTime.now().millisecondsSinceEpoch}');
+      _note('PREVIEW_STALL $late');
     });
   }
 
@@ -475,7 +486,7 @@ void main() {
     await gesture.up();
   }
 
-  testWidgets('plays the App Store preview', (tester) async {
+  Future<void> preview(WidgetTester tester) async {
     // The binding draws the test's name along the top edge of the screen.
     // ignore: invalid_use_of_protected_member
     binding.setLabel('');
@@ -520,9 +531,10 @@ void main() {
       mark('stop');
       await tap(tester, find.text('STOP'));
       await _until(find.text('TOTAL'));
-      expect(find.text('2.37'), findsOneWidget);
       expect(find.textContaining(RegExp(r'^Saved 9:41\sAM$')), findsOneWidget);
       await stay(_onTotal);
+      // Only now: while the views cross-fade the time is there twice.
+      expect(find.text('2.37'), findsOneWidget);
 
       mark('review');
       await tap(tester, find.text('Review'));
@@ -596,9 +608,22 @@ void main() {
     final stalls = _StallWatch();
     await play(recorded: true);
     await _wait(_hold);
-    _mark('end');
     stalls.stop();
-    // ignore: avoid_print
-    print('PREVIEW_WORST_STALL ${stalls.worstMs} ms');
+    _note('PREVIEW_WORST_STALL ${stalls.worstMs}');
+  }
+
+  testWidgets('plays the App Store preview', (tester) async {
+    final documents = await getApplicationDocumentsDirectory();
+    final marks = File('${documents.path}/app_preview_marks.txt');
+    if (marks.existsSync()) marks.deleteSync();
+    _marks = marks;
+    try {
+      await preview(tester);
+      _mark('end');
+    } catch (_) {
+      // The workflow stops waiting for the end.
+      _mark('failed');
+      rethrow;
+    }
   });
 }
