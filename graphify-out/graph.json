@@ -1240,7 +1240,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_io",
-      "community": 188,
+      "community": 94,
       "norm_label": "dart:io"
     },
     {
@@ -1250,7 +1250,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_foundation_dart",
-      "community": 173,
+      "community": 179,
       "norm_label": "package:flutter/foundation.dart"
     },
     {
@@ -1260,7 +1260,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_test_flutter_test_dart",
-      "community": 157,
+      "community": 173,
       "norm_label": "package:flutter_test/flutter_test.dart"
     },
     {
@@ -1290,7 +1290,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_analyzer_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/clip_analyzer.dart"
     },
     {
@@ -1408,8 +1408,291 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runnertests_runnertests",
-      "community": 10,
+      "community": 29,
       "norm_label": "runnertests.swift"
+    },
+    {
+      "label": "AVFoundation",
+      "file_type": "code",
+      "type": "module",
+      "source_file": "ios/Runner/NoSpace.swift",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "avfoundation",
+      "community": 10,
+      "norm_label": "avfoundation"
+    },
+    {
+      "label": "XCTest",
+      "file_type": "code",
+      "type": "module",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "xctest",
+      "community": 29,
+      "norm_label": "xctest"
+    },
+    {
+      "label": "Runner",
+      "file_type": "code",
+      "type": "module",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "runner",
+      "community": 29,
+      "norm_label": "runner"
+    },
+    {
+      "label": "ClipExportTests",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests",
+      "community": 29,
+      "norm_label": "clipexporttests"
+    },
+    {
+      "label": "XCTestCase",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "xctestcase",
+      "community": 29,
+      "norm_label": "xctestcase"
+    },
+    {
+      "label": "URL",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_swift_url",
+      "community": 29,
+      "norm_label": "url"
+    },
+    {
+      "label": ".setUpWithError()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_setupwitherror",
+      "community": 29,
+      "norm_label": ".setupwitherror()"
+    },
+    {
+      "label": ".tearDownWithError()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_teardownwitherror",
+      "community": 29,
+      "norm_label": ".teardownwitherror()"
+    },
+    {
+      "label": ".testALandscapeExportShowsThePictureUpToItsEdges()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_testalandscapeexportshowsthepictureuptoitsedges",
+      "community": 29,
+      "norm_label": ".testalandscapeexportshowsthepictureuptoitsedges()"
+    },
+    {
+      "label": ".testAPortraitExportShowsThePictureUpToItsEdges()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_testaportraitexportshowsthepictureuptoitsedges",
+      "community": 29,
+      "norm_label": ".testaportraitexportshowsthepictureuptoitsedges()"
+    },
+    {
+      "label": ".testAnExportLeavesOutTheMarginAroundTheCleanAperture()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "community": 29,
+      "norm_label": ".testanexportleavesoutthemarginaroundthecleanaperture()"
+    },
+    {
+      "label": ".testAScaledExportLeavesOutTheMarginToo()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_testascaledexportleavesoutthemargintoo",
+      "community": 29,
+      "norm_label": ".testascaledexportleavesoutthemargintoo()"
+    },
+    {
+      "label": ".writeClip()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "community": 29,
+      "norm_label": ".writeclip()"
+    },
+    {
+      "label": "String",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_swift_string",
+      "community": 29,
+      "norm_label": "string"
+    },
+    {
+      "label": "CGSize",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_swift_cgsize",
+      "community": 29,
+      "norm_label": "cgsize"
+    },
+    {
+      "label": "CGRect",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_swift_cgrect",
+      "community": 29,
+      "norm_label": "cgrect"
+    },
+    {
+      "label": "Bool",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_swift_bool",
+      "community": 29,
+      "norm_label": "bool"
+    },
+    {
+      "label": ".drawn()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "community": 29,
+      "norm_label": ".drawn()"
+    },
+    {
+      "label": "CVPixelBuffer",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_swift_cvpixelbuffer",
+      "community": 29,
+      "norm_label": "cvpixelbuffer"
+    },
+    {
+      "label": ".export()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L154",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_export",
+      "community": 29,
+      "norm_label": ".export()"
+    },
+    {
+      "label": "Int",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_swift_int",
+      "community": 29,
+      "norm_label": "int"
+    },
+    {
+      "label": ".check()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L189",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_check",
+      "community": 29,
+      "norm_label": ".check()"
+    },
+    {
+      "label": "StaticString",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "staticstring",
+      "community": 29,
+      "norm_label": "staticstring"
+    },
+    {
+      "label": "UInt",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "uint",
+      "community": 29,
+      "norm_label": "uint"
+    },
+    {
+      "label": ".pixel()",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L221",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_clipexporttests_pixel",
+      "community": 29,
+      "norm_label": ".pixel()"
+    },
+    {
+      "label": "Pixel",
+      "file_type": "code",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L229",
+      "_origin": "ast",
+      "id": "ios_runnertests_runnertests_pixel",
+      "community": 29,
+      "norm_label": "pixel"
+    },
+    {
+      "label": "CustomStringConvertible",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "customstringconvertible",
+      "community": 29,
+      "norm_label": "customstringconvertible"
+    },
+    {
+      "label": "AppDelegate.swift",
+      "file_type": "code",
+      "source_file": "ios/Runner/AppDelegate.swift",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ios_runner_appdelegate",
+      "community": 10,
+      "norm_label": "appdelegate.swift"
     },
     {
       "label": "Flutter",
@@ -1432,68 +1715,6 @@
       "id": "uikit",
       "community": 10,
       "norm_label": "uikit"
-    },
-    {
-      "label": "XCTest",
-      "file_type": "code",
-      "type": "module",
-      "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "xctest",
-      "community": 10,
-      "norm_label": "xctest"
-    },
-    {
-      "label": "RunnerTests",
-      "file_type": "code",
-      "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "ios_runnertests_runnertests_runnertests",
-      "community": 10,
-      "norm_label": "runnertests"
-    },
-    {
-      "label": "XCTestCase",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "xctestcase",
-      "community": 10,
-      "norm_label": "xctestcase"
-    },
-    {
-      "label": ".testExample()",
-      "file_type": "code",
-      "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "ios_runnertests_runnertests_runnertests_testexample",
-      "community": 10,
-      "norm_label": ".testexample()"
-    },
-    {
-      "label": "AppDelegate.swift",
-      "file_type": "code",
-      "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "ios_runner_appdelegate",
-      "community": 10,
-      "norm_label": "appdelegate.swift"
-    },
-    {
-      "label": "AVFoundation",
-      "file_type": "code",
-      "type": "module",
-      "source_file": "ios/Runner/NoSpace.swift",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "avfoundation",
-      "community": 10,
-      "norm_label": "avfoundation"
     },
     {
       "label": "AppDelegate",
@@ -1742,7 +1963,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipaudiochannel_swift_flutterresult",
-      "community": 26,
+      "community": 201,
       "norm_label": "flutterresult"
     },
     {
@@ -1782,7 +2003,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "ios_runner_clipaudiochannel_clipaudiochannel_reply",
-      "community": 26,
+      "community": 201,
       "norm_label": ".reply()"
     },
     {
@@ -1792,7 +2013,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "dispatchqueue",
-      "community": 155,
+      "community": 201,
       "norm_label": "dispatchqueue"
     },
     {
@@ -1932,7 +2153,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "avurlasset",
-      "community": 52,
+      "community": 29,
       "norm_label": "avurlasset"
     },
     {
@@ -2150,7 +2371,7 @@
       "label": "ClipExportChannel",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel",
       "community": 52,
@@ -2190,7 +2411,7 @@
       "label": "Job",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_job",
       "community": 52,
@@ -2203,7 +2424,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_int",
-      "community": 155,
+      "community": 52,
       "norm_label": "int"
     },
     {
@@ -2233,14 +2454,14 @@
       "source_location": "",
       "_origin": "ast",
       "id": "avassetexportsession",
-      "community": 52,
+      "community": 84,
       "norm_label": "avassetexportsession"
     },
     {
       "label": ".init()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L45",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_job_init",
       "community": 52,
@@ -2250,7 +2471,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_init",
       "community": 52,
@@ -2270,7 +2491,7 @@
       "label": ".handle()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L61",
+      "source_location": "L62",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_handle",
       "community": 52,
@@ -2290,7 +2511,7 @@
       "label": ".start()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L85",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_start",
       "community": 52,
@@ -2303,7 +2524,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_string",
-      "community": 52,
+      "community": 155,
       "norm_label": "string"
     },
     {
@@ -2313,14 +2534,14 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_any",
-      "community": 52,
+      "community": 155,
       "norm_label": "any"
     },
     {
       "label": ".completed()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L116",
+      "source_location": "L117",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_completed",
       "community": 52,
@@ -2330,7 +2551,7 @@
       "label": ".finish()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L133",
+      "source_location": "L134",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_finish",
       "community": 52,
@@ -2343,7 +2564,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_bool",
-      "community": 52,
+      "community": 155,
       "norm_label": "bool"
     },
     {
@@ -2360,21 +2581,21 @@
       "label": ".makeSession()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L144",
+      "source_location": "L146",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_makesession",
-      "community": 52,
+      "community": 84,
       "norm_label": ".makesession()"
     },
     {
-      "label": ".upright()",
+      "label": ".aperture()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L220",
+      "source_location": "L224",
       "_origin": "ast",
-      "id": "ios_runner_clipexportchannel_clipexportchannel_upright",
-      "community": 52,
-      "norm_label": ".upright()"
+      "id": "ios_runner_clipexportchannel_clipexportchannel_aperture",
+      "community": 84,
+      "norm_label": ".aperture()"
     },
     {
       "label": "AVAssetTrack",
@@ -2383,8 +2604,18 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_avassettrack",
-      "community": 52,
+      "community": 84,
       "norm_label": "avassettrack"
+    },
+    {
+      "label": ".upright()",
+      "file_type": "code",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L236",
+      "_origin": "ast",
+      "id": "ios_runner_clipexportchannel_clipexportchannel_upright",
+      "community": 84,
+      "norm_label": ".upright()"
     },
     {
       "label": "CGSize",
@@ -2392,28 +2623,28 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "cgsize",
-      "community": 52,
+      "id": "ios_runner_clipexportchannel_swift_cgsize",
+      "community": 84,
       "norm_label": "cgsize"
     },
     {
       "label": ".renderSize()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L227",
+      "source_location": "L243",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
-      "community": 52,
+      "community": 84,
       "norm_label": ".rendersize()"
     },
     {
       "label": ".frameDuration()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L237",
+      "source_location": "L253",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
-      "community": 52,
+      "community": 84,
       "norm_label": ".frameduration()"
     },
     {
@@ -2423,7 +2654,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_double",
-      "community": 52,
+      "community": 84,
       "norm_label": "double"
     },
     {
@@ -2433,17 +2664,17 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_cmtime",
-      "community": 52,
+      "community": 84,
       "norm_label": "cmtime"
     },
     {
       "label": ".orientation()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L243",
+      "source_location": "L259",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipexportchannel_orientation",
-      "community": 52,
+      "community": 84,
       "norm_label": ".orientation()"
     },
     {
@@ -2453,7 +2684,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_cgaffinetransform",
-      "community": 155,
+      "community": 84,
       "norm_label": "cgaffinetransform"
     },
     {
@@ -2463,17 +2694,17 @@
       "source_location": "",
       "_origin": "ast",
       "id": "cgimagepropertyorientation",
-      "community": 155,
+      "community": 84,
       "norm_label": "cgimagepropertyorientation"
     },
     {
       "label": "errorDetail()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L258",
+      "source_location": "L274",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_errordetail",
-      "community": 52,
+      "community": 10,
       "norm_label": "errordetail()"
     },
     {
@@ -2483,17 +2714,17 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_swift_error",
-      "community": 52,
+      "community": 10,
       "norm_label": "error"
     },
     {
       "label": "ClipFailure",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L276",
+      "source_location": "L292",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_clipfailure",
-      "community": 52,
+      "community": 155,
       "norm_label": "clipfailure"
     },
     {
@@ -2503,17 +2734,37 @@
       "source_location": "",
       "_origin": "ast",
       "id": "customnserror",
-      "community": 52,
+      "community": 155,
       "norm_label": "customnserror"
+    },
+    {
+      "label": "Aperture",
+      "file_type": "code",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L302",
+      "_origin": "ast",
+      "id": "ios_runner_clipexportchannel_aperture",
+      "community": 84,
+      "norm_label": "aperture"
+    },
+    {
+      "label": "CGRect",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "ios_runner_clipexportchannel_swift_cgrect",
+      "community": 84,
+      "norm_label": "cgrect"
     },
     {
       "label": "OverlayInstruction",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L283",
+      "source_location": "L309",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayinstruction",
-      "community": 155,
+      "community": 84,
       "norm_label": "overlayinstruction"
     },
     {
@@ -2523,7 +2774,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "avvideocompositioninstructionprotocol",
-      "community": 155,
+      "community": 84,
       "norm_label": "avvideocompositioninstructionprotocol"
     },
     {
@@ -2533,7 +2784,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "cmtimerange",
-      "community": 155,
+      "community": 84,
       "norm_label": "cmtimerange"
     },
     {
@@ -2543,7 +2794,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "nsvalue",
-      "community": 155,
+      "community": 84,
       "norm_label": "nsvalue"
     },
     {
@@ -2553,24 +2804,24 @@
       "source_location": "",
       "_origin": "ast",
       "id": "cmpersistenttrackid",
-      "community": 155,
+      "community": 84,
       "norm_label": "cmpersistenttrackid"
     },
     {
       "label": ".init()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L296",
+      "source_location": "L323",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayinstruction_init",
-      "community": 155,
+      "community": 84,
       "norm_label": ".init()"
     },
     {
       "label": "OverlayCompositor",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L311",
+      "source_location": "L339",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor",
       "community": 155,
@@ -2590,7 +2841,7 @@
       "label": ".renderContextChanged()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L335",
+      "source_location": "L363",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_rendercontextchanged",
       "community": 155,
@@ -2610,7 +2861,7 @@
       "label": ".startRequest()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L337",
+      "source_location": "L365",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
       "community": 155,
@@ -2630,7 +2881,7 @@
       "label": ".cancelAllPendingVideoCompositionRequests()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L356",
+      "source_location": "L384",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_cancelallpendingvideocompositionrequests",
       "community": 155,
@@ -2640,7 +2891,7 @@
       "label": ".render()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L375",
+      "source_location": "L403",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlaycompositor_render",
       "community": 155,
@@ -2652,7 +2903,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "cvpixelbuffer",
+      "id": "ios_runner_clipexportchannel_swift_cvpixelbuffer",
       "community": 155,
       "norm_label": "cvpixelbuffer"
     },
@@ -2660,7 +2911,7 @@
       "label": "OverlayFrames",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L420",
+      "source_location": "L454",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes",
       "community": 155,
@@ -2683,7 +2934,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "cgfloat",
-      "community": 52,
+      "community": 84,
       "norm_label": "cgfloat"
     },
     {
@@ -2700,17 +2951,17 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L431",
+      "source_location": "L465",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_init",
-      "community": 52,
+      "community": 155,
       "norm_label": ".init()"
     },
     {
       "label": ".image()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L448",
+      "source_location": "L482",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_image",
       "community": 155,
@@ -2720,7 +2971,7 @@
       "label": ".pixels()",
       "file_type": "code",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L467",
+      "source_location": "L501",
       "_origin": "ast",
       "id": "ios_runner_clipexportchannel_overlayframes_pixels",
       "community": 155,
@@ -2964,7 +3215,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_h_ios_runner_generatedpluginregistrant",
-      "community": 156,
+      "community": 177,
       "norm_label": "generatedpluginregistrant.h"
     },
     {
@@ -2974,7 +3225,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_generatedpluginregistrant",
-      "community": 156,
+      "community": 177,
       "norm_label": "generatedpluginregistrant"
     },
     {
@@ -2984,7 +3235,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_h_nsobject",
-      "community": 156,
+      "community": 177,
       "norm_label": "nsobject"
     },
     {
@@ -2994,7 +3245,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_generatedpluginregistrant_registerwithregistry",
-      "community": 156,
+      "community": 177,
       "norm_label": "+registerwithregistry"
     },
     {
@@ -3004,7 +3255,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_generatedpluginregistrant_m_ios_runner_generatedpluginregistrant",
-      "community": 156,
+      "community": 177,
       "norm_label": "generatedpluginregistrant.m"
     },
     {
@@ -3035,7 +3286,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "ios_runner_nospace_isnospace",
-      "community": 10,
+      "community": 201,
       "norm_label": "isnospace()"
     },
     {
@@ -3045,7 +3296,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_nospace_swift_error",
-      "community": 10,
+      "community": 201,
       "norm_label": "error"
     },
     {
@@ -3055,7 +3306,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "ios_runner_nospace_swift_bool",
-      "community": 10,
+      "community": 201,
       "norm_label": "bool"
     },
     {
@@ -3065,7 +3316,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ios_runner_runner_bridging_header",
-      "community": 156,
+      "community": 177,
       "norm_label": "runner-bridging-header.h"
     },
     {
@@ -3105,7 +3356,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app",
-      "community": 18,
+      "community": 140,
       "norm_label": "app.dart"
     },
     {
@@ -3115,7 +3366,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_simpleshottimerapp",
-      "community": 54,
+      "community": 140,
       "norm_label": "simpleshottimerapp"
     },
     {
@@ -3135,7 +3386,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_build",
-      "community": 54,
+      "community": 140,
       "norm_label": "build"
     },
     {
@@ -3165,7 +3416,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_riverpod_flutter_riverpod_dart",
-      "community": 141,
+      "community": 18,
       "norm_label": "package:flutter_riverpod/flutter_riverpod.dart"
     },
     {
@@ -3185,7 +3436,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_enums_dart",
-      "community": 18,
+      "community": 140,
       "norm_label": "../../models/enums.dart"
     },
     {
@@ -3195,7 +3446,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_settings_provider_dart",
-      "community": 18,
+      "community": 140,
       "norm_label": "../providers/settings_provider.dart"
     },
     {
@@ -3205,7 +3456,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "screens_main_shell_dart",
-      "community": 18,
+      "community": 140,
       "norm_label": "screens/main_shell.dart"
     },
     {
@@ -3215,7 +3466,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "theme_app_theme_dart",
-      "community": 18,
+      "community": 140,
       "norm_label": "theme/app_theme.dart"
     },
     {
@@ -3495,7 +3746,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_convert",
-      "community": 164,
+      "community": 103,
       "norm_label": "dart:convert"
     },
     {
@@ -3505,7 +3756,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_services_dart",
-      "community": 184,
+      "community": 195,
       "norm_label": "package:flutter/services.dart"
     },
     {
@@ -3515,7 +3766,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main",
-      "community": 118,
+      "community": 182,
       "norm_label": "main.dart"
     },
     {
@@ -3525,7 +3776,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_prefs",
-      "community": 118,
+      "community": 182,
       "norm_label": "prefs"
     },
     {
@@ -3535,7 +3786,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_db",
-      "community": 118,
+      "community": 182,
       "norm_label": "db"
     },
     {
@@ -3545,7 +3796,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_audio",
-      "community": 118,
+      "community": 182,
       "norm_label": "audio"
     },
     {
@@ -3555,7 +3806,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_main",
-      "community": 118,
+      "community": 182,
       "norm_label": "main"
     },
     {
@@ -3565,7 +3816,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_main_setpreferredorientations",
-      "community": 118,
+      "community": 182,
       "norm_label": "setpreferredorientations"
     },
     {
@@ -3575,7 +3826,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "app_dart",
-      "community": 118,
+      "community": 182,
       "norm_label": "app.dart"
     },
     {
@@ -3585,7 +3836,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_providers_dart",
-      "community": 118,
+      "community": 182,
       "norm_label": "../providers/providers.dart"
     },
     {
@@ -3605,7 +3856,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_background_service_dart",
-      "community": 118,
+      "community": 182,
       "norm_label": "services/background_service.dart"
     },
     {
@@ -3635,7 +3886,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_settings_service_dart",
-      "community": 118,
+      "community": 182,
       "norm_label": "../services/settings_service.dart"
     },
     {
@@ -3645,7 +3896,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_video_work_dir_dart",
-      "community": 118,
+      "community": 182,
       "norm_label": "../services/video/video_work_dir.dart"
     },
     {
@@ -3655,7 +3906,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_legal_dart",
-      "community": 118,
+      "community": 182,
       "norm_label": "../utils/legal.dart"
     },
     {
@@ -4965,7 +5216,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_math",
-      "community": 157,
+      "community": 24,
       "norm_label": "dart:math"
     },
     {
@@ -5115,7 +5366,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_models_timer_state_timerstate",
-      "community": 32,
+      "community": 207,
       "norm_label": "timerstate"
     },
     {
@@ -5215,7 +5466,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "datetime",
-      "community": 140,
+      "community": 57,
       "norm_label": "datetime?"
     },
     {
@@ -5695,7 +5946,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "autodisposefamilynotifier",
-      "community": 149,
+      "community": 189,
       "norm_label": "autodisposefamilynotifier"
     },
     {
@@ -6275,7 +6526,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_timer_string_dart",
-      "community": 182,
+      "community": 93,
       "norm_label": "../../models/timer_string.dart"
     },
     {
@@ -6295,7 +6546,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_analyzer_dart",
-      "community": 201,
+      "community": 13,
       "norm_label": "../../services/video/clip_analyzer.dart"
     },
     {
@@ -6435,7 +6686,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "return",
-      "community": 203,
+      "community": 82,
       "norm_label": "return"
     },
     {
@@ -6455,7 +6706,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_custom_drills_provider_persist",
-      "community": 183,
+      "community": 186,
       "norm_label": "_persist"
     },
     {
@@ -6525,7 +6776,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_drill_config_dart",
-      "community": 130,
+      "community": 186,
       "norm_label": "../models/drill_config.dart"
     },
     {
@@ -6535,7 +6786,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_dart",
-      "community": 186,
+      "community": 3,
       "norm_label": "providers.dart"
     },
     {
@@ -6665,7 +6916,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_audioserviceprovider",
-      "community": 140,
+      "community": 118,
       "norm_label": "audioserviceprovider"
     },
     {
@@ -6695,7 +6946,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_beepplayerprovider",
-      "community": 32,
+      "community": 207,
       "norm_label": "beepplayerprovider"
     },
     {
@@ -6725,7 +6976,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_providers_shotdetectorprovider",
-      "community": 84,
+      "community": 57,
       "norm_label": "shotdetectorprovider"
     },
     {
@@ -6885,7 +7136,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider",
-      "community": 141,
+      "community": 18,
       "norm_label": "string_provider.dart"
     },
     {
@@ -6905,7 +7156,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_string_provider_read",
-      "community": 141,
+      "community": 18,
       "norm_label": "read"
     },
     {
@@ -6925,7 +7176,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_timernotifier",
-      "community": 32,
+      "community": 207,
       "norm_label": "timernotifier"
     },
     {
@@ -7405,7 +7656,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playstartbeep",
-      "community": 32,
+      "community": 207,
       "norm_label": "_playstartbeep"
     },
     {
@@ -7415,7 +7666,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_timer_provider_playparbeep",
-      "community": 32,
+      "community": 207,
       "norm_label": "_playparbeep"
     },
     {
@@ -7535,7 +7786,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_export_provider_exporttarget",
-      "community": 18,
+      "community": 140,
       "norm_label": "exporttarget"
     },
     {
@@ -8045,7 +8296,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importstate",
-      "community": 149,
+      "community": 189,
       "norm_label": "importstate"
     },
     {
@@ -8055,7 +8306,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importworking",
-      "community": 149,
+      "community": 189,
       "norm_label": "importworking"
     },
     {
@@ -8065,7 +8316,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importchoosepart",
-      "community": 149,
+      "community": 189,
       "norm_label": "importchoosepart"
     },
     {
@@ -8075,7 +8326,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importproblem",
-      "community": 149,
+      "community": 189,
       "norm_label": "importproblem"
     },
     {
@@ -8085,7 +8336,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importcancelled",
-      "community": 149,
+      "community": 189,
       "norm_label": "importcancelled"
     },
     {
@@ -8095,7 +8346,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_importready",
-      "community": 149,
+      "community": 189,
       "norm_label": "importready"
     },
     {
@@ -8105,7 +8356,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_videoimportcontroller",
-      "community": 149,
+      "community": 189,
       "norm_label": "videoimportcontroller"
     },
     {
@@ -8505,7 +8756,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_import_provider_analyse",
-      "community": 149,
+      "community": 189,
       "norm_label": "_analyse"
     },
     {
@@ -8545,7 +8796,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_check_dart",
-      "community": 126,
+      "community": 200,
       "norm_label": "../services/video/clip_check.dart"
     },
     {
@@ -8555,7 +8806,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "services_video_clip_picker_dart",
-      "community": 126,
+      "community": 200,
       "norm_label": "../services/video/clip_picker.dart"
     },
     {
@@ -8585,7 +8836,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_clipaudiosourceprovider",
-      "community": 149,
+      "community": 189,
       "norm_label": "clipaudiosourceprovider"
     },
     {
@@ -8595,7 +8846,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_providers_video_providers_clippickerprovider",
-      "community": 149,
+      "community": 189,
       "norm_label": "clippickerprovider"
     },
     {
@@ -8745,7 +8996,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreen",
-      "community": 84,
+      "community": 57,
       "norm_label": "autoconfigurescreen"
     },
     {
@@ -8755,7 +9006,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstatefulwidget",
-      "community": 140,
+      "community": 57,
       "norm_label": "consumerstatefulwidget"
     },
     {
@@ -8765,7 +9016,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_autoconfigurescreenstate",
-      "community": 84,
+      "community": 57,
       "norm_label": "_autoconfigurescreenstate"
     },
     {
@@ -8775,7 +9026,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "consumerstate",
-      "community": 140,
+      "community": 57,
       "norm_label": "consumerstate"
     },
     {
@@ -8905,7 +9156,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "voidcallback",
-      "community": 93,
+      "community": 191,
       "norm_label": "voidcallback"
     },
     {
@@ -8955,7 +9206,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_start",
-      "community": 84,
+      "community": 57,
       "norm_label": "_start"
     },
     {
@@ -8965,7 +9216,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_stop",
-      "community": 84,
+      "community": 57,
       "norm_label": "_stop"
     },
     {
@@ -9005,7 +9256,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_auto_configure_screen_dispose",
-      "community": 84,
+      "community": 57,
       "norm_label": "dispose"
     },
     {
@@ -9035,7 +9286,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "models_calibration_shot_dart",
-      "community": 57,
+      "community": 9,
       "norm_label": "../models/calibration_shot.dart"
     },
     {
@@ -9245,7 +9496,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "providers_custom_drills_provider_dart",
-      "community": 103,
+      "community": 18,
       "norm_label": "../providers/custom_drills_provider.dart"
     },
     {
@@ -9275,7 +9526,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen",
-      "community": 103,
+      "community": 18,
       "norm_label": "custom_drills_screen.dart"
     },
     {
@@ -9285,7 +9536,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_drillaction",
-      "community": 103,
+      "community": 18,
       "norm_label": "_drillaction"
     },
     {
@@ -9305,7 +9556,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_emptystate",
-      "community": 103,
+      "community": 18,
       "norm_label": "_emptystate"
     },
     {
@@ -9315,7 +9566,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_onsave",
-      "community": 103,
+      "community": 18,
       "norm_label": "onsave"
     },
     {
@@ -9335,7 +9586,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_run",
-      "community": 103,
+      "community": 18,
       "norm_label": "_run"
     },
     {
@@ -9345,7 +9596,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_custom_drills_screen_menuitems",
-      "community": 103,
+      "community": 18,
       "norm_label": "_menuitems"
     },
     {
@@ -9355,7 +9606,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_drill_tile_dart",
-      "community": 103,
+      "community": 18,
       "norm_label": "../widgets/drill_tile.dart"
     },
     {
@@ -9375,7 +9626,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "custom_drill_flows_dart",
-      "community": 103,
+      "community": 18,
       "norm_label": "custom_drill_flows.dart"
     },
     {
@@ -9395,7 +9646,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_detection_settings_screen_detectionsettingsscreen",
-      "community": 54,
+      "community": 18,
       "norm_label": "detectionsettingsscreen"
     },
     {
@@ -9915,7 +10166,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "utils_motion_dart",
-      "community": 165,
+      "community": 151,
       "norm_label": "../utils/motion.dart"
     },
     {
@@ -9945,7 +10196,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "widgets_mic_level_meter_dart",
-      "community": 140,
+      "community": 57,
       "norm_label": "../widgets/mic_level_meter.dart"
     },
     {
@@ -10115,7 +10366,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen",
-      "community": 140,
+      "community": 57,
       "norm_label": "mic_test_screen.dart"
     },
     {
@@ -10125,7 +10376,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreen",
-      "community": 140,
+      "community": 57,
       "norm_label": "mictestscreen"
     },
     {
@@ -10135,7 +10386,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_mictestscreenstate",
-      "community": 140,
+      "community": 57,
       "norm_label": "_mictestscreenstate"
     },
     {
@@ -10145,7 +10396,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_frequencyreadout",
-      "community": 140,
+      "community": 57,
       "norm_label": "_frequencyreadout"
     },
     {
@@ -10155,7 +10406,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_ticker",
-      "community": 140,
+      "community": 57,
       "norm_label": "_ticker"
     },
     {
@@ -10165,7 +10416,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_level",
-      "community": 140,
+      "community": 57,
       "norm_label": "_level"
     },
     {
@@ -10175,7 +10426,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_peakhold",
-      "community": 140,
+      "community": 57,
       "norm_label": "_peakhold"
     },
     {
@@ -10185,7 +10436,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_peakat",
-      "community": 140,
+      "community": 57,
       "norm_label": "_peakat"
     },
     {
@@ -10195,7 +10446,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dominantfreqhz",
-      "community": 140,
+      "community": 57,
       "norm_label": "_dominantfreqhz"
     },
     {
@@ -10205,7 +10456,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dominantfreqstrength",
-      "community": 140,
+      "community": 57,
       "norm_label": "_dominantfreqstrength"
     },
     {
@@ -10215,7 +10466,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_error",
-      "community": 140,
+      "community": 57,
       "norm_label": "_error"
     },
     {
@@ -10225,7 +10476,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_freqhz",
-      "community": 140,
+      "community": 57,
       "norm_label": "freqhz"
     },
     {
@@ -10235,7 +10486,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_strength",
-      "community": 140,
+      "community": 57,
       "norm_label": "strength"
     },
     {
@@ -10245,7 +10496,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_createstate",
-      "community": 140,
+      "community": 57,
       "norm_label": "createstate"
     },
     {
@@ -10255,7 +10506,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_initstate",
-      "community": 140,
+      "community": 57,
       "norm_label": "initstate"
     },
     {
@@ -10265,7 +10516,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_start",
-      "community": 84,
+      "community": 57,
       "norm_label": "_start"
     },
     {
@@ -10275,7 +10526,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_dispose",
-      "community": 84,
+      "community": 57,
       "norm_label": "dispose"
     },
     {
@@ -10285,7 +10536,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_mic_test_screen_build",
-      "community": 140,
+      "community": 118,
       "norm_label": "build"
     },
     {
@@ -10315,7 +10566,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbody",
-      "community": 140,
+      "community": 57,
       "norm_label": "_reviewbody"
     },
     {
@@ -10325,7 +10576,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_reviewbodystate",
-      "community": 140,
+      "community": 57,
       "norm_label": "_reviewbodystate"
     },
     {
@@ -10335,7 +10586,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_drillconfigchips",
-      "community": 14,
+      "community": 3,
       "norm_label": "_drillconfigchips"
     },
     {
@@ -10355,7 +10606,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_percyclesummary",
-      "community": 3,
+      "community": 14,
       "norm_label": "_percyclesummary"
     },
     {
@@ -10365,7 +10616,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_review_screen_cyclesummaryrow",
-      "community": 3,
+      "community": 14,
       "norm_label": "_cyclesummaryrow"
     },
     {
@@ -10805,7 +11056,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_editor_screen_videoeditorscreen",
-      "community": 140,
+      "community": 57,
       "norm_label": "videoeditorscreen"
     },
     {
@@ -12025,7 +12276,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet",
-      "community": 18,
+      "community": 140,
       "norm_label": "video_export_sheet.dart"
     },
     {
@@ -12045,7 +12296,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_stringms",
-      "community": 18,
+      "community": 140,
       "norm_label": "stringms"
     },
     {
@@ -12055,7 +12306,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_wholems",
-      "community": 18,
+      "community": 140,
       "norm_label": "wholems"
     },
     {
@@ -12065,7 +12316,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_tallframe",
-      "community": 18,
+      "community": 140,
       "norm_label": "tallframe"
     },
     {
@@ -12075,7 +12326,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_corners",
-      "community": 18,
+      "community": 140,
       "norm_label": "_corners"
     },
     {
@@ -12085,7 +12336,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_export_sheet_showexportsheet",
-      "community": 18,
+      "community": 140,
       "norm_label": "showexportsheet"
     },
     {
@@ -12105,7 +12356,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows",
-      "community": 126,
+      "community": 200,
       "norm_label": "video_flows.dart"
     },
     {
@@ -12115,7 +12366,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_startvideoimport",
-      "community": 126,
+      "community": 200,
       "norm_label": "startvideoimport"
     },
     {
@@ -12125,7 +12376,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_choosevideoagain",
-      "community": 126,
+      "community": 200,
       "norm_label": "choosevideoagain"
     },
     {
@@ -12135,7 +12386,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_flows_clipproblemkey",
-      "community": 126,
+      "community": 200,
       "norm_label": "clipproblemkey"
     },
     {
@@ -12145,7 +12396,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "video_import_screen_dart",
-      "community": 126,
+      "community": 200,
       "norm_label": "video_import_screen.dart"
     },
     {
@@ -12165,7 +12416,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_videoimportscreen",
-      "community": 140,
+      "community": 126,
       "norm_label": "videoimportscreen"
     },
     {
@@ -12205,7 +12456,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_screens_video_import_screen_steprow",
-      "community": 14,
+      "community": 126,
       "norm_label": "_steprow"
     },
     {
@@ -12945,7 +13196,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "dart_typed_data",
-      "community": 179,
+      "community": 24,
       "norm_label": "dart:typed_data"
     },
     {
@@ -13615,7 +13866,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad",
-      "community": 200,
+      "community": 24,
       "norm_label": "biquad.dart"
     },
     {
@@ -13625,7 +13876,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_biquad",
-      "community": 200,
+      "community": 24,
       "norm_label": "biquad"
     },
     {
@@ -13635,7 +13886,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_x1",
-      "community": 200,
+      "community": 24,
       "norm_label": "_x1"
     },
     {
@@ -13645,7 +13896,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_notch",
-      "community": 200,
+      "community": 24,
       "norm_label": "notch"
     },
     {
@@ -13655,7 +13906,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_highpass",
-      "community": 200,
+      "community": 24,
       "norm_label": "highpass"
     },
     {
@@ -13665,7 +13916,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_lowpass",
-      "community": 200,
+      "community": 24,
       "norm_label": "lowpass"
     },
     {
@@ -13675,7 +13926,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_processint16inplace",
-      "community": 200,
+      "community": 24,
       "norm_label": "processint16inplace"
     },
     {
@@ -13685,7 +13936,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_biquad_reset",
-      "community": 200,
+      "community": 24,
       "norm_label": "reset"
     },
     {
@@ -13705,7 +13956,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_database_service_databaseservice",
-      "community": 8,
+      "community": 118,
       "norm_label": "databaseservice"
     },
     {
@@ -13935,7 +14186,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service",
-      "community": 94,
+      "community": 187,
       "norm_label": "export_service.dart"
     },
     {
@@ -13945,7 +14196,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportservice",
-      "community": 94,
+      "community": 187,
       "norm_label": "exportservice"
     },
     {
@@ -13955,7 +14206,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_exportname",
-      "community": 94,
+      "community": 187,
       "norm_label": "_exportname"
     },
     {
@@ -13965,7 +14216,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_final",
-      "community": 94,
+      "community": 187,
       "norm_label": "static final"
     },
     {
@@ -13975,7 +14226,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_videoname",
-      "community": 94,
+      "community": 187,
       "norm_label": "_videoname"
     },
     {
@@ -13985,7 +14236,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writestringcsv",
-      "community": 94,
+      "community": 187,
       "norm_label": "writestringcsv"
     },
     {
@@ -13995,7 +14246,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_writeallstringscsv",
-      "community": 94,
+      "community": 187,
       "norm_label": "writeallstringscsv"
     },
     {
@@ -14005,7 +14256,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_deleteexports",
-      "community": 94,
+      "community": 187,
       "norm_label": "deleteexports"
     },
     {
@@ -14015,7 +14266,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_deletevideoshares",
-      "community": 94,
+      "community": 187,
       "norm_label": "deletevideoshares"
     },
     {
@@ -14025,7 +14276,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_delete",
-      "community": 94,
+      "community": 187,
       "norm_label": "_delete"
     },
     {
@@ -14035,7 +14286,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_share",
-      "community": 94,
+      "community": 187,
       "norm_label": "share"
     },
     {
@@ -14045,7 +14296,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_export_service_csv",
-      "community": 94,
+      "community": 187,
       "norm_label": "_csv"
     },
     {
@@ -14065,7 +14316,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_ios_audio_session",
-      "community": 187,
+      "community": 179,
       "norm_label": "ios_audio_session.dart"
     },
     {
@@ -14075,7 +14326,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_ios_audio_session_iosaudiosession",
-      "community": 187,
+      "community": 179,
       "norm_label": "iosaudiosession"
     },
     {
@@ -14085,7 +14336,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_ios_audio_session_channel",
-      "community": 187,
+      "community": 179,
       "norm_label": "_channel"
     },
     {
@@ -14095,7 +14346,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const_methodchannel",
-      "community": 187,
+      "community": 179,
       "norm_label": "static const methodchannel"
     },
     {
@@ -14105,7 +14356,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_ios_audio_session_lasterror",
-      "community": 187,
+      "community": 179,
       "norm_label": "lasterror"
     },
     {
@@ -14115,7 +14366,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_string",
-      "community": 187,
+      "community": 179,
       "norm_label": "static string?"
     },
     {
@@ -14125,7 +14376,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_ios_audio_session_usemeasurementmode",
-      "community": 187,
+      "community": 179,
       "norm_label": "usemeasurementmode"
     },
     {
@@ -14135,7 +14386,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_ios_audio_session_usedefaultmode",
-      "community": 187,
+      "community": 179,
       "norm_label": "usedefaultmode"
     },
     {
@@ -14145,7 +14396,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_ios_audio_session_invoke",
-      "community": 187,
+      "community": 179,
       "norm_label": "_invoke"
     },
     {
@@ -15305,7 +15556,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_timer_ports_stringstore",
-      "community": 8,
+      "community": 118,
       "norm_label": "stringstore"
     },
     {
@@ -15675,7 +15926,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "clip_audio_source_dart",
-      "community": 212,
+      "community": 203,
       "norm_label": "clip_audio_source.dart"
     },
     {
@@ -15735,7 +15986,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_analyzer_shotsensitivity",
-      "community": 201,
+      "community": 13,
       "norm_label": "shotsensitivity"
     },
     {
@@ -15935,7 +16186,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "spectrogram_dart",
-      "community": 131,
+      "community": 133,
       "norm_label": "spectrogram.dart"
     },
     {
@@ -16455,7 +16706,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_check_clipproblem",
-      "community": 189,
+      "community": 203,
       "norm_label": "clipproblem"
     },
     {
@@ -16575,7 +16826,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_exporter_clipexporter",
-      "community": 204,
+      "community": 169,
       "norm_label": "clipexporter"
     },
     {
@@ -16585,7 +16836,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_exporter_channelclipexporter",
-      "community": 204,
+      "community": 169,
       "norm_label": "channelclipexporter"
     },
     {
@@ -16955,7 +17206,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_image_picker_image_picker_dart",
-      "community": 205,
+      "community": 41,
       "norm_label": "package:image_picker/image_picker.dart"
     },
     {
@@ -16985,7 +17236,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_clip_player_clipplayer",
-      "community": 212,
+      "community": 191,
       "norm_label": "clipplayer"
     },
     {
@@ -16995,7 +17246,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "videoplayercontroller",
-      "community": 212,
+      "community": 191,
       "norm_label": "videoplayercontroller"
     },
     {
@@ -17085,7 +17336,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_video_player_video_player_dart",
-      "community": 191,
+      "community": 212,
       "norm_label": "package:video_player/video_player.dart"
     },
     {
@@ -20165,7 +20416,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_part_window_partwindow",
-      "community": 91,
+      "community": 156,
       "norm_label": "partwindow"
     },
     {
@@ -21665,7 +21916,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store",
-      "community": 182,
+      "community": 93,
       "norm_label": "video_string_store.dart"
     },
     {
@@ -21675,7 +21926,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_videostringstore",
-      "community": 182,
+      "community": 142,
       "norm_label": "videostringstore"
     },
     {
@@ -21685,7 +21936,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_insertstring",
-      "community": 182,
+      "community": 93,
       "norm_label": "insertstring"
     },
     {
@@ -21695,7 +21946,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_updatevideostring",
-      "community": 182,
+      "community": 93,
       "norm_label": "updatevideostring"
     },
     {
@@ -21705,7 +21956,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_string_store_deletestring",
-      "community": 182,
+      "community": 93,
       "norm_label": "deletestring"
     },
     {
@@ -21725,7 +21976,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videoworkdir",
-      "community": 189,
+      "community": 94,
       "norm_label": "videoworkdir"
     },
     {
@@ -21735,7 +21986,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_video_video_work_dir_videosession",
-      "community": 213,
+      "community": 142,
       "norm_label": "videosession"
     },
     {
@@ -21895,7 +22146,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service",
-      "community": 184,
+      "community": 195,
       "norm_label": "volume_service.dart"
     },
     {
@@ -21915,7 +22166,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_channel",
-      "community": 184,
+      "community": 195,
       "norm_label": "_channel"
     },
     {
@@ -21925,7 +22176,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_ismediaaudible",
-      "community": 184,
+      "community": 195,
       "norm_label": "ismediaaudible"
     },
     {
@@ -21935,7 +22186,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_services_volume_service_showvolumepanel",
-      "community": 184,
+      "community": 195,
       "norm_label": "showvolumepanel"
     },
     {
@@ -22325,7 +22576,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal",
-      "community": 173,
+      "community": 179,
       "norm_label": "legal.dart"
     },
     {
@@ -22335,7 +22586,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_kcopyrightnotice",
-      "community": 173,
+      "community": 179,
       "norm_label": "kcopyrightnotice"
     },
     {
@@ -22345,7 +22596,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_ksourceurl",
-      "community": 173,
+      "community": 179,
       "norm_label": "ksourceurl"
     },
     {
@@ -22355,7 +22606,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_kprivacypolicyurl",
-      "community": 173,
+      "community": 179,
       "norm_label": "kprivacypolicyurl"
     },
     {
@@ -22365,7 +22616,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_kprivacypolicyurlde",
-      "community": 173,
+      "community": 179,
       "norm_label": "kprivacypolicyurlde"
     },
     {
@@ -22375,7 +22626,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_privacypolicyuri",
-      "community": 173,
+      "community": 179,
       "norm_label": "privacypolicyuri"
     },
     {
@@ -22385,7 +22636,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_utils_legal_registerapplicenses",
-      "community": 173,
+      "community": 179,
       "norm_label": "registerapplicenses"
     },
     {
@@ -23625,7 +23876,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport",
-      "community": 93,
+      "community": 191,
       "norm_label": "editor_transport.dart"
     },
     {
@@ -23635,7 +23886,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_editortransport",
-      "community": 93,
+      "community": 191,
       "norm_label": "editortransport"
     },
     {
@@ -23645,7 +23896,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_player",
-      "community": 93,
+      "community": 191,
       "norm_label": "player"
     },
     {
@@ -23655,7 +23906,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_timeline",
-      "community": 93,
+      "community": 191,
       "norm_label": "timeline"
     },
     {
@@ -23665,7 +23916,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_startms",
-      "community": 93,
+      "community": 191,
       "norm_label": "startms"
     },
     {
@@ -23675,7 +23926,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_onplay",
-      "community": 93,
+      "community": 191,
       "norm_label": "onplay"
     },
     {
@@ -23685,7 +23936,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_onprevious",
-      "community": 93,
+      "community": 191,
       "norm_label": "onprevious"
     },
     {
@@ -23695,7 +23946,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_onnext",
-      "community": 93,
+      "community": 191,
       "norm_label": "onnext"
     },
     {
@@ -23705,7 +23956,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_editor_transport_build",
-      "community": 93,
+      "community": 191,
       "norm_label": "build"
     },
     {
@@ -23715,7 +23966,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "timeline_timeline_controller_dart",
-      "community": 93,
+      "community": 191,
       "norm_label": "../timeline/timeline_controller.dart"
     },
     {
@@ -23955,7 +24206,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector",
-      "community": 201,
+      "community": 13,
       "norm_label": "sensitivity_selector.dart"
     },
     {
@@ -23965,7 +24216,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_sensitivityselector",
-      "community": 201,
+      "community": 13,
       "norm_label": "sensitivityselector"
     },
     {
@@ -23975,7 +24226,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_value",
-      "community": 201,
+      "community": 13,
       "norm_label": "value"
     },
     {
@@ -23985,7 +24236,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_busy",
-      "community": 201,
+      "community": 13,
       "norm_label": "busy"
     },
     {
@@ -23995,7 +24246,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_onchanged",
-      "community": 201,
+      "community": 13,
       "norm_label": "onchanged"
     },
     {
@@ -24005,7 +24256,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_widgets_editor_sensitivity_selector_build",
-      "community": 201,
+      "community": 13,
       "norm_label": "build"
     },
     {
@@ -27345,7 +27596,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test",
-      "community": 157,
+      "community": 24,
       "norm_label": "auto_configure_test.dart"
     },
     {
@@ -27355,7 +27606,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test_shot",
-      "community": 157,
+      "community": 24,
       "norm_label": "shot"
     },
     {
@@ -27365,7 +27616,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_auto_configure_test_main",
-      "community": 157,
+      "community": 24,
       "norm_label": "main"
     },
     {
@@ -27375,7 +27626,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_calibration_shot_dart",
-      "community": 157,
+      "community": 24,
       "norm_label": "package:simple_shot_timer/models/calibration_shot.dart"
     },
     {
@@ -27385,7 +27636,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_auto_configure_dart",
-      "community": 157,
+      "community": 24,
       "norm_label": "package:simple_shot_timer/services/auto_configure.dart"
     },
     {
@@ -27395,7 +27646,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_fft_dart",
-      "community": 157,
+      "community": 24,
       "norm_label": "package:simple_shot_timer/utils/fft.dart"
     },
     {
@@ -27555,7 +27806,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test",
-      "community": 157,
+      "community": 24,
       "norm_label": "biquad_test.dart"
     },
     {
@@ -27565,7 +27816,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_samplerate",
-      "community": 157,
+      "community": 24,
       "norm_label": "samplerate"
     },
     {
@@ -27575,7 +27826,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_beephz",
-      "community": 157,
+      "community": 24,
       "norm_label": "beephz"
     },
     {
@@ -27585,7 +27836,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_main",
-      "community": 157,
+      "community": 24,
       "norm_label": "main"
     },
     {
@@ -27595,7 +27846,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_sine",
-      "community": 157,
+      "community": 24,
       "norm_label": "sine"
     },
     {
@@ -27605,7 +27856,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_biquad_test_peakabs",
-      "community": 157,
+      "community": 24,
       "norm_label": "peakabs"
     },
     {
@@ -27615,7 +27866,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_biquad_dart",
-      "community": 157,
+      "community": 24,
       "norm_label": "package:simple_shot_timer/services/biquad.dart"
     },
     {
@@ -27625,7 +27876,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_analyzer_test",
-      "community": 179,
+      "community": 170,
       "norm_label": "clip_analyzer_test.dart"
     },
     {
@@ -27635,7 +27886,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_analyzer_test_startof",
-      "community": 179,
+      "community": 170,
       "norm_label": "startof"
     },
     {
@@ -27645,7 +27896,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_analyzer_test_main",
-      "community": 179,
+      "community": 170,
       "norm_label": "main"
     },
     {
@@ -27655,7 +27906,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_shot_finder_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/clip_shot_finder.dart"
     },
     {
@@ -27665,7 +27916,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_spectrogram_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/spectrogram.dart"
     },
     {
@@ -27675,7 +27926,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_start_finder_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/start_finder.dart"
     },
     {
@@ -27685,7 +27936,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_tone_finder_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/tone_finder.dart"
     },
     {
@@ -27695,7 +27946,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "clip_fixtures_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "clip_fixtures.dart"
     },
     {
@@ -27795,7 +28046,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_memorystore",
-      "community": 182,
+      "community": 142,
       "norm_label": "_memorystore"
     },
     {
@@ -27805,7 +28056,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_editor_test_fakesession",
-      "community": 213,
+      "community": 142,
       "norm_label": "_fakesession"
     },
     {
@@ -28105,7 +28356,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_fake_async_fake_async_dart",
-      "community": 142,
+      "community": 204,
       "norm_label": "package:fake_async/fake_async.dart"
     },
     {
@@ -28115,7 +28366,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_enums_dart",
-      "community": 159,
+      "community": 103,
       "norm_label": "package:simple_shot_timer/models/enums.dart"
     },
     {
@@ -28155,7 +28406,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_providers_dart",
-      "community": 29,
+      "community": 185,
       "norm_label": "package:simple_shot_timer/providers/providers.dart"
     },
     {
@@ -28165,7 +28416,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_video_providers_dart",
-      "community": 29,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/providers/video_providers.dart"
     },
     {
@@ -28175,7 +28426,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_analyzed_clip_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/analyzed_clip.dart"
     },
     {
@@ -28195,7 +28446,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_marker_doc_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/marker_doc.dart"
     },
     {
@@ -28215,7 +28466,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_video_work_dir_dart",
-      "community": 189,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/services/video/video_work_dir.dart"
     },
     {
@@ -28785,7 +29036,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_shot_finder_test",
-      "community": 179,
+      "community": 170,
       "norm_label": "clip_shot_finder_test.dart"
     },
     {
@@ -28795,7 +29046,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_clip_shot_finder_test_main",
-      "community": 179,
+      "community": 170,
       "norm_label": "main"
     },
     {
@@ -28805,7 +29056,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test",
-      "community": 141,
+      "community": 103,
       "norm_label": "custom_drill_test.dart"
     },
     {
@@ -28815,7 +29066,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_drill",
-      "community": 141,
+      "community": 103,
       "norm_label": "_drill"
     },
     {
@@ -28825,7 +29076,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_custom_drill_test_main",
-      "community": 141,
+      "community": 103,
       "norm_label": "main"
     },
     {
@@ -28835,7 +29086,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_app_settings_dart",
-      "community": 141,
+      "community": 103,
       "norm_label": "package:simple_shot_timer/models/app_settings.dart"
     },
     {
@@ -28845,7 +29096,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_custom_drill_dart",
-      "community": 141,
+      "community": 103,
       "norm_label": "package:simple_shot_timer/models/custom_drill.dart"
     },
     {
@@ -28855,7 +29106,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_drill_config_dart",
-      "community": 141,
+      "community": 103,
       "norm_label": "package:simple_shot_timer/models/drill_config.dart"
     },
     {
@@ -29175,7 +29426,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_database_service_dart",
-      "community": 81,
+      "community": 185,
       "norm_label": "package:simple_shot_timer/services/database_service.dart"
     },
     {
@@ -29235,7 +29486,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test",
-      "community": 157,
+      "community": 103,
       "norm_label": "delay_test.dart"
     },
     {
@@ -29245,7 +29496,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_delay_test_main",
-      "community": 157,
+      "community": 103,
       "norm_label": "main"
     },
     {
@@ -29265,7 +29516,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test",
-      "community": 164,
+      "community": 103,
       "norm_label": "drill_config_test.dart"
     },
     {
@@ -29275,7 +29526,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_drill",
-      "community": 164,
+      "community": 103,
       "norm_label": "_drill"
     },
     {
@@ -29285,7 +29536,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_other",
-      "community": 164,
+      "community": 103,
       "norm_label": "_other"
     },
     {
@@ -29295,7 +29546,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_singlefieldedits",
-      "community": 164,
+      "community": 103,
       "norm_label": "_singlefieldedits"
     },
     {
@@ -29305,7 +29556,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_drill_config_test_main",
-      "community": 164,
+      "community": 103,
       "norm_label": "main"
     },
     {
@@ -29375,7 +29626,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test",
-      "community": 195,
+      "community": 173,
       "norm_label": "flash_overlay_test.dart"
     },
     {
@@ -29385,7 +29636,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_host",
-      "community": 195,
+      "community": 173,
       "norm_label": "_host"
     },
     {
@@ -29395,7 +29646,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_visiblesignal",
-      "community": 195,
+      "community": 173,
       "norm_label": "_visiblesignal"
     },
     {
@@ -29405,7 +29656,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_flash_overlay_test_main",
-      "community": 195,
+      "community": 173,
       "norm_label": "main"
     },
     {
@@ -29415,7 +29666,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_flash_overlay_dart",
-      "community": 195,
+      "community": 173,
       "norm_label": "package:simple_shot_timer/widgets/flash_overlay.dart"
     },
     {
@@ -29815,7 +30066,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_project_test",
-      "community": 188,
+      "community": 94,
       "norm_label": "ios_project_test.dart"
     },
     {
@@ -29825,7 +30076,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_ios_project_test_main",
-      "community": 188,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -29925,7 +30176,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_doc_test",
-      "community": 179,
+      "community": 170,
       "norm_label": "marker_doc_test.dart"
     },
     {
@@ -29935,7 +30186,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_doc_test_doc",
-      "community": 179,
+      "community": 170,
       "norm_label": "doc"
     },
     {
@@ -29945,7 +30196,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_doc_test_active",
-      "community": 179,
+      "community": 170,
       "norm_label": "active"
     },
     {
@@ -29955,7 +30206,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_marker_doc_test_main",
-      "community": 179,
+      "community": 170,
       "norm_label": "main"
     },
     {
@@ -30105,7 +30356,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test",
-      "community": 159,
+      "community": 103,
       "norm_label": "par_schedule_test.dart"
     },
     {
@@ -30115,7 +30366,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_par_schedule_test_main",
-      "community": 159,
+      "community": 103,
       "norm_label": "main"
     },
     {
@@ -30125,7 +30376,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_models_par_schedule_dart",
-      "community": 159,
+      "community": 103,
       "norm_label": "package:simple_shot_timer/models/par_schedule.dart"
     },
     {
@@ -30135,7 +30386,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test",
-      "community": 91,
+      "community": 156,
       "norm_label": "part_strip_test.dart"
     },
     {
@@ -30145,7 +30396,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_tenminutes",
-      "community": 91,
+      "community": 156,
       "norm_label": "tenminutes"
     },
     {
@@ -30155,7 +30406,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_window",
-      "community": 91,
+      "community": 156,
       "norm_label": "window"
     },
     {
@@ -30165,7 +30416,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_edges",
-      "community": 91,
+      "community": 156,
       "norm_label": "edges"
     },
     {
@@ -30175,7 +30426,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_ends",
-      "community": 91,
+      "community": 156,
       "norm_label": "ends"
     },
     {
@@ -30185,7 +30436,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_main",
-      "community": 91,
+      "community": 156,
       "norm_label": "main"
     },
     {
@@ -30195,7 +30446,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_strip_test_pumpstrip",
-      "community": 91,
+      "community": 156,
       "norm_label": "pumpstrip"
     },
     {
@@ -30205,7 +30456,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_part_window_dart",
-      "community": 91,
+      "community": 156,
       "norm_label": "package:simple_shot_timer/services/video/part_window.dart"
     },
     {
@@ -30215,7 +30466,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_part_strip_dart",
-      "community": 91,
+      "community": 156,
       "norm_label": "package:simple_shot_timer/widgets/part_strip.dart"
     },
     {
@@ -30225,7 +30476,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test",
-      "community": 91,
+      "community": 156,
       "norm_label": "part_window_test.dart"
     },
     {
@@ -30235,7 +30486,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_minute",
-      "community": 91,
+      "community": 156,
       "norm_label": "minute"
     },
     {
@@ -30245,7 +30496,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_tenminutes",
-      "community": 91,
+      "community": 156,
       "norm_label": "tenminutes"
     },
     {
@@ -30255,7 +30506,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_part_window_test_main",
-      "community": 91,
+      "community": 156,
       "norm_label": "main"
     },
     {
@@ -30265,7 +30516,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test",
-      "community": 29,
+      "community": 185,
       "norm_label": "review_discard_test.dart"
     },
     {
@@ -30275,7 +30526,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_metawrites",
-      "community": 8,
+      "community": 118,
       "norm_label": "_metawrites"
     },
     {
@@ -30285,7 +30536,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_writes",
-      "community": 29,
+      "community": 185,
       "norm_label": "writes"
     },
     {
@@ -30295,7 +30546,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_updatestringmeta",
-      "community": 29,
+      "community": 185,
       "norm_label": "updatestringmeta"
     },
     {
@@ -30305,7 +30556,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_review_discard_test_nosuchmethod",
-      "community": 29,
+      "community": 185,
       "norm_label": "nosuchmethod"
     },
     {
@@ -30325,7 +30576,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_string_provider_dart",
-      "community": 29,
+      "community": 185,
       "norm_label": "package:simple_shot_timer/providers/string_provider.dart"
     },
     {
@@ -30335,7 +30586,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_review_screen_dart",
-      "community": 29,
+      "community": 185,
       "norm_label": "package:simple_shot_timer/screens/review_screen.dart"
     },
     {
@@ -30345,7 +30596,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "navigatorstate",
-      "community": 29,
+      "community": 185,
       "norm_label": "navigatorstate"
     },
     {
@@ -30355,7 +30606,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto",
-      "community": 188,
+      "community": 195,
       "norm_label": "roboto.dart"
     },
     {
@@ -30365,7 +30616,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_fonts",
-      "community": 188,
+      "community": 195,
       "norm_label": "fonts"
     },
     {
@@ -30375,7 +30626,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_roboto",
-      "community": 188,
+      "community": 195,
       "norm_label": "roboto"
     },
     {
@@ -30385,7 +30636,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_loadroboto",
-      "community": 188,
+      "community": 195,
       "norm_label": "loadroboto"
     },
     {
@@ -30395,7 +30646,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_roboto_load",
-      "community": 188,
+      "community": 195,
       "norm_label": "load"
     },
     {
@@ -30405,7 +30656,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test",
-      "community": 29,
+      "community": 94,
       "norm_label": "settings_delete_all_test.dart"
     },
     {
@@ -30425,7 +30676,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleted",
-      "community": 29,
+      "community": 94,
       "norm_label": "deleted"
     },
     {
@@ -30435,7 +30686,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_build",
-      "community": 29,
+      "community": 94,
       "norm_label": "build"
     },
     {
@@ -30445,7 +30696,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_deleteall",
-      "community": 29,
+      "community": 94,
       "norm_label": "deleteall"
     },
     {
@@ -30455,7 +30706,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_settings_delete_all_test_main",
-      "community": 29,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -30465,7 +30716,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_providers_history_provider_dart",
-      "community": 29,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/providers/history_provider.dart"
     },
     {
@@ -30475,7 +30726,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_screens_settings_screen_dart",
-      "community": 29,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/screens/settings_screen.dart"
     },
     {
@@ -30615,7 +30866,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test",
-      "community": 141,
+      "community": 103,
       "norm_label": "shot_detector_test.dart"
     },
     {
@@ -30625,7 +30876,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_shot_detector_test_main",
-      "community": 141,
+      "community": 103,
       "norm_label": "main"
     },
     {
@@ -30985,7 +31236,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_timeline_timeline_controller_dart",
-      "community": 179,
+      "community": 24,
       "norm_label": "package:simple_shot_timer/widgets/timeline/timeline_controller.dart"
     },
     {
@@ -31005,7 +31256,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_math_test",
-      "community": 157,
+      "community": 173,
       "norm_label": "slider_math_test.dart"
     },
     {
@@ -31015,7 +31266,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_math_test_main",
-      "community": 157,
+      "community": 173,
       "norm_label": "main"
     },
     {
@@ -31025,7 +31276,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_slider_math_dart",
-      "community": 157,
+      "community": 173,
       "norm_label": "package:simple_shot_timer/utils/slider_math.dart"
     },
     {
@@ -31035,7 +31286,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_units_test",
-      "community": 157,
+      "community": 173,
       "norm_label": "slider_units_test.dart"
     },
     {
@@ -31045,7 +31296,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_slider_units_test_main",
-      "community": 157,
+      "community": 173,
       "norm_label": "main"
     },
     {
@@ -31055,7 +31306,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_slider_units_dart",
-      "community": 157,
+      "community": 173,
       "norm_label": "package:simple_shot_timer/utils/slider_units.dart"
     },
     {
@@ -31205,7 +31456,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test",
-      "community": 185,
+      "community": 22,
       "norm_label": "theme_monochrome_test.dart"
     },
     {
@@ -31215,7 +31466,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_main",
-      "community": 185,
+      "community": 22,
       "norm_label": "main"
     },
     {
@@ -31225,7 +31476,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_theme_monochrome_test_roles",
-      "community": 185,
+      "community": 22,
       "norm_label": "roles"
     },
     {
@@ -31235,7 +31486,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test",
-      "community": 142,
+      "community": 204,
       "norm_label": "throttled_seeker_test.dart"
     },
     {
@@ -31245,7 +31496,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_throttled_seeker_test_main",
-      "community": 142,
+      "community": 204,
       "norm_label": "main"
     },
     {
@@ -31255,7 +31506,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_throttled_seeker_dart",
-      "community": 142,
+      "community": 204,
       "norm_label": "package:simple_shot_timer/services/video/throttled_seeker.dart"
     },
     {
@@ -31265,7 +31516,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timeline_math_test",
-      "community": 179,
+      "community": 170,
       "norm_label": "timeline_math_test.dart"
     },
     {
@@ -31275,7 +31526,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timeline_math_test_main",
-      "community": 179,
+      "community": 170,
       "norm_label": "main"
     },
     {
@@ -31285,7 +31536,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_signal_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/services/video/clip_signal.dart"
     },
     {
@@ -31295,7 +31546,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_utils_timeline_math_dart",
-      "community": 179,
+      "community": 170,
       "norm_label": "package:simple_shot_timer/utils/timeline_math.dart"
     },
     {
@@ -31305,7 +31556,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timeline_minimap_test",
-      "community": 179,
+      "community": 24,
       "norm_label": "timeline_minimap_test.dart"
     },
     {
@@ -31315,7 +31566,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timeline_minimap_test_main",
-      "community": 179,
+      "community": 24,
       "norm_label": "main"
     },
     {
@@ -31325,7 +31576,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_widgets_timeline_timeline_minimap_dart",
-      "community": 179,
+      "community": 24,
       "norm_label": "package:simple_shot_timer/widgets/timeline/timeline_minimap.dart"
     },
     {
@@ -31375,7 +31626,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_timer_notifier_test_memorystore",
-      "community": 8,
+      "community": 118,
       "norm_label": "_memorystore"
     },
     {
@@ -31905,7 +32156,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_memorystore",
-      "community": 182,
+      "community": 142,
       "norm_label": "_memorystore"
     },
     {
@@ -31915,7 +32166,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_session",
-      "community": 213,
+      "community": 142,
       "norm_label": "_session"
     },
     {
@@ -31955,7 +32206,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_editor_screen_test_noexporter",
-      "community": 204,
+      "community": 169,
       "norm_label": "_noexporter"
     },
     {
@@ -32555,7 +32806,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_export_test_fakeexporter",
-      "community": 204,
+      "community": 169,
       "norm_label": "_fakeexporter"
     },
     {
@@ -33045,7 +33296,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakesession",
-      "community": 213,
+      "community": 142,
       "norm_label": "_fakesession"
     },
     {
@@ -33055,7 +33306,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_import_test_fakeworkdir",
-      "community": 189,
+      "community": 94,
       "norm_label": "_fakeworkdir"
     },
     {
@@ -33535,7 +33786,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_simple_shot_timer_services_video_clip_check_dart",
-      "community": 189,
+      "community": 94,
       "norm_label": "package:simple_shot_timer/services/video/clip_check.dart"
     },
     {
@@ -33545,7 +33796,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test",
-      "community": 189,
+      "community": 94,
       "norm_label": "video_work_dir_test.dart"
     },
     {
@@ -33555,7 +33806,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_temp",
-      "community": 189,
+      "community": 94,
       "norm_label": "temp"
     },
     {
@@ -33565,7 +33816,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_work",
-      "community": 189,
+      "community": 94,
       "norm_label": "work"
     },
     {
@@ -33575,7 +33826,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_video_work_dir_test_main",
-      "community": 189,
+      "community": 94,
       "norm_label": "main"
     },
     {
@@ -33585,7 +33836,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_driver_integration_test",
-      "community": 156,
+      "community": 177,
       "norm_label": "integration_test.dart"
     },
     {
@@ -33595,7 +33846,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "test_driver_integration_test_main",
-      "community": 156,
+      "community": 177,
       "norm_label": "main"
     },
     {
@@ -33605,7 +33856,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_integration_test_integration_test_driver_dart",
-      "community": 156,
+      "community": 177,
       "norm_label": "package:integration_test/integration_test_driver.dart"
     },
     {
@@ -41643,17 +41894,38 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests",
-      "target": "flutter",
+      "target": "avfoundation",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L9",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests",
-      "target": "ios_runnertests_runnertests_runnertests",
+      "target": "ios_runnertests_runnertests_clipexporttests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests",
+      "target": "ios_runnertests_runnertests_pixel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests",
+      "target": "runner",
       "confidence_score": 1.0
     },
     {
@@ -41664,18 +41936,731 @@
       "source_location": "L6",
       "weight": 1.0,
       "source": "ios_runnertests_runnertests",
-      "target": "uikit",
+      "target": "xctest",
       "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L7",
+      "source_file": "ios/Runner/AppDelegate.swift",
+      "source_location": "L5",
       "weight": 1.0,
-      "source": "ios_runnertests_runnertests",
-      "target": "xctest",
+      "source": "ios_runner_appdelegate",
+      "target": "avfoundation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipAudioChannel.swift",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "ios_runner_clipaudiochannel",
+      "target": "avfoundation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel",
+      "target": "avfoundation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/NoSpace.swift",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "ios_runner_nospace",
+      "target": "avfoundation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L189",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_export",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L221",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_pixel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_setupwitherror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_teardownwitherror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_testalandscapeexportshowsthepictureuptoitsedges",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_testaportraitexportshowsthepictureuptoitsedges",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_testascaledexportleavesoutthemargintoo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L19",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "ios_runnertests_runnertests_swift_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests",
+      "target": "xctestcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L154",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_export",
+      "target": "ios_runnertests_runnertests_swift_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L73",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "target": "ios_runnertests_runnertests_swift_url",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testalandscapeexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_clipexporttests_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testalandscapeexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_clipexporttests_export",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testalandscapeexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testalandscapeexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testalandscapeexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testaportraitexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_clipexporttests_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testaportraitexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_clipexporttests_export",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testaportraitexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testaportraitexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testaportraitexportshowsthepictureuptoitsedges",
+      "target": "ios_runnertests_runnertests_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "target": "avurlasset"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "target": "ios_runnertests_runnertests_clipexporttests_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "target": "ios_runnertests_runnertests_clipexporttests_export",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "target": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "target": "ios_runnertests_runnertests_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testanexportleavesoutthemarginaroundthecleanaperture",
+      "target": "ios_runnertests_runnertests_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testascaledexportleavesoutthemargintoo",
+      "target": "ios_runnertests_runnertests_clipexporttests_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testascaledexportleavesoutthemargintoo",
+      "target": "ios_runnertests_runnertests_clipexporttests_export",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testascaledexportleavesoutthemargintoo",
+      "target": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testascaledexportleavesoutthemargintoo",
+      "target": "ios_runnertests_runnertests_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_testascaledexportleavesoutthemargintoo",
+      "target": "ios_runnertests_runnertests_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "target": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L73",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "target": "ios_runnertests_runnertests_swift_bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L73",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "target": "ios_runnertests_runnertests_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L73",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "target": "ios_runnertests_runnertests_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "target": "ios_runnertests_runnertests_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L73",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_writeclip",
+      "target": "ios_runnertests_runnertests_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L236",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runnertests_runnertests_pixel",
+      "target": "ios_runnertests_runnertests_swift_string",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L189",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_check",
+      "target": "ios_runnertests_runnertests_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L123",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "target": "ios_runnertests_runnertests_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "target": "ios_runnertests_runnertests_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L234",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runnertests_runnertests_pixel",
+      "target": "ios_runnertests_runnertests_swift_bool",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "target": "cgfloat"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L123",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "target": "ios_runnertests_runnertests_swift_cvpixelbuffer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_drawn",
+      "target": "ios_runnertests_runnertests_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L189",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_check",
+      "target": "ios_runnertests_runnertests_swift_cvpixelbuffer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L154",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_export",
+      "target": "ios_runnertests_runnertests_swift_cvpixelbuffer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L221",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_pixel",
+      "target": "ios_runnertests_runnertests_swift_cvpixelbuffer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_export",
+      "target": "avurlasset"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L154",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_export",
+      "target": "ios_runnertests_runnertests_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L189",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_check",
+      "target": "ios_runnertests_runnertests_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L221",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_pixel",
+      "target": "ios_runnertests_runnertests_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L230",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runnertests_runnertests_pixel",
+      "target": "ios_runnertests_runnertests_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L210",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_check",
+      "target": "ios_runnertests_runnertests_clipexporttests_pixel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L189",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_check",
+      "target": "staticstring",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L189",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runnertests_runnertests_clipexporttests_check",
+      "target": "uint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L221",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_clipexporttests_pixel",
+      "target": "ios_runnertests_runnertests_pixel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/RunnerTests/RunnerTests.swift",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "ios_runnertests_runnertests_pixel",
+      "target": "customstringconvertible",
       "confidence_score": 1.0
     },
     {
@@ -41687,6 +42672,27 @@
       "weight": 1.0,
       "source": "ios_runner_appdelegate",
       "target": "flutter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/AppDelegate.swift",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "ios_runner_appdelegate",
+      "target": "ios_runner_appdelegate_appdelegate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/AppDelegate.swift",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "ios_runner_appdelegate",
+      "target": "uikit",
       "confidence_score": 1.0
     },
     {
@@ -41748,17 +42754,6 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "ios_runner_appdelegate",
-      "target": "uikit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipAudioChannel.swift",
       "source_location": "L7",
       "weight": 1.0,
@@ -41797,80 +42792,6 @@
       "weight": 1.0,
       "source": "ios_runner_scenedelegate",
       "target": "uikit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "ios_runnertests_runnertests_runnertests",
-      "target": "ios_runnertests_runnertests_runnertests_testexample",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/RunnerTests/RunnerTests.swift",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "ios_runnertests_runnertests_runnertests",
-      "target": "xctestcase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "ios_runner_appdelegate",
-      "target": "avfoundation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/AppDelegate.swift",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "ios_runner_appdelegate",
-      "target": "ios_runner_appdelegate_appdelegate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipAudioChannel.swift",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "ios_runner_clipaudiochannel",
-      "target": "avfoundation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "ios_runner_clipexportchannel",
-      "target": "avfoundation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/NoSpace.swift",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "ios_runner_nospace",
-      "target": "avfoundation",
       "confidence_score": 1.0
     },
     {
@@ -42343,7 +43264,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "nsobject",
@@ -42353,7 +43274,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L311",
+      "source_location": "L339",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "nsobject",
@@ -42363,7 +43284,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L283",
+      "source_location": "L309",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "nsobject",
@@ -42383,7 +43304,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L27",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "sendable",
@@ -42393,7 +43314,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L328",
+      "source_location": "L356",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlaycompositor",
@@ -42404,7 +43325,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L420",
+      "source_location": "L454",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "sendable",
@@ -42414,7 +43335,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L283",
+      "source_location": "L309",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "sendable",
@@ -42723,7 +43644,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L138",
+      "source_location": "L139",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
       "target": "ios_runner_clipaudiochannel_clipaudiochannel_reply"
@@ -42734,7 +43655,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "dispatchqueue"
@@ -42745,7 +43666,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L317",
+      "source_location": "L345",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "dispatchqueue"
@@ -43237,17 +44158,6 @@
     {
       "relation": "calls",
       "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "ios/Runner/ClipAudioChannel.swift",
-      "source_location": "L354",
-      "weight": 1.0,
-      "source": "ios_runner_clipaudiochannel_clipaudiochannel_thumbnails",
-      "target": "cgsize"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipAudioChannel.swift",
       "source_location": "L362",
@@ -43284,7 +44194,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L150",
+      "source_location": "L152",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "avurlasset"
@@ -43420,6 +44330,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L225",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_aperture",
+      "target": "ios_runner_clipaudiochannel_firstformat"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipAudioChannel.swift",
@@ -43436,7 +44357,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L396",
+      "source_location": "L430",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ios_runner_clipaudiochannel_microseconds"
@@ -43458,7 +44379,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L244",
+      "source_location": "L260",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_orientation",
       "target": "ios_runner_clipaudiochannel_rotationdegrees"
@@ -43489,7 +44410,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L27",
+      "source_location": "L302",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel",
+      "target": "ios_runner_clipexportchannel_aperture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel",
@@ -43499,7 +44430,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L276",
+      "source_location": "L292",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipfailure",
@@ -43509,7 +44440,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L258",
+      "source_location": "L274",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_errordetail",
@@ -43519,7 +44450,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_job",
@@ -43529,7 +44460,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L311",
+      "source_location": "L339",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_overlaycompositor",
@@ -43539,7 +44470,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L420",
+      "source_location": "L454",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_overlayframes",
@@ -43549,7 +44480,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L283",
+      "source_location": "L309",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel",
       "target": "ios_runner_clipexportchannel_overlayinstruction",
@@ -43559,7 +44490,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L116",
+      "source_location": "L224",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel",
+      "target": "ios_runner_clipexportchannel_clipexportchannel_aperture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L117",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_completed",
@@ -43569,7 +44510,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L133",
+      "source_location": "L134",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -43579,7 +44520,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L237",
+      "source_location": "L253",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
@@ -43589,7 +44530,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L61",
+      "source_location": "L62",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_handle",
@@ -43599,7 +44540,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_init",
@@ -43609,7 +44550,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L144",
+      "source_location": "L146",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -43619,7 +44560,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L243",
+      "source_location": "L259",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_orientation",
@@ -43629,7 +44570,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L227",
+      "source_location": "L243",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
@@ -43639,7 +44580,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_start",
@@ -43649,7 +44590,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L220",
+      "source_location": "L236",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel",
       "target": "ios_runner_clipexportchannel_clipexportchannel_upright",
@@ -43659,7 +44600,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_clipexportchannel",
@@ -43670,7 +44611,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_clipexportchannel",
@@ -43681,7 +44622,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_clipexportchannel",
@@ -43693,7 +44634,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_init",
       "target": "ios_runner_clipexportchannel_swift_fluttermethodchannel",
@@ -43703,7 +44644,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L116",
+      "source_location": "L117",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_completed",
@@ -43714,7 +44655,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L133",
+      "source_location": "L134",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -43726,7 +44667,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_handle",
       "target": "ios_runner_clipexportchannel_job",
@@ -43736,7 +44677,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
@@ -43747,7 +44688,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L43",
+      "source_location": "L44",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_job",
@@ -43758,32 +44699,10 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_job",
       "target": "ios_runner_clipexportchannel_job_init",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L39",
-      "weight": 1.0,
-      "context": "field",
-      "source": "ios_runner_clipexportchannel_job",
-      "target": "ios_runner_clipexportchannel_swift_flutterresult",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L38",
-      "weight": 1.0,
-      "context": "field",
-      "source": "ios_runner_clipexportchannel_job",
-      "target": "ios_runner_clipexportchannel_swift_int",
       "confidence_score": 1.0
     },
     {
@@ -43794,6 +44713,28 @@
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_job",
+      "target": "ios_runner_clipexportchannel_swift_flutterresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L39",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runner_clipexportchannel_job",
+      "target": "ios_runner_clipexportchannel_swift_int",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L41",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runner_clipexportchannel_job",
       "target": "ios_runner_clipexportchannel_swift_url",
       "confidence_score": 1.0
     },
@@ -43801,7 +44742,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L227",
+      "source_location": "L243",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
@@ -43812,7 +44753,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_job_init",
@@ -43823,7 +44764,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L423",
+      "source_location": "L457",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -43834,7 +44775,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L467",
+      "source_location": "L501",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_pixels",
@@ -43845,7 +44786,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L133",
+      "source_location": "L134",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -43856,7 +44797,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L61",
+      "source_location": "L62",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_handle",
@@ -43867,7 +44808,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_job_init",
@@ -43878,7 +44819,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L144",
+      "source_location": "L146",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -43889,7 +44830,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_job_init",
@@ -43900,7 +44841,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L421",
+      "source_location": "L455",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -43912,7 +44853,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L144",
+      "source_location": "L146",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "avassetexportsession",
@@ -43923,7 +44864,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_init",
       "target": "ios_runner_clipexportchannel_clipexportchannel_handle",
@@ -43934,7 +44875,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L55",
+      "source_location": "L56",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_init",
       "target": "ios_runner_clipexportchannel_overlayframes_init",
@@ -43944,7 +44885,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_init",
@@ -43956,7 +44897,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L75",
+      "source_location": "L76",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_handle",
       "target": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -43967,7 +44908,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_handle",
       "target": "ios_runner_clipexportchannel_clipexportchannel_start",
@@ -43977,7 +44918,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L61",
+      "source_location": "L62",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_handle",
@@ -43989,7 +44930,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L104",
+      "source_location": "L105",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
       "target": "ios_runner_clipexportchannel_clipexportchannel_completed",
@@ -44000,7 +44941,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L95",
+      "source_location": "L96",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
       "target": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -44011,7 +44952,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L90",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
       "target": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -44022,7 +44963,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L93",
+      "source_location": "L94",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
       "target": "ios_runner_clipexportchannel_errordetail",
@@ -44032,7 +44973,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
@@ -44044,7 +44985,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L110",
+      "source_location": "L111",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
       "target": "ios_runner_clipexportchannel_swift_double",
@@ -44054,7 +44995,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
@@ -44067,7 +45008,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L92",
+      "source_location": "L93",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_start",
       "target": "ios_runner_nospace_isnospace"
@@ -44076,7 +45017,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L144",
+      "source_location": "L146",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -44087,7 +45028,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L277",
+      "source_location": "L293",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_clipfailure",
@@ -44098,7 +45039,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L258",
+      "source_location": "L274",
       "weight": 1.0,
       "context": "return_type",
       "source": "ios_runner_clipexportchannel_errordetail",
@@ -44109,7 +45050,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L328",
+      "source_location": "L356",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlaycompositor",
@@ -44120,7 +45061,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L431",
+      "source_location": "L465",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_init",
@@ -44131,7 +45072,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L144",
+      "source_location": "L146",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
@@ -44142,7 +45083,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L278",
+      "source_location": "L294",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_clipfailure",
@@ -44153,7 +45094,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L431",
+      "source_location": "L465",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_init",
@@ -44165,7 +45106,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L120",
+      "source_location": "L121",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_completed",
       "target": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -44175,7 +45116,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L133",
+      "source_location": "L134",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -44186,7 +45127,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L133",
+      "source_location": "L134",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -44198,7 +45139,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L348",
+      "source_location": "L376",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
       "target": "ios_runner_clipexportchannel_clipexportchannel_finish",
@@ -44208,7 +45149,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L362",
+      "source_location": "L390",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlaycompositor",
@@ -44220,7 +45161,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L201",
+      "source_location": "L203",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "cmtimerange",
@@ -44231,7 +45172,18 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L193",
+      "source_location": "L205",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
+      "target": "ios_runner_clipexportchannel_clipexportchannel_aperture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L195",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
@@ -44242,7 +45194,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L203",
+      "source_location": "L206",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_clipexportchannel_orientation",
@@ -44253,7 +45205,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L191",
+      "source_location": "L193",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
@@ -44264,7 +45216,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L192",
+      "source_location": "L194",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_clipexportchannel_upright",
@@ -44275,7 +45227,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L149",
+      "source_location": "L151",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_clipfailure",
@@ -44286,7 +45238,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L200",
+      "source_location": "L202",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_overlayinstruction",
@@ -44297,10 +45249,21 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L157",
+      "source_location": "L159",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_makesession",
       "target": "ios_runner_clipexportchannel_swift_cmtime",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L228",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_aperture",
+      "target": "cgfloat",
       "confidence_score": 1.0
     },
     {
@@ -44308,28 +45271,39 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L220",
+      "source_location": "L224",
       "weight": 1.0,
-      "source": "ios_runner_clipexportchannel_clipexportchannel_upright",
-      "target": "cgsize",
+      "source": "ios_runner_clipexportchannel_clipexportchannel_aperture",
+      "target": "ios_runner_clipexportchannel_aperture",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L220",
+      "source_location": "L224",
       "weight": 1.0,
       "context": "parameter_type",
-      "source": "ios_runner_clipexportchannel_clipexportchannel_upright",
+      "source": "ios_runner_clipexportchannel_clipexportchannel_aperture",
       "target": "ios_runner_clipexportchannel_swift_avassettrack",
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_aperture",
+      "target": "ios_runner_clipexportchannel_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L237",
+      "source_location": "L253",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
@@ -44338,13 +45312,46 @@
     },
     {
       "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L236",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runner_clipexportchannel_clipexportchannel_upright",
+      "target": "ios_runner_clipexportchannel_swift_avassettrack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L227",
+      "source_location": "L236",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_clipexportchannel_upright",
+      "target": "ios_runner_clipexportchannel_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L303",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runner_clipexportchannel_aperture",
+      "target": "ios_runner_clipexportchannel_swift_cgsize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L243",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
-      "target": "cgsize",
+      "target": "ios_runner_clipexportchannel_swift_cgsize",
       "confidence_score": 1.0
     },
     {
@@ -44352,10 +45359,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L459",
+      "source_location": "L493",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_image",
-      "target": "cgsize",
+      "target": "ios_runner_clipexportchannel_swift_cgsize",
       "confidence_score": 1.0
     },
     {
@@ -44363,7 +45370,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L230",
+      "source_location": "L246",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_rendersize",
       "target": "cgfloat",
@@ -44374,7 +45381,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L237",
+      "source_location": "L253",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
       "target": "ios_runner_clipexportchannel_swift_cmtime",
@@ -44385,7 +45392,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L237",
+      "source_location": "L253",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipexportchannel_frameduration",
       "target": "ios_runner_clipexportchannel_swift_double",
@@ -44395,7 +45402,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L243",
+      "source_location": "L259",
       "weight": 1.0,
       "context": "return_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_orientation",
@@ -44406,7 +45413,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L243",
+      "source_location": "L259",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_clipexportchannel_orientation",
@@ -44418,7 +45425,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L387",
+      "source_location": "L421",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ios_runner_clipexportchannel_swift_cgaffinetransform",
@@ -44428,7 +45435,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L293",
+      "source_location": "L320",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -44439,7 +45446,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L296",
+      "source_location": "L323",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -44450,7 +45457,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L258",
+      "source_location": "L274",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_errordetail",
@@ -44461,7 +45468,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L276",
+      "source_location": "L292",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_clipfailure",
       "target": "customnserror",
@@ -44472,7 +45479,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L378",
+      "source_location": "L406",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ios_runner_clipexportchannel_clipfailure",
@@ -44483,7 +45490,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L438",
+      "source_location": "L472",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_init",
       "target": "ios_runner_clipexportchannel_clipfailure",
@@ -44494,17 +45501,61 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L469",
+      "source_location": "L503",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_pixels",
       "target": "ios_runner_clipexportchannel_clipfailure",
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L304",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runner_clipexportchannel_aperture",
+      "target": "ios_runner_clipexportchannel_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L319",
+      "weight": 1.0,
+      "context": "field",
+      "source": "ios_runner_clipexportchannel_overlayinstruction",
+      "target": "ios_runner_clipexportchannel_aperture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L323",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "ios_runner_clipexportchannel_overlayinstruction_init",
+      "target": "ios_runner_clipexportchannel_aperture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L408",
+      "weight": 1.0,
+      "source": "ios_runner_clipexportchannel_overlaycompositor_render",
+      "target": "ios_runner_clipexportchannel_swift_cgrect",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L283",
+      "source_location": "L309",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "avvideocompositioninstructionprotocol",
@@ -44514,7 +45565,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L292",
+      "source_location": "L318",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -44525,7 +45576,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L286",
+      "source_location": "L312",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -44536,7 +45587,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L294",
+      "source_location": "L321",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -44547,7 +45598,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L296",
+      "source_location": "L323",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayinstruction",
       "target": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -44557,7 +45608,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L289",
+      "source_location": "L315",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayinstruction",
@@ -44568,7 +45619,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L296",
+      "source_location": "L323",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -44579,7 +45630,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L296",
+      "source_location": "L323",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -44590,7 +45641,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L296",
+      "source_location": "L323",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayinstruction_init",
@@ -44601,7 +45652,7 @@
       "relation": "implements",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L311",
+      "source_location": "L339",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "avvideocompositing",
@@ -44611,7 +45662,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L356",
+      "source_location": "L384",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_cancelallpendingvideocompositionrequests",
@@ -44621,7 +45672,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L375",
+      "source_location": "L403",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_render",
@@ -44631,7 +45682,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L335",
+      "source_location": "L363",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_rendercontextchanged",
@@ -44641,7 +45692,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L337",
+      "source_location": "L365",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor",
       "target": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
@@ -44651,7 +45702,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L335",
+      "source_location": "L363",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlaycompositor_rendercontextchanged",
@@ -44662,7 +45713,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L337",
+      "source_location": "L365",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
@@ -44674,7 +45725,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L347",
+      "source_location": "L375",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_startrequest",
       "target": "ios_runner_clipexportchannel_overlaycompositor_render",
@@ -44684,7 +45735,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L375",
+      "source_location": "L403",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
@@ -44696,21 +45747,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L384",
+      "source_location": "L412",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ciimage",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L375",
-      "weight": 1.0,
-      "context": "return_type",
-      "source": "ios_runner_clipexportchannel_overlaycompositor_render",
-      "target": "cvpixelbuffer",
       "confidence_score": 1.0
     },
     {
@@ -44718,7 +45758,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L398",
+      "source_location": "L432",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlaycompositor_render",
       "target": "ios_runner_clipexportchannel_overlayframes_image",
@@ -44728,7 +45768,18 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L425",
+      "source_location": "L403",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "ios_runner_clipexportchannel_overlaycompositor_render",
+      "target": "ios_runner_clipexportchannel_swift_cvpixelbuffer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "ios/Runner/ClipExportChannel.swift",
+      "source_location": "L459",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -44739,7 +45790,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L429",
+      "source_location": "L463",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -44750,7 +45801,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L448",
+      "source_location": "L482",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "ios_runner_clipexportchannel_overlayframes_image",
@@ -44760,7 +45811,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L431",
+      "source_location": "L465",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "ios_runner_clipexportchannel_overlayframes_init",
@@ -44770,7 +45821,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L467",
+      "source_location": "L501",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes",
       "target": "ios_runner_clipexportchannel_overlayframes_pixels",
@@ -44780,7 +45831,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L422",
+      "source_location": "L456",
       "weight": 1.0,
       "context": "field",
       "source": "ios_runner_clipexportchannel_overlayframes",
@@ -44791,7 +45842,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L448",
+      "source_location": "L482",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "ios_runner_clipexportchannel_overlayframes_image",
@@ -44803,7 +45854,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L443",
+      "source_location": "L477",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_init",
       "target": "cgfloat",
@@ -44814,7 +45865,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L448",
+      "source_location": "L482",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_image",
       "target": "ciimage",
@@ -44825,7 +45876,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L458",
+      "source_location": "L492",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_image",
       "target": "ios_runner_clipexportchannel_overlayframes_pixels",
@@ -44836,7 +45887,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "ios/Runner/ClipExportChannel.swift",
-      "source_location": "L467",
+      "source_location": "L501",
       "weight": 1.0,
       "source": "ios_runner_clipexportchannel_overlayframes_pixels",
       "target": "data",
@@ -92907,5 +93958,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7d1ec0581c1ce787b84fbfd1cd114ae83f902469"
+  "built_at_commit": "2322508b5a3683e72f33b4d776f21eecfed6bd4c"
 }
