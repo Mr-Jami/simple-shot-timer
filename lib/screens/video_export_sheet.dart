@@ -13,12 +13,15 @@ import '../utils/time_format.dart';
 
 /// The Export sheet: the string ([stringMs] long with the seconds around
 /// it) or the whole video ([wholeMs]), the overlay's style and corner and
-/// the end card, then Save to Photos or Share. It leaves the editor's video
-/// in view, where the export plays as chosen; the choices are kept.
+/// the end card, then Save to Photos or Share. For a [tallFrame] (9:16 and
+/// the like) it also offers to keep the overlay clear of the buttons Reels,
+/// Shorts and TikTok draw over one. It leaves the editor's video in view,
+/// where the export plays as chosen; the choices are kept.
 Future<ExportTarget?> showExportSheet(
   BuildContext context, {
   required int stringMs,
   required int wholeMs,
+  required bool tallFrame,
 }) =>
     showModalBottomSheet<ExportTarget>(
       context: context,
@@ -26,14 +29,23 @@ Future<ExportTarget?> showExportSheet(
       isScrollControlled: true,
       // Light, so the preview above stays clear.
       barrierColor: Colors.black12,
-      builder: (_) => _ExportSheet(stringMs: stringMs, wholeMs: wholeMs),
+      builder: (_) => _ExportSheet(
+        stringMs: stringMs,
+        wholeMs: wholeMs,
+        tallFrame: tallFrame,
+      ),
     );
 
 class _ExportSheet extends ConsumerWidget {
-  const _ExportSheet({required this.stringMs, required this.wholeMs});
+  const _ExportSheet({
+    required this.stringMs,
+    required this.wholeMs,
+    required this.tallFrame,
+  });
 
   final int stringMs;
   final int wholeMs;
+  final bool tallFrame;
 
   static const _corners = {
     HudCorner.topLeft: Icons.north_west,
@@ -121,6 +133,14 @@ class _ExportSheet extends ConsumerWidget {
               value: settings.hudEndCard,
               onChanged: (v) => update((a) => a.copyWith(hudEndCard: v)),
             ),
+            if (tallFrame)
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(context.tr('export.clearOfButtons')),
+                value: settings.hudClearOfButtons,
+                onChanged: (v) =>
+                    update((a) => a.copyWith(hudClearOfButtons: v)),
+              ),
             const SizedBox(height: 8),
             FilledButton.icon(
               style: FilledButton.styleFrom(

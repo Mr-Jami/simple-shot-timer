@@ -46,7 +46,9 @@ and the [App Store](https://apps.apple.com/app/simple-shot-timer/id6819042653).
   saved like any other, with only the times kept, never the video. *Export
   video* writes an H.264 copy (up to 1080p, 60 fps, HDR converted to SDR)
   with the clock, splits and an end card drawn on it, to save to Photos or
-  share. Videos over three minutes are analysed a part at a time.
+  share. For a 9:16 video, a switch keeps the overlay clear of the buttons
+  Reels, Shorts and TikTok draw over it. Videos over three minutes are
+  analysed a part at a time.
 - **CSV export** — Per-string or full-history export via the native share
   sheet.
 - **Manual shots** — Add shots after the fact on the Timer tab; add or

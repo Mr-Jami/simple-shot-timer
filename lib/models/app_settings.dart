@@ -32,6 +32,7 @@ class AppSettings {
     this.hudStyle = HudStyle.splits,
     this.hudCorner = HudCorner.topLeft,
     this.hudEndCard = true,
+    this.hudClearOfButtons = false,
     this.exportWholeVideo = false,
   });
 
@@ -98,6 +99,10 @@ class AppSettings {
   final HudCorner hudCorner;
   final bool hudEndCard;
 
+  /// Whether the overlay on a tall video keeps clear of the buttons Reels,
+  /// Shorts and TikTok draw over it.
+  final bool hudClearOfButtons;
+
   /// The export sheet's last length: the whole video, or the string with a
   /// few seconds around it.
   final bool exportWholeVideo;
@@ -150,6 +155,7 @@ class AppSettings {
     HudStyle? hudStyle,
     HudCorner? hudCorner,
     bool? hudEndCard,
+    bool? hudClearOfButtons,
     bool? exportWholeVideo,
   }) =>
       AppSettings(
@@ -182,6 +188,7 @@ class AppSettings {
         hudStyle: hudStyle ?? this.hudStyle,
         hudCorner: hudCorner ?? this.hudCorner,
         hudEndCard: hudEndCard ?? this.hudEndCard,
+        hudClearOfButtons: hudClearOfButtons ?? this.hudClearOfButtons,
         exportWholeVideo: exportWholeVideo ?? this.exportWholeVideo,
       );
 }

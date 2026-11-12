@@ -42,6 +42,7 @@ class SettingsService {
   static const _kHudStyle = 'video_hud_style';
   static const _kHudCorner = 'video_hud_corner';
   static const _kHudEndCard = 'video_hud_end_card';
+  static const _kHudClearOfButtons = 'video_hud_clear_of_buttons';
   static const _kExportWhole = 'video_export_whole';
 
   /// Saved custom drills (issue #24), one JSON list next to the settings
@@ -95,6 +96,8 @@ class SettingsService {
       hudStyle: _readEnum(_kHudStyle, HudStyle.values, defaults.hudStyle),
       hudCorner: _readEnum(_kHudCorner, HudCorner.values, defaults.hudCorner),
       hudEndCard: _prefs.getBool(_kHudEndCard) ?? defaults.hudEndCard,
+      hudClearOfButtons:
+          _prefs.getBool(_kHudClearOfButtons) ?? defaults.hudClearOfButtons,
       exportWholeVideo:
           _prefs.getBool(_kExportWhole) ?? defaults.exportWholeVideo,
     );
@@ -131,6 +134,7 @@ class SettingsService {
       _prefs.setString(_kHudStyle, s.hudStyle.name),
       _prefs.setString(_kHudCorner, s.hudCorner.name),
       _prefs.setBool(_kHudEndCard, s.hudEndCard),
+      _prefs.setBool(_kHudClearOfButtons, s.hudClearOfButtons),
       _prefs.setBool(_kExportWhole, s.exportWholeVideo),
     ]);
   }

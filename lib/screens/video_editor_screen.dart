@@ -432,6 +432,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
       context,
       stringMs: around.endMs - around.startMs,
       wholeMs: clip.info.durationMs,
+      tallFrame: HudLayout.isTall(around.frame),
     );
     length.close();
     _loop = null;
