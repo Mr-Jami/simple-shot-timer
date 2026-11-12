@@ -689,6 +689,32 @@ void main() {
     expect(state().doc.shotById(added.id)!.ms, placed);
   });
 
+  testWidgets('a double tap on Done adds no second shot', (tester) async {
+    final state = await openEditor(tester);
+    await tester.tap(find.widgetWithText(FilledButton, 'Shot'));
+    await tester.pumpAndSettle();
+    final shots = state().doc.shots.length;
+    // + Shot comes up where Done was: the second tap lands on it, with the
+    // playhead still on the shot just placed.
+    final at = tester.getCenter(find.widgetWithText(FilledButton, 'Done'));
+    await tester.tapAt(at);
+    await tester.pump(const Duration(milliseconds: 80));
+    expect(
+        tester.getRect(find.widgetWithText(FilledButton, 'Shot')).contains(at),
+        isTrue);
+    await tester.tapAt(at);
+    await tester.pumpAndSettle();
+    expect(state().doc.shots, hasLength(shots));
+    expect(state().selectedId, isNull);
+
+    // Away from the shot, + Shot adds one again.
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(FilledButton, 'Shot'));
+    await tester.pumpAndSettle();
+    expect(state().doc.shots, hasLength(shots + 1));
+  });
+
   testWidgets('a shot chosen in the list gets Done and the hint too',
       (tester) async {
     final state = await openEditor(tester);

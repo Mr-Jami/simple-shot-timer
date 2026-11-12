@@ -369,9 +369,11 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 
   void _addShot() {
-    HapticFeedback.lightImpact();
     _player.pause();
-    _editor.addShot(_timeline.playheadMs.round());
+    // + Shot comes up where Done was, with the playhead still on the shot
+    // just placed: the second tap of a double tap on Done adds no twin.
+    if (!_editor.addShot(_timeline.playheadMs.round())) return;
+    HapticFeedback.lightImpact();
   }
 
   void _delete(EditShot shot) {

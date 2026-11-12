@@ -73,6 +73,14 @@ void main() {
       expect(active(added), [2200, 2620, 2950, 3300]);
     });
 
+    test('a shot where one already is isn\'t added', () {
+      final d = doc();
+      expect(d.addShot(2620), same(d));
+      // Clamped onto the shot at the clip's end, too.
+      final ended = d.addShot(d.toMs);
+      expect(ended.addShot(d.toMs + 500), same(ended));
+    });
+
     test('a moved shot keeps where it was detected', () {
       final d = doc();
       final moved = d.moveShot(d.shots[1].id, 2640);

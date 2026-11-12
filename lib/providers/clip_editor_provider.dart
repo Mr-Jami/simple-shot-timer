@@ -168,9 +168,14 @@ class ClipEditorNotifier
 
   void setStart(int ms) => _edit(state.doc.setStart(ms));
 
-  void addShot(int ms) {
+  /// Adds a shot at [ms] and selects it. False where a shot already is:
+  /// nothing is added and the selection stays as it was.
+  bool addShot(int ms) {
+    final doc = state.doc.addShot(ms);
+    if (identical(doc, state.doc)) return false;
     final id = state.doc.nextId;
-    _edit(state.doc.addShot(ms), selectedId: () => id);
+    _edit(doc, selectedId: () => id);
+    return true;
   }
 
   void select(int? id) => state = state.copyWith(selectedId: () => id);

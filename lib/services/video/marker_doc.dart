@@ -191,9 +191,11 @@ class MarkerDoc {
   MarkerDoc setStart(int ms) => _copy(startMs: _clamp(ms), startEdited: true);
 
   /// Adds a shot at [ms] (its id is the current [nextId]). A shot past the
-  /// last shot becomes the new last shot.
+  /// last shot becomes the new last shot. Where a shot already is, nothing
+  /// changes: two on the same millisecond are never meant.
   MarkerDoc addShot(int ms) {
     final at = _clamp(ms);
+    if (shots.any((s) => s.ms == at)) return this;
     final end = endMs;
     return _copy(
       shots: _sorted([...shots, EditShot(id: nextId, ms: at)]),
