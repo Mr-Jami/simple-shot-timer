@@ -12,16 +12,17 @@ import UIKit
 /// ClipExportChannel.kt:
 ///
 /// - `export` trims the clip to [startMs, endMs) (output time = clip time -
-///   startMs), turns it upright, scales it to at most `shortSide` and
-///   `maxFps`, converts HDR to SDR (BT.709) and writes H.264 with the sound
-///   kept. Each overlay is a folder of images (`i.z`: premultiplied RGBA,
-///   zlib) that Dart drew, image `i` showing from `timesUs[i]` (output time)
-///   on, its top left at (`x`, `y`) in fractions of the frame. Progress
-///   (0..1) comes back as `progress` messages; `cancel` names the job to
-///   stop. Fails with `cancelled`, `no_space` or `export_failed` (the
-///   message is [errorDetail]), leaving no file, or with `busy` while another
-///   export runs. AVAssetExportSession chooses the bitrate (`bitrate` is
-///   Android's), and the export stops if the app goes to the background.
+///   startMs), cuts it to its clean aperture, turns it upright, scales it to
+///   at most `shortSide` and `maxFps`, converts HDR to SDR (BT.709) and
+///   writes H.264 with the sound kept. Each overlay is a folder of images
+///   (`i.z`: premultiplied RGBA, zlib) that Dart drew, image `i` showing
+///   from `timesUs[i]` (output time) on, its top left at (`x`, `y`) in
+///   fractions of the frame. Progress (0..1) comes back as `progress`
+///   messages; `cancel` names the job to stop. Fails with `cancelled`,
+///   `no_space` or `export_failed` (the message is [errorDetail]), leaving
+///   no file, or with `busy` while another export runs.
+///   AVAssetExportSession chooses the bitrate (`bitrate` is Android's), and
+///   the export stops if the app goes to the background.
 /// - `checkEncoderColors`: Apple's encoder converts with the matrix it tags,
 ///   so it never needs Android's `colorFix`.
 final class ClipExportChannel: NSObject, @unchecked Sendable {
@@ -201,6 +202,7 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
       OverlayInstruction(
         timeRange: CMTimeRange(start: .zero, duration: composition.duration),
         trackID: video.trackID,
+        aperture: aperture(of: source),
         orientation: orientation(source.preferredTransform),
         overlays: overlays)
     ]
@@ -217,7 +219,20 @@ final class ClipExportChannel: NSObject, @unchecked Sendable {
     return session
   }
 
-  /// The picture's size as displayed (rotation applied).
+  /// Where the picture is in [track]'s stored frames; nil when it fills
+  /// them.
+  private static func aperture(of track: AVAssetTrack) -> Aperture? {
+    guard let format = firstFormat(of: track) else { return nil }
+    let dimensions = CMVideoFormatDescriptionGetDimensions(format)
+    let stored = CGRect(
+      x: 0, y: 0, width: CGFloat(dimensions.width), height: CGFloat(dimensions.height))
+    // Core Image counts y from the bottom.
+    let picture = CMVideoFormatDescriptionGetCleanAperture(format, originIsAtTopLeft: false)
+    guard !picture.isEmpty, picture != stored, stored.contains(picture) else { return nil }
+    return Aperture(stored: stored.size, picture: picture)
+  }
+
+  /// The picture's size as displayed (clean aperture, rotation applied).
   private static func upright(_ track: AVAssetTrack) -> CGSize {
     let size = track.naturalSize.applying(track.preferredTransform)
     return CGSize(width: abs(size.width), height: abs(size.height))
@@ -279,8 +294,18 @@ extension ClipFailure: CustomNSError {
   var errorUserInfo: [String: Any] { [NSLocalizedFailureReasonErrorKey: message ?? code] }
 }
 
-/// The one instruction of an export: the source track to draw upright, and
-/// the overlays on top.
+/// A clip that stores more than its picture: [picture] is the clean aperture
+/// within the [stored] frame, in Core Image's coordinates (y from the
+/// bottom). iPhones record like this where they stabilise the picture (Live
+/// Photos, for one): the frame keeps a margin around it that players leave
+/// out, and that can be black along an edge.
+private struct Aperture {
+  let stored: CGSize
+  let picture: CGRect
+}
+
+/// The one instruction of an export: the source track to draw upright, cut
+/// to its picture, and the overlays on top.
 private final class OverlayInstruction: NSObject, AVVideoCompositionInstructionProtocol,
   @unchecked Sendable
 {
@@ -291,24 +316,26 @@ private final class OverlayInstruction: NSObject, AVVideoCompositionInstructionP
   let passthroughTrackID = kCMPersistentTrackID_Invalid
 
   let trackID: CMPersistentTrackID
+  let aperture: Aperture?
   let orientation: CGImagePropertyOrientation
   let overlays: [OverlayFrames]
 
   init(
-    timeRange: CMTimeRange, trackID: CMPersistentTrackID,
+    timeRange: CMTimeRange, trackID: CMPersistentTrackID, aperture: Aperture?,
     orientation: CGImagePropertyOrientation, overlays: [OverlayFrames]
   ) {
     self.timeRange = timeRange
     self.trackID = trackID
+    self.aperture = aperture
     self.orientation = orientation
     self.overlays = overlays
     requiredSourceTrackIDs = [NSNumber(value: trackID)]
   }
 }
 
-/// Draws each output frame: the source turned upright and scaled to the
-/// render size, then the overlay images for its time. Requests are drawn
-/// one at a time on [queue].
+/// Draws each output frame: the source's picture turned upright and scaled
+/// to the render size, then the overlay images for its time. Requests are
+/// drawn one at a time on [queue].
 private final class OverlayCompositor: NSObject, AVVideoCompositing, @unchecked Sendable {
   /// Drains an autorelease pool after every request, like the one around
   /// each frame. Without them GCD drains only when the queue's thread idles,
@@ -383,7 +410,13 @@ private final class OverlayCompositor: NSObject, AVVideoCompositing, @unchecked 
     var frame: CIImage
     if let source = request.sourceFrame(byTrackID: instruction.trackID) {
       frame = CIImage(cvPixelBuffer: source, options: [.colorSpace: NSNull()])
-        .oriented(instruction.orientation)
+      // A composition track drops its source's clean aperture, so the frame
+      // comes as stored, margin included; the render size is the picture's
+      // (issue #66). A frame of any other size is drawn whole.
+      if let aperture = instruction.aperture, frame.extent.size == aperture.stored {
+        frame = frame.cropped(to: aperture.picture)
+      }
+      frame = frame.oriented(instruction.orientation)
       frame = frame.transformed(
         by: CGAffineTransform(translationX: -frame.extent.minX, y: -frame.extent.minY))
       let sx = size.width / frame.extent.width
