@@ -368,13 +368,6 @@ class _AudibleVolume extends VolumeService {
   Future<bool?> isMediaAudible() async => true;
 }
 
-/// The test binding without the test's name, which it draws at the top of
-/// the screen.
-class _PreviewBinding extends IntegrationTestWidgetsFlutterBinding {
-  @override
-  void setLabel(String value) {}
-}
-
 /// Replaces what the app has stored with [_settings], [_drills] and
 /// [_history].
 Future<void> _seed() async {
@@ -420,7 +413,7 @@ Finder _tab(String label) => find.descendant(
     );
 
 void main() {
-  final binding = _PreviewBinding()
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized()
     // Every frame the app asks for, not only those a test pumps.
     ..framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive
     // Taps go in the way a finger's do. Sent as a test's, the binding would
@@ -437,6 +430,9 @@ void main() {
   }
 
   testWidgets('plays the App Store preview', (tester) async {
+    // The binding draws the test's name along the top edge of the screen.
+    // ignore: invalid_use_of_protected_member
+    binding.setLabel('');
     final microphone = _ScriptedMicrophone(_shotsMs);
     await _seed();
     await app.startApp(overrides: [
