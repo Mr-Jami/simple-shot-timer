@@ -585,18 +585,39 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
           child: Scaffold(
             body: Column(
               children: [
-                Offstage(
-                  offstage: typing,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: _markerTools(state, frameMs),
-                  ),
-                ),
+                // Export first takes its room at the bottom; what is left
+                // goes to the tools and, below them, the details.
                 Expanded(
-                  child: SafeArea(
-                    top: typing,
-                    bottom: false,
-                    child: _details(context, state),
+                  child: LayoutBuilder(
+                    builder: (context, room) => Column(
+                      children: [
+                        Offstage(
+                          offstage: typing,
+                          // The tools get no more than that room, so on a
+                          // short screen the video gives way instead of
+                          // Export being pushed off the screen. Not while
+                          // typing: the keyboard shouldn't resize a video
+                          // that isn't showing.
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight:
+                                  typing ? double.infinity : room.maxHeight,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: _markerTools(state, frameMs),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: SafeArea(
+                            top: typing,
+                            bottom: false,
+                            child: _details(context, state),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 if (!typing)
@@ -623,16 +644,18 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 
   /// Above the details: the video, the transport, the timeline and its
-  /// minimap, and the marker panel.
+  /// minimap, and the marker panel. Only the video can shrink.
   List<Widget> _markerTools(ClipEditorState state, double frameMs) => [
-        _VideoPane(
-          player: _player,
-          aspectRatio: widget.args.clip.info.aspectRatio,
-          overlay: _hud(state),
-          showOverlay: _showHud,
-          onToggleOverlay: () => setState(() => _showHud = !_showHud),
-          onBack: _leave,
-          onDiscard: _discard,
+        Flexible(
+          child: _VideoPane(
+            player: _player,
+            aspectRatio: widget.args.clip.info.aspectRatio,
+            overlay: _hud(state),
+            showOverlay: _showHud,
+            onToggleOverlay: () => setState(() => _showHud = !_showHud),
+            onBack: _leave,
+            onDiscard: _discard,
+          ),
         ),
         EditorTransport(
           player: _player,
@@ -801,9 +824,10 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 }
 
-/// The clip on black under the status bar, 30 % of the screen high,
-/// with the [overlay] preview on it, and back, the eye (the preview on or
-/// off) and the ⋮ menu (Discard) over it.
+/// The clip on black under the status bar, 30 % of the screen high (less
+/// where a short screen leaves less), with the [overlay] preview on it,
+/// and back, the eye (the preview on or off) and the ⋮ menu (Discard)
+/// over it.
 class _VideoPane extends StatelessWidget {
   const _VideoPane({
     required this.player,

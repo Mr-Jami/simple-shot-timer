@@ -29,6 +29,7 @@ import 'package:simple_shot_timer/services/video/hud_painter.dart';
 import 'package:simple_shot_timer/services/video/video_string_store.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 import 'package:simple_shot_timer/utils/cancel_token.dart';
+import 'package:simple_shot_timer/widgets/editor/editor_transport.dart';
 import 'package:simple_shot_timer/widgets/shot_badge.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
 import 'package:simple_shot_timer/widgets/timeline/timeline_controller.dart';
@@ -188,6 +189,7 @@ void main() {
     WidgetTester tester, {
     int seconds = 7,
     bool beep = true,
+    String language = 'en',
     List<Override> overrides = const [],
   }) async {
     tester.view.devicePixelRatio = 3;
@@ -226,7 +228,10 @@ void main() {
     await tester.pumpWidget(UncontrolledProviderScope(
       container: container,
       child: MaterialApp(
-        locale: const Locale('en'),
+        locale: Locale(language),
+        supportedLocales: [
+          for (final l in kSupportedAppLocales) Locale(l.code)
+        ],
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -694,6 +699,73 @@ void main() {
     expect(state().doc.shotById(shot.id)!.ms, shot.ms);
     // Back to Set START and + Shot.
     expect(find.widgetWithText(FilledButton, 'Shot'), findsOneWidget);
+  });
+
+  /// A phone of [size] dp with a status bar and a 3-button navigation bar.
+  const statusBar = 24.0, navigationBar = 48.0;
+  Future<void> usePhone(WidgetTester tester, Size size) async {
+    tester.view.physicalSize = size * 3;
+    tester.view.padding =
+        const FakeViewPadding(top: statusBar * 3, bottom: navigationBar * 3);
+    tester.view.viewPadding = tester.view.padding;
+    await tester.pumpAndSettle();
+  }
+
+  /// Where the video ends: its height plus the status bar's.
+  double videoBottom(WidgetTester tester) =>
+      tester.getTopLeft(find.byType(EditorTransport)).dy;
+
+  // By icon, so it reads the same in every language. Russian has the
+  // tallest panel: its hint takes two lines.
+  final addShot = find.widgetWithIcon(FilledButton, Icons.add);
+  final done = find.widgetWithIcon(FilledButton, Icons.check);
+  final export = find.widgetWithIcon(FilledButton, Icons.movie_outlined);
+
+  for (final (size, language) in const [
+    (Size(360, 640), 'en'),
+    (Size(360, 640), 'ru'),
+    (Size(360, 690), 'ru'),
+    (Size(360, 592), 'de'),
+  ]) {
+    testWidgets(
+        'on a short screen ($size, $language) the video gives way and '
+        'Export stays on screen', (tester) async {
+      await openEditor(tester, language: language);
+      await usePhone(tester, size);
+      final bottom = size.height - navigationBar;
+      final full = statusBar + size.height * 0.3;
+      expect(tester.takeException(), isNull);
+      expect(tester.getRect(export).bottom, lessThanOrEqualTo(bottom));
+      final before = videoBottom(tester);
+      expect(before, lessThanOrEqualTo(full));
+
+      // The panel of a selected shot is the tallest the tools get.
+      await tester.tap(addShot);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(done, findsOneWidget);
+      expect(tester.getRect(export).bottom, lessThanOrEqualTo(bottom));
+      // Smaller, with its row of buttons (Back, the eye, the menu) whole.
+      expect(videoBottom(tester), lessThan(full));
+      expect(videoBottom(tester), greaterThanOrEqualTo(statusBar + 56));
+
+      await tester.tap(done);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(videoBottom(tester), before);
+    });
+  }
+
+  testWidgets('with room to spare the video keeps 30 % of the height',
+      (tester) async {
+    await openEditor(tester, language: 'ru');
+    await usePhone(tester, const Size(360, 780));
+    expect(videoBottom(tester), statusBar + 234);
+    await tester.tap(addShot);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(videoBottom(tester), statusBar + 234);
+    expect(tester.getRect(export).bottom, 780 - navigationBar - 8);
   });
 
   testWidgets('with the keyboard up only the details show', (tester) async {
