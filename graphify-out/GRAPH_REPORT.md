@@ -1,16 +1,16 @@
-# Graph Report - simple-shot-timer  (2026-11-11)
+# Graph Report - simple-shot-timer  (2026-11-12)
 
 ## Corpus Check
-- 245 files · ~773,533 words
+- 245 files · ~773,926 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 3738 nodes · 5316 edges · 209 communities (169 shown, 40 thin omitted)
+- 3744 nodes · 5322 edges · 207 communities (168 shown, 39 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 25 edges (avg confidence: 0.81)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c793724e`
+- Built from commit: `64e7a80b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -203,14 +203,12 @@
 - [[_COMMUNITY_dartui|dart:ui]]
 - [[_COMMUNITY_packageflutterfoundation.dart|package:flutter/foundation.dart]]
 - [[_COMMUNITY_clip_analyzer_runner.dart|clip_analyzer_runner.dart]]
-- [[_COMMUNITY_video_work_dir_test.dart|video_work_dir_test.dart]]
 - [[_COMMUNITY_Size|Size]]
 - [[_COMMUNITY_isNoSpace|isNoSpace]]
 - [[_COMMUNITY_biquad.dart|biquad.dart]]
 - [[_COMMUNITY_sensitivity_selector.dart|sensitivity_selector.dart]]
 - [[_COMMUNITY_bool|bool?]]
 - [[_COMMUNITY_return|return]]
-- [[_COMMUNITY_settings_delete_all_test.dart|settings_delete_all_test.dart]]
 - [[_COMMUNITY_DatabaseService|DatabaseService]]
 - [[_COMMUNITY_Timer|Timer?]]
 - [[_COMMUNITY_video_string_store.dart|video_string_store.dart]]
@@ -243,7 +241,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (209 total, 40 thin omitted)
+## Communities (207 total, 39 thin omitted)
 
 ### Community 0 - "Audio Capture & Shot Detection"
 Cohesion: 0.03
@@ -251,7 +249,7 @@ Nodes (61): audio_service.dart, AudioRecorder, beep_onset_detector.dart, biquad.
 
 ### Community 1 - "App Bootstrap & Providers"
 Cohesion: 0.04
-Nodes (44): clear, _currentDrillsVersion, _drillsWithSensitivity, encoderColorFix, _kAudioLatencyOffset, _kBandEnabled, _kBandHigh, _kBandLow (+36 more)
+Nodes (46): clear, _currentDrillsVersion, _drillsWithSensitivity, encoderColorFix, _kAudioLatencyOffset, _kBandEnabled, _kBandHigh, _kBandLow (+38 more)
 
 ### Community 2 - "App Settings Model"
 Cohesion: 0.05
@@ -259,11 +257,11 @@ Nodes (42): audioLatencyOffsetMaxMs, audioLatencyOffsetMinMs, audioLatencyOffset
 
 ### Community 3 - "History Screen"
 Cohesion: 0.06
-Nodes (36): AsyncNotifier, build, delete, deleteAll, HistoryNotifier, refresh, databaseProvider, stringByIdProvider (+28 more)
+Nodes (39): AsyncNotifier, ConsumerState, build, delete, deleteAll, HistoryNotifier, refresh, databaseProvider (+31 more)
 
 ### Community 4 - "Localization (i18n)"
-Cohesion: 0.09
-Nodes (24): BuildContext, class, AppLocale, AppLocalizations, _AppLocalizationsDelegate, AppLocalizationsX, code, dateLocale (+16 more)
+Cohesion: 0.10
+Nodes (21): class, AppLocale, AppLocalizations, _AppLocalizationsDelegate, code, dateLocale, delegate, displayName (+13 more)
 
 ### Community 5 - "Timer Provider Core"
 Cohesion: 0.04
@@ -298,12 +296,12 @@ Cohesion: 0.07
 Nodes (27): copyWith, createdAt, delayMode, delayUsedMs, drillMode, firstShotForCycle, firstShotMs, fromMap (+19 more)
 
 ### Community 13 - "Settings Screen Widgets"
-Cohesion: 0.06
-Nodes (32): EdgeInsetsGeometry?, build, contentPadding, controller, _edit, initial, label, magnet (+24 more)
+Cohesion: 0.08
+Nodes (23): EdgeInsetsGeometry?, build, contentPadding, controller, _edit, initial, label, magnet (+15 more)
 
 ### Community 14 - "Screen Theming & State Display"
-Cohesion: 0.05
-Nodes (43): _ActiveDrillChip, activeDrillName, child, _CountdownView, firstShotMs, label, _LastStringLine, line (+35 more)
+Cohesion: 0.06
+Nodes (37): _ActiveDrillChip, activeDrillName, child, _CountdownView, firstShotMs, label, _LastStringLine, line (+29 more)
 
 ### Community 15 - "Auto-Configure Screen"
 Cohesion: 0.09
@@ -318,8 +316,8 @@ Cohesion: 0.14
 Nodes (13): drill_config.dart, config, copyWith, CustomDrill, decodeList, encodeList, fromMap, id (+5 more)
 
 ### Community 18 - "Mic Test Screen"
-Cohesion: 0.07
-Nodes (32): auto_configure_screen.dart, detection_settings_screen.dart, read, DetectionSettingsScreen, build, _Credits, _detectionSummary, _kDurationMagnetMs (+24 more)
+Cohesion: 0.05
+Nodes (47): auto_configure_screen.dart, detection_settings_screen.dart, ../../i18n/app_localizations.dart, build, SimpleShotTimerApp, ExportTarget, _detectionSummary, _kDurationMagnetMs (+39 more)
 
 ### Community 19 - "Flash Overlay Widget"
 Cohesion: 0.12
@@ -334,8 +332,8 @@ Cohesion: 0.07
 Nodes (26): Adding it, AlternativeTo listing (draft), Fields, F-Droid, How the recipe is built, IzzyOnDroid, the faster route, Abstract, Checklist (+18 more)
 
 ### Community 22 - "Beep Onset Detector Tests"
-Cohesion: 0.07
-Nodes (23): base, buildAppTheme, monochromeScheme, scheme, build, compact, height, level (+15 more)
+Cohesion: 0.09
+Nodes (19): base, buildAppTheme, monochromeScheme, scheme, build, compact, height, level (+11 more)
 
 ### Community 23 - "Background Service"
 Cohesion: 0.13
@@ -347,7 +345,7 @@ Nodes (14): absoluteThreshold, BeepOnsetDetector, _blockPower, blockSize, _coeff
 
 ### Community 25 - "Delay Test Suite"
 Cohesion: 0.04
-Nodes (46): package:simple_shot_timer/services/volume_service.dart, armBeepDetection, beepOnsetEvents, beeps, cancelBeepDetection, container, env, _events (+38 more)
+Nodes (47): package:simple_shot_timer/services/timer_ports.dart, package:simple_shot_timer/services/volume_service.dart, armBeepDetection, beepOnsetEvents, beeps, cancelBeepDetection, container, env (+39 more)
 
 ### Community 26 - "Auto-Configure Screen State"
 Cohesion: 0.11
@@ -362,8 +360,8 @@ Cohesion: 0.14
 Nodes (14): GitHub Sponsors Funding (Mr-Jami), Adding a New Language, Architecture Notes, Continuous Integration, Features, Getting Started, License, Maintainer (+6 more)
 
 ### Community 29 - "Timer Run Lifecycle"
-Cohesion: 0.15
-Nodes (12): @visibleForTesting, clip_audio_source.dart, ClipPlayer, landed, pause, _pauses, scrub, _seeker (+4 more)
+Cohesion: 0.10
+Nodes (15): package:fake_async/fake_async.dart, package:flutter_test/flutter_test.dart, package:simple_shot_timer/providers/timer_provider.dart, package:simple_shot_timer/services/video/throttled_seeker.dart, package:simple_shot_timer/utils/slider_math.dart, package:simple_shot_timer/utils/slider_units.dart, package:simple_shot_timer/widgets/flash_overlay.dart, _host (+7 more)
 
 ### Community 30 - "Release Please Config"
 Cohesion: 0.20
@@ -378,8 +376,8 @@ Cohesion: 0.28
 Nodes (9): runEnvironmentProvider, shotSourceProvider, _armOnsetDetection, _cleanup, _maybeHaptic, start, _startTick, _teardownRun (+1 more)
 
 ### Community 33 - "marker_panel.dart"
-Cohesion: 0.10
-Nodes (19): EditShot, build, _fitted, _hint, MarkerPanel, _markers, onAddShot, onDelete (+11 more)
+Cohesion: 0.06
+Nodes (34): TimerString, EditShot, build, _fitted, _hint, MarkerPanel, _markers, onAddShot (+26 more)
 
 ### Community 34 - "Biquad Filter Tests"
 Cohesion: 0.11
@@ -410,8 +408,8 @@ Cohesion: 0.12
 Nodes (19): bool get, countUnit, decimals, divisor, editText, format, FractionPercentUnit, fromNumber (+11 more)
 
 ### Community 41 - "Split Time Tests"
-Cohesion: 0.15
-Nodes (12): app.dart, audio, db, main, prefs, setPreferredOrientations, ../providers/providers.dart, ../services/audio_service.dart (+4 more)
+Cohesion: 0.17
+Nodes (11): app.dart, audio, db, main, prefs, setPreferredOrientations, ../providers/providers.dart, ../services/audio_service.dart (+3 more)
 
 ### Community 42 - "Android MainActivity"
 Cohesion: 0.18
@@ -434,8 +432,8 @@ Cohesion: 0.11
 Nodes (17): Audio plan, Core features, ranked for the video, Format / tone / length, How to run brag with this plan, Recording the RO audio (best option), RO audio: current status, Scene 1: Cold open "Are you ready?" (0.0 – ~4.5 s, the RO recording sets the length), Scene 2: Running view "It hears every shot" (~4.5 – 9.0 s) (+9 more)
 
 ### Community 54 - "big_time_display.dart"
-Cohesion: 0.07
-Nodes (40): ConsumerWidget, build, SimpleShotTimerApp, historyProvider, volumeServiceProvider, settingsProvider, _checkBeepAudible, timerProvider (+32 more)
+Cohesion: 0.11
+Nodes (29): ConsumerWidget, historyProvider, volumeServiceProvider, settingsProvider, _checkBeepAudible, timerProvider, videoWorkDirProvider, _apply (+21 more)
 
 ### Community 55 - "package:flutter/material.dart"
 Cohesion: 0.05
@@ -450,16 +448,16 @@ Cohesion: 0.09
 Nodes (22): build, createState, _error, _formatHz, label, onApply, onDiscard, _recomputeSuggestion (+14 more)
 
 ### Community 80 - "settings_screen.dart"
-Cohesion: 0.05
-Nodes (43): package:simple_shot_timer/screens/video_editor_screen.dart, package:simple_shot_timer/services/timer_ports.dart, package:simple_shot_timer/widgets/shot_badge.dart, package:video_player_platform_interface/video_player_platform_interface.dart, analysis, asked, buildViewWithOptions, clipPath (+35 more)
+Cohesion: 0.04
+Nodes (48): package:simple_shot_timer/screens/video_editor_screen.dart, package:simple_shot_timer/widgets/editor/editor_transport.dart, package:simple_shot_timer/widgets/shot_badge.dart, package:video_player_platform_interface/video_player_platform_interface.dart, addShot, analysis, asked, buildViewWithOptions (+40 more)
 
 ### Community 81 - "main.dart"
-Cohesion: 0.10
-Nodes (21): ConsumerState, ConsumerStatefulWidget, custom_drills_screen.dart, history_screen.dart, home_screen.dart, createState, _index, MainShell (+13 more)
+Cohesion: 0.14
+Nodes (14): custom_drills_screen.dart, history_screen.dart, home_screen.dart, createState, _index, MainShell, _MainShellState, ../providers/timer_provider.dart (+6 more)
 
 ### Community 82 - "enums.dart"
-Cohesion: 0.20
-Nodes (9): clamp, clampToStep, clampToStepDouble, nearest, snapped, softSnap, stepped, tolerance (+1 more)
+Cohesion: 0.18
+Nodes (10): clamp, clampToStep, clampToStepDouble, nearest, snapped, softSnap, stepped, tolerance (+2 more)
 
 ### Community 83 - "dart:io"
 Cohesion: 0.02
@@ -492,7 +490,7 @@ Nodes (20): Audio direction, Brag Plan: Simple Shot Timer, Duration: 22 s, Forma
 
 ### Community 90 - "settings_provider.dart"
 Cohesion: 0.04
-Nodes (54): ClipEditorNotifier get, _addShot, args, aspectRatio, _centre, _clock, createState, _details (+46 more)
+Nodes (55): ClipEditorNotifier get, _addShot, args, aspectRatio, _centre, _clock, createState, _details (+47 more)
 
 ### Community 91 - "i18n_parity_test.dart"
 Cohesion: 0.06
@@ -503,12 +501,12 @@ Cohesion: 0.20
 Nodes (7): 1. Join the tester group, 2. Opt in to the beta, 3. Install or update, How to join (Android), Join the Simple Shot Timer beta, Leaving the beta, Reporting bugs and feedback
 
 ### Community 93 - "drill_config_test.dart"
-Cohesion: 0.08
-Nodes (26): NavigatorState, package:simple_shot_timer/models/enums.dart, package:simple_shot_timer/models/par_schedule.dart, package:simple_shot_timer/models/shot.dart, package:simple_shot_timer/models/timer_state.dart, package:simple_shot_timer/models/timer_string.dart, package:simple_shot_timer/providers/string_provider.dart, package:simple_shot_timer/screens/review_screen.dart (+18 more)
+Cohesion: 0.18
+Nodes (10): package:sqflite_common_ffi/sqflite_ffi.dart, createOld, dir, factory, indexes, main, path, tableInfo (+2 more)
 
 ### Community 94 - "dart:math"
-Cohesion: 0.09
-Nodes (22): Directory, adopt, _clipPath, createSession, _defaultRoot, _defaultTemp, deleteAll, _deleteIn (+14 more)
+Cohesion: 0.04
+Nodes (54): dart:io, Directory, binding, main, _csv, _delete, deleteExports, deleteVideoShares (+46 more)
 
 ### Community 95 - "music-rms.js"
 Cohesion: 0.05
@@ -579,8 +577,8 @@ Cohesion: 0.50
 Nodes (4): Commit format, Commit messages are store release notes, Release flow, Versioning
 
 ### Community 112 - "drill_tile.dart"
-Cohesion: 0.09
-Nodes (21): Float32List, buckets, build, controller, dim, frameMs, frames, height (+13 more)
+Cohesion: 0.08
+Nodes (23): ChangeNotifier, Float32List, TimelineController, buckets, build, controller, dim, frameMs (+15 more)
 
 ### Community 113 - "settings_widgets.dart"
 Cohesion: 0.50
@@ -599,8 +597,8 @@ Cohesion: 0.05
 Nodes (46): ClipAudioChannel, ClipAudioFailure, Any, Boolean, Double, Int, List, Long (+38 more)
 
 ### Community 118 - "mic_level_meter.dart"
-Cohesion: 0.12
-Nodes (18): detector, sharedPreferencesProvider, AudioService, DatabaseService, SettingsService, ShotDetector, BeepPlayer, ShotSource (+10 more)
+Cohesion: 0.13
+Nodes (17): detector, sharedPreferencesProvider, AudioService, DatabaseService, ShotDetector, BeepPlayer, ShotSource, StringStore (+9 more)
 
 ### Community 124 - "customDrillsProvider"
 Cohesion: 0.21
@@ -612,8 +610,8 @@ Nodes (30): clip_exporter.dart, export_plan.dart, hud_painter.dart, Image? logo,
   bool, bleed, cardFrom, cardOut, _deflate (+22 more)
 
 ### Community 126 - "package:flutter_riverpod/flutter_riverpod.dart"
-Cohesion: 0.06
-Nodes (34): AppLifecycleListener, ImportStep, videoImportProvider, chooseVideoAgain, clipProblemKey, startVideoImport, build, _chooseAnother (+26 more)
+Cohesion: 0.07
+Nodes (30): AppLifecycleListener, ImportStep, videoImportProvider, _AnalyzingView, build, _chooseAnother, createState, dispose (+22 more)
 
 ### Community 127 - "settings_widgets.dart"
 Cohesion: 0.04
@@ -657,7 +655,7 @@ Nodes (14): attackSeconds, best, bestCount, candidates, chooseStart, hits, isSto
 
 ### Community 137 - "clip_analyzer_test.dart"
 Cohesion: 0.14
-Nodes (13): hud_overlay.dart, HudOptions, HudLabels, _atMs, build, _frame, HudSample, labels (+5 more)
+Nodes (13): hud_overlay.dart, Image?, HudLabels, _atMs, build, _frame, HudSample, labels (+5 more)
 
 ### Community 138 - "date_locale_test.dart"
 Cohesion: 0.15
@@ -668,32 +666,32 @@ Cohesion: 0.04
 Nodes (52): _, DateTime get, alignBottom, alignRight, at, box, boxSize, brandGapUnits (+44 more)
 
 ### Community 140 - "static const int"
-Cohesion: 0.12
-Nodes (18): DateTime?, audioServiceProvider, build, createState, _dominantFreqHz, _dominantFreqStrength, _error, freqHz (+10 more)
+Cohesion: 0.10
+Nodes (20): ConsumerStatefulWidget, DateTime?, audioServiceProvider, build, createState, _dominantFreqHz, _dominantFreqStrength, _error (+12 more)
 
 ### Community 141 - "BeepPlayer"
-Cohesion: 0.06
-Nodes (33): dart:convert, package:flutter_test/flutter_test.dart, package:simple_shot_timer/models/app_settings.dart, package:simple_shot_timer/models/custom_drill.dart, package:simple_shot_timer/models/drill_config.dart, package:simple_shot_timer/providers/timer_provider.dart, package:simple_shot_timer/utils/slider_math.dart, package:simple_shot_timer/utils/slider_units.dart (+25 more)
+Cohesion: 0.05
+Nodes (49): dart:convert, package:shared_preferences/shared_preferences.dart, package:simple_shot_timer/models/app_settings.dart, package:simple_shot_timer/models/custom_drill.dart, package:simple_shot_timer/models/drill_config.dart, package:simple_shot_timer/models/enums.dart, package:simple_shot_timer/models/par_schedule.dart, package:simple_shot_timer/providers/custom_drills_provider.dart (+41 more)
 
 ### Community 142 - "RunEnvironment"
-Cohesion: 0.05
-Nodes (35): _FakeSession, _MemoryStore, package:fake_async/fake_async.dart, package:simple_shot_timer/providers/clip_editor_provider.dart, package:simple_shot_timer/services/video/clip_analyzer_runner.dart, package:simple_shot_timer/services/video/throttled_seeker.dart, package:simple_shot_timer/services/video/video_string_store.dart, StateError (+27 more)
+Cohesion: 0.06
+Nodes (35): _FakeSession, VideoStringStore, _MemoryStore, package:simple_shot_timer/providers/clip_editor_provider.dart, package:simple_shot_timer/services/video/clip_analyzer_runner.dart, package:simple_shot_timer/services/video/video_string_store.dart, StateError, analyze (+27 more)
 
 ### Community 143 - "ChannelClipAudioSource"
 Cohesion: 0.06
 Nodes (32): addShot, _at, _clamp, _copy, deleteShot, detected, detectedMs, endMs (+24 more)
 
 ### Community 149 - "video_import_provider.dart"
-Cohesion: 0.04
-Nodes (50): AutoDisposeFamilyNotifier, _analyse, analysePart, _armAnalyzingView, _around, build, _cancel, _choosePart (+42 more)
+Cohesion: 0.05
+Nodes (45): analysePart, _armAnalyzingView, _around, build, _cancel, _choosePart, clip, clipPath (+37 more)
 
 ### Community 150 - "video_providers.dart"
 Cohesion: 0.12
-Nodes (18): Image?, _colorFix, deliver, start, VideoExportController, clipAnalyzerProvider, clipExporterProvider, hudFrameRendererProvider (+10 more)
+Nodes (18): _colorFix, deliver, start, VideoExportController, clipAnalyzerProvider, clipExporterProvider, hudFrameRendererProvider, videoGalleryProvider (+10 more)
 
 ### Community 151 - "pill_button.dart"
-Cohesion: 0.15
-Nodes (12): Color, IconData, Key?, background, build, contentKey, foreground, height (+4 more)
+Cohesion: 0.14
+Nodes (13): Color, IconData, Key?, background, build, contentKey, foreground, height (+5 more)
 
 ### Community 152 - "throttled_seeker.dart"
 Cohesion: 0.11
@@ -712,8 +710,8 @@ Cohesion: 0.13
 Nodes (15): AVAsynchronousVideoCompositionRequest, AVVideoCompositing, AVVideoCompositionInstructionProtocol, AVVideoCompositionRenderContext, CGImagePropertyOrientation, CMPersistentTrackID, CMTimeRange, CVPixelBuffer (+7 more)
 
 ### Community 156 - "clip_picker.dart"
-Cohesion: 0.10
-Nodes (22): package:shared_preferences/shared_preferences.dart, package:simple_shot_timer/providers/custom_drills_provider.dart, package:simple_shot_timer/providers/providers.dart, package:simple_shot_timer/providers/settings_provider.dart, package:simple_shot_timer/providers/video_export_provider.dart, package:simple_shot_timer/screens/custom_drills_screen.dart, package:simple_shot_timer/screens/video_export_sheet.dart, package:simple_shot_timer/services/settings_service.dart (+14 more)
+Cohesion: 0.12
+Nodes (14): _channel, isMediaAudible, showVolumePanel, VolumeService, package:flutter/services.dart, package:simple_shot_timer/utils/legal.dart, attribution, main (+6 more)
 
 ### Community 157 - "clip_check.dart"
 Cohesion: 0.12
@@ -724,8 +722,8 @@ Cohesion: 0.16
 Nodes (12): ClipFilesChannel, FlutterBinaryMessenger, FlutterMethodCall, FlutterMethodChannel, FlutterResult, String, URL, UIAdaptivePresentationControllerDelegate (+4 more)
 
 ### Community 159 - "editor_transport.dart"
-Cohesion: 0.09
-Nodes (22): package:intl/date_symbol_data_local.dart, package:simple_shot_timer/services/video/hud.dart, package:simple_shot_timer/services/video/hud_frames.dart, package:simple_shot_timer/services/video/hud_painter.dart, package:simple_shot_timer/widgets/video/hud_overlay.dart, info, labels, main (+14 more)
+Cohesion: 0.07
+Nodes (28): package:intl/date_symbol_data_local.dart, package:simple_shot_timer/models/shot.dart, package:simple_shot_timer/models/timer_state.dart, package:simple_shot_timer/models/timer_string.dart, package:simple_shot_timer/services/video/hud.dart, package:simple_shot_timer/services/video/hud_frames.dart, package:simple_shot_timer/services/video/hud_painter.dart, package:simple_shot_timer/widgets/video/hud_overlay.dart (+20 more)
 
 ### Community 160 - "video_work_dir_test.dart"
 Cohesion: 0.05
@@ -748,12 +746,12 @@ Cohesion: 0.22
 Nodes (9): TimerState, beepPlayerProvider, stringStoreProvider, addManualShot, _playParBeep, _playStartBeep, TimerNotifier, updateLabel (+1 more)
 
 ### Community 165 - "clip_analyzer_runner.dart"
-Cohesion: 0.13
-Nodes (14): Animation, AnimationController, build, createState, _ctrl, didUpdateWidget, dispose, fontSize (+6 more)
+Cohesion: 0.14
+Nodes (13): Animation, AnimationController, build, createState, _ctrl, didUpdateWidget, dispose, fontSize (+5 more)
 
 ### Community 166 - "AppLocalizations"
-Cohesion: 0.13
-Nodes (14): IconButton, package:simple_shot_timer/widgets/repeat_button.dart, package:simple_shot_timer/widgets/timeline/shot_timeline.dart, RenderRepaintBoundary, centre, controller, frameMs, guideParts (+6 more)
+Cohesion: 0.11
+Nodes (17): IconButton, package:simple_shot_timer/widgets/repeat_button.dart, package:simple_shot_timer/widgets/timeline/shot_timeline.dart, package:simple_shot_timer/widgets/timeline/timeline_controller.dart, package:simple_shot_timer/widgets/timeline/timeline_minimap.dart, RenderRepaintBoundary, centre, controller (+9 more)
 
 ### Community 167 - "_TicksPainter"
 Cohesion: 0.33
@@ -772,12 +770,12 @@ Cohesion: 0.31
 Nodes (10): hudLogoProvider, hudOptionsProvider, _export, _hud, _VideoEditorScreenState, build, _Sample, TickerProviderStateMixin (+2 more)
 
 ### Community 172 - "biquad.dart"
-Cohesion: 0.13
-Nodes (16): ExportJob, videoExportProvider, build, _copied, createState, _export, _ExportDialog, _ExportDialogState (+8 more)
+Cohesion: 0.14
+Nodes (15): ExportJob, videoExportProvider, build, _copied, createState, _export, _ExportDialog, _ExportDialogState (+7 more)
 
 ### Community 173 - "ios_audio_session.dart"
-Cohesion: 0.06
-Nodes (31): _channel, _invoke, IosAudioSession, lastError, useDefaultMode, useMeasurementMode, _channel, isMediaAudible (+23 more)
+Cohesion: 0.05
+Nodes (33): @visibleForTesting, _channel, _invoke, IosAudioSession, lastError, useDefaultMode, useMeasurementMode, landed (+25 more)
 
 ### Community 174 - "export_service_test.dart"
 Cohesion: 0.07
@@ -801,19 +799,19 @@ Nodes (7): Duration, kMotionMedium, kMotionShort, kMotionTick, motion, reducedMo
 
 ### Community 179 - "ClipExportChannel"
 Cohesion: 0.14
-Nodes (16): clip_fixtures.dart, dart:typed_data, package:simple_shot_timer/services/video/clip_shot_finder.dart, package:simple_shot_timer/services/video/marker_doc.dart, package:simple_shot_timer/services/video/spectrogram.dart, package:simple_shot_timer/services/video/start_finder.dart, package:simple_shot_timer/services/video/tone_finder.dart, package:simple_shot_timer/widgets/timeline/timeline_controller.dart (+8 more)
+Nodes (18): clip_fixtures.dart, dart:typed_data, package:simple_shot_timer/services/video/analyzed_clip.dart, package:simple_shot_timer/services/video/clip_analyzer.dart, package:simple_shot_timer/services/video/clip_shot_finder.dart, package:simple_shot_timer/services/video/clip_signal.dart, package:simple_shot_timer/services/video/marker_doc.dart, package:simple_shot_timer/services/video/spectrogram.dart (+10 more)
 
 ### Community 180 - "export_plan.dart"
 Cohesion: 0.11
 Nodes (18): _, hud.dart, bitrate, endMs, _even, ExportPlan, fileName, fps (+10 more)
 
 ### Community 182 - "ClipExporter"
-Cohesion: 0.13
-Nodes (13): binding, main, package:integration_test/integration_test.dart, package:path_provider/path_provider.dart, package:simple_shot_timer/services/video/analyzed_clip.dart, package:simple_shot_timer/services/video/clip_analyzer.dart, package:simple_shot_timer/services/video/clip_audio_source.dart, package:simple_shot_timer/services/video/clip_player.dart (+5 more)
+Cohesion: 0.29
+Nodes (6): iosLocalizations, load, main, placeholder, placeholders, plist
 
 ### Community 183 - "ConsumerState"
-Cohesion: 0.17
-Nodes (11): int get, add, build, current, delete, findByName, _nextId, null (+3 more)
+Cohesion: 0.13
+Nodes (13): int get, add, build, current, delete, findByName, _nextId, null (+5 more)
 
 ### Community 184 - "ClipFilesChannel"
 Cohesion: 0.10
@@ -821,7 +819,7 @@ Nodes (20): dart:async, Exception, ClipAudioException, ExportException, package:
 
 ### Community 185 - "sensitivity_selector.dart"
 Cohesion: 0.07
-Nodes (27): package:flutter_localizations/flutter_localizations.dart, package:flutter/rendering.dart, package:intl/intl.dart, package:simple_shot_timer/i18n/app_localizations.dart, package:simple_shot_timer/theme/app_theme.dart, package:simple_shot_timer/widgets/app_navigation_bar.dart, package:simple_shot_timer/widgets/editor/marker_panel.dart, RenderParagraph (+19 more)
+Nodes (28): NavigatorState, package:flutter_localizations/flutter_localizations.dart, package:flutter/rendering.dart, package:intl/intl.dart, package:simple_shot_timer/i18n/app_localizations.dart, package:simple_shot_timer/providers/string_provider.dart, package:simple_shot_timer/screens/review_screen.dart, package:simple_shot_timer/services/database_service.dart (+20 more)
 
 ### Community 186 - "settings_provider.dart"
 Cohesion: 0.24
@@ -832,16 +830,20 @@ Cohesion: 0.13
 Nodes (14): VideoSession, package:image_picker/image_picker.dart, package:simple_shot_timer/services/video/clip_picker.dart, _FakeSession, channel, fromPlatform, main, messenger (+6 more)
 
 ### Community 188 - "custom_drills_provider.dart"
-Cohesion: 0.12
-Nodes (15): dart:io, fonts, load, loadRoboto, roboto, appStoreLimits, appStoreRequired, checkStore (+7 more)
+Cohesion: 0.18
+Nodes (10): appStoreLimits, appStoreRequired, checkStore, locales, main, name, playLimits, playRequired (+2 more)
 
 ### Community 189 - "FrameSequenceOverlay"
-Cohesion: 0.17
-Nodes (11): _csv, _delete, deleteExports, deleteVideoShares, _exportName, ExportService, share, _videoName (+3 more)
+Cohesion: 0.40
+Nodes (5): AutoDisposeFamilyNotifier, _analyse, VideoImportController, clipAudioSourceProvider, clipPickerProvider
 
 ### Community 190 - "MainActivity"
 Cohesion: 0.23
 Nodes (8): ClipAudioChannel, ClipExportChannel, ClipFilesChannel, FlutterEngine, Int, Intent, MainActivity, FlutterActivity
+
+### Community 191 - "TimelineController"
+Cohesion: 0.67
+Nodes (3): BuildContext, AppLocalizationsX, HudLabelsOf
 
 ### Community 192 - "dart:ui"
 Cohesion: 0.33
@@ -855,46 +857,38 @@ Nodes (5): Beeps, frequencyHz, parDurationMs, startDurationMs, static const int
 Cohesion: 0.25
 Nodes (8): clip_analyzer.dart, dart:isolate, analyze, ClipAnalyzerRunner, IsolateClipAnalyzer, resense, _SlowAnalyzer, _FakeAnalyzer
 
-### Community 195 - "video_work_dir_test.dart"
-Cohesion: 0.22
-Nodes (8): ClipProblem, VideoWorkDir, package:simple_shot_timer/services/video/clip_check.dart, package:simple_shot_timer/services/video/video_work_dir.dart, _FakeWorkDir, main, temp, work
-
 ### Community 200 - "biquad.dart"
 Cohesion: 0.25
 Nodes (7): Biquad, highpass, lowpass, notch, processInt16InPlace, reset, _x1
 
 ### Community 201 - "sensitivity_selector.dart"
-Cohesion: 0.25
-Nodes (7): ShotSensitivity, build, busy, onChanged, SensitivitySelector, value, ../../services/video/clip_analyzer.dart
+Cohesion: 0.11
+Nodes (16): ShotSensitivity, build, busy, onChanged, SensitivitySelector, value, build, current (+8 more)
 
 ### Community 203 - "return"
-Cohesion: 0.25
-Nodes (7): capture, checkClip, _minClipMs, null, playback, problemFor, return
-
-### Community 204 - "settings_delete_all_test.dart"
-Cohesion: 0.25
-Nodes (7): package:simple_shot_timer/providers/history_provider.dart, package:simple_shot_timer/providers/video_providers.dart, package:simple_shot_timer/screens/settings_screen.dart, build, deleteAll, deleted, main
+Cohesion: 0.22
+Nodes (8): clip_audio_source.dart, capture, checkClip, ClipProblem, _minClipMs, null, playback, problemFor
 
 ### Community 205 - "DatabaseService"
 Cohesion: 0.15
 Nodes (13): ImagePicker, ClipPicker, ClipSource, _files, _nextPickId, _photos, pick, PluginClipPicker (+5 more)
 
 ### Community 207 - "video_string_store.dart"
-Cohesion: 0.29
-Nodes (6): deleteString, insertString, updateVideoString, VideoStringStore, _MemoryStore, _MemoryStore
+Cohesion: 0.17
+Nodes (10): chooseVideoAgain, clipProblemKey, startVideoImport, deleteString, insertString, updateVideoString, ../../models/timer_string.dart, ../services/video/clip_check.dart (+2 more)
 
 ### Community 212 - "ClipAudioSource"
-Cohesion: 0.06
-Nodes (31): ../../i18n/app_localizations.dart, TimerString, confirmDialog, dismissible, false, result, build, EditorTransport (+23 more)
+Cohesion: 0.11
+Nodes (17): ClipPlayer, aspectRatio, build, ClipVideo, foreground, player, build, EditorTransport (+9 more)
 
 ## Ambiguous Edges - Review These
 - `Open Circular Arc Motif (timer dial / sound wave)` → `Shot Timer (shooting-sports timing) Concept`  [AMBIGUOUS]
   assets/branding/icon.png · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **2408 isolated node(s):** `binding`, `main`, `flutter_export_environment.sh script`, `XCTest`, `CoreImage` (+2403 more)
+- **2413 isolated node(s):** `binding`, `main`, `flutter_export_environment.sh script`, `XCTest`, `CoreImage` (+2408 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **40 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **39 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -904,12 +898,12 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `ClipAudioFailure` connect `MainActivity` to `ClipFilesChannel`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `Returns (sections in output order, whether any section heading was seen).`, `Returns (notes, number of entries left out for length).`, `binding` to the rest of the system?**
-  _2415 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _2420 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Audio Capture & Shot Detection` be split into smaller, more focused modules?**
   _Cohesion score 0.03225806451612903 - nodes in this community are weakly interconnected._
 - **Should `App Bootstrap & Providers` be split into smaller, more focused modules?**
-  _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0425531914893617 - nodes in this community are weakly interconnected._
 - **Should `App Settings Model` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
 - **Should `History Screen` be split into smaller, more focused modules?**
-  _Cohesion score 0.06258890469416785 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05975609756097561 - nodes in this community are weakly interconnected._

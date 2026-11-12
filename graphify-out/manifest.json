@@ -2225,8 +2225,8 @@
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1794365555.2900848,
-    "ast_hash": "3dafc2395732d2861f14635e67c00ec2",
+    "mtime": 1794500193.0018275,
+    "ast_hash": "0d4fb53338831ee8ac138ba807b306ea",
     "semantic_hash": ""
   },
   "lib/screens/video_flows.dart": {
@@ -2550,8 +2550,8 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1794366335.8957326,
-    "ast_hash": "633ad376efc11339a6e8a6cdb7f6b1c7",
+    "mtime": 1794500146.8300412,
+    "ast_hash": "fa90cf449b27b05c725e64350c89c2b8",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/NoSpace.kt": {
