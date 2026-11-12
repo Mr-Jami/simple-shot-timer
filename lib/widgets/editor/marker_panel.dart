@@ -30,6 +30,29 @@ class MarkerPanel extends StatelessWidget {
     required this.onDone,
   });
 
+  /// The panel at its tallest (a shot selected, with a split), for a layout
+  /// to measure. Its buttons do nothing.
+  const MarkerPanel.tallest({Key? key})
+      : this(
+          key: key,
+          selected: _sample,
+          shots: const [EditShot(id: 0, ms: 1000), _sample],
+          startMs: 0,
+          onSetStart: _nothing,
+          onAddShot: _nothing,
+          onNudgeStart: _nothing,
+          onNudge: _noNudge,
+          onNudgeEnd: _nothing,
+          onDelete: _noShot,
+          onLastShot: _noShot,
+          onDone: _nothing,
+        );
+
+  static const _sample = EditShot(id: 1, ms: 2000);
+  static void _nothing() {}
+  static void _noNudge(EditShot shot, int deltaMs) {}
+  static void _noShot(EditShot shot) {}
+
   final EditShot? selected;
 
   /// The string's shots, to number the selected one and find its split.
