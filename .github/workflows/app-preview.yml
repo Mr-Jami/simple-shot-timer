@@ -1,0 +1,129 @@
+name: App preview
+
+# Records the raw material of the App Store preview video: the real app in
+# an iPhone simulator, played by integration_test/app_preview_test.dart,
+# with the simulator's screen recorded. The recording is an artifact of the
+# run; branding/store-listing/README.md says how it becomes the video.
+# Nothing is uploaded to the store from here.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'integration_test/app_preview_test.dart'
+      - '.github/workflows/app-preview.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: app-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  record:
+    name: Record in the simulator
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    env:
+      FLUTTER_VERSION: '3.41.9'
+      # The Xcode the App Store build uses (deploy-app-store.yml).
+      XCODE_VERSION: '26.3'
+      BUNDLE_ID: cc.jami.simpleshottimer
+      TEST: integration_test/app_preview_test.dart
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build for the simulator
+        # Ahead of the recording, so that it does not sit through the whole
+        # build: the test run below only has to build what changed.
+        run: flutter build ios --simulator --debug --target "$TEST"
+
+      - name: Boot an iPhone
+        # The largest iPhone with a Dynamic Island that is installed, on
+        # the newest iOS it is installed for: the App Store takes one
+        # preview size (886x1920) for every current iPhone.
+        run: |
+          xcrun simctl list devices available
+          for name in 'iPhone 17 Pro Max' 'iPhone 16 Pro Max' 'iPhone 15 Pro Max'; do
+            device=$(xcrun simctl list devices available \
+              | grep -E "^ +$name \(" | tail -1 \
+              | grep -oE '[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}' || true)
+            if [ -n "$device" ]; then
+              break
+            fi
+          done
+          if [ -z "$device" ]; then
+            echo "::error::no Pro Max iPhone simulator on this runner"
+            exit 1
+          fi
+          echo "Recording on $name ($device)"
+          echo "DEVICE=$device" >> "$GITHUB_ENV"
+          xcrun simctl boot "$device"
+          xcrun simctl bootstatus "$device" -b
+          xcrun simctl ui "$device" appearance dark
+          # Apple's own screenshots: 9:41, full signal, full battery.
+          xcrun simctl status_bar "$device" override \
+            --time '9:41' \
+            --dataNetwork wifi --wifiMode active --wifiBars 3 \
+            --cellularMode active --cellularBars 4 \
+            --batteryState discharging --batteryLevel 100
+          # The test never opens the microphone, but no system dialog may
+          # ever cover the app.
+          xcrun simctl privacy "$device" grant microphone "$BUNDLE_ID" || true
+
+      - name: Record the test
+        run: |
+          mkdir -p preview
+          now_ms() { python3 -c 'import time; print(int(time.time() * 1000))'; }
+
+          xcrun simctl io "$DEVICE" recordVideo --codec=h264 --mask=ignored \
+            --force preview/recording.mov 2> preview/recording.log &
+          recorder=$!
+          for _ in $(seq 1 150); do
+            if grep -q 'Recording started' preview/recording.log; then
+              break
+            fi
+            sleep 0.2
+          done
+          # With the test's PREVIEW_MARK lines this says where in the
+          # recording each step is.
+          echo "PREVIEW_MARK recording $(now_ms)" | tee preview/marks.txt
+          cat preview/recording.log
+
+          set +e
+          flutter test "$TEST" -d "$DEVICE" 2>&1 | tee preview/test.log
+          result=${PIPESTATUS[0]}
+          set -e
+
+          sleep 2
+          # SIGINT, or the file is left without its index.
+          kill -INT "$recorder"
+          wait "$recorder" || true
+          cat preview/recording.log
+          grep -o 'PREVIEW_MARK .*' preview/test.log >> preview/marks.txt || true
+          cat preview/marks.txt
+          ls -l preview
+          exit "$result"
+
+      - name: Upload the recording
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-preview-recording
+          path: preview/
+          if-no-files-found: error
+          retention-days: 14
