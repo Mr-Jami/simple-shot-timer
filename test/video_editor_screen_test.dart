@@ -29,6 +29,9 @@ import 'package:simple_shot_timer/services/video/hud_painter.dart';
 import 'package:simple_shot_timer/services/video/video_string_store.dart';
 import 'package:simple_shot_timer/services/video/video_work_dir.dart';
 import 'package:simple_shot_timer/utils/cancel_token.dart';
+import 'package:simple_shot_timer/widgets/clip_video.dart';
+import 'package:simple_shot_timer/widgets/editor/editor_transport.dart';
+import 'package:simple_shot_timer/widgets/editor/marker_panel.dart';
 import 'package:simple_shot_timer/widgets/shot_badge.dart';
 import 'package:simple_shot_timer/widgets/timeline/shot_timeline.dart';
 import 'package:simple_shot_timer/widgets/timeline/timeline_controller.dart';
@@ -188,6 +191,7 @@ void main() {
     WidgetTester tester, {
     int seconds = 7,
     bool beep = true,
+    String language = 'en',
     List<Override> overrides = const [],
   }) async {
     tester.view.devicePixelRatio = 3;
@@ -226,7 +230,10 @@ void main() {
     await tester.pumpWidget(UncontrolledProviderScope(
       container: container,
       child: MaterialApp(
-        locale: const Locale('en'),
+        locale: Locale(language),
+        supportedLocales: [
+          for (final l in kSupportedAppLocales) Locale(l.code)
+        ],
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -643,24 +650,218 @@ void main() {
     expect(state().doc.shotById(shot.id)!.ms, closeTo(shot.ms + moved, 60));
   });
 
+  testWidgets(
+      'a drag moves a new shot until Done; after Done it scrolls past the shot',
+      (tester) async {
+    final state = await openEditor(tester);
+    final timeline =
+        tester.widget<ShotTimeline>(find.byType(ShotTimeline)).controller;
+    const hint = 'Drag the timeline to move this shot.';
+    expect(find.text('Done'), findsNothing);
+    expect(find.text(hint), findsNothing);
+
+    await tester.tap(find.widgetWithText(FilledButton, 'Shot'));
+    await tester.pumpAndSettle();
+    final added = state().selected!;
+    expect(added.ms, timeline.playheadMs.round());
+    expect(find.text(hint), findsOneWidget);
+
+    // Not placed yet: the shot rides along with the timeline.
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pumpAndSettle();
+    final placed = state().doc.shotById(added.id)!.ms;
+    expect(placed, isNot(added.ms));
+    expect(state().selectedId, added.id);
+
+    await tester.tap(find.widgetWithText(FilledButton, 'Done'));
+    await tester.pumpAndSettle();
+    expect(state().selectedId, isNull);
+    expect(state().doc.shotById(added.id)!.ms, placed);
+    expect(find.text('Done'), findsNothing);
+    expect(find.text(hint), findsNothing);
+
+    // Placed: the same drag now scrolls, and the shot stays behind.
+    final from = timeline.playheadMs;
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pumpAndSettle();
+    expect(timeline.playheadMs, greaterThan(from + 100));
+    expect(state().selectedId, isNull);
+    expect(state().doc.shotById(added.id)!.ms, placed);
+  });
+
+  testWidgets('a double tap on Done adds no second shot', (tester) async {
+    final state = await openEditor(tester);
+    await tester.tap(find.widgetWithText(FilledButton, 'Shot'));
+    await tester.pumpAndSettle();
+    final shots = state().doc.shots.length;
+    // + Shot comes up where Done was: the second tap lands on it, with the
+    // playhead still on the shot just placed.
+    final at = tester.getCenter(find.widgetWithText(FilledButton, 'Done'));
+    await tester.tapAt(at);
+    await tester.pump(const Duration(milliseconds: 80));
+    expect(
+        tester.getRect(find.widgetWithText(FilledButton, 'Shot')).contains(at),
+        isTrue);
+    await tester.tapAt(at);
+    await tester.pumpAndSettle();
+    expect(state().doc.shots, hasLength(shots));
+    expect(state().selectedId, isNull);
+
+    // Away from the shot, + Shot adds one again.
+    await tester.drag(find.byType(ShotTimeline), const Offset(-60, 0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(FilledButton, 'Shot'));
+    await tester.pumpAndSettle();
+    expect(state().doc.shots, hasLength(shots + 1));
+  });
+
+  testWidgets('a shot chosen in the list gets Done and the hint too',
+      (tester) async {
+    final state = await openEditor(tester);
+    await selectFirstShot(tester);
+    final shot = state().selected!;
+    expect(find.text('Drag the timeline to move this shot.'), findsOneWidget);
+    await tester.tap(find.widgetWithText(FilledButton, 'Done'));
+    await tester.pumpAndSettle();
+    expect(state().selectedId, isNull);
+    expect(state().doc.shotById(shot.id)!.ms, shot.ms);
+    // Back to Set START and + Shot.
+    expect(find.widgetWithText(FilledButton, 'Shot'), findsOneWidget);
+  });
+
+  /// A phone of [size] dp with a status bar and a 3-button navigation bar.
+  const statusBar = 24.0, navigationBar = 48.0;
+  Future<void> usePhone(WidgetTester tester, Size size) async {
+    tester.view.physicalSize = size * 3;
+    tester.view.padding =
+        const FakeViewPadding(top: statusBar * 3, bottom: navigationBar * 3);
+    tester.view.viewPadding = tester.view.padding;
+    await tester.pumpAndSettle();
+  }
+
+  /// Where the video ends: its height plus the status bar's.
+  double videoBottom(WidgetTester tester) =>
+      tester.getTopLeft(find.byType(EditorTransport)).dy;
+
+  // By icon, so it reads the same in every language. Russian has the
+  // tallest panel: its hint takes two lines.
+  final addShot = find.widgetWithIcon(FilledButton, Icons.add);
+  final done = find.widgetWithIcon(FilledButton, Icons.check);
+  final export = find.widgetWithIcon(FilledButton, Icons.movie_outlined);
+
+  /// The top of the video's foot, the timeline, the panel and the details:
+  /// only the last may move when a shot is selected.
+  List<double> tops(WidgetTester tester) => [
+        videoBottom(tester),
+        tester.getTopLeft(find.byType(ShotTimeline)).dy,
+        tester.getTopLeft(find.byType(MarkerPanel).first).dy,
+      ];
+  double detailsHeight(WidgetTester tester) =>
+      tester.getSize(find.byType(ListView).last).height;
+
+  for (final (size, language) in const [
+    (Size(360, 640), 'en'),
+    (Size(360, 640), 'ru'),
+    (Size(360, 690), 'ru'),
+    (Size(360, 592), 'de'),
+  ]) {
+    testWidgets(
+        'on a short screen ($size, $language) the video is smaller, Export '
+        'stays on screen and nothing moves when a shot is selected',
+        (tester) async {
+      final state = await openEditor(tester, language: language);
+      await usePhone(tester, size);
+      final bottom = size.height - navigationBar;
+      expect(tester.takeException(), isNull);
+      expect(tester.getRect(export).bottom, lessThanOrEqualTo(bottom));
+      // Smaller than 30 %, with its row of buttons (Back, the eye, the
+      // menu) whole.
+      final before = tops(tester);
+      expect(before[0], lessThan(statusBar + size.height * 0.3));
+      expect(before[0], greaterThanOrEqualTo(statusBar + 56));
+      final list = detailsHeight(tester);
+
+      // The panel of a selected shot is the tallest there is: the details
+      // make the room for it, not the video.
+      final shots = state().doc.shots.length;
+      final lastShot = state().doc.lastShotId;
+      final at = tester.getCenter(addShot);
+      await tester.tapAt(at);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(done, findsOneWidget);
+      expect(tops(tester), before);
+      expect(detailsHeight(tester), lessThan(list));
+      expect(tester.getRect(export).bottom, lessThanOrEqualTo(bottom));
+      // The panel's bottom is where the details begin, above Export.
+      expect(tester.getRect(find.byType(MarkerPanel).first).bottom,
+          lessThan(tester.getRect(export).top));
+
+      // A second tap on the same spot finds Done there, not Last shot.
+      await tester.tapAt(at);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(state().selectedId, isNull);
+      expect(state().doc.shots, hasLength(shots + 1));
+      expect(state().doc.lastShotId, lastShot);
+      expect(tops(tester), before);
+      expect(detailsHeight(tester), list);
+    });
+  }
+
+  testWidgets('with room to spare the video keeps 30 % of the height',
+      (tester) async {
+    await openEditor(tester, language: 'ru');
+    await usePhone(tester, const Size(360, 780));
+    expect(videoBottom(tester), statusBar + 234);
+    final before = tops(tester);
+    await tester.tap(addShot);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(tops(tester), before);
+    expect(tester.getRect(export).bottom, 780 - navigationBar - 8);
+  });
+
   testWidgets('with the keyboard up only the details show', (tester) async {
     await openEditor(tester);
-    tester.view.physicalSize = const Size(360 * 3, 740 * 3);
+    // A short screen, where the video has already given way: the room the
+    // keyboard leaves would have it grow back while it is hidden.
+    await usePhone(tester, const Size(360, 640));
+    final video = tester.getSize(find.byType(ClipVideo, skipOffstage: false));
+    // The list's own scrollable, not one inside a text field.
+    final list = find
+        .descendant(
+            of: find.byType(ListView).last, matching: find.byType(Scrollable))
+        .first;
+    final details = tester.state(list);
+
     tester.view.viewInsets = const FakeViewPadding(bottom: 300 * 3);
     await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
     expect(find.byType(ShotTimeline), findsNothing);
+    expect(find.byType(MarkerPanel), findsNothing);
     expect(find.text('Export video'), findsNothing);
-    // The details list scrolls to the notes, above the keyboard.
+    // Off stage the video keeps its size: no resizing for the keyboard.
+    expect(find.byType(ClipVideo), findsNothing);
+    expect(tester.getSize(find.byType(ClipVideo, skipOffstage: false)), video);
+    // The details are the same list (a new one would drop the keyboard),
+    // from under the status bar down to the keyboard.
+    expect(tester.state(list), same(details));
+    expect(tester.getRect(find.byType(ListView).last),
+        const Rect.fromLTRB(0, statusBar, 360, 640 - 300));
+    // The list scrolls to the notes, above the keyboard.
     final notes = find.widgetWithText(TextField, 'Notes');
     await tester.dragUntilVisible(
         notes, find.byType(ListView).last, const Offset(0, -100));
     await tester.pumpAndSettle();
-    expect(tester.getRect(notes).bottom, lessThanOrEqualTo(740 - 300));
+    expect(tester.getRect(notes).bottom, lessThanOrEqualTo(640 - 300));
 
     tester.view.resetViewInsets();
     await tester.pumpAndSettle();
     expect(find.byType(ShotTimeline), findsOneWidget);
     expect(find.text('Export video'), findsOneWidget);
+    expect(tester.getSize(find.byType(ClipVideo)), video);
+    expect(tester.state(list), same(details));
   });
 
   testWidgets('Back asks first while there is nothing to save', (tester) async {

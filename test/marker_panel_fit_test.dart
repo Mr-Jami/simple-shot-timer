@@ -14,8 +14,9 @@ import 'package:simple_shot_timer/widgets/editor/marker_panel.dart';
 import 'roboto.dart';
 
 /// The video editor's marker panel on a small phone with large text, in
-/// every language: with a shot selected (nudges, Delete, Last shot) and
-/// without (Set START, + Shot). Measured in Roboto, as the tab labels are.
+/// every language: with a shot selected (Done, nudges, Delete, Last shot,
+/// the hint) and without (Set START, + Shot). Measured in Roboto, as the
+/// tab labels are.
 void main() {
   setUpAll(loadRoboto);
   setUp(rootBundle.clear);
@@ -61,7 +62,7 @@ void main() {
                 onNudgeEnd: () {},
                 onDelete: (_) {},
                 onLastShot: (_) {},
-                onDeselect: () {},
+                onDone: () {},
               ),
             );
           }),
@@ -74,6 +75,11 @@ void main() {
         }
         expect(loaded, isTrue);
         expect(tester.takeException(), isNull);
+        if (selected != null) {
+          // Beside Done, the split still has its one line (26 dp at 1.3x).
+          final split = tester.getSize(find.textContaining('0.420'));
+          expect(split.height, lessThan(39));
+        }
       });
     }
   }

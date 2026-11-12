@@ -11,7 +11,8 @@ import '../repeat_button.dart';
 import '../shot_badge.dart';
 
 /// Under the video editor's timeline. With a shot [selected]: its number,
-/// time and split, then 1 ms earlier, Delete, Last shot and 1 ms later.
+/// time, split and Done, then 1 ms earlier, Delete, Last shot and 1 ms
+/// later, then a line saying that dragging the timeline moves the shot.
 /// Without: Set START and + Shot, the one to do next filled.
 class MarkerPanel extends StatelessWidget {
   const MarkerPanel({
@@ -26,8 +27,31 @@ class MarkerPanel extends StatelessWidget {
     required this.onNudgeEnd,
     required this.onDelete,
     required this.onLastShot,
-    required this.onDeselect,
+    required this.onDone,
   });
+
+  /// The panel at its tallest (a shot selected, with a split), for a layout
+  /// to measure. Its buttons do nothing.
+  const MarkerPanel.tallest({Key? key})
+      : this(
+          key: key,
+          selected: _sample,
+          shots: const [EditShot(id: 0, ms: 1000), _sample],
+          startMs: 0,
+          onSetStart: _nothing,
+          onAddShot: _nothing,
+          onNudgeStart: _nothing,
+          onNudge: _noNudge,
+          onNudgeEnd: _nothing,
+          onDelete: _noShot,
+          onLastShot: _noShot,
+          onDone: _nothing,
+        );
+
+  static const _sample = EditShot(id: 1, ms: 2000);
+  static void _nothing() {}
+  static void _noNudge(EditShot shot, int deltaMs) {}
+  static void _noShot(EditShot shot) {}
 
   final EditShot? selected;
 
@@ -43,7 +67,10 @@ class MarkerPanel extends StatelessWidget {
   final VoidCallback onNudgeEnd;
   final ValueChanged<EditShot> onDelete;
   final ValueChanged<EditShot> onLastShot;
-  final VoidCallback onDeselect;
+
+  /// Done: the selected shot stays where it is and is no longer selected,
+  /// so the timeline scrolls again instead of moving it.
+  final VoidCallback onDone;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +82,7 @@ class MarkerPanel extends StatelessWidget {
     final theme = Theme.of(context);
     final index = shots.indexWhere((s) => s.id == shot.id);
     final split = index > 0 ? shot.ms - shots[index - 1].ms : null;
+    const tabular = [FontFeature.tabularFigures()];
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 4, 8, 8),
       child: Column(
@@ -67,25 +95,37 @@ class MarkerPanel extends StatelessWidget {
                   manual: shot.origin != ShotOrigin.detected,
                 ),
               const SizedBox(width: 12),
+              // The split under the time, as in the list of shots: side by
+              // side they wrap next to Done on a narrow screen.
               Expanded(
-                child: Text(
-                  [
-                    '${formatSeconds(shot.ms - (startMs ?? 0), decimals: 3)}s',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${formatSeconds(shot.ms - (startMs ?? 0), decimals: 3)}s',
+                      style: theme.textTheme.titleMedium
+                          ?.copyWith(fontFeatures: tabular),
+                    ),
                     if (split != null)
-                      context.tr('review.splitOther', args: {
-                        'seconds': formatSeconds(split, decimals: 3),
-                      }),
-                  ].join(' · '),
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                  ),
+                      Text(
+                        context.tr('review.splitOther', args: {
+                          'seconds': formatSeconds(split, decimals: 3),
+                        }),
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                          fontFeatures: tabular,
+                        ),
+                      ),
+                  ],
                 ),
               ),
-              IconButton(
-                tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
-                icon: const Icon(Icons.close),
-                onPressed: onDeselect,
+              const SizedBox(width: 8),
+              FilledButton.icon(
+                icon: const Icon(Icons.check),
+                label: Text(context.tr('editor.done')),
+                onPressed: onDone,
               ),
+              const SizedBox(width: 8),
             ],
           ),
           Row(
@@ -122,8 +162,31 @@ class MarkerPanel extends StatelessWidget {
               ),
             ],
           ),
+          // Right under the buttons: they have air below their icons.
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: _hint(context, Icons.swipe_outlined, 'editor.dragHint'),
+          ),
         ],
       ),
+    );
+  }
+
+  /// A small grey line of help with its icon.
+  static Widget _hint(BuildContext context, IconData icon, String key) {
+    final theme = Theme.of(context);
+    final color = theme.colorScheme.onSurfaceVariant;
+    return Row(
+      children: [
+        Icon(icon, size: 18, color: color),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            context.tr(key),
+            style: theme.textTheme.bodySmall?.copyWith(color: color),
+          ),
+        ),
+      ],
     );
   }
 
@@ -133,8 +196,6 @@ class MarkerPanel extends StatelessWidget {
       );
 
   Widget _markers(BuildContext context) {
-    final theme = Theme.of(context);
-    final scheme = theme.colorScheme;
     final noStart = startMs == null;
     Widget button(bool filled, IconData icon, String label, VoidCallback on) =>
         filled
@@ -149,20 +210,7 @@ class MarkerPanel extends StatelessWidget {
           if (noStart)
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                children: [
-                  Icon(Icons.info_outline,
-                      size: 18, color: scheme.onSurfaceVariant),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      context.tr('editor.noStart'),
-                      style: theme.textTheme.bodySmall
-                          ?.copyWith(color: scheme.onSurfaceVariant),
-                    ),
-                  ),
-                ],
-              ),
+              child: _hint(context, Icons.info_outline, 'editor.noStart'),
             ),
           Row(
             children: [

@@ -391,6 +391,23 @@ void main() {
       });
     });
 
+    test('+ Shot where a shot already is adds nothing', () {
+      run(args(withBeep), (async, editor, state) {
+        expect(editor.addShot(6000), isTrue);
+        final added = state().selectedId;
+        final doc = state().doc;
+        // Done, then the second tap of a double tap lands on + Shot.
+        editor.select(null);
+        expect(editor.addShot(6000), isFalse);
+        expect(state().doc, same(doc));
+        expect(state().selectedId, isNull);
+        // One undo takes the one shot back.
+        editor.undo();
+        expect(state().doc.shotById(added!), isNull);
+        expect(state().canUndo, isFalse);
+      });
+    });
+
     test('a new sensitivity keeps edits, and the latest choice wins', () {
       analyzer.delays[ShotSensitivity.fewer] = const Duration(seconds: 2);
       run(args(withBeep), (async, editor, state) {

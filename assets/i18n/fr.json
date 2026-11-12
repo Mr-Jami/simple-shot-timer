@@ -279,6 +279,8 @@
   "editor.setStart": "Placer START",
   "editor.addShot": "Tir",
   "editor.lastShot": "Dernier tir",
+  "editor.done": "Terminé",
+  "editor.dragHint": "Faites glisser la timeline pour déplacer ce tir.",
   "editor.deleted": "Tir supprimé",
   "editor.undo": "Annuler",
   "editor.start": "START",

@@ -7,6 +7,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -93,6 +94,7 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   /// The editor's own snack bars: "Shot deleted · Undo" goes with the
   /// editor and never shows, or acts, on the tab below.
   final _messenger = GlobalKey<ScaffoldMessengerState>();
+  final _videoHeight = _KeptHeight();
 
   /// The markers right after the last delete, while its Undo is offered.
   MarkerDoc? _undoable;
@@ -367,9 +369,11 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 
   void _addShot() {
-    HapticFeedback.lightImpact();
     _player.pause();
-    _editor.addShot(_timeline.playheadMs.round());
+    // + Shot comes up where Done was, with the playhead still on the shot
+    // just placed: the second tap of a double tap on Done adds no twin.
+    if (!_editor.addShot(_timeline.playheadMs.round())) return;
+    HapticFeedback.lightImpact();
   }
 
   void _delete(EditShot shot) {
@@ -585,18 +589,69 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
           child: Scaffold(
             body: Column(
               children: [
-                Offstage(
-                  offstage: typing,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: _markerTools(state, frameMs),
-                  ),
-                ),
+                // Export first takes its room at the bottom; the rest is
+                // laid out above it.
                 Expanded(
-                  child: SafeArea(
-                    top: typing,
-                    bottom: false,
-                    child: _details(context, state),
+                  child: CustomMultiChildLayout(
+                    delegate: _EditorLayout(
+                      videoHeight: MediaQuery.paddingOf(context).top +
+                          MediaQuery.sizeOf(context).height * 0.3,
+                      typing: typing,
+                      kept: _videoHeight,
+                    ),
+                    children: [
+                      LayoutId(
+                        id: _Part.video,
+                        child: Offstage(
+                          offstage: typing,
+                          child: _VideoPane(
+                            player: _player,
+                            aspectRatio: widget.args.clip.info.aspectRatio,
+                            overlay: _hud(state),
+                            showOverlay: _showHud,
+                            onToggleOverlay: () =>
+                                setState(() => _showHud = !_showHud),
+                            onBack: _leave,
+                            onDiscard: _discard,
+                          ),
+                        ),
+                      ),
+                      LayoutId(
+                        id: _Part.tools,
+                        child: Offstage(
+                          offstage: typing,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: _tools(state, frameMs),
+                          ),
+                        ),
+                      ),
+                      LayoutId(
+                        id: _Part.panel,
+                        child: Offstage(
+                          offstage: typing,
+                          child: _panel(state),
+                        ),
+                      ),
+                      // Never shown, only measured: the room the panel
+                      // takes once a shot is selected.
+                      LayoutId(
+                        id: _Part.tallestPanel,
+                        child: const _Unseen(
+                          child: ExcludeFocus(
+                            child: _PanelFrame(panel: MarkerPanel.tallest()),
+                          ),
+                        ),
+                      ),
+                      LayoutId(
+                        id: _Part.details,
+                        child: SafeArea(
+                          top: typing,
+                          bottom: false,
+                          child: _details(context, state),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 if (!typing)
@@ -622,18 +677,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
     );
   }
 
-  /// Above the details: the video, the transport, the timeline and its
-  /// minimap, and the marker panel.
-  List<Widget> _markerTools(ClipEditorState state, double frameMs) => [
-        _VideoPane(
-          player: _player,
-          aspectRatio: widget.args.clip.info.aspectRatio,
-          overlay: _hud(state),
-          showOverlay: _showHud,
-          onToggleOverlay: () => setState(() => _showHud = !_showHud),
-          onBack: _leave,
-          onDiscard: _discard,
-        ),
+  /// Between the video and the marker panel: the transport, the timeline
+  /// and its minimap.
+  List<Widget> _tools(ClipEditorState state, double frameMs) => [
         EditorTransport(
           player: _player,
           timeline: _timeline,
@@ -675,7 +721,10 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
             onScrubEnd: _timeline.endScrub,
           ),
         ),
-        MarkerPanel(
+      ];
+
+  Widget _panel(ClipEditorState state) => _PanelFrame(
+        panel: MarkerPanel(
           selected: state.selected,
           shots: state.doc.activeShots,
           startMs: state.doc.startMs,
@@ -686,10 +735,9 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
           onNudgeEnd: _editor.endGesture,
           onDelete: _delete,
           onLastShot: (shot) => _editor.setLastShot(shot.id),
-          onDeselect: () => _editor.select(null),
+          onDone: () => _editor.select(null),
         ),
-        const Divider(height: 1),
-      ];
+      );
 
   /// Below the marker panel: sensitivity (fresh clips only), stats, the
   /// shots, then label, notes and penalty.
@@ -801,9 +849,116 @@ class _VideoEditorScreenState extends ConsumerState<VideoEditorScreen>
   }
 }
 
-/// The clip on black under the status bar, 30 % of the screen high,
-/// with the [overlay] preview on it, and back, the eye (the preview on or
-/// off) and the ⋮ menu (Discard) over it.
+/// The marker panel and the line under it.
+class _PanelFrame extends StatelessWidget {
+  const _PanelFrame({required this.panel});
+
+  final MarkerPanel panel;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [panel, const Divider(height: 1)],
+      );
+}
+
+/// Takes the room its child would and shows nothing of it: no painting,
+/// no touches, no semantics. [Offstage] takes no room, and an invisible
+/// [Visibility] leaves its child where widget tests still find it.
+class _Unseen extends SingleChildRenderObjectWidget {
+  const _Unseen({required Widget super.child});
+
+  @override
+  RenderObject createRenderObject(BuildContext context) => _RenderUnseen();
+
+  @override
+  SingleChildRenderObjectElement createElement() => _UnseenElement(this);
+}
+
+class _UnseenElement extends SingleChildRenderObjectElement {
+  _UnseenElement(_Unseen super.widget);
+
+  @override
+  void debugVisitOnstageChildren(ElementVisitor visitor) {}
+}
+
+class _RenderUnseen extends RenderProxyBox {
+  @override
+  void paint(PaintingContext context, Offset offset) {}
+
+  @override
+  bool hitTest(BoxHitTestResult result, {required Offset position}) => false;
+
+  @override
+  void visitChildrenForSemantics(RenderObjectVisitor visitor) {}
+}
+
+enum _Part { video, tools, panel, tallestPanel, details }
+
+/// The video's height from the last layout that showed it.
+class _KeptHeight {
+  double? value;
+}
+
+/// The editor above Export, from the top: the video, the tools, the marker
+/// panel and the details.
+///
+/// The video is [videoHeight] high (status bar included) where the screen
+/// has the room. On a short screen it gives way, and by as much as the
+/// panel at its tallest needs, whichever panel shows: so the timeline and
+/// the panel stay where they are when a shot is selected, and Done comes
+/// up where + Shot was. The details get what is left under the panel.
+///
+/// While [typing] only the details show. The rest is off stage, and the
+/// video keeps the height it had ([kept]) instead of following the room
+/// the keyboard leaves.
+class _EditorLayout extends MultiChildLayoutDelegate {
+  _EditorLayout({
+    required this.videoHeight,
+    required this.typing,
+    required this.kept,
+  });
+
+  final double videoHeight;
+  final bool typing;
+  final _KeptHeight kept;
+
+  @override
+  void performLayout(Size size) {
+    final wide = BoxConstraints.tightFor(width: size.width);
+    final tools = layoutChild(_Part.tools, wide).height;
+    final panel = layoutChild(_Part.panel, wide).height;
+    final tallest = layoutChild(_Part.tallestPanel, wide).height;
+    final double video;
+    if (typing) {
+      video = kept.value ?? videoHeight;
+    } else {
+      video = (size.height - tools - math.max(panel, tallest))
+          .clamp(0.0, videoHeight);
+      kept.value = video;
+    }
+    layoutChild(_Part.video, wide.tighten(height: video));
+    // Off stage, the video, the tools and the panel take no room.
+    final top = typing ? 0.0 : video + tools + panel;
+    layoutChild(
+      _Part.details,
+      wide.tighten(height: math.max(0.0, size.height - top)),
+    );
+    positionChild(_Part.video, Offset.zero);
+    positionChild(_Part.tools, Offset(0, video));
+    positionChild(_Part.panel, Offset(0, video + tools));
+    positionChild(_Part.tallestPanel, Offset(0, video + tools));
+    positionChild(_Part.details, Offset(0, top));
+  }
+
+  @override
+  bool shouldRelayout(_EditorLayout oldDelegate) =>
+      oldDelegate.videoHeight != videoHeight || oldDelegate.typing != typing;
+}
+
+/// The clip on black under the status bar, as high as [_EditorLayout]
+/// makes it, with the [overlay] preview on it, and back, the eye (the
+/// preview on or off) and the ⋮ menu (Discard) over it.
 class _VideoPane extends StatelessWidget {
   const _VideoPane({
     required this.player,
@@ -829,8 +984,7 @@ class _VideoPane extends StatelessWidget {
       color: Colors.black,
       child: SafeArea(
         bottom: false,
-        child: SizedBox(
-          height: MediaQuery.sizeOf(context).height * 0.3,
+        child: SizedBox.expand(
           child: Stack(
             children: [
               Center(
