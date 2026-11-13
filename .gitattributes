@@ -1,3 +1,5 @@
 # The F-Droid recipe goes into fdroiddata as-is, which requires LF line endings.
 branding/discovery/*.yml text eol=lf
 branding/discovery/*.tsv text eol=lf
+# Bash stops at a carriage return, so the script keeps LF on Windows too.
+*.sh text eol=lf

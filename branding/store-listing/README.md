@@ -58,8 +58,70 @@ draws the same Material widgets on iOS but with SF Pro text, a centred app bar
 title and the iOS back chevron, so the variant does too. App Store Connect rejects
 screenshots with an alpha channel; Chrome's exports are RGB.
 
+### App preview
+
 App previews (videos) are optional and must be screen recordings of the app
-itself, so the HTML launch video can't be used as one.
+itself, so the HTML launch video can't be used as one. The preview is
+`app-store/preview/app-preview-886x1920.mp4`: the real app in an iPhone
+simulator, 26 s, without sound. It shows Ready, START, STAND BY, five shots
+landing with their splits, STOP, the total, Review, History, the Video tab,
+Saved drills and Ready again, with the sample data of the screenshots (the
+2.37 s string, the same drills and history, 9:41). The video editor is not
+in it: it needs a clip, and the range clips stay private.
+
+Apple takes one size for every current iPhone: 886x1920, 15 to 30 s, at most
+30 fps and 500 MB, H.264 up to High Profile Level 4.0, and a stereo AAC track
+(256 kbps, 44.1 or 48 kHz) even when it is silent. Previews play muted, loop,
+and show the frame at 5 s as the poster unless another one is picked in App
+Store Connect.
+
+To remake it, no Mac needed:
+
+1. `integration_test/app_preview.dart` plays the story in the app: it
+   starts the app as `main()` does and then taps through it. Only the
+   microphone, the beep and what is stored on the phone are scripted there;
+   holds and data are constants at its top.
+2. The "App preview" workflow (`.github/workflows/app-preview.yml`) builds
+   the app with that script as its entry point, starts it in an iPhone Pro
+   Max simulator on a macOS runner and records the screen. It runs for a
+   pull request that changes the script or the workflow, and from the
+   Actions tab (Run workflow). Its artifact `app-preview-recording` holds
+   `recording.mov` (1320x2868, about two minutes) and `marks.txt`, the
+   times of the script's steps.
+3. Cut and encode it (Git Bash, ffmpeg):
+
+   ```sh
+   gh run download <run id> -n app-preview-recording -D /tmp/app-preview
+   branding/store-listing/app-store/preview/make-preview.sh /tmp/app-preview
+   ```
+
+   The script finds the story in the recording (by the red STOP button),
+   cuts from 1.6 s before the tap on START to 1.9 s after the tap back to
+   the Timer tab, scales to 886 px width, crops the six extra rows and adds
+   the silent audio track. It refuses a recording that lost frames, and
+   says so if the running clock freezes for a moment.
+4. Look at it before uploading: `ffprobe` for the format, and stills, for
+   example one every 2 s:
+
+   ```sh
+   ffmpeg -i app-preview-886x1920.mp4 -vf fps=1/2 /tmp/app-preview/still-%02d.png
+   ```
+
+The recording is of a debug build (a simulator runs nothing else) on a
+virtual Mac with three cores and no real GPU, and both show: the first time
+a screen is drawn it stutters, and for a good ten minutes after its first
+boot the simulator is busy with itself (wallpapers, shaders, indexing), so
+that the recording drops frames. So the workflow boots the simulator first
+and waits for the Mac to calm down, the script plays the story twice before
+the pass that is kept, and repeats that pass if the app stood still during
+it. If a stutter is left anyway, run the workflow again; the runners differ
+a lot from one run to the next.
+
+Two things are set for the recorder's sake. "Visual flash on beep" is off:
+the flash changes every pixel for 300 ms, the recorder needs longer than
+that for one such frame, and the flash came out as a grey still with the
+clock frozen in it. And Review is not scrolled to its fifth shot, which
+stuttered.
 
 ## How the screens are made
 
