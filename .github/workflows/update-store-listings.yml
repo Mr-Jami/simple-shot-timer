@@ -3,9 +3,9 @@ name: Update store listings
 # Uploads the listing text in fastlane/metadata (see its README) to Google
 # Play and App Store Connect, in every language that has a folder there, and
 # the App Store's What's New, built from the GitHub Releases. Text only,
-# unless the App Store screenshots are asked for: binaries, graphics, the
-# Play screenshots and the Play "What's new" (which deploy-play-store.yml
-# sets from the GitHub Release) are left alone.
+# unless the App Store screenshots or its header and search images are asked
+# for: binaries, the Play graphics and screenshots and the Play "What's new"
+# (which deploy-play-store.yml sets from the GitHub Release) are left alone.
 
 on:
   workflow_dispatch:
@@ -30,12 +30,16 @@ on:
         description: 'App Store: replace the screenshots with the ones in branding/store-listing/app-store/screenshots'
         type: boolean
         default: false
+      creative_assets:
+        description: 'App Store: put the header and search images in branding/store-listing/app-store/creative on the version'
+        type: boolean
+        default: false
       submit_for_review:
         description: 'App Store: submit the version for review afterwards, with its latest processed build'
         type: boolean
         default: false
       validate_only:
-        description: 'Save nothing: validate the Google Play listings and show the App Store What''s New'
+        description: 'Save nothing: validate the Google Play listings, show the App Store What''s New and what the header and search images would do'
         type: boolean
         default: false
 
@@ -213,6 +217,30 @@ jobs:
             submit_for_review:${{ inputs.submit_for_review }} \
             run_precheck_before_submit:false \
             force:true
+
+      - name: Upload header and search images
+        # The product page header and the search result image (iOS 27 and
+        # later) live in the app's asset library. The script uploads the two
+        # files there, unless they are already in it, and places them on
+        # every language of the version, replacing other images in those two
+        # slots. They are reviewed with the version. It runs after the
+        # listings so the version exists; with submit_for_review the version
+        # is already in review by then and can't take them, so use the two
+        # in separate runs. With validate_only it only reads and prints what
+        # it would do.
+        if: inputs.creative_assets
+        env:
+          ASC_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+          DRY_RUN: ${{ inputs.validate_only && '--dry-run' || '' }}
+        run: |
+          python3 .github/scripts/app_store_creative_assets.py \
+            --bundle-id cc.jami.simpleshottimer \
+            --version "$VERSION" \
+            --header branding/store-listing/app-store/creative/header-3840x1646.png \
+            --search branding/store-listing/app-store/creative/search-3840x2560.png \
+            $DRY_RUN
 
       - name: Remove API key
         if: always()
