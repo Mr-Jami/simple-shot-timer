@@ -36,7 +36,7 @@ on:
         type: boolean
         default: false
       creative_assets:
-        description: 'App Store: put the header and search images in branding/store-listing/app-store/creative on the version'
+        description: 'App Store: put the header and search videos (or stills) in branding/store-listing/app-store/creative on the version'
         type: boolean
         default: false
       submit_for_review:
@@ -232,8 +232,9 @@ jobs:
         # The product page header and the search result image (iOS 27 and
         # later) live in the app's asset library. The script uploads the two
         # files there, unless they are already in it, and places them on
-        # every language of the version, replacing other images in those two
-        # slots. They are reviewed with the version. It runs after the
+        # every language of the version, replacing what is in those two
+        # slots. Each is the looping video (header.mp4, search.mp4) when the
+        # folder has one, else the still. They are reviewed with the version. It runs after the
         # listings so the version exists; with submit_for_review the version
         # is already in review by then and can't take them, so use the two
         # in separate runs. With validate_only it only reads and prints what
@@ -245,12 +246,13 @@ jobs:
           ASC_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
           DRY_RUN: ${{ inputs.validate_only && '--dry-run' || '' }}
         run: |
+          c=branding/store-listing/app-store/creative
+          header=$c/header-3840x1646.png; [ ! -f $c/header.mp4 ] || header=$c/header.mp4
+          search=$c/search-3840x2560.png; [ ! -f $c/search.mp4 ] || search=$c/search.mp4
           python3 .github/scripts/app_store_creative_assets.py \
             --bundle-id cc.jami.simpleshottimer \
             --version "$VERSION" \
-            --header branding/store-listing/app-store/creative/header-3840x1646.png \
-            --search branding/store-listing/app-store/creative/search-3840x2560.png \
-            $DRY_RUN
+            --header "$header" --search "$search" $DRY_RUN
 
       - name: Remove API key
         if: always()

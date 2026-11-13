@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
-"""Put the product page header and the search result image on an App Store version.
+"""Put the product page header and the search result asset on an App Store version.
 
 App Store Connect keeps these "creative assets" in the app's asset library
-(App Store Connect API, "App Asset Library"): an image is uploaded once, then
-a *placement* puts it on one surface, here each language of the version that
-is being prepared. The placements go through App Review with that version.
+(App Store Connect API, "App Asset Library"): an image or a video is uploaded
+once, then a *placement* puts it on one surface, here each language of the
+version that is being prepared. The placements go through App Review with
+that version.
 
     app_store_creative_assets.py --bundle-id cc.example.app --version 2.5.0 \
-        --header header-3840x1646.png --search search-3840x2560.png
+        --header header.mp4 --search search-3840x2560.png
 
-What it does, for each image:
+Each of the two can be an image (PNG, JPEG) or a video (MP4, M4V, MOV); a
+video loops on the App Store, and --preview-frame chooses its still picture.
+What the script does, for each file:
 
-1. Reads Apple's reference data to find the image specification the file
-   matches and the placement groups that take it (nothing is hard-coded but
-   the two placement types).
+1. Reads Apple's reference data to find the specification the file matches
+   (size, and for a video frame rate and length) and the placement groups
+   that take it (nothing is hard-coded but the two placement types).
 2. Uploads the file to the library, unless a file with the same name and
    size is already there.
-3. Places it on every language of the version, replacing a different image
-   that sits in the same slot. A slot that already shows this image is left
+3. Places it on every language of the version, replacing a different asset
+   that sits in the same slot. A slot that already shows this file is left
    alone, so the script can be run again.
 
 --dry-run only reads: it prints the version, the specifications and what
@@ -32,6 +35,7 @@ import argparse
 import base64
 import json
 import os
+import re
 import struct
 import subprocess
 import sys
@@ -46,7 +50,8 @@ HEADER = "PRODUCT_PAGE_HEADER_ASSET"
 SEARCH = "APP_STORE_SEARCH_RESULTS_ASSET"
 CATEGORY = "CREATIVE_ASSETS"
 FEATURE = "APP_STORE_VERSIONS"
-# States of a library image that can still be placed.
+VIDEO_EXTENSIONS = (".mp4", ".m4v", ".mov")
+# States of a library asset that can still be placed.
 USABLE = {
     "UPLOAD_COMPLETE", "PREPARE_FOR_SUBMISSION", "READY_FOR_REVIEW",
     "WAITING_FOR_REVIEW", "IN_REVIEW", "ACCEPTED", "APPROVED",
@@ -155,12 +160,93 @@ def image_size(path):
     raise SystemExit(f"{path}: not a PNG or JPEG")
 
 
-def matching_spec(image_specs, path, placement_type):
-    """The image specification a file fits for a placement type, or None."""
+def mp4_boxes(data, start, end):
+    """The boxes of an MP4 / QuickTime file between two offsets: (type, body start, end)."""
+    while start + 8 <= end:
+        size, kind = struct.unpack(">I4s", data[start:start + 8])
+        body = start + 8
+        if size == 1:
+            size = struct.unpack(">Q", data[body:body + 8])[0]
+            body += 8
+        elif size == 0:
+            size = end - start
+        if size < 8:
+            return
+        yield kind.decode("latin-1"), body, start + size
+        start += size
+
+
+def video_facts(path):
+    """Width, height, frames per second, length in seconds and whether there is sound."""
+    with open(path, "rb") as f:
+        data = f.read()
+
+    def find(kind, start, end):
+        return [(a, b) for k, a, b in mp4_boxes(data, start, end) if k == kind]
+
+    facts = {"audio": False}
+    for moov in find("moov", 0, len(data)):
+        for trak in find("trak", *moov):
+            for mdia in find("mdia", *trak):
+                handler = [data[a + 8:a + 12] for a, _ in find("hdlr", *mdia)]
+                if handler and handler[0] == b"soun":
+                    facts["audio"] = True
+                if not handler or handler[0] != b"vide" or "width" in facts:
+                    continue
+                a, _ = find("tkhd", *trak)[0]
+                # Width and height are the last two fields, as 16.16 fixed point.
+                size = 92 if data[a] == 1 else 80
+                width, height = struct.unpack(">II", data[a + size - 4:a + size + 4])
+                facts["width"], facts["height"] = width >> 16, height >> 16
+                a, _ = find("mdhd", *mdia)[0]
+                if data[a] == 1:
+                    timescale, duration = struct.unpack(">IQ", data[a + 20:a + 32])
+                else:
+                    timescale, duration = struct.unpack(">II", data[a + 12:a + 20])
+                facts["seconds"] = duration / timescale
+                frames = 0
+                for minf in find("minf", *mdia):
+                    for stbl in find("stbl", *minf):
+                        for a, _ in find("stts", *stbl):
+                            count = struct.unpack(">I", data[a + 4:a + 8])[0]
+                            for i in range(count):
+                                frames += struct.unpack(">I", data[a + 8 + 8 * i:a + 12 + 8 * i])[0]
+                facts["fps"] = frames / facts["seconds"] if facts["seconds"] else 0
+    if "width" not in facts:
+        raise SystemExit(f"{path}: no video track found")
+    return facts
+
+
+def is_video(path):
+    return os.path.splitext(path)[1].lower() in VIDEO_EXTENSIONS
+
+
+def describe_file(path):
+    if is_video(path):
+        v = video_facts(path)
+        return (f"{v['width']}x{v['height']}, {v['fps']:.2f} fps, {v['seconds']:.2f} s, "
+                f"{'with' if v['audio'] else 'no'} sound")
     width, height, alpha = image_size(path)
+    return f"{width}x{height}{', alpha' if alpha else ''}"
+
+
+def iso_seconds(text):
+    """Seconds of an ISO 8601 duration such as PT30S or PT1M30S."""
+    m = re.fullmatch(r"PT(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?", text or "")
+    return (int(m.group(1) or 0) * 60 + float(m.group(2) or 0)) if m else None
+
+
+def matching_spec(ref, path, placement_type):
+    """The image or video specification a file fits for a placement type, or None."""
+    video = is_video(path)
     size = os.path.getsize(path)
     ext = os.path.splitext(path)[1].lower()
-    for spec in image_specs:
+    if video:
+        v = video_facts(path)
+        width, height, alpha = v["width"], v["height"], False
+    else:
+        width, height, alpha = image_size(path)
+    for spec in ref.get("videoSpecs" if video else "imageSpecs") or []:
         d = spec.get("dimensions") or {}
         if placement_type not in (spec.get("compatiblePlacementTypes") or []):
             continue
@@ -173,6 +259,17 @@ def matching_spec(image_specs, path, placement_type):
             continue
         if size > spec.get("maxFileSize", size):
             continue
+        if video:
+            rates = spec.get("frameRates") or []
+            if rates and not any(r.get("minFps", 0) - 0.01 <= v["fps"] <= r.get("maxFps", 0) + 0.01
+                                 for r in rates):
+                continue
+            low = iso_seconds((spec.get("duration") or {}).get("min"))
+            high = iso_seconds((spec.get("duration") or {}).get("max"))
+            if (low is not None and v["seconds"] < low) or (high is not None and v["seconds"] > high):
+                continue
+            if spec.get("audioRequired") and not v["audio"]:
+                continue
         return spec
     return None
 
@@ -233,26 +330,35 @@ def describe_specs(ref, placement_type):
     return lines or ["  (not in the reference data)"]
 
 
-def upload_image(client, library_id, path, reference_name, existing):
-    """Id of the library image for a file, uploading it if it isn't there yet."""
+def resource(path):
+    """The API's resource type for a file: library images or library videos."""
+    return "appAssetLibraryVideos" if is_video(path) else "appAssetLibraryImages"
+
+
+def upload_asset(client, library_id, path, reference_name, existing, preview_frame):
+    """Id of the library asset for a file, uploading it if it isn't there yet."""
+    kind = resource(path)
     name, size = os.path.basename(path), os.path.getsize(path)
-    for image in existing:
-        a = image["attributes"]
-        if a.get("fileName") == name and a.get("fileSize") == size:
+    for asset in existing:
+        a = asset["attributes"]
+        if asset["type"] == kind and a.get("fileName") == name and a.get("fileSize") == size:
             if a.get("state") in USABLE:
-                print(f"  already in the library: {image['id']} ({a.get('state')})")
-                return image["id"]
+                print(f"  already in the library: {asset['id']} ({a.get('state')})")
+                return asset["id"]
             if a.get("state") in ("AWAITING_UPLOAD", "FAILED"):
-                print(f"  removing a leftover reservation {image['id']} ({a.get('state')})")
-                client.request("DELETE", f"/v1/appAssetLibraryImages/{image['id']}")
-    reserved = client.request("POST", "/v1/appAssetLibraryImages", {"data": {
-        "type": "appAssetLibraryImages",
-        "attributes": {"fileName": name, "fileSize": size, "category": CATEGORY,
-                       "referenceName": reference_name},
+                print(f"  removing a leftover reservation {asset['id']} ({a.get('state')})")
+                client.request("DELETE", f"/v1/{kind}/{asset['id']}")
+    attributes = {"fileName": name, "fileSize": size, "category": CATEGORY,
+                  "referenceName": reference_name}
+    if is_video(path) and preview_frame:
+        attributes["previewFrameTimeCode"] = preview_frame
+    reserved = client.request("POST", f"/v1/{kind}", {"data": {
+        "type": kind,
+        "attributes": attributes,
         "relationships": {"assetLibrary": {"data": {
             "type": "appAssetLibraries", "id": library_id}}},
     }})["data"]
-    image_id = reserved["id"]
+    asset_id = reserved["id"]
     with open(path, "rb") as f:
         data = f.read()
     for op in reserved["attributes"]["uploadOperations"]:
@@ -260,19 +366,19 @@ def upload_image(client, library_id, path, reference_name, existing):
             op["url"], data=data[op["offset"]:op["offset"] + op["length"]], method=op["method"])
         for h in op.get("requestHeaders") or []:
             req.add_header(h["name"], h["value"])
-        with urllib.request.urlopen(req, timeout=300):
+        with urllib.request.urlopen(req, timeout=600):
             pass
-    client.request("PATCH", f"/v1/appAssetLibraryImages/{image_id}", {"data": {
-        "type": "appAssetLibraryImages", "id": image_id, "attributes": {"uploaded": True}}})
-    print(f"  uploaded as {image_id}")
-    return image_id
+    client.request("PATCH", f"/v1/{kind}/{asset_id}", {"data": {
+        "type": kind, "id": asset_id, "attributes": {"uploaded": True}}})
+    print(f"  uploaded as {asset_id}")
+    return asset_id
 
 
-def wait_processed(client, image_id, timeout=600):
-    """Waits until App Store Connect has processed an image; returns its attributes."""
+def wait_processed(client, kind, asset_id, timeout=900):
+    """Waits until App Store Connect has processed an asset; returns its attributes."""
     deadline = time.time() + timeout
     while True:
-        a = client.get(f"/v1/appAssetLibraryImages/{image_id}")["data"]["attributes"]
+        a = client.get(f"/v1/{kind}/{asset_id}")["data"]["attributes"]
         if a.get("state") == "FAILED":
             raise SystemExit(f"Processing failed for {a.get('fileName')}: {a.get('stateDetails')}")
         if a.get("state") != "UPLOAD_COMPLETE" and a.get("state") in USABLE:
@@ -282,16 +388,17 @@ def wait_processed(client, image_id, timeout=600):
         time.sleep(5)
 
 
-def place(client, localization, placement_type, group, image_id, dry_run):
-    """Puts an image in one slot of one language. Returns what happened."""
+def place(client, localization, placement_type, group, kind, asset_id, dry_run):
+    """Puts a library asset in one slot of one language. Returns what happened."""
     loc_id = localization["id"]
+    relationship = "video" if kind == "appAssetLibraryVideos" else "image"
     current = client.request(
         "GET", f"/v1/appStoreVersionLocalizations/{loc_id}/placements",
         params={"filter[placementType]": placement_type, "filter[placementGroup]": group,
                 "include": "image,video", "limit": 50})
     for placement in current["data"]:
-        rel = (placement.get("relationships") or {}).get("image", {}).get("data")
-        if rel and rel.get("id") == image_id:
+        rel = ((placement.get("relationships") or {}).get(relationship) or {}).get("data")
+        if rel and rel.get("id") == asset_id:
             return "kept"
     if dry_run:
         return "would replace" if current["data"] else "would place"
@@ -301,7 +408,7 @@ def place(client, localization, placement_type, group, image_id, dry_run):
         "type": "appAssetLibraryPlacements",
         "attributes": {"placementType": placement_type, "placementGroup": group},
         "relationships": {
-            "image": {"data": {"type": "appAssetLibraryImages", "id": image_id}},
+            relationship: {"data": {"type": kind, "id": asset_id}},
             "appStoreVersionLocalization": {"data": {
                 "type": "appStoreVersionLocalizations", "id": loc_id}},
         },
@@ -313,8 +420,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--bundle-id", required=True)
     parser.add_argument("--version", required=True)
-    parser.add_argument("--header", help="image for the product page header")
-    parser.add_argument("--search", help="image for the search results")
+    parser.add_argument("--header", help="image or video for the product page header")
+    parser.add_argument("--search", help="image or video for the search results")
+    parser.add_argument("--preview-frame", default="00:00:01:00",
+                        help="the still picture of a video, as HH:MM:SS:FF (default: after one second)")
     parser.add_argument("--dry-run", action="store_true", help="read only, change nothing")
     args = parser.parse_args()
     jobs = [(t, p) for t, p in ((HEADER, args.header), (SEARCH, args.search)) if p]
@@ -345,24 +454,26 @@ def main():
     library_id = client.get(f"/v1/apps/{app_id}/assetLibrary")["data"]["id"]
     ref = client.get("/v1/appAssetLibraryRefData")["data"]
     ref = (ref[0] if isinstance(ref, list) else ref)["attributes"]
-    existing = client.get_all(
-        f"/v1/appAssetLibraries/{library_id}/images", **{"filter[category]": CATEGORY, "limit": 200})
-    print(f"Creative images in the library: {len(existing)}")
-    for image in existing:
-        a = image["attributes"]
-        print(f"  {image['id']} {a.get('fileName')} {a.get('fileSize')} B {a.get('state')}")
+    existing = []
+    for what in ("images", "videos"):
+        existing += client.get_all(
+            f"/v1/appAssetLibraries/{library_id}/{what}",
+            **{"filter[category]": CATEGORY, "limit": 200})
+    print(f"Creative assets in the library: {len(existing)}")
+    for asset in existing:
+        a = asset["attributes"]
+        print(f"  {asset['id']} {a.get('fileName')} {a.get('fileSize')} B {a.get('state')}")
 
     failed = False
     for placement_type, path in jobs:
-        width, height, alpha = image_size(path)
-        print(f"\n{placement_type}: {path} ({width}x{height}{', alpha' if alpha else ''}, "
-              f"{os.path.getsize(path)} B)")
+        kind = resource(path)
+        print(f"\n{placement_type}: {path} ({describe_file(path)}, {os.path.getsize(path)} B)")
         if args.dry_run:
             print("\n".join(describe_specs(ref, placement_type)))
-        spec = matching_spec(ref.get("imageSpecs") or [], path, placement_type)
+        spec = matching_spec(ref, path, placement_type)
         if not spec:
             print(f"::error title=App Store creative assets::{os.path.basename(path)} matches no "
-                  f"image specification for {placement_type}")
+                  f"specification for {placement_type}")
             print("\n".join(describe_specs(ref, placement_type)))
             failed = True
             continue
@@ -376,15 +487,17 @@ def main():
 
         if args.dry_run:
             name, size = os.path.basename(path), os.path.getsize(path)
-            image_id = next((i["id"] for i in existing
-                             if i["attributes"].get("fileName") == name
+            asset_id = next((i["id"] for i in existing
+                             if i["type"] == kind
+                             and i["attributes"].get("fileName") == name
                              and i["attributes"].get("fileSize") == size
                              and i["attributes"].get("state") in USABLE), None)
-            print(f"  {'already in the library: ' + image_id if image_id else 'would upload'}")
+            print(f"  {'already in the library: ' + asset_id if asset_id else 'would upload'}")
         else:
             reference = f"{os.path.splitext(os.path.basename(path))[0]} ({args.version})"
-            image_id = upload_image(client, library_id, path, reference, existing)
-            processed = wait_processed(client, image_id)
+            asset_id = upload_asset(client, library_id, path, reference, existing,
+                                    args.preview_frame)
+            processed = wait_processed(client, kind, asset_id)
             print(f"  processed: {processed.get('state')}, specification {processed.get('specId')}"
                   f"{'' if processed.get('specId') == spec['specId'] else ' (not the expected one)'}")
 
@@ -392,12 +505,12 @@ def main():
             results = {}
             for localization in localizations:
                 locale = localization["attributes"]["locale"]
-                if args.dry_run and not image_id:
+                if args.dry_run and not asset_id:
                     outcome = "would place"
                 else:
                     try:
-                        outcome = place(client, localization, placement_type, group, image_id,
-                                        args.dry_run)
+                        outcome = place(client, localization, placement_type, group, kind,
+                                        asset_id, args.dry_run)
                     except ApiError as e:
                         outcome = f"FAILED ({e.status})"
                         print(f"::error title=App Store creative assets::{placement_type} "
@@ -410,7 +523,7 @@ def main():
     if failed:
         raise SystemExit(1)
     print("\nNothing was changed (dry run)." if args.dry_run else
-          "\nDone. The images go to App Review with the version.")
+          "\nDone. The assets go to App Review with the version.")
 
 
 if __name__ == "__main__":
