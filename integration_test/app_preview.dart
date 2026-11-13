@@ -415,13 +415,14 @@ Future<void> _until(
   Finder finder, {
   Duration timeout = const Duration(seconds: 15),
 }) async {
+  // Right after the start there is no widget tree to search yet.
+  int found() => WidgetsBinding.instance.rootElement == null
+      ? 0
+      : finder.evaluate().length;
   final watch = Stopwatch()..start();
-  while (finder.evaluate().length != 1) {
+  while (found() != 1) {
     if (watch.elapsed > timeout) {
-      throw StateError(
-        'after $timeout ${finder.evaluate().length} on screen, not one: '
-        '$finder',
-      );
+      throw StateError('after $timeout ${found()} on screen, not one: $finder');
     }
     await _wait(const Duration(milliseconds: 16));
   }
