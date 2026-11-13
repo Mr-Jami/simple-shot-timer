@@ -112,9 +112,10 @@ stored only on the phone, so users should export to CSV first.
 `fastlane/metadata/android/<locale>/` from the repository: title, short and
 full description in eight languages, plus
 `en-US/images/icon.png` (512x512), `featureGraphic.png` (1024x500),
-`phoneScreenshots/1.png` to `8.png` (1080x1920, the Play screenshots) and
-`changelogs/<versionCode>.txt`. The Play upload workflow skips images and
-changelogs, so it is unaffected.
+`changelogs/<versionCode>.txt`, and in every language
+`images/phoneScreenshots/01-running.png` to `08-ready.png` (1080x1920, the
+Play screenshots). The Play upload workflow skips the icon, the feature
+graphic and the changelogs.
 
 ## How the recipe is built
 
@@ -219,7 +220,7 @@ volunteers write the recipe. See also the
   it, F-Droid links to the changelog. It could be generated in CI with
   `.github/scripts/play_release_notes.py`, like the Play notes.
 - **Screenshots.** Refresh `images/phoneScreenshots` when the UI changes,
-  from `branding/store-listing/out/`.
+  as `branding/store-listing/README.md` describes.
 
 ## IzzyOnDroid, the faster route
 

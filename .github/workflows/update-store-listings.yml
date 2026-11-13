@@ -2,9 +2,11 @@ name: Update store listings
 
 # Uploads the listing text in fastlane/metadata (see its README) to Google
 # Play and App Store Connect, in every language that has a folder there, and
-# the App Store's What's New, built from the GitHub Releases. Text only:
-# binaries, screenshots, graphics and the Play "What's new" (which
-# deploy-play-store.yml sets from the GitHub Release) are left alone.
+# the App Store's What's New, built from the GitHub Releases. Text only,
+# unless the screenshots of a store or the App Store's header and search
+# images are asked for: binaries, the Play icon and feature graphic and the
+# Play "What's new" (which deploy-play-store.yml sets from the GitHub
+# Release) are left alone.
 
 on:
   workflow_dispatch:
@@ -25,12 +27,24 @@ on:
         description: 'App Store: write What''s New from the GitHub Releases (off: keep what App Store Connect has)'
         type: boolean
         default: true
+      play_screenshots:
+        description: 'Google Play: replace the phone screenshots with the ones in fastlane/metadata/android/<language>/images/phoneScreenshots'
+        type: boolean
+        default: false
+      screenshots:
+        description: 'App Store: replace the screenshots with the ones in branding/store-listing/app-store/screenshots'
+        type: boolean
+        default: false
+      creative_assets:
+        description: 'App Store: put the header and search videos (or stills) in branding/store-listing/app-store/creative on the version'
+        type: boolean
+        default: false
       submit_for_review:
         description: 'App Store: submit the version for review afterwards, with its latest processed build'
         type: boolean
         default: false
       validate_only:
-        description: 'Save nothing: validate the Google Play listings and show the App Store What''s New'
+        description: 'Save nothing: validate the Google Play listings, show the App Store What''s New and what the header and search images would do'
         type: boolean
         default: false
 
@@ -69,6 +83,11 @@ jobs:
         # in each language under fastlane/metadata/android, creating the
         # translation if Play doesn't have it yet. Languages without a folder
         # are not touched. Google reviews listing changes before they go live.
+        #
+        # With play_screenshots on, the phone screenshots of each language
+        # are removed and replaced with the files in its
+        # images/phoneScreenshots folder, in file name order. Off, they are
+        # not touched. The icon and the feature graphic are never uploaded.
         env:
           SUPPLY_JSON_KEY_DATA: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
         run: |
@@ -79,7 +98,7 @@ jobs:
             skip_upload_aab:true \
             skip_upload_changelogs:true \
             skip_upload_images:true \
-            skip_upload_screenshots:true \
+            skip_upload_screenshots:${{ !inputs.play_screenshots }} \
             validate_only:${{ inputs.validate_only }}
 
   app-store:
@@ -181,19 +200,59 @@ jobs:
         # submits the version with its latest processed build; otherwise
         # nothing is submitted. deliver runs precheck after the upload, and
         # precheck fails with an API key, so it is switched off.
+        #
+        # With screenshots on, each language's screenshots on that version
+        # are removed and replaced with the files in its folder under
+        # branding/store-listing/app-store/screenshots (same folder names as
+        # the metadata; deliver tells the display size from the pixels and
+        # orders by file name). Off, the screenshots are not touched.
         if: ${{ !inputs.validate_only }}
+        env:
+          SCREENSHOTS: ${{ inputs.screenshots }}
         run: |
           echo "Editing App Store version $VERSION"
+          if [ "$SCREENSHOTS" = "true" ]; then
+            shots=(skip_screenshots:false overwrite_screenshots:true
+                   screenshots_path:branding/store-listing/app-store/screenshots)
+          else
+            shots=(skip_screenshots:true)
+          fi
           fastlane run upload_to_app_store \
             api_key_path:"$RUNNER_TEMP/asc_api_key.json" \
             app_identifier:cc.jami.simpleshottimer \
             app_version:"$VERSION" \
             metadata_path:fastlane/metadata/ios \
             skip_binary_upload:true \
-            skip_screenshots:true \
+            "${shots[@]}" \
             submit_for_review:${{ inputs.submit_for_review }} \
             run_precheck_before_submit:false \
             force:true
+
+      - name: Upload header and search images
+        # The product page header and the search result image (iOS 27 and
+        # later) live in the app's asset library. The script uploads the two
+        # files there, unless they are already in it, and places them on
+        # every language of the version, replacing what is in those two
+        # slots. Each is the looping video (header.mp4, search.mp4) when the
+        # folder has one, else the still. They are reviewed with the version. It runs after the
+        # listings so the version exists; with submit_for_review the version
+        # is already in review by then and can't take them, so use the two
+        # in separate runs. With validate_only it only reads and prints what
+        # it would do.
+        if: inputs.creative_assets
+        env:
+          ASC_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+          DRY_RUN: ${{ inputs.validate_only && '--dry-run' || '' }}
+        run: |
+          c=branding/store-listing/app-store/creative
+          header=$c/header-3840x1646.png; [ ! -f $c/header.mp4 ] || header=$c/header.mp4
+          search=$c/search-3840x2560.png; [ ! -f $c/search.mp4 ] || search=$c/search.mp4
+          python3 .github/scripts/app_store_creative_assets.py \
+            --bundle-id cc.jami.simpleshottimer \
+            --version "$VERSION" \
+            --header "$header" --search "$search" $DRY_RUN
 
       - name: Remove API key
         if: always()

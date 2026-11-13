@@ -428,6 +428,22 @@ New, which it builds from the GitHub Releases. Start it from *Run workflow*:
   keywords and What's New can only change with a new version, so run it for
   each release; the English keywords have no file and keep whatever App
   Store Connect has.
+- **Screenshots** (off by default) replaces the App Store screenshots of
+  that version, in every language, with the files in
+  `branding/store-listing/app-store/screenshots/`
+  (see [its README](branding/store-listing/README.md)).
+- **Play screenshots** (off by default) replaces the phone screenshots of
+  the Play listing, in every language, with the files in
+  `fastlane/metadata/android/<language>/images/phoneScreenshots/`. Google
+  reviews them like the text. The Play feature graphic and icon are
+  uploaded by hand.
+- **Creative assets** (off by default) puts the App Store header and search
+  assets in `branding/store-listing/app-store/creative/` on that version, in
+  every language (`.github/scripts/app_store_creative_assets.py`, through
+  the asset library of the App Store Connect API): the looping videos
+  `header.mp4` and `search.mp4` when they are there, else the stills. Files that are already
+  in the library are not uploaded again, and they are reviewed with the
+  version. With **Validate only** it prints what it would do.
 - **Submit for review** (off by default) submits that version afterwards
   with its latest build. Run it once the build from the deploy has finished
   processing in App Store Connect (TestFlight shows it), and only after the

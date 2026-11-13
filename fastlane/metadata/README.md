@@ -9,10 +9,12 @@ it to both stores. Screenshots and the feature graphic are in
 Last updated: 2026-10-29, app 2.4.0 (video).
 
 The layout is fastlane's: `supply` reads `android/`, `deliver` reads `ios/`.
-F-Droid reads `android/` too, including `android/en-US/images/` (icon,
-feature graphic, phone screenshots) and `android/en-US/changelogs/<versionCode>.txt`,
-which are there for F-Droid only: the Play upload skips images and
-changelogs. See `branding/discovery/fdroid.md`.
+The Play phone screenshots are here as well, in
+`android/<language>/images/phoneScreenshots/`; the workflow uploads them
+when asked to. F-Droid reads `android/` too: those screenshots, and
+`android/en-US/images/icon.png`, `featureGraphic.png` and
+`android/en-US/changelogs/<versionCode>.txt`, which are there for F-Droid
+only (the Play upload skips them). See `branding/discovery/fdroid.md`.
 
 ## Languages
 

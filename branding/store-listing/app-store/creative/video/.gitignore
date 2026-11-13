@@ -1,0 +1,7 @@
+# Only the sources are tracked. assets/ comes from prepare.sh, the renders
+# go to ../header.mp4 and ../search.mp4.
+*/assets/
+*/.hyperframes/
+*/.thumbnails/
+*/renders/
+out/
