@@ -92,32 +92,34 @@ jobs:
           xcrun simctl privacy "$DEVICE" grant microphone "$BUNDLE_ID" || true
 
       - name: Wait for the simulator to come to rest
-        # After its first boot a simulator is busy for a long time
-        # (indexing, setting itself up), and a recording made meanwhile
-        # loses frames by the second. Until the Mac's load is back under
-        # its three cores, six minutes at most; the list says what is
-        # still busy then.
+        # After its first boot an iOS 26 simulator draws its wallpapers
+        # (PosterBoard) and compiles shaders for minutes, on a Mac with
+        # three cores and no real GPU. The app's own drawing waits behind
+        # that: fades lose their frames and the clock skips. Until that
+        # work has stopped for half a minute, ten minutes at most; the
+        # list says what is still busy then.
         run: |
-          for _ in $(seq 1 36); do
-            load=$(sysctl -n vm.loadavg | awk '{ print $2 }')
-            echo "load $load"
-            if awk -v load="$load" 'BEGIN { exit !(load < 3) }'; then
+          calm=0
+          for _ in $(seq 1 60); do
+            busy=$(ps -Ao %cpu,comm | awk '
+              /PosterBoard|PosterExtension|MTLCompilerService/ { sum += $1 }
+              END { printf "%d", sum }')
+            echo "wallpapers and shaders: $busy % of a core, load $(sysctl -n vm.loadavg)"
+            if [ "$busy" -lt 5 ]; then
+              calm=$((calm + 1))
+            else
+              calm=0
+            fi
+            if [ "$calm" -ge 3 ]; then
               break
             fi
             sleep 10
           done
-          ps -Ao %cpu,comm -r | head -n 15
+          ps -Ao %cpu,comm -r | head -n 15 || true
 
       - name: Record the app
         run: |
           mkdir -p preview
-
-          sysctl -n vm.loadavg
-          # What the app prints, for when the script fails.
-          xcrun simctl spawn "$DEVICE" log stream --style compact \
-            --predicate 'processImagePath ENDSWITH "/Runner"' \
-            > preview/app.log 2>&1 &
-          logger=$!
 
           xcrun simctl io "$DEVICE" recordVideo --codec=h264 --mask=ignored \
             --force preview/recording.mov 2> preview/recording.log &
@@ -152,17 +154,21 @@ jobs:
           # SIGINT, or the file is left without its index.
           kill -INT "$recorder"
           wait "$recorder" || true
-          kill "$logger" || true
-          xcrun simctl terminate "$DEVICE" "$BUNDLE_ID" || true
           cat preview/recording.log
           cp "$marks" preview/marks.txt || true
-          cat preview/marks.txt
-          ls -l preview
+          cat preview/marks.txt || true
           if [ "$result" != passed ]; then
             echo "::error::the preview script $result (see app.log in the artifact)"
+            # What the app printed. Read afterwards: following the log
+            # while the app runs costs a quarter of a core.
+            xcrun simctl spawn "$DEVICE" log show --last 10m --style compact \
+              --predicate 'processImagePath ENDSWITH "/Runner"' \
+              > preview/app.log 2>&1 || true
             grep -a 'flutter' preview/app.log | tail -n 120 || true
             exit 1
           fi
+          xcrun simctl terminate "$DEVICE" "$BUNDLE_ID" || true
+          ls -l preview
 
       - name: Upload the recording
         if: always()
