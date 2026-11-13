@@ -36,27 +36,11 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app"
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: 'stable'
-          cache: true
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Build for the simulator
-        # With the script as the app's entry point: started like any app,
-        # it plays the story by itself.
-        run: >-
-          flutter build ios --simulator --debug
-          --target integration_test/app_preview.dart
-
       - name: Boot an iPhone
-        # The largest iPhone with a Dynamic Island that is installed, on
-        # the newest iOS it is installed for: the App Store takes one
-        # preview size (886x1920) for every current iPhone.
+        # First of all, so that it has the whole build to get over its
+        # first boot. The largest iPhone with a Dynamic Island that is
+        # installed, on the newest iOS it is installed for: the App Store
+        # takes one preview size (886x1920) for every current iPhone.
         run: |
           xcrun simctl list devices available
           for name in 'iPhone 17 Pro Max' 'iPhone 16 Pro Max' 'iPhone 15 Pro Max'; do
@@ -74,27 +58,47 @@ jobs:
           echo "Recording on $name ($device)"
           echo "DEVICE=$device" >> "$GITHUB_ENV"
           xcrun simctl boot "$device"
-          xcrun simctl bootstatus "$device" -b
-          xcrun simctl ui "$device" appearance dark
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build for the simulator
+        # With the script as the app's entry point: started like any app,
+        # it plays the story by itself.
+        run: >-
+          flutter build ios --simulator --debug
+          --target integration_test/app_preview.dart
+
+      - name: Set the iPhone up
+        run: |
+          xcrun simctl bootstatus "$DEVICE" -b
+          xcrun simctl ui "$DEVICE" appearance dark
           # Apple's own screenshots: 9:41, full signal, full battery.
-          xcrun simctl status_bar "$device" override \
+          xcrun simctl status_bar "$DEVICE" override \
             --time '9:41' \
             --dataNetwork wifi --wifiMode active --wifiBars 3 \
             --cellularMode active --cellularBars 4 \
             --batteryState discharging --batteryLevel 100
-          xcrun simctl install "$device" build/ios/iphonesimulator/Runner.app
+          xcrun simctl install "$DEVICE" build/ios/iphonesimulator/Runner.app
           # The script never opens the microphone, but no system dialog may
           # ever cover the app.
-          xcrun simctl privacy "$device" grant microphone "$BUNDLE_ID" || true
+          xcrun simctl privacy "$DEVICE" grant microphone "$BUNDLE_ID" || true
 
       - name: Wait for the simulator to come to rest
-        # After its first boot a simulator is busy for minutes (indexing,
-        # setting itself up), and a recording made meanwhile loses frames
-        # by the second. Until the Mac's load is back under its three
-        # cores, eight minutes at most.
+        # After its first boot a simulator is busy for a long time
+        # (indexing, setting itself up), and a recording made meanwhile
+        # loses frames by the second. Until the Mac's load is back under
+        # its three cores, six minutes at most; the list says what is
+        # still busy then.
         run: |
-          sleep 30
-          for _ in $(seq 1 45); do
+          for _ in $(seq 1 36); do
             load=$(sysctl -n vm.loadavg | awk '{ print $2 }')
             echo "load $load"
             if awk -v load="$load" 'BEGIN { exit !(load < 3) }'; then
@@ -102,6 +106,7 @@ jobs:
             fi
             sleep 10
           done
+          ps -Ao %cpu,comm -r | head -n 15
 
       - name: Record the app
         run: |

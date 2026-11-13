@@ -22,7 +22,6 @@ import 'package:simple_shot_timer/models/timer_string.dart';
 import 'package:simple_shot_timer/providers/history_provider.dart';
 import 'package:simple_shot_timer/providers/providers.dart';
 import 'package:simple_shot_timer/screens/main_shell.dart';
-import 'package:simple_shot_timer/screens/review_screen.dart';
 import 'package:simple_shot_timer/services/database_service.dart';
 import 'package:simple_shot_timer/services/settings_service.dart';
 import 'package:simple_shot_timer/services/timer_ports.dart';
@@ -73,9 +72,7 @@ final _now = DateTime(2026, 10, 1, 9, 41);
 // README), so these add up to about 25 s of it.
 const _afterLastShot = Duration(milliseconds: 950);
 const _onTotal = Duration(milliseconds: 2900);
-const _onReviewTop = Duration(milliseconds: 1500);
-const _reviewScroll = Duration(milliseconds: 1000);
-const _onReviewShots = Duration(milliseconds: 1700);
+const _onReview = Duration(milliseconds: 3600);
 const _onReadyBetween = Duration(milliseconds: 1100);
 const _onHistory = Duration(milliseconds: 3000);
 const _onVideo = Duration(milliseconds: 2800);
@@ -482,18 +479,6 @@ Future<void> _preview(LiveWidgetController screen) async {
     await finger.up();
   }
 
-  /// A slow drag that comes to rest, so nothing flings.
-  Future<void> drag(Offset from, Offset by, Duration duration) async {
-    const steps = 45;
-    final finger = await screen.startGesture(from);
-    for (var i = 1; i <= steps; i++) {
-      await _wait(duration ~/ steps);
-      await finger.moveTo(from + by * Curves.easeInOut.transform(i / steps));
-    }
-    await _wait(const Duration(milliseconds: 60));
-    await finger.up();
-  }
-
   await _seed();
   await app.startApp(overrides: [
     shotSourceProvider.overrideWithValue(_ScriptedMicrophone(_shotsMs)),
@@ -545,27 +530,9 @@ Future<void> _preview(LiveWidgetController screen) async {
     await _until(find.text('split 0.26s'));
     await _until(find.textContaining(RegExp(r'^Oct 1, 2026 9:41\sAM$')));
     await _until(find.text('Standard · Random (1.58s delay)'));
-    await stay(_onReviewTop);
-    // The fifth shot is below the screen's edge: up to the end of the list.
-    // The first 18 px of a drag only tell it from a tap.
-    final list = screen.state<ScrollableState>(
-      find
-          .descendant(
-            of: find.byType(ReviewScreen),
-            matching: find.byType(Scrollable),
-          )
-          .first,
-    );
-    final listBox = screen.getRect(find.byWidget(list.widget));
-    await drag(
-      listBox.center + Offset(0, listBox.height / 4),
-      Offset(0, -(list.position.maxScrollExtent + 18)),
-      _reviewScroll,
-    );
-    for (final split in ['split 0.23s', 'split 0.24s', 'split 0.22s']) {
-      await _until(find.text(split));
-    }
-    await stay(_onReviewShots);
+    // The grid and the first four shots; the fifth is below the edge, as on
+    // any phone. (Scrolling to it stutters in a simulator in CI.)
+    await stay(_onReview);
 
     mark('back');
     await tap(find.byType(BackButton));
