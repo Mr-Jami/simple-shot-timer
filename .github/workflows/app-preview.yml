@@ -58,6 +58,9 @@ jobs:
           echo "Recording on $name ($device)"
           echo "DEVICE=$device" >> "$GITHUB_ENV"
           xcrun simctl boot "$device"
+          # Spotlight would index the simulator's files and the build for
+          # the rest of the job.
+          sudo mdutil -a -i off || true
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -79,6 +82,8 @@ jobs:
       - name: Set the iPhone up
         run: |
           xcrun simctl bootstatus "$DEVICE" -b
+          # Again: the simulator's volumes were not there the first time.
+          sudo mdutil -a -i off || true
           xcrun simctl ui "$DEVICE" appearance dark
           # Apple's own screenshots: 9:41, full signal, full battery.
           xcrun simctl status_bar "$DEVICE" override \
@@ -91,21 +96,20 @@ jobs:
           # ever cover the app.
           xcrun simctl privacy "$DEVICE" grant microphone "$BUNDLE_ID" || true
 
-      - name: Wait for the simulator to come to rest
+      - name: Wait for the Mac to come to rest
         # After its first boot an iOS 26 simulator draws its wallpapers
-        # (PosterBoard) and compiles shaders for minutes, on a Mac with
-        # three cores and no real GPU. The app's own drawing waits behind
-        # that: fades lose their frames and the clock skips. Until that
-        # work has stopped for half a minute, ten minutes at most; the
-        # list says what is still busy then.
+        # (PosterBoard), compiles shaders and gets indexed for minutes, on
+        # a Mac with three cores and no real GPU. The app's own drawing
+        # waits behind that: fades lose their frames and the clock skips.
+        # Until everything together has used less than half a core for
+        # half a minute, twelve minutes at most; the list says what is
+        # still busy then.
         run: |
           calm=0
-          for _ in $(seq 1 60); do
-            busy=$(ps -Ao %cpu,comm | awk '
-              /PosterBoard|PosterExtension|MTLCompilerService/ { sum += $1 }
-              END { printf "%d", sum }')
-            echo "wallpapers and shaders: $busy % of a core, load $(sysctl -n vm.loadavg)"
-            if [ "$busy" -lt 5 ]; then
+          for _ in $(seq 1 72); do
+            busy=$(ps -Ao %cpu | awk 'NR > 1 { sum += $1 } END { printf "%d", sum }')
+            echo "$busy % of a core in use, load $(sysctl -n vm.loadavg)"
+            if [ "$busy" -lt 50 ]; then
               calm=$((calm + 1))
             else
               calm=0
