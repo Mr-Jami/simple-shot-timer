@@ -431,8 +431,12 @@ New, which it builds from the GitHub Releases. Start it from *Run workflow*:
 - **Screenshots** (off by default) replaces the App Store screenshots of
   that version, in every language, with the files in
   `branding/store-listing/app-store/screenshots/`
-  (see [its README](branding/store-listing/README.md)). The Play
-  screenshots are uploaded by hand.
+  (see [its README](branding/store-listing/README.md)).
+- **Play screenshots** (off by default) replaces the phone screenshots of
+  the Play listing, in every language, with the files in
+  `fastlane/metadata/android/<language>/images/phoneScreenshots/`. Google
+  reviews them like the text. The Play feature graphic and icon are
+  uploaded by hand.
 - **Creative assets** (off by default) puts the App Store header and search
   images in `branding/store-listing/app-store/creative/` on that version, in
   every language (`.github/scripts/app_store_creative_assets.py`, through

@@ -1,27 +1,52 @@
 # Store listing graphics
 
-Phone screenshots and the feature graphic for the Google Play listing, and the
-iPhone screenshots for the App Store in every app language, in the listing's
+Phone screenshots for the Google Play and App Store listings in every app
+language, and the Play feature graphic, in the listing's
 black / yellow halftone style. One HTML page (`index.html`) holds all
 of them; a browser screenshot of each section is the deliverable. The listing
 text in every language is in [fastlane/metadata/](../../fastlane/metadata/README.md).
 
-Current sets: Google Play 2026-10-29, app 2.4 UI (video editor slide redone
-2026-11-12 with the 2.5 editor). App Store 2026-11-12, app 2.5, eight
-languages (see [App Store](#app-store)).
+Current sets: Google Play 2026-11-13 and App Store 2026-11-12, both app 2.5
+in eight languages. Feature graphic 2026-10-29 (app 2.4 UI).
 
-The table and the captions at the end are the Google Play set.
+In both sets each phone screen is a render of the app itself in that
+language; [App Store](#app-store) has the rules they follow and how the
+renders are made. The sets differ in the frame, the size and two screens.
 
-| Section id | Export | Shows |
-|---|---|---|
-| `#slide-1` … `#slide-5`, `#slide-9`, `#slide-7`, `#slide-8` | `out/01-ready.png` … `out/08-history.png`, 1080x1920 | Ready, running, finished, Review, Saved drills, Video editor, Test microphone, History |
-| `#feature` | `out/feature-graphic.png`, 1024x500 | Feature graphic (listing header) |
+### Google Play
 
-On Google Play the video editor (`#slide-9`) takes slot 6, as `out/06-video.png`;
-Settings (Par) (`#slide-6`) is left out there, since Play takes eight at most.
+The uploaded Play set is committed in
+`fastlane/metadata/android/<language>/images/phoneScreenshots/` (fastlane's
+layout, which F-Droid reads too): eight screenshots per language,
+`01-running.png` to `08-ready.png`, at 1080x1920. Play takes eight at most,
+so the mic test of the App Store set is left out. The *Update store
+listings* workflow uploads them when its **Play screenshots** box is ticked
+(see the main README).
+
+The video slide is the other difference: Play's shows a moment in the middle
+of the string, with the shooter's arm and pistol in the frame and the splits
+on the picture. The App Store's shows the moment after the beep instead,
+because Apple wants store pictures fit for all ages.
+
+To remake them:
+
+1. Render the app: `PLATFORM=android AT_MS=15060 ZOOM=1
+   branding/store-listing/render/render_all.sh <clip.mp4>` writes
+   `renders/android/<lang>/` (not committed), nine PNGs per language at
+   1170x2535, in Roboto.
+2. `index.html?play&lang=<lang>` puts each render in the Android frame with
+   the caption and the halftone, at 1080x1920. Export every slide that has a
+   `data-shot` to `out/play/<language folder>/<data-shot>.png` (call
+   `fitCaptions()` first, as for the App Store).
+3. Copy each folder's files to
+   `fastlane/metadata/android/<language folder>/images/phoneScreenshots/`.
 
 Google Play accepts 2–8 phone screenshots (PNG/JPEG, 9:16, 320–3840 px per side)
 and one 1024x500 feature graphic without transparency. The exports meet both.
+
+The feature graphic is `#feature` on the page without a query, exported to
+`out/feature-graphic.png` and uploaded by hand. It is made of HTML phone
+screens: see [How the screens are made](#how-the-screens-are-made).
 
 ### App Store
 
@@ -36,7 +61,7 @@ box is ticked (see the main README).
 They follow Apple's "App Store asset best practices" (read 2026-11-12):
 
 - **The real app, in every language.** Each phone screen is a render of the
-  app itself in that language, not the HTML recreation the Play set uses, so
+  app itself in that language, not an HTML recreation, so
   the words, dates and plurals are the app's own and the UI is the current one.
 - **Best features first.** Running timer, video, Review, then total, saved
   drills, modes, History, the mic test and the Ready screen. The first three
@@ -110,7 +135,9 @@ Xcode 27.1, render at those sizes, add slides for them and upload.
 
 ## How the screens are made
 
-The phone screens are the app recreated in HTML at 390x845 dp and scaled 1.5x into
+The phone screens of the feature graphic, and the slides of the page without
+a query (`#slide-1` … `#slide-9`, the Play set until app 2.5), are not
+renders. They are the app recreated in HTML at 390x845 dp and scaled 1.5x into
 a phone frame, the same markup and CSS as `branding/launch-video`, so the listing
 and the launch video stay in step. Nothing is a device screenshot; strings come
 from `assets/i18n/en.json`, colours and spacing from `lib/theme/app_theme.dart` and
@@ -147,28 +174,23 @@ python -m http.server 8765 --bind 127.0.0.1
 #   page.goto('http://127.0.0.1:8765/index.html'); await fonts.ready
 #   page.locator('#slide-1').screenshot({ path: 'out/01-ready.png', scale: 'css' })
 #   ... #slide-8, #slide-9, #feature
-#   App Store: see above
+#   The Google Play and App Store sets: see above
 ```
 
 Check sizes with `ffprobe -show_entries stream=width,height out/*.png`.
 
 ## Updating after a UI change
 
-Edit the matching `<section>` in `index.html`; each slide is one static screen state
+The two listing sets are rendered from the app again (see above). For the
+HTML screens, edit the matching `<section>` in `index.html`; each slide is one static screen state
 with a comment naming it. Caption line breaks are explicit (`<br>`) so no line ends
 in a single word. Keep every caption line under about 27 characters at 46 px.
 
-## Captions (Google Play)
+## Captions
 
-1. Press START and draw on the beep
-2. Hears every shot. Splits update live
-3. Instant breakdown: total, first shot and split
-4. Shot-by-shot review with splits, fastest, slowest and your notes
-5. Save your drills. Load any one with a tap
-6. Standard, Par or Stage. Random start delay, par time and cycles (not on Play: eight at most)
-7. Dial in the mic with a live level meter
-8. Every string saved. Browse, review, export CSV
-9. Time a string from your video. Export it with your splits on it (Play: slot 6)
+Both sets take their captions from `captions.js`: two short lines per screen
+and app language, sized by `fitCaptions()` to the longest line of the set.
+The captions written into the HTML slides are the Play set's until app 2.5.
 
 Feature graphic: "Simple Shot Timer — Saved drills, splits, history & more", with
 the running, Ready and Saved drills screens and the line "Shooter ready?".

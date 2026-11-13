@@ -546,17 +546,25 @@
 
 <script src="captions.js"></script>
 <script>
-  // index.html?ios renders the App Store set: iPhone frame and iOS chrome.
-  // There every screen is a render of the real app (renders/ios/<lang>/, see
-  // the README), in the order and with the captions of the App Store listing:
-  // index.html?ios&lang=de. The HTML screens below are the Google Play set.
+  // index.html?ios renders the App Store set (iPhone frame and iOS chrome),
+  // index.html?play the Google Play set (Android frame). In both, every
+  // screen is a render of the real app (renders/ios|android/<lang>/, see the
+  // README), in the order and with the captions of the listing:
+  // index.html?play&lang=de. With neither, the page shows the HTML screens
+  // the feature graphic is made of (the Play set until app 2.5).
   var ios = /[?&]ios(&|=|$)/.test(location.search);
+  var play = !ios && /[?&]play(&|=|$)/.test(location.search);
   var lang = (/[?&]lang=([a-z]+)/.exec(location.search) || [])[1] || 'en';
   var SHOTS = [['slide-2', 'running'], ['slide-9', 'video'], ['slide-4', 'review'],
     ['slide-3', 'total'], ['slide-5', 'drills'], ['slide-6', 'settings'],
     ['slide-8', 'history'], ['slide-7', 'mic'], ['slide-1', 'ready']];
-  if (ios) {
-    document.body.classList.add('ios');
+  // Google Play takes eight at most: the mic test is left out there.
+  if (play) {
+    SHOTS = SHOTS.filter(function (s) { return s[1] !== 'mic'; });
+    document.getElementById('slide-7').style.display = 'none';
+  }
+  if (ios || play) {
+    if (ios) document.body.classList.add('ios');
     document.documentElement.lang = lang;
     SHOTS.forEach(function (s, i) {
       var slide = document.getElementById(s[0]), black = i % 2 === 0;
@@ -567,24 +575,28 @@
       slide.querySelector('.cap img').src = black ? 'assets/mark-white.png' : 'assets/mark-black.png';
       slide.querySelector('.cap h2').innerHTML = CAPTIONS[lang][s[1]];
       slide.querySelector('.app').innerHTML =
-        '<img class="render" src="renders/ios/' + lang + '/' + s[1] + '.png" alt=""><div data-status></div>';
+        '<img class="render" src="renders/' + (ios ? 'ios' : 'android') + '/' + lang + '/' + s[1] +
+        '.png" alt=""><div data-status></div>';
     });
+  }
+  if (ios) {
     document.querySelectorAll('use[href="#i-back"]').forEach(function (u) { u.setAttribute('href', '#i-back-ios'); });
     document.querySelectorAll('.app').forEach(function (a) { a.insertAdjacentHTML('beforeend', '<div class="homebar"></div>'); });
   }
 
-  // App Store captions: one size for the whole set, small enough for its
-  // longest line. Call once the caption font has loaded.
+  // Captions of a real-app set: one size for the whole set, small enough for
+  // its longest line. Call once the caption font has loaded.
+  var capSize = ios ? 58 : 46;
   function fitCaptions() {
-    var hs = [].slice.call(document.querySelectorAll('.slide .cap h2')), k = 1;
+    var hs = [].slice.call(document.querySelectorAll('.slide[data-shot] .cap h2')), k = 1;
     hs.forEach(function (h) {
       h.style.fontSize = ''; h.style.whiteSpace = 'nowrap';
       k = Math.min(k, h.parentNode.clientWidth / h.scrollWidth);
     });
-    if (k < 1) hs.forEach(function (h) { h.style.fontSize = Math.floor(58 * k) + 'px'; });
-    return Math.floor(58 * Math.min(k, 1));
+    if (k < 1) hs.forEach(function (h) { h.style.fontSize = Math.floor(capSize * k) + 'px'; });
+    return Math.floor(capSize * Math.min(k, 1));
   }
-  if (ios) document.fonts.ready.then(fitCaptions);
+  if (ios || play) document.fonts.ready.then(fitCaptions);
 
   // Clone the status bar and bottom tab bar into every placeholder.
   document.querySelectorAll('[data-status]').forEach(function (el) {

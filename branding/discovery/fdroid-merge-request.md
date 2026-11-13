@@ -13,10 +13,10 @@ Simple Shot Timer is a shot timer for dry-fire and live-fire practice in practic
 
 Everything stays on the device. The app has no `INTERNET` permission, no account, no ads and no analytics. It asks for `RECORD_AUDIO`, `FOREGROUND_SERVICE` and `FOREGROUND_SERVICE_MICROPHONE`, `POST_NOTIFICATIONS`, `WAKE_LOCK` and `VIBRATE`.
 
-<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" width="180" alt="Ready screen">
-<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="180" alt="Finished string with splits">
-<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" width="180" alt="Shot-by-shot review">
-<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" width="180" alt="Par drill settings">
+<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/08-ready.png" width="180" alt="Ready screen">
+<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/04-total.png" width="180" alt="Finished string with splits">
+<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/03-review.png" width="180" alt="Shot-by-shot review">
+<img src="https://raw.githubusercontent.com/Mr-Jami/simple-shot-timer/main/fastlane/metadata/android/en-US/images/phoneScreenshots/06-settings.png" width="180" alt="Par drill settings">
 
 Website: https://simpleshottimer.com/ · Source: https://github.com/Mr-Jami/simple-shot-timer
 

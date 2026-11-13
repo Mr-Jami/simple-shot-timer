@@ -106,4 +106,28 @@ void main() {
   test('App Store listings fit the store limits', () {
     checkStore('ios', appStoreLimits, appStoreRequired);
   });
+
+  // The workflow uploads these as they are. Play takes two to eight phone
+  // screenshots per language, without transparency and no side more than
+  // twice the other; the set is 1080x1920.
+  test('every Google Play listing has its phone screenshots', () {
+    for (final dir in locales('android')) {
+      final shots = Directory('${dir.path}/images/phoneScreenshots');
+      expect(shots.existsSync(), isTrue,
+          reason: 'android/${name(dir)} has no phone screenshots');
+      final files = shots.listSync().whereType<File>().toList();
+      expect(files.length, inInclusiveRange(2, 8),
+          reason: 'android/${name(dir)}: Play takes 2 to 8 screenshots');
+      for (final file in files) {
+        final where = 'android/${name(dir)}/${name(file)}';
+        final bytes = file.readAsBytesSync();
+        expect(bytes.sublist(0, 8), [0x89, 0x50, 0x4E, 0x47, 13, 10, 26, 10],
+            reason: '$where is not a PNG');
+        int be(int at) => bytes.buffer.asByteData().getUint32(at); // big-endian
+        expect((be(16), be(20)), (1080, 1920), reason: '$where: wrong size');
+        // IHDR colour type 2 is RGB; 4 and 6 carry alpha.
+        expect(bytes[25], 2, reason: '$where has an alpha channel');
+      }
+    }
+  });
 }
