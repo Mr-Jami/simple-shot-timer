@@ -201,6 +201,7 @@ def placement_groups(ref, placement_type, spec_id):
 def describe_specs(ref, placement_type):
     """Lines that say what Apple accepts for a placement type."""
     by_id = {s.get("specId"): s for s in ref.get("imageSpecs") or []}
+    videos = {s.get("specId"): s for s in ref.get("videoSpecs") or []}
     lines = []
     for entry in ref.get("placementTypes") or []:
         if entry.get("placementTypeId") != placement_type:
@@ -216,7 +217,13 @@ def describe_specs(ref, placement_type):
                                  f"x{d.get('minHeight')}-{d.get('maxHeight')}"
                                  f"{' universal' if s.get('universalAsset') else ''}")
             lines.append(f"  group {mapping.get('placementGroupId')}: "
-                         + (", ".join(names) or "(video only)"))
+                         + (", ".join(names) or "(no image)"))
+            for spec_id in mapping.get("specs") or []:
+                v = videos.get(spec_id)
+                if v:
+                    lines.append("    video " + json.dumps({k: v.get(k) for k in (
+                        "shortName", "dimensions", "frameRates", "duration", "audioRequired",
+                        "fileExtensions", "maxFileSize", "universalAsset")}))
     for feature in ref.get("features") or []:
         if feature.get("featureId") != FEATURE:
             continue
