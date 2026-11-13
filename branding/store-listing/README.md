@@ -84,7 +84,9 @@ The App Store has no feature graphic (the app icon comes from the build), so
 has no words, so one image serves every listing language; the mark, the time and
 the shot timeline sit in the template's safe area, the Ready and Review phones
 on the sides only show in wider crops. These images are kept as they are; there
-is no source page for them. They are uploaded by hand.
+is no source page for them. The *Update store listings* workflow puts the
+header and the search image on the version when its **Creative assets** box is
+ticked (see the main README); the universal image is not uploaded.
 
 Apple's art safe areas (creative assets specifications, read 2026-11-12), as
 x, y, width, height from the top left: header 1097, 493, 1646 x 661; search

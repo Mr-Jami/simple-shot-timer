@@ -432,8 +432,13 @@ New, which it builds from the GitHub Releases. Start it from *Run workflow*:
   that version, in every language, with the files in
   `branding/store-listing/app-store/screenshots/`
   (see [its README](branding/store-listing/README.md)). The Play
-  screenshots and the App Store header and search artwork are uploaded by
-  hand.
+  screenshots are uploaded by hand.
+- **Creative assets** (off by default) puts the App Store header and search
+  images in `branding/store-listing/app-store/creative/` on that version, in
+  every language (`.github/scripts/app_store_creative_assets.py`, through
+  the asset library of the App Store Connect API). Files that are already
+  in the library are not uploaded again, and they are reviewed with the
+  version. With **Validate only** it prints what it would do.
 - **Submit for review** (off by default) submits that version afterwards
   with its latest build. Run it once the build from the deploy has finished
   processing in App Store Connect (TestFlight shows it), and only after the
