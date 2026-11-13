@@ -1,0 +1,167 @@
+name: iOS app icon
+
+# ios/Runner/AppIcon.icon is an Icon Composer document, written by hand: no
+# Mac here. This is the only place it gets rendered. Each run draws every
+# appearance with Icon Composer's own renderer, builds the app, checks that
+# the layered icon is in it, and photographs the home screen of a simulator
+# on the newest iOS and on one before iOS 26. Download the "ios-icon"
+# artifact and look at the pictures before merging a change to the icon.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'ios/Runner/AppIcon.icon/**'
+      - 'ios/Runner/Assets.xcassets/AppIcon.appiconset/**'
+      - '.github/workflows/ios-icon.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ios-icon-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  icon:
+    name: Render and build the app icon
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    env:
+      FLUTTER_VERSION: '3.41.9'
+      # The Xcode the App Store build uses (deploy-app-store.yml).
+      XCODE_VERSION: '26.3'
+      ICON: ios/Runner/AppIcon.icon
+      OUT: icon-out
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app"
+
+      - name: Render every appearance
+        # ictool is the command line renderer inside Icon Composer. It has
+        # no validate command: a document Icon Composer cannot open fails
+        # to render. It also crashes now and then, most often at small
+        # sizes, so each picture gets three tries and the small sizes are
+        # scaled down from the large one.
+        run: |
+          ictool="$(dirname "$(xcode-select -p)")/Applications/Icon Composer.app/Contents/Executables/ictool"
+          [ -x "$ictool" ] || { echo "::error::no ictool at $ictool"; exit 1; }
+          "$ictool" --version
+          mkdir -p "$OUT/previews" "$OUT/small"
+          for r in Default Dark TintedLight TintedDark ClearLight ClearDark; do
+            png="$OUT/previews/$r.png"
+            for try in 1 2 3; do
+              "$ictool" "$ICON" --export-image --output-file "$png" \
+                --platform iOS --rendition "$r" \
+                --width 1024 --height 1024 --scale 1 && [ -s "$png" ] && break
+              rm -f "$png"
+              echo "::warning::$r: try $try failed"
+            done
+            [ -s "$png" ] || { echo "::error::$r did not render"; exit 1; }
+            # Home screen (60 pt @3x) and Settings (29 pt @3x and @2x).
+            for px in 180 87 58; do
+              sips -z "$px" "$px" "$png" --out "$OUT/small/$r-$px.png" >/dev/null
+            done
+          done
+          ls -la "$OUT/previews" "$OUT/small"
+
+      - name: Compile the icon for a device
+        # What the App Store build gets. Xcode 26 takes the .icon over the
+        # asset catalog's AppIcon of the same name and draws the pictures
+        # for iOS 18 and earlier from it; they must be opaque, or the
+        # upload is refused (ITMS-90717).
+        run: |
+          set -o pipefail
+          d="$OUT/device"; mkdir -p "$d"
+          xcrun actool --output-format human-readable-text \
+            --notices --warnings --errors \
+            --compile "$d" --platform iphoneos \
+            --minimum-deployment-target 15.0 --target-device iphone \
+            --app-icon AppIcon \
+            --output-partial-info-plist "$d/partial-info.plist" \
+            ios/Runner/Assets.xcassets "$ICON" | tee "$d/actool.log"
+          xcrun assetutil --info "$d/Assets.car" > "$d/assets-car.json"
+          python3 .github/scripts/check_icon_assets.py "$d/assets-car.json"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build for the simulator
+        run: flutter build ios --simulator --debug
+
+      - name: Check the icon in the built app
+        run: |
+          app=build/ios/iphonesimulator/Runner.app
+          d="$OUT/app"; mkdir -p "$d"
+          plutil -p "$app/Info.plist" > "$d/Info.plist.txt"
+          name=$(plutil -extract CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconName raw "$app/Info.plist")
+          if [ "$name" != "AppIcon" ]; then
+            echo "::error::the app's icon name is '$name', not AppIcon"
+            exit 1
+          fi
+          xcrun assetutil --info "$app/Assets.car" > "$d/assets-car.json"
+          python3 .github/scripts/check_icon_assets.py "$d/assets-car.json"
+          # The flat pictures Xcode drew for iOS 18 and earlier.
+          cp "$app"/AppIcon*.png "$d/"
+          ls -la "$d"
+
+      - name: Photograph the home screen
+        # The system draws the icon here, not Icon Composer. Starting and
+        # ending the app leaves the home screen on the page with its icon.
+        # The simulator has no switch for the tinted and clear styles:
+        # those only show in the previews above and on a real iPhone.
+        run: |
+          app=build/ios/iphonesimulator/Runner.app
+          bundle=$(plutil -extract CFBundleIdentifier raw "$app/Info.plist")
+          mkdir -p "$OUT/home"
+          shoot() { # label, device id
+            xcrun simctl boot "$2"
+            xcrun simctl bootstatus "$2" -b
+            xcrun simctl install "$2" "$app"
+            for mode in light dark; do
+              xcrun simctl ui "$2" appearance "$mode"
+              xcrun simctl launch "$2" "$bundle"
+              sleep 8
+              xcrun simctl terminate "$2" "$bundle" || true
+              sleep 6
+              xcrun simctl io "$2" screenshot "$OUT/home/$1-$mode.png"
+            done
+            xcrun simctl shutdown "$2"
+          }
+          id='[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}'
+          xcrun simctl list devices available
+          # The last iPhone listed: one on the newest iOS installed.
+          new=$(xcrun simctl list devices available \
+            | grep -E '^ +iPhone' | tail -1 | grep -oE "$id" || true)
+          # An iPhone on an iOS before 26: it shows the flat picture.
+          old=$(xcrun simctl list devices available \
+            | awk '/^-- iOS 1[5-8]\./{on=1; next} /^-- /{on=0} on && /iPhone/' \
+            | tail -1 | grep -oE "$id" || true)
+          if [ -z "$new" ]; then
+            echo "::error::no iPhone simulator on this runner"
+            exit 1
+          fi
+          shoot ios-newest "$new"
+          if [ -n "$old" ]; then
+            shoot ios-18-or-earlier "$old"
+          else
+            echo "::warning::no simulator before iOS 26 on this runner"
+          fi
+          ls -la "$OUT/home"
+
+      - name: Upload the pictures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-icon
+          path: icon-out
+          if-no-files-found: warn

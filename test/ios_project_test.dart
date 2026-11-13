@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -43,6 +44,74 @@ void main() {
       expect(compiled, contains(name),
           reason: '$name is not in the Runner target\'s Compile Sources');
     }
+  });
+
+  test('the Runner target bundles the layered app icon', () {
+    // iOS 26 and later draw the icon from ios/Runner/AppIcon.icon (an Icon
+    // Composer document). Xcode only picks it up when the Runner target
+    // copies it and its name is the target's app icon name; a miss still
+    // builds, with the flat icon of the asset catalog.
+    final project =
+        File('ios/Runner.xcodeproj/project.pbxproj').readAsStringSync();
+    final runnerPhases = RegExp(
+          r'/\* Runner \*/ = \{\s*isa = PBXNativeTarget;.*?'
+          r'buildPhases = \(([^)]*)\)',
+          dotAll: true,
+        ).firstMatch(project)?.group(1) ??
+        '';
+    final resourcesPhase =
+        RegExp(r'(\w{24}) /\* Resources \*/').firstMatch(runnerPhases)?[1];
+    expect(resourcesPhase, isNotNull, reason: 'Runner has no Resources phase');
+    final resources = RegExp(
+          '$resourcesPhase /\\* Resources \\*/ = \\{[^}]*?'
+          'files = \\(([^)]*)\\)',
+        ).firstMatch(project)?.group(1) ??
+        '';
+    final copied = {
+      for (final m in RegExp(r'(\w{24}) /\*').allMatches(resources))
+        RegExp(
+          '${m[1]} /\\*[^*]*\\*/ = \\{isa = PBXBuildFile; '
+          'fileRef = (\\w{24}) /\\*',
+        ).firstMatch(project)?[1],
+    };
+    final iconRef = RegExp(
+      r'(\w{24}) /\* AppIcon\.icon \*/ = \{isa = PBXFileReference; '
+      r'lastKnownFileType = folder\.iconcomposer\.icon; '
+      r'path = AppIcon\.icon; sourceTree = "<group>"; \};',
+    ).firstMatch(project)?[1];
+    expect(iconRef, isNotNull,
+        reason: 'the project has no file reference for AppIcon.icon');
+    expect(copied, contains(iconRef),
+        reason: 'AppIcon.icon is not in the Runner target\'s resources');
+
+    final names = {
+      for (final m in RegExp(r'ASSETCATALOG_COMPILER_APPICON_NAME = (\w+);')
+          .allMatches(project))
+        m[1],
+    };
+    expect(names, {'AppIcon'},
+        reason: 'the app icon name has to be the name of the .icon file');
+
+    // Every layer's image is in the package, and nothing else is.
+    final icon = Directory('ios/Runner/AppIcon.icon');
+    final doc = jsonDecode(File('${icon.path}/icon.json').readAsStringSync())
+        as Map<String, dynamic>;
+    final used = <String>{};
+    for (final group in doc['groups'] as List) {
+      for (final layer in (group as Map)['layers'] as List) {
+        final name = (layer as Map)['image-name'];
+        if (name != null) used.add(name as String);
+        for (final s in (layer['image-name-specializations'] ?? []) as List) {
+          used.add((s as Map)['value'] as String);
+        }
+      }
+    }
+    final onDisk = {
+      for (final f in Directory('${icon.path}/Assets').listSync())
+        f.uri.pathSegments.last,
+    };
+    expect(used, isNotEmpty);
+    expect(onDisk, used);
   });
 
   test('the app\'s Swift calls no required-reason API', () {
