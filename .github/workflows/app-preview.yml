@@ -1,0 +1,184 @@
+name: App preview
+
+# Records the raw material of the App Store preview video: the real app in
+# an iPhone simulator, played by integration_test/app_preview.dart, with
+# the simulator's screen recorded. The recording is an artifact of the
+# run; branding/store-listing/README.md says how it becomes the video.
+# Nothing is uploaded to the store from here.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'integration_test/app_preview.dart'
+      - '.github/workflows/app-preview.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: app-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  record:
+    name: Record in the simulator
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    env:
+      FLUTTER_VERSION: '3.41.9'
+      # The Xcode the App Store build uses (deploy-app-store.yml).
+      XCODE_VERSION: '26.3'
+      BUNDLE_ID: cc.jami.simpleshottimer
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app"
+
+      - name: Boot an iPhone
+        # First of all, so that it has the whole build to get over its
+        # first boot. The largest iPhone with a Dynamic Island that is
+        # installed, on the newest iOS it is installed for: the App Store
+        # takes one preview size (886x1920) for every current iPhone.
+        run: |
+          xcrun simctl list devices available
+          for name in 'iPhone 17 Pro Max' 'iPhone 16 Pro Max' 'iPhone 15 Pro Max'; do
+            device=$(xcrun simctl list devices available \
+              | grep -E "^ +$name \(" | tail -1 \
+              | grep -oE '[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}' || true)
+            if [ -n "$device" ]; then
+              break
+            fi
+          done
+          if [ -z "$device" ]; then
+            echo "::error::no Pro Max iPhone simulator on this runner"
+            exit 1
+          fi
+          echo "Recording on $name ($device)"
+          echo "DEVICE=$device" >> "$GITHUB_ENV"
+          xcrun simctl boot "$device"
+          # Spotlight would index the simulator's files and the build for
+          # the rest of the job.
+          sudo mdutil -a -i off || true
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build for the simulator
+        # With the script as the app's entry point: started like any app,
+        # it plays the story by itself.
+        run: >-
+          flutter build ios --simulator --debug
+          --target integration_test/app_preview.dart
+
+      - name: Set the iPhone up
+        run: |
+          xcrun simctl bootstatus "$DEVICE" -b
+          # Again: the simulator's volumes were not there the first time.
+          sudo mdutil -a -i off || true
+          xcrun simctl ui "$DEVICE" appearance dark
+          # Apple's own screenshots: 9:41, full signal, full battery.
+          xcrun simctl status_bar "$DEVICE" override \
+            --time '9:41' \
+            --dataNetwork wifi --wifiMode active --wifiBars 3 \
+            --cellularMode active --cellularBars 4 \
+            --batteryState discharging --batteryLevel 100
+          xcrun simctl install "$DEVICE" build/ios/iphonesimulator/Runner.app
+          # The script never opens the microphone, but no system dialog may
+          # ever cover the app.
+          xcrun simctl privacy "$DEVICE" grant microphone "$BUNDLE_ID" || true
+
+      - name: Wait for the Mac to come to rest
+        # After its first boot an iOS 26 simulator draws its wallpapers
+        # (PosterBoard), compiles shaders and gets indexed for minutes, on
+        # a Mac with three cores and no real GPU. The app's own drawing
+        # waits behind that: fades lose their frames and the clock skips.
+        # Until everything together has used less than half a core for
+        # half a minute, twelve minutes at most; the list says what is
+        # still busy then.
+        run: |
+          calm=0
+          for _ in $(seq 1 72); do
+            busy=$(ps -Ao %cpu | awk 'NR > 1 { sum += $1 } END { printf "%d", sum }')
+            echo "$busy % of a core in use, load $(sysctl -n vm.loadavg)"
+            if [ "$busy" -lt 50 ]; then
+              calm=$((calm + 1))
+            else
+              calm=0
+            fi
+            if [ "$calm" -ge 3 ]; then
+              break
+            fi
+            sleep 10
+          done
+          ps -Ao %cpu,comm -r | head -n 15 || true
+
+      - name: Record the app
+        run: |
+          mkdir -p preview
+
+          xcrun simctl io "$DEVICE" recordVideo --codec=h264 --mask=ignored \
+            --force preview/recording.mov 2> preview/recording.log &
+          recorder=$!
+          for _ in $(seq 1 150); do
+            if grep -q 'Recording started' preview/recording.log; then
+              break
+            fi
+            sleep 0.2
+          done
+          cat preview/recording.log
+          sleep 2
+
+          xcrun simctl launch "$DEVICE" "$BUNDLE_ID"
+          # The script writes its steps here; a simulator's files are the
+          # Mac's.
+          marks="$(xcrun simctl get_app_container "$DEVICE" "$BUNDLE_ID" data)/Documents/app_preview_marks.txt"
+          result='did not finish in time'
+          for _ in $(seq 1 300); do
+            if grep -q 'PREVIEW_MARK end' "$marks" 2> /dev/null; then
+              result=passed
+              break
+            fi
+            if grep -q 'PREVIEW_MARK failed' "$marks" 2> /dev/null; then
+              result=failed
+              break
+            fi
+            sleep 1
+          done
+
+          sleep 2
+          # SIGINT, or the file is left without its index.
+          kill -INT "$recorder"
+          wait "$recorder" || true
+          cat preview/recording.log
+          cp "$marks" preview/marks.txt || true
+          cat preview/marks.txt || true
+          if [ "$result" != passed ]; then
+            echo "::error::the preview script $result (see app.log in the artifact)"
+            # What the app printed. Read afterwards: following the log
+            # while the app runs costs a quarter of a core.
+            xcrun simctl spawn "$DEVICE" log show --last 10m --style compact \
+              --predicate 'processImagePath ENDSWITH "/Runner"' \
+              > preview/app.log 2>&1 || true
+            grep -a 'flutter' preview/app.log | tail -n 120 || true
+            exit 1
+          fi
+          xcrun simctl terminate "$DEVICE" "$BUNDLE_ID" || true
+          ls -l preview
+
+      - name: Upload the recording
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-preview-recording
+          path: preview/
+          if-no-files-found: error
+          retention-days: 14

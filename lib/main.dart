@@ -16,7 +16,13 @@ import 'services/settings_service.dart';
 import 'services/video/video_work_dir.dart';
 import 'utils/legal.dart';
 
-Future<void> main() async {
+Future<void> main() => startApp();
+
+/// Starts the app. [overrides] replace single providers on top of the app's
+/// own: the App Store preview recording
+/// (integration_test/app_preview.dart) puts a script in place of the
+/// microphone that way and leaves everything else as shipped.
+Future<void> startApp({List<Override> overrides = const []}) async {
   WidgetsFlutterBinding.ensureInitialized();
   // Phone on a bench, one hand, big buttons: portrait only. The home layout
   // is built for it and a rotated phone should not reflow mid-string.
@@ -48,6 +54,7 @@ Future<void> main() async {
         sharedPreferencesProvider.overrideWithValue(prefs),
         databaseProvider.overrideWithValue(db),
         audioServiceProvider.overrideWithValue(audio),
+        ...overrides,
       ],
       child: const SimpleShotTimerApp(),
     ),
