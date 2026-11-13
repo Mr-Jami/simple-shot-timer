@@ -14,6 +14,14 @@ class BackgroundService {
 
   static bool _initialized = false;
 
+  /// The `<meta-data>` entry in AndroidManifest.xml that names the
+  /// notification's small icon, the app's mark as a plain shape. Without it
+  /// the plugin takes the launcher icon, which Android cannot draw as a
+  /// status bar icon: the PNG is a filled square, and the adaptive icon of
+  /// Android 8+ crashes the System UI of Android 8.0 there.
+  static const notificationIconMetaData =
+      'cc.jami.simpleshottimer.RUN_NOTIFICATION_ICON';
+
   /// Call once at app startup (before the first [start]) so the plugin's
   /// notification channel + task options are registered.
   static void init() {
@@ -71,6 +79,8 @@ class BackgroundService {
       serviceTypes: const [ForegroundServiceTypes.microphone],
       notificationTitle: 'Shot Timer',
       notificationText: 'Run in progress',
+      notificationIcon:
+          const NotificationIcon(metaDataName: notificationIconMetaData),
       callback: _emptyTaskCallback,
     );
   }

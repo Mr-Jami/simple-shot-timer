@@ -115,7 +115,7 @@ flutter create . --platforms=android,ios,web
 │   ├── scripts/
 │   │   └── play_release_notes.py   # GitHub Releases -> store "What's new" (Play + App Store)
 │   └── pull_request_template.md
-├── android/                    # Android platform code (manifest, Gradle, volume channel)
+├── android/                    # Android platform code (manifest, Gradle, volume channel, adaptive launcher icon)
 ├── ios/                        # iOS platform code (Xcode project, audio-session + volume channels)
 ├── assets/
 │   ├── branding/               # App icon

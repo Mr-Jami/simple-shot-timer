@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The mark of the app icon, for the adaptive icon (mipmap-anydpi-v26):
+     its foreground, and its monochrome layer for themed icons, which keep
+     only the shape and take their colour from the launcher.
+
+     The paths are the mark on the 1024 px grid of the flat icon. A launcher
+     shows the middle 72 dp of the 108 dp canvas, so 72 / 1024 as the scale
+     keeps the mark as large in the cut icon as in the flat one (40 x 33 dp,
+     well inside the 66 dp circle no launcher shape cuts into). The group
+     scales the paths around the middle of the mark (525, 504.5) and moves
+     that middle to the centre of the canvas. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="525"
+        android:pivotY="504.5"
+        android:scaleX="0.0703125"
+        android:scaleY="0.0703125"
+        android:translateX="-471"
+        android:translateY="-450.5">
+        <!-- The stopwatch ring. -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M551.34 268.4A237 237 0 1 1 518.69 735.43A27 27 0 0 1 530.83 682.81A183 183 0 1 0 556.05 322.2A27 27 0 0 1 551.34 268.4Z" />
+        <!-- Two bars and the dot. -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M268 388H472A27 27 0 0 1 472 442H268A27 27 0 0 1 268 388Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M320 502H420A27 27 0 0 1 420 556H320A27 27 0 0 1 320 502Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M343 630A27 27 0 1 1 397 630A27 27 0 1 1 343 630Z" />
+    </group>
+</vector>

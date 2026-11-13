@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The mark as a status bar icon, for the "run in progress" notification
+     (BackgroundService). Android draws a notification's small icon from its
+     shape alone, in its own colour. The launcher icon cannot stand in: its
+     PNGs are filled squares, and Android 8.0 crashes its System UI when a
+     notification's small icon is an adaptive icon.
+
+     Same paths as ic_launcher_foreground.xml, 20 dp wide on the 24 dp
+     canvas. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <group
+        android:pivotX="525"
+        android:pivotY="504.5"
+        android:scaleX="0.0352"
+        android:scaleY="0.0352"
+        android:translateX="-513"
+        android:translateY="-492.5">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M551.34 268.4A237 237 0 1 1 518.69 735.43A27 27 0 0 1 530.83 682.81A183 183 0 1 0 556.05 322.2A27 27 0 0 1 551.34 268.4Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M268 388H472A27 27 0 0 1 472 442H268A27 27 0 0 1 268 388Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M320 502H420A27 27 0 0 1 420 556H320A27 27 0 0 1 320 502Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M343 630A27 27 0 1 1 397 630A27 27 0 1 1 343 630Z" />
+    </group>
+</vector>

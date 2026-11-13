@@ -67,6 +67,14 @@
             android:foregroundServiceType="microphone"
             android:exported="false"
             android:stopWithTask="true" />
+        <!-- The small icon of that service's notification. BackgroundService
+             (lib/services/background_service.dart) passes this name to the
+             plugin, which otherwise takes the launcher icon: a filled square
+             up to Android 7, and an adaptive icon from Android 8, which
+             crashes the System UI of Android 8.0 in a notification. -->
+        <meta-data
+            android:name="cc.jami.simpleshottimer.RUN_NOTIFICATION_ICON"
+            android:resource="@drawable/ic_stat_mark" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
