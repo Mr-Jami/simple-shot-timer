@@ -98,11 +98,6 @@ const _settings = AppSettings(
   // every run.
   randomDelayMinMs: _delayMs,
   randomDelayMaxMs: _delayMs,
-  // "Visual flash on beep" off. The flash changes every pixel of the
-  // screen for 300 ms, and the simulator's recorder in CI needs longer
-  // than that for one such frame: the flash came out as a grey still of
-  // 0.4 s with the clock frozen in it.
-  visualFlash: false,
 );
 
 /// The saved drills of the store screenshots, and three more for the taller

@@ -100,8 +100,10 @@ fi
 # fills in the rest before the cut: seeking in the file instead would start
 # the video at the next change and lose the still Ready before it. A screen
 # this still needs about 1 Mbit/s whatever the target; 10 to 12 is what
-# Apple names for footage.
-cut="trim=start=$(seconds "$from_ms"):duration=$(seconds "$length_ms"),setpts=PTS-STARTPTS"
+# Apple names for footage. The recording ends with its last change, which
+# is before the end of the cut: tpad holds that picture.
+cut="tpad=stop_mode=clone:stop_duration=10"
+cut="$cut,trim=start=$(seconds "$from_ms"):duration=$(seconds "$length_ms"),setpts=PTS-STARTPTS"
 ffmpeg -hide_banner -loglevel warning -y \
   -i "$recording" \
   -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=48000 \

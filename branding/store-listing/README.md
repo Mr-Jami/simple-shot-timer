@@ -63,9 +63,9 @@ screenshots with an alpha channel; Chrome's exports are RGB.
 App previews (videos) are optional and must be screen recordings of the app
 itself, so the HTML launch video can't be used as one. The preview is
 `app-store/preview/app-preview-886x1920.mp4`: the real app in an iPhone
-simulator, 26 s, without sound. It shows Ready, START, STAND BY, five shots
-landing with their splits, STOP, the total, Review, History, the Video tab,
-Saved drills and Ready again, with the sample data of the screenshots (the
+simulator, 26 s, without sound. It shows Ready, START, STAND BY, the beep's
+flash, five shots landing with their splits, STOP, the total, Review,
+History, the Video tab, Saved drills and Ready again, with the sample data of the screenshots (the
 2.37 s string, the same drills and history, 9:41). The video editor is not
 in it: it needs a clip, and the range clips stay private.
 
@@ -117,11 +117,12 @@ the pass that is kept, and repeats that pass if the app stood still during
 it. If a stutter is left anyway, run the workflow again; the runners differ
 a lot from one run to the next.
 
-Two things are set for the recorder's sake. "Visual flash on beep" is off:
-the flash changes every pixel for 300 ms, the recorder needs longer than
-that for one such frame, and the flash came out as a grey still with the
-clock frozen in it. And Review is not scrolled to its fifth shot, which
-stuttered.
+Known blemish: the flash on the beep changes every pixel for 300 ms, and
+the simulator's recorder needs longer than that for one such frame. In the
+video the flash is a grey still of 0.4 s and the clock goes from 0.17 to
+0.61 after it. Turning "Visual flash on beep" off in the script's settings
+(`visualFlash: false`) should avoid it; not recorded yet. Review is not
+scrolled to its fifth shot, because that stuttered.
 
 ## How the screens are made
 
