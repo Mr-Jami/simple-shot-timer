@@ -110,8 +110,35 @@ has no words, so one image serves every listing language; the mark, the time and
 the shot timeline sit in the template's safe area, the Ready and Review phones
 on the sides only show in wider crops. These images are kept as they are; there
 is no source page for them. The *Update store listings* workflow puts the
-header and the search image on the version when its **Creative assets** box is
+header and the search asset on the version when its **Creative assets** box is
 ticked (see the main README); the universal image is not uploaded.
+
+Both placements also take a video, which loops on the App Store without
+sound. `header.mp4` (3840x1646) and `search.mp4` (2880x1920) are the stills
+come alive, 16 s at 30 fps: the time counts up from the beep in real time
+while the five shots land on the timeline, holds on 2.37, and runs back to
+0.00. One loop is 8 s and starts and ends on the result, so the first frame
+is the still and the loop has no jump; the film is two loops, because
+Apple's reference data names 10 and 15 s as shortest lengths in one place
+and 5 s in another. The phones and the halftone do not move. When these
+files are in the folder, the workflow uploads them instead of the stills.
+
+Their sources are two HyperFrames projects in `app-store/creative/video/`
+(`header/index.html` and `search/index.html`, the same film at two sizes;
+change both). `video/prepare.sh` makes their assets from the stills (the
+still with the time and the timeline painted over, which the film draws
+itself), then:
+
+```sh
+cd branding/store-listing/app-store/creative
+npx hyperframes render video/header -o header.mp4 --fps 30 --quality delivery
+npx hyperframes render video/search -o search.mp4 --fps 30 --quality delivery
+```
+
+Apple's rules for these videos (its reference data, read 2026-11-13): the
+header exactly 3840x1646, the search asset 3:2 between 1920x1280 and
+3840x2560, 30 or 60 fps exactly, 5 to 30 s, MP4, M4V or MOV, no sound track
+needed. The search film is 2880x1920 so that it stays within H.264 level 5.1.
 
 Apple's art safe areas (creative assets specifications, read 2026-11-12), as
 x, y, width, height from the top left: header 1097, 493, 1646 x 661; search

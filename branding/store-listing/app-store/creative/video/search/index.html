@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=2880, height=1920" />
+    <title>Simple Shot Timer: App Store search result loop</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Montserrat Mark";
+        src: url("assets/fonts/Montserrat-ExtraBoldItalic.ttf") format("truetype");
+        font-weight: 800;
+        font-style: italic;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; }
+      body { margin: 0; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+      .clip { position: absolute; inset: 0; }
+
+      /* The still (assets/bg.png, 3840x2560) with the time and the timeline
+         blanked; #stage has the still's own pixel grid, shown at 2880x1920. */
+      #stage {
+        position: absolute; left: 0; top: 0; width: 3840px; height: 2560px;
+        transform: scale(0.75); transform-origin: 0 0;
+      }
+      #bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
+
+      /* The time and the shot timeline: the group of header/index.html (in
+         pixels of the header still), placed and sized as in the search still. */
+      #grp {
+        --gx: 1415.8px; --gy: 927.8px; --gs: 0.971;
+        position: absolute; left: var(--gx); top: var(--gy); width: 1040px; height: 450px;
+        transform: scale(var(--gs)); transform-origin: 0 0;
+      }
+      #num-box { position: absolute; left: 0; top: 0; width: 1040px; height: 320px; }
+      #num {
+        position: absolute; left: 92px; top: -25px; margin: 0;
+        font-family: "Montserrat Mark", sans-serif; font-weight: 800; font-style: italic;
+        font-size: 368px; line-height: 1; letter-spacing: 0; white-space: nowrap; color: #fff;
+        transform-origin: 50% 60%;
+      }
+      /* The font has no tabular figures: each digit gets a slot as wide as
+         a zero, so the time does not shake while it runs. */
+      #num .d { display: inline-block; width: 0.685em; text-align: center; }
+      #line {
+        position: absolute; left: 62px; top: 399px; width: 924px; height: 4px;
+        background: #565656; transform-origin: 0 50%;
+      }
+      #ring, #ripple {
+        position: absolute; left: 43.5px; top: 382.5px; width: 37px; height: 37px;
+        border-radius: 50%; border: 5.5px solid #fff;
+      }
+      #ring { background: #000; }
+      #ripple { border-width: 3px; border-color: #fee036; opacity: 0; }
+      .tick {
+        position: absolute; top: 372px; width: 13px; height: 58px; margin-left: -6.5px;
+        border-radius: 6.5px; background: #fee036; transform-origin: 50% 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="16"
+         data-width="2880" data-height="1920" data-fps="30">
+      <div id="scene" class="clip" data-start="0" data-duration="16" data-track-index="1">
+        <div id="stage">
+          <img id="bg" src="assets/bg.png" alt="" />
+          <div id="grp">
+            <div id="num-box"><p id="num" data-hold><span class="d" id="d1">2</span>.<span class="d" id="d2">3</span><span class="d" id="d3">7</span></p></div>
+            <div id="line"></div>
+            <div id="ripple"></div>
+            <div id="ring"></div>
+            <div class="tick" id="tick-1" data-at="1.42"></div>
+            <div class="tick" id="tick-2" data-at="1.68"></div>
+            <div class="tick" id="tick-3" data-at="1.91"></div>
+            <div class="tick" id="tick-4" data-at="2.15"></div>
+            <div class="tick" id="tick-5" data-at="2.37"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // One string of five shots, 2.37 s, as a loop of 8 s that starts and
+      // ends on the result, so the first frame is the poster and the loop has
+      // no jump: hold, reset to 0.00, beep, count up in real time while the
+      // shots land on the timeline, hold. The film is two loops (16 s).
+      window.__timelines = window.__timelines || {};
+      (function () {
+        var LOOP = 8, LOOPS = 2, TOTAL = 2.37;
+        var RESET = 2.0, RESET_LEN = 0.6, BEEP = 3.3;
+        var LINE_X = 62, LINE_W = 924;
+        var ticks = [].slice.call(document.querySelectorAll(".tick"));
+        ticks.forEach(function (el) {
+          el.style.left = (LINE_X + (parseFloat(el.dataset.at) / TOTAL) * LINE_W) + "px";
+        });
+
+        var tl = gsap.timeline({ paused: true });
+        for (var i = 0; i < LOOPS; i++) {
+          var t0 = i * LOOP;
+          // Reset: the shots go out from the last to the first, the line
+          // runs back, the time dims.
+          ticks.slice().reverse().forEach(function (el, k) {
+            tl.fromTo(el, { scaleY: 1, opacity: 1 },
+              { scaleY: 0, opacity: 0, duration: 0.2, ease: "power2.in", immediateRender: false },
+              t0 + RESET + k * 0.04);
+          });
+          tl.fromTo("#line", { scaleX: 1 },
+            { scaleX: 0, duration: 0.5, ease: "power2.inOut", immediateRender: false }, t0 + RESET + 0.1);
+          tl.fromTo("#num", { opacity: 1 },
+            { opacity: 0.32, duration: RESET_LEN, ease: "power1.inOut", immediateRender: false }, t0 + RESET);
+
+          // Beep: the start ring flashes and sends out one ripple.
+          tl.fromTo("#ring", { borderColor: "#ffffff" },
+            { borderColor: "#fee036", duration: 0.1, ease: "power1.out", immediateRender: false }, t0 + BEEP);
+          tl.fromTo("#ring", { borderColor: "#fee036" },
+            { borderColor: "#ffffff", duration: 0.5, ease: "power1.in", immediateRender: false }, t0 + BEEP + 0.25);
+          tl.fromTo("#ripple", { scale: 1, opacity: 0.9 },
+            { scale: 3.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, t0 + BEEP);
+          tl.fromTo("#num", { opacity: 0.32 },
+            { opacity: 1, duration: 0.14, ease: "power1.out", immediateRender: false }, t0 + BEEP);
+
+          // The run, in real time: the line grows, each shot lands as a tick.
+          tl.fromTo("#line", { scaleX: 0 },
+            { scaleX: 1, duration: TOTAL, ease: "none", immediateRender: false }, t0 + BEEP);
+          ticks.forEach(function (el) {
+            var at = t0 + BEEP + parseFloat(el.dataset.at);
+            tl.fromTo(el, { opacity: 0 },
+              { opacity: 1, duration: 0.05, ease: "none", immediateRender: false }, at);
+            tl.fromTo(el, { scaleY: 0.2, backgroundColor: "#ffffff" },
+              { scaleY: 1, duration: 0.24, ease: "back.out(2.4)", immediateRender: false }, at);
+            tl.fromTo(el, { backgroundColor: "#ffffff" },
+              { backgroundColor: "#fee036", duration: 0.3, ease: "power1.out", immediateRender: false }, at + 0.04);
+          });
+          // The last shot stops the clock: one small beat on the time.
+          tl.fromTo("#num", { scale: 1 },
+            { scale: 1.035, duration: 0.1, ease: "power2.out", immediateRender: false }, t0 + BEEP + TOTAL);
+          tl.fromTo("#num", { scale: 1.035 },
+            { scale: 1, duration: 0.36, ease: "power2.inOut", immediateRender: false }, t0 + BEEP + TOTAL + 0.1);
+        }
+
+        // The digits are a function of the film's time alone.
+        var d1 = document.getElementById("d1"), d2 = document.getElementById("d2"),
+            d3 = document.getElementById("d3");
+        function value(t) {
+          var s = t % LOOP;
+          if (s < RESET) return TOTAL;
+          if (s < RESET + RESET_LEN) {
+            var p = (s - RESET) / RESET_LEN;
+            p = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+            return TOTAL * (1 - p);
+          }
+          if (s < BEEP) return 0;
+          return Math.min(s - BEEP, TOTAL);
+        }
+        function draw() {
+          var h = Math.floor(value(tl.time()) * 100 + 1e-6);
+          d1.textContent = Math.floor(h / 100);
+          d2.textContent = Math.floor(h / 10) % 10;
+          d3.textContent = h % 10;
+        }
+        tl.to({}, { duration: LOOP * LOOPS, ease: "none", onUpdate: draw }, 0);
+        draw();
+        window.__timelines["main"] = tl;
+      })();
+    </script>
+  </body>
+</html>

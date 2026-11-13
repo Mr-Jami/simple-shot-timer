@@ -438,9 +438,10 @@ New, which it builds from the GitHub Releases. Start it from *Run workflow*:
   reviews them like the text. The Play feature graphic and icon are
   uploaded by hand.
 - **Creative assets** (off by default) puts the App Store header and search
-  images in `branding/store-listing/app-store/creative/` on that version, in
+  assets in `branding/store-listing/app-store/creative/` on that version, in
   every language (`.github/scripts/app_store_creative_assets.py`, through
-  the asset library of the App Store Connect API). Files that are already
+  the asset library of the App Store Connect API): the looping videos
+  `header.mp4` and `search.mp4` when they are there, else the stills. Files that are already
   in the library are not uploaded again, and they are reviewed with the
   version. With **Validate only** it prints what it would do.
 - **Submit for review** (off by default) submits that version afterwards
