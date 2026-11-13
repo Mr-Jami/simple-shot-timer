@@ -3,9 +3,10 @@ name: Update store listings
 # Uploads the listing text in fastlane/metadata (see its README) to Google
 # Play and App Store Connect, in every language that has a folder there, and
 # the App Store's What's New, built from the GitHub Releases. Text only,
-# unless the App Store screenshots or its header and search images are asked
-# for: binaries, the Play graphics and screenshots and the Play "What's new"
-# (which deploy-play-store.yml sets from the GitHub Release) are left alone.
+# unless the screenshots of a store or the App Store's header and search
+# images are asked for: binaries, the Play icon and feature graphic and the
+# Play "What's new" (which deploy-play-store.yml sets from the GitHub
+# Release) are left alone.
 
 on:
   workflow_dispatch:
@@ -26,6 +27,10 @@ on:
         description: 'App Store: write What''s New from the GitHub Releases (off: keep what App Store Connect has)'
         type: boolean
         default: true
+      play_screenshots:
+        description: 'Google Play: replace the phone screenshots with the ones in fastlane/metadata/android/<language>/images/phoneScreenshots'
+        type: boolean
+        default: false
       screenshots:
         description: 'App Store: replace the screenshots with the ones in branding/store-listing/app-store/screenshots'
         type: boolean
@@ -78,6 +83,11 @@ jobs:
         # in each language under fastlane/metadata/android, creating the
         # translation if Play doesn't have it yet. Languages without a folder
         # are not touched. Google reviews listing changes before they go live.
+        #
+        # With play_screenshots on, the phone screenshots of each language
+        # are removed and replaced with the files in its
+        # images/phoneScreenshots folder, in file name order. Off, they are
+        # not touched. The icon and the feature graphic are never uploaded.
         env:
           SUPPLY_JSON_KEY_DATA: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
         run: |
@@ -88,7 +98,7 @@ jobs:
             skip_upload_aab:true \
             skip_upload_changelogs:true \
             skip_upload_images:true \
-            skip_upload_screenshots:true \
+            skip_upload_screenshots:${{ !inputs.play_screenshots }} \
             validate_only:${{ inputs.validate_only }}
 
   app-store:
