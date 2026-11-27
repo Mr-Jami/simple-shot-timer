@@ -14,11 +14,12 @@
 
 - [Homepage](https://simpleshottimer.com/): what the app does, how it works, details, privacy summary, FAQ and download links
 - [Guides](https://simpleshottimer.com/guides/): practical guides for training with a shot timer
+- [What is a shot timer and how does it work?](https://simpleshottimer.com/guides/what-is-a-shot-timer/): what a shot timer (shooting timer) measures, how it hears a shot, what first shot, splits, total and par time mean, device or app
 - [How to use your phone as a shot timer](https://simpleshottimer.com/guides/phone-shot-timer/): microphone, sensitivity and Auto-configure, the beep with ear protection, Bluetooth speakers, busy ranges, history and CSV
 - [Dry-fire par drills with par times](https://simpleshottimer.com/guides/dry-fire-par-drills/): dry-fire safety, how par time training works, five classic drills with starting par times and timer settings
 - [Shot timer app or dedicated shot timer?](https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/): an honest comparison, when a dedicated timer is worth buying, and which one to buy
 - [Par timer vs. shot timer](https://simpleshottimer.com/guides/par-timer-vs-shot-timer/): a par timer only beeps, a shot timer also hears your shots; when each one is enough
-- [Free shot timer apps compared](https://simpleshottimer.com/guides/free-shot-timer-apps/): eight free shot timer and par timer apps for iPhone and Android, compared on shot detection, price, ads and data collection (checked October 2026)
+- [Best shot timer apps compared: free and paid](https://simpleshottimer.com/guides/free-shot-timer-apps/): fourteen shot timer and par timer apps for iPhone and Android, free, freemium and paid, compared on shot detection, price, ads and data collection (checked 26 November 2026)
 - [What's new](https://simpleshottimer.com/changelog/): every release, newest first, in plain language
 - [App privacy policy](https://simpleshottimer.com/privacy/): what the app stores and processes (everything stays on the device)
 - [Website privacy policy](https://simpleshottimer.com/privacy/website/): what happens when you visit this site (hosting by Netlify, no cookies or tracking)
@@ -28,8 +29,12 @@
 ## German
 
 - [Startseite](https://simpleshottimer.com/de/): the homepage in German
-- [Ratgeber](https://simpleshottimer.com/de/ratgeber/): the guides in German ([Handy als Shot Timer](https://simpleshottimer.com/de/ratgeber/handy-als-shot-timer/), [Par-Drills fürs Trockentraining](https://simpleshottimer.com/de/ratgeber/par-drills-trockentraining/), [App oder Shot Timer](https://simpleshottimer.com/de/ratgeber/app-oder-shot-timer/), [Par Timer oder Shot Timer](https://simpleshottimer.com/de/ratgeber/par-timer-oder-shot-timer/), [Kostenlose Shot-Timer-Apps im Vergleich](https://simpleshottimer.com/de/ratgeber/kostenlose-shot-timer-apps/))
+- [Ratgeber](https://simpleshottimer.com/de/ratgeber/): the guides in German ([Was ist ein Shot Timer](https://simpleshottimer.com/de/ratgeber/was-ist-ein-shot-timer/), [Handy als Shot Timer](https://simpleshottimer.com/de/ratgeber/handy-als-shot-timer/), [Par-Drills fürs Trockentraining](https://simpleshottimer.com/de/ratgeber/par-drills-trockentraining/), [App oder Shot Timer](https://simpleshottimer.com/de/ratgeber/app-oder-shot-timer/), [Par Timer oder Shot Timer](https://simpleshottimer.com/de/ratgeber/par-timer-oder-shot-timer/), [Die besten Shot-Timer-Apps im Vergleich](https://simpleshottimer.com/de/ratgeber/kostenlose-shot-timer-apps/))
 - [Neuerungen](https://simpleshottimer.com/de/changelog/), [Datenschutz der App](https://simpleshottimer.com/de/datenschutz/) (legally binding), [Datenschutz der Website](https://simpleshottimer.com/de/datenschutz/website/), [Impressum](https://simpleshottimer.com/de/impressum/)
+
+## Polish
+
+- [Strona główna](https://simpleshottimer.com/pl/): the homepage in Polish (the guides, changelog and legal pages are in English and German only)
 
 ## Get the app
 

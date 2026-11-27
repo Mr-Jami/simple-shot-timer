@@ -1,7 +1,7 @@
 {
   ".release-please-manifest.json": {
-    "mtime": 1794355472.5734265,
-    "ast_hash": "3938f267319fcb23607401aaa26de3c2",
+    "mtime": 1795649981.6155488,
+    "ast_hash": "1546c9e163cbc8ab67a608384b59bd04",
     "semantic_hash": ""
   },
   "android/app/build.gradle.kts": {
@@ -35,27 +35,27 @@
     "semantic_hash": "f276a44edd917afd836899357fdae60e"
   },
   "assets/i18n/de.json": {
-    "mtime": 1794509173.521795,
+    "mtime": 1794513435.7074664,
     "ast_hash": "f628d979c912edf35ad6a60f87577b3a",
     "semantic_hash": ""
   },
   "assets/i18n/en.json": {
-    "mtime": 1794509173.521795,
+    "mtime": 1794513435.7074664,
     "ast_hash": "d081096cb3e0180a8911980f8ad4a58c",
     "semantic_hash": ""
   },
   "assets/i18n/es.json": {
-    "mtime": 1794509173.5228064,
+    "mtime": 1794513435.7088661,
     "ast_hash": "5c0773361fa3c73b5d958f0930063450",
     "semantic_hash": ""
   },
   "assets/i18n/fr.json": {
-    "mtime": 1794509173.5238116,
+    "mtime": 1794513435.7098725,
     "ast_hash": "3a33a3aa1bcddcbfcb5c532382c3a7dc",
     "semantic_hash": ""
   },
   "assets/i18n/ru.json": {
-    "mtime": 1794509173.526811,
+    "mtime": 1794513435.7130096,
     "ast_hash": "013679467edd5a96b2cb888faa3f9723",
     "semantic_hash": ""
   },
@@ -70,7 +70,7 @@
     "semantic_hash": "96dd20bf4a73723415e8469cca39af25"
   },
   "ios/RunnerTests/RunnerTests.swift": {
-    "mtime": 1791145913.2598455,
+    "mtime": 1795649982.748875,
     "ast_hash": "14518092573028552f2edf1834221a66",
     "semantic_hash": ""
   },
@@ -120,12 +120,12 @@
     "semantic_hash": ""
   },
   "lib/main.dart": {
-    "mtime": 1794355472.712493,
-    "ast_hash": "8579f525fd2082b8e7f04e48886b13d1",
+    "mtime": 1795649982.751228,
+    "ast_hash": "19dcab681ec826d869a7610894848456",
     "semantic_hash": ""
   },
   "lib/models/app_settings.dart": {
-    "mtime": 1794509775.8001895,
+    "mtime": 1794513435.750032,
     "ast_hash": "66ed6122da9a1d067719348a071c2798",
     "semantic_hash": ""
   },
@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "lib/services/background_service.dart": {
-    "mtime": 1791145913.2748923,
-    "ast_hash": "4db58fd4aa1c11a99b6cd102da06cdbf",
+    "mtime": 1795649982.754246,
+    "ast_hash": "6b88639aedaf5f4f2d7a19ce6982b6d6",
     "semantic_hash": ""
   },
   "lib/services/beep_onset_detector.dart": {
@@ -255,7 +255,7 @@
     "semantic_hash": ""
   },
   "lib/services/settings_service.dart": {
-    "mtime": 1794509768.1585226,
+    "mtime": 1794513435.7533486,
     "ast_hash": "29ff525efee1bf69884eb3683a1b5495",
     "semantic_hash": ""
   },
@@ -355,8 +355,8 @@
     "semantic_hash": "269aa4105ec2ad2b0ce69d17d9f83a0d"
   },
   "CHANGELOG.md": {
-    "mtime": 1794355472.5744247,
-    "ast_hash": "b008b7aa481f12d1770f0358340aca97",
+    "mtime": 1795649981.6177714,
+    "ast_hash": "05fa1e4271406a6808d69900852066f8",
     "semantic_hash": ""
   },
   "JOIN_TESTING.md": {
@@ -365,8 +365,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1794509902.6999085,
-    "ast_hash": "4f5f92190ecaad2b3079b2e6d66d5640",
+    "mtime": 1795649981.6198027,
+    "ast_hash": "ca8d8be83e36f149ff6295a30149e812",
     "semantic_hash": ""
   },
   "agent-os/standards/index.yml": {
@@ -385,8 +385,8 @@
     "semantic_hash": "f7ee1b402881509d197f34963e569927"
   },
   "pubspec.yaml": {
-    "mtime": 1794355472.7175088,
-    "ast_hash": "11a9c18375cadbf0a861317dcf9f1da2",
+    "mtime": 1795649982.7562454,
+    "ast_hash": "deb7cc5c72234cef97aac35242e14752",
     "semantic_hash": ""
   },
   "android/app/src/main/res/mipmap-hdpi/ic_launcher.png": {
@@ -725,7 +725,7 @@
     "semantic_hash": ""
   },
   "test/settings_service_test.dart": {
-    "mtime": 1794509215.8115911,
+    "mtime": 1794513435.7558217,
     "ast_hash": "e744a66a069fb3917d7d1a5d019701fa",
     "semantic_hash": ""
   },
@@ -850,7 +850,7 @@
     "semantic_hash": ""
   },
   "lib/theme/app_theme.dart": {
-    "mtime": 1791145913.278932,
+    "mtime": 1795650904.118271,
     "ast_hash": "7ff3c7e3923565ea13c2a235973d08e1",
     "semantic_hash": ""
   },
@@ -1005,13 +1005,13 @@
     "semantic_hash": ""
   },
   "branding/store-listing/README.md": {
-    "mtime": 1793720629.107017,
-    "ast_hash": "729a7110461f0df410c8d1f355620b5e",
+    "mtime": 1795649981.6365297,
+    "ast_hash": "c5ebd7b0483a202da5eec10e41b3ece6",
     "semantic_hash": ""
   },
   "branding/store-listing/index.html": {
-    "mtime": 1793720629.1979325,
-    "ast_hash": "afd797767cae62934c86953b34cb67be",
+    "mtime": 1795649982.25587,
+    "ast_hash": "8cbfbcd0aa0a3719d1df624aa93ec000",
     "semantic_hash": ""
   },
   "brag-output/2026-09-24/brag.jpg": {
@@ -1350,13 +1350,13 @@
     "semantic_hash": ""
   },
   "website/src/screens.js": {
-    "mtime": 1793720629.6560862,
-    "ast_hash": "efb36a733add347acf4a5c81c98f3f12",
+    "mtime": 1795650414.184894,
+    "ast_hash": "2cd12e7431cf6815dedeb203d65bf604",
     "semantic_hash": ""
   },
   "website/vite.config.js": {
-    "mtime": 1792692393.9371107,
-    "ast_hash": "590cfadf23748d2e5439ca9812402c59",
+    "mtime": 1795650608.0691144,
+    "ast_hash": "7167e8f2f10e3fdb7c3bf1a3eb40be7e",
     "semantic_hash": ""
   },
   "website/404.html": {
@@ -1365,18 +1365,18 @@
     "semantic_hash": ""
   },
   "website/README.md": {
-    "mtime": 1793720629.6443193,
-    "ast_hash": "db8e23a5a8e0836645a7e18403002a05",
+    "mtime": 1795651276.8672426,
+    "ast_hash": "fc49afae8048da8bc7c1102be6ae6443",
     "semantic_hash": ""
   },
   "website/index.html": {
-    "mtime": 1793720629.6480808,
-    "ast_hash": "080ade5b6f52cf18fffbfc25fbc5a739",
+    "mtime": 1795650598.336103,
+    "ast_hash": "48bc83ff2c985170a0e78d9466abdeaa",
     "semantic_hash": ""
   },
   "website/og-image/index.html": {
-    "mtime": 1791855319.5340476,
-    "ast_hash": "7c841844494bfed3348d45b8a4164260",
+    "mtime": 1795650978.1548302,
+    "ast_hash": "d34a41cba3b76d956e7b979209ac14b4",
     "semantic_hash": ""
   },
   "website/public/robots.txt": {
@@ -1420,13 +1420,13 @@
     "semantic_hash": ""
   },
   "website/public/llms.txt": {
-    "mtime": 1793720629.6500857,
-    "ast_hash": "41b4b701134c901cfcf5153383742727",
+    "mtime": 1795651251.1696792,
+    "ast_hash": "b1719d72729e5c98b642a87856fba7f8",
     "semantic_hash": ""
   },
   "website/src/i18n.js": {
-    "mtime": 1793720629.6560862,
-    "ast_hash": "2e5dc65e993bdb1101ffc25ec14b7cfc",
+    "mtime": 1795651668.1229203,
+    "ast_hash": "9e8beb76cd49a458d7227470e2042904",
     "semantic_hash": ""
   },
   "website/changelog/index.html": {
@@ -1460,8 +1460,8 @@
     "semantic_hash": ""
   },
   "website/de/index.html": {
-    "mtime": 1793720629.647081,
-    "ast_hash": "c2b1bfab35177e953668a45c01dd068b",
+    "mtime": 1795650598.368822,
+    "ast_hash": "b8c3bb2474989825b89ca71945c39956",
     "semantic_hash": ""
   },
   "website/imprint/index.html": {
@@ -1500,17 +1500,17 @@
     "semantic_hash": ""
   },
   "assets/i18n/fi.json": {
-    "mtime": 1794509173.5248091,
+    "mtime": 1794513435.7098725,
     "ast_hash": "f9f16594012fb829c8c48601872c1efa",
     "semantic_hash": ""
   },
   "assets/i18n/pl.json": {
-    "mtime": 1794509173.525822,
+    "mtime": 1794513435.7113242,
     "ast_hash": "d99d6fe669e5f22598b3750f0a41f3d0",
     "semantic_hash": ""
   },
   "assets/i18n/pt.json": {
-    "mtime": 1794509173.525822,
+    "mtime": 1794513435.712185,
     "ast_hash": "f1243371c2efddb0874d33844d7bc288",
     "semantic_hash": ""
   },
@@ -1525,18 +1525,18 @@
     "semantic_hash": ""
   },
   "test/store_listing_test.dart": {
-    "mtime": 1793720629.63719,
-    "ast_hash": "ae9015e67bbb1b30ab5bee6279667277",
+    "mtime": 1795649982.762394,
+    "ast_hash": "c7cc560141f55bc5ffd3f7cec3cac2f3",
     "semantic_hash": ""
   },
   ".github/workflows/update-store-listings.yml": {
-    "mtime": 1792450944.0862496,
-    "ast_hash": "2a0862d7d76a0091d8d64fc5623b0fb2",
+    "mtime": 1795649981.6145475,
+    "ast_hash": "848ff85376d808b41d4c4a15b7f0306c",
     "semantic_hash": ""
   },
   "fastlane/metadata/README.md": {
-    "mtime": 1794355472.5858655,
-    "ast_hash": "e4e100fec6c9bdecf83364436035d6e5",
+    "mtime": 1795649982.2653995,
+    "ast_hash": "d0c511e42b23f9bc3b36da18d3efb1db",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/de-DE/full_description.txt": {
@@ -2000,13 +2000,13 @@
     "semantic_hash": ""
   },
   "branding/discovery/fdroid-merge-request.md": {
-    "mtime": 1792688633.960769,
-    "ast_hash": "ecd39058a51a55fe78b413c9944f16ae",
+    "mtime": 1795649981.631015,
+    "ast_hash": "5e3407155f8fd9dd09d0b90cd732e20c",
     "semantic_hash": ""
   },
   "branding/discovery/fdroid.md": {
-    "mtime": 1792688633.9617755,
-    "ast_hash": "ab11781f0ab549b1ab5bb268e42c4b8f",
+    "mtime": 1795649981.6330154,
+    "ast_hash": "8d59440bb56a9bfebed718dcdaeb4aeb",
     "semantic_hash": ""
   },
   "branding/discovery/wikidata.md": {
@@ -2025,43 +2025,43 @@
     "semantic_hash": ""
   },
   "website/de/ratgeber/app-oder-shot-timer/index.html": {
-    "mtime": 1792692393.9207776,
-    "ast_hash": "9a9fcb81f3815b7a535873f7f6a8af9b",
+    "mtime": 1795651251.1650448,
+    "ast_hash": "14c13c0c5f3ebdc99b7b7bc3c2f6a9c4",
     "semantic_hash": ""
   },
   "website/de/ratgeber/handy-als-shot-timer/index.html": {
-    "mtime": 1794355472.7215388,
-    "ast_hash": "3d2815f1356f82cf8426ec3596dbf130",
+    "mtime": 1795651251.1660583,
+    "ast_hash": "89ab96b44325564934a9cb77546f5511",
     "semantic_hash": ""
   },
   "website/de/ratgeber/index.html": {
-    "mtime": 1792692393.9213202,
-    "ast_hash": "88eb068473ff55aae404e641d09356bb",
+    "mtime": 1795652032.0099463,
+    "ast_hash": "79806cf83c7b693cc84699f8a962e982",
     "semantic_hash": ""
   },
   "website/de/ratgeber/par-drills-trockentraining/index.html": {
-    "mtime": 1792692393.925099,
-    "ast_hash": "da6943777b2b6b9ee8d86a714e0d103f",
+    "mtime": 1795651251.1650448,
+    "ast_hash": "a2d3cb802c3e669927cae09d1ad2b35a",
     "semantic_hash": ""
   },
   "website/guides/dry-fire-par-drills/index.html": {
-    "mtime": 1792692393.927098,
-    "ast_hash": "409c8dc46d155b510c2149474758df39",
+    "mtime": 1795651251.161667,
+    "ast_hash": "d9157ca9d5503d173cf59f80b6cd6f87",
     "semantic_hash": ""
   },
   "website/guides/index.html": {
-    "mtime": 1792692393.9291167,
-    "ast_hash": "80f0fa94dd12abffee6b3a15c93387ce",
+    "mtime": 1795652031.9987965,
+    "ast_hash": "072826e24853d69dad9f45c8adf88500",
     "semantic_hash": ""
   },
   "website/guides/phone-shot-timer/index.html": {
-    "mtime": 1794355472.7244744,
-    "ast_hash": "d63d4bbae4fcb228d344b7083f1b91a7",
+    "mtime": 1795651251.1660583,
+    "ast_hash": "3a1d3c0faaaba2ba4c885d468556fab1",
     "semantic_hash": ""
   },
   "website/guides/shot-timer-app-vs-dedicated-timer/index.html": {
-    "mtime": 1792692393.933111,
-    "ast_hash": "de6ef4528a662857cdcaace8c8f49ede",
+    "mtime": 1795651251.1626847,
+    "ast_hash": "84b074062bd2ee910c0697b365de24d5",
     "semantic_hash": ""
   },
   "fastlane/metadata/android/en-US/images/featureGraphic.png": {
@@ -2072,46 +2072,6 @@
   "fastlane/metadata/android/en-US/images/icon.png": {
     "mtime": 1792450944.1074343,
     "ast_hash": "bd4fcc209fdfa0c3432f99ddf98697e5",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/1.png": {
-    "mtime": 1793720629.205082,
-    "ast_hash": "efe9493ca9753f1f2b9ae9f883fc80bd",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/2.png": {
-    "mtime": 1793720629.2080915,
-    "ast_hash": "c8f4db8502b26f44a110485e8866427b",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/3.png": {
-    "mtime": 1793720629.2110958,
-    "ast_hash": "3473e566d5138a05d575e00408f6ec79",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/4.png": {
-    "mtime": 1793302571.8103504,
-    "ast_hash": "f845f67e1f477b5231cf35960e20c21a",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/5.png": {
-    "mtime": 1793720629.2140963,
-    "ast_hash": "09cc5f42d40a2f479c1c15a62f8ffdd3",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/6.png": {
-    "mtime": 1793720629.2181242,
-    "ast_hash": "3f978ba9f2b91f0dc03be46ca054e9ce",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/7.png": {
-    "mtime": 1793302571.88504,
-    "ast_hash": "74d85fa885497c880196c1682159ddb7",
-    "semantic_hash": ""
-  },
-  "fastlane/metadata/android/en-US/images/phoneScreenshots/8.png": {
-    "mtime": 1793720629.2211244,
-    "ast_hash": "3ed2684c1212dd8004466d2cf4208e2d",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipAudioChannel.kt": {
@@ -2185,23 +2145,23 @@
     "semantic_hash": ""
   },
   "website/de/ratgeber/kostenlose-shot-timer-apps/index.html": {
-    "mtime": 1792692393.9231198,
-    "ast_hash": "d7cbfe7c0559061c450d3c13c6765b09",
+    "mtime": 1795652031.9947925,
+    "ast_hash": "49206376f2173ee96507aefd90abd23c",
     "semantic_hash": ""
   },
   "website/de/ratgeber/par-timer-oder-shot-timer/index.html": {
-    "mtime": 1792692393.9256122,
-    "ast_hash": "40b401f6b22ffbc2c44975bc50c1a5e3",
+    "mtime": 1795651251.1674664,
+    "ast_hash": "20ec32c25b5f33be32fb473fc7574550",
     "semantic_hash": ""
   },
   "website/guides/free-shot-timer-apps/index.html": {
-    "mtime": 1792692393.928116,
-    "ast_hash": "244b0602791f680105a76fda0a04d515",
+    "mtime": 1795652031.9927871,
+    "ast_hash": "742f23230b2bee5f86bfb97e438475fb",
     "semantic_hash": ""
   },
   "website/guides/par-timer-vs-shot-timer/index.html": {
-    "mtime": 1792692393.9301083,
-    "ast_hash": "a0e6ae518a4b1979ad58c4e5e4dccb78",
+    "mtime": 1795651251.1670585,
+    "ast_hash": "28106202a46fecee39208645c407bc65",
     "semantic_hash": ""
   },
   "android/app/src/main/kotlin/cc/jami/simpleshottimer/ClipFilesChannel.kt": {
@@ -2220,12 +2180,12 @@
     "semantic_hash": ""
   },
   "lib/providers/video_providers.dart": {
-    "mtime": 1794509758.6358843,
+    "mtime": 1794513435.7504947,
     "ast_hash": "1cdfaaa3c6a633a5bc70d4aeef9e1607",
     "semantic_hash": ""
   },
   "lib/screens/video_editor_screen.dart": {
-    "mtime": 1794509743.148332,
+    "mtime": 1794513435.7512362,
     "ast_hash": "658de08bcc02463352e8cb1f8272634b",
     "semantic_hash": ""
   },
@@ -2465,7 +2425,7 @@
     "semantic_hash": ""
   },
   "lib/screens/video_export_sheet.dart": {
-    "mtime": 1794509726.6640966,
+    "mtime": 1794513435.752288,
     "ast_hash": "249a252d8418a59e8747dbd90c1b88e5",
     "semantic_hash": ""
   },
@@ -2480,7 +2440,7 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud.dart": {
-    "mtime": 1794511863.1429653,
+    "mtime": 1794513435.7533486,
     "ast_hash": "62ed00e57aad276852e9efa2e20c74fa",
     "semantic_hash": ""
   },
@@ -2510,18 +2470,18 @@
     "semantic_hash": ""
   },
   "test/hud_frames_test.dart": {
-    "mtime": 1794509278.7601006,
+    "mtime": 1794513435.7542937,
     "ast_hash": "91d5a70553d978177b21c683dddfd368",
     "semantic_hash": ""
   },
   "test/hud_test.dart": {
-    "mtime": 1794511829.3541582,
+    "mtime": 1794513435.75483,
     "ast_hash": "7b9bae81fd8b858dd8a30f6c9652d162",
     "semantic_hash": ""
   },
   "test/video_export_sheet_test.dart": {
-    "mtime": 1794509252.5183227,
-    "ast_hash": "6cc35a6f209023ea2e3ffb12cbe086d5",
+    "mtime": 1794513435.7575538,
+    "ast_hash": "30597c8d5bba29be1e408e420d1b8652",
     "semantic_hash": ""
   },
   "test/video_export_test.dart": {
@@ -2540,7 +2500,7 @@
     "semantic_hash": ""
   },
   "lib/services/video/hud_painter.dart": {
-    "mtime": 1793720629.6000223,
+    "mtime": 1795650904.1167655,
     "ast_hash": "9ecf1e17e3b555737f76c314fdced144",
     "semantic_hash": ""
   },
@@ -2550,7 +2510,7 @@
     "semantic_hash": ""
   },
   "test/video_editor_screen_test.dart": {
-    "mtime": 1794509278.7611177,
+    "mtime": 1794513435.7565477,
     "ast_hash": "19e5415a249e000d0469e24f5a728346",
     "semantic_hash": ""
   },
@@ -2585,7 +2545,7 @@
     "semantic_hash": ""
   },
   "ios/Runner/ClipExportChannel.swift": {
-    "mtime": 1793720629.568504,
+    "mtime": 1795649982.7476206,
     "ast_hash": "907771633c7fb02d62c1ac29d6e20b4e",
     "semantic_hash": ""
   },
@@ -2600,18 +2560,13 @@
     "semantic_hash": ""
   },
   "test/ios_project_test.dart": {
-    "mtime": 1793720629.6290834,
-    "ast_hash": "c3d1f474ada65173f9fb5497c99828b0",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/assets/video-editor-ios.jpg": {
-    "mtime": 1793720629.1944947,
-    "ast_hash": "7e40537f06d7db6bc407b282500cce22",
+    "mtime": 1795649982.7603955,
+    "ast_hash": "1ff836b9b1daceb9570bf7302b7a5dc1",
     "semantic_hash": ""
   },
   "branding/store-listing/assets/video-editor.jpg": {
-    "mtime": 1793720629.1969316,
-    "ast_hash": "fc9a79c2ab76c411f293ae674944e009",
+    "mtime": 1795649982.2518694,
+    "ast_hash": "de28e7b43c7c676b186d1b598aac49fe",
     "semantic_hash": ""
   },
   "website/public/screens/video-editor-de.webp": {
@@ -2665,58 +2620,13 @@
     "semantic_hash": ""
   },
   "branding/store-listing/app-store/creative/search-3840x2560.png": {
-    "mtime": 1793720629.1237152,
-    "ast_hash": "f3c9471334ef8493690b404d75eba29f",
+    "mtime": 1795649981.6775563,
+    "ast_hash": "000a6e51817f068dd0723b938e824b97",
     "semantic_hash": ""
   },
   "branding/store-listing/app-store/creative/universal-5244x2950.png": {
     "mtime": 1793720629.1322248,
     "ast_hash": "92f1aedb25f296e4e0d178b05094a280",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/01-ready.png": {
-    "mtime": 1793720629.1382368,
-    "ast_hash": "b2e043454fe13702e47c50fdea4aefc7",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/02-running.png": {
-    "mtime": 1793720629.1442614,
-    "ast_hash": "a5ac6212af64df6bff1bdd9e5768fdc4",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/03-total.png": {
-    "mtime": 1793720629.149788,
-    "ast_hash": "dbda02c04e421fa60b68882dc1546770",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/04-review.png": {
-    "mtime": 1793720629.1572154,
-    "ast_hash": "f65afc8a192645beb2e7b6f92922dd13",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/05-drills.png": {
-    "mtime": 1793720629.1634142,
-    "ast_hash": "6c5d64494ee33b8051db483767952b6c",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/06-settings.png": {
-    "mtime": 1793720629.1699204,
-    "ast_hash": "5e95c315078b50d1d78994067f88a39f",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/07-mic.png": {
-    "mtime": 1793720629.1758602,
-    "ast_hash": "d18b4d604f992fcbca21cdcc4d448503",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/08-history.png": {
-    "mtime": 1793720629.1835065,
-    "ast_hash": "7944e4077331837c5cb47c57f43455bd",
-    "semantic_hash": ""
-  },
-  "branding/store-listing/app-store/screenshots/09-video.png": {
-    "mtime": 1793720629.1915085,
-    "ast_hash": "438f760b3f51da724810c8a124f48746",
     "semantic_hash": ""
   },
   "branding/launch-video/brag.mp4": {
@@ -2992,6 +2902,841 @@
   "test/custom_drills_screen_test.dart": {
     "mtime": 1794355472.720543,
     "ast_hash": "a1ec0a54a27bbd23b68353d54afccb59",
+    "semantic_hash": ""
+  },
+  ".github/scripts/app_store_creative_assets.py": {
+    "mtime": 1795649981.6076665,
+    "ast_hash": "af3d92ea9208df78b8d4c3274486eeb0",
+    "semantic_hash": ""
+  },
+  ".github/scripts/check_icon_assets.py": {
+    "mtime": 1795649981.6096897,
+    "ast_hash": "6783c2b03aa776d9503eaff03258c671",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/creative/video/header/hyperframes.json": {
+    "mtime": 1795649981.6982217,
+    "ast_hash": "aba6bd00e6045b850d60367f3b4de91b",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/creative/video/prepare.sh": {
+    "mtime": 1795649981.7018802,
+    "ast_hash": "da395717bfcfc11f3cae0ac218547891",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/creative/video/search/hyperframes.json": {
+    "mtime": 1795649981.7028813,
+    "ast_hash": "aba6bd00e6045b850d60367f3b4de91b",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/preview/make-preview.sh": {
+    "mtime": 1795649981.7540438,
+    "ast_hash": "28d1e64f35daeaf500bc7c5bc4a0e13f",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/captions.js": {
+    "mtime": 1795649982.2538688,
+    "ast_hash": "bea76fe822ce4e431fac90916b2019de",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/render/editor_shot_test.dart": {
+    "mtime": 1795649982.2588725,
+    "ast_hash": "cbc1fbe3c0b9553eac0e19b7015a3403",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/render/render_all.sh": {
+    "mtime": 1795649982.2604022,
+    "ast_hash": "f3fb045827271e4ec7ef6580d5db9cd7",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/render/render_font.py": {
+    "mtime": 1795649982.2624006,
+    "ast_hash": "dcec525e88f9181822d789d1a408edd1",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/render/store_shots_test.dart": {
+    "mtime": 1795649982.2644,
+    "ast_hash": "86f43dda55da85ed35e6f3c1938e1d92",
+    "semantic_hash": ""
+  },
+  "integration_test/app_preview.dart": {
+    "mtime": 1795649982.7386246,
+    "ast_hash": "54018e85814bdfaedb80e36af241c07d",
+    "semantic_hash": ""
+  },
+  "ios/Runner/AppIcon.icon/icon.json": {
+    "mtime": 1795649982.7456217,
+    "ast_hash": "c69514c8d42974a5a08a5b90f578ccf8",
+    "semantic_hash": ""
+  },
+  "test/android_project_test.dart": {
+    "mtime": 1795649982.7583761,
+    "ast_hash": "a8818b2085eeaa2f7ce38cdb8905c5ce",
+    "semantic_hash": ""
+  },
+  ".github/workflows/app-preview.yml": {
+    "mtime": 1795649981.6106913,
+    "ast_hash": "1939027cde49788aa3182389eb6c7c04",
+    "semantic_hash": ""
+  },
+  ".github/workflows/ios-icon.yml": {
+    "mtime": 1795649981.6125364,
+    "ast_hash": "bd148146089635011cb64c8db36b967e",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/creative/video/header/index.html": {
+    "mtime": 1795649981.6999793,
+    "ast_hash": "fd738de91807b22ba517feb124365af3",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/creative/video/search/index.html": {
+    "mtime": 1795649981.703878,
+    "ast_hash": "c219812cf4b4a3f948b0b738659a1666",
+    "semantic_hash": ""
+  },
+  "website/de/ratgeber/was-ist-ein-shot-timer/index.html": {
+    "mtime": 1795652056.608996,
+    "ast_hash": "e5df85a7ca642ae2876ce5f31dd61c23",
+    "semantic_hash": ""
+  },
+  "website/guides/what-is-a-shot-timer/index.html": {
+    "mtime": 1795652031.9967875,
+    "ast_hash": "0cb2d5447958ed29e052cb177648e58a",
+    "semantic_hash": ""
+  },
+  "website/pl/index.html": {
+    "mtime": 1795652080.8654394,
+    "ast_hash": "e30f4438f4366af1ccc8cdfe09caccb4",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/01-running.jpg": {
+    "mtime": 1795649981.7618742,
+    "ast_hash": "4c5d414c2e5c857df9d47a862786c454",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/02-video.jpg": {
+    "mtime": 1795649981.768873,
+    "ast_hash": "11b6b8ff7431569566d68d0610a377ed",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/03-review.jpg": {
+    "mtime": 1795649981.7753918,
+    "ast_hash": "18487941bb2e63bda141bc5aa3f84468",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/04-total.jpg": {
+    "mtime": 1795649981.7809224,
+    "ast_hash": "0fc3539e7d7c0f509d45c91db9c6f5a4",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/05-drills.jpg": {
+    "mtime": 1795649981.7879472,
+    "ast_hash": "b9dbdb74206768fd6be6558635aa5273",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/06-settings.jpg": {
+    "mtime": 1795649981.7944832,
+    "ast_hash": "142ecab9d676918001d4ed7367e3bd76",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/07-history.jpg": {
+    "mtime": 1795649981.8014812,
+    "ast_hash": "bc344875867107f2eb156d73d4e18d97",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/08-mic.jpg": {
+    "mtime": 1795649981.808018,
+    "ast_hash": "bb64d35608fbb0eb9087ce42beeb5fe0",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/de-DE/09-ready.jpg": {
+    "mtime": 1795649981.8140147,
+    "ast_hash": "a4e51ba682d311b52fedc450a657b107",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/01-running.jpg": {
+    "mtime": 1795649981.8230195,
+    "ast_hash": "3258fa8da950efc6074f538c555b66dc",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/02-video.jpg": {
+    "mtime": 1795649981.8290365,
+    "ast_hash": "638774234c0a297301c14cb2643487f1",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/03-review.jpg": {
+    "mtime": 1795649981.8350365,
+    "ast_hash": "87087c6b2f4eab3c1d6c0b956b9adc26",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/04-total.jpg": {
+    "mtime": 1795649981.8415158,
+    "ast_hash": "7008bfe2dfc5b4bfc0db56172237b86c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/05-drills.jpg": {
+    "mtime": 1795649981.8501296,
+    "ast_hash": "c8447371d9ad5bdf5dbb602aade0164b",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/06-settings.jpg": {
+    "mtime": 1795649981.8578088,
+    "ast_hash": "9ae92ca776540a2f337c3c39c8e19ba8",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/07-history.jpg": {
+    "mtime": 1795649981.863823,
+    "ast_hash": "ec40b05cee3cf56405e2f208599be359",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/08-mic.jpg": {
+    "mtime": 1795649981.870826,
+    "ast_hash": "b12558bdd3e7a32cc160d4edfc295e41",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/en-US/09-ready.jpg": {
+    "mtime": 1795649981.8763652,
+    "ast_hash": "535945565bd783033d355153fe410708",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/01-running.jpg": {
+    "mtime": 1795649981.8833601,
+    "ast_hash": "b4f9fdfe91a78a222b32b7a435a31e07",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/02-video.jpg": {
+    "mtime": 1795649981.8903768,
+    "ast_hash": "86d4186fefd799de091191cefdf71e7d",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/03-review.jpg": {
+    "mtime": 1795649981.8987794,
+    "ast_hash": "9d69297bd29d816b68aff3ce02123dab",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/04-total.jpg": {
+    "mtime": 1795649981.9053373,
+    "ast_hash": "ed1ed23c2c4624bc3e1a3f651d5ca361",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/05-drills.jpg": {
+    "mtime": 1795649981.9119875,
+    "ast_hash": "5737b9e6c25c6c1ebcbb37a5358f2b1d",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/06-settings.jpg": {
+    "mtime": 1795649981.9200397,
+    "ast_hash": "5e3d6123ebe8238e652f46a864aec6cb",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/07-history.jpg": {
+    "mtime": 1795649981.9279685,
+    "ast_hash": "01b154388b1b13eba0bd4197d2063ffe",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/08-mic.jpg": {
+    "mtime": 1795649981.9369676,
+    "ast_hash": "3af3c00090193d09e435570f60924ab3",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/es-ES/09-ready.jpg": {
+    "mtime": 1795649981.943083,
+    "ast_hash": "bc755b8487d5e8ec6a7e9b4c687273dc",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/01-running.jpg": {
+    "mtime": 1795649981.9494283,
+    "ast_hash": "e2209154cf4cc17f6c30caeb473e7cb7",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/02-video.jpg": {
+    "mtime": 1795649981.9564323,
+    "ast_hash": "b3911aaa03b143c678b389e5f437a878",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/03-review.jpg": {
+    "mtime": 1795649981.963318,
+    "ast_hash": "58c2720649253395b811104979453411",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/04-total.jpg": {
+    "mtime": 1795649981.969876,
+    "ast_hash": "2a2537e1fef962986472b82eb8ac833f",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/05-drills.jpg": {
+    "mtime": 1795649981.976453,
+    "ast_hash": "163cbc3c652d75da5f60c6673c701871",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/06-settings.jpg": {
+    "mtime": 1795649981.9830675,
+    "ast_hash": "35c745bc6bc5eaf1125d8a668fab2ebe",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/07-history.jpg": {
+    "mtime": 1795649981.9880822,
+    "ast_hash": "e347a096876fc0d09feccb99612fbe84",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/08-mic.jpg": {
+    "mtime": 1795649981.996102,
+    "ast_hash": "a4c28710416a86cbc104eb0b68ddec94",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fi/09-ready.jpg": {
+    "mtime": 1795649982.0011077,
+    "ast_hash": "a16ac84f4648f9c1578bfc845f08cc8c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/01-running.jpg": {
+    "mtime": 1795649982.0071373,
+    "ast_hash": "bd0557ad90a573910b93dd5ac303b0b1",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/02-video.jpg": {
+    "mtime": 1795649982.0145164,
+    "ast_hash": "aa2ce2c19e6a0d5f692110045f7e7556",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/03-review.jpg": {
+    "mtime": 1795649982.020512,
+    "ast_hash": "16fcbe66f7cc12d4336b071d0972af85",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/04-total.jpg": {
+    "mtime": 1795649982.0265293,
+    "ast_hash": "ce38c2054aa20d9c3d15a6fa61350d01",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/05-drills.jpg": {
+    "mtime": 1795649982.033531,
+    "ast_hash": "4f5d3a5cd277f225125c55db3391361c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/06-settings.jpg": {
+    "mtime": 1795649982.0440753,
+    "ast_hash": "cd32255253520e85a0b616b67d08f8e6",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/07-history.jpg": {
+    "mtime": 1795649982.0500703,
+    "ast_hash": "a707e2e9693930945153de3234b892a7",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/08-mic.jpg": {
+    "mtime": 1795649982.0580983,
+    "ast_hash": "70da867ce62a78a2d932971d75c6e88e",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/fr-FR/09-ready.jpg": {
+    "mtime": 1795649982.0644403,
+    "ast_hash": "0f5f763d5a6d7b9501570ee62318a549",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/01-running.jpg": {
+    "mtime": 1795649982.0724423,
+    "ast_hash": "ce4f35262f340ca3e01d74732061a1ec",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/02-video.jpg": {
+    "mtime": 1795649982.07997,
+    "ast_hash": "02b4cc90f6aadcedf93ae608b6df82cb",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/03-review.jpg": {
+    "mtime": 1795649982.086982,
+    "ast_hash": "f5748efc2cd346abc4aa06ddbe1c84ac",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/04-total.jpg": {
+    "mtime": 1795649982.0939808,
+    "ast_hash": "c66341ca88f77972f5c814052794e31c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/05-drills.jpg": {
+    "mtime": 1795649982.1004977,
+    "ast_hash": "22e1f1ff5440f70723ca3e24df2ce410",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/06-settings.jpg": {
+    "mtime": 1795649982.107027,
+    "ast_hash": "cfc54596572d917d2335fbd429b5847d",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/07-history.jpg": {
+    "mtime": 1795649982.1130598,
+    "ast_hash": "53b91ab2ccf63c4a7490d2288eb11170",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/08-mic.jpg": {
+    "mtime": 1795649982.1200602,
+    "ast_hash": "73149fbf690cf5207b7444ae02d6846a",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pl/09-ready.jpg": {
+    "mtime": 1795649982.125579,
+    "ast_hash": "5ae89ba580fc6b2d3d78026eddd1b0eb",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/01-running.jpg": {
+    "mtime": 1795649982.1327684,
+    "ast_hash": "9f4496a069a194af9f3a33f5217b072c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/02-video.jpg": {
+    "mtime": 1795649982.1400516,
+    "ast_hash": "d62f5f6c8dddd8edb216d45f6a47123e",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/03-review.jpg": {
+    "mtime": 1795649982.1466124,
+    "ast_hash": "99fb47872800dac931f5d2a4feaa78f8",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/04-total.jpg": {
+    "mtime": 1795649982.1526117,
+    "ast_hash": "bb6cbd4fc5d02835474e98e3ee567f9f",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/05-drills.jpg": {
+    "mtime": 1795649982.1596358,
+    "ast_hash": "8aacc00b3a91dbd12d571d8ff6578edf",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/06-settings.jpg": {
+    "mtime": 1795649982.165066,
+    "ast_hash": "f9fda144b8849daf84e6f4fea03ad905",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/07-history.jpg": {
+    "mtime": 1795649982.171062,
+    "ast_hash": "8c195192c5115cf435babb55aceefcc6",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/08-mic.jpg": {
+    "mtime": 1795649982.1785862,
+    "ast_hash": "d7e23e68269357ae73aec415bc7d82a6",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/pt-BR/09-ready.jpg": {
+    "mtime": 1795649982.183983,
+    "ast_hash": "e0d890d7102cd61ef08a444e16d78c58",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/01-running.jpg": {
+    "mtime": 1795649982.193254,
+    "ast_hash": "5ce9435c3e8905756db31bf2e95e9a3f",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/02-video.jpg": {
+    "mtime": 1795649982.2002692,
+    "ast_hash": "80b561da1c01f6987b4999199398ac2c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/03-review.jpg": {
+    "mtime": 1795649982.2062695,
+    "ast_hash": "d4d12a5fc49c85e7b4ee12b9d05a5348",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/04-total.jpg": {
+    "mtime": 1795649982.2123218,
+    "ast_hash": "166a29e73b0737a10db20f08cd666a1c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/05-drills.jpg": {
+    "mtime": 1795649982.2193367,
+    "ast_hash": "699ef4b57374860c1bccea2173257113",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/06-settings.jpg": {
+    "mtime": 1795649982.2263308,
+    "ast_hash": "c88c19320e597c67e1fc4276ba9769dc",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/07-history.jpg": {
+    "mtime": 1795649982.2333386,
+    "ast_hash": "1fe849985c5eea348567bb0ae374365f",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/08-mic.jpg": {
+    "mtime": 1795649982.2403426,
+    "ast_hash": "cd67f0d303a1ff8c54082105a8b86611",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/screenshots/ru/09-ready.jpg": {
+    "mtime": 1795649982.2458663,
+    "ast_hash": "2f4420451ff28fe52578c62600ffa459",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.2714095,
+    "ast_hash": "3bb2a53d5ad3f14038c12b205a130ba4",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.2809255,
+    "ast_hash": "6653baddb281ab44a875bc586ab258e9",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.2872288,
+    "ast_hash": "38d5fd5c9b3375dcadbba870d1370047",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.293244,
+    "ast_hash": "d9e93c8492044c53c1901c1f8d61deb1",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.2985418,
+    "ast_hash": "7cf08268a2e7d1f314910695c08b4da5",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.305109,
+    "ast_hash": "7eaf646b8fd89a39608dbe7ad545bf03",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.3121302,
+    "ast_hash": "5d1a3fed29efbaa5caf7ff35082ec10d",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/de-DE/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.317661,
+    "ast_hash": "8575ab3fa1c6d14fcdf0f905f2c6e98f",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.3236637,
+    "ast_hash": "d39ee21b0e6a2739f4229c16b3b562e8",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.3311975,
+    "ast_hash": "dc240469db0b0e407feef27d3c561a16",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.3382096,
+    "ast_hash": "b1a8aba69d35fee4bbe98eba347c1f76",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.3442125,
+    "ast_hash": "733dc4782fce49e01194f2788647641b",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.3507311,
+    "ast_hash": "d9271e7bc4cf21b5dffe458741a7b682",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.356734,
+    "ast_hash": "25025bfbb92e41a324501aa119c3e402",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.3632517,
+    "ast_hash": "087568af4d6470e5173fed545848c464",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/en-US/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.3679233,
+    "ast_hash": "11d1affdd57b297a4b860e0cb4df157b",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.37494,
+    "ast_hash": "8cd87146b53c9d706407ba6493a2cbc7",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.3819382,
+    "ast_hash": "71ddc4ec047b9418d770ae872a7f63b0",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.3885758,
+    "ast_hash": "bd8415831d4f90bcea0ae62bafaefe6c",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.3946812,
+    "ast_hash": "f16d5e4a6cc8f532161ebe5bf4d230cb",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.4006836,
+    "ast_hash": "abfe3c6c7af256907afb88e43476e4bb",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.4076998,
+    "ast_hash": "d3bdb85387f30f5ff9f6dd5ed6af9d72",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.4136994,
+    "ast_hash": "57cec08bbea82b4eb850fac43668a4fd",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/es-ES/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.4198053,
+    "ast_hash": "9938eaa8ee4899d24884a8cf2e9b5c29",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.42599,
+    "ast_hash": "7dcdd00d14f1a895c097361565827d25",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.433988,
+    "ast_hash": "47b6f889b45bc3e33138c73df063e3b4",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.4405167,
+    "ast_hash": "eb78f3ee060516a8db3f75b38196a220",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.4465315,
+    "ast_hash": "b7d32337bb852e379e68a33a2c872b57",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.4528148,
+    "ast_hash": "83933c44df447e83e4df78d9fe2f011b",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.459813,
+    "ast_hash": "ad9903177d9633e8806057224cf91556",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.46534,
+    "ast_hash": "e53ab77260174bbdd235f076cce853f2",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fi-FI/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.471353,
+    "ast_hash": "f4bcefaec2bb82adc6b2d60571e90ca8",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.4783523,
+    "ast_hash": "9d81f3153bd297333892f0f326c30d4d",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.4858804,
+    "ast_hash": "3c7db571eb1ada8596b7e4c4dc021dd2",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.4928925,
+    "ast_hash": "48d891c7dda58d609be925d1e1cbac53",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.4988928,
+    "ast_hash": "40cfb46a25c386fbb49e2a0a34119cc2",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.505423,
+    "ast_hash": "7e8e2de053ceb8343620a6f45093ad8c",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.5116405,
+    "ast_hash": "6ab9a3637b54d5cbde67070d0f1d9342",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.5221665,
+    "ast_hash": "dc22f52c80ac26d7dd250ca524e8d4ee",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/fr-FR/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.5281682,
+    "ast_hash": "8dbe326441c8a96b25a690b6ffa3fce3",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.53471,
+    "ast_hash": "c17cee9dd173105588b51ab8b1a4cd0e",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.5427084,
+    "ast_hash": "f7b92ac89fdd2cf70c657998beb363c5",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.5493097,
+    "ast_hash": "2e08492cccd85bb836bb8ed0aa23d300",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.5552971,
+    "ast_hash": "ea9eee988c703eccefece17a3051d513",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.5620453,
+    "ast_hash": "a6c041567618446d9d1164211fa0fbdf",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.5690708,
+    "ast_hash": "421734c093bd5faaf8ef8ef80a38908d",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.57507,
+    "ast_hash": "9784157ac6f7eb31421849264e8651ff",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pl-PL/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.5811675,
+    "ast_hash": "861955afd216a5a24f9a740cb69afbf3",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.587265,
+    "ast_hash": "d92fe0facf1c759b129d1f1be83a26bf",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.5962656,
+    "ast_hash": "93801d462f5b19841b1b663a18fb2d22",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.603283,
+    "ast_hash": "37aa082397872a6a9bb797c96a28d5c8",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.6085145,
+    "ast_hash": "ecfe3cf7efee375fa83cf0720dab14bb",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.614516,
+    "ast_hash": "b1cb41919a096ea69e2842ae9ea92101",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.6210446,
+    "ast_hash": "4e9150723d1dedadd79dafb4495b2a3a",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.6305704,
+    "ast_hash": "de97765531a3637781d8d0b731874240",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/pt-BR/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.6375842,
+    "ast_hash": "7871a76453a5d24e64e9850aee0e6fcf",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/01-running.png": {
+    "mtime": 1795649982.6435833,
+    "ast_hash": "eaeacadb606738ad5ad530f082d0b7f1",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/02-video.png": {
+    "mtime": 1795649982.652112,
+    "ast_hash": "004cc6a7dd130a9551dd00e2f08e7927",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/03-review.png": {
+    "mtime": 1795649982.65812,
+    "ast_hash": "2cd56073bc1bf1c8fbcd31c5e6c16d50",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/04-total.png": {
+    "mtime": 1795649982.663587,
+    "ast_hash": "5f09614c424b6cefc0641faed09b62d9",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/05-drills.png": {
+    "mtime": 1795649982.6705992,
+    "ast_hash": "006960ee20a82d171f272d65357faff5",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/06-settings.png": {
+    "mtime": 1795649982.6770754,
+    "ast_hash": "6a463ba109d59a48feb56d83bf3bbc0b",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/07-history.png": {
+    "mtime": 1795649982.6830747,
+    "ast_hash": "ffef086f809ec7bfdde311524fdc1759",
+    "semantic_hash": ""
+  },
+  "fastlane/metadata/android/ru-RU/images/phoneScreenshots/08-ready.png": {
+    "mtime": 1795649982.68861,
+    "ast_hash": "c3bf93c5f7ce7b1182dea1163ad9b59e",
+    "semantic_hash": ""
+  },
+  "ios/Runner/AppIcon.icon/Assets/lines.svg": {
+    "mtime": 1795649982.7426229,
+    "ast_hash": "9eaf8c1628027ea929ea0608c4fe2b60",
+    "semantic_hash": ""
+  },
+  "ios/Runner/AppIcon.icon/Assets/ring.svg": {
+    "mtime": 1795649982.74362,
+    "ast_hash": "7316d255ad5b9be1cea0a7ad3ec92c2c",
+    "semantic_hash": ""
+  },
+  "website/public/app-store-badge-pl.svg": {
+    "mtime": 1795650444.7150779,
+    "ast_hash": "fd60a8628fef6feb54f14e29b479b6c0",
+    "semantic_hash": ""
+  },
+  "website/public/google-play-badge-pl.png": {
+    "mtime": 1795650435.1534305,
+    "ast_hash": "260674ee5671eb565d51a811faa205f5",
+    "semantic_hash": ""
+  },
+  "website/public/og-pl.png": {
+    "mtime": 1795650980.3591192,
+    "ast_hash": "f24aeb684257603b97079141a22e17cd",
+    "semantic_hash": ""
+  },
+  "website/public/screens/video-editor-pl.webp": {
+    "mtime": 1795650923.734276,
+    "ast_hash": "a5f47ead10ea279a3b9546d74e900b73",
+    "semantic_hash": ""
+  },
+  "website/public/screens/video-tab-pl.webp": {
+    "mtime": 1795650923.954816,
+    "ast_hash": "89b5495deb21d96527f20611a84a799c",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/creative/header.mp4": {
+    "mtime": 1795649981.654416,
+    "ast_hash": "327c77b810bab757d71ce90f130328b8",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/creative/search.mp4": {
+    "mtime": 1795649981.6935663,
+    "ast_hash": "b95c10c2a49460ad2949134f00b8b64d",
+    "semantic_hash": ""
+  },
+  "branding/store-listing/app-store/preview/app-preview-886x1920.mp4": {
+    "mtime": 1795649981.7520468,
+    "ast_hash": "c2ebcfc26f9705e2f895963fc8d0cadf",
     "semantic_hash": ""
   }
 }

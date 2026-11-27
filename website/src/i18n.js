@@ -3,10 +3,12 @@
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
 // Strings for the text that scripts put on the page: the recreated app screens
-// and the demo's hints. App strings are copied from assets/i18n/{en,de}.json so
-// the phones read like the real app in each language.
-export const LANG = document.documentElement.lang.startsWith('de') ? 'de' : 'en';
-export const LOCALE = LANG === 'de' ? 'de-DE' : 'en-US';
+// and the demo's hints. App strings are copied from assets/i18n/{en,de,pl}.json
+// so the phones read like the real app in each language.
+const LOCALES = { en: 'en-US', de: 'de-DE', pl: 'pl-PL' };
+const pageLang = document.documentElement.lang.slice(0, 2);
+export const LANG = pageLang in LOCALES ? pageLang : 'en';
+export const LOCALE = LOCALES[LANG];
 
 const STRINGS = {
   en: {
@@ -112,6 +114,55 @@ const STRINGS = {
     'demo.shotOne': '1 Schuss', 'demo.shotMany': '{count} Schüsse',
     'demo.videoTab': 'Der Tab Video: Wähle ein Video von einem Durchgang, die App findet den Beep und jeden Schuss.',
   },
+  pl: {
+    'nav.timer': 'Timer', 'nav.drills': 'Ćwiczenia', 'nav.video': 'Wideo', 'nav.history': 'Historia', 'nav.settings': 'Ustawienia',
+    'home.ready': 'Gotowy',
+    'home.pressStartToBegin': 'Naciśnij START, aby rozpocząć',
+    'home.standBy': 'STAND BY',
+    'home.time': 'CZAS', 'home.last': 'OSTATNIA', 'home.total': 'ŁĄCZNIE',
+    'home.noShotsDetected': 'Nie wykryto strzałów',
+    'home.noShotsHint': 'Nic nie zapisano. Dostosuj czułość lub dodaj strzał ręcznie.',
+    'home.lastString': 'Ostatnia {seconds}s · strzały: {count}',
+    'home.lastStringOne': 'Ostatnia {seconds}s · 1 strzał',
+    'home.review': 'Analizuj', 'home.addShot': 'Dodaj strzał',
+    'home.savedAt': 'Zapisano {time}',
+    'home.stat.shots': 'STRZAŁY', 'home.stat.first': 'PIERWSZY', 'home.stat.split': 'SPLIT',
+    'home.start': 'START', 'home.stop': 'STOP',
+    'home.modeChip': 'Tryb: {mode}',
+    'home.delayInstant': 'Start natychmiastowy',
+    'home.delayFixed': 'Stałe opóźnienie {seconds}s',
+    'home.delayRandom': 'Losowe opóźnienie',
+    'mode.standard': 'Standard', 'mode.par': 'Par', 'mode.stage': 'Stage',
+    'delay.instant': 'Natychmiast', 'delay.fixed': 'Stałe', 'delay.random': 'Losowe',
+    'history.title': 'Historia',
+    'history.itemFallback': '{seconds}s · strzały: {count}',
+    'history.itemFallbackOne': '{seconds}s · 1 strzał',
+    'review.title': 'Analiza', 'review.label': 'Etykieta', 'review.notes': 'Notatki',
+    'review.penalty': 'Kara: {seconds}s',
+    'review.shotsHeader': 'Strzały ({count})',
+    'review.add': 'Dodaj',
+    'review.splitFirst': 'pierwszy', 'review.splitOther': 'split {seconds}s',
+    'review.headerLine': '{drill} · {delay} (opóźnienie {seconds}s)',
+    'review.summary.total': 'ŁĄCZNIE', 'review.summary.first': 'PIERWSZY', 'review.summary.fastest': 'NAJSZYBSZY',
+    'review.summary.slowest': 'NAJWOLNIEJSZY', 'review.summary.average': 'ŚREDNIA', 'review.summary.shots': 'STRZAŁY',
+    'drills.manageTitle': 'Zapisane ćwiczenia',
+    'drills.appliedSnack': 'Zastosowano „{name}”',
+    'settings.title': 'Ustawienia',
+    'settings.section.drillMode': 'Tryb', 'settings.section.startDelay': 'Opóźnienie startu', 'settings.section.beep': 'Sygnał',
+    'settings.randomMin': 'Losowe min.', 'settings.randomMax': 'Losowe maks.',
+    'settings.volume': 'Głośność', 'settings.visualFlash': 'Błysk ekranu przy sygnale', 'settings.hapticOnBeep': 'Wibracja przy sygnale',
+    'demo.startLabel': 'Uruchom timer', 'demo.stopLabel': 'Zatrzymaj timer', 'demo.backLabel': 'Wstecz',
+    'demo.standby': 'Stand by… czekaj na sygnał.',
+    'demo.go': 'Padają strzały. Patrz na splity.',
+    'demo.cancelled': 'Anulowano. Naciśnij <b>START</b>, kiedy zechcesz.',
+    'demo.noShots': 'Zatrzymano przed pierwszym strzałem. Naciśnij <b>START</b>, aby powtórzyć serię.',
+    'demo.done': '{shots}, czas {total} s. Naciśnij <b>Analizuj</b>, aby zobaczyć każdy split, albo <b>START</b>, aby zacząć od nowa.',
+    'demo.review': 'Każdy strzał ze swoim splitem. Strzałką u góry wrócisz do timera.',
+    'demo.again': 'Naciśnij <b>START</b>, aby zacząć od nowa.',
+    'demo.addShotSnack': 'W aplikacji możesz wpisać strzał, którego mikrofon nie wychwycił.',
+    'demo.shotOne': '1 strzał', 'demo.shotMany': 'Strzały: {count}',
+    'demo.videoTab': 'Karta Wideo: wybierz wideo z serią, a aplikacja znajdzie sygnał i każdy strzał.',
+  },
 };
 
 /** The string for `key` in the page language, with {placeholders} filled in. */
@@ -120,10 +171,10 @@ export function t(key, vars = {}) {
   return s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m));
 }
 
-/** "Oct 1, 2026 9:41 AM" / "1. Okt. 2026 09:41", like the app's history and review. */
+/** "Oct 1, 2026 9:41 AM" / "1. Okt. 2026 09:41" / "1 paź 2026 09:41", like the app's history and review. */
 export function dateTime(d) {
   const date = d.toLocaleDateString(LOCALE, { month: 'short', day: 'numeric', year: 'numeric' });
   return `${date} ${clockTime(d)}`;
 }
-export const clockTime = (d) => d.toLocaleTimeString(LOCALE, { hour: LANG === 'de' ? '2-digit' : 'numeric', minute: '2-digit' });
+export const clockTime = (d) => d.toLocaleTimeString(LOCALE, { hour: LANG === 'en' ? 'numeric' : '2-digit', minute: '2-digit' });
 export const number = (n) => Math.round(n).toLocaleString(LOCALE);

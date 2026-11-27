@@ -1,6 +1,7 @@
 # simpleshottimer.com
 
-The homepage for Simple Shot Timer, in English and German: a static site built with
+The homepage for Simple Shot Timer, in English and German, with a Polish homepage: a
+static site built with
 [Vite](https://vite.dev) and animated with [Anime.js](https://animejs.com) 4. Netlify
 builds and deploys it through its GitHub integration, configured in `../netlify.toml`.
 
@@ -27,13 +28,14 @@ npm run preview   # serves dist/
 
 | English | German | Source |
 | --- | --- | --- |
-| `/` | `/de/` | `index.html`, `de/index.html` |
+| `/` | `/de/` | `index.html`, `de/index.html`; in Polish at `/pl/` (`pl/index.html`) |
 | `/guides/` | `/de/ratgeber/` | index of the guides |
+| `/guides/what-is-a-shot-timer/` | `/de/ratgeber/was-ist-ein-shot-timer/` | guide: what a shot timer is, how it works, what the numbers mean |
 | `/guides/phone-shot-timer/` | `/de/ratgeber/handy-als-shot-timer/` | guide: setting up a phone as a shot timer |
 | `/guides/dry-fire-par-drills/` | `/de/ratgeber/par-drills-trockentraining/` | guide: dry-fire safety, par times, five drills |
 | `/guides/shot-timer-app-vs-dedicated-timer/` | `/de/ratgeber/app-oder-shot-timer/` | guide: app or dedicated timer, compared honestly, and which timer to buy |
 | `/guides/par-timer-vs-shot-timer/` | `/de/ratgeber/par-timer-oder-shot-timer/` | guide: what a par timer does, what a shot timer adds |
-| `/guides/free-shot-timer-apps/` | `/de/ratgeber/kostenlose-shot-timer-apps/` | guide: free shot timer apps compared (store listings, dated) |
+| `/guides/free-shot-timer-apps/` | `/de/ratgeber/kostenlose-shot-timer-apps/` | guide: best shot timer apps compared, free and paid (store listings, dated; the URLs keep their first name) |
 | `/changelog/` | `/de/changelog/` | built from the repository's `CHANGELOG.md` |
 | `/privacy/` (app) | `/de/datenschutz/` | the app's privacy policy |
 | `/privacy/website/` | `/de/datenschutz/website/` | the website's privacy policy |
@@ -44,6 +46,9 @@ npm run preview   # serves dist/
 Store and everything else to the homepage, the same way
 jami-it.de/apps/simpleshottimer/ does. It is `noindex` and not in the sitemap.
 
+Polish has the homepage only (`/pl/`). Its navigation, footer and FAQ link to the
+English guides, changelog and legal pages, marked "(EN)" and with `hreflang="en"`.
+
 The German privacy policies and imprint are the legally binding versions. Unknown
 paths get `404.html`, or `de/404.html` under `/de/` (see `public/_redirects`).
 
@@ -51,18 +56,18 @@ paths get `404.html`, or `de/404.html` under `/de/` (see `public/_redirects`).
 
 ```
 website/
-├── index.html, de/index.html   # the homepages: copy, SEO tags, demo and section markup
+├── index.html, de/index.html, pl/index.html   # the homepages: copy, SEO tags, demo and section markup
 ├── guides/, changelog/, privacy/, imprint/, de/...   # the other pages (see the table above)
 ├── 404.html, de/404.html
 ├── build/                # runs at build time, not in the browser
-│   ├── site.js           # page list, nav + footer + hreflang for both languages, sitemap
+│   ├── site.js           # page list, nav + footer + hreflang for every language, sitemap
 │   ├── changelog.js      # CHANGELOG.md -> changelog pages (same rewrite as the Play notes)
 │   ├── sprite.html       # the icon sprite the homepages use
 │   └── llms-full.txt     # template for /llms-full.txt (the changelog is filled in)
 ├── src/
 │   ├── main.js           # homepage script: demo and motion
 │   ├── guide.js          # guide pages: highlights the section being read
-│   ├── i18n.js           # EN/DE strings for the phones and the demo hints
+│   ├── i18n.js           # EN/DE/PL strings for the phones and the demo hints
 │   ├── demo.js           # the playable hero timer (Web Audio beep, simulated string)
 │   ├── screens.js        # app screens as HTML strings
 │   ├── motion.js         # all Anime.js motion: intro, reveals, sticky story, bento, FAQ
@@ -71,14 +76,17 @@ website/
 │                         # they @import the bundled fonts
 ├── public/               # copied as-is: _headers, _redirects, icons, og images,
 │                         # robots.txt, llms.txt, and screens/: renders of the real
-│                         # video editor and Video tab (EN, DE), see below
-└── og-image/index.html   # source of public/og.png and og-de.png (not part of the build)
+│                         # video editor and Video tab (EN, DE, PL), see below
+└── og-image/index.html   # source of public/og.png, og-de.png and og-pl.png (not part of the build)
 ```
 
 The video screens (the story's sixth step and the demo's Video tab) are not HTML:
 they show a range video, so `public/screens/*.webp` are renders of the app's own
 screens in each language, made with widget tests like the store screenshots (see
-`branding/store-listing/README.md`). Re-render them when those screens change.
+`branding/store-listing/README.md`). Re-render them when those screens change. The
+editor is `editor_shot_test.dart` with `PLATFORM=android AT_MS=15060 ZOOM=1`; the Video
+tab is the app on that tab at the same size, cropped above the tab bar (1170x2259).
+Both are saved as WebP at quality 80.
 
 Every page loads its stylesheets with `<link rel="stylesheet">` in the `<head>`, never
 from JavaScript: a stylesheet imported from JS arrives after the first paint, which
@@ -88,13 +96,14 @@ attributes, so they stay small even before CSS applies.
 Pages hold `<!--site:...-->` placeholders (`nav`, `footer`, `alternates`, `sprite`,
 `changelog`, `faq-jsonld`) that the plugin in `vite.config.js` fills in from `build/`. So the
 navigation, the language switch, the footer and the canonical/hreflang links are
-written once for both languages. The homepages' FAQPage JSON-LD is built from their
+written once for every language. The homepages' FAQPage JSON-LD is built from their
 own `<details>` FAQ, so editing a question or answer updates the structured data too.
 The build fails if a placeholder is left unfilled, in the pages and in `llms-full.txt`.
 
 ### Adding a page
 
-1. Add the English/German URL pair to `PAGES` in `build/site.js`.
+1. Add the English/German URL pair to `PAGES` in `build/site.js` (and a `pl` URL if the
+   page gets a Polish version; a page without one is linked in English from `/pl/`).
 2. Create both `index.html` files (copy `imprint/index.html` and
    `de/impressum/index.html`). The page joins the build, the sitemap and the language
    switch automatically.
@@ -182,14 +191,16 @@ in a PR comment. The `ignore` rule skips builds for commits that change neither
 
 ## Maintenance notes
 
-- **Copy in two languages**: homepage text lives in `index.html` and `de/index.html`;
-  text that scripts write (the phones, the demo hints) lives in `src/i18n.js`, whose
-  app strings are copied from `assets/i18n/en.json` and `de.json`. Change both
-  languages together.
+- **Copy in three languages**: homepage text lives in `index.html`, `de/index.html` and
+  `pl/index.html`; text that scripts write (the phones, the demo hints) lives in
+  `src/i18n.js`, whose app strings are copied from `assets/i18n/en.json`, `de.json` and
+  `pl.json`. Change all languages together. The Polish copy uses the words of the
+  Polish store listing (`fastlane/metadata/android/pl-PL/`) and has not been checked by
+  a native speaker.
 - **Security headers** live in `public/_headers`. The CSP allows the one inline script
-  in both homepages by its SHA-256 hash. If you change that line, recompute the hash:
+  in the homepages by its SHA-256 hash. If you change that line, recompute the hash:
   `printf "%s" "document.documentElement.classList.add('js')" | openssl dgst -sha256 -binary | openssl base64`
-- **Store links**: the Google Play and App Store links appear in both homepages (the
+- **Store links**: the Google Play and App Store links appear in the homepages (the
   hero and `#download` badges, the FAQ), in the footer (`build/site.js`, which also
   holds the trademark notices), in `public/download/redirect.js` and in both llms files.
   Change them everywhere together. The badges are the official artwork from Google and
@@ -200,9 +211,9 @@ in a PR comment. The `ignore` rule skips builds for commits that change neither
   `ffmpeg -i in.png -vf crop=W:H:X:Y out.png` with the box of the visible art.
   Which platforms the app runs on is said once in the hero's checklist ("iPhone &
   Android"), not in a separate label.
-- **Link preview images**: `public/og.png` and `public/og-de.png` are screenshots of
+- **Link preview images**: `public/og.png`, `public/og-de.png` and `public/og-pl.png` are screenshots of
   `#og` in `og-image/index.html` at 1200x630. Run `npm run dev`, open
-  `http://localhost:5173/og-image/` (add `?lang=de` for the German one), and capture
+  `http://localhost:5173/og-image/` (add `?lang=de` or `?lang=pl` for the others), and capture
   `#og` at CSS scale 1 (for example with Playwright:
   `page.locator('#og').screenshot({ path: 'public/og.png' })`).
 - **App screens**: after a UI change in the app, update `src/screens.js` (and the
