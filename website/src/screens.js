@@ -105,7 +105,7 @@ export function reviewStats(shots) {
 export const headerLine = (delayMs) =>
   t('review.headerLine', { drill: t('mode.standard'), delay: t('delay.random'), seconds: sec(delayMs) });
 
-const SAMPLE_LABEL = { en: 'El Presidente dry run', de: 'El Presidente trocken' }[LANG];
+const SAMPLE_LABEL = { en: 'El Presidente dry run', de: 'El Presidente trocken', pl: 'El Presidente na sucho' }[LANG];
 
 export const reviewBody = ({ date = dateTime(SAMPLE_NOW), head = headerLine(1580), label = SAMPLE_LABEL, shots = SAMPLE_SHOTS } = {}) => {
   const s = reviewStats(shots);
@@ -134,11 +134,12 @@ export const reviewPage = (opts, { back = false, scroll = false } = {}) => `
   </div>`;
 
 const randomDelay = t('home.delayRandom');
+const DRAW_DRILL = { en: 'Draw drill', de: 'Ziehen', pl: 'Dobycie broni' }[LANG];
 const DRILLS = [
   ['El Presidente', `${modeChip('standard')} · ${randomDelay}`],
   ['Bill Drill', `${modeChip('standard')} · ${t('home.delayFixed', { seconds: '2.0' })}`],
-  [{ en: 'Draw drill', de: 'Ziehen' }[LANG], `${modeChip('par')} · ${randomDelay} · Par 1.5s × 5`],
-  [{ en: 'Stage warm-up', de: 'Stage aufwärmen' }[LANG], `${modeChip('stage')} · ${randomDelay} · Stage 60s`],
+  [DRAW_DRILL, `${modeChip('par')} · ${randomDelay} · Par 1.5s × 5`],
+  [{ en: 'Stage warm-up', de: 'Stage aufwärmen', pl: 'Rozgrzewka przed torem' }[LANG], `${modeChip('stage')} · ${randomDelay} · Stage 60s`],
   ['Dot torture', `${modeChip('standard')} · ${t('home.delayInstant')}`],
 ];
 
@@ -152,11 +153,11 @@ export const drillsTab = (on = 1) => `
 const shotsTitle = (ms, count) => t(count === 1 ? 'history.itemFallbackOne' : 'history.itemFallback', { seconds: sec(ms), count });
 const HISTORY = [
   [SAMPLE_LABEL, minutesAgo(0), t('mode.standard'), 2370],
-  [{ en: 'Bill Drill, cold', de: 'Bill Drill, kalt' }[LANG], minutesAgo(5), t('mode.standard'), 1840],
+  [{ en: 'Bill Drill, cold', de: 'Bill Drill, kalt', pl: 'Bill Drill, na zimno' }[LANG], minutesAgo(5), t('mode.standard'), 1840],
   [shotsTitle(4120, 6), minutesAgo(15 * 60 + 29), 'Par 2.0s ×5 /5.0s', 4120],
-  [{ en: 'Stage 1 walk-through', de: 'Stage 1 Durchgang' }[LANG], minutesAgo(15 * 60 + 43), 'Stage 60.0s', 48200],
+  [{ en: 'Stage 1 walk-through', de: 'Stage 1 Durchgang', pl: 'Tor 1, zapoznanie' }[LANG], minutesAgo(15 * 60 + 43), 'Stage 60.0s', 48200],
   [shotsTitle(2610, 5), minutesAgo(62 * 60 + 36), t('mode.standard'), 2610],
-  [{ en: 'Draw drill', de: 'Ziehen' }[LANG], minutesAgo(62 * 60 + 49), 'Par 1.5s ×5 /5.0s', 1380],
+  [DRAW_DRILL, minutesAgo(62 * 60 + 49), 'Par 1.5s ×5 /5.0s', 1380],
   [shotsTitle(2880, 5), minutesAgo(95 * 60 + 27), t('mode.standard'), 2880],
 ].map(([title, date, config, ms]) => [title, `${dateTime(date)} · ${config}`, `${sec(ms)}s`]);
 

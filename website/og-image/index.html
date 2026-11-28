@@ -1,7 +1,8 @@
 <!doctype html>
 <!-- Source of public/og.png (1200x630), the link preview image. Not part of
      the site build. To re-export: serve the website/ folder over http, open
-     /og-image/ (or /og-image/?lang=de for public/og-de.png), and screenshot #og
+     /og-image/ (or /og-image/?lang=de for public/og-de.png, ?lang=pl for
+     public/og-pl.png), and screenshot #og
      at CSS scale 1 (see website/README.md). -->
 <html lang="en">
 <head>
@@ -20,6 +21,8 @@
   .og-brand { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 650; letter-spacing: -0.02em; }
   .og-brand svg { width: 40px; height: 40px; color: #fff; }
   .og-title { margin-top: 36px; font-size: 96px; line-height: 0.94; letter-spacing: -0.036em; font-weight: 700; }
+  /* The Polish slogan is longer: smaller, so it still takes two lines. */
+  :lang(pl) .og-title { font-size: 76px; }
   .og-sub { margin-top: 26px; font-size: 28px; line-height: 1.3; letter-spacing: -0.02em; color: #a1a1a6; }
   .og-sub b { color: #fee036; font-weight: 600; }
   .og-phone { position: absolute; left: 760px; top: 52px; }
@@ -43,34 +46,34 @@
   <div class="og-glow"></div>
   <div class="og-copy">
     <div class="og-brand"><svg><use href="#mark"/></svg>Simple Shot Timer</div>
-    <div class="og-title" data-de="Beep. Ziehen.<br>Split.">Beep. Draw.<br>Split.</div>
-    <p class="og-sub" data-de="Die kostenlose<br>Open-Source-Shot-Timer-App.<br><b>Keine Werbung. Kein Datentracking.</b>">The free and open-source<br>shot timer app.<br><b>No ads. No data tracking.</b></p>
+    <div class="og-title" data-de="Beep. Ziehen.<br>Split." data-pl="Sygnał. Dobycie.<br>Split.">Beep. Draw.<br>Split.</div>
+    <p class="og-sub" data-de="Die kostenlose<br>Open-Source-Shot-Timer-App.<br><b>Keine Werbung. Kein Datentracking.</b>" data-pl="Darmowy timer strzelecki<br>open source.<br><b>Bez reklam. Bez śledzenia.</b>">The free and open-source<br>shot timer app.<br><b>No ads. No data tracking.</b></p>
   </div>
   <div class="og-phone">
     <div class="phone"><div class="phone-screen"><div class="app">
       <div class="status"><span class="clock">9:41</span><span class="dots"><span></span><span></span></span></div>
       <div class="shell">
         <div class="tab"><div class="tarea"><div class="tv">
-          <div class="fin-centre"><div class="big-label" data-de="GESAMT">TOTAL</div><div class="big-num">2.37</div></div>
+          <div class="fin-centre"><div class="big-label" data-de="GESAMT" data-pl="ŁĄCZNIE">TOTAL</div><div class="big-num">2.37</div></div>
           <div class="fin-bottom">
             <div class="stats">
-              <div class="stat"><span class="l" data-de="SCHÜSSE">SHOTS</span><span class="v">5</span></div>
-              <div class="stat"><span class="l" data-de="ERSTER">FIRST</span><span class="v">1.42</span></div>
+              <div class="stat"><span class="l" data-de="SCHÜSSE" data-pl="STRZAŁY">SHOTS</span><span class="v">5</span></div>
+              <div class="stat"><span class="l" data-de="ERSTER" data-pl="PIERWSZY">FIRST</span><span class="v">1.42</span></div>
               <div class="stat"><span class="l">SPLIT</span><span class="v">0.22s</span></div>
             </div>
             <div class="obtns">
-              <div class="obtn"><svg class="i"><use href="#i-list"/></svg><span data-de="Auswerten">Review</span></div>
-              <div class="obtn"><svg class="i"><use href="#i-add"/></svg><span data-de="Schuss hinzufügen">Add shot</span></div>
+              <div class="obtn"><svg class="i"><use href="#i-list"/></svg><span data-de="Auswerten" data-pl="Analizuj">Review</span></div>
+              <div class="obtn"><svg class="i"><use href="#i-add"/></svg><span data-de="Schuss hinzufügen" data-pl="Dodaj strzał">Add shot</span></div>
             </div>
-            <div class="saved" data-de="Gespeichert 09:41">Saved 9:41 AM</div>
+            <div class="saved" data-de="Gespeichert 09:41" data-pl="Zapisano 09:41">Saved 9:41 AM</div>
           </div>
         </div></div>
         <div class="bigbtn"><svg class="i"><use href="#i-play"/></svg>START</div></div>
         <div class="navbar">
           <div class="dest on"><span class="pill"></span><svg class="i ic-o"><use href="#i-timer"/></svg><svg class="i ic-f"><use href="#i-timer"/></svg><span class="lbl">Timer</span></div>
-          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-bookmarks-o"/></svg><span class="lbl">Drills</span></div>
-          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-history"/></svg><span class="lbl" data-de="Verlauf">History</span></div>
-          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-settings-o"/></svg><span class="lbl" data-de="Einstellungen">Settings</span></div>
+          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-bookmarks-o"/></svg><span class="lbl" data-pl="Ćwiczenia">Drills</span></div>
+          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-history"/></svg><span class="lbl" data-de="Verlauf" data-pl="Historia">History</span></div>
+          <div class="dest"><span class="pill"></span><svg class="i ic-o"><use href="#i-settings-o"/></svg><span class="lbl" data-de="Einstellungen" data-pl="Ustawienia">Settings</span></div>
         </div>
       </div>
     </div></div></div>
@@ -80,10 +83,11 @@
 <script type="module">
   import { drawHalftone } from '/src/halftone.js';
   const c = document.querySelector('#og canvas');
-  // ?lang=de renders public/og-de.png.
-  if (new URLSearchParams(location.search).get('lang') === 'de') {
-    document.documentElement.lang = 'de';
-    document.querySelectorAll('[data-de]').forEach((el) => { el.innerHTML = el.dataset.de; });
+  // ?lang=de renders public/og-de.png, ?lang=pl public/og-pl.png.
+  const lang = new URLSearchParams(location.search).get('lang');
+  if (lang === 'de' || lang === 'pl') {
+    document.documentElement.lang = lang;
+    document.querySelectorAll(`[data-${lang}]`).forEach((el) => { el.innerHTML = el.dataset[lang]; });
   }
   await document.fonts.ready;
   drawHalftone(c, 0.5);

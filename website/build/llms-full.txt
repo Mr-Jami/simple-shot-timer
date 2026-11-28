@@ -11,6 +11,7 @@ App privacy policy: https://simpleshottimer.com/privacy/ (German, legally bindin
 Website privacy policy: https://simpleshottimer.com/privacy/website/
 Imprint: https://simpleshottimer.com/imprint/
 German version of this site: https://simpleshottimer.com/de/
+Polish homepage: https://simpleshottimer.com/pl/
 Founder and maintainer: Tareq Jami (Jami IT), Hamburg, Germany
 
 ## At a glance
@@ -81,6 +82,10 @@ Your strings stay on your phone.
 
 Yes, Simple Shot Timer is free on iPhone and Android, with no ads, no subscriptions and no in-app purchases. It's open source under GPLv3, and there is no account to create.
 
+### What is a shot timer?
+
+A shot timer, also called a shooting timer, gives a start beep and then listens: it hears each shot and records its time, so you see your first shot, every split and your total. What is a shot timer and how does it work? (https://simpleshottimer.com/guides/what-is-a-shot-timer/) explains the numbers.
+
 ### Can I use my phone as a shot timer?
 
 Yes. With a shot timer app, your phone gives the start beep, hears your shots through the microphone and shows every split. Tune the detection once for each range, keep the mic uncovered, and turn on the screen flash if the beep is hard to hear through ear protection. How to use your phone as a shot timer (https://simpleshottimer.com/guides/phone-shot-timer/) walks you through it.
@@ -123,11 +128,12 @@ Yes. Export a single string or your whole history as CSV through the share sheet
 
 ## Guides
 
+- What is a shot timer and how does it work?: a shot timer (also called a shooting timer) gives a start beep, hears each shot through its microphone and records its time from the beep. How the start delay, the beep and sound-threshold detection work; what first shot, splits, total and par time mean, with a worked five-shot example; who uses shot timers (IPSC, USPSA, IDPA, Steel Challenge, training); dedicated device or app; and what a timer can't tell you (hits, whose shot, dry-fire clicks). https://simpleshottimer.com/guides/what-is-a-shot-timer/
 - How to use your phone as a shot timer: microphone permission, Auto-configure and the mic test, the frequency band filter, where to put the phone, hearing the beep through ear protection (screen flash, vibration), Bluetooth speakers and the latency offset for earbuds, busy ranges, saved drills, history and CSV. https://simpleshottimer.com/guides/phone-shot-timer/
 - Dry-fire par drills with par times: dry-fire safety rules, how par time training works and how to pick a par, and five classic drills (draw to first shot, ready to first shot, reload, target transitions, strong hand and weak hand only) with starting par times and Par mode settings. https://simpleshottimer.com/guides/dry-fire-par-drills/
 - Shot timer app or dedicated shot timer?: an honest comparison of beep loudness, microphone and fast splits, neighbouring bays, battery, price and history, when a dedicated timer is worth buying, and which one to buy (CED7000 GEN-2, PACT Club Timer III, Competition Electronics ProTimer and ProTimer BT, AMG Lab Commander, Shooters Global SG Timer GO and SG Timer 2). https://simpleshottimer.com/guides/shot-timer-app-vs-dedicated-timer/
 - Par timer vs. shot timer: what's the difference?: a par timer gives a start beep and a par beep and doesn't listen; a shot timer hears your shots and records every split. A par timer is enough for dry fire; on the range, shot detection shows where the time went. Simple Shot Timer does both. https://simpleshottimer.com/guides/par-timer-vs-shot-timer/
-- Free shot timer apps compared: eight free and freemium shot timer and par timer apps for iPhone and Android (Simple Shot Timer, ShootOnTime: Par Timer, Par Timer Pro, IPSC Shot Timer, PlinkPal, Shot Timer – Range Trainer, Range Buddy, Shot Timer – Measure & Improve), compared on whether they hear your shots, platforms, price, Google Play's ads label and the stores' privacy labels, from the store listings on 22 October 2026. https://simpleshottimer.com/guides/free-shot-timer-apps/
+- Best shot timer apps compared: free and paid: fourteen shot timer and par timer apps for iPhone and Android, compared on whether they hear your shots, platforms, price, Google Play's ads label and the stores' privacy labels, from the US store listings on 26 November 2026. Free: Simple Shot Timer, ShootOnTime: Par Timer, Better Shot Timer, Standby: IPSC Shot Timer, IPSC Shot Timer. Free with purchases: Shot Timer – Measure & Improve, Shot Timer – Range Trainer, Par Timer Pro, PlinkPal, Range Buddy. Paid ($2.99 to $8.99): Airsoft Shot Timer, ShotTimer Pro – Shooting Timer, ShotTimer: Splits & Par Time, Dry Fire Timer & Par Drills. The page does not rank them. https://simpleshottimer.com/guides/free-shot-timer-apps/
 
 All guides are also in German: https://simpleshottimer.com/de/ratgeber/
 

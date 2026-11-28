@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Tareq Jami (Jami IT)
 // Additional terms under GPLv3 section 7 apply; see NOTICE.
 
-// Build-time page chrome shared by every page and both languages: navigation
+// Build-time page chrome shared by every page and every language: navigation
 // with the language switch, footer, canonical + hreflang links, and the icon
 // sprite. Pages hold <!--site:...--> placeholders that vite.config.js fills in.
 import { readFileSync } from 'node:fs';
@@ -13,10 +13,17 @@ const PLAY = 'https://play.google.com/store/apps/details?id=cc.jami.simpleshotti
 const APP_STORE = 'https://apps.apple.com/app/simple-shot-timer/id6819042653';
 const REPO = 'https://github.com/Mr-Jami/simple-shot-timer';
 
-/** Every page in both languages. The English URL is also x-default. */
+/** The site's languages, with the name each one goes by in the language switch. */
+const LANGS = { en: 'English', de: 'Deutsch', pl: 'Polski' };
+
+/**
+ * Every page in each language it exists in. All pages have English and German;
+ * only the homepage has Polish. The English URL is also x-default.
+ */
 export const PAGES = [
-  { en: '/', de: '/de/' },
+  { en: '/', de: '/de/', pl: '/pl/' },
   { en: '/guides/', de: '/de/ratgeber/' },
+  { en: '/guides/what-is-a-shot-timer/', de: '/de/ratgeber/was-ist-ein-shot-timer/' },
   { en: '/guides/phone-shot-timer/', de: '/de/ratgeber/handy-als-shot-timer/' },
   { en: '/guides/dry-fire-par-drills/', de: '/de/ratgeber/par-drills-trockentraining/' },
   { en: '/guides/shot-timer-app-vs-dedicated-timer/', de: '/de/ratgeber/app-oder-shot-timer/' },
@@ -28,7 +35,18 @@ export const PAGES = [
   { en: '/imprint/', de: '/de/impressum/' },
 ];
 
-const link = (key, lang) => PAGES.find((p) => p.en === key)[lang];
+/** The URLs of one PAGES entry, as [lang, url] in the order of LANGS. */
+const versions = (pair) => Object.keys(LANGS).filter((l) => pair[l]).map((l) => [l, pair[l]]);
+/** Every URL of the site. */
+export const allUrls = () => PAGES.flatMap((p) => versions(p).map(([, url]) => url));
+
+/** The page `key` (its English URL) in `lang`, or in English where it has no such version. */
+const link = (key, lang) => {
+  const pair = PAGES.find((p) => p.en === key);
+  return pair[lang] ?? pair.en;
+};
+/** Marks a link that leaves the page's language for the English version. */
+const foreign = (key, lang) => (PAGES.find((p) => p.en === key)[lang] ? '' : ' hreflang="en"');
 
 const T = {
   en: {
@@ -38,7 +56,6 @@ const T = {
     faq: 'FAQ',
     guides: 'Guides',
     getApp: 'Get the app',
-    switchLabel: 'Deutsch',
     tagline: 'The free and open-source shot timer app. Made in Hamburg by',
     jamiIt: 'https://jami-it.de/en/',
     app: 'App',
@@ -62,7 +79,6 @@ const T = {
     faq: 'FAQ',
     guides: 'Ratgeber',
     getApp: 'App laden',
-    switchLabel: 'English',
     tagline: 'Die kostenlose Open-Source-Shot-Timer-App. Gemacht in Hamburg von',
     jamiIt: 'https://jami-it.de/',
     app: 'App',
@@ -79,6 +95,30 @@ const T = {
     trademark: 'Google Play und das Google Play-Logo sind Marken von Google LLC. Apple und das Apple-Logo sind Marken der Apple Inc., die in den USA und weiteren Ländern eingetragen sind. App Store ist eine Dienstleistungsmarke der Apple Inc.',
     footerLabel: 'Fußzeile',
   },
+  // Polish has the homepage only: guides, changelog and legal pages link to English.
+  pl: {
+    navLabel: 'Menu główne',
+    features: 'Funkcje',
+    privacy: 'Prywatność',
+    faq: 'FAQ',
+    guides: 'Poradniki (EN)',
+    getApp: 'Pobierz',
+    tagline: 'Darmowy timer strzelecki open source. Stworzony w Hamburgu przez',
+    jamiIt: 'https://jami-it.de/en/',
+    app: 'Aplikacja',
+    changelog: 'Co nowego (EN)',
+    project: 'Projekt',
+    source: 'Kod źródłowy',
+    bug: 'Zgłoś błąd',
+    license: 'Licencja (GPLv3)',
+    legal: 'Informacje prawne',
+    appPrivacy: 'Polityka prywatności aplikacji (EN)',
+    sitePrivacy: 'Polityka prywatności strony (EN)',
+    imprint: 'Nota prawna (EN)',
+    version: 'Wersja',
+    trademark: 'Google Play i logo Google Play są znakami towarowymi firmy Google LLC. Apple i logo Apple są znakami towarowymi firmy Apple Inc., zastrzeżonymi w Stanach Zjednoczonych i innych krajach. App Store jest znakiem usługowym firmy Apple Inc.',
+    footerLabel: 'Stopka',
+  },
 };
 
 // Inline so the chrome needs no sprite (only the homepages carry one).
@@ -86,18 +126,20 @@ const MARK = '<svg class="mark" viewBox="103 91 320 320" width="26" height="26" 
 
 /** The page entry for a URL path, or null for pages outside the registry (404). */
 export function pageFor(path) {
-  for (const p of PAGES) {
-    if (p.en === path) return { lang: 'en', self: p.en, other: p.de, pair: p };
-    if (p.de === path) return { lang: 'de', self: p.de, other: p.en, pair: p };
+  for (const pair of PAGES) {
+    const found = versions(pair).find(([, url]) => url === path);
+    if (found) return { lang: found[0], self: path, pair };
   }
   return null;
 }
 
+/** The language the nav's switch leads to: German from English, English from the rest. */
+const switchLang = (page) => (page.lang === 'en' ? 'de' : 'en');
+
 export function alternates(page) {
   return [
     `<link rel="canonical" href="${ORIGIN}${page.self}">`,
-    `<link rel="alternate" hreflang="en" href="${ORIGIN}${page.pair.en}">`,
-    `<link rel="alternate" hreflang="de" href="${ORIGIN}${page.pair.de}">`,
+    ...versions(page.pair).map(([lang, url]) => `<link rel="alternate" hreflang="${lang}" href="${ORIGIN}${url}">`),
     `<link rel="alternate" hreflang="x-default" href="${ORIGIN}${page.pair.en}">`,
   ].join('\n  ');
 }
@@ -105,7 +147,7 @@ export function alternates(page) {
 export function nav(page, { intro = false } = {}) {
   const t = T[page.lang];
   const home = link('/', page.lang);
-  const other = page.lang === 'en' ? 'de' : 'en';
+  const other = switchLang(page);
   return `<header class="nav"${intro ? ' data-intro' : ''}>
   <nav class="nav-bar" aria-label="${t.navLabel}">
     <a class="nav-brand" href="${home}">${MARK}<span>Simple Shot Timer</span></a>
@@ -113,9 +155,9 @@ export function nav(page, { intro = false } = {}) {
       <li><a href="${home}#features">${t.features}</a></li>
       <li><a href="${home}#privacy">${t.privacy}</a></li>
       <li><a href="${home}#faq">${t.faq}</a></li>
-      <li class="nav-wide"><a href="${link('/guides/', page.lang)}">${t.guides}</a></li>
+      <li class="nav-wide"><a href="${link('/guides/', page.lang)}"${foreign('/guides/', page.lang)}>${t.guides}</a></li>
     </ul>
-    <a class="nav-lang" href="${page.other}" hreflang="${other}" lang="${other}" title="${t.switchLabel}">${other.toUpperCase()}<span class="sr-only"> (${t.switchLabel})</span></a>
+    <a class="nav-lang" href="${page.pair[other]}" hreflang="${other}" lang="${other}" title="${LANGS[other]}">${other.toUpperCase()}<span class="sr-only"> (${LANGS[other]})</span></a>
     <a class="btn btn-yellow btn-sm" href="${home}#download">${t.getApp}</a>
   </nav>
 </header>`;
@@ -125,8 +167,11 @@ export function footer(page, version) {
   const t = T[page.lang];
   const l = (key) => link(key, page.lang);
   const cur = (href) => (href === page.self ? ' aria-current="page"' : '');
-  const item = (href, label, ext = false) => `<li><a href="${href}"${ext ? ' rel="noopener"' : cur(href)}>${label}</a></li>`;
-  const other = page.lang === 'en' ? 'de' : 'en';
+  const ext = (href, label) => `<li><a href="${href}" rel="noopener">${label}</a></li>`;
+  const item = (key, label) => `<li><a href="${l(key)}"${cur(l(key))}${foreign(key, page.lang)}>${label}</a></li>`;
+  // Every other language this page exists in.
+  const others = versions(page.pair).filter(([lang]) => lang !== page.lang)
+    .map(([lang, url]) => `<a class="footer-lang" href="${url}" hreflang="${lang}" lang="${lang}">${LANGS[lang]}</a>`);
   return `<footer class="footer">
   <div class="wrap footer-grid">
     <div class="footer-brand">
@@ -137,33 +182,33 @@ export function footer(page, version) {
       <div>
         <h2>${t.app}</h2>
         <ul>
-          ${item(PLAY, 'Google Play', true)}
-          ${item(APP_STORE, 'App Store', true)}
-          ${item(l('/guides/'), t.guides)}
-          ${item(l('/changelog/'), t.changelog)}
+          ${ext(PLAY, 'Google Play')}
+          ${ext(APP_STORE, 'App Store')}
+          ${item('/guides/', t.guides)}
+          ${item('/changelog/', t.changelog)}
         </ul>
       </div>
       <div>
         <h2>${t.project}</h2>
         <ul>
-          ${item(REPO, t.source, true)}
-          ${item(`${REPO}/issues`, t.bug, true)}
-          ${item(`${REPO}/blob/main/LICENSE`, t.license, true)}
+          ${ext(REPO, t.source)}
+          ${ext(`${REPO}/issues`, t.bug)}
+          ${ext(`${REPO}/blob/main/LICENSE`, t.license)}
         </ul>
       </div>
       <div>
         <h2>${t.legal}</h2>
         <ul>
-          ${item(l('/privacy/'), t.appPrivacy)}
-          ${item(l('/privacy/website/'), t.sitePrivacy)}
-          ${item(l('/imprint/'), t.imprint)}
+          ${item('/privacy/', t.appPrivacy)}
+          ${item('/privacy/website/', t.sitePrivacy)}
+          ${item('/imprint/', t.imprint)}
         </ul>
       </div>
     </nav>
   </div>
   <div class="wrap footer-base">
     <p>© 2026 Tareq Jami · Jami IT · ${t.version} ${version}</p>
-    <p><a class="footer-lang" href="${page.other}" hreflang="${other}" lang="${other}">${t.switchLabel}</a></p>
+    <p>${others.join(' · ')}</p>
     <p>${t.trademark}</p>
   </div>
 </footer>`;
@@ -218,12 +263,11 @@ export function sprite(root) {
   return spriteCache;
 }
 
-/** sitemap.xml: every page with its other-language twin. */
+/** sitemap.xml: every page with its versions in the other languages. */
 export function sitemap(lastmod = {}) {
-  const urls = PAGES.flatMap((p) => [p.en, p.de].map((self) => `  <url>
+  const urls = PAGES.flatMap((p) => versions(p).map(([, self]) => `  <url>
     <loc>${ORIGIN}${self}</loc>${lastmod[p.en] ? `\n    <lastmod>${lastmod[p.en]}</lastmod>` : ''}
-    <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN}${p.en}"/>
-    <xhtml:link rel="alternate" hreflang="de" href="${ORIGIN}${p.de}"/>
+${versions(p).map(([lang, url]) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${ORIGIN}${url}"/>`).join('\n')}
     <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${p.en}"/>
   </url>`));
   return `<?xml version="1.0" encoding="UTF-8"?>

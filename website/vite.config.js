@@ -4,7 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
-import { PAGES, pageFor, alternates, nav, footer, sprite, sitemap, faqJsonLd } from './build/site.js';
+import { allUrls, pageFor, alternates, nav, footer, sprite, sitemap, faqJsonLd } from './build/site.js';
 import { parseChangelog, renderChangelog, renderChangelogText } from './build/changelog.js';
 
 const root = import.meta.dirname;
@@ -46,7 +46,9 @@ function siteChrome() {
             .replaceAll('<!--site:nav intro-->', nav(page, { intro: true }))
             .replaceAll('<!--site:nav-->', nav(page))
             .replaceAll('<!--site:footer-->', footer(page, version))
-            .replaceAll('<!--site:changelog-->', renderChangelog(all, page.lang));
+            // A function, so the changelog is only rendered for the pages that show it
+            // (it has English and German headings only).
+            .replaceAll('<!--site:changelog-->', () => renderChangelog(all, page.lang));
           if (out.includes('<!--site:faq-jsonld-->')) {
             // A function, so `$` sequences in the answers aren't read as replacement patterns.
             out = out.replace('<!--site:faq-jsonld-->', () => faqJsonLd(out, page));
@@ -84,7 +86,7 @@ function siteChrome() {
 }
 
 const input = Object.fromEntries([
-  ...PAGES.flatMap((p) => [p.en, p.de]).map((url) => [url.replace(/^\/|\/$/g, '').replaceAll('/', '-') || 'index', resolve(root, `.${url}index.html`)]),
+  ...allUrls().map((url) => [url.replace(/^\/|\/$/g, '').replaceAll('/', '-') || 'index', resolve(root, `.${url}index.html`)]),
   ['404', resolve(root, '404.html')],
   ['de-404', resolve(root, 'de/404.html')],
 ]);
