@@ -13,7 +13,7 @@ const PLAY = 'https://play.google.com/store/apps/details?id=cc.jami.simpleshotti
 const APP_STORE = 'https://apps.apple.com/app/simple-shot-timer/id6819042653';
 const REPO = 'https://github.com/Mr-Jami/simple-shot-timer';
 
-/** The site's languages, with the name each one goes by in the language switch. */
+/** The site's languages, in menu order, with the name each one goes by in its own language. */
 const LANGS = { en: 'English', de: 'Deutsch', pl: 'Polski' };
 
 /**
@@ -56,6 +56,7 @@ const T = {
     faq: 'FAQ',
     guides: 'Guides',
     getApp: 'Get the app',
+    language: 'Language',
     tagline: 'The free and open-source shot timer app. Made in Hamburg by',
     jamiIt: 'https://jami-it.de/en/',
     app: 'App',
@@ -79,6 +80,7 @@ const T = {
     faq: 'FAQ',
     guides: 'Ratgeber',
     getApp: 'App laden',
+    language: 'Sprache',
     tagline: 'Die kostenlose Open-Source-Shot-Timer-App. Gemacht in Hamburg von',
     jamiIt: 'https://jami-it.de/',
     app: 'App',
@@ -103,6 +105,7 @@ const T = {
     faq: 'FAQ',
     guides: 'Poradniki (EN)',
     getApp: 'Pobierz',
+    language: 'Język',
     tagline: 'Darmowy timer strzelecki open source. Stworzony w Hamburgu przez',
     jamiIt: 'https://jami-it.de/en/',
     app: 'Aplikacja',
@@ -133,8 +136,23 @@ export function pageFor(path) {
   return null;
 }
 
-/** The language the nav's switch leads to: German from English, English from the rest. */
-const switchLang = (page) => (page.lang === 'en' ? 'de' : 'en');
+const CHEVRON = '<svg class="nav-lang-chev" viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M2.5 4 5 6.5 7.5 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const CHECK = '<svg class="lang-check" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/**
+ * The language button and its menu, a popover: it needs no script and closes on
+ * Escape or a tap outside. Every language is listed, each leading to this page
+ * in that language, or to that language's homepage where the page has none.
+ */
+function langMenu(page) {
+  const t = T[page.lang];
+  const items = Object.entries(LANGS).map(([lang, name]) => {
+    const current = lang === page.lang;
+    return `<li><a href="${page.pair[lang] ?? link('/', lang)}" hreflang="${lang}" lang="${lang}"${current ? ' aria-current="page"' : ''}>${name}${current ? CHECK : ''}</a></li>`;
+  });
+  return `<button class="nav-lang" type="button" popovertarget="lang-menu" title="${t.language}">${page.lang.toUpperCase()}${CHEVRON}<span class="sr-only"> (${t.language}: ${LANGS[page.lang]})</span></button>
+    <div class="lang-menu" id="lang-menu" popover><ul>${items.join('')}</ul></div>`;
+}
 
 export function alternates(page) {
   return [
@@ -147,7 +165,6 @@ export function alternates(page) {
 export function nav(page, { intro = false } = {}) {
   const t = T[page.lang];
   const home = link('/', page.lang);
-  const other = switchLang(page);
   return `<header class="nav"${intro ? ' data-intro' : ''}>
   <nav class="nav-bar" aria-label="${t.navLabel}">
     <a class="nav-brand" href="${home}">${MARK}<span>Simple Shot Timer</span></a>
@@ -157,7 +174,7 @@ export function nav(page, { intro = false } = {}) {
       <li><a href="${home}#faq">${t.faq}</a></li>
       <li class="nav-wide"><a href="${link('/guides/', page.lang)}"${foreign('/guides/', page.lang)}>${t.guides}</a></li>
     </ul>
-    <a class="nav-lang" href="${page.pair[other]}" hreflang="${other}" lang="${other}" title="${LANGS[other]}">${other.toUpperCase()}<span class="sr-only"> (${LANGS[other]})</span></a>
+    ${langMenu(page)}
     <a class="btn btn-yellow btn-sm" href="${home}#download">${t.getApp}</a>
   </nav>
 </header>`;

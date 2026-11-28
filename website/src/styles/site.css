@@ -540,14 +540,51 @@ button { font: inherit; color: inherit; }
 /* ===== Language switch, shared chrome ===== */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .nav-lang {
-  margin-left: auto; display: inline-flex; align-items: center; justify-content: center; height: 32px; min-width: 40px; padding: 0 10px;
-  border-radius: 999px; color: rgba(255, 255, 255, 0.82); font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.06em; text-decoration: none;
+  margin-left: auto; display: inline-flex; align-items: center; justify-content: center; gap: 3px; height: 32px; min-width: 40px; padding: 0 8px 0 11px;
+  border: 0; border-radius: 999px; background: transparent; cursor: pointer; anchor-name: --nav-lang;
+  color: rgba(255, 255, 255, 0.82); font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.06em;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22); transition: color 160ms ease, background-color 160ms ease, transform 100ms ease-out;
 }
 .nav-lang:active { transform: scale(0.94); }
 .nav-lang:hover { color: var(--text); background: rgba(255, 255, 255, 0.08); }
-.nav-bar > .nav-lang + .btn { margin-left: 8px; }
+.nav-lang-chev { flex: none; transition: transform 200ms ease; }
+.nav-bar:has(.lang-menu:popover-open) .nav-lang { color: var(--text); background: rgba(255, 255, 255, 0.08); }
+.nav-bar:has(.lang-menu:popover-open) .nav-lang-chev { transform: rotate(180deg); }
+.nav-bar > .nav-lang ~ .btn { margin-left: 8px; }
 @media (min-width: 760px) { .nav-lang { margin-left: 4px; } }
+
+/* The language menu (a popover from build/site.js). It drops from the bar,
+   under the button where anchor positioning works, else under the bar's end. */
+.lang-menu {
+  position: fixed; inset: auto; top: calc(12px + 52px + 8px); right: max(12px, calc((100% - 1080px) / 2)); margin: 0;
+  min-width: 176px; padding: 6px; border: 0; border-radius: 20px; color: var(--text);
+  background: var(--glass); -webkit-backdrop-filter: blur(24px) saturate(140%); backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 18px 40px -16px rgba(0, 0, 0, 0.7);
+  transform-origin: top right;
+  transition: opacity 160ms ease-out, transform 160ms ease-out, overlay 160ms allow-discrete, display 160ms allow-discrete;
+}
+@supports (anchor-name: --a) { .lang-menu { right: anchor(--nav-lang right); } }
+.lang-menu:not(:popover-open) { opacity: 0; transform: translateY(-4px) scale(0.98); }
+@starting-style { .lang-menu:popover-open { opacity: 0; transform: translateY(-4px) scale(0.98); } }
+/* Without popover support (Safari before 17) the button would do nothing and
+   the menu would sit open in the bar, so both go; the footer still links the
+   other languages. */
+@supports not selector(:popover-open) {
+  .nav-lang, .lang-menu { display: none; }
+  @media (max-width: 759px) { .nav-bar > .nav-lang ~ a.btn { margin-left: auto; } }
+}
+.lang-menu ul { display: grid; gap: 2px; }
+.lang-menu a {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 11px 12px 11px 14px; border-radius: 14px;
+  color: rgba(255, 255, 255, 0.82); font-size: 0.9375rem; font-weight: 500; text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+.lang-menu a:hover { color: var(--text); background: rgba(255, 255, 255, 0.08); }
+.lang-menu a[aria-current] { color: var(--text); }
+.lang-check { flex: none; color: var(--yellow); }
+@media (prefers-reduced-motion: reduce) { .lang-menu, .nav-lang-chev { transition: none; } }
+@media (prefers-reduced-transparency: reduce) { .lang-menu { background: #161618; -webkit-backdrop-filter: none; backdrop-filter: none; } }
+@media (prefers-contrast: more) { .lang-menu { background: #000; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: inset 0 0 0 1px #fff; } }
 .nav-brand { min-width: 0; padding-block: 9px; }
 .nav-brand .mark { flex: none; }
 .nav-brand span { overflow: hidden; text-overflow: ellipsis; }
@@ -555,7 +592,9 @@ button { font: inherit; color: inherit; }
   .nav-bar { gap: 8px; padding: 0 6px 0 14px; }
   .nav-brand { gap: 8px; font-size: 0.9375rem; }
   .nav-bar .btn-sm { padding: 0 12px; font-size: 0.875rem; }
-  .nav-lang { min-width: 34px; padding: 0 7px; }
+  /* Tighter, so "Simple Shot Timer" still fits beside "Get the app" at 390px. */
+  .nav-lang { min-width: 34px; gap: 2px; padding: 0 5px 0 8px; }
+  .nav-bar > .nav-lang ~ .btn { margin-left: 4px; }
 }
 .footer-lang { color: var(--text-2); text-underline-offset: 3px; }
 .footer-cols a[aria-current="page"] { color: var(--text); }

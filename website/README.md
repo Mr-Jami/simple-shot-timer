@@ -96,8 +96,11 @@ attributes, so they stay small even before CSS applies.
 
 Pages hold `<!--site:...-->` placeholders (`nav`, `footer`, `alternates`, `sprite`,
 `changelog`, `faq-jsonld`) that the plugin in `vite.config.js` fills in from `build/`. So the
-navigation, the language switch, the footer and the canonical/hreflang links are
-written once for every language. The homepages' FAQPage JSON-LD is built from their
+navigation, the language menu, the footer and the canonical/hreflang links are
+written once for every language. The language menu lists every language on every
+page; where a page has no version in a language, that entry leads to its homepage.
+It is a `popover`, so it works without JavaScript; browsers without popover support
+(Safari before 17) don't show it and use the footer's language links. The homepages' FAQPage JSON-LD is built from their
 own `<details>` FAQ, so editing a question or answer updates the structured data too.
 The build fails if a placeholder is left unfilled, in the pages and in `llms-full.txt`.
 
@@ -109,7 +112,7 @@ The build fails if a placeholder is left unfilled, in the pages and in `llms-ful
    written by hand in `pl/index.html`.
 2. Create both `index.html` files (copy `imprint/index.html` and
    `de/impressum/index.html`). The page joins the build, the sitemap and the language
-   switch automatically.
+   menu automatically.
 3. If the footer should link to it, add it to `footer()` in `build/site.js`.
 
 ### Guides
