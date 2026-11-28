@@ -47,8 +47,8 @@ Store and everything else to the homepage, the same way
 jami-it.de/apps/simpleshottimer/ does. It is `noindex` and not in the sitemap.
 
 Polish has the homepage only (`/pl/`). Its navigation, footer and FAQ link to the
-English guides, changelog and legal pages, all with `hreflang="en"`. The navigation and
-footer mark them "(EN)"; links inside the text say "(po angielsku)".
+English guides, changelog and legal pages, all with `hreflang="en"`. The navigation,
+footer and buttons mark them "(EN)"; links inside sentences say "(po angielsku)".
 
 The German privacy policies and imprint are the legally binding versions. Unknown
 paths get `404.html`, or `de/404.html` under `/de/` (see `public/_redirects`).
