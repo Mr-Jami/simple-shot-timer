@@ -47,7 +47,8 @@ Store and everything else to the homepage, the same way
 jami-it.de/apps/simpleshottimer/ does. It is `noindex` and not in the sitemap.
 
 Polish has the homepage only (`/pl/`). Its navigation, footer and FAQ link to the
-English guides, changelog and legal pages, marked "(EN)" and with `hreflang="en"`.
+English guides, changelog and legal pages, all with `hreflang="en"`. The navigation and
+footer mark them "(EN)"; links inside the text say "(po angielsku)".
 
 The German privacy policies and imprint are the legally binding versions. Unknown
 paths get `404.html`, or `de/404.html` under `/de/` (see `public/_redirects`).
@@ -103,7 +104,9 @@ The build fails if a placeholder is left unfilled, in the pages and in `llms-ful
 ### Adding a page
 
 1. Add the English/German URL pair to `PAGES` in `build/site.js` (and a `pl` URL if the
-   page gets a Polish version; a page without one is linked in English from `/pl/`).
+   page gets a Polish version). Without one, the navigation and footer on `/pl/` link
+   to the English page on their own; links in the page text, such as the FAQ, are
+   written by hand in `pl/index.html`.
 2. Create both `index.html` files (copy `imprint/index.html` and
    `de/impressum/index.html`). The page joins the build, the sitemap and the language
    switch automatically.
